@@ -1,12 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INITIAL_NOTIFICATIONS } from '@/lib/data/alerts';
 import { NotificationRecord, UserRole } from '@/lib/types';
 import { AlertTriangleIcon, SendIcon, ShieldCheckIcon, CheckCircleIcon, UserRoleIcon } from '@/components/ui/Icons';
 
-export default function AlertsPage() {
+const STORAGE_KEY_ALERTS = 'jaldrishti_alerts_v1';
+
+function AlertsContent() {
+  const searchParams = useSearchParams();
+  const urlBlockParam = searchParams.get('block');
+
   const [notifications, setNotifications] = useState<NotificationRecord[]>(INITIAL_NOTIFICATIONS);
   const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
   const [selectedChannel, setSelectedChannel] = useState<'SMS' | 'WhatsApp'>('WhatsApp');
@@ -14,6 +20,44 @@ export default function AlertsPage() {
   const [recipientName, setRecipientName] = useState('BDO Tikamgarh');
   const [recipientPhone, setRecipientPhone] = useState('+91 98263 *****');
   const [dispatchSuccess, setDispatchSuccess] = useState<boolean>(false);
+  const [storageError, setStorageError] = useState<string | null>(null);
+
+  // 1. Client-side Hydration from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_ALERTS);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setNotifications(parsed);
+        }
+      }
+    } catch (err) {
+      console.warn('JalDrishti: Failed to load stored alert logs:', err);
+    }
+  }, []);
+
+  // 2. Query Context Pre-selection from Map Explorer Link
+  useEffect(() => {
+    if (urlBlockParam) {
+      const validBlock = ALL_BLOCKS.find(b => b.id === urlBlockParam);
+      if (validBlock) {
+        setSelectedBlockId(validBlock.id);
+        setRecipientName(`BDO ${validBlock.name}`);
+      }
+    }
+  }, [urlBlockParam]);
+
+  // Safe localStorage saver helper
+  const saveNotificationsToStorage = (updatedList: NotificationRecord[]) => {
+    try {
+      localStorage.setItem(STORAGE_KEY_ALERTS, JSON.stringify(updatedList));
+      setStorageError(null);
+    } catch (err) {
+      console.error('JalDrishti: Browser storage error:', err);
+      setStorageError('Warning: Browser storage quota exceeded or unavailable. Dispatch logged in UI but may not persist across reload.');
+    }
+  };
 
   const selectedBlock = ALL_BLOCKS.find(b => b.id === selectedBlockId) || ALL_BLOCKS[0];
 
@@ -40,13 +84,22 @@ export default function AlertsPage() {
       dataFreshnessDate: selectedBlock.indicators.lastUpdatedDate
     };
 
-    setNotifications([newNotif, ...notifications]);
+    const updatedList = [newNotif, ...notifications];
+    setNotifications(updatedList);
+    saveNotificationsToStorage(updatedList);
     setDispatchSuccess(true);
     setTimeout(() => setDispatchSuccess(false), 4000);
   };
 
   return (
     <div className="space-y-6">
+      {storageError && (
+        <div className="p-3 bg-amber-50 border border-amber-300 text-amber-900 rounded-lg text-xs font-semibold flex items-center justify-between">
+          <span>{storageError}</span>
+          <button onClick={() => setStorageError(null)} className="text-amber-700 hover:text-amber-900 font-bold ml-2">×</button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -219,5 +272,13 @@ export default function AlertsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AlertsPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-xs text-text-muted">Loading Advisory Engine...</div>}>
+      <AlertsContent />
+    </Suspense>
   );
 }

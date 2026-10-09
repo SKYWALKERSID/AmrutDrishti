@@ -1,10 +1,11 @@
 'use client';
-
 import React, { useState } from 'react';
 import { BUNDELKHAND_DISTRICTS, ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { BlockData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
 import Link from 'next/link';
+import LeafletMap from '@/components/LeafletMap';
+
 
 interface MapExplorerProps {
   initialBlockId?: string;
@@ -60,7 +61,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               <option value="all">All Pilot Districts</option>
               {BUNDELKHAND_DISTRICTS.map((d) => (
                 <option key={d.id} value={d.id}>
-                  {d.name} ({d.blocksCount} Blocks)
+                  {d.name} ({d.blocks.length} / {d.blocksCount} Pilot Blocks)
                 </option>
               ))}
             </select>
@@ -80,51 +81,46 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <div className="flex flex-wrap items-center gap-1.5">
               <button
                 onClick={() => setActiveLayer('risk')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
-                  activeLayer === 'risk'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
-                }`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'risk'
+                  ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
+                  : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                  }`}
               >
                 Groundwater Risk Status
               </button>
               <button
                 onClick={() => setActiveLayer('grace')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
-                  activeLayer === 'grace'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
-                }`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'grace'
+                  ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
+                  : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                  }`}
               >
                 GRACE TWSA (1.0°)
               </button>
               <button
                 onClick={() => setActiveLayer('rainfall')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
-                  activeLayer === 'rainfall'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
-                }`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'rainfall'
+                  ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
+                  : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                  }`}
               >
                 IMD Rainfall Anomaly (0.25°)
               </button>
               <button
                 onClick={() => setActiveLayer('wells')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
-                  activeLayer === 'wells'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
-                }`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'wells'
+                  ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
+                  : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                  }`}
               >
                 CGWB Well Network (Point)
               </button>
               <button
                 onClick={() => setActiveLayer('sentinel')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
-                  activeLayer === 'sentinel'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
-                }`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'sentinel'
+                  ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
+                  : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                  }`}
               >
                 Sentinel-2 NDVI (10m)
               </button>
@@ -152,85 +148,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </div>
             </div>
 
-            {/* GIS Grid Canvas */}
-            <div className="w-full h-full bg-[#f4f2eb] relative p-4 flex flex-col justify-between">
-              <div className="absolute inset-0 opacity-15 pointer-events-none grid grid-cols-6 grid-rows-6 border border-slate-300">
-                {Array.from({ length: 36 }).map((_, i) => (
-                  <div key={i} className="border border-slate-400/40 text-[9px] p-1 text-slate-500 font-mono">
-                    24.{(i % 6) * 2}°N, 78.{(Math.floor(i / 6)) * 2}°E
-                  </div>
-                ))}
-              </div>
-
-              {/* Block Features Container */}
-              <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 mt-12 overflow-y-auto max-h-[380px] p-2">
-                {filteredBlocks.map((block) => {
-                  const isSelected = selectedBlock.id === block.id;
-                  const isSevere = block.riskSeverity === 'severe';
-                  const isWatch = block.riskSeverity === 'watch';
-
-                  let bgStyle = 'bg-emerald-50 border-emerald-300 text-emerald-900';
-                  if (activeLayer === 'risk') {
-                    if (isSevere) bgStyle = 'bg-red-100 border-red-400 text-red-900 hover:bg-red-200';
-                    else if (isWatch) bgStyle = 'bg-amber-100 border-amber-400 text-amber-900 hover:bg-amber-200';
-                    else bgStyle = 'bg-emerald-100 border-emerald-400 text-emerald-900 hover:bg-emerald-200';
-                  } else if (activeLayer === 'grace') {
-                    bgStyle = block.indicators.graceTwsaCm < -6
-                      ? 'bg-red-100 border-red-400 text-red-900'
-                      : 'bg-amber-100 border-amber-300 text-amber-900';
-                  } else if (activeLayer === 'rainfall') {
-                    bgStyle = block.indicators.rainfallAnomalyMm < -200
-                      ? 'bg-red-100 border-red-400 text-red-900'
-                      : 'bg-blue-100 border-blue-300 text-blue-900';
-                  } else if (activeLayer === 'wells') {
-                    bgStyle = block.indicators.cgwbWellDepthMbgl > 14
-                      ? 'bg-red-100 border-red-400 text-red-900'
-                      : 'bg-emerald-100 border-emerald-400 text-emerald-900';
-                  }
-
-                  return (
-                    <button
-                      key={block.id}
-                      onClick={() => setSelectedBlock(block)}
-                      className={`p-3 rounded-lg border text-left transition-all ${bgStyle} ${
-                        isSelected ? 'ring-2 ring-[#0d5c63] ring-offset-2 font-bold shadow-md' : 'opacity-90'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold">{block.name}</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/80 font-mono font-semibold">
-                          {activeLayer === 'risk' && `${block.assessment.descriptiveStressScore}/100`}
-                          {activeLayer === 'grace' && `${block.indicators.graceTwsaCm}cm`}
-                          {activeLayer === 'rainfall' && `${block.indicators.rainfallAnomalyMm}mm`}
-                          {activeLayer === 'wells' && `${block.indicators.cgwbWellDepthMbgl}m`}
-                          {activeLayer === 'sentinel' && `NDVI ${block.indicators.sentinelNdvi}`}
-                        </span>
-                      </div>
-                      <div className="text-[10px] opacity-80 mt-1">
-                        {block.districtName} • Lat {block.coordinates[0]}, Lng {block.coordinates[1]}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Map Legend Footer Bar */}
-              <div className="relative z-10 bg-surface/95 border border-border rounded-md px-3 py-2 text-xs flex flex-wrap items-center justify-between gap-2 shadow-sm">
-                <div className="flex items-center gap-4 text-[11px]">
-                  <span className="font-semibold text-text-main">Map Legend:</span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-red-600 inline-block"></span> Severe Stress / High Deficit
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> Watch Advisory
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span> Normal Baseline
-                  </span>
-                </div>
-                <span className="text-[10px] text-text-muted">Click any block to inspect evidence</span>
-              </div>
-            </div>
+            {/* GIS Leaflet Map Container */}
+            <LeafletMap
+              blocks={filteredBlocks}
+              selectedBlockId={selectedBlock.id}
+              activeLayer={activeLayer}
+              onSelectBlock={setSelectedBlock}
+            />
           </div>
         </div>
 

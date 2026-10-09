@@ -1,16 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INTERVENTION_SCHEMES } from '@/lib/data/schemes';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { InterventionProposal, UserRole } from '@/lib/types';
 import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/components/ui/Icons';
 
-export default function InterventionsPage() {
+const STORAGE_KEY_PROPOSALS = 'jaldrishti_interventions_v1';
+
+function InterventionsContent() {
+  const searchParams = useSearchParams();
+  const urlBlockParam = searchParams.get('block');
+
   const [proposals, setProposals] = useState<InterventionProposal[]>(INITIAL_INTERVENTIONS);
   const [selectedProposal, setSelectedProposal] = useState<InterventionProposal>(INITIAL_INTERVENTIONS[0]);
   const [showNewModal, setShowNewModal] = useState<boolean>(false);
+  const [storageError, setStorageError] = useState<string | null>(null);
 
   // New Proposal Form State
   const [title, setTitle] = useState('');
@@ -25,6 +32,47 @@ export default function InterventionsPage() {
 
   // New Comment State
   const [commentText, setCommentText] = useState('');
+
+  // 1. Client-side Hydration from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_PROPOSALS);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setProposals(parsed);
+          setSelectedProposal(parsed[0]);
+        }
+      }
+    } catch (err) {
+      console.warn('JalDrishti: Failed to load stored interventions:', err);
+    }
+  }, []);
+
+  // 2. Query Context Pre-selection from Map Explorer Link
+  useEffect(() => {
+    if (urlBlockParam) {
+      const validBlock = ALL_BLOCKS.find(b => b.id === urlBlockParam);
+      if (validBlock) {
+        setBlockId(validBlock.id);
+        const matchingProp = proposals.find(p => p.blockId === validBlock.id);
+        if (matchingProp) {
+          setSelectedProposal(matchingProp);
+        }
+      }
+    }
+  }, [urlBlockParam, proposals]);
+
+  // Safe localStorage saver helper
+  const saveProposalsToStorage = (updatedList: InterventionProposal[]) => {
+    try {
+      localStorage.setItem(STORAGE_KEY_PROPOSALS, JSON.stringify(updatedList));
+      setStorageError(null);
+    } catch (err) {
+      console.error('JalDrishti: Browser storage error:', err);
+      setStorageError('Warning: Browser storage quota exceeded or unavailable. Changes shown in UI but may not persist across reload.');
+    }
+  };
 
   const selectedBlock = ALL_BLOCKS.find(b => b.id === blockId) || ALL_BLOCKS[0];
   const selectedScheme = INTERVENTION_SCHEMES.find(s => s.id === schemeId) || INTERVENTION_SCHEMES[0];
@@ -61,8 +109,10 @@ export default function InterventionsPage() {
       ]
     };
 
-    setProposals([newProp, ...proposals]);
+    const updatedList = [newProp, ...proposals];
+    setProposals(updatedList);
     setSelectedProposal(newProp);
+    saveProposalsToStorage(updatedList);
     setShowNewModal(false);
   };
 
@@ -83,6 +133,7 @@ export default function InterventionsPage() {
       status: newStatus,
       lastUpdatedDate: new Date().toISOString().split('T')[0]
     });
+    saveProposalsToStorage(updated);
   };
 
   const handleAddComment = (e: React.FormEvent) => {
@@ -113,6 +164,7 @@ export default function InterventionsPage() {
       comments: [...selectedProposal.comments, newComment],
       lastUpdatedDate: new Date().toISOString().split('T')[0]
     });
+    saveProposalsToStorage(updated);
     setCommentText('');
   };
 
@@ -133,6 +185,13 @@ export default function InterventionsPage() {
 
   return (
     <div className="space-y-6">
+      {storageError && (
+        <div className="p-3 bg-amber-50 border border-amber-300 text-amber-900 rounded-lg text-xs font-semibold flex items-center justify-between">
+          <span>{storageError}</span>
+          <button onClick={() => setStorageError(null)} className="text-amber-700 hover:text-amber-900 font-bold ml-2">×</button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -442,7 +501,7 @@ export default function InterventionsPage() {
                   onClick={() => setShowNewModal(false)}
                   className="px-4 py-2 bg-subtle text-text-main font-semibold rounded hover:bg-subtle/80"
                 >
-                  Cancel
+                    Cancel
                 </button>
                 <button
                   type="submit"
@@ -456,5 +515,13 @@ export default function InterventionsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function InterventionsPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-xs text-text-muted">Loading Governance Workspace...</div>}>
+      <InterventionsContent />
+    </Suspense>
   );
 }

@@ -51,6 +51,7 @@ export interface BlockData {
   assessment: RiskAssessmentDetails;
   activeInterventionsCount: number;
   openAlertsCount: number;
+  geojsonGeometry?: GeoJSON.Geometry;
 }
 
 export interface DistrictData {
