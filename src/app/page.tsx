@@ -82,20 +82,15 @@ export default function OverviewDashboard() {
       {/* High-Priority Flagged Risk Section */}
       <div className="bg-red-50/70 border border-red-200 rounded-lg p-5 shadow-card space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="bg-red-700 text-white font-bold text-xs px-2.5 py-0.5 rounded uppercase tracking-wide">
-              Demo Fixture: Severe Class
-            </span>
-            <h2 className="text-sm font-bold text-red-950">
-              Blocks labelled Severe in the demonstration fixtures
-            </h2>
-          </div>
+          <h2 className="text-base font-bold text-red-950 tracking-tight">
+            DISTRICT BLOCKS WITH SEVERE WARNING
+          </h2>
           <span className="text-xs text-red-800 font-medium">
             {severeCount} of {summary.total} fixture blocks labelled Severe
           </span>
         </div>
-        <p className="text-xs text-red-900 leading-relaxed">
-          These blocks carry a hand-entered Severe label in the simulated fixtures. No validated thresholds are implemented; the label is not a computed or verified finding and requires field verification.
+        <p className="text-xs text-red-900 leading-relaxed font-normal">
+          <strong>DISCLAIMER:</strong> (The blocks listed below are manually classified demonstration records. These are not verified groundwater warnings; validated risk thresholds and scientific assessment have not yet been implemented.)
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
