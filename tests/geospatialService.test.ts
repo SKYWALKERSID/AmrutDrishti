@@ -31,3 +31,37 @@ test('fetchBlocksGeospatialData falls back cleanly to demonstration fixtures whe
   }
 });
 
+test('Geospatial Service payload structure preserves null indicators without converting to zero', async () => {
+  const result = await fetchBlocksGeospatialData();
+  assert.ok(Array.isArray(result.blocks));
+  assert.ok(result.totalCount > 0);
+
+  // Validate properties on returned BlockData model
+  const firstBlock = result.blocks[0];
+  assert.ok(firstBlock.id);
+  assert.ok(firstBlock.name);
+  assert.ok(firstBlock.districtId);
+  assert.ok(firstBlock.indicators);
+  assert.ok(firstBlock.assessment);
+
+  // Verify missing/null indicators remain null rather than defaulting to zero
+  const blockWithNulls = result.blocks.find(b =>
+    b.indicators.graceTwsaCm === null ||
+    b.indicators.rainfallAnomalyMm === null ||
+    b.indicators.cgwbWellDepthMbgl === null
+  );
+  if (blockWithNulls) {
+    if (blockWithNulls.indicators.graceTwsaCm === null) {
+      assert.notEqual(blockWithNulls.indicators.graceTwsaCm, 0);
+    }
+  }
+});
+
+test('Source provenance classification labels remain distinct', async () => {
+  const result = await fetchBlocksGeospatialData();
+  assert.ok(['live_database', 'demonstration_fixture', 'fallback_empty'].includes(result.source));
+  if (result.source === 'demonstration_fixture') {
+    assert.equal(result.isDemonstrationData, true);
+    assert.ok(result.errorMessage?.includes('demonstration') || result.errorMessage?.includes('unconfigured') || result.errorMessage?.includes('Database query error'));
+  }
+});

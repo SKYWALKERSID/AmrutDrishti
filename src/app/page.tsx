@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { BUNDELKHAND_DISTRICTS, ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { summarizeBlocks, SIMULATED_DATA_LABEL } from '@/lib/demo/demoPolicy';
+import type { BlockData } from '@/lib/types';
 import {
   WaterDropletIcon,
   CloudRainIcon,
@@ -21,6 +22,11 @@ export default function OverviewDashboard() {
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
   const [interventionCount, setInterventionCount] = useState<number>(INITIAL_INTERVENTIONS.length);
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_BLOCKS);
+  const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean }>({
+    source: 'demonstration_fixture',
+    isDemonstration: true
+  });
 
   useEffect(() => {
     try {
@@ -34,13 +40,38 @@ export default function OverviewDashboard() {
     }
   }, []);
 
-  const filteredBlocks = ALL_BLOCKS.filter((block) => {
+  useEffect(() => {
+    let active = true;
+    async function loadGeospatialData() {
+      try {
+        const res = await fetch('/api/geospatial/blocks');
+        if (res.ok && active) {
+          const json = await res.json();
+          if (json.blocks && Array.isArray(json.blocks)) {
+            setBlocksData(json.blocks);
+            setDataSourceInfo({
+              source: json.source || 'demonstration_fixture',
+              isDemonstration: json.isDemonstrationData ?? true
+            });
+          }
+        }
+      } catch (err) {
+        console.warn('JalDrishti: Failed to fetch geospatial blocks API for Overview, using client fixtures:', err);
+      }
+    }
+    loadGeospatialData();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const filteredBlocks = blocksData.filter((block) => {
     const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
     const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
     return matchesDistrict && matchesSeverity;
   });
 
-  const summary = summarizeBlocks(ALL_BLOCKS);
+  const summary = summarizeBlocks(blocksData);
   const severeCount = summary.severe;
   const watchCount = summary.watch;
   const normalCount = summary.normal;
@@ -53,6 +84,13 @@ export default function OverviewDashboard() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2">
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                dataSourceInfo.source === 'live_database'
+                  ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
+                  : 'bg-amber-100 text-amber-900 border border-amber-300'
+              }`}>
+                SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
+              </span>
               <span className="bg-primary-light text-primary font-semibold text-xs px-2.5 py-1 rounded">
                 {t('overview.pilotRecords', `Pilot demonstration records: ${summary.total} blocks in ${summary.districtCount} districts (Bundelkhand, MP/UP)`)}
               </span>

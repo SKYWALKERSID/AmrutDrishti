@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BUNDELKHAND_DISTRICTS, ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { BlockData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
@@ -13,11 +13,50 @@ interface MapExplorerProps {
 
 export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const { t } = useLanguage();
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_BLOCKS);
+  const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
+    source: 'demonstration_fixture',
+    isDemonstration: true
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const [selectedBlock, setSelectedBlock] = useState<BlockData>(
     ALL_BLOCKS.find((b) => b.id === initialBlockId) || ALL_BLOCKS[0]
   );
   const [activeLayer, setActiveLayer] = useState<'risk' | 'grace' | 'rainfall' | 'wells' | 'sentinel'>('risk');
   const [selectedDistrictFilter, setSelectedDistrictFilter] = useState<string>('all');
+
+  useEffect(() => {
+    let active = true;
+    async function loadGeospatialData() {
+      try {
+        const res = await fetch('/api/geospatial/blocks');
+        if (res.ok && active) {
+          const json = await res.json();
+          if (json.blocks && Array.isArray(json.blocks)) {
+            setBlocksData(json.blocks);
+            setDataSourceInfo({
+              source: json.source || 'demonstration_fixture',
+              isDemonstration: json.isDemonstrationData ?? true,
+              errorMessage: json.errorMessage
+            });
+            if (initialBlockId) {
+              const matched = json.blocks.find((b: BlockData) => b.id === initialBlockId);
+              if (matched) setSelectedBlock(matched);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('JalDrishti: Failed to fetch geospatial blocks API for MapExplorer, using client fixtures:', err);
+      } finally {
+        if (active) setIsLoading(false);
+      }
+    }
+    loadGeospatialData();
+    return () => {
+      active = false;
+    };
+  }, [initialBlockId]);
 
   const getSeverityBadgeClass = (severity: RiskSeverity) => {
     switch (severity) {
@@ -45,7 +84,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     }
   };
 
-  const filteredBlocks = ALL_BLOCKS.filter(
+  const filteredBlocks = blocksData.filter(
     (b) => selectedDistrictFilter === 'all' || b.districtId === selectedDistrictFilter
   );
 
@@ -54,7 +93,17 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
       {/* Top Header */}
       <div className="bg-surface border border-border rounded-lg p-5 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+              dataSourceInfo.source === 'live_database'
+                ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
+                : 'bg-amber-100 text-amber-900 border border-amber-300'
+            }`}>
+              SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
+            </span>
+            {isLoading && <span className="text-xs text-text-muted">{t('monitoring.loading', 'Loading backend layers...')}</span>}
+          </div>
+          <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
             <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
@@ -70,7 +119,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <select
               value={selectedDistrictFilter}
               onChange={(e) => setSelectedDistrictFilter(e.target.value)}
-              className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none"
+              className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer"
             >
               <option value="all">{t('explorer.allDistricts', 'All Pilot Districts')}</option>
               {BUNDELKHAND_DISTRICTS.map((d) => (
