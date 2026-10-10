@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BUNDELKHAND_DISTRICTS, ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
+import { summarizeBlocks, SIMULATED_DATA_LABEL } from '@/lib/demo/demoPolicy';
 import {
   WaterDropletIcon,
   CloudRainIcon,
@@ -16,6 +17,19 @@ import {
 export default function OverviewDashboard() {
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
+  const [interventionCount, setInterventionCount] = useState<number>(INITIAL_INTERVENTIONS.length);
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem('jaldrishti_interventions_v1');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) setInterventionCount(parsed.length);
+      }
+    } catch {
+      /* keep fixture count */
+    }
+  }, []);
 
   const filteredBlocks = ALL_BLOCKS.filter((block) => {
     const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
@@ -23,9 +37,11 @@ export default function OverviewDashboard() {
     return matchesDistrict && matchesSeverity;
   });
 
-  const severeCount = ALL_BLOCKS.filter(b => b.riskSeverity === 'severe').length;
-  const watchCount = ALL_BLOCKS.filter(b => b.riskSeverity === 'watch').length;
-  const normalCount = ALL_BLOCKS.filter(b => b.riskSeverity === 'normal').length;
+  const summary = summarizeBlocks(ALL_BLOCKS);
+  const severeCount = summary.severe;
+  const watchCount = summary.watch;
+  const normalCount = summary.normal;
+  const fmt = (v: number | null, unit: string) => (v === null ? 'n/a' : `${v} ${unit}`);
 
   return (
     <div className="space-y-6">
@@ -33,18 +49,17 @@ export default function OverviewDashboard() {
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="bg-primary-light text-primary font-semibold text-xs px-2.5 py-1 rounded">
-                Pilot Geography: Bundelkhand, MP & UP Border
+                Pilot demonstration records: {summary.total} blocks in {summary.districtCount} districts (Bundelkhand, MP/UP)
               </span>
-              <span className="text-xs text-text-muted">Observation Period: Post-Monsoon 2026</span>
+              <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded">UI PROTOTYPE — {SIMULATED_DATA_LABEL}</span>
             </div>
             <h1 className="text-2xl font-bold text-text-main mt-2 tracking-tight">
-              Groundwater Risk & Decision Support Overview
+              JalDrishti — Geospatial Intelligence for Water Security
             </h1>
             <p className="text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
-              Consolidated geospatial evidence connecting satellite storage anomalies, high-resolution rainfall records,
-              vegetation indicators, and ground well observations for local governance teams.
+              Geospatial decision-support platform enabling district collectors, BDOs, and analysts to identify groundwater water-stress signals, investigate geographic risk, prioritize interventions, and communicate bilingual advisories.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
@@ -58,9 +73,83 @@ export default function OverviewDashboard() {
               href="/interventions"
               className="bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold px-4 py-2.5 rounded-md transition-colors"
             >
-              Intervention Workspace ({INITIAL_INTERVENTIONS.length})
+              Intervention Workspace ({interventionCount})
             </Link>
           </div>
+        </div>
+      </div>
+
+      {/* High-Priority Flagged Risk Section */}
+      <div className="bg-red-50/70 border border-red-200 rounded-lg p-5 shadow-card space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="bg-red-700 text-white font-bold text-xs px-2.5 py-0.5 rounded uppercase tracking-wide">
+              Demo Fixture: Severe Class
+            </span>
+            <h2 className="text-sm font-bold text-red-950">
+              Blocks labelled Severe in the demonstration fixtures
+            </h2>
+          </div>
+          <span className="text-xs text-red-800 font-medium">
+            {severeCount} of {summary.total} fixture blocks labelled Severe
+          </span>
+        </div>
+        <p className="text-xs text-red-900 leading-relaxed">
+          These blocks carry a hand-entered Severe label in the simulated fixtures. No validated thresholds are implemented; the label is not a computed or verified finding and requires field verification.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+          {ALL_BLOCKS.filter(b => b.riskSeverity === 'severe').map(block => (
+            <div key={block.id} className="bg-surface border border-red-200 rounded-md p-3.5 space-y-2 text-xs">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-bold text-text-main text-sm">{block.name} Block</h3>
+                  <span className="text-text-muted text-[11px]">{block.districtName} District, {block.state}</span>
+                </div>
+                <span className="badge-severe text-[10px] font-bold px-2 py-0.5 rounded">
+                  GSS: {block.assessment.descriptiveStressScore}/100
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2 text-[11px] bg-subtle/40 p-2 rounded border border-border">
+                <div>
+                  <span className="text-text-muted block text-[10px]">Well Depth</span>
+                  <span className="font-bold text-red-700">{block.indicators.cgwbWellDepthMbgl}m bgl</span>
+                </div>
+                <div>
+                  <span className="text-text-muted block text-[10px]">Rain Deficit</span>
+                  <span className="font-bold text-amber-700">{block.indicators.rainfallAnomalyMm}mm</span>
+                </div>
+                <div>
+                  <span className="text-text-muted block text-[10px]">GRACE TWSA</span>
+                  <span className="font-bold text-text-main">{block.indicators.graceTwsaCm}cm</span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/60">
+                <Link
+                  href={`/explorer?block=${block.id}`}
+                  className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                >
+                  Inspect Map Evidence →
+                </Link>
+                <span className="text-text-muted">•</span>
+                <Link
+                  href={`/risk-assessment?block=${block.id}`}
+                  className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                >
+                  View GSS Breakdown →
+                </Link>
+                <span className="text-text-muted">•</span>
+                <Link
+                  href={`/interventions?block=${block.id}`}
+                  className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                >
+                  Prioritize Scheme →
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -93,8 +182,8 @@ export default function OverviewDashboard() {
             </div>
           </div>
           <div className="mt-3">
-            <div className="text-2xl font-bold text-red-700 tracking-tight">-6.8 cm TWSA</div>
-            <p className="text-xs text-text-muted mt-1">Regional Mass Anomaly vs 2004-2010 Mean</p>
+            <div className="text-2xl font-bold text-red-700 tracking-tight">{fmt(summary.meanGraceTwsaCm, 'cm')}</div>
+            <p className="text-xs text-text-muted mt-1">Mean of fixture GRACE TWSA values across {summary.total} blocks (SIMULATED; not a regional measurement)</p>
           </div>
         </div>
 
@@ -107,8 +196,8 @@ export default function OverviewDashboard() {
             </div>
           </div>
           <div className="mt-3">
-            <div className="text-2xl font-bold text-amber-700 tracking-tight">-210 mm</div>
-            <p className="text-xs text-text-muted mt-1">IMD Gridded Deficit (SPI: -1.58 Severe Lag)</p>
+            <div className="text-2xl font-bold text-amber-700 tracking-tight">{fmt(summary.meanRainfallAnomalyMm, 'mm')}</div>
+            <p className="text-xs text-text-muted mt-1">Mean of fixture rainfall anomalies (SIMULATED; not IMD data)</p>
           </div>
         </div>
 
@@ -121,8 +210,8 @@ export default function OverviewDashboard() {
             </div>
           </div>
           <div className="mt-3">
-            <div className="text-2xl font-bold text-text-main tracking-tight">14.8 m bgl</div>
-            <p className="text-xs text-text-muted mt-1">Piezometer Network (-0.68 m/yr trend)</p>
+            <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanWellDepthMbgl, 'm bgl')}</div>
+            <p className="text-xs text-text-muted mt-1">Mean of fixture well depths (SIMULATED; not verified CGWB readings)</p>
           </div>
         </div>
       </div>
@@ -229,7 +318,11 @@ export default function OverviewDashboard() {
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-1.5">
                         <span className="font-bold text-text-main">{block.assessment.descriptiveStressScore}/100</span>
-                        <span className="text-[10px] text-text-muted">[{block.assessment.confidenceInterval[0]}-{block.assessment.confidenceInterval[1]}]</span>
+                        <span className="text-[10px] text-text-muted">
+                          {block.assessment.confidenceInterval
+                            ? `[${block.assessment.confidenceInterval[0]}-${block.assessment.confidenceInterval[1]}]`
+                            : '[Uncalibrated]'}
+                        </span>
                       </div>
                     </td>
 
@@ -270,10 +363,9 @@ export default function OverviewDashboard() {
           <span>Scientific Governance & Transparency Protocol</span>
         </div>
         <p className="leading-relaxed">
-          <strong>Data Provenance Notice:</strong> All indicators presented on JalDrishti are explicitly labeled as <em>observed</em> (CGWB well hydrographs, IMD rain gauges),
-          <em>derived</em> (Sentinel-2 NDVI, GRACE TWSA anomaly), or <em>simulated demonstration metrics</em>.
-          No countdown formulas or unvalidated &ldquo;days-to-crisis&rdquo; claims are issued. Multi-source spatial scale differences (100km GRACE satellite grid vs point well piezometers)
-          are preserved to ensure rigorous governance decision support.
+          <strong>Data Provenance Notice:</strong> This is a UI prototype. Every indicator value, score and severity class on this page is a simulated demonstration fixture; none is a live observation or a verified measurement, and column names (e.g. CGWB, GRACE, NDVI) name the intended source type only.
+          No countdown formulas or &ldquo;days-to-crisis&rdquo; claims are issued. GRACE is a coarse (~100 km) grid and does not give village-level groundwater depth.
+        
         </p>
       </div>
     </div>

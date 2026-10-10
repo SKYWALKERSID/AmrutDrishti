@@ -1,10 +1,12 @@
 export type UserRole =
+  | 'general_public'
   | 'district_collector'
   | 'bdo'
   | 'gram_pradhan'
   | 'jal_samiti'
   | 'environmental_analyst'
   | 'admin';
+
 
 export type RiskSeverity = 'normal' | 'watch' | 'severe' | 'gap';
 
@@ -25,7 +27,7 @@ export interface EnvironmentalIndicators {
 
 export interface RiskAssessmentDetails {
   descriptiveStressScore: number;  // 0 - 100 transparent aggregated score
-  confidenceInterval: [number, number]; // [lower, upper] bounds
+  confidenceInterval: [number, number] | null; // [lower, upper] bounds or null if unavailable/uncalibrated
   dataStatus: DataStatusType;
   validationStatus: 'validated' | 'demonstration_only' | 'pending_field_review';
   primaryStressDriver: string;
@@ -41,7 +43,7 @@ export interface BlockData {
   districtId: string;
   districtName: string;
   state: string;
-  coordinates: [number, number];   // Center [lat, lng]
+  coordinates: [number, number] | null;   // Center [lat, lng] or null if unavailable
   populationEst: number;
   totalGeographicAreaHa: number;
   netSownAreaHa: number;

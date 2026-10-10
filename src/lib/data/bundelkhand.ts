@@ -1,4 +1,4 @@
-import { DistrictData, BlockData } from '../types';
+import type { DistrictData, BlockData } from '../types.ts';
 
 export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
   {
@@ -37,8 +37,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 78,
-          confidenceInterval: [71, 84],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Deficit Monsoon Rainfall (-32%) & Accelerated Well Drawdown in Hard-Rock Aquifer',
           safeguardNotice: 'Demonstration Data — Scientific validation on held-out well network pending. Do not use as sole authorization for financial sanction.',
@@ -75,8 +75,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 74,
-          confidenceInterval: [68, 80],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Granitic Weathered Zone Storage Depletion & Poor Recharge Potential',
           safeguardNotice: 'Demonstration Data — Subject to CGWB Post-Monsoon 2026 Field Verification.',
@@ -113,8 +113,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 58,
-          confidenceInterval: [51, 64],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Moderate Rainfall Lag & Seasonal Well Level Fluctuations',
           safeguardNotice: 'Demonstration Data — Regional satellite TWSA spatial scale ~100km.',
@@ -151,8 +151,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 52,
-          confidenceInterval: [46, 58],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Early Dry Season Vegetation Stress & Surface Storage Decline',
           safeguardNotice: 'Demonstration Data — Field check recommended before reservoir releases.',
@@ -201,8 +201,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 84,
-          confidenceInterval: [78, 89],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Severe Meteorological Deficit & Deepening Aquifer Water Table',
           safeguardNotice: 'Demonstration Data — High stress block. Field verification mandated before emergency supply routing.',
@@ -239,8 +239,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 76,
-          confidenceInterval: [70, 82],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Surface Reservoir Depletion (Ken Basin Tributaries) & Soil Moisture Deficit',
           safeguardNotice: 'Demonstration Data — GRACE spatial resolution coarse filter applied.',
@@ -277,8 +277,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 61,
-          confidenceInterval: [55, 67],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Moderate Forest Canopy Storage & Intermittent Surface Flow',
           safeguardNotice: 'Demonstration Data — Requires ground well verification.',
@@ -327,8 +327,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 49,
-          confidenceInterval: [43, 55],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Near-Normal Storage with Minor Monsoon Deficit',
           safeguardNotice: 'Demonstration Data — Stable zone with adequate canal recharge.',
@@ -365,8 +365,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 75,
-          confidenceInterval: [69, 81],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Over-extraction for Irrigation & Monsoon Deficit',
           safeguardNotice: 'Demonstration Data — Priority review block for Atal Bhujal Yojana water budgeting.',
@@ -415,8 +415,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 42,
-          confidenceInterval: [36, 48],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Moderate Catchment Storage from Rajghat Dam Network',
           safeguardNotice: 'Demonstration Data — Adequate surface storage buffering.',
@@ -465,8 +465,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 28,
-          confidenceInterval: [22, 34],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Near-Normal Monsoon Precipitation & Baseline Water Table',
           safeguardNotice: 'Demonstration Data — Baseline conditions satisfied.',
@@ -503,8 +503,8 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
         },
         assessment: {
           descriptiveStressScore: 46,
-          confidenceInterval: [40, 52],
-          dataStatus: 'observed',
+          confidenceInterval: null,
+          dataStatus: 'simulated',
           validationStatus: 'demonstration_only',
           primaryStressDriver: 'Localized Monsoon Deficit & Irrigation Demand',
           safeguardNotice: 'Demonstration Data — Routine watch.',

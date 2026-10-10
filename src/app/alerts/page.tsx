@@ -5,6 +5,16 @@ import { useSearchParams } from 'next/navigation';
 import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INITIAL_NOTIFICATIONS } from '@/lib/data/alerts';
 import { NotificationRecord, UserRole } from '@/lib/types';
+import { useRole } from '@/lib/context/RoleContext';
+import {
+  canMutateDemoWorkflows,
+  demoRestrictionNotice,
+  canDispatchAdvisory,
+  buildAdvisoryMessages,
+  displayDeliveryStatus,
+  ADVISORY_DISCLAIMER_EN,
+  NO_REAL_MESSAGE_NOTICE,
+} from '@/lib/demo/demoPolicy';
 import { AlertTriangleIcon, SendIcon, ShieldCheckIcon, CheckCircleIcon, UserRoleIcon } from '@/components/ui/Icons';
 
 const STORAGE_KEY_ALERTS = 'jaldrishti_alerts_v1';
@@ -12,6 +22,7 @@ const STORAGE_KEY_ALERTS = 'jaldrishti_alerts_v1';
 function AlertsContent() {
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
+  const { activeRole } = useRole();
 
   const [notifications, setNotifications] = useState<NotificationRecord[]>(INITIAL_NOTIFICATIONS);
   const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
@@ -22,6 +33,12 @@ function AlertsContent() {
   const [dispatchSuccess, setDispatchSuccess] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
 
+  // Client-side demonstration restriction only; not server-side authorization.
+  const canDispatch = canMutateDemoWorkflows(activeRole);
+  const restrictionNotice = demoRestrictionNotice(activeRole);
+  const [dispatchError, setDispatchError] = useState<string | null>(null);
+
+
   // 1. Client-side Hydration from localStorage
   useEffect(() => {
     try {
@@ -29,7 +46,10 @@ function AlertsContent() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setNotifications(parsed);
+          // Replace any previously stored copies of the built-in fixture records with the
+          // corrected simulated versions (older copies were labelled 'delivered').
+          const fixtureById = new Map(INITIAL_NOTIFICATIONS.map(n => [n.id, n]));
+          setNotifications(parsed.map((n: NotificationRecord) => fixtureById.get(n.id) ?? n));
         }
       }
     } catch (err) {
@@ -61,12 +81,20 @@ function AlertsContent() {
 
   const selectedBlock = ALL_BLOCKS.find(b => b.id === selectedBlockId) || ALL_BLOCKS[0];
 
-  const generatedHindiText = `जलदृष्टि सतर्कता: ${selectedBlock.name} (${selectedBlock.districtName}) में भूजल स्तर ${selectedBlock.indicators.cgwbWellDepthMbgl}m bgl तक गिर गया है। वर्षा घाटा ${selectedBlock.indicators.rainfallAnomalyMm}mm दर्ज हुआ है। जल समिति एवं ग्राम पंचायत जल प्रबंधन समीक्षा करें। (सूचना स्रोत: CGWB / IMD / NASA GRACE | निर्णय-सहायता चेतावनी: भौतिक सत्यापन आवश्यक)`;
-
-  const generatedEnglishText = `JalDrishti Advisory: High groundwater stress in ${selectedBlock.name} block (${selectedBlock.districtName}). Well depth reached ${selectedBlock.indicators.cgwbWellDepthMbgl}m bgl with ${selectedBlock.indicators.rainfallAnomalyMm}mm rainfall deficit. Ground verification recommended. (Source: CGWB/IMD/GRACE)`;
+  const { hindi: generatedHindiText, english: generatedEnglishText } = buildAdvisoryMessages(selectedBlock);
+  const dispatchDecision = canDispatchAdvisory(selectedBlock);
 
   const handleDispatchNotification = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!canDispatch) {
+      setDispatchError('This demo role cannot create simulated advisories.');
+      return;
+    }
+    if (!dispatchDecision.allowed) {
+      setDispatchError(dispatchDecision.reason);
+      return;
+    }
+    setDispatchError(null);
     const newNotif: NotificationRecord = {
       id: `notif_${Date.now()}`,
       recipientName: recipientName,
@@ -107,7 +135,7 @@ function AlertsContent() {
             <AlertTriangleIcon className="w-5 h-5 text-amber-600" /> Hindi-First Advisory & Alert Engine
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            Bilingual decision-support alerts for District Collectors, BDOs, and Gram Samitis with deduplication & safe wording.
+            Simulated bilingual advisory log for demonstration. No real SMS or WhatsApp message is sent, and deduplication, cooldown and audit logging are not implemented in this prototype.
           </p>
         </div>
 
@@ -119,15 +147,21 @@ function AlertsContent() {
       </div>
 
       {/* Safe Wording Safeguard Banner */}
-      <div className="bg-subtle/80 border border-border rounded-lg p-4 text-xs text-text-muted space-y-1">
-        <div className="font-bold text-text-main flex items-center gap-1.5">
-          <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> Mandatory Safe Wording Policy (FR-056)
+      <div className="bg-amber-50/80 border border-amber-300 rounded-lg p-4 text-xs text-amber-900 space-y-1">
+        <div className="font-bold flex items-center gap-1.5">
+          <ShieldCheckIcon className="w-4 h-4 text-amber-700" /> Simulation only — no real message is sent
         </div>
         <p className="leading-relaxed">
-          Every alert dispatched by JalDrishti explicitly states its observational source timestamp and includes the mandatory suffix:
-          <em> &ldquo;Decisional Advisory: Requires Local Field Verification. Not an Automated Financial Sanction.&rdquo;</em>
+          {NO_REAL_MESSAGE_NOTICE} Every simulated advisory generated here includes this wording:
+          <em> &ldquo;{ADVISORY_DISCLAIMER_EN}&rdquo;</em> Values quoted are demonstration fixture values, not verified groundwater measurements. The Hindi text has not been reviewed by a native Hindi reviewer. Demo dispatch is blocked for Normal-severity blocks.
         </p>
       </div>
+
+      {restrictionNotice && (
+        <div className="bg-subtle border border-border rounded-lg p-3 text-xs text-text-muted">
+          {restrictionNotice}
+        </div>
+      )}
 
       {/* Main Grid: Alert Dispatch Simulator + History Log */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -141,10 +175,21 @@ function AlertsContent() {
             {dispatchSuccess && (
               <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded text-xs flex items-center gap-2">
                 <CheckCircleIcon className="w-4 h-4 text-emerald-700 shrink-0" />
-                <span>Advisory successfully simulated & appended to audit log.</span>
+                <span>Simulated advisory added to the local demo log (this browser only). No message was sent.</span>
               </div>
             )}
 
+            {dispatchError && (
+              <div className="p-3 bg-red-50 border border-red-200 text-red-900 rounded text-xs" role="alert">
+                {dispatchError}
+              </div>
+            )}
+
+            {!canDispatch && (
+              <p className="text-xs text-text-muted">Simulated dispatch controls are not available for this demo role.</p>
+            )}
+
+            {canDispatch && (
             <form onSubmit={handleDispatchNotification} className="space-y-3 text-xs">
               <div className="space-y-1">
                 <label className="font-semibold text-text-main">Target Block Geography:</label>
@@ -226,13 +271,19 @@ function AlertsContent() {
                 </div>
               </div>
 
+              {!dispatchDecision.allowed && (
+                <p className="text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded p-2">{dispatchDecision.reason}</p>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white font-semibold py-2.5 rounded-md transition-colors shadow-sm"
+                disabled={!dispatchDecision.allowed}
+                className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white font-semibold py-2.5 rounded-md transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Dispatch Test Advisory ({selectedChannel})
+                Create Simulated Advisory Record ({selectedChannel}) — nothing is sent
               </button>
             </form>
+            )}
           </div>
         </div>
 
@@ -263,7 +314,7 @@ function AlertsContent() {
 
                   <div className="flex justify-between items-center text-[10px] text-text-muted pt-1">
                     <span>Target: {notif.blockName} ({notif.districtName})</span>
-                    <span className="text-emerald-700 font-semibold">Status: {notif.deliveryStatus.toUpperCase()}</span>
+                    <span className="text-amber-800 font-semibold">Status: {displayDeliveryStatus()} (no real message sent)</span>
                   </div>
                 </div>
               ))}

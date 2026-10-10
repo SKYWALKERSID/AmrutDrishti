@@ -6,6 +6,8 @@ import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INTERVENTION_SCHEMES } from '@/lib/data/schemes';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { InterventionProposal, UserRole } from '@/lib/types';
+import { useRole } from '@/lib/context/RoleContext';
+import { canMutateDemoWorkflows, demoRestrictionNotice, SCHEME_UNVERIFIED_NOTICE } from '@/lib/demo/demoPolicy';
 import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/components/ui/Icons';
 
 const STORAGE_KEY_PROPOSALS = 'jaldrishti_interventions_v1';
@@ -13,11 +15,15 @@ const STORAGE_KEY_PROPOSALS = 'jaldrishti_interventions_v1';
 function InterventionsContent() {
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
+  const { activeRole } = useRole();
 
   const [proposals, setProposals] = useState<InterventionProposal[]>(INITIAL_INTERVENTIONS);
   const [selectedProposal, setSelectedProposal] = useState<InterventionProposal>(INITIAL_INTERVENTIONS[0]);
   const [showNewModal, setShowNewModal] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
+
+  const isReadOnly = !canMutateDemoWorkflows(activeRole);
+  const restrictionNotice = demoRestrictionNotice(activeRole);
 
   // New Proposal Form State
   const [title, setTitle] = useState('');
@@ -79,6 +85,7 @@ function InterventionsContent() {
 
   const handleCreateProposal = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!canMutateDemoWorkflows(activeRole)) return;
     const newProp: InterventionProposal = {
       id: `prop_${Date.now()}`,
       title: title || `Intervention for ${selectedBlock.name}`,
@@ -87,8 +94,8 @@ function InterventionsContent() {
       districtName: selectedBlock.districtName,
       schemeId: selectedScheme.id,
       schemeName: selectedScheme.name,
-      proposedByRole: 'bdo',
-      proposedByName: 'Block Development Office',
+      proposedByRole: activeRole,
+      proposedByName: `${activeRole.toUpperCase()} Office`,
       targetVillage: targetVillage || `${selectedBlock.name} Central Panchayat`,
       estimatedCostInr: parseInt(estimatedCost) || 1500000,
       beneficiariesCount: parseInt(beneficiaries) || 2000,
@@ -102,7 +109,7 @@ function InterventionsContent() {
       comments: [
         {
           authorName: 'System User',
-          authorRole: 'bdo',
+          authorRole: activeRole,
           date: new Date().toISOString().split('T')[0],
           text: 'Proposal created and submitted for review.'
         }
@@ -117,6 +124,7 @@ function InterventionsContent() {
   };
 
   const handleUpdateStatus = (newStatus: InterventionProposal['status']) => {
+    if (!canMutateDemoWorkflows(activeRole)) return;
     const updated = proposals.map(p => {
       if (p.id === selectedProposal.id) {
         return {
@@ -138,11 +146,12 @@ function InterventionsContent() {
 
   const handleAddComment = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!canMutateDemoWorkflows(activeRole)) return;
     if (!commentText.trim()) return;
 
     const newComment = {
       authorName: 'Authorized Reviewer',
-      authorRole: 'district_collector' as UserRole,
+      authorRole: activeRole,
       date: new Date().toISOString().split('T')[0],
       text: commentText
     };
@@ -192,7 +201,12 @@ function InterventionsContent() {
         </div>
       )}
 
-      {/* Header */}
+      {restrictionNotice && (
+        <div role="note" className="p-3 bg-amber-50 border border-amber-300 text-amber-900 rounded-lg text-xs font-semibold">
+          {restrictionNotice}
+        </div>
+      )}
+
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
@@ -203,12 +217,14 @@ function InterventionsContent() {
           </p>
         </div>
 
-        <button
-          onClick={() => setShowNewModal(true)}
-          className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2"
-        >
-          + Draft New Intervention Proposal
-        </button>
+        {!isReadOnly && (
+          <button
+            onClick={() => setShowNewModal(true)}
+            className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2"
+          >
+            + Draft New Intervention Proposal
+          </button>
+        )}
       </div>
 
       {/* Main Grid: Proposals List + Detail Review Panel */}
@@ -259,13 +275,16 @@ function InterventionsContent() {
             <h2 className="text-xs font-bold text-text-main flex items-center gap-1.5">
               <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> Supported Government Schemes
             </h2>
+            <p className="text-[11px] text-amber-900 bg-amber-50 p-2 rounded border border-amber-200">
+              {SCHEME_UNVERIFIED_NOTICE}
+            </p>
 
             <div className="space-y-2 text-xs">
               {INTERVENTION_SCHEMES.map((sch) => (
                 <div key={sch.id} className="p-2.5 bg-subtle/50 rounded border border-border space-y-1">
                   <div className="flex justify-between font-bold text-text-main">
                     <span>{sch.name}</span>
-                    <span className="text-[10px] text-[#0d5c63]">Cap: ₹{(sch.maxSanctionUnitAmountInr / 100000).toFixed(1)}L</span>
+                    <span className="text-[10px] text-[#0d5c63]">Demonstration Cap: ₹{(sch.maxSanctionUnitAmountInr / 100000).toFixed(1)}L (unverified)</span>
                   </div>
                   <p className="text-[11px] text-text-muted">{sch.primaryFocus}</p>
                 </div>
@@ -290,26 +309,28 @@ function InterventionsContent() {
               </div>
 
               {/* Status Action Buttons */}
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  onClick={() => handleUpdateStatus('under_review')}
-                  className="px-2.5 py-1 bg-subtle hover:bg-subtle/80 text-text-main text-xs font-semibold rounded border border-border"
-                >
-                  Under Review
-                </button>
-                <button
-                  onClick={() => handleUpdateStatus('field_verification_requested')}
-                  className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold rounded border border-amber-300"
-                >
-                  Request Field Survey
-                </button>
-                <button
-                  onClick={() => handleUpdateStatus('approved')}
-                  className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded"
-                >
-                  Approve Proposal
-                </button>
-              </div>
+              {!isReadOnly && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => handleUpdateStatus('under_review')}
+                    className="px-2.5 py-1 bg-subtle hover:bg-subtle/80 text-text-main text-xs font-semibold rounded border border-border"
+                  >
+                    Under Review
+                  </button>
+                  <button
+                    onClick={() => handleUpdateStatus('field_verification_requested')}
+                    className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold rounded border border-amber-300"
+                  >
+                    Request Field Survey
+                  </button>
+                  <button
+                    onClick={() => handleUpdateStatus('approved')}
+                    className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded"
+                  >
+                    Approve Proposal
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Proposal Details Grid */}
@@ -375,28 +396,30 @@ function InterventionsContent() {
               </div>
 
               {/* Add Comment Form */}
-              <form onSubmit={handleAddComment} className="flex gap-2 pt-2">
-                <input
-                  type="text"
-                  value={commentText}
-                  onChange={(e) => setCommentText(e.target.value)}
-                  placeholder="Add review note or field survey observation..."
-                  className="flex-1 bg-subtle border border-border rounded-md px-3 py-1.5 text-xs text-text-main focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-1.5 rounded-md transition-colors"
-                >
-                  Add Note
-                </button>
-              </form>
+              {!isReadOnly && (
+                <form onSubmit={handleAddComment} className="flex gap-2 pt-2">
+                  <input
+                    type="text"
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    placeholder="Add review note or field survey observation..."
+                    className="flex-1 bg-subtle border border-border rounded-md px-3 py-1.5 text-xs text-text-main focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-1.5 rounded-md transition-colors"
+                  >
+                    Add Note
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
       </div>
 
       {/* New Proposal Modal */}
-      {showNewModal && (
+      {showNewModal && !isReadOnly && (
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-surface border border-border rounded-lg max-w-lg w-full p-6 shadow-xl space-y-4 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-3 border-b border-border">

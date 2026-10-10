@@ -1,4 +1,5 @@
-import { AlertTemplate, NotificationRecord } from '../types';
+import type { AlertTemplate, NotificationRecord } from '../types.ts';
+import { ADVISORY_DISCLAIMER_EN, ADVISORY_DISCLAIMER_HI } from '../demo/demoPolicy.ts';
 
 export const ALERT_TEMPLATES: AlertTemplate[] = [
   {
@@ -19,6 +20,11 @@ export const ALERT_TEMPLATES: AlertTemplate[] = [
   }
 ];
 
+/**
+ * Demonstration log entries. NO message was ever sent for any of these records:
+ * every entry is `simulated`, and the numbers quoted are demonstration fixture values,
+ * not verified groundwater measurements.
+ */
 export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
   {
     id: 'notif_001',
@@ -29,10 +35,10 @@ export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
     blockName: 'Tikamgarh',
     severity: 'severe',
     channel: 'WhatsApp',
-    messageHindi: 'जलदृष्टि सतर्कता: टीकमगढ़ ब्लॉक में भूजल स्तर 14.8m bgl तक गिर गया है। वर्षा घाटा -235mm दर्ज हुआ है। जल समिति एवं ग्राम पंचायत जल प्रबंधन समीक्षा करें।',
-    messageEnglish: 'JalDrishti Advisory: High groundwater stress in Tikamgarh block. Well depth 14.8m bgl with -235mm rainfall deficit. Human verification advised.',
-    sentTimestamp: '2026-10-08 09:30 IST',
-    deliveryStatus: 'delivered',
+    messageHindi: `[सिम्युलेटेड - भेजा नहीं गया] जलदृष्टि प्रदर्शन सूचना: टीकमगढ़ ब्लॉक - "गंभीर तनाव" संकेत श्रेणी। प्रदर्शन (फ़िक्स्चर) मान, सत्यापित माप नहीं: कुआँ गहराई 14.8 m bgl, वर्षा विचलन -235 mm। ${ADVISORY_DISCLAIMER_HI}`,
+    messageEnglish: `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "Severe stress" signal category for Tikamgarh block. Demonstration fixture values, not verified measurements: well depth 14.8 m bgl, rainfall anomaly -235 mm. ${ADVISORY_DISCLAIMER_EN}`,
+    sentTimestamp: '2026-10-08 09:30 IST (simulated log entry)',
+    deliveryStatus: 'simulated',
     confidenceScore: 0.88,
     dataFreshnessDate: '2026-09-28'
   },
@@ -45,10 +51,10 @@ export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
     blockName: 'Jatara',
     severity: 'severe',
     channel: 'SMS',
-    messageHindi: 'जलदृष्टि सतर्कता: जतारा ब्लॉक में भूजल स्तर 16.2m bgl तक गिर गया है। अटल भूजल योजना प्राथमिकता समीक्षा करें।',
-    messageEnglish: 'JalDrishti Advisory: Well depth 16.2m bgl in Jatara block. Atal Bhujal Yojana priority review advised.',
-    sentTimestamp: '2026-10-08 09:32 IST',
-    deliveryStatus: 'delivered',
+    messageHindi: `[सिम्युलेटेड - भेजा नहीं गया] जलदृष्टि प्रदर्शन सूचना: जतारा ब्लॉक - "गंभीर तनाव" संकेत श्रेणी। प्रदर्शन (फ़िक्स्चर) मान, सत्यापित माप नहीं: कुआँ गहराई 16.2 m bgl। ${ADVISORY_DISCLAIMER_HI}`,
+    messageEnglish: `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "Severe stress" signal category for Jatara block. Demonstration fixture value, not a verified measurement: well depth 16.2 m bgl. ${ADVISORY_DISCLAIMER_EN}`,
+    sentTimestamp: '2026-10-08 09:32 IST (simulated log entry)',
+    deliveryStatus: 'simulated',
     confidenceScore: 0.84,
     dataFreshnessDate: '2026-09-28'
   },
@@ -61,9 +67,9 @@ export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
     blockName: 'Chhatarpur',
     severity: 'severe',
     channel: 'WhatsApp',
-    messageHindi: 'जलदृष्टि सतर्कता: छतरपुर ब्लॉक में भूजल तनाव सूचकांक 84/100 दर्ज हुआ है। कुओं एवं जलाशयों का भौतिक निरीक्षण करें।',
-    messageEnglish: 'JalDrishti Advisory: Stress score 84/100 in Chhatarpur block. Physical inspection of observation wells recommended.',
-    sentTimestamp: '2026-10-07 14:15 IST',
+    messageHindi: `[सिम्युलेटेड - भेजा नहीं गया] जलदृष्टि प्रदर्शन सूचना: छतरपुर ब्लॉक - "गंभीर तनाव" संकेत श्रेणी। प्रदर्शन (फ़िक्स्चर) डेमो स्कोर 84/100 (गणना या सत्यापन नहीं की गई)। ${ADVISORY_DISCLAIMER_HI}`,
+    messageEnglish: `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "Severe stress" signal category for Chhatarpur block. Demonstration fixture score 84/100 (not computed or validated). ${ADVISORY_DISCLAIMER_EN}`,
+    sentTimestamp: '2026-10-07 14:15 IST (simulated log entry)',
     deliveryStatus: 'simulated',
     confidenceScore: 0.91,
     dataFreshnessDate: '2026-09-28'

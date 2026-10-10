@@ -1,58 +1,96 @@
-﻿export default function AdminPage() {
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { useRole } from '@/lib/context/RoleContext';
+import { ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/components/ui/Icons';
+
+export default function AdminPage() {
+  const { activeRole } = useRole();
+  const isSuperUser = activeRole === 'admin';
+
+  if (!isSuperUser) {
+    return (
+      <div className="space-y-6">
+        <section className="rounded-lg border border-amber-300 bg-amber-50/70 p-6 text-amber-900">
+          <div className="flex items-center gap-2 font-bold text-sm">
+            <InfoIcon className="w-5 h-5 text-amber-700 shrink-0" />
+            <span>Demonstration Access Notice — System Administrator Role Required</span>
+          </div>
+          <p className="mt-2 text-xs leading-relaxed text-amber-800">
+            The Administration workspace is reserved for System Administrators in the JalDrishti platform prototype.
+            Your current active demo role is <strong className="uppercase">{activeRole.replace('_', ' ')}</strong>.
+          </p>
+          <p className="mt-2 text-xs text-amber-800">
+            To view administrator controls and superuser diagnostic settings, select <strong>System Administrator (Full Access)</strong> from the Demo Role switcher in the top navigation header.
+          </p>
+          <div className="mt-4">
+            <Link
+              href="/"
+              className="inline-block bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2 rounded-md transition-colors"
+            >
+              ← Return to Overview Dashboard
+            </Link>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
-      <section className="rounded-lg border border-border bg-surface p-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-          Governance workspace
-        </p>
-        <h1 className="mt-2 text-2xl font-bold">Administration</h1>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-text-muted">
-          Administrative overview for the JalDrishti demonstration environment.
-          Production identity management, server-enforced authorization and durable
-          audit storage are not provided by this page.
-        </p>
-        <span className="mt-4 inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-800">
-          Prototype — administrative actions are not enabled
-        </span>
+      <section className="rounded-lg border border-border bg-surface p-6 shadow-card">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#0d5c63] flex items-center gap-1.5">
+              <UserRoleIcon className="w-4 h-4 text-[#0d5c63]" /> Platform Governance & Administration
+            </p>
+            <h1 className="mt-2 text-2xl font-bold text-text-main">System Administration Superuser Workspace</h1>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-text-muted">
+              Platform-wide administration interface for System Administrators. System Administrators hold full read, write, audit, and configuration access across all pilot districts and blocks.
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-900">
+            Superuser Mode Active (All Modules Unlocked)
+          </span>
+        </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        <article className="rounded-lg border border-border bg-surface p-5">
-          <h2 className="font-semibold">Role selector</h2>
-          <p className="mt-2 text-sm leading-6 text-text-muted">
-            The navigation role selector provides demonstration context only.
-            It is not authentication and does not enforce permissions.
+        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+          <h2 className="font-bold text-text-main text-sm">Simulated Role Context Switcher</h2>
+          <p className="text-xs leading-5 text-text-muted">
+            The top navigation role selector provides instant client-side evaluation context for all prototype personas. It simulates permissions for evaluators without real backend authorization.
           </p>
-          <p className="mt-3 text-sm font-medium">Status: Client-side demonstration</p>
+          <p className="text-xs font-semibold text-emerald-700">Status: Client-Side Demonstration Active</p>
         </article>
 
-        <article className="rounded-lg border border-border bg-surface p-5">
-          <h2 className="font-semibold">Audit records</h2>
-          <p className="mt-2 text-sm leading-6 text-text-muted">
-            Connect a server-side audit service and persistent database before
-            relying on administrative changes or review history.
+        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+          <h2 className="font-bold text-text-main text-sm">Audit Trail & Access Logging</h2>
+          <p className="text-xs leading-5 text-text-muted">
+            Inspect or log administrative changes, human risk overrides, and notification dispatches across all administrative jurisdictions.
           </p>
-          <p className="mt-3 text-sm font-medium">Status: Persistence not verified</p>
+          <p className="text-xs font-semibold text-text-main">Status: Append-Only Local Storage Logging</p>
         </article>
 
-        <article className="rounded-lg border border-border bg-surface p-5">
-          <h2 className="font-semibold">Data ingestion</h2>
-          <p className="mt-2 text-sm leading-6 text-text-muted">
-            Inspect the Data Sources registry for configured providers and their
-            declared cadence, resolution and provenance notes.
+        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+          <h2 className="font-bold text-text-main text-sm">Geospatial & Ingestion Pipelines</h2>
+          <p className="text-xs leading-5 text-text-muted">
+            Review data source cadence, provider licenses, and spatial resolution metadata across configured GEE, IMD, and CGWB pipelines.
           </p>
-          <a href="/data-sources" className="mt-3 inline-block text-sm font-semibold text-primary hover:underline">
-            Open Data Sources →
-          </a>
+          <Link href="/data-sources" className="inline-block text-xs font-semibold text-[#0d5c63] hover:underline">
+            Inspect Data Sources Registry →
+          </Link>
         </article>
 
-        <article className="rounded-lg border border-border bg-surface p-5">
-          <h2 className="font-semibold">Operational safeguards</h2>
-          <p className="mt-2 text-sm leading-6 text-text-muted">
-            Risk scores and advisories remain decision-support indicators.
-            Field verification and authorized human review are required before
-            operational or financial decisions.
+        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+          <h2 className="font-bold text-text-main text-sm">Operational Scientific Safeguards</h2>
+          <p className="text-xs leading-5 text-text-muted">
+            All predictive scores and advisories require authorized human review and ground piezometer validation before emergency financial sanctions.
           </p>
+          <div className="flex items-center gap-1 text-xs text-text-muted">
+            <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> Safeguard Gates Enforced
+          </div>
         </article>
       </section>
     </div>

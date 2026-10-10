@@ -121,8 +121,9 @@ export default function LeafletMap({
     markerLayer.clearLayers();
 
     const validBlocks = blocks.filter(
-      (block) =>
+      (block): block is BlockData & { coordinates: [number, number] } =>
         Array.isArray(block.coordinates) &&
+        block.coordinates !== null &&
         Number.isFinite(block.coordinates[0]) &&
         Number.isFinite(block.coordinates[1]) &&
         Math.abs(block.coordinates[0]) <= 90 &&
