@@ -5,13 +5,14 @@ import { BlockData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
 import Link from 'next/link';
 import LeafletMap from '@/components/LeafletMap';
-
+import { useLanguage } from '@/lib/context/LanguageContext';
 
 interface MapExplorerProps {
   initialBlockId?: string;
 }
 
 export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
+  const { t } = useLanguage();
   const [selectedBlock, setSelectedBlock] = useState<BlockData>(
     ALL_BLOCKS.find((b) => b.id === initialBlockId) || ALL_BLOCKS[0]
   );
@@ -31,20 +32,33 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     }
   };
 
+  const getSeverityText = (severity: RiskSeverity) => {
+    switch (severity) {
+      case 'severe':
+        return t('severity.severe', 'High Concern');
+      case 'watch':
+        return t('severity.watch', 'Needs Checking');
+      case 'normal':
+        return t('severity.normal', 'No Flag in Sample Data');
+      default:
+        return severity.toUpperCase();
+    }
+  };
+
   const filteredBlocks = ALL_BLOCKS.filter(
     (b) => selectedDistrictFilter === 'all' || b.districtId === selectedDistrictFilter
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Top Header */}
       <div className="bg-surface border border-border rounded-lg p-5 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> Geospatial Evidence Explorer
+            <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            Interactive multi-resolution environmental layer inspection for Bundelkhand Pilot Blocks.
+            {t('explorer.subtitle', 'View groundwater and environmental information on the map')}
           </p>
         </div>
 
@@ -52,20 +66,30 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 text-xs">
             <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
-            <span className="text-text-muted font-medium">District:</span>
+            <span className="text-text-muted font-medium">{t('explorer.districtFilter', 'District:')}</span>
             <select
               value={selectedDistrictFilter}
               onChange={(e) => setSelectedDistrictFilter(e.target.value)}
               className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none"
             >
-              <option value="all">All Pilot Districts</option>
+              <option value="all">{t('explorer.allDistricts', 'All Pilot Districts')}</option>
               {BUNDELKHAND_DISTRICTS.map((d) => (
                 <option key={d.id} value={d.id}>
-                  {d.name} ({d.blocks.length} / {d.blocksCount} Pilot Blocks)
+                  {d.name} ({d.blocks.length} / {d.blocksCount})
                 </option>
               ))}
             </select>
           </div>
+        </div>
+      </div>
+
+      {/* Consolidated Sample Data Notice Banner */}
+      <div className="bg-amber-50/90 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 flex items-start gap-2.5 shadow-xs">
+        <InfoIcon className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+        <div className="leading-relaxed">
+          <span className="font-semibold">
+            {t('explorer.sampleNotice', 'Sample data — these values are for demonstration only and are not verified groundwater measurements.')}
+          </span>
         </div>
       </div>
 
@@ -76,7 +100,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           {/* Layer Selection Buttons */}
           <div className="bg-surface border border-border rounded-lg p-3 shadow-card flex flex-wrap items-center justify-between gap-2">
             <div className="text-xs font-semibold text-text-main flex items-center gap-1.5">
-              <span>Active Layer:</span>
+              <span>{t('explorer.activeLayer', 'Map Information')}:</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               <button
@@ -86,7 +110,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
               >
-                Groundwater Risk Status
+                {t('layer.risk', 'Groundwater Status')}
               </button>
               <button
                 onClick={() => setActiveLayer('grace')}
@@ -95,7 +119,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
               >
-                GRACE TWSA (1.0°)
+                {t('layer.grace', 'Satellite Water Storage Estimate')}
               </button>
               <button
                 onClick={() => setActiveLayer('rainfall')}
@@ -104,7 +128,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
               >
-                IMD Rainfall Anomaly (0.25°)
+                {t('layer.rainfall', 'Rainfall Difference')}
               </button>
               <button
                 onClick={() => setActiveLayer('wells')}
@@ -113,7 +137,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
               >
-                CGWB Well Network (Point)
+                {t('layer.wells', 'Groundwater Monitoring Wells')}
               </button>
               <button
                 onClick={() => setActiveLayer('sentinel')}
@@ -122,29 +146,29 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
               >
-                Sentinel-2 NDVI (10m)
+                {t('layer.sentinel', 'Satellite Vegetation Information')}
               </button>
             </div>
           </div>
 
           {/* Interactive Map Visualizer Canvas Container */}
           <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-card relative h-[480px]">
-            {/* Resolution & Layer Info Chip */}
-            <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5">
+            {/* Layer Info Chip */}
+            <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5 max-w-sm">
               <div className="font-semibold text-text-main flex items-center gap-1.5">
-                <InfoIcon className="w-3.5 h-3.5 text-[#0d5c63]" />
-                {activeLayer === 'risk' && 'Groundwater Stress Score Layer'}
-                {activeLayer === 'grace' && 'NASA GRACE-FO TWSA Layer (1.0° Spatial Grid)'}
-                {activeLayer === 'rainfall' && 'IMD Monsoon Rainfall Anomaly (25km Grid)'}
-                {activeLayer === 'wells' && 'CGWB Hydrograph Observation Wells'}
-                {activeLayer === 'sentinel' && 'Sentinel-2 Surface Reflectance NDVI'}
+                <InfoIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" />
+                {activeLayer === 'risk' && t('layer.risk', 'Groundwater Status')}
+                {activeLayer === 'grace' && t('layer.grace', 'Satellite Water Storage Estimate')}
+                {activeLayer === 'rainfall' && t('layer.rainfall', 'Rainfall Difference')}
+                {activeLayer === 'wells' && t('layer.wells', 'Groundwater Monitoring Wells')}
+                {activeLayer === 'sentinel' && t('layer.sentinel', 'Satellite Vegetation Information')}
               </div>
-              <div className="text-[10px] text-text-muted">
-                {activeLayer === 'grace' && 'Coarse regional mass anomaly (~100km). Not village-scale depth.'}
-                {activeLayer === 'wells' && 'Direct measured groundwater level below ground level (m bgl).'}
-                {activeLayer === 'rainfall' && 'Interpolated 30-year long period average deficit.'}
-                {activeLayer === 'sentinel' && '10m resolution cloud-masked vegetation vigor index.'}
-                {activeLayer === 'risk' && 'Aggregated multi-indicator evidence status.'}
+              <div className="text-[10px] text-text-muted leading-tight">
+                {activeLayer === 'risk' && t('explorer.riskInfo', 'Sample multi-indicator groundwater stress status.')}
+                {activeLayer === 'grace' && t('explorer.graceInfo', 'Broad regional water-storage estimate (~100km). Not a direct groundwater measurement in an individual block.')}
+                {activeLayer === 'rainfall' && t('explorer.rainfallInfo', 'Monsoon rainfall difference compared to long-period average (mm).')}
+                {activeLayer === 'wells' && t('explorer.wellsInfo', 'Direct measured groundwater level below ground level (m bgl).')}
+                {activeLayer === 'sentinel' && t('explorer.sentinelInfo', 'Satellite vegetation vigor index (NDVI).')}
               </div>
             </div>
 
@@ -158,17 +182,17 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
         </div>
 
-        {/* Right Column: Detailed Block Evidence Inspector Panel (4 cols) */}
+        {/* Right Column: Block Details Inspector Panel (4 cols) */}
         <div className="lg:col-span-4">
           <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-5 sticky top-24">
             {/* Header */}
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
-                  Block Evidence Inspection
+                  {t('explorer.blockDetails', 'Block Details')}
                 </span>
                 <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${getSeverityBadgeClass(selectedBlock.riskSeverity)}`}>
-                  {selectedBlock.riskSeverity.toUpperCase()}
+                  {getSeverityText(selectedBlock.riskSeverity)}
                 </span>
               </div>
               <h2 className="text-xl font-bold text-text-main mt-1">{selectedBlock.name} Block</h2>
@@ -181,46 +205,54 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <div className="space-y-3 bg-subtle/50 p-3.5 rounded-lg border border-border">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-text-muted flex items-center gap-1">
-                  <WaterDropletIcon className="w-3.5 h-3.5 text-water" /> GRACE TWSA:
+                  <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> {t('layer.grace', 'Satellite Water Storage Estimate')}:
                 </span>
-                <span className="font-bold text-text-main">{selectedBlock.indicators.graceTwsaCm} cm</span>
+                <span className="font-bold text-text-main shrink-0 ml-2">
+                  {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
+                </span>
               </div>
 
               <div className="flex justify-between items-center text-xs">
                 <span className="text-text-muted flex items-center gap-1">
-                  <CloudRainIcon className="w-3.5 h-3.5 text-amber-600" /> Rainfall Deficit:
+                  <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> {t('layer.rainfall', 'Rainfall Difference')}:
                 </span>
-                <span className="font-bold text-text-main">{selectedBlock.indicators.rainfallAnomalyMm} mm</span>
+                <span className="font-bold text-text-main shrink-0 ml-2">
+                  {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
+                </span>
               </div>
 
               <div className="flex justify-between items-center text-xs">
                 <span className="text-text-muted flex items-center gap-1">
-                  <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63]" /> CGWB Well Depth:
+                  <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> {t('layer.wells', 'Groundwater Monitoring Wells')}:
                 </span>
-                <span className="font-bold text-text-main">{selectedBlock.indicators.cgwbWellDepthMbgl} m bgl</span>
+                <span className="font-bold text-text-main shrink-0 ml-2">
+                  {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('monitoring.noData', 'No Data')}
+                </span>
               </div>
 
               <div className="flex justify-between items-center text-xs">
-                <span className="text-text-muted">Sentinel-2 NDVI:</span>
-                <span className="font-bold text-text-main">{selectedBlock.indicators.sentinelNdvi}</span>
+                <span className="text-text-muted">{t('layer.sentinel', 'Satellite Vegetation Information')}:</span>
+                <span className="font-bold text-text-main shrink-0 ml-2">
+                  {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
+                </span>
               </div>
 
               <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2">
-                <span className="text-text-muted font-semibold">Descriptive Stress Score:</span>
-                <span className="font-bold text-[#0d5c63] text-sm">{selectedBlock.assessment.descriptiveStressScore}/100</span>
+                <span className="text-text-muted font-semibold">{t('explorer.sampleStressScore', 'Sample Stress Score')}:</span>
+                <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-2">{selectedBlock.assessment.descriptiveStressScore}/100</span>
               </div>
             </div>
 
-            {/* Primary Stress Rationale & Safeguard */}
+            {/* Possible Contributing Factors & Safeguard Notice */}
             <div className="space-y-2">
-              <span className="text-xs font-bold text-text-main">Primary Stress Driver:</span>
+              <span className="text-xs font-bold text-text-main">{t('explorer.possibleDrivers', 'Possible Contributing Factors')}:</span>
               <p className="text-xs text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
                 {selectedBlock.assessment.primaryStressDriver}
               </p>
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs font-bold text-text-main">Methodology & Safeguard Notice:</span>
+              <span className="text-xs font-bold text-text-main">{t('explorer.importantInfo', 'Important Information')}:</span>
               <p className="text-[11px] text-text-muted bg-amber-50/60 border border-amber-200 p-2.5 rounded leading-relaxed">
                 {selectedBlock.assessment.safeguardNotice}
               </p>
@@ -232,13 +264,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 href={`/interventions?block=${selectedBlock.id}`}
                 className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2.5 rounded-md flex items-center justify-center gap-2 transition-colors shadow-sm"
               >
-                Draft Intervention Proposal →
+                {t('explorer.suggestSolution', 'Suggest a Solution')} →
               </Link>
               <Link
                 href={`/alerts?block=${selectedBlock.id}`}
                 className="w-full bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold py-2 rounded-md flex items-center justify-center gap-2 transition-colors"
               >
-                Preview Alert Advisory
+                {t('explorer.previewAdvisory', 'Preview Advisory')}
               </Link>
             </div>
           </div>
