@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
+import type { BlockData } from '@/lib/types';
 import {
   LineChart,
   Line,
@@ -29,45 +30,90 @@ const HISTORICAL_TIMESERIES = [
   { month: 'Oct 2026', graceTwsa: -7.2, rainfall: 580, wellDepth: 14.8, ndvi: 0.28, smap: 0.11 },
 ];
 
+import { useLanguage } from '@/lib/context/LanguageContext';
+
 function MonitoringContent() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_BLOCKS);
+  const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
+    source: 'demonstration_fixture',
+    isDemonstration: true
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const res = await fetch('/api/geospatial/blocks');
+        if (res.ok) {
+          const json = await res.json();
+          if (json.blocks && Array.isArray(json.blocks)) {
+            setBlocksData(json.blocks);
+            setDataSourceInfo({
+              source: json.source,
+              isDemonstration: json.isDemonstrationData,
+              errorMessage: json.errorMessage
+            });
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to fetch geospatial data for monitoring, using client fixtures:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   useEffect(() => {
     if (urlBlockParam) {
-      const validBlock = ALL_BLOCKS.find(b => b.id === urlBlockParam);
+      const validBlock = blocksData.find(b => b.id === urlBlockParam);
       if (validBlock) {
         setSelectedBlockId(validBlock.id);
       }
     }
-  }, [urlBlockParam]);
+  }, [urlBlockParam, blocksData]);
 
-  const selectedBlock = ALL_BLOCKS.find(b => b.id === selectedBlockId) || ALL_BLOCKS[0];
+  const selectedBlock = blocksData.find(b => b.id === selectedBlockId) || blocksData[0] || ALL_BLOCKS[0];
+
+  const fmtVal = (val: number | null, unit: string) => (val === null ? t('monitoring.noData', 'No Data') : `${val} ${unit}`);
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <ActivityChartIcon className="w-5 h-5 text-[#0d5c63]" /> Multi-Indicator Groundwater Stress Monitoring
+          <div className="flex items-center gap-2">
+            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+              dataSourceInfo.source === 'live_database'
+                ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
+                : 'bg-amber-100 text-amber-900 border border-amber-300'
+            }`}>
+              SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
+            </span>
+            {isLoading && <span className="text-xs text-text-muted">Loading backend layers...</span>}
+          </div>
+          <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
+            <ActivityChartIcon className="w-5 h-5 text-[#0d5c63]" /> {t('monitoring.title')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            Compare multi-year satellite terrestrial water storage anomalies, rainfall trends, soil moisture, and CGWB well depths.
+            {t('monitoring.subtitle')}
           </p>
         </div>
 
         {/* Block Switcher */}
         <div className="flex items-center gap-2 text-xs">
           <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
-          <span className="font-semibold text-text-main">Select Block:</span>
+          <span className="font-semibold text-text-main">{t('monitoring.selectBlock')}</span>
           <select
             value={selectedBlockId}
             onChange={(e) => setSelectedBlockId(e.target.value)}
             className="bg-subtle border border-border rounded-md px-3 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
           >
-            {ALL_BLOCKS.map((b) => (
+            {blocksData.map((b) => (
               <option key={b.id} value={b.id}>
                 {b.name} ({b.districtName}) — {b.riskSeverity.toUpperCase()}
               </option>
@@ -75,6 +121,12 @@ function MonitoringContent() {
           </select>
         </div>
       </div>
+
+      {dataSourceInfo.errorMessage && (
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900">
+          <strong>Data Access Notice:</strong> {dataSourceInfo.errorMessage}
+        </div>
+      )}
 
       {/* Conflicting Signals & Data Gap Warning */}
       <div className="bg-amber-50/80 border border-amber-200 rounded-lg p-4 text-xs text-amber-900 flex items-start gap-3">
@@ -90,7 +142,7 @@ function MonitoringContent() {
       </div>
 
       <div role="note" className="bg-amber-50 border border-amber-300 rounded-lg p-4 text-xs text-amber-900 font-semibold">
-        {MONITORING_SERIES_LABEL} Selected block: {selectedBlock.name}. Only the indicator matrix below uses that block's fixture values, which are also simulated.
+        {t('monitoring.sharedNotice')} ({selectedBlock.name})
       </div>
 
       {/* Charts Grid */}
@@ -155,27 +207,30 @@ function MonitoringContent() {
 
       {/* Detailed Indicator Matrix for Selected Block */}
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
-        <h2 className="text-sm font-bold text-text-main">
-          Current Indicator Matrix — {selectedBlock.name} Block ({selectedBlock.districtName})
+        <h2 className="text-sm font-bold text-text-main flex items-center justify-between">
+          <span>Current Indicator Matrix — {selectedBlock.name} Block ({selectedBlock.districtName})</span>
+          <span className="text-xs font-normal text-text-muted">
+            Status: {selectedBlock.indicators.dataQualityFlag.toUpperCase()} (Data Status: {selectedBlock.assessment.dataStatus})
+          </span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div className="p-4 bg-subtle/50 rounded-lg border border-border space-y-1">
             <span className="text-text-muted font-medium">NASA GRACE-FO TWSA</span>
-            <div className="text-lg font-bold text-text-main">{selectedBlock.indicators.graceTwsaCm} cm</div>
+            <div className="text-lg font-bold text-text-main">{fmtVal(selectedBlock.indicators.graceTwsaCm, 'cm')}</div>
             <p className="text-[11px] text-text-muted">Coarse satellite grid (1.0° resolution). Regional mass anomaly.</p>
           </div>
 
           <div className="p-4 bg-subtle/50 rounded-lg border border-border space-y-1">
             <span className="text-text-muted font-medium">IMD Rainfall Anomaly</span>
-            <div className="text-lg font-bold text-amber-700">{selectedBlock.indicators.rainfallAnomalyMm} mm</div>
-            <p className="text-[11px] text-text-muted">SPI 3-Month: {selectedBlock.indicators.spi3Month}. Gridded rain gauge deficit.</p>
+            <div className="text-lg font-bold text-amber-700">{fmtVal(selectedBlock.indicators.rainfallAnomalyMm, 'mm')}</div>
+            <p className="text-[11px] text-text-muted">SPI 3-Month: {selectedBlock.indicators.spi3Month ?? 'N/A'}. Gridded rain gauge deficit.</p>
           </div>
 
           <div className="p-4 bg-subtle/50 rounded-lg border border-border space-y-1">
             <span className="text-text-muted font-medium">CGWB Well Level (m bgl)</span>
-            <div className="text-lg font-bold text-red-700">{selectedBlock.indicators.cgwbWellDepthMbgl} m bgl</div>
-            <p className="text-[11px] text-text-muted">Trend: {selectedBlock.indicators.wellDepthTrendMperYr} m/yr drawdown rate.</p>
+            <div className="text-lg font-bold text-red-700">{fmtVal(selectedBlock.indicators.cgwbWellDepthMbgl, 'm bgl')}</div>
+            <p className="text-[11px] text-text-muted">Trend: {selectedBlock.indicators.wellDepthTrendMperYr !== null ? `${selectedBlock.indicators.wellDepthTrendMperYr} m/yr drawdown rate.` : 'No trend data'}</p>
           </div>
         </div>
       </div>

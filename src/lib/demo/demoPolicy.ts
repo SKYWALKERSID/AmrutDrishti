@@ -48,9 +48,10 @@ export interface FixtureSummary {
   meanWellDepthMbgl: number | null;
 }
 
-function mean(values: number[]): number | null {
-  if (values.length === 0) return null;
-  const m = values.reduce((a, b) => a + b, 0) / values.length;
+function mean(values: (number | null)[]): number | null {
+  const valid = values.filter((v): v is number => v !== null && typeof v === 'number' && !isNaN(v));
+  if (valid.length === 0) return null;
+  const m = valid.reduce((a, b) => a + b, 0) / valid.length;
   return Math.round(m * 10) / 10;
 }
 

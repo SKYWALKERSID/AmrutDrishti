@@ -12,7 +12,10 @@ import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/com
 
 const STORAGE_KEY_PROPOSALS = 'jaldrishti_interventions_v1';
 
+import { useLanguage } from '@/lib/context/LanguageContext';
+
 function InterventionsContent() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
@@ -210,10 +213,10 @@ function InterventionsContent() {
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <DocumentTextIcon className="w-5 h-5 text-[#0d5c63]" /> Governance & Intervention Workspace
+            <DocumentTextIcon className="w-5 h-5 text-[#0d5c63]" /> {t('interventions.title')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            Map evidence-backed groundwater proposals to Atal Bhujal Yojana, JJM, MGNREGA, and Amrit Sarovar schemes.
+            {t('interventions.subtitle')}
           </p>
         </div>
 
@@ -222,7 +225,7 @@ function InterventionsContent() {
             onClick={() => setShowNewModal(true)}
             className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2"
           >
-            + Draft New Intervention Proposal
+            {t('interventions.draftBtn')}
           </button>
         )}
       </div>

@@ -5,65 +5,80 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserRole } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
+import { useLanguage } from '@/lib/context/LanguageContext';
 import { WaterDropletIcon, ShieldCheckIcon, UserRoleIcon, MapPinIcon } from './ui/Icons';
 
 export const Navigation: React.FC = () => {
   const pathname = usePathname();
   const { activeRole, setActiveRole } = useRole();
+  const { language, setLanguage, t } = useLanguage();
 
   const roleLabels: Record<UserRole, string> = {
-    general_public: 'General Public (Read-Only)',
-    district_collector: 'District Collector',
-    bdo: 'Block Development Officer (BDO)',
-    gram_pradhan: 'Gram Pradhan (Advisory View)',
-    jal_samiti: 'Jal Samiti Member (Advisory View)',
-    environmental_analyst: 'Environmental Analyst',
-    admin: 'System Administrator (Full Access)',
+    general_public: t('role.general_public'),
+    district_collector: t('role.district_collector'),
+    bdo: t('role.bdo'),
+    gram_pradhan: t('role.gram_pradhan'),
+    jal_samiti: t('role.jal_samiti'),
+    environmental_analyst: t('role.environmental_analyst'),
+    admin: t('role.admin'),
   };
 
   // Role-based navigation tab visibility for prototype demonstration
   const allNavItems = [
-    { label: 'Overview', href: '/', publicAllowed: true },
-    { label: 'Map Explorer', href: '/explorer', publicAllowed: true },
-    { label: 'Monitoring', href: '/monitoring', publicAllowed: false },
-    { label: 'Risk & Scoring', href: '/risk-assessment', publicAllowed: true },
-    { label: 'Interventions', href: '/interventions', publicAllowed: false },
-    { label: 'Alerts & SMS', href: '/alerts', publicAllowed: false, advisoryOnly: true },
-    { label: 'Data Sources', href: '/data-sources', publicAllowed: true },
-    { label: 'Administration', href: '/admin', publicAllowed: false, adminOnly: true },
+    { key: 'nav.overview', label: t('nav.overview', 'Overview'), href: '/', publicAllowed: true },
+    { key: 'nav.explorer', label: t('nav.explorer', 'Map Explorer'), href: '/explorer', publicAllowed: true },
+    { key: 'nav.monitoring', label: t('nav.monitoring', 'Monitoring'), href: '/monitoring', publicAllowed: false },
+    { key: 'nav.risk', label: t('nav.risk', 'Risk & Scoring'), href: '/risk-assessment', publicAllowed: true },
+    { key: 'nav.interventions', label: t('nav.interventions', 'Interventions'), href: '/interventions', publicAllowed: false },
+    { key: 'nav.alerts', label: t('nav.alerts', 'Alerts & SMS'), href: '/alerts', publicAllowed: false, advisoryOnly: true },
+    { key: 'nav.datasources', label: t('nav.datasources', 'Data Sources'), href: '/data-sources', publicAllowed: true },
+    { key: 'nav.admin', label: t('nav.admin', 'Administration'), href: '/admin', publicAllowed: false, adminOnly: true },
   ];
 
   const filteredNavItems = allNavItems.filter((item) => {
-    if (activeRole === 'admin') return true; // System Administrator sees everything
+    if (activeRole === 'admin') return true;
     if (activeRole === 'general_public') return item.publicAllowed;
     if (activeRole === 'gram_pradhan' || activeRole === 'jal_samiti') {
-      // Village notifications context focus
       return item.publicAllowed || item.advisoryOnly;
     }
-    // District Collector, BDO, Environmental Analyst see official operational tabs
     if (item.adminOnly) return false;
     return true;
   });
 
   return (
     <header className="bg-surface border-b border-border sticky top-0 z-50">
-      {/* Top Banner: Scientific Safeguard & Prototype Disclaimer */}
+      {/* Top Banner: Scientific Safeguard & Language Switcher */}
       <div className="bg-[#0d5c63] text-white text-xs px-4 py-1.5 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <ShieldCheckIcon className="w-4 h-4 text-teal-200" />
+          <ShieldCheckIcon className="w-4 h-4 text-teal-200 shrink-0" />
           <span>
-            <strong>JalDrishti (जलदृष्टि) Pilot:</strong> Bundelkhand Region — Evidence-Backed Decision Support.
+            {t('header.pilot')}
           </span>
           <span className="hidden md:inline bg-teal-800/80 px-2 py-0.5 rounded text-[11px] font-medium text-teal-100 border border-teal-600/40">
-            Prototype Demonstration Mode — Simulated Role Context
+            {t('header.demoMode')}
           </span>
         </div>
-        <div className="flex items-center gap-3 text-[11px] text-teal-100">
-          <span className="flex items-center gap-1">
-            <MapPinIcon className="w-3.5 h-3.5 text-teal-300" /> Pilot Area: Tikamgarh & Chhatarpur
-          </span>
-          <span>•</span>
-          <span>Last Data Refresh: 2026-10-08</span>
+
+        <div className="flex items-center gap-3 text-[11px]">
+          {/* Hindi / English Switch */}
+          <div className="flex items-center bg-teal-900/80 rounded border border-teal-600 p-0.5">
+            <button
+              onClick={() => setLanguage('hi')}
+              className={`px-2 py-0.5 rounded text-[11px] font-bold transition-colors ${
+                language === 'hi' ? 'bg-amber-400 text-teal-950' : 'text-teal-100 hover:text-white'
+              }`}
+            >
+              हिन्दी
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`px-2 py-0.5 rounded text-[11px] font-bold transition-colors ${
+                language === 'en' ? 'bg-amber-400 text-teal-950' : 'text-teal-100 hover:text-white'
+              }`}
+            >
+              English
+            </button>
+          </div>
         </div>
       </div>
 
@@ -72,7 +87,7 @@ export const Navigation: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-md bg-[#0d5c63] text-white flex items-center justify-center shadow-sm">
+            <div className="w-9 h-9 rounded-md bg-[#0d5c63] text-white flex items-center justify-center shadow-sm shrink-0">
               <WaterDropletIcon className="w-5 h-5 text-teal-200" />
             </div>
             <div>
@@ -85,8 +100,8 @@ export const Navigation: React.FC = () => {
 
           {/* User Role Context Selector */}
           <div className="flex items-center gap-2 bg-subtle border border-border px-3 py-1.5 rounded-md shadow-xs">
-            <UserRoleIcon className="w-4 h-4 text-[#0d5c63]" />
-            <span className="text-xs text-text-muted hidden sm:inline font-medium">Demo Role:</span>
+            <UserRoleIcon className="w-4 h-4 text-[#0d5c63] shrink-0" />
+            <span className="text-xs text-text-muted hidden sm:inline font-medium">{t('header.demoRole')}</span>
             <select
               value={activeRole}
               onChange={(e) => setActiveRole(e.target.value as UserRole)}
@@ -124,4 +139,3 @@ export const Navigation: React.FC = () => {
     </header>
   );
 };
-

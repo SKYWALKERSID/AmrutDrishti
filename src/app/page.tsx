@@ -14,7 +14,10 @@ import {
   FilterIcon
 } from '@/components/ui/Icons';
 
+import { useLanguage } from '@/lib/context/LanguageContext';
+
 export default function OverviewDashboard() {
+  const { t } = useLanguage();
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
   const [interventionCount, setInterventionCount] = useState<number>(INITIAL_INTERVENTIONS.length);
@@ -41,7 +44,7 @@ export default function OverviewDashboard() {
   const severeCount = summary.severe;
   const watchCount = summary.watch;
   const normalCount = summary.normal;
-  const fmt = (v: number | null, unit: string) => (v === null ? 'n/a' : `${v} ${unit}`);
+  const fmt = (v: number | null, unit: string) => (v === null ? t('monitoring.noData', 'No Data') : `${v} ${unit}`);
 
   return (
     <div className="space-y-6">
@@ -56,10 +59,10 @@ export default function OverviewDashboard() {
               <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded">UI PROTOTYPE — {SIMULATED_DATA_LABEL}</span>
             </div>
             <h1 className="text-2xl font-bold text-text-main mt-2 tracking-tight">
-              JalDrishti — Geospatial Intelligence for Water Security
+              {t('overview.title')}
             </h1>
             <p className="text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
-              Geospatial decision-support platform enabling district collectors, BDOs, and analysts to identify groundwater water-stress signals, investigate geographic risk, prioritize interventions, and communicate bilingual advisories.
+              {t('overview.subtitle')}
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
@@ -67,13 +70,13 @@ export default function OverviewDashboard() {
               href="/explorer"
               className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2"
             >
-              <MapPinIcon className="w-4 h-4" /> Open GIS Explorer
+              <MapPinIcon className="w-4 h-4" /> {t('overview.openGis')}
             </Link>
             <Link
               href="/interventions"
               className="bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold px-4 py-2.5 rounded-md transition-colors"
             >
-              Intervention Workspace ({interventionCount})
+              {t('overview.interventionsBtn')} ({interventionCount})
             </Link>
           </div>
         </div>
@@ -83,14 +86,14 @@ export default function OverviewDashboard() {
       <div className="bg-red-50/70 border border-red-200 rounded-lg p-5 shadow-card space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h2 className="text-base font-bold text-red-950 tracking-tight">
-            DISTRICT BLOCKS WITH SEVERE WARNING
+            {t('overview.severeTitle')}
           </h2>
           <span className="text-xs text-red-800 font-medium">
             {severeCount} of {summary.total} fixture blocks labelled Severe
           </span>
         </div>
         <p className="text-xs text-red-900 leading-relaxed font-normal">
-          <strong>DISCLAIMER:</strong> (The blocks listed below are manually classified demonstration records. These are not verified groundwater warnings; validated risk thresholds and scientific assessment have not yet been implemented.)
+          {t('overview.severeDisclaimer')}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
@@ -109,15 +112,15 @@ export default function OverviewDashboard() {
               <div className="grid grid-cols-3 gap-2 text-[11px] bg-subtle/40 p-2 rounded border border-border">
                 <div>
                   <span className="text-text-muted block text-[10px]">Well Depth</span>
-                  <span className="font-bold text-red-700">{block.indicators.cgwbWellDepthMbgl}m bgl</span>
+                  <span className="font-bold text-red-700">{block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl}m bgl` : 'No Data'}</span>
                 </div>
                 <div>
                   <span className="text-text-muted block text-[10px]">Rain Deficit</span>
-                  <span className="font-bold text-amber-700">{block.indicators.rainfallAnomalyMm}mm</span>
+                  <span className="font-bold text-amber-700">{block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm}mm` : 'No Data'}</span>
                 </div>
                 <div>
                   <span className="text-text-muted block text-[10px]">GRACE TWSA</span>
-                  <span className="font-bold text-text-main">{block.indicators.graceTwsaCm}cm</span>
+                  <span className="font-bold text-text-main">{block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm}cm` : 'No Data'}</span>
                 </div>
               </div>
 
@@ -287,27 +290,27 @@ export default function OverviewDashboard() {
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className={`font-medium ${block.indicators.graceTwsaCm < -6 ? 'text-red-700' : 'text-text-main'}`}>
-                        {block.indicators.graceTwsaCm} cm
+                      <span className={`font-medium ${(block.indicators.graceTwsaCm ?? 0) < -6 ? 'text-red-700' : 'text-text-main'}`}>
+                        {block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm} cm` : 'No Data'}
                       </span>
                       <div className="text-[10px] text-text-muted">1.0° GRACE-FO</div>
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className={`font-medium ${block.indicators.rainfallAnomalyMm < -200 ? 'text-red-700' : 'text-amber-700'}`}>
-                        {block.indicators.rainfallAnomalyMm} mm
+                      <span className={`font-medium ${(block.indicators.rainfallAnomalyMm ?? 0) < -200 ? 'text-red-700' : 'text-amber-700'}`}>
+                        {block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm} mm` : 'No Data'}
                       </span>
-                      <div className="text-[10px] text-text-muted">SPI: {block.indicators.spi3Month}</div>
+                      <div className="text-[10px] text-text-muted">SPI: {block.indicators.spi3Month ?? 'N/A'}</div>
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className="font-medium text-text-main">{block.indicators.sentinelNdvi}</span>
+                      <span className="font-medium text-text-main">{block.indicators.sentinelNdvi ?? 'No Data'}</span>
                       <div className="text-[10px] text-text-muted">10m Sentinel-2</div>
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className="font-medium text-text-main">{block.indicators.cgwbWellDepthMbgl} m bgl</span>
-                      <div className="text-[10px] text-text-muted">Trend: {block.indicators.wellDepthTrendMperYr} m/yr</div>
+                      <span className="font-medium text-text-main">{block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl} m bgl` : 'No Data'}</span>
+                      <div className="text-[10px] text-text-muted">Trend: {block.indicators.wellDepthTrendMperYr !== null ? `${block.indicators.wellDepthTrendMperYr} m/yr` : 'N/A'}</div>
                     </td>
 
                     <td className="py-3.5 px-4">

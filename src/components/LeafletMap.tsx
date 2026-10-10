@@ -21,15 +21,15 @@ function markerColor(block: BlockData, layer: MapLayer): string {
       return '#059669';
 
     case 'grace':
-      return block.indicators.graceTwsaCm < -6 ? '#dc2626' : '#f59e0b';
+      return (block.indicators.graceTwsaCm ?? 0) < -6 ? '#dc2626' : '#f59e0b';
 
     case 'rainfall':
-      return block.indicators.rainfallAnomalyMm < -200
+      return (block.indicators.rainfallAnomalyMm ?? 0) < -200
         ? '#dc2626'
         : '#2563eb';
 
     case 'wells':
-      return block.indicators.cgwbWellDepthMbgl > 14
+      return (block.indicators.cgwbWellDepthMbgl ?? 0) > 14
         ? '#dc2626'
         : '#059669';
 
@@ -43,13 +43,13 @@ function layerValue(block: BlockData, layer: MapLayer): string {
     case 'risk':
       return `${block.assessment.descriptiveStressScore}/100`;
     case 'grace':
-      return `${block.indicators.graceTwsaCm} cm`;
+      return block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm} cm` : 'No Data';
     case 'rainfall':
-      return `${block.indicators.rainfallAnomalyMm} mm`;
+      return block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm} mm` : 'No Data';
     case 'wells':
-      return `${block.indicators.cgwbWellDepthMbgl} m bgl`;
+      return block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl} m bgl` : 'No Data';
     case 'sentinel':
-      return `NDVI ${block.indicators.sentinelNdvi}`;
+      return block.indicators.sentinelNdvi !== null ? `NDVI ${block.indicators.sentinelNdvi}` : 'No Data';
   }
 }
 

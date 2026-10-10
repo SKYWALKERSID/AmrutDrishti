@@ -13,14 +13,14 @@ export type RiskSeverity = 'normal' | 'watch' | 'severe' | 'gap';
 export type DataStatusType = 'observed' | 'derived' | 'simulated' | 'predicted';
 
 export interface EnvironmentalIndicators {
-  graceTwsaCm: number;             // GRACE Terrestrial Water Storage Anomaly (cm)
-  rainfallAnomalyMm: number;      // IMD Rainfall Anomaly vs 30-yr mean (mm)
-  spi3Month: number;               // 3-Month Standardized Precipitation Index
-  sentinelNdvi: number;            // Sentinel-2 NDVI (0 to 1)
-  sentinelNdwi: number;            // Sentinel-2 NDWI (-1 to 1)
-  smapSoilMoisture: number;        // SMAP Surface Soil Moisture (m³/m³)
-  cgwbWellDepthMbgl: number;      // CGWB Observation Well depth to water level (m bgl)
-  wellDepthTrendMperYr: number;    // Multi-year trend (m/yr change)
+  graceTwsaCm: number | null;             // GRACE Terrestrial Water Storage Anomaly (cm)
+  rainfallAnomalyMm: number | null;      // IMD Rainfall Anomaly vs 30-yr mean (mm)
+  spi3Month: number | null;               // 3-Month Standardized Precipitation Index
+  sentinelNdvi: number | null;            // Sentinel-2 NDVI (0 to 1)
+  sentinelNdwi: number | null;            // Sentinel-2 NDWI (-1 to 1)
+  smapSoilMoisture: number | null;        // SMAP Surface Soil Moisture (m³/m³)
+  cgwbWellDepthMbgl: number | null;      // CGWB Observation Well depth to water level (m bgl)
+  wellDepthTrendMperYr: number | null;    // Multi-year trend (m/yr change)
   lastUpdatedDate: string;         // ISO Date string
   dataQualityFlag: 'good' | 'suspect' | 'missing';
 }

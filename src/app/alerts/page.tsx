@@ -19,7 +19,10 @@ import { AlertTriangleIcon, SendIcon, ShieldCheckIcon, CheckCircleIcon, UserRole
 
 const STORAGE_KEY_ALERTS = 'jaldrishti_alerts_v1';
 
+import { useLanguage } from '@/lib/context/LanguageContext';
+
 function AlertsContent() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
@@ -132,10 +135,10 @@ function AlertsContent() {
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <AlertTriangleIcon className="w-5 h-5 text-amber-600" /> Hindi-First Advisory & Alert Engine
+            <AlertTriangleIcon className="w-5 h-5 text-amber-600" /> {t('alerts.title')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            Simulated bilingual advisory log for demonstration. No real SMS or WhatsApp message is sent, and deduplication, cooldown and audit logging are not implemented in this prototype.
+            {t('alerts.subtitle')} No real SMS or WhatsApp message is sent. {NO_REAL_MESSAGE_NOTICE}
           </p>
         </div>
 

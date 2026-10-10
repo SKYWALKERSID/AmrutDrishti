@@ -8,7 +8,10 @@ import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice, SCORE_FIXTURE_NOTICE } from '@/lib/demo/demoPolicy';
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 
+import { useLanguage } from '@/lib/context/LanguageContext';
+
 function RiskAssessmentContent() {
+  const { t } = useLanguage();
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
@@ -51,10 +54,10 @@ function RiskAssessmentContent() {
               <span className="text-xs text-text-muted">No model implemented</span>
             </div>
             <h1 className="text-xl font-bold text-text-main mt-2">
-              Groundwater Stress Score & Model Governance
+              {t('risk.title')}
             </h1>
             <p className="text-xs text-text-muted mt-1 max-w-3xl leading-relaxed">
-              Demonstration fixtures with candidate indicators and a human-review note form. Scores are not computed or validated.
+              {t('risk.subtitle')}
             </p>
           </div>
         </div>
