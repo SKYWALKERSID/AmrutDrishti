@@ -147,14 +147,14 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         {/* Left Column: Interactive Map & Layer Controls (8 cols) */}
         <div className="lg:col-span-8 space-y-4">
           {/* Layer Selection Buttons */}
-          <div className="bg-surface border border-border rounded-lg p-3 shadow-card flex flex-wrap items-center justify-between gap-2">
-            <div className="text-xs font-semibold text-text-main flex items-center gap-1.5">
+          <div className="bg-surface border border-border rounded-lg p-3 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="text-xs font-semibold text-text-main flex items-center gap-1.5 shrink-0">
               <span>{t('explorer.activeLayer', 'Map Information')}:</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               <button
                 onClick={() => setActiveLayer('risk')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'risk'
+                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${activeLayer === 'risk'
                   ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
@@ -163,7 +163,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('grace')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'grace'
+                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${activeLayer === 'grace'
                   ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
@@ -172,7 +172,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('rainfall')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'rainfall'
+                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${activeLayer === 'rainfall'
                   ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
@@ -181,7 +181,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('wells')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'wells'
+                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${activeLayer === 'wells'
                   ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
@@ -190,7 +190,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('sentinel')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${activeLayer === 'sentinel'
+                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${activeLayer === 'sentinel'
                   ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
                   : 'bg-subtle hover:bg-subtle/80 text-text-main'
                   }`}
@@ -201,9 +201,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
 
           {/* Interactive Map Visualizer Canvas Container */}
-          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-card relative h-[480px]">
+          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-card relative h-[380px] sm:h-[480px]">
             {/* Layer Info Chip */}
-            <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5 max-w-sm">
+            <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5 max-w-[calc(100%-1.5rem)] sm:max-w-sm">
               <div className="font-semibold text-text-main flex items-center gap-1.5">
                 <InfoIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" />
                 {activeLayer === 'risk' && t('layer.risk', 'Groundwater Status')}
@@ -233,10 +233,10 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
         {/* Right Column: Block Details Inspector Panel (4 cols) */}
         <div className="lg:col-span-4">
-          <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-5 sticky top-24">
+          <div className="bg-surface border border-border rounded-lg p-4 sm:p-5 shadow-card space-y-4 sm:space-y-5 lg:sticky lg:top-24">
             {/* Header */}
             <div>
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center justify-between gap-2 flex-wrap">
                 <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
                   {t('explorer.blockDetails', 'Block Details')}
                 </span>
@@ -244,51 +244,51 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   {getSeverityText(selectedBlock.riskSeverity)}
                 </span>
               </div>
-              <h2 className="text-xl font-bold text-text-main mt-1">{selectedBlock.name} Block</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-text-main mt-1">{selectedBlock.name} Block</h2>
               <p className="text-xs text-text-muted">
                 {selectedBlock.districtName} District, {selectedBlock.state}
               </p>
             </div>
 
             {/* Key Indicators Grid */}
-            <div className="space-y-3 bg-subtle/50 p-3.5 rounded-lg border border-border">
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-text-muted flex items-center gap-1">
-                  <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> {t('layer.grace', 'Satellite Water Storage Estimate')}:
+            <div className="space-y-3 bg-subtle/50 p-3 sm:p-3.5 rounded-lg border border-border">
+              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                <span className="text-text-muted flex items-center gap-1 min-w-0">
+                  <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> <span className="truncate">{t('layer.grace', 'Satellite Water Storage Estimate')}:</span>
                 </span>
-                <span className="font-bold text-text-main shrink-0 ml-2">
+                <span className="font-bold text-text-main shrink-0 ml-auto">
                   {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-text-muted flex items-center gap-1">
-                  <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> {t('layer.rainfall', 'Rainfall Difference')}:
+              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                <span className="text-text-muted flex items-center gap-1 min-w-0">
+                  <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> <span className="truncate">{t('layer.rainfall', 'Rainfall Difference')}:</span>
                 </span>
-                <span className="font-bold text-text-main shrink-0 ml-2">
+                <span className="font-bold text-text-main shrink-0 ml-auto">
                   {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-text-muted flex items-center gap-1">
-                  <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> {t('layer.wells', 'Groundwater Monitoring Wells')}:
+              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                <span className="text-text-muted flex items-center gap-1 min-w-0">
+                  <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> <span className="truncate">{t('layer.wells', 'Groundwater Monitoring Wells')}:</span>
                 </span>
-                <span className="font-bold text-text-main shrink-0 ml-2">
+                <span className="font-bold text-text-main shrink-0 ml-auto">
                   {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('monitoring.noData', 'No Data')}
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-text-muted">{t('layer.sentinel', 'Satellite Vegetation Information')}:</span>
-                <span className="font-bold text-text-main shrink-0 ml-2">
+              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                <span className="text-text-muted truncate min-w-0">{t('layer.sentinel', 'Satellite Vegetation Information')}:</span>
+                <span className="font-bold text-text-main shrink-0 ml-auto">
                   {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2">
+              <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2 flex-wrap gap-1">
                 <span className="text-text-muted font-semibold">{t('explorer.sampleStressScore', 'Sample Stress Score')}:</span>
-                <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-2">{selectedBlock.assessment.descriptiveStressScore}/100</span>
+                <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-auto">{selectedBlock.assessment.descriptiveStressScore}/100</span>
               </div>
             </div>
 

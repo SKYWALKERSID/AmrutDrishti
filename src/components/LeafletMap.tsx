@@ -216,7 +216,7 @@ export default function LeafletMap({
         </div>
       )}
 
-      <div className="absolute bottom-3 left-3 z-[500] rounded-md border border-border bg-white/95 p-2.5 text-xs shadow-md backdrop-blur-sm max-w-[280px]">
+      <div className="absolute bottom-3 left-3 z-[500] rounded-md border border-border bg-white/95 p-2.5 text-xs shadow-md backdrop-blur-sm max-w-[calc(100%-1.5rem)] sm:max-w-[280px]">
         <div className="font-semibold text-text-main mb-1">{t('explorer.mapGuide', 'Map Guide')}</div>
         <div className="flex flex-col gap-1 text-xs">
           <span className="flex items-center gap-1.5 text-slate-700">
