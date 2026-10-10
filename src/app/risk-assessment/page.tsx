@@ -136,40 +136,40 @@ function RiskAssessmentContent() {
           {!isReadOnly && (
             <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
-                <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> Human Review & Risk Override
+                <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> {t('risk.humanOverrideTitle', 'Human Review & Risk Override')}
               </h2>
               <p className="text-xs text-text-muted">
-                Demo-only control. Nothing is persisted or audited. Authorized reviewers would adjust classification after physical ground inspection.
+                {t('risk.overrideSubtitle', 'Demo-only control. Nothing is persisted or audited. Authorized reviewers would adjust classification after physical ground inspection.')}
               </p>
 
               {overrideApplied ? (
                 <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-md text-xs space-y-1">
                   <div className="font-bold flex items-center gap-1.5">
-                    <CheckCircleIcon className="w-4 h-4 text-emerald-700" /> Review Note Held In Memory
+                    <CheckCircleIcon className="w-4 h-4 text-emerald-700" /> {t('risk.overrideSuccessTitle', 'Review Note Held In Memory')}
                   </div>
-                  <p>Status shown as {overrideSeverity.toUpperCase()} for this page session only. Held in browser memory; not saved and not an audit trail.</p>
+                  <p>{t('risk.overrideSuccessMsg', 'Status shown for this page session only. Held in browser memory; not saved and not an audit trail.')}</p>
                 </div>
               ) : (
                 <form onSubmit={handleApplyOverride} className="space-y-3">
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-main">Override Severity Level:</label>
+                    <label className="text-xs font-semibold text-text-main">{t('risk.overrideSeverityLabel', 'Override Severity Level')}:</label>
                     <select
                       value={overrideSeverity}
                       onChange={(e) => setOverrideSeverity(e.target.value as RiskSeverity)}
                       className="w-full bg-subtle border border-border rounded-md px-3 py-1.5 text-xs text-text-main focus:outline-none"
                     >
-                      <option value="severe">Severe Stress</option>
-                      <option value="watch">Watch Advisory</option>
-                      <option value="normal">Normal Baseline</option>
+                      <option value="severe">{t('overview.severeCount', 'Severe Stress')}</option>
+                      <option value="watch">{t('overview.watchCount', 'Watch Advisory')}</option>
+                      <option value="normal">{t('overview.normalCount', 'Normal Baseline')}</option>
                     </select>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-main">Review Rationale & Inspection Notes:</label>
+                    <label className="text-xs font-semibold text-text-main">{t('risk.reviewRationaleLabel', 'Review Rationale & Inspection Notes')}:</label>
                     <textarea
                       value={overrideReason}
                       onChange={(e) => setOverrideReason(e.target.value)}
-                      placeholder="Enter ground inspection evidence or hydrogeologist report reference..."
+                      placeholder={t('risk.reviewPlaceholder', 'Enter ground inspection evidence or hydrogeologist report reference...')}
                       rows={3}
                       className="w-full bg-subtle border border-border rounded-md p-2 text-xs text-text-main focus:outline-none"
                       required
@@ -180,7 +180,7 @@ function RiskAssessmentContent() {
                     type="submit"
                     className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2 rounded-md transition-colors"
                   >
-                    Record Review Note (this session only)
+                    {t('risk.recordNoteBtn', 'Record Review Note (this session only)')}
                   </button>
                 </form>
               )}
@@ -194,12 +194,12 @@ function RiskAssessmentContent() {
           {/* Formula Breakdown */}
           <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
             <h2 className="text-base font-bold text-text-main flex items-center gap-2">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Candidate Input Indicators (formula not implemented)
+              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> {t('risk.candidateIndicators', 'Candidate Input Indicators (formula not implemented)')}
             </h2>
 
             <div className="space-y-3 text-xs">
               <div className="p-3 bg-amber-50 rounded border border-amber-200 text-[11px] text-amber-900">
-                No scoring formula is implemented. The score above is a hand-entered fixture. The indicators listed below are the candidate inputs only; no weights have been established or validated.
+                {t('risk.candidateNotice', 'No scoring formula is implemented. The score above is a hand-entered fixture. The indicators listed below are the candidate inputs only; no weights have been established or validated.')}
               </div>
 
               <div className="space-y-2">
@@ -208,7 +208,7 @@ function RiskAssessmentContent() {
                     <span className="font-semibold text-text-main">CGWB Well Level (m bgl)</span>
                     <p className="text-[11px] text-text-muted">Candidate input • hard-rock aquifer depth indicator</p>
                   </div>
-                  <span className="text-[10px] font-semibold text-amber-800">no weight</span>
+                  <span className="text-[10px] font-semibold text-amber-800">{t('risk.noWeight', 'no weight')}</span>
                 </div>
 
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
@@ -216,7 +216,7 @@ function RiskAssessmentContent() {
                     <span className="font-semibold text-text-main">IMD Monsoon Rainfall Anomaly</span>
                     <p className="text-[11px] text-text-muted">Candidate input • rainfall deficit (SPI)</p>
                   </div>
-                  <span className="text-[10px] font-semibold text-amber-800">no weight</span>
+                  <span className="text-[10px] font-semibold text-amber-800">{t('risk.noWeight', 'no weight')}</span>
                 </div>
 
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
@@ -224,7 +224,7 @@ function RiskAssessmentContent() {
                     <span className="font-semibold text-text-main">NASA GRACE-FO TWSA Anomaly</span>
                     <p className="text-[11px] text-text-muted">Candidate input • coarse regional storage anomaly</p>
                   </div>
-                  <span className="text-[10px] font-semibold text-amber-800">no weight</span>
+                  <span className="text-[10px] font-semibold text-amber-800">{t('risk.noWeight', 'no weight')}</span>
                 </div>
 
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
@@ -240,14 +240,14 @@ function RiskAssessmentContent() {
 
           {/* Validation status: nothing below has been performed */}
           <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
-            <h2 className="text-base font-bold text-text-main">Validation Status: Not Yet Performed</h2>
-            <p className="text-xs text-text-muted">No validation has been carried out on these demonstration scores. Items below are open work, not completed checks.</p>
+            <h2 className="text-base font-bold text-text-main">{t('risk.validationStatusTitle', 'Validation Status: Not Yet Performed')}</h2>
+            <p className="text-xs text-text-muted">{t('risk.validationStatusDesc', 'No validation has been carried out on these demonstration scores. Items below are open work, not completed checks.')}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
               {[
-                ['Score computation', 'Not implemented: scores are hand-entered fixtures'],
-                ['Independent well calibration', 'Not performed; no CGWB observations are loaded'],
-                ['Baseline model comparison', 'Not performed'],
-                ['Uncertainty estimation', 'Not performed'],
+                [t('risk.scoreComputation', 'Score computation'), t('risk.scoreCompDesc', 'Not implemented: scores are hand-entered fixtures')],
+                [t('risk.wellCalibration', 'Independent well calibration'), t('risk.wellCalibDesc', 'Not performed; no CGWB observations are loaded')],
+                [t('risk.baselineComparisonTitle', 'Baseline model comparison'), t('risk.baselineCompDesc', 'Not performed')],
+                [t('risk.uncertaintyEstimation', 'Uncertainty estimation'), t('risk.uncertaintyDesc', 'Not performed')],
               ].map(([title, note]) => (
                 <div key={title} className="flex items-start gap-2 p-2.5 bg-amber-50/60 border border-amber-200 rounded text-amber-900">
                   <InfoIcon className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />

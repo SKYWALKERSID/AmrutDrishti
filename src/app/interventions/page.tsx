@@ -26,7 +26,7 @@ function InterventionsContent() {
   const [storageError, setStorageError] = useState<string | null>(null);
 
   const isReadOnly = !canMutateDemoWorkflows(activeRole);
-  const restrictionNotice = demoRestrictionNotice(activeRole);
+  const restrictionNotice = demoRestrictionNotice(activeRole, t);
 
   // New Proposal Form State
   const [title, setTitle] = useState('');
@@ -236,7 +236,7 @@ function InterventionsContent() {
         <div className="lg:col-span-5 space-y-4">
           <div className="bg-surface border border-border rounded-lg p-4 shadow-card">
             <h2 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">
-              Active Intervention Proposals ({proposals.length})
+              {t('interventions.activeProposals', 'Active Intervention Proposals')} ({proposals.length})
             </h2>
 
             <div className="space-y-3">
@@ -253,19 +253,19 @@ function InterventionsContent() {
                     }`}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-text-main line-clamp-1">{prop.title}</span>
+                      <span className="text-xs font-bold text-text-main line-clamp-1">{t(`interventions.${prop.id}.title`, prop.title)}</span>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 ${getStatusBadgeClass(prop.status)}`}>
-                        {prop.status.replace('_', ' ').toUpperCase()}
+                        {t(`status.${prop.status}`, prop.status.replace('_', ' ').toUpperCase())}
                       </span>
                     </div>
 
                     <div className="text-[11px] text-text-muted mt-1 flex items-center justify-between">
                       <span>{prop.blockName} ({prop.districtName})</span>
-                      <span className="font-semibold text-text-main">₹{(prop.estimatedCostInr / 100000).toFixed(1)} Lakhs</span>
+                      <span className="font-semibold text-text-main">₹{(prop.estimatedCostInr / 100000).toFixed(1)} {t('interventions.lakhs', 'Lakhs')}</span>
                     </div>
 
                     <div className="text-[10px] text-text-muted mt-1.5 line-clamp-2 italic">
-                      &ldquo;{prop.evidenceRationale}&rdquo;
+                      &ldquo;{t(`interventions.${prop.id}.rationale`, prop.evidenceRationale)}&rdquo;
                     </div>
                   </button>
                 );
@@ -276,10 +276,10 @@ function InterventionsContent() {
           {/* Government Scheme Reference Cards */}
           <div className="bg-surface border border-border rounded-lg p-4 shadow-card space-y-3">
             <h2 className="text-xs font-bold text-text-main flex items-center gap-1.5">
-              <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> Supported Government Schemes
+              <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> {t('interventions.supportedSchemes', 'Supported Government Schemes')}
             </h2>
             <p className="text-[11px] text-amber-900 bg-amber-50 p-2 rounded border border-amber-200">
-              {SCHEME_UNVERIFIED_NOTICE}
+              {t('interventions.schemesNotice', SCHEME_UNVERIFIED_NOTICE)}
             </p>
 
             <div className="space-y-2 text-xs">
@@ -287,9 +287,9 @@ function InterventionsContent() {
                 <div key={sch.id} className="p-2.5 bg-subtle/50 rounded border border-border space-y-1">
                   <div className="flex justify-between font-bold text-text-main">
                     <span>{sch.name}</span>
-                    <span className="text-[10px] text-[#0d5c63]">Demonstration Cap: ₹{(sch.maxSanctionUnitAmountInr / 100000).toFixed(1)}L (unverified)</span>
+                    <span className="text-[10px] text-[#0d5c63]">{t('interventions.demonstrationCap', 'Demonstration Cap')}: ₹{(sch.maxSanctionUnitAmountInr / 100000).toFixed(1)}{t('interventions.unverifiedCap', 'L (unverified)')}</span>
                   </div>
-                  <p className="text-[11px] text-text-muted">{sch.primaryFocus}</p>
+                  <p className="text-[11px] text-text-muted">{t(`scheme.${sch.id}.focus`, sch.primaryFocus)}</p>
                 </div>
               ))}
             </div>
@@ -303,11 +303,11 @@ function InterventionsContent() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border">
               <div>
                 <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${getStatusBadgeClass(selectedProposal.status)}`}>
-                  STATUS: {selectedProposal.status.replace('_', ' ').toUpperCase()}
+                  {t('interventions.statusLabel', 'STATUS')}: {t(`status.${selectedProposal.status}`, selectedProposal.status.replace('_', ' ').toUpperCase())}
                 </span>
-                <h2 className="text-lg font-bold text-text-main mt-1">{selectedProposal.title}</h2>
+                <h2 className="text-lg font-bold text-text-main mt-1">{t(`interventions.${selectedProposal.id}.title`, selectedProposal.title)}</h2>
                 <p className="text-xs text-text-muted">
-                  Proposal ID: {selectedProposal.id} • Created: {selectedProposal.createdDate}
+                  {t('interventions.proposalId', 'Proposal ID')}: {selectedProposal.id} • {t('interventions.createdDate', 'Created')}: {selectedProposal.createdDate}
                 </p>
               </div>
 
@@ -318,19 +318,19 @@ function InterventionsContent() {
                     onClick={() => handleUpdateStatus('under_review')}
                     className="px-2.5 py-1 bg-subtle hover:bg-subtle/80 text-text-main text-xs font-semibold rounded border border-border"
                   >
-                    Under Review
+                    {t('interventions.underReview', 'Under Review')}
                   </button>
                   <button
                     onClick={() => handleUpdateStatus('field_verification_requested')}
                     className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold rounded border border-amber-300"
                   >
-                    Request Field Survey
+                    {t('interventions.requestSurvey', 'Request Field Survey')}
                   </button>
                   <button
                     onClick={() => handleUpdateStatus('approved')}
                     className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded"
                   >
-                    Approve Proposal
+                    {t('interventions.approveProposal', 'Approve Proposal')}
                   </button>
                 </div>
               )}
@@ -339,34 +339,34 @@ function InterventionsContent() {
             {/* Proposal Details Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div className="p-3 bg-subtle/40 rounded border border-border space-y-1">
-                <span className="text-text-muted">Target Location & Panchayat:</span>
+                <span className="text-text-muted">{t('interventions.targetLocation', 'Target Location & Panchayat')}:</span>
                 <div className="font-bold text-text-main">{selectedProposal.targetVillage}</div>
                 <div className="text-[11px] text-text-muted">{selectedProposal.blockName} Block, {selectedProposal.districtName}</div>
               </div>
 
               <div className="p-3 bg-subtle/40 rounded border border-border space-y-1">
-                <span className="text-text-muted">Mapped Government Scheme:</span>
+                <span className="text-text-muted">{t('interventions.mappedScheme', 'Mapped Government Scheme')}:</span>
                 <div className="font-bold text-[#0d5c63]">{selectedProposal.schemeName}</div>
-                <div className="text-[11px] text-text-muted">Est. Cost: ₹{selectedProposal.estimatedCostInr.toLocaleString()}</div>
+                <div className="text-[11px] text-text-muted">{t('interventions.estCost', 'Est. Cost')}: ₹{selectedProposal.estimatedCostInr.toLocaleString()}</div>
               </div>
 
               <div className="p-3 bg-subtle/40 rounded border border-border space-y-1">
-                <span className="text-text-muted">Review Assignment:</span>
+                <span className="text-text-muted">{t('interventions.reviewAssignment', 'Review Assignment')}:</span>
                 <div className="font-bold text-text-main">{selectedProposal.reviewOwnerName}</div>
-                <div className="text-[11px] text-text-muted">Role: {selectedProposal.reviewOwnerRole.toUpperCase()}</div>
+                <div className="text-[11px] text-text-muted">{t('interventions.roleLabel', 'Role')}: {t(`role.${selectedProposal.reviewOwnerRole}`, selectedProposal.reviewOwnerRole.toUpperCase())}</div>
               </div>
 
               <div className="p-3 bg-subtle/40 rounded border border-border space-y-1">
-                <span className="text-text-muted">Target Beneficiaries:</span>
-                <div className="font-bold text-text-main">{selectedProposal.beneficiariesCount.toLocaleString()} Rural Residents</div>
+                <span className="text-text-muted">{t('interventions.targetBeneficiaries', 'Target Beneficiaries')}:</span>
+                <div className="font-bold text-text-main">{selectedProposal.beneficiariesCount.toLocaleString()} {t('interventions.ruralResidents', 'Rural Residents')}</div>
               </div>
             </div>
 
             {/* Evidence Rationale */}
             <div className="space-y-2">
-              <span className="text-xs font-bold text-text-main">Environmental Evidence Rationale:</span>
+              <span className="text-xs font-bold text-text-main">{t('interventions.environmentalRationale', 'Environmental Evidence Rationale')}:</span>
               <p className="text-xs text-text-main bg-surface p-3 rounded border border-border leading-relaxed">
-                {selectedProposal.evidenceRationale}
+                {t(`interventions.${selectedProposal.id}.rationale`, selectedProposal.evidenceRationale)}
               </p>
             </div>
 
@@ -374,26 +374,26 @@ function InterventionsContent() {
             {selectedProposal.missingEvidenceNotes && (
               <div className="space-y-2">
                 <span className="text-xs font-bold text-amber-900 flex items-center gap-1">
-                  <InfoIcon className="w-3.5 h-3.5 text-amber-700" /> Missing Evidence & Survey Gaps:
+                  <InfoIcon className="w-3.5 h-3.5 text-amber-700" /> {t('interventions.missingEvidenceGap', 'Missing Evidence & Survey Gaps')}:
                 </span>
                 <p className="text-xs text-amber-900 bg-amber-50/60 p-3 rounded border border-amber-200 leading-relaxed">
-                  {selectedProposal.missingEvidenceNotes}
+                  {t(`interventions.${selectedProposal.id}.missingNotes`, selectedProposal.missingEvidenceNotes)}
                 </p>
               </div>
             )}
 
             {/* Comments & Governance Audit Trail */}
             <div className="space-y-3 pt-4 border-t border-border">
-              <h3 className="text-xs font-bold text-text-main">Review Trail & Comments ({selectedProposal.comments.length})</h3>
+              <h3 className="text-xs font-bold text-text-main">{t('interventions.reviewTrail', 'Review Trail & Comments')} ({selectedProposal.comments.length})</h3>
 
               <div className="space-y-2.5 max-h-48 overflow-y-auto pr-1">
                 {selectedProposal.comments.map((c, idx) => (
                   <div key={idx} className="p-2.5 bg-subtle/50 rounded border border-border text-xs space-y-1">
                     <div className="flex justify-between items-center text-text-muted text-[11px]">
-                      <span className="font-bold text-text-main">{c.authorName} ({c.authorRole.toUpperCase()})</span>
+                      <span className="font-bold text-text-main">{c.authorName} ({t(`role.${c.authorRole}`, c.authorRole.toUpperCase())})</span>
                       <span>{c.date}</span>
                     </div>
-                    <p className="text-text-main leading-snug">{c.text}</p>
+                    <p className="text-text-main leading-snug">{t(`interventions.${selectedProposal.id}.comment${idx+1}`, c.text)}</p>
                   </div>
                 ))}
               </div>
@@ -405,14 +405,14 @@ function InterventionsContent() {
                     type="text"
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
-                    placeholder="Add review note or field survey observation..."
+                    placeholder={t('interventions.addNotePlaceholder', 'Add review note or field survey observation...')}
                     className="flex-1 bg-subtle border border-border rounded-md px-3 py-1.5 text-xs text-text-main focus:outline-none"
                   />
                   <button
                     type="submit"
                     className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-1.5 rounded-md transition-colors"
                   >
-                    Add Note
+                    {t('interventions.addNoteBtn', 'Add Note')}
                   </button>
                 </form>
               )}
@@ -426,7 +426,7 @@ function InterventionsContent() {
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-surface border border-border rounded-lg max-w-lg w-full p-6 shadow-xl space-y-4 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-3 border-b border-border">
-              <h3 className="text-base font-bold text-text-main">Draft New Intervention Proposal</h3>
+              <h3 className="text-base font-bold text-text-main">{t('interventions.modalTitle', 'Draft New Intervention Proposal')}</h3>
               <button
                 onClick={() => setShowNewModal(false)}
                 className="text-text-muted hover:text-text-main text-lg font-bold"
@@ -437,12 +437,12 @@ function InterventionsContent() {
 
             <form onSubmit={handleCreateProposal} className="space-y-3 text-xs">
               <div className="space-y-1">
-                <label className="font-semibold text-text-main">Proposal Title:</label>
+                <label className="font-semibold text-text-main">{t('interventions.proposalTitleLabel', 'Proposal Title')}:</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Check Dam & Piezometer Construction"
+                  placeholder={t('interventions.proposalTitlePlaceholder', 'e.g. Check Dam & Piezometer Construction')}
                   className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
                   required
                 />
@@ -450,7 +450,7 @@ function InterventionsContent() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="font-semibold text-text-main">Target Block:</label>
+                  <label className="font-semibold text-text-main">{t('interventions.targetBlockLabel', 'Target Block')}:</label>
                   <select
                     value={blockId}
                     onChange={(e) => setBlockId(e.target.value)}
@@ -463,7 +463,7 @@ function InterventionsContent() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-semibold text-text-main">Scheme:</label>
+                  <label className="font-semibold text-text-main">{t('interventions.schemeLabel', 'Scheme')}:</label>
                   <select
                     value={schemeId}
                     onChange={(e) => setSchemeId(e.target.value)}
@@ -478,7 +478,7 @@ function InterventionsContent() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="font-semibold text-text-main">Estimated Cost (INR):</label>
+                  <label className="font-semibold text-text-main">{t('interventions.estCostLabel', 'Estimated Cost (INR)')}:</label>
                   <input
                     type="number"
                     value={estimatedCost}
@@ -488,7 +488,7 @@ function InterventionsContent() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-semibold text-text-main">Beneficiaries:</label>
+                  <label className="font-semibold text-text-main">{t('interventions.beneficiariesLabel', 'Beneficiaries')}:</label>
                   <input
                     type="number"
                     value={beneficiaries}
@@ -499,11 +499,11 @@ function InterventionsContent() {
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-text-main">Evidence Rationale:</label>
+                <label className="font-semibold text-text-main">{t('interventions.evidenceRationaleLabel', 'Evidence Rationale')}:</label>
                 <textarea
                   value={evidenceRationale}
                   onChange={(e) => setEvidenceRationale(e.target.value)}
-                  placeholder="Describe satellite TWSA anomaly, rainfall deficit, or well depth observations..."
+                  placeholder={t('interventions.evidenceRationalePlaceholder', 'Describe satellite TWSA anomaly, rainfall deficit, or well depth observations...')}
                   rows={3}
                   className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
                   required
@@ -511,12 +511,12 @@ function InterventionsContent() {
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-text-main">Missing Evidence & Hydrogeological Gaps:</label>
+                <label className="font-semibold text-text-main">{t('interventions.missingEvidenceLabel', 'Missing Evidence & Hydrogeological Gaps')}:</label>
                 <input
                   type="text"
                   value={missingEvidence}
                   onChange={(e) => setMissingEvidence(e.target.value)}
-                  placeholder="e.g. Lithological core test required"
+                  placeholder={t('interventions.missingEvidencePlaceholder', 'e.g. Lithological core test required')}
                   className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
                 />
               </div>
@@ -527,13 +527,13 @@ function InterventionsContent() {
                   onClick={() => setShowNewModal(false)}
                   className="px-4 py-2 bg-subtle text-text-main font-semibold rounded hover:bg-subtle/80"
                 >
-                    Cancel
+                    {t('interventions.cancelBtn', 'Cancel')}
                 </button>
                 <button
                   type="submit"
                   className="px-4 py-2 bg-[#0d5c63] text-white font-semibold rounded hover:bg-[#094348]"
                 >
-                  Submit Proposal
+                  {t('interventions.submitBtn', 'Submit Proposal')}
                 </button>
               </div>
             </form>

@@ -23,12 +23,12 @@ export function canMutateDemoWorkflows(role: UserRole): boolean {
   return !VIEW_ONLY_DEMO_ROLES.includes(role);
 }
 
-export function demoRestrictionNotice(role: UserRole): string | null {
+export function demoRestrictionNotice(role: UserRole, t?: (key: string, fallback?: string) => string): string | null {
   if (canMutateDemoWorkflows(role)) return null;
   if (role === 'general_public') {
-    return 'Read-only demonstration view. Mutation controls are hidden for the General Public demo role. This is a client-side prototype restriction, not server-side security.';
+    return t ? t('demo.readOnlyNotice', 'Read-only demonstration view. Mutation controls are hidden for the General Public demo role.') : 'Read-only demonstration view. Mutation controls are hidden for the General Public demo role. This is a client-side prototype restriction, not server-side security.';
   }
-  return 'Advisory-recipient demonstration view. Gram Pradhan and Jal Samiti are shown as advisory recipients, not dashboard operators, so mutation controls are hidden. This is a client-side prototype restriction, not server-side security.';
+  return t ? t('demo.recipientNotice', 'Advisory-recipient demonstration view. Gram Pradhan and Jal Samiti are shown as advisory recipients.') : 'Advisory-recipient demonstration view. Gram Pradhan and Jal Samiti are shown as advisory recipients, not dashboard operators, so mutation controls are hidden. This is a client-side prototype restriction, not server-side security.';
 }
 
 // ---------------------------------------------------------------------------
@@ -115,13 +115,13 @@ export interface DispatchDecision {
   reason: string | null;
 }
 
-export function canDispatchAdvisory(block: Pick<BlockData, 'riskSeverity' | 'name'>): DispatchDecision {
+export function canDispatchAdvisory(block: Pick<BlockData, 'riskSeverity' | 'name'>, t?: (key: string, fallback?: string) => string): DispatchDecision {
   if (block.riskSeverity === 'severe' || block.riskSeverity === 'watch') {
     return { allowed: true, reason: null };
   }
   return {
     allowed: false,
-    reason: `Demo dispatch is blocked for ${block.name}: severity is "${block.riskSeverity}". Only Watch or Severe demonstration records can generate a simulated advisory.`,
+    reason: t ? t('demo.blockedNormal', `Demo dispatch is blocked for ${block.name}: severity is "Normal".`) : `Demo dispatch is blocked for ${block.name}: severity is "${block.riskSeverity}". Only Watch or Severe demonstration records can generate a simulated advisory.`,
   };
 }
 

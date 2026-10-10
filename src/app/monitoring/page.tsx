@@ -151,7 +151,7 @@ function MonitoringContent() {
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
               <WaterDropletIcon className="w-4 h-4 text-water" /> {t('monitoring.wellVsGrace', 'Well Depth (m bgl) vs GRACE TWSA (cm)')}
             </h2>
-            <span className="text-[10px] text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">SIMULATED • shared sample, not {selectedBlock.name} data</span>
+            <span className="text-[10px] text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">{t('monitoring.simulatedNotice', 'SIMULATED • shared sample, not block data')}</span>
           </div>
 
           <div className="h-64 w-full">
@@ -164,8 +164,8 @@ function MonitoringContent() {
                   contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e0d8', fontSize: '11px' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Line type="monotone" dataKey="wellDepth" name="Well Depth (m bgl) — simulated" stroke="#b91c1c" strokeWidth={2.5} dot={{ r: 4 }} />
-                <Line type="monotone" dataKey="graceTwsa" name="GRACE TWSA (cm)" stroke="#1b4965" strokeWidth={2} strokeDasharray="5 5" />
+                <Line type="monotone" dataKey="wellDepth" name={t('monitoring.wellDepthLegend', 'Well Depth (m bgl) — simulated')} stroke="#b91c1c" strokeWidth={2.5} dot={{ r: 4 }} />
+                <Line type="monotone" dataKey="graceTwsa" name={t('monitoring.graceLegend', 'GRACE TWSA (cm)')} stroke="#1b4965" strokeWidth={2} strokeDasharray="5 5" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -178,7 +178,7 @@ function MonitoringContent() {
         <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
-              <CloudRainIcon className="w-4 h-4 text-amber-600" /> {t('monitoring.rainfallVsNdvi', 'Seasonal Monsoon Rainfall (mm) — simulated')}
+              <CloudRainIcon className="w-4 h-4 text-amber-600" /> {t('monitoring.seasonalRainfallTitle', 'Seasonal Monsoon Rainfall (mm) — simulated')}
             </h2>
             <span className="text-[10px] text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">SIMULATED • {MONITORING_RAINFALL_REFERENCE_LABEL}</span>
           </div>
@@ -193,7 +193,7 @@ function MonitoringContent() {
                   contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e0d8', fontSize: '11px' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Bar dataKey="rainfall" name="Monsoon Rainfall (mm)" fill="#0d5c63" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="rainfall" name={t('monitoring.rainfallLegend', 'Monsoon Rainfall (mm)')} fill="#0d5c63" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
