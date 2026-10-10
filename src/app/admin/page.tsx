@@ -3,10 +3,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRole } from '@/lib/context/RoleContext';
+import { useLanguage } from '@/lib/context/LanguageContext';
 import { ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/components/ui/Icons';
 
 export default function AdminPage() {
   const { activeRole } = useRole();
+  const { t } = useLanguage();
   const isSuperUser = activeRole === 'admin';
 
   if (!isSuperUser) {
@@ -15,21 +17,18 @@ export default function AdminPage() {
         <section className="rounded-lg border border-amber-300 bg-amber-50/70 p-6 text-amber-900">
           <div className="flex items-center gap-2 font-bold text-sm">
             <InfoIcon className="w-5 h-5 text-amber-700 shrink-0" />
-            <span>Demonstration Access Notice — System Administrator Role Required</span>
+            <span>{t('admin.noticeTitle', 'Demonstration Access Notice — System Administrator Role Required')}</span>
           </div>
           <p className="mt-2 text-xs leading-relaxed text-amber-800">
-            The Administration workspace is reserved for System Administrators in the JalDrishti platform prototype.
-            Your current active demo role is <strong className="uppercase">{activeRole.replace('_', ' ')}</strong>.
-          </p>
-          <p className="mt-2 text-xs text-amber-800">
-            To view administrator controls and superuser diagnostic settings, select <strong>System Administrator (Full Access)</strong> from the Demo Role switcher in the top navigation header.
+            {t('admin.noticeText', 'The Administration workspace is reserved for System Administrators in the JalDrishti platform prototype.')}
+            {' '}Your current active demo role is <strong className="uppercase">{activeRole.replace('_', ' ')}</strong>.
           </p>
           <div className="mt-4">
             <Link
               href="/"
               className="inline-block bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2 rounded-md transition-colors"
             >
-              ← Return to Overview Dashboard
+              {t('admin.returnOverview', '← Return to Overview Dashboard')}
             </Link>
           </div>
         </section>
@@ -43,15 +42,15 @@ export default function AdminPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-[#0d5c63] flex items-center gap-1.5">
-              <UserRoleIcon className="w-4 h-4 text-[#0d5c63]" /> Platform Governance & Administration
+              <UserRoleIcon className="w-4 h-4 text-[#0d5c63]" /> {t('nav.admin', 'Administration')}
             </p>
-            <h1 className="mt-2 text-2xl font-bold text-text-main">System Administration Superuser Workspace</h1>
+            <h1 className="mt-2 text-2xl font-bold text-text-main">{t('admin.title', 'System Administration Superuser Workspace')}</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-text-muted">
-              Platform-wide administration interface for System Administrators. System Administrators hold full read, write, audit, and configuration access across all pilot districts and blocks.
+              {t('admin.subtitle', 'Platform-wide administration interface for System Administrators with full access.')}
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-900">
-            Superuser Mode Active (All Modules Unlocked)
+            {t('admin.modeActive', 'Superuser Mode Active')}
           </span>
         </div>
       </section>
@@ -60,7 +59,7 @@ export default function AdminPage() {
         <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
           <h2 className="font-bold text-text-main text-sm">Simulated Role Context Switcher</h2>
           <p className="text-xs leading-5 text-text-muted">
-            The top navigation role selector provides instant client-side evaluation context for all prototype personas. It simulates permissions for evaluators without real backend authorization.
+            The top navigation role selector provides instant client-side evaluation context for all prototype personas.
           </p>
           <p className="text-xs font-semibold text-emerald-700">Status: Client-Side Demonstration Active</p>
         </article>
@@ -70,7 +69,7 @@ export default function AdminPage() {
           <p className="text-xs leading-5 text-text-muted">
             Inspect or log administrative changes, human risk overrides, and notification dispatches across all administrative jurisdictions.
           </p>
-          <p className="text-xs font-semibold text-text-main">Status: Append-Only Local Storage Logging</p>
+          <p className="text-xs font-semibold text-text-main">Status: Local Storage Logging</p>
         </article>
 
         <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">

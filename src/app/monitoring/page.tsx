@@ -132,11 +132,9 @@ function MonitoringContent() {
       <div className="bg-amber-50/80 border border-amber-200 rounded-lg p-4 text-xs text-amber-900 flex items-start gap-3">
         <InfoIcon className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <span className="font-bold">Multi-Scale Signal Inspection Notice:</span>
+          <span className="font-bold">{t('monitoring.dataNotice', 'Multi-Scale Signal Inspection Notice:')}</span>
           <p className="leading-relaxed">
-            Surface soil moisture (SMAP) and satellite vegetation index (Sentinel NDVI) measure topsoil layers (&lt;5cm).
-            During brief rain spells, surface indicators may temporarily improve while deep hard-rock aquifer water table (CGWB well depth) continues to drop due to heavy irrigation pumping.
-            Always evaluate long-term well hydrographs alongside satellite anomalies.
+            {t('monitoring.dataNoticeText', 'Surface soil moisture (SMAP) and satellite vegetation index (Sentinel NDVI) measure topsoil layers (<5cm). Always evaluate long-term well hydrographs alongside satellite anomalies.')}
           </p>
         </div>
       </div>
@@ -151,7 +149,7 @@ function MonitoringContent() {
         <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
-              <WaterDropletIcon className="w-4 h-4 text-water" /> Well Depth (m bgl) vs GRACE TWSA (cm)
+              <WaterDropletIcon className="w-4 h-4 text-water" /> {t('monitoring.wellVsGrace', 'Well Depth (m bgl) vs GRACE TWSA (cm)')}
             </h2>
             <span className="text-[10px] text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">SIMULATED • shared sample, not {selectedBlock.name} data</span>
           </div>
@@ -172,7 +170,7 @@ function MonitoringContent() {
             </ResponsiveContainer>
           </div>
           <p className="text-[11px] text-text-muted">
-            Higher well depth (m bgl) indicates a deeper, more depleted water table below ground level.
+            {t('monitoring.wellVsGraceSubtext', 'Direct well depth below ground level (m bgl) compared with regional GRACE TWSA storage anomaly (cm).')}
           </p>
         </div>
 
@@ -180,7 +178,7 @@ function MonitoringContent() {
         <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
-              <CloudRainIcon className="w-4 h-4 text-amber-600" /> Seasonal Monsoon Rainfall (mm) — simulated
+              <CloudRainIcon className="w-4 h-4 text-amber-600" /> {t('monitoring.rainfallVsNdvi', 'Seasonal Monsoon Rainfall (mm) — simulated')}
             </h2>
             <span className="text-[10px] text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">SIMULATED • {MONITORING_RAINFALL_REFERENCE_LABEL}</span>
           </div>
@@ -200,7 +198,7 @@ function MonitoringContent() {
             </ResponsiveContainer>
           </div>
           <p className="text-[11px] text-text-muted">
-            Monsoon precipitation deficit directly limits seasonal hard-rock aquifer recharge in Bundelkhand.
+            {t('monitoring.rainfallVsNdviSubtext', 'Compare rainfall deficit (mm) with Sentinel-2 vegetation vigor index (NDVI).')}
           </p>
         </div>
       </div>
@@ -208,7 +206,7 @@ function MonitoringContent() {
       {/* Detailed Indicator Matrix for Selected Block */}
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
         <h2 className="text-sm font-bold text-text-main flex items-center justify-between">
-          <span>Current Indicator Matrix — {selectedBlock.name} Block ({selectedBlock.districtName})</span>
+          <span>{t('monitoring.matrixTitle', 'Current Indicator Matrix')} — {selectedBlock.name} Block ({selectedBlock.districtName})</span>
           <span className="text-xs font-normal text-text-muted">
             Status: {selectedBlock.indicators.dataQualityFlag.toUpperCase()} (Data Status: {selectedBlock.assessment.dataStatus})
           </span>
