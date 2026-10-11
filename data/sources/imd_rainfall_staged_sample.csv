@@ -1,0 +1,22 @@
+# MANIFEST: {"datasetName":"IMD High-Resolution Daily Gridded Rainfall (0.25 x 0.25)","provider":"India Meteorological Department (IMD Pune)","version":"v2023.1","spatialResolution":"0.25 degree (~25km)","coordinateReferenceSystem":"EPSG:4326","baselinePeriod":"1991-2020","retrievalDate":"2026-10-11","checksumSha256":"SAMPLE_CHECKSUM","licensingTerms":"Government of India Open Data Policy (NDSAP)"}
+date,latitude,longitude,rainfall_mm,quality_flag
+2023-06-01,24.7500,78.7500,0.0,passed
+2023-06-02,24.7500,78.7500,12.4,passed
+2023-06-03,24.7500,78.7500,5.8,passed
+2023-06-04,24.7500,78.7500,null,missing
+2023-06-05,24.7500,78.7500,45.2,passed
+2023-06-01,24.7500,79.0000,0.0,passed
+2023-06-02,24.7500,79.0000,8.2,passed
+2023-06-03,24.7500,79.0000,15.6,passed
+2023-06-04,24.7500,79.0000,0.0,passed
+2023-06-05,24.7500,79.0000,32.0,passed
+2023-06-01,25.0000,78.7500,2.1,passed
+2023-06-02,25.0000,78.7500,18.0,passed
+2023-06-03,25.0000,78.7500,4.2,passed
+2023-06-04,25.0000,78.7500,0.0,passed
+2023-06-05,25.0000,78.7500,58.4,passed
+2023-06-01,25.0000,79.0000,0.0,passed
+2023-06-02,25.0000,79.0000,14.5,passed
+2023-06-03,25.0000,79.0000,6.1,passed
+2023-06-04,25.0000,79.0000,0.0,passed
+2023-06-05,25.0000,79.0000,41.2,passed
