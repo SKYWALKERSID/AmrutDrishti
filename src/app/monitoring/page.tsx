@@ -19,6 +19,7 @@ import {
 import { WaterDropletIcon, CloudRainIcon, ActivityChartIcon, FilterIcon, InfoIcon } from '@/components/ui/Icons';
 
 import { MONITORING_SERIES_LABEL, MONITORING_RAINFALL_REFERENCE_LABEL } from '@/lib/demo/demoPolicy';
+import HistoricalObservationsPanel from '@/components/HistoricalObservationsPanel';
 
 // SIMULATED demonstration series (2021 - 2026). One shared sample for ALL blocks; not block-specific, not measured.
 const HISTORICAL_TIMESERIES = [
@@ -235,6 +236,14 @@ function MonitoringContent() {
             <p className="text-[11px] text-text-muted">Trend: {selectedBlock.indicators.wellDepthTrendMperYr !== null ? `${selectedBlock.indicators.wellDepthTrendMperYr} m/yr drawdown rate.` : 'No trend data'}</p>
           </div>
         </div>
+      </div>
+
+      {/* Genuine Historical Observations Panel */}
+      <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
+        <h2 className="text-sm font-bold text-text-main">
+          {t('monitoring.historicalObservationsTitle', 'Published CGWB / NWIC Historical Groundwater Observations')}
+        </h2>
+        <HistoricalObservationsPanel enabled={true} />
       </div>
     </div>
   );

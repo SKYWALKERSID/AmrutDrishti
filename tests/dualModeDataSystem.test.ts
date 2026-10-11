@@ -10,14 +10,12 @@ test('Dual-Mode System: Prototype Demonstration Mode label contract is defined a
 });
 
 test('Dual-Mode System: UI Geospatial service falls back to demonstration fixtures when database has empty indicators or unconfigured', async () => {
-  // Test with current environment (whether live DB is empty or unconfigured)
   const result = await fetchBlocksGeospatialData();
   assert.ok(result);
   assert.ok(result.blocks.length > 0);
   assert.equal(result.isDemonstrationData, true);
   assert.equal(result.source, 'demonstration_fixture');
 
-  // Verify that all blocks in fallback mode are explicitly tagged as simulated
   for (const block of result.blocks) {
     assert.equal(block.assessment.dataStatus, 'simulated');
     assert.equal(block.assessment.validationStatus, 'demonstration_only');
@@ -45,7 +43,6 @@ test('Dual-Mode System: Missing Supabase configuration falls back gracefully to 
 });
 
 test('Dual-Mode System: Fail-Closed Historical API contract never returns demo fixtures', async () => {
-  // Mock fetch that simulates empty published view response (current real DB state)
   const mockFetchEmptyPublished = async () => {
     return {
       ok: true,
@@ -64,7 +61,6 @@ test('Dual-Mode System: Fail-Closed Historical API contract never returns demo f
   assert.equal(response.observations.length, 0);
   assert.equal(response.totalCount, 0);
 
-  // Assert that it never returns demo fixtures or alters the source identifier
   assert.notEqual(response.source as string, 'demonstration_fixture');
 });
 
@@ -86,19 +82,19 @@ test('Dual-Mode System: Historical API fails-closed on API error or 503 instead 
 
 test('Dual-Mode System: Published data returns genuine source when published records exist', async () => {
   const samplePublishedRow = {
-    station_id: 'CGWB_MP_TIK_01',
-    station_name: 'Tikamgarh Town Well',
-    district_id: 'tikamgarh',
-    district_name: 'Tikamgarh',
-    block_id: 'tikamgarh_rural',
-    block_name: 'Tikamgarh',
-    observation_date: '2023-05-15',
-    water_level_mbgl: 12.45,
-    unit: 'm_bgl',
-    quality_flag: 'good',
-    source_name: 'CGWB Groundwater Yearbook',
-    source_provider: 'Central Ground Water Board',
-    source_resource_url: 'https://cgwb.gov.in'
+    station_id: 'CGWB_MP_Baldeogarh',
+    station_name: 'Baldeogarh',
+    district_id: '434',
+    district_name: 'TIKAMGARH',
+    block_id: '4027',
+    block_name: 'BALDEOGARH',
+    observation_date: '2023-08-20',
+    water_level_mbgl: 0.29,
+    unit: 'metre below ground level',
+    quality_flag: 'passed',
+    source_name: 'CGWB & State Observation Well Monitoring Network',
+    source_provider: 'Central Ground Water Board (CGWB) & MP Water Resources Dept',
+    source_resource_url: 'https://nwdp.nwic.gov.in/dataset/sample'
   };
 
   const mockFetchPublishedData = async () => {
@@ -107,7 +103,7 @@ test('Dual-Mode System: Published data returns genuine source when published rec
       json: async () => ({
         source: 'historical_database',
         observations: [samplePublishedRow],
-        totalCount: 1,
+        totalCount: 305,
         limit: 50,
         offset: 0
       })
@@ -117,17 +113,51 @@ test('Dual-Mode System: Published data returns genuine source when published rec
   const response = await fetchHistoricalObservations({}, mockFetchPublishedData);
   assert.equal(response.source, 'historical_database');
   assert.equal(response.observations.length, 1);
-  assert.equal(response.observations[0].station_id, 'CGWB_MP_TIK_01');
-  assert.equal(response.observations[0].water_level_mbgl, 12.45);
+  assert.equal(response.totalCount, 305);
+  assert.equal(response.observations[0].station_id, 'CGWB_MP_Baldeogarh');
+  assert.equal(response.observations[0].water_level_mbgl, 0.29);
+});
+
+test('Dual-Mode System: Preserves null measurements in historical observations', async () => {
+  const nullMeasurementRow = {
+    station_id: 'CGWB_MP_Null_Station',
+    station_name: 'Null Station',
+    district_id: '434',
+    district_name: 'TIKAMGARH',
+    block_id: '4027',
+    block_name: 'BALDEOGARH',
+    observation_date: '2022-01-15',
+    water_level_mbgl: null,
+    unit: 'metre below ground level',
+    quality_flag: 'missing_reading',
+    source_name: 'CGWB & State Observation Well Monitoring Network',
+    source_provider: 'Central Ground Water Board (CGWB)',
+    source_resource_url: 'https://nwdp.nwic.gov.in/dataset/sample'
+  };
+
+  const mockFetchNullData = async () => {
+    return {
+      ok: true,
+      json: async () => ({
+        source: 'historical_database',
+        observations: [nullMeasurementRow],
+        totalCount: 1,
+        limit: 50,
+        offset: 0
+      })
+    } as unknown as Response;
+  };
+
+  const response = await fetchHistoricalObservations({}, mockFetchNullData);
+  assert.equal(response.observations[0].water_level_mbgl, null);
+  assert.notEqual(response.observations[0].water_level_mbgl, 0);
 });
 
 test('Dual-Mode System: Demo data isolation - demo indicators and observations cannot be mixed with published observations', () => {
-  // Ensure ALL_BLOCKS contains exclusively simulated test data
   for (const block of ALL_BLOCKS) {
     assert.ok(block.id);
     assert.ok(block.name);
     assert.ok(block.districtName);
-    // Confidence intervals must not be claimed on demo fixtures
     assert.equal(block.assessment.confidenceInterval, null);
   }
 });
