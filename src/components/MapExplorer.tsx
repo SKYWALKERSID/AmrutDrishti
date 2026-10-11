@@ -85,30 +85,26 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     }
   };
 
-  const filteredBlocks = blocksData.filter(
+  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_BLOCKS;
+  const filteredBlocks = displayBlocks.filter(
     (b) => selectedDistrictFilter === 'all' || b.districtId === selectedDistrictFilter
   );
-
-  if (!isLoading && blocksData.length === 0) {
-    return <div className="rounded-lg border border-border bg-surface p-8 text-center space-y-2">
-      <h1 className="text-xl font-bold text-text-main">No approved historical records available</h1>
-      <p className="text-sm text-text-muted">The CGWB/NWIC historical database is empty or unavailable. Demonstration fixtures are not shown automatically.</p>
-      {dataSourceInfo.errorMessage && <p className="text-xs text-text-muted">{dataSourceInfo.errorMessage}</p>}
-    </div>;
-  }
 
   return (
     <div className="space-y-5">
       {/* Top Header */}
       <div className="bg-surface border border-border rounded-lg p-5 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
               dataSourceInfo.source === 'live_database'
                 ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
                 : 'bg-amber-100 text-amber-900 border border-amber-300'
             }`}>
               SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
+            </span>
+            <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+              Prototype Demonstration Mode — Simulated Data
             </span>
             {isLoading && <span className="text-xs text-text-muted">{t('monitoring.loading', 'Loading backend layers...')}</span>}
           </div>

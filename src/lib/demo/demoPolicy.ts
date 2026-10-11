@@ -75,6 +75,9 @@ export function summarizeBlocks(blocks: BlockData[]): FixtureSummary {
 // Shared labels
 // ---------------------------------------------------------------------------
 
+export const PROTOTYPE_DEMO_MODE_LABEL =
+  'Prototype Demonstration Mode — Simulated Data';
+
 export const SIMULATED_DATA_LABEL =
   'SIMULATED DEMONSTRATION DATA — fixture values, not live observations or verified measurements.';
 

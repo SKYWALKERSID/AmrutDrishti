@@ -212,6 +212,14 @@ function InterventionsContent() {
 
       <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="bg-[#0d5c63] text-white text-xs font-semibold px-2 py-0.5 rounded">
+              Prototype Demonstration Mode — Simulated Data
+            </span>
+            <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+              Demonstration Fixtures
+            </span>
+          </div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
             <DocumentTextIcon className="w-5 h-5 text-[#0d5c63]" /> {t('interventions.title')}
           </h1>

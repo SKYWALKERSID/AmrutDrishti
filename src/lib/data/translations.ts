@@ -11,7 +11,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.datasources': 'जानकारी के स्रोत (Data Sources)',
     'nav.admin': 'प्रशासन (Administration)',
     'header.pilot': 'जलदृष्टि (JalDrishti) पायलट: बुंदेलखंड क्षेत्र — साक्ष्य आधारित निर्णय सहायता',
-    'header.demoMode': 'प्रदर्शन मोड — काल्पनिक भूमिका',
+    'header.demoMode': 'Prototype Demonstration Mode — Simulated Data',
     'header.demoRole': 'भूमिका:',
 
     'term.provenance': 'जानकारी कहाँ से मिली (Data Source)',
@@ -326,7 +326,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.datasources': 'Data Sources',
     'nav.admin': 'Administration',
     'header.pilot': 'JalDrishti Pilot: Bundelkhand Region — Evidence-Backed Decision Support',
-    'header.demoMode': 'Prototype Demonstration Mode — Simulated Role Context',
+    'header.demoMode': 'Prototype Demonstration Mode — Simulated Data',
     'header.demoRole': 'Demo Role:',
 
     'term.provenance': 'Where the data came from (Data Source)',

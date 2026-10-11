@@ -66,24 +66,18 @@ export default function OverviewDashboard() {
     };
   }, []);
 
-  const filteredBlocks = blocksData.filter((block) => {
+  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_BLOCKS;
+  const filteredBlocks = displayBlocks.filter((block) => {
     const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
     const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
     return matchesDistrict && matchesSeverity;
   });
 
-  const summary = summarizeBlocks(blocksData);
+  const summary = summarizeBlocks(displayBlocks);
   const severeCount = summary.severe;
   const watchCount = summary.watch;
   const normalCount = summary.normal;
   const fmt = (v: number | null, unit: string) => (v === null ? t('monitoring.noData', 'No Data') : `${v} ${unit}`);
-
-  if (blocksData.length === 0) {
-    return <div className="rounded-lg border border-border bg-surface p-8 text-center space-y-2">
-      <h1 className="text-xl font-bold text-text-main">No approved historical records available</h1>
-      <p className="text-sm text-text-muted">CGWB/NWIC records are not available from the database. Demonstration fixtures are not shown automatically.</p>
-    </div>;
-  }
 
   return (
     <div className="space-y-6">
@@ -103,7 +97,7 @@ export default function OverviewDashboard() {
                 {t('overview.pilotRecords', `Pilot demonstration records: ${summary.total} blocks in ${summary.districtCount} districts (Bundelkhand, MP/UP)`)}
               </span>
               <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded">
-                {t('overview.uiPrototype', `UI PROTOTYPE — ${SIMULATED_DATA_LABEL}`)}
+                Prototype Demonstration Mode — Simulated Data
               </span>
             </div>
             <h1 className="text-2xl font-bold text-text-main mt-2 tracking-tight">

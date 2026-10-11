@@ -14,7 +14,12 @@ export default function DataSourcesPage() {
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">
           {t('datasources.provenanceTitle', 'Data provenance & limitations')}
         </p>
-        <h1 className="mt-2 text-2xl font-bold">{t('datasources.title', 'Data Sources & Evidence Registry')}</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-2">
+          <h1 className="text-2xl font-bold">{t('datasources.title', 'Data Sources & Evidence Registry')}</h1>
+          <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300 w-fit">
+            Prototype Demonstration Mode — Simulated Data
+          </span>
+        </div>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-text-muted">
           {t('datasources.subtitle', "Review the declared providers, spatial resolution, observation cadence, provenance notes and limitations for JalDrishti's configured evidence sources.")}
         </p>

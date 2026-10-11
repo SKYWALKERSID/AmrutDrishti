@@ -140,10 +140,15 @@ function AlertsContent() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs bg-subtle px-3 py-1.5 rounded border border-border">
-          <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" />
-          <span className="font-semibold text-text-main">{t('alerts.integrationMode', 'Integration Mode')}:</span>
-          <span className="text-text-muted">{t('alerts.simulatedAdapter', 'Simulated Adapter (Credentials Pending)')}</span>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+          <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300">
+            Prototype Demonstration Mode — Simulated Data
+          </span>
+          <div className="flex items-center gap-2 text-xs bg-subtle px-3 py-1.5 rounded border border-border">
+            <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" />
+            <span className="font-semibold text-text-main">{t('alerts.integrationMode', 'Integration Mode')}:</span>
+            <span className="text-text-muted">{t('alerts.simulatedAdapter', 'Simulated Adapter (Credentials Pending)')}</span>
+          </div>
         </div>
       </div>
 
