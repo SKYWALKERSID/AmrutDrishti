@@ -33,17 +33,23 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   const fetchedAt = new Date().toISOString();
+  // Test runs are an explicit fixture environment; production requires the
+  // server-only JALDRISHTI_DEMO_MODE flag to opt in.
+  const demoMode = process.env.JALDRISHTI_DEMO_MODE === 'true' || process.env.NODE_ENV === 'test' || process.argv.includes('--test');
+  const empty = (message: string): GeospatialQueryResult => ({
+    blocks: [], source: 'fallback_empty', isDemonstrationData: true,
+    totalCount: 0, fetchedAt, errorMessage: message
+  });
+  const demo = (message: string): GeospatialQueryResult => ({
+    blocks: ALL_BLOCKS, source: 'demonstration_fixture', isDemonstrationData: true,
+    totalCount: ALL_BLOCKS.length, fetchedAt, errorMessage: message
+  });
 
   // 1. Check Environment Variables
   if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('placeholder')) {
-    return {
-      blocks: ALL_BLOCKS,
-      source: 'demonstration_fixture',
-      isDemonstrationData: true,
-      totalCount: ALL_BLOCKS.length,
-      fetchedAt,
-      errorMessage: 'Supabase environment variables unconfigured. Serving demonstration fixtures with explicit safeguard disclaimers.'
-    };
+    return demoMode
+      ? demo('Supabase environment variables unconfigured. Explicit demonstration mode is enabled.')
+      : empty('Supabase environment variables unconfigured; no historical database records are available.');
   }
 
   try {
@@ -68,25 +74,11 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
       .eq('unit_type', 'block');
 
     if (unitsError) {
-      return {
-        blocks: ALL_BLOCKS,
-        source: 'demonstration_fixture',
-        isDemonstrationData: true,
-        totalCount: ALL_BLOCKS.length,
-        fetchedAt,
-        errorMessage: `Database query error (administrative_units): ${unitsError.message}. Serving fallback demonstration fixtures.`
-      };
+      return demoMode ? demo(`Database query error (administrative_units): ${unitsError.message}.`) : empty(`Database query error (administrative_units): ${unitsError.message}.`);
     }
 
     if (!units || units.length === 0) {
-      return {
-        blocks: ALL_BLOCKS,
-        source: 'demonstration_fixture',
-        isDemonstrationData: true,
-        totalCount: ALL_BLOCKS.length,
-        fetchedAt,
-        errorMessage: 'No administrative units returned from database. Serving fallback demonstration fixtures.'
-      };
+      return demoMode ? demo('No administrative units returned from database; explicit demonstration mode is enabled.') : empty('No approved historical records returned from database.');
     }
 
     // 3. Query derived_indicators ordered by assessed_date DESC for deduplication
@@ -137,13 +129,6 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
     };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error during geospatial data fetch';
-    return {
-      blocks: ALL_BLOCKS,
-      source: 'demonstration_fixture',
-      isDemonstrationData: true,
-      totalCount: ALL_BLOCKS.length,
-      fetchedAt,
-      errorMessage: `Geospatial service exception: ${message}. Serving fallback demonstration fixtures.`
-    };
+    return demoMode ? demo(`Geospatial service exception: ${message}.`) : empty(`Geospatial service exception: ${message}.`);
   }
 }

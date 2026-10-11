@@ -22,7 +22,7 @@ export default function OverviewDashboard() {
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
   const [interventionCount, setInterventionCount] = useState<number>(INITIAL_INTERVENTIONS.length);
-  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_BLOCKS);
+  const [blocksData, setBlocksData] = useState<BlockData[]>([]);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean }>({
     source: 'demonstration_fixture',
     isDemonstration: true
@@ -56,7 +56,8 @@ export default function OverviewDashboard() {
           }
         }
       } catch (err) {
-        console.warn('JalDrishti: Failed to fetch geospatial blocks API for Overview, using client fixtures:', err);
+        console.warn('JalDrishti: Failed to fetch geospatial blocks API for Overview:', err);
+        if (active) setBlocksData([]);
       }
     }
     loadGeospatialData();
@@ -76,6 +77,13 @@ export default function OverviewDashboard() {
   const watchCount = summary.watch;
   const normalCount = summary.normal;
   const fmt = (v: number | null, unit: string) => (v === null ? t('monitoring.noData', 'No Data') : `${v} ${unit}`);
+
+  if (blocksData.length === 0) {
+    return <div className="rounded-lg border border-border bg-surface p-8 text-center space-y-2">
+      <h1 className="text-xl font-bold text-text-main">No approved historical records available</h1>
+      <p className="text-sm text-text-muted">CGWB/NWIC records are not available from the database. Demonstration fixtures are not shown automatically.</p>
+    </div>;
+  }
 
   return (
     <div className="space-y-6">

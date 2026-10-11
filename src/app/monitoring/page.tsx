@@ -37,7 +37,7 @@ function MonitoringContent() {
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
-  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_BLOCKS);
+  const [blocksData, setBlocksData] = useState<BlockData[]>([]);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
     source: 'demonstration_fixture',
     isDemonstration: true
@@ -78,6 +78,13 @@ function MonitoringContent() {
   }, [urlBlockParam, blocksData]);
 
   const selectedBlock = blocksData.find(b => b.id === selectedBlockId) || blocksData[0] || ALL_BLOCKS[0];
+
+  if (blocksData.length === 0) {
+    return <div className="rounded-lg border border-border bg-surface p-8 text-center space-y-2">
+      <h1 className="text-xl font-bold text-text-main">No approved historical observations available</h1>
+      <p className="text-sm text-text-muted">The historical CGWB/NWIC database is empty or unavailable. Demonstration time series are not shown automatically.</p>
+    </div>;
+  }
 
   const fmtVal = (val: number | null, unit: string) => (val === null ? t('monitoring.noData', 'No Data') : `${val} ${unit}`);
 

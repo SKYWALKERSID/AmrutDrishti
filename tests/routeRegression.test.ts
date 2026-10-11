@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
+process.env.JALDRISHTI_DEMO_MODE = 'true';
+
 import { ALL_BLOCKS } from '../src/lib/data/bundelkhand.ts';
 import { translations } from '../src/lib/data/translations.ts';
 const { en, hi } = translations;

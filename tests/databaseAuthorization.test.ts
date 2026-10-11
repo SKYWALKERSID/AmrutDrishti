@@ -13,6 +13,8 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
+
+process.env.JALDRISHTI_DEMO_MODE = 'true';
 import { authorizeAction, type UserContext } from '../src/lib/services/governanceService.ts';
 
 // ---------------------------------------------------------------------------

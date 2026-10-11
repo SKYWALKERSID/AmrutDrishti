@@ -1,0 +1,57 @@
+{
+  "sourceResourceUrl": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/6a47df3a-8c42-419c-b577-b9c6ded71112/download/gwl_manual_quarterly_cgwb_mp_2021_2025.csv",
+  "inputSnapshot": {
+    "path": "gwl_manual_quarterly_cgwb_mp_2021_2025.xlsx",
+    "representation": "XLSX",
+    "sha256": "645343BA1C31993CF44B8D3BE48C986CBA46D17707A6F3B8FA0322E982AF3C10",
+    "rowsIncludingHeader": 13091,
+    "dataRows": 13090,
+    "worksheet": "gwl_manual_quarterly_cgwb_mp_20",
+    "byteIdenticalToRecordedCsv": false,
+    "recordedCsvSha256": "02c34c3178ca9468465deeac5f646c6f8e3d5197068367e6ad050d7e326be84d"
+  },
+  "crosswalkPolicy": "Only exact, unambiguous source-name mappings are accepted; unresolved and legacy names are quarantined.",
+  "acceptedMappings": [
+    { "districtLgdCode": "398", "sourceBlock": "BIJAWAR", "lgdBlockCode": "3783" },
+    { "districtLgdCode": "398", "sourceBlock": "RAJNAGAR", "lgdBlockCode": "3788" },
+    { "districtLgdCode": "434", "sourceBlock": "BALDEOGARH", "lgdBlockCode": "4027" },
+    { "districtLgdCode": "434", "sourceBlock": "JATARA", "lgdBlockCode": "4028" },
+    { "districtLgdCode": "434", "sourceBlock": "PALERA", "lgdBlockCode": "4030" },
+    { "districtLgdCode": "434", "sourceBlock": "TIKAMGARH", "lgdBlockCode": "4032" }
+  ],
+  "preview": {
+    "totalRows": 13090,
+    "acceptedRows": 305,
+    "rejectedRows": 12785,
+    "pilotDistrictQuarantinedRows": 284,
+    "pilotDistrictRejectedRows": 1,
+    "statewideOutOfScopeRejectedRows": 12500,
+    "uniqueAcceptedStations": 34,
+    "duplicateStationDateRows": 0,
+    "missingAcceptedMeasurements": 3,
+    "invalidCoordinateRows": 0,
+    "invalidDateRows": 0,
+    "acceptedDateRange": ["2021-01-10", "2023-08-20"],
+    "niwariOrPrithvipurMappedToTikamgarh": false,
+    "acceptedByBlock": {
+      "398|BIJAWAR": 73,
+      "398|RAJNAGAR": 74,
+      "434|BALDEOGARH": 20,
+      "434|JATARA": 67,
+      "434|PALERA": 15,
+      "434|TIKAMGARH": 56
+    },
+    "quarantinedPilotSourceBlocks": [
+      "398|BADA MALHARA",
+      "398|BAKSWAHA",
+      "398|ESHANAGAR",
+      "398|GAURIHAR",
+      "398|LAUNDI",
+      "398|NOWGAON",
+      "434|NIWARI",
+      "434|PRITHVIPUR"
+    ]
+  },
+  "status": "read_only_preview",
+  "productionImportAuthorized": false
+}

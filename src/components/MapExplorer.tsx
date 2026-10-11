@@ -13,7 +13,7 @@ interface MapExplorerProps {
 
 export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const { t } = useLanguage();
-  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_BLOCKS);
+  const [blocksData, setBlocksData] = useState<BlockData[]>([]);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
     source: 'demonstration_fixture',
     isDemonstration: true
@@ -47,7 +47,8 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           }
         }
       } catch (err) {
-        console.warn('JalDrishti: Failed to fetch geospatial blocks API for MapExplorer, using client fixtures:', err);
+        console.warn('JalDrishti: Failed to fetch geospatial blocks API for MapExplorer:', err);
+        if (active) setBlocksData([]);
       } finally {
         if (active) setIsLoading(false);
       }
@@ -87,6 +88,14 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const filteredBlocks = blocksData.filter(
     (b) => selectedDistrictFilter === 'all' || b.districtId === selectedDistrictFilter
   );
+
+  if (!isLoading && blocksData.length === 0) {
+    return <div className="rounded-lg border border-border bg-surface p-8 text-center space-y-2">
+      <h1 className="text-xl font-bold text-text-main">No approved historical records available</h1>
+      <p className="text-sm text-text-muted">The CGWB/NWIC historical database is empty or unavailable. Demonstration fixtures are not shown automatically.</p>
+      {dataSourceInfo.errorMessage && <p className="text-xs text-text-muted">{dataSourceInfo.errorMessage}</p>}
+    </div>;
+  }
 
   return (
     <div className="space-y-5">

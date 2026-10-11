@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
+process.env.JALDRISHTI_DEMO_MODE = 'true';
+
 import { fetchBlocksGeospatialData } from '../src/lib/services/geospatialService.ts';
 
 test('fetchBlocksGeospatialData falls back cleanly to demonstration fixtures when unconfigured', async () => {
