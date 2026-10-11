@@ -6,7 +6,18 @@ import { ALL_BLOCKS } from '../data/bundelkhand.ts';
 
 export interface GeospatialQueryResult {
   blocks: BlockData[];
+  /**
+   * Origin of the data:
+   *   'live_database'        — rows fetched from configured Supabase instance.
+   *   'demonstration_fixture' — local fixture data (no DB configured or DB error).
+   *   'fallback_empty'        — DB reachable but returned no usable results.
+   */
   source: 'live_database' | 'demonstration_fixture' | 'fallback_empty';
+  /**
+   * True when the data should be treated as demonstration/unvalidated.
+   * Live-DB data remains true until field-verified operational validation is confirmed.
+   * Always true for demonstration_fixture and fallback_empty sources.
+   */
   isDemonstrationData: boolean;
   totalCount: number;
   fetchedAt: string;
@@ -104,12 +115,23 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
       return mapDbRowToBlockData(unit, indicator);
     });
 
-    const hasSimulatedData = mappedBlocks.some(b => b.assessment.dataStatus === 'simulated');
+    // Separate three orthogonal concepts:
+    //   hasSimulatedRows  — at least one DB row carries data_status='simulated'.
+    //   operationallyValidated — independent field verification has been confirmed for
+    //                            this dataset. Currently false: no validation process
+    //                            has been completed. Set true only with explicit evidence.
+    //   isDemonstrationData — true if EITHER condition holds. A live-DB source can still
+    //                         contain demonstration-quality data; callers must not assume
+    //                         source='live_database' implies validated observations.
+    const hasSimulatedRows = mappedBlocks.some(b => b.assessment.dataStatus === 'simulated');
+    // operationallyValidated: change to true only when field-verified data is confirmed
+    // by an independent authority and the relevant Phase C acceptance criteria are met.
+    const operationallyValidated = false;
 
     return {
       blocks: mappedBlocks,
       source: 'live_database',
-      isDemonstrationData: hasSimulatedData,
+      isDemonstrationData: hasSimulatedRows || !operationallyValidated,
       totalCount: mappedBlocks.length,
       fetchedAt
     };

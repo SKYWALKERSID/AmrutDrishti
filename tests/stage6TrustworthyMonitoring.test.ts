@@ -35,7 +35,7 @@ test('mapDbRowToBlockData preserves null indicators without converting to zero',
     risk_severity: 'gap',
     data_status: 'simulated',
     primary_stress_driver: 'Data Gap',
-    safeguardNotice: 'Notice',
+    safeguard_notice: 'Notice',   // snake_case matches DerivedIndicatorRow interface and DB column
     assessed_date: '2026-10-01',
     created_at: '2026-10-01T00:00:00Z'
   };

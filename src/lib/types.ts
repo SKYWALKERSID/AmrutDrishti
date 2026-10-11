@@ -79,6 +79,12 @@ export interface SchemeItem {
   maxSanctionUnitAmountInr: number;
   implementingAgency: string;
   officialGuidanceUrl: string;
+  // Formal governance fields (JD-043 DoD)
+  officialSource: string;
+  effectiveDate: string;
+  applicability: string;
+  eligibilityCaveat: string;
+  reviewOwnerRole: string;
 }
 
 export interface InterventionProposal {

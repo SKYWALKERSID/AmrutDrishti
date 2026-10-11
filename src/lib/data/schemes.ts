@@ -1,4 +1,4 @@
-import { SchemeItem } from '../types';
+import type { SchemeItem } from '../types.ts';
 
 export const INTERVENTION_SCHEMES: SchemeItem[] = [
   {
@@ -16,7 +16,12 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     ],
     maxSanctionUnitAmountInr: 2500000,
     implementingAgency: 'Department of Water Resources, RD & GR / District Jal Samiti',
-    officialGuidanceUrl: 'https://ataljal.mowr.gov.in/'
+    officialGuidanceUrl: 'https://ataljal.mowr.gov.in/',
+    officialSource: 'Ministry of Jal Shakti, DoWR, RD & GR (National Guidelines 2020)',
+    effectiveDate: '2020-04-01',
+    applicability: 'Identified water-stressed blocks across 7 participating States including MP and UP Bundelkhand',
+    eligibilityCaveat: 'Requires Gram Panchayat Water Security Plan approved by District Implementation Unit; not an automatic entitlement',
+    reviewOwnerRole: 'district_collector'
   },
   {
     id: 'sch_jjm',
@@ -32,7 +37,12 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     ],
     maxSanctionUnitAmountInr: 5000000,
     implementingAgency: 'Public Health Engineering Department (PHED)',
-    officialGuidanceUrl: 'https://jaljeevanmission.gov.in/'
+    officialGuidanceUrl: 'https://jaljeevanmission.gov.in/',
+    officialSource: 'Department of Drinking Water and Sanitation, Operational Guidelines 2019',
+    effectiveDate: '2019-08-15',
+    applicability: 'All rural habitations with drinking water vulnerability',
+    eligibilityCaveat: 'Detailed Project Report (DPR) clearance and State Level Scheme Sanctioning Committee approval mandatory',
+    reviewOwnerRole: 'district_collector'
   },
   {
     id: 'sch_mgnrega_water',
@@ -48,7 +58,12 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     ],
     maxSanctionUnitAmountInr: 1500000,
     implementingAgency: 'Panchayat and Rural Development Department',
-    officialGuidanceUrl: 'https://nrega.nic.in/'
+    officialGuidanceUrl: 'https://nrega.nic.in/',
+    officialSource: 'Ministry of Rural Development, Natural Resource Management Works Framework',
+    effectiveDate: '2006-02-02',
+    applicability: 'Notified rural blocks with active Gram Panchayat labor budget',
+    eligibilityCaveat: 'Gram Sabha resolution and administrative sanction by Programme Officer (BDO) required prior to commencement',
+    reviewOwnerRole: 'bdo'
   },
   {
     id: 'sch_amrit_sarovar',
@@ -64,6 +79,11 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     ],
     maxSanctionUnitAmountInr: 3500000,
     implementingAgency: 'District Rural Development Authority (DRDA)',
-    officialGuidanceUrl: 'https://amritsarovar.gov.in/'
+    officialGuidanceUrl: 'https://amritsarovar.gov.in/',
+    officialSource: 'Government of India Mission Amrit Sarovar Guidelines 2022',
+    effectiveDate: '2022-04-24',
+    applicability: 'Target minimum 75 Amrit Sarovars per district in Bundelkhand',
+    eligibilityCaveat: 'Site verification by district nodal officer and user water committee formation required',
+    reviewOwnerRole: 'bdo'
   }
 ];

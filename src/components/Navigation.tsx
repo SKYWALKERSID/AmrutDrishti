@@ -27,7 +27,7 @@ export const Navigation: React.FC = () => {
   const allNavItems = [
     { key: 'nav.overview', label: t('nav.overview', 'Overview'), href: '/', publicAllowed: true },
     { key: 'nav.explorer', label: t('nav.explorer', 'Map Explorer'), href: '/explorer', publicAllowed: true },
-    { key: 'nav.monitoring', label: t('nav.monitoring', 'Monitoring'), href: '/monitoring', publicAllowed: false },
+    { key: 'nav.monitoring', label: t('nav.monitoring', 'Monitoring'), href: '/monitoring', publicAllowed: true },
     { key: 'nav.risk', label: t('nav.risk', 'Risk & Scoring'), href: '/risk-assessment', publicAllowed: true },
     { key: 'nav.interventions', label: t('nav.interventions', 'Interventions'), href: '/interventions', publicAllowed: false },
     { key: 'nav.alerts', label: t('nav.alerts', 'Alerts & SMS'), href: '/alerts', publicAllowed: false, advisoryOnly: true },
