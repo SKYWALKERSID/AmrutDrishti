@@ -283,27 +283,33 @@ function MonitoringContent() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {forecastData.forecasts.map((fc: any, idx: number) => (
-              <div key={idx} className="p-3.5 bg-subtle/50 rounded border border-border space-y-1.5">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-semibold text-text-main">{fc.targetSeason}</span>
-                  <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${
-                    fc.stressRiskCategory === 'severe' ? 'text-red-800 bg-red-50 border border-red-200' : 'text-amber-800 bg-amber-50 border border-amber-200'
-                  }`}>
-                    {fc.stressRiskCategory.toUpperCase()}
-                  </span>
+          {forecastData.forecasts && forecastData.forecasts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {forecastData.forecasts.map((fc: any, idx: number) => (
+                <div key={idx} className="p-3.5 bg-subtle/50 rounded border border-border space-y-1.5">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="font-semibold text-text-main">{fc.targetSeason}</span>
+                    <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${
+                      fc.stressRiskCategory === 'severe' ? 'text-red-800 bg-red-50 border border-red-200' : 'text-amber-800 bg-amber-50 border border-amber-200'
+                    }`}>
+                      {fc.stressRiskCategory.toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="text-xl font-bold text-text-main">
+                    {fc.expectedDepthMbgl} <span className="text-xs font-normal text-text-muted">m bgl</span>
+                  </div>
+                  <div className="text-[11px] text-text-muted flex justify-between border-t border-border/60 pt-1">
+                    <span>P10: {fc.uncertaintyInterval.lowerBoundP10Mbgl}m</span>
+                    <span>P90: {fc.uncertaintyInterval.upperBoundP90Mbgl}m</span>
+                  </div>
                 </div>
-                <div className="text-xl font-bold text-text-main">
-                  {fc.expectedDepthMbgl} <span className="text-xs font-normal text-text-muted">m bgl</span>
-                </div>
-                <div className="text-[11px] text-text-muted flex justify-between border-t border-border/60 pt-1">
-                  <span>P10: {fc.uncertaintyInterval.lowerBoundP10Mbgl}m</span>
-                  <span>P90: {fc.uncertaintyInterval.upperBoundP90Mbgl}m</span>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="p-4 bg-subtle/50 rounded border border-border text-xs text-text-muted">
+              Notice: No active calibrated ML model predictions recorded for this block.
+            </div>
+          )}
 
           <p className="text-[11px] text-text-muted">
             {forecastData.safeguardDisclaimer}

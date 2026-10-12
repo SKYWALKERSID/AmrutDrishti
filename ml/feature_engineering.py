@@ -15,14 +15,16 @@ from ml.config import PILOT_BLOCKS, FEATURE_COLUMNS
 
 def load_cgwb_groundwater_raw(file_path: str) -> pd.DataFrame:
     """
-    Loads raw CGWB Madhya Pradesh manual quarterly Excel spreadsheet.
+    Loads raw CGWB Madhya Pradesh manual quarterly observations (CSV or Excel).
     Preserves nulls without replacing missing depths with zeros.
     """
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"CGWB Excel file not found: {file_path}")
+        raise FileNotFoundError(f"CGWB data file not found: {file_path}")
     
-    # Read spreadsheet; skip headers if required based on source inspection
-    df = pd.read_excel(file_path)
+    if file_path.endswith('.csv'):
+        df = pd.read_csv(file_path, low_memory=False)
+    else:
+        df = pd.read_excel(file_path)
     return df
 
 
@@ -32,10 +34,20 @@ def clean_and_harmonize_observations(df: pd.DataFrame) -> pd.DataFrame:
     out invalid out-of-bounds coordinates and impossible water level readings.
     """
     cleaned = df.copy()
-    # Normalize headers
+    # Normalize headers to lowercase
     cleaned.columns = [str(c).strip().lower().replace(" ", "_") for c in cleaned.columns]
-    
-    # Expected standard column mappings
+
+    # Column renames for standard CGWB formats
+    rename_dict = {
+        'block': 'block_name',
+        'district': 'district_name',
+        'data_acquisition_time': 'observation_date',
+        'groundwater_level_quarterly_manual_(meter)': 'water_level_mbgl'
+    }
+    for old_col, new_col in rename_dict.items():
+        if old_col in cleaned.columns and new_col not in cleaned.columns:
+            cleaned.rename(columns={old_col: new_col}, inplace=True)
+            
     # Date parsing
     if "observation_date" in cleaned.columns:
         cleaned["observation_date"] = pd.to_datetime(cleaned["observation_date"], errors="coerce")
