@@ -32,7 +32,11 @@ export async function updateSession(request: NextRequest) {
   });
 
   // IMPORTANT: Do not remove auth.getUser() as it refreshes expired JWT session cookies
-  await supabase.auth.getUser();
+  try {
+    await supabase.auth.getUser();
+  } catch {
+    // Unauthenticated or network issue during middleware session check; proceed gracefully
+  }
 
   return supabaseResponse;
 }

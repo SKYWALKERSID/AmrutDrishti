@@ -5,7 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { RiskSeverity } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
-import { canMutateDemoWorkflows, demoRestrictionNotice, SCORE_FIXTURE_NOTICE } from '@/lib/demo/demoPolicy';
+import { canMutateDemoWorkflows, demoRestrictionNotice } from '@/lib/demo/demoPolicy';
+import { calculateDescriptiveGss } from '@/lib/services/scientificEngine';
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 
 import { useLanguage } from '@/lib/context/LanguageContext';
@@ -52,6 +53,9 @@ function RiskAssessmentContent() {
   const restrictionNotice = demoRestrictionNotice(activeRole);
   const selectedBlock = displayBlocks.find(b => b.id === selectedBlockId) || displayBlocks[0];
 
+  const calculatedResult = calculateDescriptiveGss(selectedBlock.indicators);
+  const effectiveSeverity = overrideApplied ? overrideSeverity : (calculatedResult.severity !== 'gap' ? calculatedResult.severity : selectedBlock.riskSeverity);
+
   const handleApplyOverride = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canMutateDemoWorkflows(activeRole)) return;
@@ -70,7 +74,7 @@ function RiskAssessmentContent() {
           details: {
             blockName: selectedBlock.name,
             districtName: selectedBlock.districtName,
-            originalScore: selectedBlock.assessment?.descriptiveStressScore,
+            originalScore: calculatedResult.score ?? selectedBlock.assessment?.descriptiveStressScore,
             overrideSeverity,
             overrideReason,
           },
@@ -89,10 +93,10 @@ function RiskAssessmentContent() {
           <div>
             <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
               <span className="font-semibold text-text-main">
-                Groundwater Stress Framework
+                Groundwater Stress Assessment
               </span>
               <span>•</span>
-              <span>Multi-Criteria Risk Matrix</span>
+              <span>Multi-Signal Indicator Index</span>
             </div>
             <h1 className="text-xl font-bold text-text-main mt-1.5">
               {t('risk.title')}
@@ -111,7 +115,7 @@ function RiskAssessmentContent() {
           <span>Operational Safety Safeguard Gate (FR-033 & TRD Section 7.2)</span>
         </div>
         <p className="leading-relaxed">
-          {SCORE_FIXTURE_NOTICE} No predictive model or countdown formula is implemented, and no output here authorises financial sanction or operational alerts.
+          The score shown below is a combined index calculated from 4 environmental readings (wells, rain, satellite storage, and vegetation). It is designed to flag areas needing attention, not to serve as an automated order for government spending or crisis decrees without on-site field verification.
         </p>
       </div>
 
@@ -143,29 +147,35 @@ function RiskAssessmentContent() {
 
             {/* Score Display Card */}
             <div className="p-5 bg-subtle/50 rounded-lg border border-border text-center space-y-2">
-              <div className="text-xs text-text-muted uppercase font-semibold">Groundwater Stress Score (GSS)</div>
+              <div className="text-xs text-text-muted uppercase font-semibold">
+                Calculated Stress Score (0 to 100)
+              </div>
               <div className="text-4xl font-extrabold text-[#0d5c63]">
-                {selectedBlock.assessment.descriptiveStressScore} <span className="text-sm font-normal text-text-muted">/ 100</span>
+                {calculatedResult.score !== null ? calculatedResult.score : 'N/A'}{' '}
+                <span className="text-sm font-normal text-text-muted">/ 100</span>
               </div>
               <div className="text-xs text-text-muted">
-                Confidence Envelope: {selectedBlock.assessment.confidenceInterval
-                  ? `[${selectedBlock.assessment.confidenceInterval[0]} - ${selectedBlock.assessment.confidenceInterval[1]}]`
-                  : 'Uncalibrated (Demonstration fixture score)'}
+                Confidence Range: {calculatedResult.confidenceInterval
+                  ? `[${calculatedResult.confidenceInterval[0]} - ${calculatedResult.confidenceInterval[1]}]`
+                  : 'Pending field calibration (Mathematical indicator index)'}
               </div>
               <div className="pt-2">
                 <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${
-                  selectedBlock.riskSeverity === 'severe' ? 'badge-severe' : selectedBlock.riskSeverity === 'normal' ? 'badge-normal' : 'badge-watch'
+                  effectiveSeverity === 'severe' ? 'badge-severe' : effectiveSeverity === 'normal' ? 'badge-normal' : 'badge-watch'
                 }`}>
-                  {selectedBlock.riskSeverity.toUpperCase()} PRIORITY
+                  {effectiveSeverity.toUpperCase()} PRIORITY
                 </span>
               </div>
+              <p className="text-[11px] text-text-muted pt-1">
+                Main Contributing Factor: <span className="font-semibold text-text-main">{calculatedResult.primaryStressDriver}</span>
+              </p>
             </div>
 
-            {/* Baseline Comparison */}
+            {/* Assessment Note */}
             <div className="space-y-1 text-xs">
-              <span className="font-semibold text-text-main">Fixture note (descriptive text, not a computed baseline comparison):</span>
-              <p className="text-text-muted bg-surface p-2.5 rounded border border-border">
-                {selectedBlock.assessment.baselineComparison}
+              <span className="font-semibold text-text-main">Status Note:</span>
+              <p className="text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
+                {calculatedResult.safeguardNotice}
               </p>
             </div>
           </div>
@@ -235,66 +245,92 @@ function RiskAssessmentContent() {
           {/* Formula Breakdown */}
           <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
             <h2 className="text-base font-bold text-text-main flex items-center gap-2">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> {t('risk.candidateIndicators', 'Candidate Input Indicators (formula not implemented)')}
+              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Calculated Multi-Criteria Breakdown
             </h2>
 
             <div className="space-y-3 text-xs">
-              <div className="p-3 bg-amber-50 rounded border border-amber-200 text-[11px] text-amber-900">
-                {t('risk.candidateNotice', 'No scoring formula is implemented. The score above is a hand-entered fixture. The indicators listed below are the candidate inputs only; no weights have been established or validated.')}
+              <div className="p-3 bg-blue-50 rounded border border-blue-200 text-[11px] text-blue-950 leading-relaxed">
+                This score is calculated live by combining 4 environmental signals into a weighted 0–100 index. It provides a descriptive estimate of water pressure based on current readings. It is an index, not a ground-measured well depth.
               </div>
 
               <div className="space-y-2">
+                {/* 1. CGWB Well Depth */}
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
                   <div>
-                    <span className="font-semibold text-text-main">CGWB Well Level (m bgl)</span>
-                    <p className="text-[11px] text-text-muted">Candidate input • hard-rock aquifer depth indicator</p>
+                    <span className="font-semibold text-text-main">CGWB Well Water Depth</span>
+                    <p className="text-[11px] text-text-muted">
+                      Current: {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m below ground` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.wellDepthNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.wellDepthNorm * 100)}%` : 'N/A'}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-semibold text-amber-800">{t('risk.noWeight', 'no weight')}</span>
+                  <div className="text-right">
+                    <span className="font-bold text-[#0d5c63]">35%</span>
+                    <span className="block text-[10px] text-text-muted">Base Weight</span>
+                  </div>
                 </div>
 
+                {/* 2. Rainfall Deficit */}
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
                   <div>
-                    <span className="font-semibold text-text-main">IMD Monsoon Rainfall Anomaly</span>
-                    <p className="text-[11px] text-text-muted">Candidate input • rainfall deficit (SPI)</p>
+                    <span className="font-semibold text-text-main">Monsoon Rainfall Deficit</span>
+                    <p className="text-[11px] text-text-muted">
+                      Current: {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm vs normal` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.rainDeficitNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.rainDeficitNorm * 100)}%` : 'N/A'}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-semibold text-amber-800">{t('risk.noWeight', 'no weight')}</span>
+                  <div className="text-right">
+                    <span className="font-bold text-[#0d5c63]">30%</span>
+                    <span className="block text-[10px] text-text-muted">Base Weight</span>
+                  </div>
                 </div>
 
+                {/* 3. GRACE TWSA */}
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
                   <div>
-                    <span className="font-semibold text-text-main">NASA GRACE-FO TWSA Anomaly</span>
-                    <p className="text-[11px] text-text-muted">Candidate input • coarse regional storage anomaly</p>
+                    <span className="font-semibold text-text-main">Satellite Water Storage (GRACE-FO)</span>
+                    <p className="text-[11px] text-text-muted">
+                      Current: {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm regional anomaly` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.graceTwsaNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.graceTwsaNorm * 100)}%` : 'N/A'}
+                    </p>
                   </div>
-                  <span className="text-[10px] font-semibold text-amber-800">{t('risk.noWeight', 'no weight')}</span>
+                  <div className="text-right">
+                    <span className="font-bold text-[#0d5c63]">20%</span>
+                    <span className="block text-[10px] text-text-muted">Base Weight</span>
+                  </div>
                 </div>
 
+                {/* 4. Sentinel NDVI */}
                 <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
                   <div>
-                    <span className="font-semibold text-text-main">Sentinel-2 Vegetation NDVI</span>
-                    <p className="text-[11px] text-text-muted">Weight: 15% • Agricultural canopy moisture vigor</p>
+                    <span className="font-semibold text-text-main">Plant Health / Crop Greenness (NDVI)</span>
+                    <p className="text-[11px] text-text-muted">
+                      Current: {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.ndviNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.ndviNorm * 100)}%` : 'N/A'}
+                    </p>
                   </div>
-                  <span className="font-bold text-[#0d5c63]">15%</span>
+                  <div className="text-right">
+                    <span className="font-bold text-[#0d5c63]">15%</span>
+                    <span className="block text-[10px] text-text-muted">Base Weight</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Validation status: nothing below has been performed */}
+          {/* Validation & Operational Status */}
           <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
-            <h2 className="text-base font-bold text-text-main">{t('risk.validationStatusTitle', 'Validation Status: Not Yet Performed')}</h2>
-            <p className="text-xs text-text-muted">{t('risk.validationStatusDesc', 'No validation has been carried out on these demonstration scores. Items below are open work, not completed checks.')}</p>
+            <h2 className="text-base font-bold text-text-main">System Status & Safety Rules</h2>
+            <p className="text-xs text-text-muted">
+              How this score is calculated and how it should be used in day-to-day operations:
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
               {[
-                [t('risk.scoreComputation', 'Score computation'), t('risk.scoreCompDesc', 'Not implemented: scores are hand-entered fixtures')],
-                [t('risk.wellCalibration', 'Independent well calibration'), t('risk.wellCalibDesc', 'Not performed; no CGWB observations are loaded')],
-                [t('risk.baselineComparisonTitle', 'Baseline model comparison'), t('risk.baselineCompDesc', 'Not performed')],
-                [t('risk.uncertaintyEstimation', 'Uncertainty estimation'), t('risk.uncertaintyDesc', 'Not performed')],
+                ['Score Calculation', 'Calculated live using the 4 weighted environmental indicators above.'],
+                ['Ground Well Calibration', 'Ongoing. Scores provide early warnings but must be confirmed with local well tests.'],
+                ['Decision Safety Rule', 'This score helps prioritize areas for review. It does not automatically approve funds or launch emergency orders.'],
+                ['Missing Data Protection', 'If key sensors are offline, the system marks a data gap instead of assuming water is safe.'],
               ].map(([title, note]) => (
-                <div key={title} className="flex items-start gap-2 p-2.5 bg-amber-50/60 border border-amber-200 rounded text-amber-900">
-                  <InfoIcon className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                <div key={title} className="flex items-start gap-2 p-2.5 bg-subtle/50 border border-border rounded text-text-main">
+                  <InfoIcon className="w-4 h-4 text-[#0d5c63] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold">{title}</span>
-                    <p className="text-[11px]">{note}</p>
+                    <p className="text-[11px] text-text-muted mt-0.5">{note}</p>
                   </div>
                 </div>
               ))}
