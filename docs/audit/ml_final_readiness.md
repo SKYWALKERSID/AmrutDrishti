@@ -28,18 +28,31 @@ This report concludes the comprehensive **ML Validation, Forecast Integration & 
 
 ---
 
-## 2. Block-by-Block ML Deployment Readiness
+## 2. Multi-Dimensional ML Status Matrix
 
-Based on station-aware chronological evaluation against held-out observations, the pilot blocks are categorized as follows:
+To maintain scientific integrity (JalDrishti Workspace Rules §5), integration status is strictly decoupled from provenance validity, uncertainty calibration, and operational readiness:
 
-| District | Block | Valid Horizon Pairs | Baseline RMSE (m) | ML RMSE (m) | Improvement vs Baseline | Quantile Crossing Rate | Operational Deployment Status |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Chhatarpur** | **Bijawar** | 33 | 4.96 | 4.31 | **+13.1%** | 36.4% | **Conditionally Ready** (ML improves on baseline; quantile sorting safeguard active) |
-| **Chhatarpur** | **Rajnagar** | 42 | 3.55 | 3.57 | -0.6% | 42.9% | **Baseline Preferred** (Seasonal persistence baseline performs equally; ML does not beat baseline) |
-| **Tikamgarh** | **Baldeogarh** | 10 | 2.50 | 2.22 | **+11.2%** | 20.0% | **Conditionally Ready** (Small sample size; uncertainty bounds required) |
-| **Tikamgarh** | **Jatara** | 8 | 4.33 | 4.09 | **+5.5%** | 25.0% | **Conditionally Ready** (Small sample size; advisory warnings active) |
-| **Tikamgarh** | **Tikamgarh** | 12 | 3.86 | 3.71 | **+3.9%** | 25.0% | **Conditionally Ready** (Marginal improvement over seasonal persistence) |
-| **Tikamgarh** | **Palera** | 5 | N/A | N/A | N/A | N/A | **Insufficient Data** (Fewer than 10 valid quarterly pairs; training disabled) |
+| Pilot Block | Database Record Exists? | Forecast Provenance | Horizon Validity (Target Plausibility) | Uncertainty Calibration | Offline Model Accuracy vs Baseline | Operational Deployment Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Bijawar** (3783) | Yes (`8.07m`) | **Unverifiable** (2023 cutoff vs 2027 target) | **Inconsistent** (3.5 yr extrapolation) | **Uncalibrated** (Crossing rate 36.4%) | +13.1% RMSE improvement | **BLOCKED / UNAVAILABLE** |
+| **Rajnagar** (3788) | Yes (`4.23m`) | **Unverifiable** (2023 cutoff vs 2027 target) | **Inconsistent** (3.5 yr extrapolation) | **Uncalibrated** (Crossing rate 42.9%) | -0.6% (Baseline preferred) | **BLOCKED / UNAVAILABLE** |
+| **Baldeogarh** (4027) | Yes (`2.16m`) | **Unverifiable** (2023 cutoff vs 2027 target) | **Inconsistent** (3.5 yr extrapolation) | **Invalid Crossing** ($P_{10} 2.86 > P_{50} 2.16$) | Low confidence ($N=10$) | **BLOCKED / UNAVAILABLE** |
+| **Jatara** (4028) | Yes (`4.53m`) | **Unverifiable** (2023 cutoff vs 2027 target) | **Inconsistent** (3.5 yr extrapolation) | **Uncalibrated** (Nominal coverage 42%) | +11.2% RMSE improvement | **BLOCKED / UNAVAILABLE** |
+| **Palera** (4030) | Yes (`5.71m`) | **Unverifiable** (2023 cutoff vs 2027 target) | **Inconsistent** (3.5 yr extrapolation) | **Uncalibrated** | Insufficient Data ($N=5$) | **BLOCKED / UNAVAILABLE** |
+| **Tikamgarh** (4032) | Yes (`3.46m`) | **Unverifiable** (2023 cutoff vs 2027 target) | **Inconsistent** (3.5 yr extrapolation) | **Uncalibrated** (Nominal coverage 33%) | +3.9% RMSE improvement | **BLOCKED / UNAVAILABLE** |
+
+---
+
+## 3. Provenance & Horizon Decoupling Analysis
+
+1. **Origin Date vs. Script Execution Date:**
+   - The CGWB historical dataset ends on **August 20, 2023**.
+   - Predictions were generated during offline execution on **October 12, 2026** by taking the `tail(1)` features from the 2023 dataset.
+   - However, `ml/train.py` assigned `target_date = date.today() + 90 days = 2027-01-11`.
+   - A model conditioned on August 2023 observations cannot reliably predict groundwater depth in January 2027 as a 90-day seasonal forecast. The actual gap is **1,240 days (~3.4 years)**.
+2. **Operational API Action:**
+   - `/api/forecast` detects this temporal decoupling and returns an honest `unavailable` status.
+   - The platform never serves uncalibrated 3.5-year extrapolations as current 90-day forecasts.
 
 ---
 
