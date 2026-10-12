@@ -1,5 +1,6 @@
 import type { BlockData, RiskSeverity, DataStatusType } from '../types.ts';
 import type { AdministrativeUnitRow, DerivedIndicatorRow } from '../types/database.ts';
+import { calculateDescriptiveGss } from '../services/scientificEngine.ts';
 
 export interface MapBlockOptions {
   activeInterventionsCount?: number;
@@ -181,8 +182,19 @@ export function mapDbRowToBlockData(
   }
 
   // Populate from valid DerivedIndicatorRow preserving true data provenance
-  const score = indicator.descriptive_stress_score ?? 0;
   const isDataMissing = indicator.grace_twsa_cm === null && indicator.cgwb_well_depth_mbgl === null;
+
+  // Dynamically compute stress score and risk severity from available indicators
+  const calculated = calculateDescriptiveGss({
+    cgwbWellDepthMbgl: indicator.cgwb_well_depth_mbgl,
+    rainfallAnomalyMm: indicator.rainfall_anomaly_mm,
+    graceTwsaCm: indicator.grace_twsa_cm,
+    sentinelNdvi: indicator.sentinel_ndvi
+  });
+
+  const effectiveScore = indicator.descriptive_stress_score ?? calculated.score ?? 0;
+  const effectiveSeverity = (indicator.risk_severity || (calculated.severity !== 'gap' ? calculated.severity : 'normal')) as RiskSeverity;
+  const effectiveDriver = indicator.primary_stress_driver || calculated.primaryStressDriver || 'Environmental Stress Analysis Pending';
 
   return {
     id: blockSlugId,
@@ -197,7 +209,7 @@ export function mapDbRowToBlockData(
     totalGeographicAreaHa: unit.total_geographic_area_ha ?? 0,
     netSownAreaHa: unit.net_sown_area_ha ?? 0,
     primaryCropSeason: 'Unrecorded',
-    riskSeverity: (indicator.risk_severity || 'normal') as RiskSeverity,
+    riskSeverity: effectiveSeverity,
     indicators: {
       graceTwsaCm: indicator.grace_twsa_cm,
       rainfallAnomalyMm: indicator.rainfall_anomaly_mm,
@@ -211,14 +223,14 @@ export function mapDbRowToBlockData(
       dataQualityFlag: isDataMissing ? 'missing' : 'good'
     },
     assessment: {
-      descriptiveStressScore: score,
+      descriptiveStressScore: effectiveScore,
       confidenceInterval: null, // Explicit null for uncalibrated confidence interval
       dataStatus: (indicator.data_status || 'observed') as DataStatusType,
       validationStatus: 'demonstration_only',
-      primaryStressDriver: indicator.primary_stress_driver || 'Environmental Stress Analysis Pending',
-      safeguardNotice: indicator.safeguard_notice || 'Demonstration Data — Subject to field verification.',
+      primaryStressDriver: effectiveDriver,
+      safeguardNotice: calculated.safeguardNotice || indicator.safeguard_notice || 'Demonstration Data — Subject to field verification.',
       baselineComparison: 'Uncalibrated',
-      modelMethodologyVersion: 'Unspecified',
+      modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Dynamic Weighted Index)',
       lastAssessedDate: indicator.assessed_date || (unit.created_at ? new Date(unit.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0])
     },
     activeInterventionsCount: options.activeInterventionsCount ?? 0,
