@@ -1,0 +1,254 @@
+﻿{
+    "blocks":  [
+                   {
+                       "id":  "3783",
+                       "name":  "BIJAWAR",
+                       "districtId":  "dist_chhatarpur",
+                       "districtName":  "CHHATARPUR",
+                       "state":  "MADHYA PRADESH",
+                       "coordinates":  [
+                                           24.65,
+                                           79.498
+                                       ],
+                       "populationEst":  0,
+                       "totalGeographicAreaHa":  0,
+                       "netSownAreaHa":  0,
+                       "primaryCropSeason":  "Unrecorded",
+                       "riskSeverity":  "watch",
+                       "indicators":  {
+                                          "graceTwsaCm":  null,
+                                          "rainfallAnomalyMm":  null,
+                                          "spi3Month":  null,
+                                          "sentinelNdvi":  null,
+                                          "sentinelNdwi":  null,
+                                          "smapSoilMoisture":  null,
+                                          "cgwbWellDepthMbgl":  7.47,
+                                          "wellDepthTrendMperYr":  -0.047,
+                                          "lastUpdatedDate":  "2023-08-20",
+                                          "dataQualityFlag":  "good"
+                                      },
+                       "assessment":  {
+                                          "descriptiveStressScore":  50,
+                                          "confidenceInterval":  null,
+                                          "dataStatus":  "observed",
+                                          "validationStatus":  "demonstration_only",
+                                          "primaryStressDriver":  "Observed quarterly monitoring well level averaging 7.47 m bgl on 2023-08-20 across 7 station(s). Multi-year trend: -0.047 m/yr.",
+                                          "safeguardNotice":  "Derived from published CGWB monitoring well network measurements (2021-2023). Satellite and rainfall parameters remain null. Not an AI forecast.",
+                                          "baselineComparison":  "Uncalibrated",
+                                          "modelMethodologyVersion":  "Unspecified",
+                                          "lastAssessedDate":  "2023-08-20"
+                                      },
+                       "activeInterventionsCount":  0,
+                       "openAlertsCount":  0
+                   },
+                   {
+                       "id":  "3788",
+                       "name":  "RAJNAGAR",
+                       "districtId":  "dist_chhatarpur",
+                       "districtName":  "CHHATARPUR",
+                       "state":  "MADHYA PRADESH",
+                       "coordinates":  [
+                                           24.85,
+                                           79.93
+                                       ],
+                       "populationEst":  0,
+                       "totalGeographicAreaHa":  0,
+                       "netSownAreaHa":  0,
+                       "primaryCropSeason":  "Unrecorded",
+                       "riskSeverity":  "normal",
+                       "indicators":  {
+                                          "graceTwsaCm":  null,
+                                          "rainfallAnomalyMm":  null,
+                                          "spi3Month":  null,
+                                          "sentinelNdvi":  null,
+                                          "sentinelNdwi":  null,
+                                          "smapSoilMoisture":  null,
+                                          "cgwbWellDepthMbgl":  4.39,
+                                          "wellDepthTrendMperYr":  -0.315,
+                                          "lastUpdatedDate":  "2023-08-20",
+                                          "dataQualityFlag":  "good"
+                                      },
+                       "assessment":  {
+                                          "descriptiveStressScore":  29,
+                                          "confidenceInterval":  null,
+                                          "dataStatus":  "observed",
+                                          "validationStatus":  "demonstration_only",
+                                          "primaryStressDriver":  "Observed quarterly monitoring well level averaging 4.39 m bgl on 2023-08-20 across 8 station(s). Multi-year trend: -0.315 m/yr.",
+                                          "safeguardNotice":  "Derived from published CGWB monitoring well network measurements (2021-2023). Satellite and rainfall parameters remain null. Not an AI forecast.",
+                                          "baselineComparison":  "Uncalibrated",
+                                          "modelMethodologyVersion":  "Unspecified",
+                                          "lastAssessedDate":  "2023-08-20"
+                                      },
+                       "activeInterventionsCount":  0,
+                       "openAlertsCount":  0
+                   },
+                   {
+                       "id":  "4027",
+                       "name":  "BALDEOGARH",
+                       "districtId":  "dist_tikamgarh",
+                       "districtName":  "TIKAMGARH",
+                       "state":  "MADHYA PRADESH",
+                       "coordinates":  [
+                                           24.756,
+                                           79.05
+                                       ],
+                       "populationEst":  0,
+                       "totalGeographicAreaHa":  0,
+                       "netSownAreaHa":  0,
+                       "primaryCropSeason":  "Unrecorded",
+                       "riskSeverity":  "normal",
+                       "indicators":  {
+                                          "graceTwsaCm":  null,
+                                          "rainfallAnomalyMm":  null,
+                                          "spi3Month":  null,
+                                          "sentinelNdvi":  null,
+                                          "sentinelNdwi":  null,
+                                          "smapSoilMoisture":  null,
+                                          "cgwbWellDepthMbgl":  1.23,
+                                          "wellDepthTrendMperYr":  -0.661,
+                                          "lastUpdatedDate":  "2023-08-20",
+                                          "dataQualityFlag":  "good"
+                                      },
+                       "assessment":  {
+                                          "descriptiveStressScore":  8,
+                                          "confidenceInterval":  null,
+                                          "dataStatus":  "observed",
+                                          "validationStatus":  "demonstration_only",
+                                          "primaryStressDriver":  "Observed quarterly monitoring well level averaging 1.23 m bgl on 2023-08-20 across 2 station(s). Multi-year trend: -0.661 m/yr.",
+                                          "safeguardNotice":  "Derived from published CGWB monitoring well network measurements (2021-2023). Satellite and rainfall parameters remain null. Not an AI forecast.",
+                                          "baselineComparison":  "Uncalibrated",
+                                          "modelMethodologyVersion":  "Unspecified",
+                                          "lastAssessedDate":  "2023-08-20"
+                                      },
+                       "activeInterventionsCount":  0,
+                       "openAlertsCount":  0
+                   },
+                   {
+                       "id":  "4028",
+                       "name":  "JATARA",
+                       "districtId":  "dist_tikamgarh",
+                       "districtName":  "TIKAMGARH",
+                       "state":  "MADHYA PRADESH",
+                       "coordinates":  [
+                                           25,
+                                           79.047
+                                       ],
+                       "populationEst":  0,
+                       "totalGeographicAreaHa":  0,
+                       "netSownAreaHa":  0,
+                       "primaryCropSeason":  "Unrecorded",
+                       "riskSeverity":  "normal",
+                       "indicators":  {
+                                          "graceTwsaCm":  null,
+                                          "rainfallAnomalyMm":  null,
+                                          "spi3Month":  null,
+                                          "sentinelNdvi":  null,
+                                          "sentinelNdwi":  null,
+                                          "smapSoilMoisture":  null,
+                                          "cgwbWellDepthMbgl":  3.9,
+                                          "wellDepthTrendMperYr":  -0.36,
+                                          "lastUpdatedDate":  "2023-08-20",
+                                          "dataQualityFlag":  "good"
+                                      },
+                       "assessment":  {
+                                          "descriptiveStressScore":  26,
+                                          "confidenceInterval":  null,
+                                          "dataStatus":  "observed",
+                                          "validationStatus":  "demonstration_only",
+                                          "primaryStressDriver":  "Observed quarterly monitoring well level averaging 3.9 m bgl on 2023-08-20 across 5 station(s). Multi-year trend: -0.36 m/yr.",
+                                          "safeguardNotice":  "Derived from published CGWB monitoring well network measurements (2021-2023). Satellite and rainfall parameters remain null. Not an AI forecast.",
+                                          "baselineComparison":  "Uncalibrated",
+                                          "modelMethodologyVersion":  "Unspecified",
+                                          "lastAssessedDate":  "2023-08-20"
+                                      },
+                       "activeInterventionsCount":  0,
+                       "openAlertsCount":  0
+                   },
+                   {
+                       "id":  "4030",
+                       "name":  "PALERA",
+                       "districtId":  "dist_tikamgarh",
+                       "districtName":  "TIKAMGARH",
+                       "state":  "MADHYA PRADESH",
+                       "coordinates":  [
+                                           25.12,
+                                           79.09
+                                       ],
+                       "populationEst":  0,
+                       "totalGeographicAreaHa":  0,
+                       "netSownAreaHa":  0,
+                       "primaryCropSeason":  "Unrecorded",
+                       "riskSeverity":  "normal",
+                       "indicators":  {
+                                          "graceTwsaCm":  null,
+                                          "rainfallAnomalyMm":  null,
+                                          "spi3Month":  null,
+                                          "sentinelNdvi":  null,
+                                          "sentinelNdwi":  null,
+                                          "smapSoilMoisture":  null,
+                                          "cgwbWellDepthMbgl":  4.83,
+                                          "wellDepthTrendMperYr":  -1.179,
+                                          "lastUpdatedDate":  "2023-05-20",
+                                          "dataQualityFlag":  "good"
+                                      },
+                       "assessment":  {
+                                          "descriptiveStressScore":  32,
+                                          "confidenceInterval":  null,
+                                          "dataStatus":  "observed",
+                                          "validationStatus":  "demonstration_only",
+                                          "primaryStressDriver":  "Observed quarterly monitoring well level averaging 4.83 m bgl on 2023-05-20 across 2 station(s). Multi-year trend: -1.179 m/yr.",
+                                          "safeguardNotice":  "Derived from published CGWB monitoring well network measurements (2021-2023). Satellite and rainfall parameters remain null. Not an AI forecast.",
+                                          "baselineComparison":  "Uncalibrated",
+                                          "modelMethodologyVersion":  "Unspecified",
+                                          "lastAssessedDate":  "2023-05-20"
+                                      },
+                       "activeInterventionsCount":  0,
+                       "openAlertsCount":  0
+                   },
+                   {
+                       "id":  "4032",
+                       "name":  "TIKAMGARH",
+                       "districtId":  "dist_tikamgarh",
+                       "districtName":  "TIKAMGARH",
+                       "state":  "MADHYA PRADESH",
+                       "coordinates":  [
+                                           24.74,
+                                           78.838
+                                       ],
+                       "populationEst":  0,
+                       "totalGeographicAreaHa":  0,
+                       "netSownAreaHa":  0,
+                       "primaryCropSeason":  "Unrecorded",
+                       "riskSeverity":  "normal",
+                       "indicators":  {
+                                          "graceTwsaCm":  null,
+                                          "rainfallAnomalyMm":  null,
+                                          "spi3Month":  null,
+                                          "sentinelNdvi":  null,
+                                          "sentinelNdwi":  null,
+                                          "smapSoilMoisture":  null,
+                                          "cgwbWellDepthMbgl":  5.96,
+                                          "wellDepthTrendMperYr":  0.152,
+                                          "lastUpdatedDate":  "2023-08-20",
+                                          "dataQualityFlag":  "good"
+                                      },
+                       "assessment":  {
+                                          "descriptiveStressScore":  40,
+                                          "confidenceInterval":  null,
+                                          "dataStatus":  "observed",
+                                          "validationStatus":  "demonstration_only",
+                                          "primaryStressDriver":  "Observed quarterly monitoring well level averaging 5.96 m bgl on 2023-08-20 across 2 station(s). Multi-year trend: +0.152 m/yr.",
+                                          "safeguardNotice":  "Derived from published CGWB monitoring well network measurements (2021-2023). Satellite and rainfall parameters remain null. Not an AI forecast.",
+                                          "baselineComparison":  "Uncalibrated",
+                                          "modelMethodologyVersion":  "Unspecified",
+                                          "lastAssessedDate":  "2023-08-20"
+                                      },
+                       "activeInterventionsCount":  0,
+                       "openAlertsCount":  0
+                   }
+               ],
+    "source":  "live_database",
+    "isDemonstrationData":  true,
+    "totalCount":  6,
+    "fetchedAt":  "2026-10-12T08:49:24.462Z"
+}
