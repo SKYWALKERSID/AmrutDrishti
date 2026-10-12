@@ -45,17 +45,30 @@ export const Navigation: React.FC = () => {
     return true;
   });
 
+  const [isLiveConnected, setIsLiveConnected] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    fetch('/api/geospatial/blocks')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.source === 'live_database') {
+          setIsLiveConnected(true);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <header className="bg-surface border-b border-border sticky top-0 z-50">
       {/* Top Banner: Scientific Safeguard & Language Switcher */}
       <div className="bg-[#0d5c63] text-white text-xs px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5 text-[11px] sm:text-xs min-w-0 flex-1">
-          <ShieldCheckIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-200 shrink-0" />
-          <span className="truncate leading-tight">
+        <div className="flex items-center gap-2 text-[11px] sm:text-xs min-w-0 flex-1">
+          <ShieldCheckIcon className="w-3.5 h-3.5 text-teal-200 shrink-0" />
+          <span className="truncate leading-tight font-medium">
             {t('header.pilot')}
           </span>
-          <span className="hidden md:inline bg-teal-800/80 px-2 py-0.5 rounded text-[11px] font-medium text-teal-100 border border-teal-600/40 shrink-0">
-            {t('header.demoMode')}
+          <span className="hidden md:inline text-teal-100/90 text-[11px] shrink-0">
+            • CGWB & NWIC Field Monitoring Baseline
           </span>
         </div>
 

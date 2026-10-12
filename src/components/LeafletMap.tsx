@@ -216,22 +216,67 @@ export default function LeafletMap({
         </div>
       )}
 
-      <div className="absolute bottom-3 left-3 z-[500] rounded-md border border-border bg-white/95 p-2.5 text-xs shadow-md backdrop-blur-sm max-w-[calc(100%-1.5rem)] sm:max-w-[280px]">
-        <div className="font-semibold text-text-main mb-1">{t('explorer.mapGuide', 'Map Guide')}</div>
-        <div className="flex flex-col gap-1 text-xs">
-          <span className="flex items-center gap-1.5 text-slate-700">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> {t('severity.severe', 'High Concern')}
-          </span>
-          <span className="flex items-center gap-1.5 text-slate-700">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0 inline-block"></span> {t('severity.watch', 'Needs Checking')}
-          </span>
-          <span className="flex items-center gap-1.5 text-slate-700">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0 inline-block"></span> {t('severity.normal', 'No Flag in Sample Data')}
-          </span>
+      {/* Dynamic Layer Guide / Legend */}
+      <div className="absolute bottom-3 left-3 z-[500] rounded border border-border bg-white/95 p-2.5 text-xs shadow-sm backdrop-blur-sm max-w-[calc(100%-1.5rem)] sm:max-w-[280px]">
+        <div className="font-semibold text-text-main mb-1.5 flex items-center justify-between">
+          <span>{t('explorer.mapGuide', 'Map Guide')}</span>
+          <span className="text-[10px] text-text-muted font-normal">({activeLayerLabel(activeLayer, t)})</span>
         </div>
-        <div className="mt-1.5 text-[10px] text-text-muted border-t border-border/50 pt-1 leading-tight">
-          {t('explorer.sampleNotice', 'Sample data — these values are for demonstration only and are not verified groundwater measurements.')}
-        </div>
+
+        {activeLayer === 'risk' && (
+          <div className="flex flex-col gap-1 text-[11px]">
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> High Concern (Score &gt; 70)
+            </span>
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0 inline-block"></span> Needs Checking (Score 40–70)
+            </span>
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0 inline-block"></span> Normal Water Level (Score &lt; 40)
+            </span>
+          </div>
+        )}
+
+        {activeLayer === 'grace' && (
+          <div className="flex flex-col gap-1 text-[11px]">
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> Large Loss (&lt; -6 cm anomaly)
+            </span>
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0 inline-block"></span> Moderate Deficit (&gt; -6 cm anomaly)
+            </span>
+          </div>
+        )}
+
+        {activeLayer === 'rainfall' && (
+          <div className="flex flex-col gap-1 text-[11px]">
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-600 shrink-0 inline-block"></span> Normal or Low Rain Deficit
+            </span>
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> High Rain Deficit (&gt; 200 mm shortfall)
+            </span>
+          </div>
+        )}
+
+        {activeLayer === 'wells' && (
+          <div className="flex flex-col gap-1 text-[11px]">
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0 inline-block"></span> Shallow Well Level (&lt; 14 m bgl)
+            </span>
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> Deep Well Depletion (&gt; 14 m bgl)
+            </span>
+          </div>
+        )}
+
+        {activeLayer === 'sentinel' && (
+          <div className="flex flex-col gap-1 text-[11px]">
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0d5c63] shrink-0 inline-block"></span> Vegetation Greenness Index (NDVI)
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -33,6 +33,23 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch {
       // Ignore write errors
     }
+
+    // Persist role change to audit trail
+    try {
+      fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          actorRole: role,
+          action: 'switch_active_role',
+          resourceTarget: `role:${role}`,
+          outcome: 'success',
+          details: { previousRole: activeRole, newRole: role },
+        }),
+      }).catch(() => {});
+    } catch {
+      // Non-blocking
+    }
   };
 
   return (

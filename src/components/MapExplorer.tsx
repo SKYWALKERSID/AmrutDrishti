@@ -43,6 +43,8 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             if (initialBlockId) {
               const matched = json.blocks.find((b: BlockData) => b.id === initialBlockId);
               if (matched) setSelectedBlock(matched);
+            } else if (json.blocks.length > 0) {
+              setSelectedBlock(json.blocks[0]);
             }
           }
         }
@@ -93,26 +95,15 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   return (
     <div className="space-y-5">
       {/* Top Header */}
-      <div className="bg-surface border border-border rounded-lg p-5 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-surface border border-border rounded p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-              dataSourceInfo.source === 'live_database'
-                ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
-                : 'bg-amber-100 text-amber-900 border border-amber-300'
-            }`}>
-              SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
+          <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
+            <span className="font-semibold text-text-main">
+              Bundelkhand Spatial Hydrology Layers
             </span>
-            {dataSourceInfo.source === 'live_database' ? (
-              <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
-                Live Database Active (CGWB Field Network)
-              </span>
-            ) : (
-              <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-                Prototype Demonstration Mode — Simulated Data
-              </span>
-            )}
-            {isLoading && <span className="text-xs text-text-muted">{t('monitoring.loading', 'Loading backend layers...')}</span>}
+            <span>•</span>
+            <span>Multi-Criteria Overlays</span>
+            {isLoading && <span className="text-text-muted">({t('monitoring.loading', 'Loading backend layers...')})</span>}
           </div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
             <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}

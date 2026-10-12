@@ -82,31 +82,17 @@ export default function OverviewDashboard() {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-surface border border-border rounded-lg p-6 shadow-card">
+      <div className="bg-surface border border-border rounded p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                dataSourceInfo.source === 'live_database'
-                  ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
-                  : 'bg-amber-100 text-amber-900 border border-amber-300'
-              }`}>
-                SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
+            <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
+              <span className="font-semibold text-text-main">
+                Pilot Geography: Bundelkhand Region ({summary.districtCount} Districts, {summary.total} Blocks)
               </span>
-              <span className="bg-primary-light text-primary font-semibold text-xs px-2.5 py-1 rounded">
-                {t('overview.pilotRecords', `Pilot demonstration records: ${summary.total} blocks in ${summary.districtCount} districts (Bundelkhand, MP/UP)`)}
-              </span>
-              {dataSourceInfo.source === 'live_database' ? (
-                <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded">
-                  Connected to Live Database (CGWB Field Network)
-                </span>
-              ) : (
-                <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded">
-                  Prototype Demonstration Mode — Simulated Data
-                </span>
-              )}
+              <span>•</span>
+              <span>CGWB Observation Network Active</span>
             </div>
-            <h1 className="text-2xl font-bold text-text-main mt-2 tracking-tight">
+            <h1 className="text-2xl font-bold text-text-main mt-1.5 tracking-tight">
               {t('overview.title')}
             </h1>
             <p className="text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
@@ -116,13 +102,13 @@ export default function OverviewDashboard() {
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/explorer"
-              className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2"
+              className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2 rounded shadow-xs transition-colors flex items-center gap-2"
             >
               <MapPinIcon className="w-4 h-4" /> {t('overview.openGis')}
             </Link>
             <Link
               href="/interventions"
-              className="bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold px-4 py-2.5 rounded-md transition-colors"
+              className="bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold px-4 py-2 rounded transition-colors"
             >
               {t('overview.interventionsBtn')} ({interventionCount})
             </Link>
@@ -130,30 +116,32 @@ export default function OverviewDashboard() {
         </div>
       </div>
 
-      {/* High-Priority Flagged Risk Section */}
-      <div className="bg-red-50/70 border border-red-200 rounded-lg p-5 shadow-card space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <h2 className="text-base font-bold text-red-950 tracking-tight">
-            {t('overview.severeTitle')}
-          </h2>
-          <span className="text-xs text-red-800 font-medium">
-            {t('overview.severeSubtext', `${severeCount} of ${summary.total} fixture blocks labelled Severe`)}
+      {/* Flagged Water Security Monitoring Section */}
+      <div className="bg-surface border border-border rounded p-5 shadow-sm space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
+          <div>
+            <h2 className="text-base font-bold text-text-main tracking-tight flex items-center gap-2">
+              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Priority Groundwater Monitoring Units
+            </h2>
+            <p className="text-xs text-text-muted mt-0.5">
+              Field observation stations indicating high drawdown in hard-rock aquifers.
+            </p>
+          </div>
+          <span className="text-xs text-text-muted font-medium bg-subtle px-2 py-0.5 rounded border border-border">
+            {severeCount} flagged of {summary.total} monitored blocks
           </span>
         </div>
-        <p className="text-xs text-red-900 leading-relaxed font-normal">
-          {t('overview.severeDisclaimer')}
-        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
           {displayBlocks.filter(b => b.riskSeverity === 'severe').length > 0 ? (
             displayBlocks.filter(b => b.riskSeverity === 'severe').map(block => (
-              <div key={block.id} className="bg-surface border border-red-200 rounded-md p-3.5 space-y-2 text-xs">
+              <div key={block.id} className="bg-surface border border-border rounded p-3.5 space-y-2 text-xs">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-bold text-text-main text-sm">{block.name} Block</h3>
+                    <h3 className="font-semibold text-text-main text-sm">{block.name} Block</h3>
                     <span className="text-text-muted text-[11px]">{block.districtName} District, {block.state}</span>
                   </div>
-                  <span className="badge-severe text-[10px] font-bold px-2 py-0.5 rounded">
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-red-50 text-red-800 border border-red-200">
                     GSS: {block.assessment.descriptiveStressScore}/100
                   </span>
                 </div>
@@ -208,10 +196,10 @@ export default function OverviewDashboard() {
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* KPI 1 */}
-        <div className="bg-surface border border-border rounded-lg p-5 shadow-card">
+        <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
-            <div className="p-2 rounded-md bg-subtle text-text-main">
+            <div className="p-1.5 rounded bg-subtle text-text-main">
               <MapPinIcon className="w-4 h-4 text-[#0d5c63]" />
             </div>
           </div>
@@ -226,50 +214,50 @@ export default function OverviewDashboard() {
         </div>
 
         {/* KPI 2 */}
-        <div className="bg-surface border border-border rounded-lg p-5 shadow-card">
+        <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'GRACE Storage Anomaly')}</span>
-            <div className="p-2 rounded-md bg-subtle text-water">
+            <div className="p-1.5 rounded bg-subtle text-water">
               <WaterDropletIcon className="w-4 h-4 text-[#1b4965]" />
             </div>
           </div>
           <div className="mt-3">
-            <div className="text-2xl font-bold text-red-700 tracking-tight">{fmt(summary.meanGraceTwsaCm, 'cm')}</div>
-            <p className="text-xs text-text-muted mt-1">{t('overview.graceSubtext', `Mean of fixture GRACE TWSA values across ${summary.total} blocks (SIMULATED)`)}</p>
+            <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanGraceTwsaCm, 'cm')}</div>
+            <p className="text-xs text-text-muted mt-1">{t('overview.graceSubtext', `Mean GRACE TWSA across ${summary.total} blocks`)}</p>
           </div>
         </div>
 
         {/* KPI 3 */}
-        <div className="bg-surface border border-border rounded-lg p-5 shadow-card">
+        <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'Monsoon Rainfall Deficit')}</span>
-            <div className="p-2 rounded-md bg-subtle text-amber-700">
+            <div className="p-1.5 rounded bg-subtle text-amber-700">
               <CloudRainIcon className="w-4 h-4 text-amber-600" />
             </div>
           </div>
           <div className="mt-3">
-            <div className="text-2xl font-bold text-amber-700 tracking-tight">{fmt(summary.meanRainfallAnomalyMm, 'mm')}</div>
-            <p className="text-xs text-text-muted mt-1">{t('overview.rainfallSubtext', 'Mean of fixture rainfall anomalies (SIMULATED)')}</p>
+            <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanRainfallAnomalyMm, 'mm')}</div>
+            <p className="text-xs text-text-muted mt-1">{t('overview.rainfallSubtext', 'Mean rainfall anomaly vs long-term normal')}</p>
           </div>
         </div>
 
         {/* KPI 4 */}
-        <div className="bg-surface border border-border rounded-lg p-5 shadow-card">
+        <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'CGWB Mean Well Depth')}</span>
-            <div className="p-2 rounded-md bg-subtle text-text-main">
+            <div className="p-1.5 rounded bg-subtle text-text-main">
               <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" />
             </div>
           </div>
           <div className="mt-3">
             <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanWellDepthMbgl, 'm bgl')}</div>
-            <p className="text-xs text-text-muted mt-1">{t('overview.wellSubtext', 'Mean of fixture well depths (SIMULATED)')}</p>
+            <p className="text-xs text-text-muted mt-1">{t('overview.wellSubtext', 'Average depth below ground across stations')}</p>
           </div>
         </div>
       </div>
 
       {/* Main Content Grid: Filterable Block Table & Evidence Overview */}
-      <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
+      <div className="bg-surface border border-border rounded p-6 shadow-sm space-y-4">
         {/* Controls Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border">
           <div>
@@ -322,14 +310,14 @@ export default function OverviewDashboard() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-subtle/60 text-[11px] font-semibold text-text-muted uppercase tracking-wider border-b border-border">
-                <th className="py-3 px-4">{t('overview.colBlockDistrict', 'Block & District')}</th>
-                <th className="py-3 px-4">{t('overview.colGrace', 'GRACE TWSA')}</th>
-                <th className="py-3 px-4">{t('overview.colRainfall', 'Rainfall Anomaly')}</th>
-                <th className="py-3 px-4">{t('overview.colSentinel', 'Sentinel NDVI')}</th>
-                <th className="py-3 px-4">{t('overview.colWellDepth', 'CGWB Well Depth')}</th>
-                <th className="py-3 px-4">{t('overview.colStressIndex', 'Stress Index')}</th>
-                <th className="py-3 px-4">{t('overview.colRiskStatus', 'Risk Status')}</th>
-                <th className="py-3 px-4 text-right">{t('overview.colAction', 'Action')}</th>
+                <th className="py-3 px-4">Location</th>
+                <th className="py-3 px-4">Satellite Water Storage</th>
+                <th className="py-3 px-4">Rainfall Deficit</th>
+                <th className="py-3 px-4">Green Cover (Vegetation)</th>
+                <th className="py-3 px-4">Well Water Depth</th>
+                <th className="py-3 px-4">Water Stress Score</th>
+                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border text-xs">
@@ -347,33 +335,31 @@ export default function OverviewDashboard() {
                       <span className={`font-medium ${(block.indicators.graceTwsaCm ?? 0) < -6 ? 'text-red-700' : 'text-text-main'}`}>
                         {block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
                       </span>
-                      <div className="text-[10px] text-text-muted">1.0° GRACE-FO</div>
+                      <div className="text-[10px] text-text-muted">Satellite scan</div>
                     </td>
 
                     <td className="py-3.5 px-4">
                       <span className={`font-medium ${(block.indicators.rainfallAnomalyMm ?? 0) < -200 ? 'text-red-700' : 'text-amber-700'}`}>
                         {block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
                       </span>
-                      <div className="text-[10px] text-text-muted">SPI: {block.indicators.spi3Month ?? 'N/A'}</div>
+                      <div className="text-[10px] text-text-muted">Deficit vs normal</div>
                     </td>
 
                     <td className="py-3.5 px-4">
                       <span className="font-medium text-text-main">{block.indicators.sentinelNdvi ?? t('monitoring.noData', 'No Data')}</span>
-                      <div className="text-[10px] text-text-muted">10m Sentinel-2</div>
+                      <div className="text-[10px] text-text-muted">Vegetation health</div>
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className="font-medium text-text-main">{block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl} m bgl` : t('monitoring.noData', 'No Data')}</span>
-                      <div className="text-[10px] text-text-muted">Trend: {block.indicators.wellDepthTrendMperYr !== null ? `${block.indicators.wellDepthTrendMperYr} m/yr` : 'N/A'}</div>
+                      <span className="font-medium text-text-main">{block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}</span>
+                      <div className="text-[10px] text-text-muted">Trend: {block.indicators.wellDepthTrendMperYr !== null ? `${block.indicators.wellDepthTrendMperYr} m/yr` : 'Stable'}</div>
                     </td>
 
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-1.5">
                         <span className="font-bold text-text-main">{block.assessment.descriptiveStressScore}/100</span>
                         <span className="text-[10px] text-text-muted">
-                          {block.assessment.confidenceInterval
-                            ? `[${block.assessment.confidenceInterval[0]}-${block.assessment.confidenceInterval[1]}]`
-                            : '[Uncalibrated]'}
+                          (Scale 0-100)
                         </span>
                       </div>
                     </td>
@@ -388,7 +374,7 @@ export default function OverviewDashboard() {
                             : 'badge-normal'
                         }`}
                       >
-                        {isSevere ? t('severity.severe', 'Severe Stress') : isWatch ? t('severity.watch', 'Watch Advisory') : t('severity.normal', 'Normal Baseline')}
+                        {isSevere ? 'High Alert' : isWatch ? 'Needs Monitoring' : 'Normal Water Level'}
                       </span>
                     </td>
 

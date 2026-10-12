@@ -42,20 +42,41 @@ function InterventionsContent() {
   // New Comment State
   const [commentText, setCommentText] = useState('');
 
-  // 1. Client-side Hydration from localStorage
+  // 1. Client-side Hydration from Server API / PostgreSQL Database
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY_PROPOSALS);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProposals(parsed);
-          setSelectedProposal(parsed[0]);
+    let active = true;
+    async function loadProposals() {
+      try {
+        const res = await fetch('/api/interventions');
+        if (res.ok && active) {
+          const json = await res.json();
+          if (Array.isArray(json.proposals) && json.proposals.length > 0) {
+            setProposals(json.proposals);
+            setSelectedProposal(json.proposals[0]);
+            return;
+          }
         }
+      } catch (err) {
+        console.warn('JalDrishti: Remote proposals fetch fallback to local store:', err);
       }
-    } catch (err) {
-      console.warn('JalDrishti: Failed to load stored interventions:', err);
+
+      // Local storage fallback
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_PROPOSALS);
+        if (saved && active) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setProposals(parsed);
+            setSelectedProposal(parsed[0]);
+          }
+        }
+      } catch {}
     }
+
+    loadProposals();
+    return () => {
+      active = false;
+    };
   }, []);
 
   // 2. Query Context Pre-selection from Map Explorer Link
@@ -72,14 +93,23 @@ function InterventionsContent() {
     }
   }, [urlBlockParam, proposals]);
 
-  // Safe localStorage saver helper
-  const saveProposalsToStorage = (updatedList: InterventionProposal[]) => {
+  // Server API & localStorage synchronized persistence helper
+  const persistProposal = async (proposal: InterventionProposal, updatedList: InterventionProposal[]) => {
     try {
       localStorage.setItem(STORAGE_KEY_PROPOSALS, JSON.stringify(updatedList));
       setStorageError(null);
     } catch (err) {
-      console.error('JalDrishti: Browser storage error:', err);
-      setStorageError('Warning: Browser storage quota exceeded or unavailable. Changes shown in UI but may not persist across reload.');
+      console.warn('JalDrishti: localStorage quota issue:', err);
+    }
+
+    try {
+      await fetch('/api/interventions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ proposal }),
+      });
+    } catch (err) {
+      console.warn('JalDrishti: Failed to post proposal to /api/interventions:', err);
     }
   };
 
@@ -122,29 +152,33 @@ function InterventionsContent() {
     const updatedList = [newProp, ...proposals];
     setProposals(updatedList);
     setSelectedProposal(newProp);
-    saveProposalsToStorage(updatedList);
+    persistProposal(newProp, updatedList);
     setShowNewModal(false);
   };
 
   const handleUpdateStatus = (newStatus: InterventionProposal['status']) => {
     if (!canMutateDemoWorkflows(activeRole)) return;
+    let modifiedTarget: InterventionProposal | null = null;
     const updated = proposals.map(p => {
       if (p.id === selectedProposal.id) {
-        return {
+        modifiedTarget = {
           ...p,
           status: newStatus,
           lastUpdatedDate: new Date().toISOString().split('T')[0]
         };
+        return modifiedTarget;
       }
       return p;
     });
     setProposals(updated);
-    setSelectedProposal({
-      ...selectedProposal,
-      status: newStatus,
-      lastUpdatedDate: new Date().toISOString().split('T')[0]
-    });
-    saveProposalsToStorage(updated);
+    if (modifiedTarget) {
+      setSelectedProposal(modifiedTarget);
+      persistProposal(modifiedTarget, updated);
+    } else {
+      try {
+        localStorage.setItem(STORAGE_KEY_PROPOSALS, JSON.stringify(updated));
+      } catch {}
+    }
   };
 
   const handleAddComment = (e: React.FormEvent) => {
@@ -159,24 +193,28 @@ function InterventionsContent() {
       text: commentText
     };
 
+    let modifiedTarget: InterventionProposal | null = null;
     const updated = proposals.map(p => {
       if (p.id === selectedProposal.id) {
-        return {
+        modifiedTarget = {
           ...p,
           comments: [...p.comments, newComment],
           lastUpdatedDate: new Date().toISOString().split('T')[0]
         };
+        return modifiedTarget;
       }
       return p;
     });
 
     setProposals(updated);
-    setSelectedProposal({
-      ...selectedProposal,
-      comments: [...selectedProposal.comments, newComment],
-      lastUpdatedDate: new Date().toISOString().split('T')[0]
-    });
-    saveProposalsToStorage(updated);
+    if (modifiedTarget) {
+      setSelectedProposal(modifiedTarget);
+      persistProposal(modifiedTarget, updated);
+    } else {
+      try {
+        localStorage.setItem(STORAGE_KEY_PROPOSALS, JSON.stringify(updated));
+      } catch {}
+    }
     setCommentText('');
   };
 
@@ -210,15 +248,14 @@ function InterventionsContent() {
         </div>
       )}
 
-      <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-surface border border-border rounded p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="bg-[#0d5c63] text-white text-xs font-semibold px-2 py-0.5 rounded">
-              Prototype Demonstration Mode — Simulated Data
+          <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted mb-1.5">
+            <span className="font-semibold text-text-main">
+              Intervention Planning Workspace
             </span>
-            <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-              Demonstration Fixtures
-            </span>
+            <span>•</span>
+            <span>State & Central Scheme Catalog</span>
           </div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
             <DocumentTextIcon className="w-5 h-5 text-[#0d5c63]" /> {t('interventions.title')}
@@ -231,7 +268,7 @@ function InterventionsContent() {
         {!isReadOnly && (
           <button
             onClick={() => setShowNewModal(true)}
-            className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2"
+            className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2 rounded shadow-xs transition-colors flex items-center gap-2"
           >
             {t('interventions.draftBtn')}
           </button>

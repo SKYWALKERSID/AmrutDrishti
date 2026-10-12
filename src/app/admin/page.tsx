@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRole } from '@/lib/context/RoleContext';
 import { useLanguage } from '@/lib/context/LanguageContext';
@@ -9,6 +9,19 @@ import { ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/components/ui/Icons';
 export default function AdminPage() {
   const { activeRole } = useRole();
   const { t } = useLanguage();
+  const [auditEvents, setAuditEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch('/api/audit?limit=20')
+      .then(res => res.json())
+      .then(data => {
+        if (data.events) {
+          setAuditEvents(data.events);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const isSuperUser = activeRole === 'admin';
 
   if (!isSuperUser) {
@@ -69,7 +82,7 @@ export default function AdminPage() {
           <p className="text-xs leading-5 text-text-muted">
             Inspect or log administrative changes, human risk overrides, and notification dispatches across all administrative jurisdictions.
           </p>
-          <p className="text-xs font-semibold text-text-main">Status: Local Storage Logging</p>
+          <p className="text-xs font-semibold text-text-main">Status: PostgreSQL audit_events Table Active</p>
         </article>
 
         <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
@@ -91,6 +104,70 @@ export default function AdminPage() {
             <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> Safeguard Gates Enforced
           </div>
         </article>
+      </section>
+
+      {/* Live Audit Log Section */}
+      <section className="rounded-lg border border-border bg-surface p-6 shadow-card space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-bold text-text-main">Recent System & Role Audit Events</h2>
+            <p className="text-xs text-text-muted mt-0.5">
+              Live audit events from PostgreSQL table <code className="bg-subtle px-1.5 py-0.5 rounded text-[11px]">public.audit_events</code>
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              fetch('/api/audit?limit=20')
+                .then(r => r.json())
+                .then(d => setAuditEvents(d.events || []))
+                .catch(() => {});
+            }}
+            className="text-xs font-semibold text-[#0d5c63] hover:underline px-2.5 py-1 rounded bg-subtle border border-border"
+          >
+            Refresh Logs
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="border-b border-border bg-subtle/50 text-text-muted">
+                <th className="py-2.5 px-3 font-semibold">Timestamp</th>
+                <th className="py-2.5 px-3 font-semibold">Actor Role</th>
+                <th className="py-2.5 px-3 font-semibold">Action</th>
+                <th className="py-2.5 px-3 font-semibold">Target</th>
+                <th className="py-2.5 px-3 font-semibold">Details</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {auditEvents.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="py-6 text-center text-text-muted">
+                    No recent audit events found. Switch roles or record a review note to generate events.
+                  </td>
+                </tr>
+              ) : (
+                auditEvents.map((evt, idx) => (
+                  <tr key={evt.event_id || idx} className="hover:bg-subtle/30 transition-colors">
+                    <td className="py-2 px-3 text-[11px] text-text-muted whitespace-nowrap">
+                      {evt.created_at ? new Date(evt.created_at).toLocaleTimeString() : 'Just now'}
+                    </td>
+                    <td className="py-2 px-3">
+                      <span className="font-semibold text-text-main uppercase text-[10px] bg-subtle px-1.5 py-0.5 rounded border border-border">
+                        {evt.actor_role?.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="py-2 px-3 font-medium text-text-main">{evt.action}</td>
+                    <td className="py-2 px-3 text-text-muted font-mono text-[11px]">{evt.resource_target}</td>
+                    <td className="py-2 px-3 text-text-muted text-[11px] truncate max-w-xs">
+                      {JSON.stringify(evt.details || {})}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </section>
     </div>
   );

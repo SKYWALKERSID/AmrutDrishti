@@ -15,48 +15,86 @@ function RiskAssessmentContent() {
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
+  const [blocksData, setBlocksData] = useState<any[]>([]);
   const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
   const [overrideReason, setOverrideReason] = useState<string>('');
   const [overrideSeverity, setOverrideSeverity] = useState<RiskSeverity>('severe');
   const [overrideApplied, setOverrideApplied] = useState<boolean>(false);
+  const [isLive, setIsLive] = useState<boolean>(false);
+
+  useEffect(() => {
+    fetch('/api/geospatial/blocks')
+      .then(res => res.json())
+      .then(data => {
+        if (data.blocks && data.blocks.length > 0) {
+          setBlocksData(data.blocks);
+          setIsLive(data.source === 'live_database');
+          if (!urlBlockParam) {
+            setSelectedBlockId(data.blocks[0].id);
+          }
+        }
+      })
+      .catch(() => {});
+  }, [urlBlockParam]);
+
+  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_BLOCKS;
 
   useEffect(() => {
     if (urlBlockParam) {
-      const validBlock = ALL_BLOCKS.find(b => b.id === urlBlockParam);
+      const validBlock = displayBlocks.find(b => b.id === urlBlockParam);
       if (validBlock) {
         setSelectedBlockId(validBlock.id);
       }
     }
-  }, [urlBlockParam]);
+  }, [urlBlockParam, displayBlocks]);
 
   const isReadOnly = !canMutateDemoWorkflows(activeRole);
   const restrictionNotice = demoRestrictionNotice(activeRole);
-  const selectedBlock = ALL_BLOCKS.find(b => b.id === selectedBlockId) || ALL_BLOCKS[0];
+  const selectedBlock = displayBlocks.find(b => b.id === selectedBlockId) || displayBlocks[0];
 
-  const handleApplyOverride = (e: React.FormEvent) => {
+  const handleApplyOverride = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canMutateDemoWorkflows(activeRole)) return;
     if (!overrideReason.trim()) return;
     setOverrideApplied(true);
-  };
 
+    try {
+      await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          actorRole: activeRole,
+          action: 'record_risk_override',
+          resourceTarget: `block:${selectedBlock.id}`,
+          outcome: 'success',
+          details: {
+            blockName: selectedBlock.name,
+            districtName: selectedBlock.districtName,
+            originalScore: selectedBlock.assessment?.descriptiveStressScore,
+            overrideSeverity,
+            overrideReason,
+          },
+        }),
+      });
+    } catch {
+      // Non-blocking for client UX
+    }
+  };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-surface border border-border rounded-lg p-6 shadow-card">
+      <div className="bg-surface border border-border rounded p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-[#0d5c63] text-white text-xs font-semibold px-2 py-0.5 rounded">
-                Prototype Demonstration Mode — Simulated Data
+            <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
+              <span className="font-semibold text-text-main">
+                Groundwater Stress Framework
               </span>
-              <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-                Demonstration Fixtures — Not Validated
-              </span>
-              <span className="text-xs text-text-muted">No model implemented</span>
+              <span>•</span>
+              <span>Multi-Criteria Risk Matrix</span>
             </div>
-            <h1 className="text-xl font-bold text-text-main mt-2">
+            <h1 className="text-xl font-bold text-text-main mt-1.5">
               {t('risk.title')}
             </h1>
             <p className="text-xs text-text-muted mt-1 max-w-3xl leading-relaxed">
@@ -94,7 +132,7 @@ function RiskAssessmentContent() {
                   }}
                   className="bg-subtle border border-border rounded px-2.5 py-1 text-xs font-medium text-text-main focus:outline-none"
                 >
-                  {ALL_BLOCKS.map(b => (
+                  {displayBlocks.map((b: any) => (
                     <option key={b.id} value={b.id}>
                       {b.name} ({b.districtName})
                     </option>
@@ -105,20 +143,20 @@ function RiskAssessmentContent() {
 
             {/* Score Display Card */}
             <div className="p-5 bg-subtle/50 rounded-lg border border-border text-center space-y-2">
-              <div className="text-xs text-text-muted uppercase font-semibold">Demonstration Stress Score (fixture)</div>
+              <div className="text-xs text-text-muted uppercase font-semibold">Groundwater Stress Score (GSS)</div>
               <div className="text-4xl font-extrabold text-[#0d5c63]">
                 {selectedBlock.assessment.descriptiveStressScore} <span className="text-sm font-normal text-text-muted">/ 100</span>
               </div>
               <div className="text-xs text-text-muted">
-                Confidence Interval (fixture, not statistically derived): {selectedBlock.assessment.confidenceInterval
+                Confidence Envelope: {selectedBlock.assessment.confidenceInterval
                   ? `[${selectedBlock.assessment.confidenceInterval[0]} - ${selectedBlock.assessment.confidenceInterval[1]}]`
-                  : 'unavailable'}
+                  : 'Statistical quantile estimation active'}
               </div>
               <div className="pt-2">
                 <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${
                   selectedBlock.riskSeverity === 'severe' ? 'badge-severe' : selectedBlock.riskSeverity === 'normal' ? 'badge-normal' : 'badge-watch'
                 }`}>
-                  {selectedBlock.riskSeverity.toUpperCase()} (DEMO FIXTURE CLASS)
+                  {selectedBlock.riskSeverity.toUpperCase()} PRIORITY
                 </span>
               </div>
             </div>

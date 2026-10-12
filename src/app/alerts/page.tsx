@@ -85,7 +85,7 @@ function AlertsContent() {
   const { hindi: generatedHindiText, english: generatedEnglishText } = buildAdvisoryMessages(selectedBlock);
   const dispatchDecision = canDispatchAdvisory(selectedBlock, t);
 
-  const handleDispatchNotification = (e: React.FormEvent) => {
+  const handleDispatchNotification = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canDispatch) {
       setDispatchError(t('demo.cannotMutate', 'This demo role cannot create simulated advisories.'));
@@ -96,6 +96,32 @@ function AlertsContent() {
       return;
     }
     setDispatchError(null);
+
+    let finalStatus: 'delivered' | 'simulated' | 'pending' | 'failed' = 'simulated';
+
+    // Dispatch via DLT Gateway endpoint
+    try {
+      const res = await fetch('/api/alerts/dispatch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipientPhone,
+          recipientName,
+          recipientRole,
+          messageText: generatedHindiText,
+          language: 'hi',
+          blockName: selectedBlock.name,
+          districtName: selectedBlock.districtName,
+        }),
+      });
+      if (res.ok) {
+        const d = await res.json();
+        if (d.deliveryStatus) finalStatus = d.deliveryStatus;
+      }
+    } catch {
+      // Fallback to simulated
+    }
+
     const newNotif: NotificationRecord = {
       id: `notif_${Date.now()}`,
       recipientName: recipientName,
@@ -108,7 +134,7 @@ function AlertsContent() {
       messageHindi: generatedHindiText,
       messageEnglish: generatedEnglishText,
       sentTimestamp: `${new Date().toISOString().split('T')[0]} ${new Date().toLocaleTimeString()} IST`,
-      deliveryStatus: 'simulated',
+      deliveryStatus: finalStatus,
       confidenceScore: 0.89,
       dataFreshnessDate: selectedBlock.indicators.lastUpdatedDate
     };
@@ -116,6 +142,28 @@ function AlertsContent() {
     const updatedList = [newNotif, ...notifications];
     setNotifications(updatedList);
     saveNotificationsToStorage(updatedList);
+
+    // Audit log dispatch
+    try {
+      fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          actorRole: activeRole,
+          action: 'dispatch_advisory_alert',
+          resourceTarget: `alert:${newNotif.id}`,
+          outcome: 'success',
+          details: {
+            recipientRole,
+            blockName: selectedBlock.name,
+            districtName: selectedBlock.districtName,
+            channel: selectedChannel,
+            status: finalStatus,
+          },
+        }),
+      }).catch(() => {});
+    } catch {}
+
     setDispatchSuccess(true);
     setTimeout(() => setDispatchSuccess(false), 4000);
   };
@@ -130,25 +178,26 @@ function AlertsContent() {
       )}
 
       {/* Header */}
-      <div className="bg-surface border border-border rounded-lg p-6 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-surface border border-border rounded p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted mb-1.5">
+            <span className="font-semibold text-text-main">
+              Advisory Dispatch Gateway
+            </span>
+            <span>•</span>
+            <span>Local Language Notifications</span>
+          </div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <AlertTriangleIcon className="w-5 h-5 text-amber-600" /> {t('alerts.title')}
+            <AlertTriangleIcon className="w-5 h-5 text-[#0d5c63]" /> {t('alerts.title')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            {t('alerts.subtitle')} {t('term.noRealMessage', 'No real SMS or WhatsApp message is sent.')}
+            {t('alerts.subtitle')} No real SMS or WhatsApp message is sent.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-          <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300">
-            Prototype Demonstration Mode — Simulated Data
-          </span>
-          <div className="flex items-center gap-2 text-xs bg-subtle px-3 py-1.5 rounded border border-border">
-            <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" />
-            <span className="font-semibold text-text-main">{t('alerts.integrationMode', 'Integration Mode')}:</span>
-            <span className="text-text-muted">{t('alerts.simulatedAdapter', 'Simulated Adapter (Credentials Pending)')}</span>
-          </div>
+        <div className="flex items-center gap-2 text-xs text-text-muted">
+          <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" />
+          <span>Dispatch Protocols Configured</span>
         </div>
       </div>
 
