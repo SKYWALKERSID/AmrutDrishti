@@ -243,7 +243,7 @@ function MonitoringContent() {
         <h2 className="text-sm font-bold text-text-main">
           {t('monitoring.historicalObservationsTitle', 'Published CGWB / NWIC Historical Groundwater Observations')}
         </h2>
-        <HistoricalObservationsPanel enabled={true} />
+        <HistoricalObservationsPanel enabled={true} block={selectedBlock.id} />
       </div>
     </div>
   );

@@ -177,7 +177,9 @@ export function mapDbRowToBlockData(
   return {
     id: unit.unit_id,
     name: unit.name,
-    districtId: unit.district_id,
+    districtId: unit.district_id === '398' || unit.district_id === 'dist_chhatarpur'
+      ? 'dist_chhatarpur'
+      : (unit.district_id === '434' || unit.district_id === 'dist_tikamgarh' ? 'dist_tikamgarh' : unit.district_id),
     districtName: unit.district_name,
     state: unit.state_name,
     coordinates,
