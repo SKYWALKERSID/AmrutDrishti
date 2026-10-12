@@ -138,9 +138,23 @@ def quantile_crossings(p10: Sequence[float], p50: Sequence[float], p90: Sequence
 
 
 def order_quantiles(p10, p50, p90):
-    """Ordering SAFEGUARD only (row-wise sort). This is NOT calibration and does not fix coverage."""
-    stacked = np.sort(np.vstack([p10, p50, p90]).astype(float), axis=0)
-    return stacked[0], stacked[1], stacked[2]
+    """
+    Ordering SAFEGUARD preserving P50 median anchor.
+    P50 is the central point estimate and must never be shifted by quantile sorting.
+    Enforces P10 <= P50 and P90 >= P50:
+      p10_safe = min(p10, p50)
+      p90_safe = max(p90, p50)
+    This is NOT statistical calibration and does not fix underlying coverage.
+    """
+    p10_arr = np.asarray(p10, dtype=float)
+    p50_arr = np.asarray(p50, dtype=float)
+    p90_arr = np.asarray(p90, dtype=float)
+
+    safe_p10 = np.minimum(p10_arr, p50_arr)
+    safe_p50 = p50_arr.copy()
+    safe_p90 = np.maximum(p90_arr, p50_arr)
+
+    return safe_p10, safe_p50, safe_p90
 
 
 def summarize(y, preds: Dict[str, np.ndarray]) -> Dict[str, Optional[float]]:

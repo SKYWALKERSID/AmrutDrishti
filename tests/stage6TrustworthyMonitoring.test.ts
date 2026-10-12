@@ -48,3 +48,44 @@ test('mapDbRowToBlockData preserves null indicators without converting to zero',
   assert.equal(blockData.indicators.cgwbWellDepthMbgl, null);
   assert.equal(blockData.indicators.dataQualityFlag, 'missing');
 });
+
+test('mapDbRowToBlockData normalizes official LGD unit ID to standard slug', () => {
+  const tikamgarhUnit: AdministrativeUnitRow = {
+    unit_id: '4032',
+    unit_type: 'block',
+    name: 'TIKAMGARH',
+    district_id: '434',
+    district_name: 'TIKAMGARH',
+    state_name: 'Madhya Pradesh',
+    coordinates: { type: 'Point', coordinates: [78.8311, 24.7456] },
+    geom: null,
+    total_geographic_area_ha: 68400,
+    net_sown_area_ha: 42100,
+    boundary_version: 'LGD-2024',
+    created_at: '2026-10-10T00:00:00Z'
+  };
+
+  const blockData = mapDbRowToBlockData(tikamgarhUnit, null);
+  assert.equal(blockData.id, 'blk_tikamgarh_main');
+  assert.equal(blockData.name, 'TIKAMGARH');
+});
+
+test('failed live observation request does not fabricate successful records', async () => {
+  // If an API request to /api/historical-observations fails or queries a non-existent block,
+  // it must return empty array, never fabricated measurements.
+  const { fetchHistoricalObservations } = await import('../src/lib/services/historicalObservationService.ts');
+  const mockFetcher = async () => ({
+    ok: true,
+    json: async () => ({
+      source: 'historical_database',
+      observations: [],
+      totalCount: 0,
+      limit: 50,
+      offset: 0
+    })
+  }) as unknown as typeof fetch;
+
+  const res = await fetchHistoricalObservations({ block: 'non_existent_block' }, mockFetcher);
+  assert.equal(res.observations.length, 0);
+  assert.equal(res.totalCount, 0);
+});

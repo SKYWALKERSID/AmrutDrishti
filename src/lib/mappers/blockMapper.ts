@@ -115,6 +115,15 @@ export function parseGeoJsonGeometry(raw: unknown): GeoJSON.Geometry | undefined
   return undefined;
 }
 
+const UNIT_ID_TO_SLUG: Record<string, string> = {
+  '3783': 'blk_bijawar',
+  '3788': 'blk_rajnagar',
+  '4027': 'blk_baldeogarh',
+  '4028': 'blk_jatara',
+  '4030': 'blk_palera',
+  '4032': 'blk_tikamgarh_main',
+};
+
 /**
  * Maps PostgreSQL Database rows (AdministrativeUnitRow & DerivedIndicatorRow)
  * to the frontend BlockData UI model with honest missing-value and provenance handling.
@@ -126,11 +135,12 @@ export function mapDbRowToBlockData(
 ): BlockData {
   const coordinates = parsePointCoordinates(unit.coordinates);
   const geojsonGeometry = parseGeoJsonGeometry(unit.geom);
+  const blockSlugId = UNIT_ID_TO_SLUG[unit.unit_id] || unit.unit_id;
 
   // Missing Indicator Fallback Handling
   if (!indicator) {
     return {
-      id: unit.unit_id,
+      id: blockSlugId,
       name: unit.name,
       districtId: unit.district_id,
       districtName: unit.district_name,
@@ -175,7 +185,7 @@ export function mapDbRowToBlockData(
   const isDataMissing = indicator.grace_twsa_cm === null && indicator.cgwb_well_depth_mbgl === null;
 
   return {
-    id: unit.unit_id,
+    id: blockSlugId,
     name: unit.name,
     districtId: unit.district_id === '398' || unit.district_id === 'dist_chhatarpur'
       ? 'dist_chhatarpur'

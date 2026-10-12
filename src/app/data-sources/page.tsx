@@ -30,16 +30,16 @@ export default function DataSourcesPage() {
 
       <section className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-lg border border-border bg-surface p-5">
-          <p className="text-sm text-text-muted">{t('datasources.configuredSources', 'Configured sources')}</p>
+          <p className="text-sm text-text-muted">{t('datasources.configuredSources', 'Configured Sources')}</p>
           <p className="mt-2 text-3xl font-bold">{DATA_SOURCES.length}</p>
         </div>
         <div className="rounded-lg border border-border bg-surface p-5">
-          <p className="text-sm text-text-muted">{t('datasources.healthySources', 'Marked healthy in configuration')}</p>
+          <p className="text-sm text-text-muted">{t('datasources.healthySources', 'Provider Specifications Declared')}</p>
           <p className="mt-2 text-3xl font-bold text-emerald-700">{healthy}</p>
         </div>
         <div className="rounded-lg border border-border bg-surface p-5">
-          <p className="text-sm text-text-muted">{t('datasources.liveConnectivity', 'Live connectivity verified here')}</p>
-          <p className="mt-2 text-3xl font-bold">{t('datasources.notVerified', 'Not verified')}</p>
+          <p className="text-sm text-text-muted">{t('datasources.liveConnectivity', 'Live Ingestion Verified Here')}</p>
+          <p className="mt-2 text-3xl font-bold text-amber-700">{t('datasources.notVerified', 'Not verified')}</p>
         </div>
       </section>
 
@@ -51,8 +51,8 @@ export default function DataSourcesPage() {
                 <h2 className="font-semibold">{source.name}</h2>
                 <p className="mt-1 text-sm text-text-muted">{source.provider}</p>
               </div>
-              <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
-                Configured status: {source.status}
+              <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-900">
+                Specification: {source.status} (Live ingestion unverified)
               </span>
             </div>
 

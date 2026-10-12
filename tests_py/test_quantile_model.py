@@ -59,29 +59,33 @@ class TestQuantileModel(unittest.TestCase):
         self.assertTrue(crossings_bad2[2])
 
     def test_order_quantiles_safeguard(self):
-        # Unordered predictions
+        # Unordered predictions where P10 or P90 violate bounds relative to P50
+        # P50 must ALWAYS remain strictly unchanged: [4.0, 5.0, 8.0]
         p10_raw = [6.0, 3.0, 10.0]
         p50_raw = [4.0, 5.0, 8.0]
         p90_raw = [8.0, 2.0, 7.0]
 
         p10_sorted, p50_sorted, p90_sorted = order_quantiles(p10_raw, p50_raw, p90_raw)
 
-        # For index 0: values [6, 4, 8] -> sorted [4, 6, 8]
+        # For index 0: P50=4.0; P10=min(6.0, 4.0)=4.0; P90=max(8.0, 4.0)=8.0
         self.assertEqual(p10_sorted[0], 4.0)
-        self.assertEqual(p50_sorted[0], 6.0)
+        self.assertEqual(p50_sorted[0], 4.0)
         self.assertEqual(p90_sorted[0], 8.0)
 
-        # For index 1: values [3, 5, 2] -> sorted [2, 3, 5]
-        self.assertEqual(p10_sorted[1], 2.0)
-        self.assertEqual(p50_sorted[1], 3.0)
+        # For index 1: P50=5.0; P10=min(3.0, 5.0)=3.0; P90=max(2.0, 5.0)=5.0
+        self.assertEqual(p10_sorted[1], 3.0)
+        self.assertEqual(p50_sorted[1], 5.0)
         self.assertEqual(p90_sorted[1], 5.0)
 
-        # For index 2: values [10, 8, 7] -> sorted [7, 8, 10]
-        self.assertEqual(p10_sorted[2], 7.0)
+        # For index 2: P50=8.0; P10=min(10.0, 8.0)=8.0; P90=max(7.0, 8.0)=8.0
+        self.assertEqual(p10_sorted[2], 8.0)
         self.assertEqual(p50_sorted[2], 8.0)
-        self.assertEqual(p90_sorted[2], 10.0)
+        self.assertEqual(p90_sorted[2], 8.0)
 
-        # Check crossings on sorted output is 0
+        # Critical acceptance check: P50 is identical to p50_raw
+        np.testing.assert_array_equal(p50_sorted, p50_raw)
+
+        # Check crossings on safeguarded output is 0
         new_crossings = quantile_crossings(p10_sorted, p50_sorted, p90_sorted)
         self.assertFalse(np.any(new_crossings))
 

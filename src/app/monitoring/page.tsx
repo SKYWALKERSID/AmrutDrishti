@@ -211,7 +211,7 @@ function MonitoringContent() {
               <WaterDropletIcon className="w-4 h-4 text-water" /> {t('monitoring.wellVsGrace', 'Well Depth (m bgl) vs GRACE TWSA (cm)')}
             </h2>
             <span className="text-[11px] text-text-muted font-medium">
-              CGWB Network Observations
+              {historicalData.length > 0 ? 'CGWB Network Observations' : 'Simulated Demonstration Baseline'}
             </span>
           </div>
 
@@ -231,7 +231,9 @@ function MonitoringContent() {
             </ResponsiveContainer>
           </div>
           <p className="text-[11px] text-text-muted">
-            {t('monitoring.wellVsGraceSubtext', 'Direct well depth below ground level (m bgl) compared with regional GRACE TWSA storage anomaly (cm).')}
+            {historicalData.length > 0
+              ? t('monitoring.wellVsGraceSubtext', 'Direct well depth below ground level (m bgl) averaged across block stations from published CGWB records.')
+              : MONITORING_SERIES_LABEL}
           </p>
         </div>
 
@@ -242,7 +244,7 @@ function MonitoringContent() {
               <CloudRainIcon className="w-4 h-4 text-amber-600" /> {t('monitoring.seasonalRainfallTitle', 'Seasonal Monsoon Rainfall (mm)')}
             </h2>
             <span className="text-[11px] text-text-muted font-medium">
-              IMD Gridded Precipitation
+              IMD Gridded Precipitation (Simulated)
             </span>
           </div>
 
@@ -261,7 +263,7 @@ function MonitoringContent() {
             </ResponsiveContainer>
           </div>
           <p className="text-[11px] text-text-muted">
-            {t('monitoring.rainfallVsNdviSubtext', 'Compare rainfall deficit (mm) with Sentinel-2 vegetation vigor index (NDVI).')}
+            {MONITORING_RAINFALL_REFERENCE_LABEL}
           </p>
         </div>
       </div>

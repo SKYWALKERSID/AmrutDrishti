@@ -150,7 +150,7 @@ function RiskAssessmentContent() {
               <div className="text-xs text-text-muted">
                 Confidence Envelope: {selectedBlock.assessment.confidenceInterval
                   ? `[${selectedBlock.assessment.confidenceInterval[0]} - ${selectedBlock.assessment.confidenceInterval[1]}]`
-                  : 'Statistical quantile estimation active'}
+                  : 'Uncalibrated (Demonstration fixture score)'}
               </div>
               <div className="pt-2">
                 <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${

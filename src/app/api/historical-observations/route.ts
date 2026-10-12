@@ -28,6 +28,23 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'from and to must use YYYY-MM-DD' }, { status: 400 });
   }
 
+  const BLOCK_SLUG_TO_UNIT_ID: Record<string, string> = {
+    'blk_bijawar': '3783',
+    'blk_rajnagar': '3788',
+    'blk_baldeogarh': '4027',
+    'blk_jatara': '4028',
+    'blk_palera': '4030',
+    'blk_tikamgarh_main': '4032',
+    '3783': '3783',
+    '3788': '3788',
+    '4027': '4027',
+    '4028': '4028',
+    '4030': '4030',
+    '4032': '4032'
+  };
+
+  const resolvedBlockId = block ? (BLOCK_SLUG_TO_UNIT_ID[block] || block) : null;
+
   try {
     const supabase = await createClient();
     let query = supabase
@@ -38,7 +55,7 @@ export async function GET(request: NextRequest) {
       .order('observation_date', { ascending: false })
       .range(offset, offset + limit - 1);
     if (district) query = query.eq('district_id', district);
-    if (block) query = query.eq('block_id', block);
+    if (resolvedBlockId) query = query.eq('block_id', resolvedBlockId);
     if (station) query = query.eq('station_id', station);
     if (from) query = query.gte('observation_date', from);
     if (to) query = query.lte('observation_date', to);
