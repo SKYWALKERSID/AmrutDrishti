@@ -38,6 +38,8 @@
     "exclude":  [
                     "node_modules",
                     "src_new",
-                    "app_src"
+                    "app_src",
+                    "scripts",
+                    "tests"
                 ]
 }
