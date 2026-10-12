@@ -49,8 +49,8 @@ const BLOCK_SLUG_TO_UNIT_ID: Record<string, string> = {
   '4032': '4032'
 };
 
-// Known training data cutoff for model quantile_gb_v1.0 (CGWB MP 2021-2023 dataset)
-const KNOWN_TRAINING_CUTOFF = '2023-08-20';
+// Known training data cutoff: updated from 2023-08-20 (manual CGWB) to 2025-11-15 (NWIC DWLR Telemetry)
+const KNOWN_TRAINING_CUTOFF = '2025-11-15';
 
 /**
  * Route: GET /api/forecast?block=blk_tikamgarh_main
