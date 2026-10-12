@@ -96,9 +96,15 @@ export default function OverviewDashboard() {
               <span className="bg-primary-light text-primary font-semibold text-xs px-2.5 py-1 rounded">
                 {t('overview.pilotRecords', `Pilot demonstration records: ${summary.total} blocks in ${summary.districtCount} districts (Bundelkhand, MP/UP)`)}
               </span>
-              <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded">
-                Prototype Demonstration Mode — Simulated Data
-              </span>
+              {dataSourceInfo.source === 'live_database' ? (
+                <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded">
+                  Connected to Live Database (CGWB Field Network)
+                </span>
+              ) : (
+                <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-1 rounded">
+                  Prototype Demonstration Mode — Simulated Data
+                </span>
+              )}
             </div>
             <h1 className="text-2xl font-bold text-text-main mt-2 tracking-tight">
               {t('overview.title')}
@@ -139,57 +145,63 @@ export default function OverviewDashboard() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-          {ALL_BLOCKS.filter(b => b.riskSeverity === 'severe').map(block => (
-            <div key={block.id} className="bg-surface border border-red-200 rounded-md p-3.5 space-y-2 text-xs">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="font-bold text-text-main text-sm">{block.name} Block</h3>
-                  <span className="text-text-muted text-[11px]">{block.districtName} District, {block.state}</span>
+          {displayBlocks.filter(b => b.riskSeverity === 'severe').length > 0 ? (
+            displayBlocks.filter(b => b.riskSeverity === 'severe').map(block => (
+              <div key={block.id} className="bg-surface border border-red-200 rounded-md p-3.5 space-y-2 text-xs">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-bold text-text-main text-sm">{block.name} Block</h3>
+                    <span className="text-text-muted text-[11px]">{block.districtName} District, {block.state}</span>
+                  </div>
+                  <span className="badge-severe text-[10px] font-bold px-2 py-0.5 rounded">
+                    GSS: {block.assessment.descriptiveStressScore}/100
+                  </span>
                 </div>
-                <span className="badge-severe text-[10px] font-bold px-2 py-0.5 rounded">
-                  GSS: {block.assessment.descriptiveStressScore}/100
-                </span>
-              </div>
 
-              <div className="grid grid-cols-3 gap-2 text-[11px] bg-subtle/40 p-2 rounded border border-border">
-                <div>
-                  <span className="text-text-muted block text-[10px]">{t('layer.wells', 'Well Depth')}</span>
-                  <span className="font-bold text-red-700">{block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl}m bgl` : t('monitoring.noData', 'No Data')}</span>
+                <div className="grid grid-cols-3 gap-2 text-[11px] bg-subtle/40 p-2 rounded border border-border">
+                  <div>
+                    <span className="text-text-muted block text-[10px]">{t('layer.wells', 'Well Depth')}</span>
+                    <span className="font-bold text-red-700">{block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl}m bgl` : t('monitoring.noData', 'No Data')}</span>
+                  </div>
+                  <div>
+                    <span className="text-text-muted block text-[10px]">{t('layer.rainfall', 'Rain Deficit')}</span>
+                    <span className="font-bold text-amber-700">{block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm}mm` : t('monitoring.noData', 'No Data')}</span>
+                  </div>
+                  <div>
+                    <span className="text-text-muted block text-[10px]">{t('layer.grace', 'GRACE TWSA')}</span>
+                    <span className="font-bold text-text-main">{block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm}cm` : t('monitoring.noData', 'No Data')}</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-text-muted block text-[10px]">{t('layer.rainfall', 'Rain Deficit')}</span>
-                  <span className="font-bold text-amber-700">{block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm}mm` : t('monitoring.noData', 'No Data')}</span>
-                </div>
-                <div>
-                  <span className="text-text-muted block text-[10px]">{t('layer.grace', 'GRACE TWSA')}</span>
-                  <span className="font-bold text-text-main">{block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm}cm` : t('monitoring.noData', 'No Data')}</span>
-                </div>
-              </div>
 
-              <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/60">
-                <Link
-                  href={`/explorer?block=${block.id}`}
-                  className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
-                >
-                  {t('overview.inspectEvidence', 'Inspect Map Evidence →')}
-                </Link>
-                <span className="text-text-muted">•</span>
-                <Link
-                  href={`/risk-assessment?block=${block.id}`}
-                  className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
-                >
-                  {t('overview.viewGss', 'View GSS Breakdown →')}
-                </Link>
-                <span className="text-text-muted">•</span>
-                <Link
-                  href={`/interventions?block=${block.id}`}
-                  className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
-                >
-                  {t('overview.prioritizeScheme', 'Prioritize Scheme →')}
-                </Link>
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/60">
+                  <Link
+                    href={`/explorer?block=${block.id}`}
+                    className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                  >
+                    {t('overview.inspectEvidence', 'Inspect Map Evidence →')}
+                  </Link>
+                  <span className="text-text-muted">•</span>
+                  <Link
+                    href={`/risk-assessment?block=${block.id}`}
+                    className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                  >
+                    {t('overview.viewGss', 'View GSS Breakdown →')}
+                  </Link>
+                  <span className="text-text-muted">•</span>
+                  <Link
+                    href={`/interventions?block=${block.id}`}
+                    className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                  >
+                    {t('overview.prioritizeScheme', 'Prioritize Scheme →')}
+                  </Link>
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="col-span-2 p-4 text-center text-xs text-text-muted bg-surface rounded-md border border-border">
+              No blocks currently flagged under Severe Stress in active data.
             </div>
-          ))}
+          )}
         </div>
       </div>
 
@@ -204,7 +216,7 @@ export default function OverviewDashboard() {
             </div>
           </div>
           <div className="mt-3">
-            <div className="text-2xl font-bold text-text-main tracking-tight">{ALL_BLOCKS.length} {t('overview.blocksUnit', 'Blocks')}</div>
+            <div className="text-2xl font-bold text-text-main tracking-tight">{displayBlocks.length} {t('overview.blocksUnit', 'Blocks')}</div>
             <div className="flex items-center gap-2 text-xs mt-1 text-text-muted">
               <span className="text-red-700 font-semibold">{severeCount} {t('severity.severe', 'Severe')}</span> •
               <span className="text-amber-700 font-semibold">{watchCount} {t('severity.watch', 'Watch')}</span> •

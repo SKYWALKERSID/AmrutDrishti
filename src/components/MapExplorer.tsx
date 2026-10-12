@@ -103,9 +103,15 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             }`}>
               SOURCE: {dataSourceInfo.source.toUpperCase().replace('_', ' ')}
             </span>
-            <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-              Prototype Demonstration Mode — Simulated Data
-            </span>
+            {dataSourceInfo.source === 'live_database' ? (
+              <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                Live Database Active (CGWB Field Network)
+              </span>
+            ) : (
+              <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                Prototype Demonstration Mode — Simulated Data
+              </span>
+            )}
             {isLoading && <span className="text-xs text-text-muted">{t('monitoring.loading', 'Loading backend layers...')}</span>}
           </div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
