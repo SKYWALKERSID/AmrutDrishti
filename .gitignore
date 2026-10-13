@@ -48,9 +48,13 @@ Thumbs.db
 .idea/
 
 # Scratch & Temporary Extraction Files
-\# MASTER VIBE-CODING PROMPT.txt
+\#*
+*.tsbuildinfo
 *_extracted.txt
 *.tmp
 *.temp
 *.swp
 *~
+data/sources/cgwb_contrast/
+scripts/*extracted*.json
+scripts/*contrast*.json

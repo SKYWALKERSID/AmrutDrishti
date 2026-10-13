@@ -1,6 +1,13 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { BUNDELKHAND_DISTRICTS, ALL_BLOCKS } from '@/lib/data/bundelkhand';
+import {
+  NATIONAL_CONTRAST_DISTRICTS,
+  ALL_CONTRAST_BLOCKS,
+  HIGH_STRESS_STATE_DISTRICTS,
+  LOW_STRESS_STATE_DISTRICTS,
+  STATE_CONTRAST_GROUPS
+} from '@/lib/data/nationalContrast';
 import { BlockData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
 import Link from 'next/link';
@@ -13,6 +20,8 @@ interface MapExplorerProps {
 
 export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const { t } = useLanguage();
+  const [mapScope, setMapScope] = useState<'bundelkhand' | 'contrast'>('bundelkhand');
+  const [contrastCategoryFilter, setContrastCategoryFilter] = useState<'all' | 'high_stress' | 'low_stress'>('all');
   const [blocksData, setBlocksData] = useState<BlockData[]>([]);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
     source: 'demonstration_fixture',
@@ -87,46 +96,139 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     }
   };
 
-  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_BLOCKS;
-  const filteredBlocks = displayBlocks.filter(
+  // Switch between Bundelkhand Pilot and National Contrast datasets
+  const activeScopeBlocks: BlockData[] =
+    mapScope === 'bundelkhand'
+      ? (blocksData.length > 0 ? blocksData : ALL_BLOCKS)
+      : (
+        contrastCategoryFilter === 'high_stress'
+          ? HIGH_STRESS_STATE_DISTRICTS.flatMap(d => d.blocks)
+          : contrastCategoryFilter === 'low_stress'
+            ? LOW_STRESS_STATE_DISTRICTS.flatMap(d => d.blocks)
+            : ALL_CONTRAST_BLOCKS
+      );
+
+  const activeScopeDistricts =
+    mapScope === 'bundelkhand'
+      ? BUNDELKHAND_DISTRICTS
+      : (
+        contrastCategoryFilter === 'high_stress'
+          ? HIGH_STRESS_STATE_DISTRICTS
+          : contrastCategoryFilter === 'low_stress'
+            ? LOW_STRESS_STATE_DISTRICTS
+            : NATIONAL_CONTRAST_DISTRICTS
+      );
+
+  const filteredBlocks = activeScopeBlocks.filter(
     (b) => selectedDistrictFilter === 'all' || b.districtId === selectedDistrictFilter
   );
 
   return (
     <div className="space-y-5">
-      {/* Top Header */}
+      {/* Top Header with Scope Switcher */}
       <div className="bg-surface border border-border rounded p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
             <span className="font-semibold text-text-main">
-              Bundelkhand Spatial Hydrology Layers
+              {mapScope === 'bundelkhand'
+                ? 'Bundelkhand Spatial Hydrology Layers'
+                : 'National Comparative Hydrology (Most vs Least Water Scarcity)'}
             </span>
             <span>•</span>
             <span>Multi-Criteria Overlays</span>
-            {isLoading && <span className="text-text-muted">({t('monitoring.loading', 'Loading backend layers...')})</span>}
+            {isLoading && mapScope === 'bundelkhand' && (
+              <span className="text-text-muted">({t('monitoring.loading', 'Loading backend layers...')})</span>
+            )}
           </div>
           <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
             <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            {t('explorer.subtitle', 'View groundwater and environmental information on the map')}
+            {mapScope === 'bundelkhand'
+              ? t('explorer.subtitle', 'View groundwater and environmental information on the map')
+              : 'Direct comparative assessment between severe Red Zones (Punjab, Rajasthan, Haryana) and secure water basins (Arunachal Pradesh, Sikkim, Assam).'}
           </p>
         </div>
 
-        {/* District Filter */}
+        {/* Scope and Filter Controls */}
         <div className="flex flex-wrap items-center gap-3">
+          {/* Scope Toggle Button */}
+          <div className="flex items-center bg-subtle border border-border rounded-md p-0.5 text-xs">
+            <button
+              onClick={() => {
+                setMapScope('bundelkhand');
+                setSelectedDistrictFilter('all');
+                setSelectedBlock(ALL_BLOCKS[0]);
+              }}
+              className={`px-3 py-1.5 rounded font-medium text-xs transition-colors ${
+                mapScope === 'bundelkhand'
+                  ? 'bg-[#0d5c63] text-white shadow-xs'
+                  : 'text-text-muted hover:text-text-main'
+              }`}
+            >
+              {t('explorer.scopeBundelkhand', 'Bundelkhand Pilot (12 Blocks)')}
+            </button>
+            <button
+              onClick={() => {
+                setMapScope('contrast');
+                setSelectedDistrictFilter('all');
+                setSelectedBlock(ALL_CONTRAST_BLOCKS[0]);
+              }}
+              className={`px-3 py-1.5 rounded font-medium text-xs transition-colors ${
+                mapScope === 'contrast'
+                  ? 'bg-[#0d5c63] text-white shadow-xs'
+                  : 'text-text-muted hover:text-text-main'
+              }`}
+            >
+              {t('explorer.scopeContrast', 'National Contrast (30 Blocks)')}
+            </button>
+          </div>
+
+          {/* Contrast Sub-category Filter (Only in contrast mode) */}
+          {mapScope === 'contrast' && (
+            <select
+              value={contrastCategoryFilter}
+              onChange={(e) => {
+                const val = e.target.value as 'all' | 'high_stress' | 'low_stress';
+                setContrastCategoryFilter(val);
+                setSelectedDistrictFilter('all');
+                if (val === 'high_stress') {
+                  setSelectedBlock(HIGH_STRESS_STATE_DISTRICTS[0].blocks[0]);
+                } else if (val === 'low_stress') {
+                  setSelectedBlock(LOW_STRESS_STATE_DISTRICTS[0].blocks[0]);
+                }
+              }}
+              className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer"
+            >
+              <option value="all">{t('explorer.contrastAll', 'All 6 States (16 High / 14 Low)')}</option>
+              <option value="high_stress">{t('explorer.contrastHighStress', 'Top 3 High Stress (Punjab, Rajasthan, Haryana)')}</option>
+              <option value="low_stress">{t('explorer.contrastLowStress', 'Top 3 Low Stress (Arunachal, Sikkim, Assam)')}</option>
+            </select>
+          )}
+
+          {/* District Filter */}
           <div className="flex items-center gap-2 text-xs">
             <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
             <span className="text-text-muted font-medium">{t('explorer.districtFilter', 'District:')}</span>
             <select
               value={selectedDistrictFilter}
-              onChange={(e) => setSelectedDistrictFilter(e.target.value)}
+              onChange={(e) => {
+                setSelectedDistrictFilter(e.target.value);
+                if (e.target.value !== 'all') {
+                  const targetDist = activeScopeDistricts.find(d => d.id === e.target.value);
+                  if (targetDist && targetDist.blocks.length > 0) {
+                    setSelectedBlock(targetDist.blocks[0]);
+                  }
+                }
+              }}
               className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer"
             >
-              <option value="all">{t('explorer.allDistricts', 'All Pilot Districts')}</option>
-              {BUNDELKHAND_DISTRICTS.map((d) => (
+              <option value="all">
+                {mapScope === 'bundelkhand' ? t('explorer.allDistricts', 'All Pilot Districts') : 'All Districts'}
+              </option>
+              {activeScopeDistricts.map((d) => (
                 <option key={d.id} value={d.id}>
-                  {d.name} ({d.blocks.length} / {d.blocksCount})
+                  {d.name} ({d.state})
                 </option>
               ))}
             </select>
@@ -327,6 +429,79 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
         </div>
       </div>
+
+      {/* State-by-State Comparative Analysis Matrix (Active in Contrast Mode) */}
+      {mapScope === 'contrast' && (
+        <div className="bg-surface border border-border rounded-lg p-5 shadow-sm space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
+            <div>
+              <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#0d5c63]"></span>
+                Comparative State Hydrology: Top 3 Most Stressed vs Top 3 Least Stressed
+              </h2>
+              <p className="text-xs text-text-muted mt-0.5">
+                Side-by-side contrast of dynamic sub-surface groundwater extraction, aquifer geology, and recharge mechanisms.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-100 text-red-800 font-medium">
+                <span className="w-2 h-2 rounded-full bg-red-600"></span> High Stress (Over-Exploited)
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Low Stress (Safe & Surplus)
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {STATE_CONTRAST_GROUPS.map((grp) => (
+              <div
+                key={grp.state}
+                className={`p-4 rounded-lg border transition-all ${
+                  grp.category === 'high_stress'
+                    ? 'border-red-200 bg-red-50/40'
+                    : 'border-emerald-200 bg-emerald-50/40'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`text-xs font-bold px-2 py-0.5 rounded ${
+                        grp.category === 'high_stress'
+                          ? 'bg-red-600 text-white'
+                          : 'bg-emerald-600 text-white'
+                      }`}
+                    >
+                      #{grp.cpiRank} {grp.category === 'high_stress' ? 'Most Scarce' : 'Least Scarce'}
+                    </span>
+                    <h3 className="font-bold text-sm text-text-main">{grp.state}</h3>
+                  </div>
+                  <span className="text-[11px] text-text-muted">
+                    {grp.districts.flatMap(d => d.blocks).length} blocks monitored
+                  </span>
+                </div>
+
+                <p className="text-xs text-text-main mt-2.5 leading-relaxed">
+                  {grp.summaryDescription}
+                </p>
+
+                <div className="mt-3 pt-2.5 border-t border-border/60 text-[11px] space-y-1">
+                  <div className="flex items-start gap-1">
+                    <span className="font-semibold text-text-muted shrink-0">Geological Setting:</span>
+                    <span className="text-text-main">{grp.geologicalContext}</span>
+                  </div>
+                  <div className="flex items-start gap-1">
+                    <span className="font-semibold text-text-muted shrink-0">Monitored Blocks:</span>
+                    <span className="text-text-main font-medium">
+                      {grp.districts.flatMap(d => d.blocks.map(b => b.name)).join(', ')}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
