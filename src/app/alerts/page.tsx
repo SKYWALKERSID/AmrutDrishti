@@ -28,7 +28,9 @@ function AlertsContent() {
   const { activeRole } = useRole();
 
   const [notifications, setNotifications] = useState<NotificationRecord[]>(INITIAL_NOTIFICATIONS);
-  const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
+  const [blocksData, setBlocksData] = useState<any[]>([]);
+  const [selectedBlockId, setSelectedBlockId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedChannel, setSelectedChannel] = useState<'SMS' | 'WhatsApp'>('WhatsApp');
   const [recipientRole, setRecipientRole] = useState<UserRole>('bdo');
   const [recipientName, setRecipientName] = useState('BDO Tikamgarh');
@@ -41,33 +43,59 @@ function AlertsContent() {
   const restrictionNotice = demoRestrictionNotice(activeRole, t);
   const [dispatchError, setDispatchError] = useState<string | null>(null);
 
-
-  // 1. Client-side Hydration from localStorage
+  // 1. Client-side Hydration from localStorage & blocks API
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY_ALERTS);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          const fixtureById = new Map(INITIAL_NOTIFICATIONS.map(n => [n.id, n]));
-          setNotifications(parsed.map((n: NotificationRecord) => fixtureById.get(n.id) ?? n));
+    let active = true;
+    async function loadData() {
+      try {
+        const res = await fetch('/api/geospatial/blocks');
+        if (res.ok && active) {
+          const json = await res.json();
+          if (Array.isArray(json.blocks) && json.blocks.length > 0) {
+            setBlocksData(json.blocks);
+            if (urlBlockParam && json.blocks.some((b: any) => b.id === urlBlockParam)) {
+              setSelectedBlockId(urlBlockParam);
+            } else {
+              setSelectedBlockId(json.blocks[0].id);
+            }
+          }
         }
+      } catch (err) {
+        console.warn('JalDrishti: Failed to load blocks for alerts:', err);
+      } finally {
+        if (active) setIsLoading(false);
       }
-    } catch (err) {
-      console.warn('JalDrishti: Failed to load stored alert logs:', err);
+
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_ALERTS);
+        if (saved && active) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const fixtureById = new Map(INITIAL_NOTIFICATIONS.map(n => [n.id, n]));
+            setNotifications(parsed.map((n: NotificationRecord) => fixtureById.get(n.id) ?? n));
+          }
+        }
+      } catch (err) {
+        console.warn('JalDrishti: Failed to load stored alert logs:', err);
+      }
     }
-  }, []);
+
+    loadData();
+    return () => {
+      active = false;
+    };
+  }, [urlBlockParam]);
 
   // 2. Query Context Pre-selection from Map Explorer Link
   useEffect(() => {
-    if (urlBlockParam) {
-      const validBlock = ALL_BLOCKS.find(b => b.id === urlBlockParam);
+    if (urlBlockParam && blocksData.length > 0) {
+      const validBlock = blocksData.find(b => b.id === urlBlockParam);
       if (validBlock) {
         setSelectedBlockId(validBlock.id);
         setRecipientName(`BDO ${validBlock.name}`);
       }
     }
-  }, [urlBlockParam]);
+  }, [urlBlockParam, blocksData]);
 
   // Safe localStorage saver helper
   const saveNotificationsToStorage = (updatedList: NotificationRecord[]) => {
@@ -80,10 +108,12 @@ function AlertsContent() {
     }
   };
 
-  const selectedBlock = ALL_BLOCKS.find(b => b.id === selectedBlockId) || ALL_BLOCKS[0];
+  const selectedBlock = blocksData.find(b => b.id === selectedBlockId) || blocksData[0] || null;
 
-  const { hindi: generatedHindiText, english: generatedEnglishText } = buildAdvisoryMessages(selectedBlock);
-  const dispatchDecision = canDispatchAdvisory(selectedBlock, t);
+  const { hindi: generatedHindiText, english: generatedEnglishText } = selectedBlock
+    ? buildAdvisoryMessages(selectedBlock)
+    : { hindi: 'डेटा लोड हो रहा है...', english: 'Loading verified block indicators...' };
+  const dispatchDecision = selectedBlock ? canDispatchAdvisory(selectedBlock, t) : { allowed: false, reason: 'Block data unavailable' };
 
   const handleDispatchNotification = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -247,17 +277,21 @@ function AlertsContent() {
             <form onSubmit={handleDispatchNotification} className="space-y-3 text-xs">
               <div className="space-y-1">
                 <label className="font-semibold text-text-main">{t('alerts.targetGeography', 'Target Block Geography')}:</label>
-                <select
-                  value={selectedBlockId}
-                  onChange={(e) => setSelectedBlockId(e.target.value)}
-                  className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
-                >
-                  {ALL_BLOCKS.map(b => (
-                    <option key={b.id} value={b.id}>
-                      {b.name} ({b.districtName}) — {t(`severity.${b.riskSeverity}`, b.riskSeverity).toUpperCase()}
-                    </option>
-                  ))}
-                </select>
+                {isLoading ? (
+                  <div className="h-8 bg-subtle rounded animate-pulse"></div>
+                ) : (
+                  <select
+                    value={selectedBlockId}
+                    onChange={(e) => setSelectedBlockId(e.target.value)}
+                    className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
+                  >
+                    {blocksData.map((b: any) => (
+                      <option key={b.id} value={b.id}>
+                        {b.name} ({b.districtName}) — {t(`severity.${b.riskSeverity}`, b.riskSeverity).toUpperCase()}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
 
               <div className="grid grid-cols-2 gap-3">

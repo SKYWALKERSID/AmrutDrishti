@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INTERVENTION_SCHEMES } from '@/lib/data/schemes';
-import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { InterventionProposal, UserRole } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice, SCHEME_UNVERIFIED_NOTICE } from '@/lib/demo/demoPolicy';
@@ -20,8 +18,10 @@ function InterventionsContent() {
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
 
-  const [proposals, setProposals] = useState<InterventionProposal[]>(INITIAL_INTERVENTIONS);
-  const [selectedProposal, setSelectedProposal] = useState<InterventionProposal>(INITIAL_INTERVENTIONS[0]);
+  const [proposals, setProposals] = useState<InterventionProposal[]>([]);
+  const [selectedProposal, setSelectedProposal] = useState<InterventionProposal | null>(null);
+  const [blocksData, setBlocksData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showNewModal, setShowNewModal] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
 
@@ -30,7 +30,7 @@ function InterventionsContent() {
 
   // New Proposal Form State
   const [title, setTitle] = useState('');
-  const [blockId, setBlockId] = useState(ALL_BLOCKS[0].id);
+  const [blockId, setBlockId] = useState('');
   const [schemeId, setSchemeId] = useState(INTERVENTION_SCHEMES[0].id);
   const [targetVillage, setTargetVillage] = useState('');
   const [estimatedCost, setEstimatedCost] = useState('2000000');
@@ -45,11 +45,25 @@ function InterventionsContent() {
   // 1. Client-side Hydration from Server API / PostgreSQL Database
   useEffect(() => {
     let active = true;
-    async function loadProposals() {
+    async function loadData() {
       try {
-        const res = await fetch('/api/interventions');
-        if (res.ok && active) {
-          const json = await res.json();
+        const [propRes, geoRes] = await Promise.allSettled([
+          fetch('/api/interventions'),
+          fetch('/api/geospatial/blocks')
+        ]);
+
+        if (geoRes.status === 'fulfilled' && geoRes.value.ok && active) {
+          const geoJson = await geoRes.value.json();
+          if (Array.isArray(geoJson.blocks)) {
+            setBlocksData(geoJson.blocks);
+            if (geoJson.blocks.length > 0) {
+              setBlockId(geoJson.blocks[0].id);
+            }
+          }
+        }
+
+        if (propRes.status === 'fulfilled' && propRes.value.ok && active) {
+          const json = await propRes.value.json();
           if (Array.isArray(json.proposals) && json.proposals.length > 0) {
             setProposals(json.proposals);
             setSelectedProposal(json.proposals[0]);
@@ -60,7 +74,7 @@ function InterventionsContent() {
         console.warn('JalDrishti: Remote proposals fetch fallback to local store:', err);
       }
 
-      // Local storage fallback
+      // Local storage fallback for user-authored proposals
       try {
         const saved = localStorage.getItem(STORAGE_KEY_PROPOSALS);
         if (saved && active) {
@@ -68,12 +82,21 @@ function InterventionsContent() {
           if (Array.isArray(parsed) && parsed.length > 0) {
             setProposals(parsed);
             setSelectedProposal(parsed[0]);
+            return;
           }
         }
       } catch {}
+
+      if (active) {
+        setProposals([]);
+        setSelectedProposal(null);
+      }
     }
 
-    loadProposals();
+    loadData().finally(() => {
+      if (active) setIsLoading(false);
+    });
+
     return () => {
       active = false;
     };
@@ -81,8 +104,8 @@ function InterventionsContent() {
 
   // 2. Query Context Pre-selection from Map Explorer Link
   useEffect(() => {
-    if (urlBlockParam) {
-      const validBlock = ALL_BLOCKS.find(b => b.id === urlBlockParam);
+    if (urlBlockParam && blocksData.length > 0) {
+      const validBlock = blocksData.find(b => b.id === urlBlockParam);
       if (validBlock) {
         setBlockId(validBlock.id);
         const matchingProp = proposals.find(p => p.blockId === validBlock.id);
@@ -91,7 +114,7 @@ function InterventionsContent() {
         }
       }
     }
-  }, [urlBlockParam, proposals]);
+  }, [urlBlockParam, proposals, blocksData]);
 
   // Server API & localStorage synchronized persistence helper
   const persistProposal = async (proposal: InterventionProposal, updatedList: InterventionProposal[]) => {
@@ -113,12 +136,12 @@ function InterventionsContent() {
     }
   };
 
-  const selectedBlock = ALL_BLOCKS.find(b => b.id === blockId) || ALL_BLOCKS[0];
+  const selectedBlock = blocksData.find(b => b.id === blockId) || blocksData[0] || null;
   const selectedScheme = INTERVENTION_SCHEMES.find(s => s.id === schemeId) || INTERVENTION_SCHEMES[0];
 
   const handleCreateProposal = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canMutateDemoWorkflows(activeRole)) return;
+    if (!canMutateDemoWorkflows(activeRole) || !selectedBlock) return;
     const newProp: InterventionProposal = {
       id: `prop_${Date.now()}`,
       title: title || `Intervention for ${selectedBlock.name}`,
@@ -132,7 +155,7 @@ function InterventionsContent() {
       targetVillage: targetVillage || `${selectedBlock.name} Central Panchayat`,
       estimatedCostInr: parseInt(estimatedCost) || 1500000,
       beneficiariesCount: parseInt(beneficiaries) || 2000,
-      evidenceRationale: evidenceRationale || `Evidence based on CGWB well depth (${selectedBlock.indicators.cgwbWellDepthMbgl}m bgl) and rainfall deficit (${selectedBlock.indicators.rainfallAnomalyMm}mm).`,
+      evidenceRationale: evidenceRationale || `Evidence based on CGWB well depth (${selectedBlock.indicators?.cgwbWellDepthMbgl ?? 'N/A'}m bgl) and rainfall deficit (${selectedBlock.indicators?.rainfallAnomalyMm ?? 'N/A'}mm).`,
       missingEvidenceNotes: missingEvidence || 'Field hydrogeological survey required.',
       reviewOwnerRole: reviewOwnerRole,
       reviewOwnerName: `${reviewOwnerRole.toUpperCase()} Office`,
@@ -157,7 +180,7 @@ function InterventionsContent() {
   };
 
   const handleUpdateStatus = (newStatus: InterventionProposal['status']) => {
-    if (!canMutateDemoWorkflows(activeRole)) return;
+    if (!canMutateDemoWorkflows(activeRole) || !selectedProposal) return;
     let modifiedTarget: InterventionProposal | null = null;
     const updated = proposals.map(p => {
       if (p.id === selectedProposal.id) {
@@ -183,7 +206,7 @@ function InterventionsContent() {
 
   const handleAddComment = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canMutateDemoWorkflows(activeRole)) return;
+    if (!canMutateDemoWorkflows(activeRole) || !selectedProposal) return;
     if (!commentText.trim()) return;
 
     const newComment = {
@@ -284,38 +307,51 @@ function InterventionsContent() {
               {t('interventions.activeProposals', 'Active Intervention Proposals')} ({proposals.length})
             </h2>
 
-            <div className="space-y-3">
-              {proposals.map((prop) => {
-                const isSelected = selectedProposal.id === prop.id;
-                return (
-                  <button
-                    key={prop.id}
-                    onClick={() => setSelectedProposal(prop)}
-                    className={`w-full text-left p-3.5 rounded-lg border transition-all ${
-                      isSelected
-                        ? 'bg-subtle/80 border-[#0d5c63] ring-1 ring-[#0d5c63]'
-                        : 'bg-surface hover:bg-subtle/40 border-border'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-text-main line-clamp-1">{t(`interventions.${prop.id}.title`, prop.title)}</span>
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 ${getStatusBadgeClass(prop.status)}`}>
-                        {t(`status.${prop.status}`, prop.status.replace('_', ' ').toUpperCase())}
-                      </span>
-                    </div>
+            {isLoading ? (
+              <div className="space-y-3 animate-pulse">
+                <div className="h-20 bg-subtle rounded-lg"></div>
+                <div className="h-20 bg-subtle rounded-lg"></div>
+                <div className="h-20 bg-subtle rounded-lg"></div>
+              </div>
+            ) : proposals.length > 0 ? (
+              <div className="space-y-3">
+                {proposals.map((prop) => {
+                  const isSelected = selectedProposal?.id === prop.id;
+                  return (
+                    <button
+                      key={prop.id}
+                      onClick={() => setSelectedProposal(prop)}
+                      className={`w-full text-left p-3.5 rounded-lg border transition-all ${
+                        isSelected
+                          ? 'bg-subtle/80 border-[#0d5c63] ring-1 ring-[#0d5c63]'
+                          : 'bg-surface hover:bg-subtle/40 border-border'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-bold text-text-main line-clamp-1">{t(`interventions.${prop.id}.title`, prop.title)}</span>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 ${getStatusBadgeClass(prop.status)}`}>
+                          {t(`status.${prop.status}`, prop.status.replace('_', ' ').toUpperCase())}
+                        </span>
+                      </div>
 
-                    <div className="text-[11px] text-text-muted mt-1 flex items-center justify-between">
-                      <span>{prop.blockName} ({prop.districtName})</span>
-                      <span className="font-semibold text-text-main">₹{(prop.estimatedCostInr / 100000).toFixed(1)} {t('interventions.lakhs', 'Lakhs')}</span>
-                    </div>
+                      <div className="text-[11px] text-text-muted mt-1 flex items-center justify-between">
+                        <span>{prop.blockName} ({prop.districtName})</span>
+                        <span className="font-semibold text-text-main">₹{(prop.estimatedCostInr / 100000).toFixed(1)} {t('interventions.lakhs', 'Lakhs')}</span>
+                      </div>
 
-                    <div className="text-[10px] text-text-muted mt-1.5 line-clamp-2 italic">
-                      &ldquo;{t(`interventions.${prop.id}.rationale`, prop.evidenceRationale)}&rdquo;
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+                      <div className="text-[10px] text-text-muted mt-1.5 line-clamp-2 italic">
+                        &ldquo;{t(`interventions.${prop.id}.rationale`, prop.evidenceRationale)}&rdquo;
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="py-8 text-center text-xs text-text-muted space-y-1">
+                <p className="font-semibold text-text-main">No Proposals Recorded</p>
+                <p>Click &apos;Draft New Proposal&apos; to prepare an intervention proposal.</p>
+              </div>
+            )}
           </div>
 
           {/* Government Scheme Reference Cards */}
@@ -344,42 +380,55 @@ function InterventionsContent() {
         {/* Right Column: Proposal Inspection & Governance Review Panel (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
           <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-5">
-            {/* Header & Status Switcher */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border">
-              <div>
-                <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${getStatusBadgeClass(selectedProposal.status)}`}>
-                  {t('interventions.statusLabel', 'STATUS')}: {t(`status.${selectedProposal.status}`, selectedProposal.status.replace('_', ' ').toUpperCase())}
-                </span>
-                <h2 className="text-lg font-bold text-text-main mt-1">{t(`interventions.${selectedProposal.id}.title`, selectedProposal.title)}</h2>
-                <p className="text-xs text-text-muted">
-                  {t('interventions.proposalId', 'Proposal ID')}: {selectedProposal.id} • {t('interventions.createdDate', 'Created')}: {selectedProposal.createdDate}
-                </p>
-              </div>
-
-              {/* Status Action Buttons */}
-              {!isReadOnly && (
-                <div className="flex flex-wrap items-center gap-2">
-                  <button
-                    onClick={() => handleUpdateStatus('under_review')}
-                    className="px-2.5 py-1 bg-subtle hover:bg-subtle/80 text-text-main text-xs font-semibold rounded border border-border"
-                  >
-                    {t('interventions.underReview', 'Under Review')}
-                  </button>
-                  <button
-                    onClick={() => handleUpdateStatus('field_verification_requested')}
-                    className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold rounded border border-amber-300"
-                  >
-                    {t('interventions.requestSurvey', 'Request Field Survey')}
-                  </button>
-                  <button
-                    onClick={() => handleUpdateStatus('approved')}
-                    className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded"
-                  >
-                    {t('interventions.approveProposal', 'Approve Proposal')}
-                  </button>
+            {isLoading ? (
+              <div className="space-y-4 animate-pulse">
+                <div className="h-6 bg-subtle rounded w-1/3"></div>
+                <div className="h-8 bg-subtle rounded w-2/3"></div>
+                <div className="h-4 bg-subtle rounded w-1/2"></div>
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="h-16 bg-subtle rounded"></div>
+                  <div className="h-16 bg-subtle rounded"></div>
+                  <div className="h-16 bg-subtle rounded"></div>
                 </div>
-              )}
-            </div>
+              </div>
+            ) : selectedProposal ? (
+              <>
+                {/* Header & Status Switcher */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border">
+                  <div>
+                    <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${getStatusBadgeClass(selectedProposal.status)}`}>
+                      {t('interventions.statusLabel', 'STATUS')}: {t(`status.${selectedProposal.status}`, selectedProposal.status.replace('_', ' ').toUpperCase())}
+                    </span>
+                    <h2 className="text-lg font-bold text-text-main mt-1">{t(`interventions.${selectedProposal.id}.title`, selectedProposal.title)}</h2>
+                    <p className="text-xs text-text-muted">
+                      {t('interventions.proposalId', 'Proposal ID')}: {selectedProposal.id} • {t('interventions.createdDate', 'Created')}: {selectedProposal.createdDate}
+                    </p>
+                  </div>
+
+                  {/* Status Action Buttons */}
+                  {!isReadOnly && (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button
+                        onClick={() => handleUpdateStatus('under_review')}
+                        className="px-2.5 py-1 bg-subtle hover:bg-subtle/80 text-text-main text-xs font-semibold rounded border border-border"
+                      >
+                        {t('interventions.underReview', 'Under Review')}
+                      </button>
+                      <button
+                        onClick={() => handleUpdateStatus('field_verification_requested')}
+                        className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold rounded border border-amber-300"
+                      >
+                        {t('interventions.requestSurvey', 'Request Field Survey')}
+                      </button>
+                      <button
+                        onClick={() => handleUpdateStatus('approved')}
+                        className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded"
+                      >
+                        {t('interventions.approveProposal', 'Approve Proposal')}
+                      </button>
+                    </div>
+                  )}
+                </div>
 
             {/* Proposal Details Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -462,9 +511,16 @@ function InterventionsContent() {
                 </form>
               )}
             </div>
+          </>
+        ) : (
+          <div className="py-12 text-center text-xs text-text-muted space-y-1">
+            <p className="font-semibold text-text-main">No Proposal Selected</p>
+            <p>Select a proposal from the list or click &apos;Draft New Proposal&apos; to submit an intervention.</p>
           </div>
-        </div>
+        )}
       </div>
+    </div>
+  </div>
 
       {/* New Proposal Modal */}
       {showNewModal && !isReadOnly && (
@@ -501,7 +557,7 @@ function InterventionsContent() {
                     onChange={(e) => setBlockId(e.target.value)}
                     className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
                   >
-                    {ALL_BLOCKS.map(b => (
+                    {blocksData.map((b: any) => (
                       <option key={b.id} value={b.id}>{b.name} ({b.districtName})</option>
                     ))}
                   </select>

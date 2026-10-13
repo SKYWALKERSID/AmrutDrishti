@@ -2,13 +2,11 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { RiskSeverity } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice } from '@/lib/demo/demoPolicy';
 import { calculateDescriptiveGss } from '@/lib/services/scientificEngine';
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
-
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 function RiskAssessmentContent() {
@@ -17,48 +15,56 @@ function RiskAssessmentContent() {
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
   const [blocksData, setBlocksData] = useState<any[]>([]);
-  const [selectedBlockId, setSelectedBlockId] = useState<string>(ALL_BLOCKS[0].id);
+  const [selectedBlockId, setSelectedBlockId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [overrideReason, setOverrideReason] = useState<string>('');
   const [overrideSeverity, setOverrideSeverity] = useState<RiskSeverity>('severe');
   const [overrideApplied, setOverrideApplied] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
 
   useEffect(() => {
+    let active = true;
     fetch('/api/geospatial/blocks')
       .then(res => res.json())
       .then(data => {
+        if (!active) return;
         if (data.blocks && data.blocks.length > 0) {
           setBlocksData(data.blocks);
           setIsLive(data.source === 'live_database');
-          if (!urlBlockParam) {
+          if (urlBlockParam && data.blocks.some((b: any) => b.id === urlBlockParam)) {
+            setSelectedBlockId(urlBlockParam);
+          } else {
             setSelectedBlockId(data.blocks[0].id);
           }
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (active) setIsLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [urlBlockParam]);
-
-  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_BLOCKS;
-
-  useEffect(() => {
-    if (urlBlockParam) {
-      const validBlock = displayBlocks.find(b => b.id === urlBlockParam);
-      if (validBlock) {
-        setSelectedBlockId(validBlock.id);
-      }
-    }
-  }, [urlBlockParam, displayBlocks]);
 
   const isReadOnly = !canMutateDemoWorkflows(activeRole);
   const restrictionNotice = demoRestrictionNotice(activeRole);
-  const selectedBlock = displayBlocks.find(b => b.id === selectedBlockId) || displayBlocks[0];
+  const selectedBlock = blocksData.find(b => b.id === selectedBlockId) || null;
 
-  const calculatedResult = calculateDescriptiveGss(selectedBlock.indicators);
-  const effectiveSeverity = overrideApplied ? overrideSeverity : (calculatedResult.severity !== 'gap' ? calculatedResult.severity : selectedBlock.riskSeverity);
+  const calculatedResult = selectedBlock ? calculateDescriptiveGss(selectedBlock.indicators) : {
+    score: null,
+    severity: 'gap' as const,
+    confidenceInterval: null,
+    primaryStressDriver: 'Data inputs missing',
+    safeguardNotice: 'Risk score unavailable — Required verified inputs are missing.',
+    normalizationBreakdown: { wellDepthNorm: null, rainDeficitNorm: null, graceTwsaNorm: null, ndviNorm: null }
+  };
+
+  const effectiveSeverity = overrideApplied ? overrideSeverity : (calculatedResult.severity !== 'gap' ? calculatedResult.severity : (selectedBlock?.riskSeverity ?? 'gap'));
 
   const handleApplyOverride = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canMutateDemoWorkflows(activeRole)) return;
+    if (!canMutateDemoWorkflows(activeRole) || !selectedBlock) return;
     if (!overrideReason.trim()) return;
     setOverrideApplied(true);
 
@@ -124,60 +130,82 @@ function RiskAssessmentContent() {
         {/* Left Column: Block Selection & Stress Score Card (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-text-muted">Select Target Block:</span>
-              <div className="flex items-center gap-1.5 text-xs">
-                <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
-                <select
-                  value={selectedBlockId}
-                  onChange={(e) => {
-                    setSelectedBlockId(e.target.value);
-                    setOverrideApplied(false);
-                  }}
-                  className="bg-subtle border border-border rounded px-2.5 py-1 text-xs font-medium text-text-main focus:outline-none"
-                >
-                  {displayBlocks.map((b: any) => (
-                    <option key={b.id} value={b.id}>
-                      {b.name} ({b.districtName})
-                    </option>
-                  ))}
-                </select>
+            {isLoading ? (
+              <div className="space-y-4 animate-pulse">
+                <div className="flex items-center justify-between">
+                  <div className="h-4 bg-subtle rounded w-28"></div>
+                  <div className="h-8 bg-subtle rounded w-36"></div>
+                </div>
+                <div className="p-5 bg-subtle/40 rounded-lg space-y-3">
+                  <div className="h-3 bg-subtle rounded w-1/3 mx-auto"></div>
+                  <div className="h-10 bg-subtle rounded w-24 mx-auto"></div>
+                  <div className="h-4 bg-subtle rounded w-2/3 mx-auto"></div>
+                </div>
+                <div className="h-16 bg-subtle rounded"></div>
               </div>
-            </div>
+            ) : selectedBlock ? (
+              <>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-text-muted">Select Target Block:</span>
+                  <div className="flex items-center gap-1.5 text-xs">
+                    <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
+                    <select
+                      value={selectedBlockId}
+                      onChange={(e) => {
+                        setSelectedBlockId(e.target.value);
+                        setOverrideApplied(false);
+                      }}
+                      className="bg-subtle border border-border rounded px-2.5 py-1 text-xs font-medium text-text-main focus:outline-none"
+                    >
+                      {blocksData.map((b: any) => (
+                        <option key={b.id} value={b.id}>
+                          {b.name} ({b.districtName})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-            {/* Score Display Card */}
-            <div className="p-5 bg-subtle/50 rounded-lg border border-border text-center space-y-2">
-              <div className="text-xs text-text-muted uppercase font-semibold">
-                Calculated Stress Score (0 to 100)
-              </div>
-              <div className="text-4xl font-extrabold text-[#0d5c63]">
-                {calculatedResult.score !== null ? calculatedResult.score : 'N/A'}{' '}
-                <span className="text-sm font-normal text-text-muted">/ 100</span>
-              </div>
-              <div className="text-xs text-text-muted">
-                Confidence Range: {calculatedResult.confidenceInterval
-                  ? `[${calculatedResult.confidenceInterval[0]} - ${calculatedResult.confidenceInterval[1]}]`
-                  : 'Pending field calibration (Mathematical indicator index)'}
-              </div>
-              <div className="pt-2">
-                <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${
-                  effectiveSeverity === 'severe' ? 'badge-severe' : effectiveSeverity === 'normal' ? 'badge-normal' : 'badge-watch'
-                }`}>
-                  {effectiveSeverity.toUpperCase()} PRIORITY
-                </span>
-              </div>
-              <p className="text-[11px] text-text-muted pt-1">
-                Main Contributing Factor: <span className="font-semibold text-text-main">{calculatedResult.primaryStressDriver}</span>
-              </p>
-            </div>
+                {/* Score Display Card */}
+                <div className="p-5 bg-subtle/50 rounded-lg border border-border text-center space-y-2">
+                  <div className="text-xs text-text-muted uppercase font-semibold">
+                    Calculated Stress Score (0 to 100)
+                  </div>
+                  <div className="text-4xl font-extrabold text-[#0d5c63]">
+                    {calculatedResult.score !== null ? calculatedResult.score : 'N/A'}{' '}
+                    <span className="text-sm font-normal text-text-muted">/ 100</span>
+                  </div>
+                  <div className="text-xs text-text-muted">
+                    Confidence Range: {calculatedResult.confidenceInterval
+                      ? `[${calculatedResult.confidenceInterval[0]} - ${calculatedResult.confidenceInterval[1]}]`
+                      : 'Pending field calibration (Mathematical indicator index)'}
+                  </div>
+                  <div className="pt-2">
+                    <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${
+                      effectiveSeverity === 'severe' ? 'badge-severe' : effectiveSeverity === 'normal' ? 'badge-normal' : 'badge-watch'
+                    }`}>
+                      {effectiveSeverity.toUpperCase()} PRIORITY
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-text-muted pt-1">
+                    Main Contributing Factor: <span className="font-semibold text-text-main">{calculatedResult.primaryStressDriver}</span>
+                  </p>
+                </div>
 
-            {/* Assessment Note */}
-            <div className="space-y-1 text-xs">
-              <span className="font-semibold text-text-main">Status Note:</span>
-              <p className="text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
-                {calculatedResult.safeguardNotice}
-              </p>
-            </div>
+                {/* Assessment Note */}
+                <div className="space-y-1 text-xs">
+                  <span className="font-semibold text-text-main">Status Note:</span>
+                  <p className="text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
+                    {calculatedResult.safeguardNotice}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div className="py-8 text-center text-xs text-text-muted space-y-1">
+                <p className="font-semibold text-text-main">No Block Available</p>
+                <p>No verified administrative units returned for risk assessment.</p>
+              </div>
+            )}
           </div>
 
           {/* Human Override Controls */}
@@ -248,69 +276,83 @@ function RiskAssessmentContent() {
               <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Calculated Multi-Criteria Breakdown
             </h2>
 
-            <div className="space-y-3 text-xs">
-              <div className="p-3 bg-blue-50 rounded border border-blue-200 text-[11px] text-blue-950 leading-relaxed">
-                This score is calculated live by combining 4 environmental signals into a weighted 0–100 index. It provides a descriptive estimate of water pressure based on current readings. It is an index, not a ground-measured well depth.
+            {isLoading ? (
+              <div className="space-y-3 animate-pulse">
+                <div className="h-12 bg-subtle rounded"></div>
+                <div className="h-14 bg-subtle rounded"></div>
+                <div className="h-14 bg-subtle rounded"></div>
+                <div className="h-14 bg-subtle rounded"></div>
+                <div className="h-14 bg-subtle rounded"></div>
               </div>
-
-              <div className="space-y-2">
-                {/* 1. CGWB Well Depth */}
-                <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
-                  <div>
-                    <span className="font-semibold text-text-main">CGWB Well Water Depth</span>
-                    <p className="text-[11px] text-text-muted">
-                      Current: {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m below ground` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.wellDepthNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.wellDepthNorm * 100)}%` : 'N/A'}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <span className="font-bold text-[#0d5c63]">35%</span>
-                    <span className="block text-[10px] text-text-muted">Base Weight</span>
-                  </div>
+            ) : selectedBlock ? (
+              <div className="space-y-3 text-xs">
+                <div className="p-3 bg-blue-50 rounded border border-blue-200 text-[11px] text-blue-950 leading-relaxed">
+                  This score is calculated live by combining 4 environmental signals into a weighted 0–100 index. It provides a descriptive estimate of water pressure based on current readings. It is an index, not a ground-measured well depth.
                 </div>
 
-                {/* 2. Rainfall Deficit */}
-                <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
-                  <div>
-                    <span className="font-semibold text-text-main">Monsoon Rainfall Deficit</span>
-                    <p className="text-[11px] text-text-muted">
-                      Current: {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm vs normal` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.rainDeficitNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.rainDeficitNorm * 100)}%` : 'N/A'}
-                    </p>
+                <div className="space-y-2">
+                  {/* 1. CGWB Well Depth */}
+                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                    <div>
+                      <span className="font-semibold text-text-main">CGWB Well Water Depth</span>
+                      <p className="text-[11px] text-text-muted">
+                        Current: {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m below ground` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.wellDepthNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.wellDepthNorm * 100)}%` : 'N/A'}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-[#0d5c63]">35%</span>
+                      <span className="block text-[10px] text-text-muted">Base Weight</span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <span className="font-bold text-[#0d5c63]">30%</span>
-                    <span className="block text-[10px] text-text-muted">Base Weight</span>
-                  </div>
-                </div>
 
-                {/* 3. GRACE TWSA */}
-                <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
-                  <div>
-                    <span className="font-semibold text-text-main">Satellite Water Storage (GRACE-FO)</span>
-                    <p className="text-[11px] text-text-muted">
-                      Current: {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm regional anomaly` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.graceTwsaNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.graceTwsaNorm * 100)}%` : 'N/A'}
-                    </p>
+                  {/* 2. Rainfall Deficit */}
+                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                    <div>
+                      <span className="font-semibold text-text-main">Monsoon Rainfall Deficit</span>
+                      <p className="text-[11px] text-text-muted">
+                        Current: {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm vs normal` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.rainDeficitNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.rainDeficitNorm * 100)}%` : 'N/A'}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-[#0d5c63]">30%</span>
+                      <span className="block text-[10px] text-text-muted">Base Weight</span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <span className="font-bold text-[#0d5c63]">20%</span>
-                    <span className="block text-[10px] text-text-muted">Base Weight</span>
-                  </div>
-                </div>
 
-                {/* 4. Sentinel NDVI */}
-                <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
-                  <div>
-                    <span className="font-semibold text-text-main">Plant Health / Crop Greenness (NDVI)</span>
-                    <p className="text-[11px] text-text-muted">
-                      Current: {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.ndviNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.ndviNorm * 100)}%` : 'N/A'}
-                    </p>
+                  {/* 3. GRACE TWSA */}
+                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                    <div>
+                      <span className="font-semibold text-text-main">Satellite Water Storage (GRACE-FO)</span>
+                      <p className="text-[11px] text-text-muted">
+                        Current: {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm regional anomaly` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.graceTwsaNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.graceTwsaNorm * 100)}%` : 'N/A'}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-[#0d5c63]">20%</span>
+                      <span className="block text-[10px] text-text-muted">Base Weight</span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <span className="font-bold text-[#0d5c63]">15%</span>
-                    <span className="block text-[10px] text-text-muted">Base Weight</span>
+
+                  {/* 4. Sentinel NDVI */}
+                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                    <div>
+                      <span className="font-semibold text-text-main">Plant Health / Crop Greenness (NDVI)</span>
+                      <p className="text-[11px] text-text-muted">
+                        Current: {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.ndviNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.ndviNorm * 100)}%` : 'N/A'}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-[#0d5c63]">15%</span>
+                      <span className="block text-[10px] text-text-muted">Base Weight</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="py-8 text-center text-xs text-text-muted">
+                Indicator details unavailable.
+              </div>
+            )}
           </div>
 
           {/* Validation & Operational Status */}

@@ -64,10 +64,13 @@ export async function GET(request: NextRequest) {
   // 1. Resolve Block Metadata
   const block = ALL_BLOCKS.find(
     (b) => b.id === requestedParam || BLOCK_SLUG_TO_UNIT_ID[b.id] === requestedParam
-  ) || ALL_BLOCKS[0];
+  );
 
-  const unitId = BLOCK_SLUG_TO_UNIT_ID[block.id] || BLOCK_SLUG_TO_UNIT_ID[requestedParam];
-  const currentDepth = block.indicators.cgwbWellDepthMbgl ?? null;
+  const unitId = (block ? BLOCK_SLUG_TO_UNIT_ID[block.id] : null) || BLOCK_SLUG_TO_UNIT_ID[requestedParam] || requestedParam;
+  const currentDepth = block?.indicators.cgwbWellDepthMbgl ?? null;
+  const blockId = block ? block.id : requestedParam;
+  const blockName = block ? block.name : requestedParam;
+  const districtName = block ? block.districtName : 'Pilot District';
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -114,9 +117,9 @@ export async function GET(request: NextRequest) {
     // If horizon or origin provenance is invalid, present honest unavailable state
     if (isHorizonInconsistent) {
       return NextResponse.json({
-        blockId: block.id,
-        blockName: block.name,
-        districtName: block.districtName,
+        blockId,
+        blockName,
+        districtName,
         modelIdentifier: rawPred.model_id || 'quantile_gb_v1.0',
         modelVersion: '1.0.0',
         modelStatus: 'unavailable',
@@ -184,9 +187,9 @@ export async function GET(request: NextRequest) {
     const primaryModelId = rawPred.model_id || 'quantile_gb_v1.0';
 
     return NextResponse.json({
-      blockId: block.id,
-      blockName: block.name,
-      districtName: block.districtName,
+      blockId,
+      blockName,
+      districtName,
       modelIdentifier: primaryModelId,
       modelVersion: '1.0.0',
       modelStatus: 'research_prototype',
@@ -204,9 +207,9 @@ export async function GET(request: NextRequest) {
 
   // 4. Honest Unavailable Response
   return NextResponse.json({
-    blockId: block.id,
-    blockName: block.name,
-    districtName: block.districtName,
+    blockId,
+    blockName,
+    districtName,
     modelIdentifier: 'none',
     modelVersion: 'none',
     modelStatus: 'unavailable',

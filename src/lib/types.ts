@@ -26,7 +26,7 @@ export interface EnvironmentalIndicators {
 }
 
 export interface RiskAssessmentDetails {
-  descriptiveStressScore: number;  // 0 - 100 transparent aggregated score
+  descriptiveStressScore: number | null;  // 0 - 100 transparent aggregated score, or null if missing/uncomputed
   confidenceInterval: [number, number] | null; // [lower, upper] bounds or null if unavailable/uncalibrated
   dataStatus: DataStatusType;
   validationStatus: 'validated' | 'demonstration_only' | 'pending_field_review';

@@ -1,5 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+
+process.env.JALDRISHTI_DEMO_MODE = 'true';
+
 import { fetchBlocksGeospatialData } from '../src/lib/services/geospatialService.ts';
 import { fetchHistoricalObservations } from '../src/lib/services/historicalObservationService.ts';
 import { ALL_BLOCKS } from '../src/lib/data/bundelkhand.ts';

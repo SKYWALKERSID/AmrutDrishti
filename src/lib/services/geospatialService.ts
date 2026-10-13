@@ -9,8 +9,8 @@ export interface GeospatialQueryResult {
   /**
    * Origin of the data:
    *   'live_database'        — rows fetched from configured Supabase instance.
-   *   'demonstration_fixture' — local fixture data (no DB configured or DB error).
-   *   'fallback_empty'        — DB reachable but returned no usable results.
+   *   'demonstration_fixture' — local fixture data (only in explicit JALDRISHTI_DEMO_MODE).
+   *   'fallback_empty'        — DB unconfigured, error, or returned no usable results.
    */
   source: 'live_database' | 'demonstration_fixture' | 'fallback_empty';
   /**
@@ -33,6 +33,7 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   const fetchedAt = new Date().toISOString();
+  const isExplicitDemo = process.env.JALDRISHTI_DEMO_MODE === 'true';
 
   const demo = (message: string): GeospatialQueryResult => ({
     blocks: ALL_BLOCKS,
@@ -43,9 +44,21 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
     errorMessage: message
   });
 
+  const emptyResult = (message: string): GeospatialQueryResult => ({
+    blocks: [],
+    source: 'fallback_empty',
+    isDemonstrationData: true,
+    totalCount: 0,
+    fetchedAt,
+    errorMessage: message
+  });
+
   // 1. Check Environment Variables
   if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('placeholder')) {
-    return demo('Supabase environment unconfigured; using coherent prototype demonstration fixtures.');
+    if (isExplicitDemo) {
+      return demo('Supabase environment unconfigured; explicit JALDRISHTI_DEMO_MODE enabled.');
+    }
+    return emptyResult('Supabase environment unconfigured; live geospatial records unavailable.');
   }
 
   try {
@@ -68,11 +81,17 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
       .eq('unit_type', 'block');
 
     if (unitsError) {
-      return demo(`Database query error (administrative_units): ${unitsError.message}. Using demonstration fixtures.`);
+      if (isExplicitDemo) {
+        return demo(`Database query error (administrative_units): ${unitsError.message}. Using demonstration fixtures.`);
+      }
+      return emptyResult(`Database query error (administrative_units): ${unitsError.message}.`);
     }
 
     if (!units || units.length === 0) {
-      return demo('No administrative units returned from database. Using demonstration fixtures.');
+      if (isExplicitDemo) {
+        return demo('No administrative units returned from database. Using demonstration fixtures.');
+      }
+      return emptyResult('No administrative units returned from database.');
     }
 
     // 3. Query derived_indicators ordered by assessed_date DESC for deduplication
@@ -95,13 +114,7 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
       }
     }
 
-    // If the database has administrative units but zero derived indicators or zero populated metrics,
-    // fallback cleanly to the complete demonstration fixtures so all UI analytics, scoring, and charts function.
-    if (indicatorMap.size === 0) {
-      return demo('Database contains units but no derived indicators or verified observations. Using coherent prototype demonstration fixtures.');
-    }
-
-    // 4. Map DB Rows to BlockData Model
+    // 4. Map DB Rows to BlockData Model (preserves data gaps cleanly if indicatorMap is empty)
     const mappedBlocks: BlockData[] = (units as AdministrativeUnitRow[]).map(unit => {
       const indicator = indicatorMap.get(unit.unit_id) || null;
       return mapDbRowToBlockData(unit, indicator);
@@ -119,7 +132,10 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
     };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error during geospatial data fetch';
-    return demo(`Geospatial service exception: ${message}. Using demonstration fixtures.`);
+    if (isExplicitDemo) {
+      return demo(`Geospatial service exception: ${message}. Using demonstration fixtures.`);
+    }
+    return emptyResult(`Geospatial service exception: ${message}.`);
   }
 }
 

@@ -9,7 +9,7 @@ type MapLayer = 'risk' | 'grace' | 'rainfall' | 'wells' | 'sentinel';
 
 interface LeafletMapProps {
   blocks: BlockData[];
-  selectedBlockId: string;
+  selectedBlockId?: string;
   activeLayer: MapLayer;
   onSelectBlock: (block: BlockData) => void;
 }
@@ -19,22 +19,27 @@ function markerColor(block: BlockData, layer: MapLayer): string {
     case 'risk':
       if (block.riskSeverity === 'severe') return '#dc2626';
       if (block.riskSeverity === 'watch') return '#f59e0b';
-      return '#059669';
+      if (block.riskSeverity === 'normal') return '#059669';
+      return '#6b7280'; // honest gap representation
 
     case 'grace':
-      return (block.indicators.graceTwsaCm ?? 0) < -6 ? '#dc2626' : '#f59e0b';
+      if (block.indicators.graceTwsaCm === null) return '#6b7280';
+      return block.indicators.graceTwsaCm < -6 ? '#dc2626' : '#f59e0b';
 
     case 'rainfall':
-      return (block.indicators.rainfallAnomalyMm ?? 0) < -200
+      if (block.indicators.rainfallAnomalyMm === null) return '#6b7280';
+      return block.indicators.rainfallAnomalyMm < -200
         ? '#dc2626'
         : '#2563eb';
 
     case 'wells':
-      return (block.indicators.cgwbWellDepthMbgl ?? 0) > 14
+      if (block.indicators.cgwbWellDepthMbgl === null) return '#6b7280';
+      return block.indicators.cgwbWellDepthMbgl > 14
         ? '#dc2626'
         : '#059669';
 
     case 'sentinel':
+      if (block.indicators.sentinelNdvi === null) return '#6b7280';
       return '#0d5c63';
   }
 }
@@ -42,7 +47,7 @@ function markerColor(block: BlockData, layer: MapLayer): string {
 function layerValue(block: BlockData, layer: MapLayer, noDataText: string): string {
   switch (layer) {
     case 'risk':
-      return `${block.assessment.descriptiveStressScore}/100`;
+      return block.assessment.descriptiveStressScore !== null ? `${block.assessment.descriptiveStressScore}/100` : noDataText;
     case 'grace':
       return block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm} cm` : noDataText;
     case 'rainfall':

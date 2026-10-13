@@ -24,14 +24,12 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const [contrastCategoryFilter, setContrastCategoryFilter] = useState<'all' | 'high_stress' | 'low_stress'>('all');
   const [blocksData, setBlocksData] = useState<BlockData[]>([]);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
-    source: 'demonstration_fixture',
-    isDemonstration: true
+    source: 'loading',
+    isDemonstration: false
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const [selectedBlock, setSelectedBlock] = useState<BlockData>(
-    ALL_BLOCKS.find((b) => b.id === initialBlockId) || ALL_BLOCKS[0]
-  );
+  const [selectedBlock, setSelectedBlock] = useState<BlockData | null>(null);
   const [activeLayer, setActiveLayer] = useState<'risk' | 'grace' | 'rainfall' | 'wells' | 'sentinel'>('risk');
   const [selectedDistrictFilter, setSelectedDistrictFilter] = useState<string>('all');
 
@@ -45,13 +43,14 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           if (json.blocks && Array.isArray(json.blocks)) {
             setBlocksData(json.blocks);
             setDataSourceInfo({
-              source: json.source || 'demonstration_fixture',
-              isDemonstration: json.isDemonstrationData ?? true,
+              source: json.source || 'fallback_empty',
+              isDemonstration: json.isDemonstrationData ?? false,
               errorMessage: json.errorMessage
             });
             if (initialBlockId) {
               const matched = json.blocks.find((b: BlockData) => b.id === initialBlockId);
               if (matched) setSelectedBlock(matched);
+              else if (json.blocks.length > 0) setSelectedBlock(json.blocks[0]);
             } else if (json.blocks.length > 0) {
               setSelectedBlock(json.blocks[0]);
             }
@@ -96,10 +95,10 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     }
   };
 
-  // Switch between Bundelkhand Pilot and National Contrast datasets
+  // Switch between Bundelkhand Pilot and National Contrast datasets without fixture fallback
   const activeScopeBlocks: BlockData[] =
     mapScope === 'bundelkhand'
-      ? (blocksData.length > 0 ? blocksData : ALL_BLOCKS)
+      ? blocksData
       : (
         contrastCategoryFilter === 'high_stress'
           ? HIGH_STRESS_STATE_DISTRICTS.flatMap(d => d.blocks)
@@ -122,6 +121,22 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const filteredBlocks = activeScopeBlocks.filter(
     (b) => selectedDistrictFilter === 'all' || b.districtId === selectedDistrictFilter
   );
+
+  useEffect(() => {
+    if (mapScope === 'contrast') {
+      if (!selectedBlock || !filteredBlocks.some(b => b.id === selectedBlock.id)) {
+        if (filteredBlocks.length > 0) setSelectedBlock(filteredBlocks[0]);
+      }
+    } else {
+      if (filteredBlocks.length > 0) {
+        if (!selectedBlock || !filteredBlocks.some(b => b.id === selectedBlock.id)) {
+          setSelectedBlock(filteredBlocks[0]);
+        }
+      } else if (!isLoading) {
+        setSelectedBlock(null);
+      }
+    }
+  }, [filteredBlocks, mapScope, isLoading]);
 
   return (
     <div className="space-y-5">
@@ -158,7 +173,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               onClick={() => {
                 setMapScope('bundelkhand');
                 setSelectedDistrictFilter('all');
-                setSelectedBlock(ALL_BLOCKS[0]);
+                setSelectedBlock(blocksData.length > 0 ? blocksData[0] : null);
               }}
               className={`px-3 py-1.5 rounded font-medium text-xs transition-colors ${
                 mapScope === 'bundelkhand'
@@ -325,10 +340,30 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </div>
             </div>
 
+            {/* Map Loading & Empty Overlays */}
+            {isLoading && mapScope === 'bundelkhand' && (
+              <div className="absolute inset-0 z-20 bg-surface/50 backdrop-blur-[1px] flex items-center justify-center">
+                <div className="bg-surface border border-border px-4 py-2 rounded shadow-md text-xs font-medium text-text-main flex items-center gap-2">
+                  <div className="w-3.5 h-3.5 border-2 border-[#0d5c63] border-t-transparent rounded-full animate-spin"></div>
+                  {t('monitoring.loading', 'Loading verified geospatial layers...')}
+                </div>
+              </div>
+            )}
+            {!isLoading && filteredBlocks.length === 0 && (
+              <div className="absolute inset-0 z-20 bg-surface/85 flex items-center justify-center p-6 text-center">
+                <div className="max-w-sm space-y-2">
+                  <p className="font-semibold text-sm text-text-main">No Observation Units Found</p>
+                  <p className="text-xs text-text-muted">
+                    {dataSourceInfo.errorMessage || 'No published geospatial units are currently available for this selection.'}
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* GIS Leaflet Map Container */}
             <LeafletMap
               blocks={filteredBlocks}
-              selectedBlockId={selectedBlock.id}
+              selectedBlockId={selectedBlock?.id}
               activeLayer={activeLayer}
               onSelectBlock={setSelectedBlock}
             />
@@ -338,94 +373,133 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         {/* Right Column: Block Details Inspector Panel (4 cols) */}
         <div className="lg:col-span-4">
           <div className="bg-surface border border-border rounded-lg p-4 sm:p-5 shadow-card space-y-4 sm:space-y-5 lg:sticky lg:top-24">
-            {/* Header */}
-            <div>
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
-                  {t('explorer.blockDetails', 'Block Details')}
-                </span>
-                <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${getSeverityBadgeClass(selectedBlock.riskSeverity)}`}>
-                  {getSeverityText(selectedBlock.riskSeverity)}
-                </span>
+            {isLoading ? (
+              <div className="space-y-4 animate-pulse" data-testid="map-inspector-loading">
+                <div className="flex items-center justify-between">
+                  <div className="h-4 bg-subtle rounded w-28"></div>
+                  <div className="h-4 bg-subtle rounded w-16"></div>
+                </div>
+                <div className="h-6 bg-subtle rounded w-3/4"></div>
+                <div className="h-4 bg-subtle rounded w-1/2"></div>
+                <div className="space-y-3 bg-subtle/50 p-3.5 rounded-lg border border-border">
+                  <div className="h-4 bg-subtle rounded w-full"></div>
+                  <div className="h-4 bg-subtle rounded w-full"></div>
+                  <div className="h-4 bg-subtle rounded w-full"></div>
+                  <div className="h-4 bg-subtle rounded w-full"></div>
+                  <div className="h-5 bg-subtle rounded w-1/2 pt-2 border-t border-border/60"></div>
+                </div>
+                <div className="space-y-2">
+                  <div className="h-3.5 bg-subtle rounded w-1/3"></div>
+                  <div className="h-12 bg-subtle rounded"></div>
+                </div>
+                <div className="space-y-2 pt-2 border-t border-border">
+                  <div className="h-9 bg-subtle rounded"></div>
+                  <div className="h-8 bg-subtle rounded"></div>
+                </div>
               </div>
-              <h2 className="text-lg sm:text-xl font-bold text-text-main mt-1">{selectedBlock.name} Block</h2>
-              <p className="text-xs text-text-muted">
-                {selectedBlock.districtName} District, {selectedBlock.state}
-              </p>
-            </div>
+            ) : selectedBlock ? (
+              <>
+                {/* Header */}
+                <div>
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                      {t('explorer.blockDetails', 'Block Details')}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${getSeverityBadgeClass(selectedBlock.riskSeverity)}`}>
+                      {getSeverityText(selectedBlock.riskSeverity)}
+                    </span>
+                  </div>
+                  <h2 className="text-lg sm:text-xl font-bold text-text-main mt-1">{selectedBlock.name} Block</h2>
+                  <p className="text-xs text-text-muted">
+                    {selectedBlock.districtName} District, {selectedBlock.state}
+                  </p>
+                </div>
 
-            {/* Key Indicators Grid */}
-            <div className="space-y-3 bg-subtle/50 p-3 sm:p-3.5 rounded-lg border border-border">
-              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                <span className="text-text-muted flex items-center gap-1 min-w-0">
-                  <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> <span className="truncate">{t('layer.grace', 'Satellite Water Storage Estimate')}:</span>
-                </span>
-                <span className="font-bold text-text-main shrink-0 ml-auto">
-                  {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
-                </span>
+                {/* Key Indicators Grid */}
+                <div className="space-y-3 bg-subtle/50 p-3 sm:p-3.5 rounded-lg border border-border">
+                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                    <span className="text-text-muted flex items-center gap-1 min-w-0">
+                      <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> <span className="truncate">{t('layer.grace', 'Satellite Water Storage Estimate')}:</span>
+                    </span>
+                    <span className="font-bold text-text-main shrink-0 ml-auto">
+                      {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                    <span className="text-text-muted flex items-center gap-1 min-w-0">
+                      <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> <span className="truncate">{t('layer.rainfall', 'Rainfall Difference')}:</span>
+                    </span>
+                    <span className="font-bold text-text-main shrink-0 ml-auto">
+                      {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                    <span className="text-text-muted flex items-center gap-1 min-w-0">
+                      <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> <span className="truncate">{t('layer.wells', 'Groundwater Monitoring Wells')}:</span>
+                    </span>
+                    <span className="font-bold text-text-main shrink-0 ml-auto">
+                      {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('monitoring.noData', 'No Data')}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                    <span className="text-text-muted truncate min-w-0">{t('layer.sentinel', 'Satellite Vegetation Information')}:</span>
+                    <span className="font-bold text-text-main shrink-0 ml-auto">
+                      {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2 flex-wrap gap-1">
+                    <span className="text-text-muted font-semibold">{t('explorer.sampleStressScore', 'Sample Stress Score')}:</span>
+                    <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-auto">
+                      {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Possible Contributing Factors & Safeguard Notice */}
+                <div className="space-y-2">
+                  <span className="text-xs font-bold text-text-main">{t('explorer.possibleDrivers', 'Possible Contributing Factors')}:</span>
+                  <p className="text-xs text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
+                    {selectedBlock.assessment.primaryStressDriver || 'No primary stress driver recorded.'}
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <span className="text-xs font-bold text-text-main">{t('explorer.importantInfo', 'Important Information')}:</span>
+                  <p className="text-[11px] text-text-muted bg-amber-50/60 border border-amber-200 p-2.5 rounded leading-relaxed">
+                    {selectedBlock.assessment.safeguardNotice || 'Groundwater data derived from empirical observation feeds.'}
+                  </p>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="space-y-2 pt-2 border-t border-border">
+                  <Link
+                    href={`/interventions?block=${selectedBlock.id}`}
+                    className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2.5 rounded-md flex items-center justify-center gap-2 transition-colors shadow-sm"
+                  >
+                    {t('explorer.suggestSolution', 'Suggest a Solution')} →
+                  </Link>
+                  <Link
+                    href={`/alerts?block=${selectedBlock.id}`}
+                    className="w-full bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold py-2 rounded-md flex items-center justify-center gap-2 transition-colors"
+                  >
+                    {t('explorer.previewAdvisory', 'Preview Advisory')}
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <div className="py-12 text-center text-xs text-text-muted space-y-2" data-testid="map-inspector-empty">
+                <p className="font-semibold text-sm text-text-main">No Unit Selected</p>
+                <p>
+                  {mapScope === 'bundelkhand' && blocksData.length === 0
+                    ? 'No published geospatial units are currently available from the database.'
+                    : 'Click a monitoring block marker on the map to inspect observed telemetry and indicators.'}
+                </p>
               </div>
-
-              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                <span className="text-text-muted flex items-center gap-1 min-w-0">
-                  <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> <span className="truncate">{t('layer.rainfall', 'Rainfall Difference')}:</span>
-                </span>
-                <span className="font-bold text-text-main shrink-0 ml-auto">
-                  {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                <span className="text-text-muted flex items-center gap-1 min-w-0">
-                  <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> <span className="truncate">{t('layer.wells', 'Groundwater Monitoring Wells')}:</span>
-                </span>
-                <span className="font-bold text-text-main shrink-0 ml-auto">
-                  {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('monitoring.noData', 'No Data')}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                <span className="text-text-muted truncate min-w-0">{t('layer.sentinel', 'Satellite Vegetation Information')}:</span>
-                <span className="font-bold text-text-main shrink-0 ml-auto">
-                  {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2 flex-wrap gap-1">
-                <span className="text-text-muted font-semibold">{t('explorer.sampleStressScore', 'Sample Stress Score')}:</span>
-                <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-auto">{selectedBlock.assessment.descriptiveStressScore}/100</span>
-              </div>
-            </div>
-
-            {/* Possible Contributing Factors & Safeguard Notice */}
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-text-main">{t('explorer.possibleDrivers', 'Possible Contributing Factors')}:</span>
-              <p className="text-xs text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
-                {selectedBlock.assessment.primaryStressDriver}
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-text-main">{t('explorer.importantInfo', 'Important Information')}:</span>
-              <p className="text-[11px] text-text-muted bg-amber-50/60 border border-amber-200 p-2.5 rounded leading-relaxed">
-                {selectedBlock.assessment.safeguardNotice}
-              </p>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="space-y-2 pt-2 border-t border-border">
-              <Link
-                href={`/interventions?block=${selectedBlock.id}`}
-                className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2.5 rounded-md flex items-center justify-center gap-2 transition-colors shadow-sm"
-              >
-                {t('explorer.suggestSolution', 'Suggest a Solution')} →
-              </Link>
-              <Link
-                href={`/alerts?block=${selectedBlock.id}`}
-                className="w-full bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold py-2 rounded-md flex items-center justify-center gap-2 transition-colors"
-              >
-                {t('explorer.previewAdvisory', 'Preview Advisory')}
-              </Link>
-            </div>
+            )}
           </div>
         </div>
       </div>

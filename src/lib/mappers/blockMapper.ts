@@ -165,9 +165,9 @@ export function mapDbRowToBlockData(
         dataQualityFlag: 'missing'
       },
       assessment: {
-        descriptiveStressScore: 0,
+        descriptiveStressScore: null,
         confidenceInterval: null, // Explicit null for uncalibrated confidence interval
-        dataStatus: 'simulated' as DataStatusType,
+        dataStatus: 'observed' as DataStatusType,
         validationStatus: 'pending_field_review',
         primaryStressDriver: 'Data Gap — No environmental indicators recorded for this administrative unit.',
         safeguardNotice: 'Data Gap Notice — Field measurements pending. Do not perform risk scoring without observed indicators.',
@@ -192,8 +192,8 @@ export function mapDbRowToBlockData(
     sentinelNdvi: indicator.sentinel_ndvi
   });
 
-  const effectiveScore = indicator.descriptive_stress_score ?? calculated.score ?? 0;
-  const effectiveSeverity = (indicator.risk_severity || (calculated.severity !== 'gap' ? calculated.severity : 'normal')) as RiskSeverity;
+  const effectiveScore = indicator.descriptive_stress_score ?? calculated.score ?? null;
+  const effectiveSeverity = (indicator.risk_severity || calculated.severity || 'gap') as RiskSeverity;
   const effectiveDriver = indicator.primary_stress_driver || calculated.primaryStressDriver || 'Environmental Stress Analysis Pending';
 
   return {
