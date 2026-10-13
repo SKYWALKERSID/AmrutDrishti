@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { BUNDELKHAND_DISTRICTS, ALL_BLOCKS } from '@/lib/data/bundelkhand';
+import { BUNDELKHAND_DISTRICTS } from '@/lib/data/bundelkhand';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { summarizeBlocks, SIMULATED_DATA_LABEL } from '@/lib/demo/demoPolicy';
 import type { BlockData } from '@/lib/types';
@@ -95,9 +95,13 @@ export default function OverviewDashboard() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
-              <span className="font-semibold text-text-main">
-                Pilot Geography: Bundelkhand Region ({summary.districtCount} Districts, {summary.total} Blocks)
-              </span>
+              {isLoading ? (
+                <span className="inline-block h-3.5 bg-subtle rounded w-52 animate-pulse"></span>
+              ) : (
+                <span className="font-semibold text-text-main">
+                  Pilot Geography: Bundelkhand Region ({summary.districtCount} Districts, {summary.total} Blocks)
+                </span>
+              )}
               <span>•</span>
               <span>CGWB Observation Network Active</span>
             </div>
