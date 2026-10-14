@@ -218,17 +218,10 @@ function MonitoringContent() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-surface border border-border rounded p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-surface border border-border rounded p-5 sm:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
-            <span className="font-semibold text-text-main">
-              CGWB & NWIC Groundwater Well Network
-            </span>
-            <span>•</span>
-            <span>Nationwide Telemetry & Contrast Baseline (8 States)</span>
-          </div>
-          <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
-            <ActivityChartIcon className="w-5 h-5 text-[#0d5c63]" /> {t('monitoring.title', 'Groundwater Monitoring & Trends')}
+          <h1 className="text-xl font-bold text-text-main">
+            {t('monitoring.title', 'Groundwater Monitoring & Trends')}
           </h1>
           <p className="text-xs text-text-muted mt-1">
             {t('monitoring.subtitle', 'Track verified groundwater telemetry and multi-source hydrological indicators.')}
@@ -430,8 +423,8 @@ function MonitoringContent() {
       <div className="bg-surface border border-border rounded p-5 shadow-sm space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
           <div>
-            <h2 className="text-sm font-semibold text-text-main flex items-center gap-2">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Multi-Horizon Seasonal Depth Projections
+            <h2 className="text-sm font-semibold text-text-main">
+              Multi-Horizon Seasonal Depth Projections
             </h2>
             <p className="text-xs text-text-muted mt-0.5">
               Quantile baseline projections ({forecastData?.modelIdentifier || 'ML Provenance Verified'}) with P10–P90 uncertainty intervals.

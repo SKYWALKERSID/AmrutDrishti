@@ -32,10 +32,15 @@ export default function RootLayout({
               {children}
             </main>
             <footer className="bg-surface border-t border-border mt-12 py-5 text-xs text-text-muted">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <p className="font-semibold text-text-main">JalDrishti (जलदृष्टि) — Satellite-Assisted Groundwater Intelligence Platform</p>
-                <div className="flex items-center gap-4 text-text-muted text-xs">
-                  <a href="/data-sources" className="hover:underline text-[#0d5c63]">Data Sources</a>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <p className="font-semibold text-text-main">JalDrishti (जलदृष्टि) — Satellite-Assisted Groundwater Intelligence Platform</p>
+                  <div className="flex items-center gap-4 text-text-muted text-xs">
+                    <a href="/data-sources" className="hover:underline text-[#0d5c63]">Data Sources</a>
+                  </div>
+                </div>
+                <div className="pt-2 border-t border-border text-[11px] leading-relaxed text-text-muted">
+                  <span className="font-semibold text-text-main">Disclaimer:</span> All indicators are derived from verified Central Ground Water Board (CGWB) observation wells, National Water Informatics Centre telemetry, and satellite products across 8 active states (Madhya Pradesh, Uttar Pradesh, Punjab, Rajasthan, Haryana, Arunachal Pradesh, Sikkim, Assam). Missing observations are preserved as unavailable data and never fabricated.
                 </div>
               </div>
             </footer>

@@ -129,20 +129,19 @@ export default function OverviewDashboard() {
         </div>
       </div>
 
-      {/* Flagged Priority Water Security Monitoring Section */}
+      {/* High Water Stress Blocks Section */}
       <div className="bg-surface border border-border rounded p-5 shadow-sm space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
-          <div>
-            <h2 className="text-base font-bold text-text-main tracking-tight flex items-center gap-2">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Priority Groundwater Monitoring Units
-            </h2>
-            <p className="text-xs text-text-muted mt-0.5">
-              Empirical observation stations indicating high drawdown, arid extraction, or critical storage depletion.
-            </p>
-          </div>
-          <span className="text-xs text-text-muted font-medium bg-subtle px-2 py-0.5 rounded border border-border">
-            {isLoading ? t('monitoring.loading', 'Loading live database...') : severeCount > 0 ? `${severeCount} flagged of ${summary.total} monitored blocks` : `${displayBlocks.length} monitored blocks active`}
-          </span>
+        <div className="border-b border-border pb-3">
+          <h2 className="text-base font-bold text-text-main tracking-tight">
+            High Water Stress Blocks
+          </h2>
+          <p className="text-xs text-text-muted mt-0.5">
+            {isLoading
+              ? t('monitoring.loading', 'Loading live database...')
+              : severeCount > 0
+              ? `${severeCount} flagged of ${summary.total} monitored blocks`
+              : `${displayBlocks.length} monitored blocks active`}
+          </p>
         </div>
 
         {isLoading ? (
@@ -202,7 +201,7 @@ export default function OverviewDashboard() {
                         <span className="text-text-muted text-[11px]">{block.districtName} District, {block.state}</span>
                       </div>
                       <div className="text-right">
-                        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded border ${badgeBg}`}>
+                        <span className={`text-xs font-bold ${isSevere ? 'text-red-700' : isWatch ? 'text-amber-700' : 'text-emerald-700'}`}>
                           GSS: {block.assessment.descriptiveStressScore !== null ? `${block.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
                         </span>
                         <span className="block text-[10px] text-text-muted capitalize mt-0.5">
@@ -332,9 +331,6 @@ export default function OverviewDashboard() {
         <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'CGWB Mean Well Depth')}</span>
-            <div className="p-1.5 rounded bg-subtle text-text-main">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" />
-            </div>
           </div>
           <div className="mt-3">
             {isLoading ? (
@@ -354,8 +350,8 @@ export default function OverviewDashboard() {
         {/* Controls Header with State & District Cascades */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border">
           <div>
-            <h2 className="text-base font-bold text-text-main flex items-center gap-2">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> {t('overview.tableTitle', 'Block Evidence & Risk Directory')}
+            <h2 className="text-base font-bold text-text-main">
+              {t('overview.tableTitle', 'Block Evidence & Risk Directory')}
             </h2>
             <p className="text-xs text-text-muted">
               Select a state and district to filter groundwater observation indicators, ML scores, and telemetry status.
@@ -511,12 +507,12 @@ export default function OverviewDashboard() {
 
                       <td className="py-3.5 px-4">
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold ${
+                          className={`font-semibold text-xs ${
                             isSevere
-                              ? 'badge-severe'
+                              ? 'text-red-700'
                               : isWatch
-                              ? 'badge-watch'
-                              : 'badge-normal'
+                              ? 'text-amber-700'
+                              : 'text-emerald-700'
                           }`}
                         >
                           {isSevere ? 'High Alert' : isWatch ? 'Needs Monitoring' : 'Normal Water Level'}
@@ -538,17 +534,6 @@ export default function OverviewDashboard() {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* Scientific Safeguards and Methodology Disclaimer */}
-      <div className="bg-subtle/60 border border-border rounded-lg p-5 text-xs text-text-muted space-y-2">
-        <div className="flex items-center gap-2 font-bold text-text-main">
-          <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" />
-          <span>{t('overview.protocolTitle', 'Scientific Governance & Transparency Protocol')}</span>
-        </div>
-        <p className="leading-relaxed">
-          <strong>Data Provenance Notice:</strong> All indicators are derived from verified Central Ground Water Board (CGWB) observation wells, National Water Informatics Centre telemetry, and satellite products across 8 active states (Madhya Pradesh, Uttar Pradesh, Punjab, Rajasthan, Haryana, Arunachal Pradesh, Sikkim, Assam). Missing observations are preserved as unavailable data and never fabricated.
-        </p>
       </div>
     </div>
   );

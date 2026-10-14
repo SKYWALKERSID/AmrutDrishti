@@ -273,8 +273,8 @@ function RiskAssessmentContent() {
                       : 'Pending field calibration (Mathematical indicator index)'}
                   </div>
                   <div className="pt-2">
-                    <span className={`inline-block px-3 py-1 rounded text-xs font-bold ${
-                      effectiveSeverity === 'severe' ? 'badge-severe' : effectiveSeverity === 'normal' ? 'badge-normal' : 'badge-watch'
+                    <span className={`text-sm font-bold ${
+                      effectiveSeverity === 'severe' ? 'text-red-700' : effectiveSeverity === 'normal' ? 'text-emerald-700' : 'text-amber-700'
                     }`}>
                       {effectiveSeverity.toUpperCase()} PRIORITY
                     </span>
@@ -364,8 +364,8 @@ function RiskAssessmentContent() {
         <div className="lg:col-span-7 space-y-6">
           {/* Formula Breakdown */}
           <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
-            <h2 className="text-base font-bold text-text-main flex items-center gap-2">
-              <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Calculated Multi-Criteria Breakdown
+            <h2 className="text-base font-bold text-text-main">
+              Calculated Multi-Criteria Breakdown
             </h2>
 
             {isLoading ? (

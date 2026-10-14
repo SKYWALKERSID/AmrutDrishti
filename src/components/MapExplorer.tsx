@@ -518,7 +518,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                     <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
                       {t('explorer.blockDetails', 'Block Details')}
                     </span>
-                    <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${getSeverityBadgeClass(selectedBlock.riskSeverity)}`}>
+                    <span className={`text-xs font-bold ${
+                      selectedBlock.riskSeverity === 'severe'
+                        ? 'text-red-700'
+                        : selectedBlock.riskSeverity === 'watch'
+                        ? 'text-amber-700'
+                        : 'text-emerald-700'
+                    }`}>
                       {getSeverityText(selectedBlock.riskSeverity)}
                     </span>
                   </div>
@@ -532,7 +538,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 <div className="space-y-3 bg-subtle/50 p-3 sm:p-3.5 rounded-lg border border-border">
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
                     <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> <span className="truncate">Well Depth:</span>
+                      <span className="truncate">Well Depth:</span>
                     </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
