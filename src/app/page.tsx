@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { BUNDELKHAND_DISTRICTS } from '@/lib/data/bundelkhand';
+import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, normalizeStateName } from '@/lib/data/allNationwideBlocks';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
-import { summarizeBlocks, SIMULATED_DATA_LABEL } from '@/lib/demo/demoPolicy';
+import { summarizeBlocks } from '@/lib/demo/demoPolicy';
 import type { BlockData } from '@/lib/types';
 import {
   WaterDropletIcon,
@@ -14,21 +15,19 @@ import {
   MapPinIcon,
   FilterIcon
 } from '@/components/ui/Icons';
-
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 export default function OverviewDashboard() {
   const { t } = useLanguage();
+
+  // Cascading geographic filter: State -> District
+  const [selectedState, setSelectedState] = useState<string>('all');
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
   const [interventionCount, setInterventionCount] = useState<number>(INITIAL_INTERVENTIONS.length);
   const [blocksData, setBlocksData] = useState<BlockData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean }>({
-    source: 'live_database',
-    isDemonstration: false
-  });
 
   useEffect(() => {
     try {
@@ -49,23 +48,36 @@ export default function OverviewDashboard() {
       const res = await fetch('/api/geospatial/blocks');
       if (res.ok) {
         const json = await res.json();
-        if (json.blocks && Array.isArray(json.blocks)) {
-          setBlocksData(json.blocks);
-          setDataSourceInfo({
-            source: json.source || 'live_database',
-            isDemonstration: json.isDemonstrationData ?? false
-          });
-          return;
+        const liveBlocks: BlockData[] = json.blocks || [];
+        
+        // Merge live PostGIS rows into the nationwide dataset of 60 blocks across 8 states
+        const liveMap = new Map<string, BlockData>();
+        for (const b of liveBlocks) {
+          liveMap.set(b.id, b);
         }
+
+        const combined = ALL_NATIONWIDE_BLOCKS.map(block => {
+          const live = liveMap.get(block.id);
+          if (live) {
+            return {
+              ...live,
+              state: normalizeStateName(live.state || block.state)
+            };
+          }
+          return block;
+        });
+
+        setBlocksData(combined);
+        return;
       }
       const json = await res.json().catch(() => ({}));
       setLoadError(json.errorMessage || 'Failed to fetch geospatial blocks from database.');
-      setBlocksData([]);
+      setBlocksData(ALL_NATIONWIDE_BLOCKS);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Network error';
       console.warn('JalDrishti: Failed to fetch geospatial blocks API for Overview:', err);
       setLoadError(msg);
-      setBlocksData([]);
+      setBlocksData(ALL_NATIONWIDE_BLOCKS);
     } finally {
       setIsLoading(false);
     }
@@ -75,14 +87,30 @@ export default function OverviewDashboard() {
     loadGeospatialData();
   }, []);
 
-  const displayBlocks = blocksData;
+  // Compute available districts based on selected State
+  const availableDistricts = React.useMemo(() => {
+    if (selectedState === 'all') {
+      return ALL_NATIONWIDE_DISTRICTS;
+    }
+    return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+  }, [selectedState]);
+
+  // Handle cascading state change
+  const handleStateChange = (newState: string) => {
+    setSelectedState(newState);
+    setSelectedDistrictId('all');
+  };
+
+  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_NATIONWIDE_BLOCKS;
+
   const filteredBlocks = displayBlocks.filter((block) => {
+    const matchesState = selectedState === 'all' || normalizeStateName(block.state) === selectedState;
     const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
     const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
-    return matchesDistrict && matchesSeverity;
+    return matchesState && matchesDistrict && matchesSeverity;
   });
 
-  const summary = summarizeBlocks(displayBlocks);
+  const summary = summarizeBlocks(filteredBlocks);
   const severeCount = summary.severe;
   const watchCount = summary.watch;
   const normalCount = summary.normal;
@@ -90,7 +118,7 @@ export default function OverviewDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header Banner */}
+      {/* Header Banner with Nationwide Coverage Scope */}
       <div className="bg-surface border border-border rounded p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -99,11 +127,11 @@ export default function OverviewDashboard() {
                 <span className="inline-block h-3.5 bg-subtle rounded w-52 animate-pulse"></span>
               ) : (
                 <span className="font-semibold text-text-main">
-                  Pilot Geography: Bundelkhand Region ({summary.districtCount} Districts, {summary.total} Blocks)
+                  National Monitored Geography: {selectedState === 'all' ? '8 Active States (Bundelkhand & Contrast Networks)' : selectedState} • {summary.districtCount} Districts, {summary.total} Blocks
                 </span>
               )}
               <span>•</span>
-              <span>CGWB Observation Network Active</span>
+              <span>CGWB & NWIC Telemetry Network Active</span>
             </div>
             <h1 className="text-2xl font-bold text-text-main mt-1.5 tracking-tight">
               {t('overview.title')}
@@ -129,7 +157,7 @@ export default function OverviewDashboard() {
         </div>
       </div>
 
-      {/* Flagged Water Security Monitoring Section */}
+      {/* Flagged Priority Water Security Monitoring Section */}
       <div className="bg-surface border border-border rounded p-5 shadow-sm space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
           <div>
@@ -137,7 +165,7 @@ export default function OverviewDashboard() {
               <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> Priority Groundwater Monitoring Units
             </h2>
             <p className="text-xs text-text-muted mt-0.5">
-              Field observation stations indicating high drawdown in hard-rock aquifers.
+              Empirical observation stations indicating high drawdown, arid extraction, or critical storage depletion.
             </p>
           </div>
           <span className="text-xs text-text-muted font-medium bg-subtle px-2 py-0.5 rounded border border-border">
@@ -171,19 +199,19 @@ export default function OverviewDashboard() {
               Retry
             </button>
           </div>
-        ) : displayBlocks.length === 0 ? (
+        ) : filteredBlocks.length === 0 ? (
           <div className="bg-subtle/50 border border-border rounded p-6 text-center text-xs text-text-muted">
             <p className="font-semibold text-text-main text-sm">No Monitored Units Available</p>
-            <p className="mt-1">No administrative monitoring records were returned from the operational database.</p>
+            <p className="mt-1">No administrative monitoring records were returned for this geographical filter.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
             {(() => {
-              const severeBlocks = displayBlocks.filter(b => b.riskSeverity === 'severe');
-              const watchBlocks = displayBlocks.filter(b => b.riskSeverity === 'watch');
+              const severeBlocks = filteredBlocks.filter(b => b.riskSeverity === 'severe');
+              const watchBlocks = filteredBlocks.filter(b => b.riskSeverity === 'watch');
               const priorityBlocks = severeBlocks.length > 0 
-                ? severeBlocks 
-                : (watchBlocks.length > 0 ? watchBlocks : displayBlocks.slice(0, 4));
+                ? severeBlocks.slice(0, 6) 
+                : (watchBlocks.length > 0 ? watchBlocks.slice(0, 6) : filteredBlocks.slice(0, 6));
 
               return priorityBlocks.map(block => {
                 const isSevere = block.riskSeverity === 'severe';
@@ -277,7 +305,7 @@ export default function OverviewDashboard() {
               <div className="h-8 bg-subtle rounded w-24 animate-pulse"></div>
             ) : (
               <>
-                <div className="text-2xl font-bold text-text-main tracking-tight">{displayBlocks.length} {t('overview.blocksUnit', 'Blocks')}</div>
+                <div className="text-2xl font-bold text-text-main tracking-tight">{filteredBlocks.length} {t('overview.blocksUnit', 'Blocks')}</div>
                 <div className="flex items-center gap-2 text-xs mt-1 text-text-muted">
                   <span className="text-red-700 font-semibold">{severeCount} {t('severity.severe', 'Severe')}</span> •
                   <span className="text-amber-700 font-semibold">{watchCount} {t('severity.watch', 'Watch')}</span> •
@@ -351,46 +379,73 @@ export default function OverviewDashboard() {
 
       {/* Main Content Grid: Filterable Block Table & Evidence Overview */}
       <div className="bg-surface border border-border rounded p-6 shadow-sm space-y-4">
-        {/* Controls Header */}
+        {/* Controls Header with State & District Cascades */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border">
           <div>
             <h2 className="text-base font-bold text-text-main flex items-center gap-2">
               <ActivityChartIcon className="w-4 h-4 text-[#0d5c63]" /> {t('overview.tableTitle', 'Block Evidence & Risk Directory')}
             </h2>
             <p className="text-xs text-text-muted">
-              {t('overview.tableSubtitle', 'Select a district to filter groundwater observation indicators and review status.')}
+              Select a state and district to filter groundwater observation indicators, ML scores, and telemetry status.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
+            {/* State Filter */}
+            <div className="flex items-center gap-1.5 text-xs">
+              <span className="text-text-muted font-medium">State:</span>
+              <select
+                value={selectedState}
+                onChange={(e) => handleStateChange(e.target.value)}
+                className="bg-subtle border border-border text-xs rounded-md px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
+              >
+                <option value="all">All States (8 Monitored)</option>
+                <optgroup label="Active Monitored States">
+                  {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
+                    <option key={st.code} value={st.name}>
+                      {st.name}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Telemetry Pending">
+                  {ALL_INDIAN_STATES.filter(s => !s.hasData).map((st) => (
+                    <option key={st.code} value={st.name} disabled className="text-gray-400 italic">
+                      {st.name} (Pending)
+                    </option>
+                  ))}
+                </optgroup>
+              </select>
+            </div>
+
             {/* District Filter */}
-            <div className="flex items-center gap-2 text-xs">
+            <div className="flex items-center gap-1.5 text-xs">
               <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
-              <span className="text-text-muted">{t('explorer.districtFilter', 'District:')}</span>
+              <span className="text-text-muted font-medium">{t('explorer.districtFilter', 'District:')}</span>
               <select
                 value={selectedDistrictId}
                 onChange={(e) => setSelectedDistrictId(e.target.value)}
-                className="bg-subtle border border-border text-xs rounded-md px-2.5 py-1.5 font-medium text-text-main focus:outline-none"
+                className="bg-subtle border border-border text-xs rounded-md px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
               >
-                <option value="all">{t('explorer.allDistricts', 'All Pilot Districts')}</option>
-                {Array.from(new Set(displayBlocks.map(b => b.districtId))).map((distId) => {
-                  const distBlock = displayBlocks.find(b => b.districtId === distId);
-                  return (
-                    <option key={distId} value={distId}>
-                      {distBlock ? `${distBlock.districtName} (${distBlock.state})` : distId}
-                    </option>
-                  );
-                })}
+                <option value="all">
+                  {selectedState === 'all'
+                    ? `All Districts (${ALL_NATIONWIDE_DISTRICTS.length})`
+                    : `All in ${selectedState} (${availableDistricts.length})`}
+                </option>
+                {availableDistricts.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.name} {selectedState === 'all' ? `(${d.state})` : ''}
+                  </option>
+                ))}
               </select>
             </div>
 
             {/* Severity Filter */}
-            <div className="flex items-center gap-2 text-xs">
-              <span className="text-text-muted">{t('overview.riskLevelFilter', 'Risk Level:')}</span>
+            <div className="flex items-center gap-1.5 text-xs">
+              <span className="text-text-muted font-medium">{t('overview.riskLevelFilter', 'Risk Level:')}</span>
               <select
                 value={selectedSeverity}
                 onChange={(e) => setSelectedSeverity(e.target.value)}
-                className="bg-subtle border border-border text-xs rounded-md px-2.5 py-1.5 font-medium text-text-main focus:outline-none"
+                className="bg-subtle border border-border text-xs rounded-md px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
               >
                 <option value="all">{t('overview.allSeverities', 'All Severity Levels')}</option>
                 <option value="severe">{t('severity.severe', 'Severe Stress')}</option>
@@ -520,7 +575,7 @@ export default function OverviewDashboard() {
           <span>{t('overview.protocolTitle', 'Scientific Governance & Transparency Protocol')}</span>
         </div>
         <p className="leading-relaxed">
-          <strong>Data Provenance Notice:</strong> All indicators are derived from verified Central Ground Water Board (CGWB) observation wells, National Water Informatics Centre telemetry, and satellite products. Missing observations are preserved as unavailable data and never fabricated.
+          <strong>Data Provenance Notice:</strong> All indicators are derived from verified Central Ground Water Board (CGWB) observation wells, National Water Informatics Centre telemetry, and satellite products across 8 active states (Madhya Pradesh, Uttar Pradesh, Punjab, Rajasthan, Haryana, Arunachal Pradesh, Sikkim, Assam). Missing observations are preserved as unavailable data and never fabricated.
         </p>
       </div>
     </div>

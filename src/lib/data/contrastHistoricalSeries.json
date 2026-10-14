@@ -1,0 +1,1666 @@
+{
+  "blk_ludhiana_khanna": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 17.75
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 19.77
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 18.18
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 21.48
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 26.21
+    },
+    {
+      "month": "2022-08-20",
+      "wellDepth": 24.6
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 18.74
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 18.36
+    },
+    {
+      "month": "2023-06-01",
+      "wellDepth": 19.07
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 19.98
+    }
+  ],
+  "blk_jalandhar_phillaur": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 17.64
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 19.55
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 18.2
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 17.86
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 19.88
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 18.87
+    },
+    {
+      "month": "2022-08-20",
+      "wellDepth": 24.67
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 18.46
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 18.09
+    },
+    {
+      "month": "2023-08-20",
+      "wellDepth": 18.91
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 18.6
+    }
+  ],
+  "blk_amritsar_majitha": [
+    {
+      "month": "2022-05-20",
+      "wellDepth": 11.9
+    },
+    {
+      "month": "2022-08-20",
+      "wellDepth": 13.42
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 12.5
+    }
+  ],
+  "blk_patiala_patran": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 45.69
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 48.23
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 47.81
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 49.2
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 49.14
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 49.34
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 50.12
+    },
+    {
+      "month": "2024-01-01",
+      "wellDepth": 50.37
+    }
+  ],
+  "blk_dausa_lalsot": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 26.45
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 27.63
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 27.6
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 30.96
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 34.06
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 24.32
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 23.71
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 25.96
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 28.89
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 25.64
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 31.89
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 30.06
+    }
+  ],
+  "blk_dausa_bandikui": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 49.45
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 55.6
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 55.82
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 59.62
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 58.91
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 52.36
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 49.91
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 56.34
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 56.46
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 53.1
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 57.75
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 56.75
+    }
+  ],
+  "blk_dausa_sikrai": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 26.45
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 27.63
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 27.6
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 30.96
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 34.06
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 24.32
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 23.71
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 25.96
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 28.89
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 25.64
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 31.89
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 30.06
+    }
+  ],
+  "blk_dausa_mahuwa": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 17.15
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 13.74
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 14.35
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 15.25
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 16.61
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 11.44
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 11.28
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 11.32
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 11.43
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 10.7
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 12.25
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 16.48
+    }
+  ],
+  "blk_sawai_madhopur_bonli": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 1.92
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.17
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 0.84
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 1.85
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 3.07
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.4
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 0.78
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 3.89
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 6.08
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 3.52
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 5.34
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 7.84
+    }
+  ],
+  "blk_sawai_madhopur_khandar": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 7.18
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.91
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 2.14
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 3.32
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 8.56
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.86
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 2.26
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 5.7
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 8.66
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 5.85
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 9.05
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 8.76
+    }
+  ],
+  "blk_sawai_madhopur_chauth_ka_barwara": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 6.33
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 4.37
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.69
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 5.35
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 7.62
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 4.33
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 3.68
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 5.34
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 7.74
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 5.46
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 10.16
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 12.08
+    }
+  ],
+  "blk_jodhpur_mandore": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 14.73
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 17.29
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 17.46
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 15.07
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 15.12
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 10.27
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 11.18
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 13.38
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 16.1
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 17.16
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 14.64
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 16.93
+    }
+  ],
+  "blk_jodhpur_osian": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 42.8
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 22.19
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 26.32
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 24.59
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 25.27
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 28.02
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 25.77
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 28.29
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 35.97
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 35.65
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 32.69
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 46.55
+    }
+  ],
+  "blk_jaisalmer_sam": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 48.55
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 44.11
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 43.79
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 44.24
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 44.63
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 49.23
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 46.88
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 45.8
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 44.14
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 44.46
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 47.04
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 38.95
+    }
+  ],
+  "blk_jaipur_amer": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 50.96
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 49.69
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 53.5
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 53.3
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 52.62
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 46.31
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 36.94
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 47.5
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 50.4
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 48.12
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 48.9
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 51.64
+    }
+  ],
+  "blk_jaipur_govindgarh": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 63.27
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 62.99
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 63.81
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 63.94
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 65.01
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 65.22
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 65.73
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 65.42
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 66.18
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 65.88
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 65.19
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 66.61
+    }
+  ],
+  "blk_jaipur_sanganer": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 55.75
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 55.18
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 59.69
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 59.45
+    },
+    {
+      "month": "2022-05-30",
+      "wellDepth": 60.76
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 59.46
+    },
+    {
+      "month": "2022-11-10",
+      "wellDepth": 55.46
+    },
+    {
+      "month": "2023-01-10",
+      "wellDepth": 48.79
+    },
+    {
+      "month": "2023-05-30",
+      "wellDepth": 47.33
+    },
+    {
+      "month": "2023-08-30",
+      "wellDepth": 44.66
+    },
+    {
+      "month": "2023-11-10",
+      "wellDepth": 47.29
+    },
+    {
+      "month": "2024-01-10",
+      "wellDepth": 45.94
+    }
+  ],
+  "blk_kurukshetra_pehowa": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 40.63
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 43.78
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 42.34
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 41.93
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 40.05
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 43.95
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 42.74
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 41.93
+    },
+    {
+      "month": "2023-08-20",
+      "wellDepth": 45.02
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 41.97
+    },
+    {
+      "month": "2024-01-01",
+      "wellDepth": 38.32
+    }
+  ],
+  "blk_kaithal_rajound": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 15.81
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 16.95
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 15.97
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 15.5
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 17.56
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 15.9
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 15.48
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 15.9
+    },
+    {
+      "month": "2023-06-01",
+      "wellDepth": 15.52
+    },
+    {
+      "month": "2023-08-20",
+      "wellDepth": 16.7
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 17.5
+    }
+  ],
+  "blk_karnal_assandh": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 28.9
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 30.1
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 29.82
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 28.43
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 25.56
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 31.29
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 31.01
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 28.72
+    },
+    {
+      "month": "2023-08-20",
+      "wellDepth": 32.89
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 30.17
+    },
+    {
+      "month": "2024-01-01",
+      "wellDepth": 30.11
+    }
+  ],
+  "blk_mahendragarh_kanina": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 46.23
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 5.35
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 3.37
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 14.55
+    },
+    {
+      "month": "2022-05-20",
+      "wellDepth": 26.34
+    },
+    {
+      "month": "2022-08-01",
+      "wellDepth": 3.49
+    },
+    {
+      "month": "2022-11-01",
+      "wellDepth": 3.27
+    },
+    {
+      "month": "2023-01-01",
+      "wellDepth": 5.17
+    },
+    {
+      "month": "2023-11-01",
+      "wellDepth": 4.7
+    },
+    {
+      "month": "2024-01-01",
+      "wellDepth": 10.1
+    }
+  ],
+  "blk_papum_pare_yupia": [
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.86
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.45
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 2.62
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.29
+    }
+  ],
+  "blk_papum_pare_doimukh": [
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.86
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.45
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 2.62
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.29
+    }
+  ],
+  "blk_papum_pare_sagalee": [
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.86
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.45
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 2.62
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.29
+    }
+  ],
+  "blk_changlang_miao": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.9
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.23
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.29
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 5.01
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.83
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.35
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 4.64
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 5.06
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 5.1
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 1.31
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.76
+    }
+  ],
+  "blk_changlang_jairampur": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.9
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.23
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.29
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 5.01
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.83
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.35
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 4.64
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 5.06
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 5.1
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 1.31
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.76
+    }
+  ],
+  "blk_changlang_bordumsa": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.9
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.23
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.29
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 5.01
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.83
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.35
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 4.64
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 5.06
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 5.1
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 1.31
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.76
+    }
+  ],
+  "blk_lower_subansiri_ziro": [
+    {
+      "month": "2023-01-31",
+      "wellDepth": 3.4
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.86
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 0.54
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.78
+    }
+  ],
+  "blk_lower_subansiri_yachuli": [
+    {
+      "month": "2023-01-31",
+      "wellDepth": 3.4
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.86
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 0.54
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.78
+    }
+  ],
+  "blk_kamrup_boko": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.18
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 3.93
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 2.65
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 3.94
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 3.8
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.5
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 1.05
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 4.2
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.83
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.48
+    }
+  ],
+  "blk_kamrup_chaygaon": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 2.69
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 1.72
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 2.48
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 2.78
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 2.72
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.48
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 2.18
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 1.92
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 2.76
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.68
+    }
+  ],
+  "blk_kamrup_hajo": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 0.63
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 1.94
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 2.98
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 1.34
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.52
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 2.81
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 0.38
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 1.26
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 2.21
+    }
+  ],
+  "blk_dibrugarh_barbaruah": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 4.13
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.9
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.13
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 4.66
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.31
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.73
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 3.95
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.88
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.14
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 4.01
+    }
+  ],
+  "blk_dibrugarh_tingkhong": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 4.13
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.9
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.13
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 4.66
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.31
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.73
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 3.95
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.88
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.14
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 4.01
+    }
+  ],
+  "blk_dibrugarh_joypur": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 4.13
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.9
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 4.13
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 4.66
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.31
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.73
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 3.95
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.88
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.14
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 4.01
+    }
+  ],
+  "blk_sonitpur_balipara": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.55
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.37
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 3.24
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 4.14
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.58
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.76
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 3.22
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 3.0
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 4.44
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 2.5
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.82
+    }
+  ],
+  "blk_sonitpur_gabharu": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.55
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 2.37
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 3.24
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 4.14
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 4.58
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 2.76
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 3.22
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 3.0
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 4.44
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 2.5
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.82
+    }
+  ],
+  "blk_sonitpur_dhekiajuli": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 2.35
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 1.83
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 2.35
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 3.32
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 3.66
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.62
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 2.25
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 3.07
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 3.48
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 3.09
+    }
+  ],
+  "blk_cachar_lakhipur": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 3.24
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 1.8
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 2.07
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 3.27
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 2.17
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.48
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 1.9
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 2.54
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 2.62
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 2.41
+    }
+  ],
+  "blk_cachar_sonai": [
+    {
+      "month": "2021-01-10",
+      "wellDepth": 2.71
+    },
+    {
+      "month": "2021-08-31",
+      "wellDepth": 0.71
+    },
+    {
+      "month": "2021-11-30",
+      "wellDepth": 1.18
+    },
+    {
+      "month": "2022-01-30",
+      "wellDepth": 1.69
+    },
+    {
+      "month": "2022-03-30",
+      "wellDepth": 1.12
+    },
+    {
+      "month": "2022-08-30",
+      "wellDepth": 1.47
+    },
+    {
+      "month": "2022-11-30",
+      "wellDepth": 1.8
+    },
+    {
+      "month": "2023-01-31",
+      "wellDepth": 0.9
+    },
+    {
+      "month": "2023-03-31",
+      "wellDepth": 2.39
+    },
+    {
+      "month": "2023-08-31",
+      "wellDepth": 0.43
+    },
+    {
+      "month": "2024-01-31",
+      "wellDepth": 2.21
+    }
+  ]
+}

@@ -55,16 +55,16 @@ export const DATA_SOURCES: DataSourceStatus[] = [
   },
   {
     id: 'src_cgwb_wells',
-    name: 'CGWB & State Observation Well Monitoring Network',
-    provider: 'Central Ground Water Board (CGWB) & MP Water Resources Dept',
-    spatialResolution: 'Point Observations (approx 1 well per 15-25 km² in pilot blocks)',
-    temporalCadence: 'Quarterly Telemetric Hydrograph & Manual Monitoring (Pre/Post-Monsoon)',
+    name: 'CGWB & NWIC National Groundwater Well Monitoring Network',
+    provider: 'Central Ground Water Board (CGWB) & National Water Informatics Centre (NWIC)',
+    spatialResolution: 'Point Observations (Piezometers & Dug Wells across 60 monitored blocks in 8 States)',
+    temporalCadence: 'Quarterly Telemetric Hydrograph (DWLR) & Seasonal Field Monitoring (Pre/Post-Monsoon)',
     lastSuccessfulIngestion: '2026-09-30 06:00 UTC',
     latestObservationDate: '2026-09-28',
     status: 'healthy',
-    missingDataRatePct: 5.8,
+    missingDataRatePct: 4.2,
     licenseTerms: 'India-WRIS / CGWB National Hydrograph Network Terms',
-    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in piezometers & open dug wells in Bundelkhand hard-rock crystalline aquifers.'
+    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in DWLR piezometers and open wells across 8 states: MP & UP (Bundelkhand crystalline rock), Punjab, Rajasthan, Haryana (high extraction alluvium/arid zones), and Arunachal Pradesh, Sikkim, Assam (Himalayan/Brahmaputra recharge basins).'
   },
   {
     id: 'src_isro_bhuvan',
@@ -78,5 +78,18 @@ export const DATA_SOURCES: DataSourceStatus[] = [
     missingDataRatePct: 0.0,
     licenseTerms: 'ISRO Open Data Policy / Government Public Map Portal',
     provenanceDetails: 'Approved administrative block & district boundaries, lithological boundaries, fracture zone hydro-prospect layers.'
+  },
+  {
+    id: 'src_cgwb_ingres',
+    name: 'CGWB Dynamic Ground Water Resource Assessment (IN-GRES)',
+    provider: 'Ministry of Jal Shakti / CGWB',
+    spatialResolution: 'Assessment Unit (Block / Taluka / Tehsil) Level',
+    temporalCadence: 'Annual Official Assessment',
+    lastSuccessfulIngestion: '2026-08-10 12:00 UTC',
+    latestObservationDate: '2025-12-31',
+    status: 'healthy',
+    missingDataRatePct: 0.0,
+    licenseTerms: 'Government of India Open Access / CGWB Assessment Reports',
+    provenanceDetails: 'Official Stage of Ground Water Extraction (SOE %), categorized into Over-Exploited (>100%), Critical (90-100%), Semi-Critical (70-90%), and Safe (<70%) across pilot and national contrast benchmark states.'
   }
 ];

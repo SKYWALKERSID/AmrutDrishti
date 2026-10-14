@@ -6,7 +6,10 @@ import { INTERVENTION_SCHEMES } from '@/lib/data/schemes';
 import { InterventionProposal, UserRole } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice, SCHEME_UNVERIFIED_NOTICE } from '@/lib/demo/demoPolicy';
-import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon } from '@/components/ui/Icons';
+import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon, FilterIcon } from '@/components/ui/Icons';
+import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 
 const STORAGE_KEY_PROPOSALS = 'jaldrishti_interventions_v1';
 
@@ -18,9 +21,10 @@ function InterventionsContent() {
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
 
-  const [proposals, setProposals] = useState<InterventionProposal[]>([]);
-  const [selectedProposal, setSelectedProposal] = useState<InterventionProposal | null>(null);
-  const [blocksData, setBlocksData] = useState<any[]>([]);
+  const [proposals, setProposals] = useState<InterventionProposal[]>(INITIAL_INTERVENTIONS);
+  const [selectedProposal, setSelectedProposal] = useState<InterventionProposal | null>(INITIAL_INTERVENTIONS[0] || null);
+  const [blocksData, setBlocksData] = useState<any[]>(ALL_NATIONWIDE_BLOCKS);
+  const [selectedStateFilter, setSelectedStateFilter] = useState<string>('all');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showNewModal, setShowNewModal] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -30,7 +34,7 @@ function InterventionsContent() {
 
   // New Proposal Form State
   const [title, setTitle] = useState('');
-  const [blockId, setBlockId] = useState('');
+  const [blockId, setBlockId] = useState(ALL_NATIONWIDE_BLOCKS[0]?.id || '');
   const [schemeId, setSchemeId] = useState(INTERVENTION_SCHEMES[0].id);
   const [targetVillage, setTargetVillage] = useState('');
   const [estimatedCost, setEstimatedCost] = useState('2000000');
@@ -55,9 +59,10 @@ function InterventionsContent() {
         if (geoRes.status === 'fulfilled' && geoRes.value.ok && active) {
           const geoJson = await geoRes.value.json();
           if (Array.isArray(geoJson.blocks)) {
-            setBlocksData(geoJson.blocks);
-            if (geoJson.blocks.length > 0) {
-              setBlockId(geoJson.blocks[0].id);
+            const merged = mergeWithLiveBlocks(geoJson.blocks);
+            setBlocksData(merged);
+            if (merged.length > 0) {
+              setBlockId(merged[0].id);
             }
           }
         }
@@ -303,9 +308,25 @@ function InterventionsContent() {
         {/* Left Column: Proposals List (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
           <div className="bg-surface border border-border rounded-lg p-4 shadow-card">
-            <h2 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">
-              {t('interventions.activeProposals', 'Active Intervention Proposals')} ({proposals.length})
-            </h2>
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <h2 className="text-xs font-bold text-text-muted uppercase tracking-wider">
+                {t('interventions.activeProposals', 'Active Intervention Proposals')} ({proposals.filter(p => {
+                  if (selectedStateFilter === 'all') return true;
+                  const b = blocksData.find(blk => blk.id === p.blockId);
+                  return b ? normalizeStateName(b.state) === selectedStateFilter : true;
+                }).length})
+              </h2>
+              <select
+                value={selectedStateFilter}
+                onChange={(e) => setSelectedStateFilter(e.target.value)}
+                className="bg-subtle border border-border rounded px-2 py-1 text-[11px] font-medium text-text-main focus:outline-none cursor-pointer"
+              >
+                <option value="all">All States</option>
+                {ALL_INDIAN_STATES.filter(s => s.hasData).map(st => (
+                  <option key={st.code} value={st.name}>{st.name}</option>
+                ))}
+              </select>
+            </div>
 
             {isLoading ? (
               <div className="space-y-3 animate-pulse">
@@ -315,7 +336,11 @@ function InterventionsContent() {
               </div>
             ) : proposals.length > 0 ? (
               <div className="space-y-3">
-                {proposals.map((prop) => {
+                {proposals.filter(p => {
+                  if (selectedStateFilter === 'all') return true;
+                  const b = blocksData.find(blk => blk.id === p.blockId);
+                  return b ? normalizeStateName(b.state) === selectedStateFilter : true;
+                }).map((prop) => {
                   const isSelected = selectedProposal?.id === prop.id;
                   return (
                     <button

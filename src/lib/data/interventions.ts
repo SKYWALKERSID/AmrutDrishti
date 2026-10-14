@@ -1,6 +1,7 @@
 import { InterventionProposal } from '../types';
 
 export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
+  // Madhya Pradesh / Uttar Pradesh (Bundelkhand Pilot)
   {
     id: 'prop_tikamgarh_01',
     title: 'Check Dam & Piezometer Network Augmentation at Kundeshwar Catchment',
@@ -103,6 +104,99 @@ export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
         authorRole: 'bdo',
         date: '2026-10-01',
         text: 'Sanctioned under NRM allocation.'
+      }
+    ]
+  },
+
+  // Punjab (Over-Exploited Red Zone)
+  {
+    id: 'prop_punjab_khanna_01',
+    title: 'Paddy Direct-Seeded Rice (DSR) Transition & Submersible Metering Infrastructure',
+    blockId: 'blk_ludhiana_khanna',
+    blockName: 'Khanna',
+    districtName: 'Ludhiana',
+    schemeId: 'sch_atal_bhujal',
+    schemeName: 'Atal Bhujal Yojana (Atal Jal)',
+    proposedByRole: 'district_collector',
+    proposedByName: 'District Agricultural Office, Ludhiana',
+    targetVillage: 'Alour & Bhamaddi Gram Panchayats',
+    estimatedCostInr: 2500000,
+    beneficiariesCount: 5200,
+    evidenceRationale: 'Official CGWB/NWIC well depth is 24.18m bgl with -0.92 m/yr continuous decline and Stage of Extraction exceeding 165%. Urgent demand-side intervention required.',
+    missingEvidenceNotes: 'Piezometric pressure transducer installation in deeper alluvial aquifer layers.',
+    reviewOwnerRole: 'district_collector',
+    reviewOwnerName: 'Deputy Commissioner / Collector Office, Ludhiana',
+    status: 'under_review',
+    createdDate: '2026-10-08',
+    lastUpdatedDate: '2026-10-10',
+    comments: [
+      {
+        authorName: 'DC Ludhiana Office',
+        authorRole: 'district_collector',
+        date: '2026-10-08',
+        text: 'Priority block flagged for underground pipeline irrigation and laser leveling subsidy.'
+      }
+    ]
+  },
+
+  // Rajasthan (Critical Arid Red Zone)
+  {
+    id: 'prop_rajasthan_dausa_01',
+    title: 'Macro-Catchment Bunding & Rooftop Rainwater Harvesting Structures',
+    blockId: 'blk_dausa_main',
+    blockName: 'Dausa',
+    districtName: 'Dausa',
+    schemeId: 'sch_mgnrega_water',
+    schemeName: 'MGNREGA Water Conservation Works',
+    proposedByRole: 'bdo',
+    proposedByName: 'BDO Office, Dausa',
+    targetVillage: 'Bhandarej & Sainthal Belt',
+    estimatedCostInr: 1800000,
+    beneficiariesCount: 4100,
+    evidenceRationale: 'Critical water level depth of 28.4m bgl in older alluvium quartzite contact zone, accompanied by severe rainfall anomaly (-240mm).',
+    missingEvidenceNotes: 'Topographic contour elevation survey for check bund placement.',
+    reviewOwnerRole: 'district_collector',
+    reviewOwnerName: 'District Collectorate, Dausa',
+    status: 'approved',
+    createdDate: '2026-10-05',
+    lastUpdatedDate: '2026-10-11',
+    comments: [
+      {
+        authorName: 'BDO Dausa',
+        authorRole: 'bdo',
+        date: '2026-10-05',
+        text: 'MGNREGA water conservation approval granted by District Council.'
+      }
+    ]
+  },
+
+  // Assam (Pristine Recharge / Brahmaputra Basin Benchmark)
+  {
+    id: 'prop_assam_hajo_01',
+    title: 'Community Wetland (Beel) Conservation & Shallow Aquifer Protection Sanctuary',
+    blockId: 'blk_kamrup_hajo',
+    blockName: 'Hajo',
+    districtName: 'Kamrup',
+    schemeId: 'sch_amrit_sarovar',
+    schemeName: 'Mission Amrit Sarovar',
+    proposedByRole: 'jal_samiti',
+    proposedByName: 'Kamrup District Jal Samiti',
+    targetVillage: 'Hajo & Ramdia Beel Basins',
+    estimatedCostInr: 1600000,
+    beneficiariesCount: 7800,
+    evidenceRationale: 'Shallow unconfined water table (1.34m bgl) with stage of extraction < 15%. Scheme focuses on source ecological protection and preventing surface wetland degradation.',
+    missingEvidenceNotes: 'Aquatic ecosystem biodiversity assessment and flood-recharge baseline.',
+    reviewOwnerRole: 'district_collector',
+    reviewOwnerName: 'Deputy Commissioner, Kamrup',
+    status: 'approved',
+    createdDate: '2026-09-25',
+    lastUpdatedDate: '2026-10-02',
+    comments: [
+      {
+        authorName: 'Kamrup Jal Samiti',
+        authorRole: 'jal_samiti',
+        date: '2026-09-25',
+        text: 'Wetland catchment desilting and indigenous tree plantation along Brahmaputra overflow channels.'
       }
     ]
   }

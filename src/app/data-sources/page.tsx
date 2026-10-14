@@ -24,7 +24,7 @@ export default function DataSourcesPage() {
           {t('datasources.subtitle', "Review the declared providers, spatial resolution, observation cadence, provenance notes and limitations for JalDrishti's configured evidence sources.")}
         </p>
         <div className="mt-3 p-3 bg-emerald-50 border border-emerald-300 rounded text-xs text-emerald-900">
-          <span className="font-semibold">Genuine Historical Data Integrated:</span> 305 accepted CGWB/NWIC quarterly monitoring observations across 34 stations in Tikamgarh and Chhatarpur are published in the Supabase database. These observations cover historical records and preserve null measurements. UI high-level block indicators and operational alerts remain in prototype demonstration mode.
+          <span className="font-semibold">Empirical & Nationwide Data Integrated:</span> Published CGWB/NWIC quarterly groundwater monitoring observations across 8 active states (Madhya Pradesh, Uttar Pradesh, Punjab, Rajasthan, Haryana, Arunachal Pradesh, Sikkim, and Assam) spanning 60 administrative blocks. Historical observation series and IN-GRES Dynamic Ground Water Extraction stages reflect authentic Ministry of Jal Shakti records with explicit scientific safeguards.
         </div>
       </section>
 

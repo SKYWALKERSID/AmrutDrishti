@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
+import { ALL_NATIONWIDE_BLOCKS } from '@/lib/data/allNationwideBlocks';
 
 export const dynamic = 'force-dynamic';
 
@@ -61,8 +61,8 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const requestedParam = searchParams.get('block') || 'blk_tikamgarh_main';
 
-  // 1. Resolve Block Metadata
-  const block = ALL_BLOCKS.find(
+  // 1. Resolve Block Metadata across all nationwide monitored blocks
+  const block = ALL_NATIONWIDE_BLOCKS.find(
     (b) => b.id === requestedParam || BLOCK_SLUG_TO_UNIT_ID[b.id] === requestedParam
   );
 
@@ -205,7 +205,33 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  // 4. Honest Unavailable Response
+  // 4. Contrast Benchmark / Empirical Quantile Predictions
+  try {
+    const contrastProj = require('@/lib/data/contrastProjections.json');
+    if (contrastProj && contrastProj[blockId]) {
+      const cData = contrastProj[blockId];
+      return NextResponse.json({
+        blockId,
+        blockName,
+        districtName,
+        modelIdentifier: cData.modelIdentifier,
+        modelVersion: cData.modelVersion,
+        modelStatus: cData.modelStatus,
+        provenanceStatus: cData.provenanceStatus,
+        horizonStatus: cData.horizonStatus,
+        operationalEligibility: cData.operationalEligibility,
+        baselineHistoricalDepthMbgl: currentDepth,
+        forecasts: cData.forecasts,
+        safeguardDisclaimer: cData.safeguardDisclaimer,
+        generatedAt: new Date().toISOString(),
+        isDemonstrationData: false,
+      });
+    }
+  } catch {
+    // Fall through to honest unavailable state
+  }
+
+  // 5. Honest Unavailable Response
   return NextResponse.json({
     blockId,
     blockName,

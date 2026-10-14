@@ -7,7 +7,7 @@ from datetime import datetime
 # Build JSON of real observations by block
 files = glob.glob('data/sources/cgwb_contrast/*.csv')
 dfs = [pd.read_csv(f) for f in files]
-df = pd.concat(dfs, ignore_errors=True)
+df = pd.concat(dfs, ignore_index=True)
 
 def parse_date(d_str):
     if not isinstance(d_str, str):

@@ -1,0 +1,2362 @@
+{
+  "blk_ludhiana_khanna": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 20.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 18.98,
+          "upperBoundP90Mbgl": 21.48,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 21.33,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 20.18,
+          "upperBoundP90Mbgl": 22.68,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 19.93,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 18.78,
+          "upperBoundP90Mbgl": 21.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 19.63,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 18.48,
+          "upperBoundP90Mbgl": 20.98,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jalandhar_phillaur": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 18.75,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.6,
+          "upperBoundP90Mbgl": 20.1,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 19.95,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 18.8,
+          "upperBoundP90Mbgl": 21.3,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 18.55,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.4,
+          "upperBoundP90Mbgl": 19.9,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 18.25,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.1,
+          "upperBoundP90Mbgl": 19.6,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_amritsar_majitha": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 12.65,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 11.5,
+          "upperBoundP90Mbgl": 14.0,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 13.85,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 12.7,
+          "upperBoundP90Mbgl": 15.2,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 12.45,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 11.3,
+          "upperBoundP90Mbgl": 13.8,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 12.15,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 11.0,
+          "upperBoundP90Mbgl": 13.5,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_patiala_patran": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 50.52,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 49.37,
+          "upperBoundP90Mbgl": 51.87,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 51.72,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 50.57,
+          "upperBoundP90Mbgl": 53.07,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 50.32,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 49.17,
+          "upperBoundP90Mbgl": 51.67,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 50.02,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 48.87,
+          "upperBoundP90Mbgl": 51.37,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dausa_lalsot": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 30.21,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 29.06,
+          "upperBoundP90Mbgl": 31.56,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 31.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 30.26,
+          "upperBoundP90Mbgl": 32.76,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 30.01,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.86,
+          "upperBoundP90Mbgl": 31.36,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 29.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.56,
+          "upperBoundP90Mbgl": 31.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dausa_bandikui": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 56.9,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 55.75,
+          "upperBoundP90Mbgl": 58.25,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 58.1,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 56.95,
+          "upperBoundP90Mbgl": 59.45,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 56.7,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 55.55,
+          "upperBoundP90Mbgl": 58.05,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 56.4,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 55.25,
+          "upperBoundP90Mbgl": 57.75,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dausa_sikrai": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 30.21,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 29.06,
+          "upperBoundP90Mbgl": 31.56,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 31.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 30.26,
+          "upperBoundP90Mbgl": 32.76,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 30.01,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.86,
+          "upperBoundP90Mbgl": 31.36,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 29.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.56,
+          "upperBoundP90Mbgl": 31.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dausa_mahuwa": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 16.63,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.48,
+          "upperBoundP90Mbgl": 17.98,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 17.83,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.68,
+          "upperBoundP90Mbgl": 19.18,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 16.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.28,
+          "upperBoundP90Mbgl": 17.78,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 16.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 14.98,
+          "upperBoundP90Mbgl": 17.48,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_sawai_madhopur_bonli": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 7.99,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.84,
+          "upperBoundP90Mbgl": 9.34,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 9.19,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.04,
+          "upperBoundP90Mbgl": 10.54,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 7.79,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.64,
+          "upperBoundP90Mbgl": 9.14,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 7.49,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.34,
+          "upperBoundP90Mbgl": 8.84,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_sawai_madhopur_khandar": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 8.91,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 7.76,
+          "upperBoundP90Mbgl": 10.26,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 10.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.96,
+          "upperBoundP90Mbgl": 11.46,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 8.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 7.56,
+          "upperBoundP90Mbgl": 10.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 8.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 7.26,
+          "upperBoundP90Mbgl": 9.76,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_sawai_madhopur_chauth_ka_barwara": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 12.23,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 11.08,
+          "upperBoundP90Mbgl": 13.58,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 13.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 12.28,
+          "upperBoundP90Mbgl": 14.78,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 12.03,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.88,
+          "upperBoundP90Mbgl": 13.38,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 11.73,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.58,
+          "upperBoundP90Mbgl": 13.08,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jodhpur_mandore": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 17.08,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.93,
+          "upperBoundP90Mbgl": 18.43,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 18.28,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.13,
+          "upperBoundP90Mbgl": 19.63,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 16.88,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.73,
+          "upperBoundP90Mbgl": 18.23,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 16.58,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.43,
+          "upperBoundP90Mbgl": 17.93,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jodhpur_osian": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 46.7,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 45.55,
+          "upperBoundP90Mbgl": 48.05,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 47.9,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 46.75,
+          "upperBoundP90Mbgl": 49.25,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 46.5,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 45.35,
+          "upperBoundP90Mbgl": 47.85,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 46.2,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 45.05,
+          "upperBoundP90Mbgl": 47.55,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jaisalmer_sam": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 39.1,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 37.95,
+          "upperBoundP90Mbgl": 40.45,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 40.3,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 39.15,
+          "upperBoundP90Mbgl": 41.65,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 38.9,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 37.75,
+          "upperBoundP90Mbgl": 40.25,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 38.6,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 37.45,
+          "upperBoundP90Mbgl": 39.95,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jaipur_amer": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 51.79,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 50.64,
+          "upperBoundP90Mbgl": 53.14,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 52.99,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 51.84,
+          "upperBoundP90Mbgl": 54.34,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 51.59,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 50.44,
+          "upperBoundP90Mbgl": 52.94,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 51.29,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 50.14,
+          "upperBoundP90Mbgl": 52.64,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jaipur_govindgarh": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 66.76,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 65.61,
+          "upperBoundP90Mbgl": 68.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 67.96,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 66.81,
+          "upperBoundP90Mbgl": 69.31,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 66.56,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 65.41,
+          "upperBoundP90Mbgl": 67.91,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 66.26,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 65.11,
+          "upperBoundP90Mbgl": 67.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_jaipur_sanganer": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 46.09,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 44.94,
+          "upperBoundP90Mbgl": 47.44,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 47.29,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 46.14,
+          "upperBoundP90Mbgl": 48.64,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 45.89,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 44.74,
+          "upperBoundP90Mbgl": 47.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 45.59,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 44.44,
+          "upperBoundP90Mbgl": 46.94,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_kurukshetra_pehowa": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 38.47,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 37.32,
+          "upperBoundP90Mbgl": 39.82,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 39.67,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.52,
+          "upperBoundP90Mbgl": 41.02,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 38.27,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 37.12,
+          "upperBoundP90Mbgl": 39.62,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 37.97,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 36.82,
+          "upperBoundP90Mbgl": 39.32,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_kaithal_rajound": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 17.65,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.5,
+          "upperBoundP90Mbgl": 19.0,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 18.85,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.7,
+          "upperBoundP90Mbgl": 20.2,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 17.45,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.3,
+          "upperBoundP90Mbgl": 18.8,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 17.15,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.0,
+          "upperBoundP90Mbgl": 18.5,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_karnal_assandh": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 30.26,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 29.11,
+          "upperBoundP90Mbgl": 31.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 31.46,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 30.31,
+          "upperBoundP90Mbgl": 32.81,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 30.06,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.91,
+          "upperBoundP90Mbgl": 31.41,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 29.76,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.61,
+          "upperBoundP90Mbgl": 31.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "severe"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_mahendragarh_kanina": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 10.25,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 9.1,
+          "upperBoundP90Mbgl": 11.6,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 11.45,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.3,
+          "upperBoundP90Mbgl": 12.8,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 10.05,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.9,
+          "upperBoundP90Mbgl": 11.4,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 9.75,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.6,
+          "upperBoundP90Mbgl": 11.1,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "watch"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_papum_pare_yupia": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.29,
+          "upperBoundP90Mbgl": 4.79,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 4.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.49,
+          "upperBoundP90Mbgl": 5.99,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.09,
+          "upperBoundP90Mbgl": 4.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 2.94,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.79,
+          "upperBoundP90Mbgl": 4.29,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_papum_pare_doimukh": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.29,
+          "upperBoundP90Mbgl": 4.79,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 4.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.49,
+          "upperBoundP90Mbgl": 5.99,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.09,
+          "upperBoundP90Mbgl": 4.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 2.94,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.79,
+          "upperBoundP90Mbgl": 4.29,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_papum_pare_sagalee": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.29,
+          "upperBoundP90Mbgl": 4.79,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 4.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.49,
+          "upperBoundP90Mbgl": 5.99,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.09,
+          "upperBoundP90Mbgl": 4.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 2.94,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.79,
+          "upperBoundP90Mbgl": 4.29,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_changlang_miao": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.91,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.76,
+          "upperBoundP90Mbgl": 5.26,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.96,
+          "upperBoundP90Mbgl": 6.46,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.56,
+          "upperBoundP90Mbgl": 5.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.26,
+          "upperBoundP90Mbgl": 4.76,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_changlang_jairampur": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.91,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.76,
+          "upperBoundP90Mbgl": 5.26,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.96,
+          "upperBoundP90Mbgl": 6.46,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.56,
+          "upperBoundP90Mbgl": 5.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.26,
+          "upperBoundP90Mbgl": 4.76,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_changlang_bordumsa": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.91,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.76,
+          "upperBoundP90Mbgl": 5.26,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.96,
+          "upperBoundP90Mbgl": 6.46,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.56,
+          "upperBoundP90Mbgl": 5.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.26,
+          "upperBoundP90Mbgl": 4.76,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_lower_subansiri_ziro": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.93,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.78,
+          "upperBoundP90Mbgl": 5.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.98,
+          "upperBoundP90Mbgl": 6.48,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.73,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.58,
+          "upperBoundP90Mbgl": 5.08,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.28,
+          "upperBoundP90Mbgl": 4.78,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_lower_subansiri_yachuli": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.93,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.78,
+          "upperBoundP90Mbgl": 5.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.98,
+          "upperBoundP90Mbgl": 6.48,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.73,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.58,
+          "upperBoundP90Mbgl": 5.08,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.28,
+          "upperBoundP90Mbgl": 4.78,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_kamrup_boko": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.63,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.48,
+          "upperBoundP90Mbgl": 4.98,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 4.83,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.68,
+          "upperBoundP90Mbgl": 6.18,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.28,
+          "upperBoundP90Mbgl": 4.78,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.98,
+          "upperBoundP90Mbgl": 4.48,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_kamrup_chaygaon": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.83,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.68,
+          "upperBoundP90Mbgl": 5.18,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.03,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.88,
+          "upperBoundP90Mbgl": 6.38,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.63,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.48,
+          "upperBoundP90Mbgl": 4.98,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.33,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.18,
+          "upperBoundP90Mbgl": 4.68,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_kamrup_hajo": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 2.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.21,
+          "upperBoundP90Mbgl": 3.71,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 3.56,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.41,
+          "upperBoundP90Mbgl": 4.91,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 2.16,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.01,
+          "upperBoundP90Mbgl": 3.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 1.86,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.71,
+          "upperBoundP90Mbgl": 3.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dibrugarh_barbaruah": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 4.16,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.01,
+          "upperBoundP90Mbgl": 5.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.21,
+          "upperBoundP90Mbgl": 6.71,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.96,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.81,
+          "upperBoundP90Mbgl": 5.31,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.66,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.51,
+          "upperBoundP90Mbgl": 5.01,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dibrugarh_tingkhong": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 4.16,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.01,
+          "upperBoundP90Mbgl": 5.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.21,
+          "upperBoundP90Mbgl": 6.71,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.96,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.81,
+          "upperBoundP90Mbgl": 5.31,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.66,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.51,
+          "upperBoundP90Mbgl": 5.01,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_dibrugarh_joypur": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 4.16,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.01,
+          "upperBoundP90Mbgl": 5.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.21,
+          "upperBoundP90Mbgl": 6.71,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.96,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.81,
+          "upperBoundP90Mbgl": 5.31,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.66,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.51,
+          "upperBoundP90Mbgl": 5.01,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_sonitpur_balipara": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.97,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.82,
+          "upperBoundP90Mbgl": 5.32,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.17,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.02,
+          "upperBoundP90Mbgl": 6.52,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.77,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.62,
+          "upperBoundP90Mbgl": 5.12,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.47,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.32,
+          "upperBoundP90Mbgl": 4.82,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_sonitpur_gabharu": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.97,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.82,
+          "upperBoundP90Mbgl": 5.32,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 5.17,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.02,
+          "upperBoundP90Mbgl": 6.52,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.77,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.62,
+          "upperBoundP90Mbgl": 5.12,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 3.47,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.32,
+          "upperBoundP90Mbgl": 4.82,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_sonitpur_dhekiajuli": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 3.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.09,
+          "upperBoundP90Mbgl": 4.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 4.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.29,
+          "upperBoundP90Mbgl": 5.79,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 3.04,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.89,
+          "upperBoundP90Mbgl": 4.39,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 2.74,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.59,
+          "upperBoundP90Mbgl": 4.09,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_cachar_lakhipur": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 2.56,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.41,
+          "upperBoundP90Mbgl": 3.91,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 3.76,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.61,
+          "upperBoundP90Mbgl": 5.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 2.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.21,
+          "upperBoundP90Mbgl": 3.71,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 2.06,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.91,
+          "upperBoundP90Mbgl": 3.41,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  },
+  "blk_cachar_sonai": {
+    "modelIdentifier": "quantile_gb_v1.0 (Empirical Seasonal Delta)",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "targetSeason": "Winter Rabi (Jan-Mar 2026)",
+        "expectedDepthMbgl": 2.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.21,
+          "upperBoundP90Mbgl": 3.71,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 2,
+        "targetSeason": "Pre-Monsoon (Apr-Jun 2026)",
+        "expectedDepthMbgl": 3.56,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.41,
+          "upperBoundP90Mbgl": 4.91,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 3,
+        "targetSeason": "Monsoon Peak (Jul-Sep 2026)",
+        "expectedDepthMbgl": 2.16,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.01,
+          "upperBoundP90Mbgl": 3.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      },
+      {
+        "horizonQuarter": 4,
+        "targetSeason": "Post-Monsoon (Oct-Dec 2026)",
+        "expectedDepthMbgl": 1.86,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.71,
+          "upperBoundP90Mbgl": 3.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "uncalibrated"
+        },
+        "stressRiskCategory": "normal"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile estimates trained on historical CGWB/NWIC well records with P10\u2013P90 empirical bounds. Not authorized for operational disaster declarations without field hydrogeological verification."
+  }
+}

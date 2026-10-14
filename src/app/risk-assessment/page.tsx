@@ -1,20 +1,24 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { RiskSeverity } from '@/lib/types';
+import { RiskSeverity, BlockData } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice } from '@/lib/demo/demoPolicy';
 import { calculateDescriptiveGss } from '@/lib/services/scientificEngine';
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
 
 function RiskAssessmentContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
-  const [blocksData, setBlocksData] = useState<any[]>([]);
+  const [selectedState, setSelectedState] = useState<string>('all');
+  const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_NATIONWIDE_BLOCKS);
   const [selectedBlockId, setSelectedBlockId] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [overrideReason, setOverrideReason] = useState<string>('');
@@ -29,12 +33,18 @@ function RiskAssessmentContent() {
       .then(data => {
         if (!active) return;
         if (data.blocks && data.blocks.length > 0) {
-          setBlocksData(data.blocks);
+          const merged = mergeWithLiveBlocks(data.blocks);
+          setBlocksData(merged);
           setIsLive(data.source === 'live_database');
-          if (urlBlockParam && data.blocks.some((b: any) => b.id === urlBlockParam)) {
+          if (urlBlockParam && merged.some((b: any) => b.id === urlBlockParam)) {
             setSelectedBlockId(urlBlockParam);
+            const target = merged.find((b: any) => b.id === urlBlockParam);
+            if (target) {
+              setSelectedState(target.state);
+              setSelectedDistrictId(target.districtId);
+            }
           } else {
-            setSelectedBlockId(data.blocks[0].id);
+            setSelectedBlockId(merged[0].id);
           }
         }
       })
@@ -46,6 +56,44 @@ function RiskAssessmentContent() {
       active = false;
     };
   }, [urlBlockParam]);
+
+  // Derived filtered districts
+  const availableDistricts = useMemo(() => {
+    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS;
+    return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+  }, [selectedState]);
+
+  // Derived filtered blocks
+  const filteredBlocks = useMemo(() => {
+    return blocksData.filter(b => {
+      const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
+      const matchDistrict = selectedDistrictId === 'all' || b.districtId === selectedDistrictId;
+      return matchState && matchDistrict;
+    });
+  }, [blocksData, selectedState, selectedDistrictId]);
+
+  const handleStateChange = (stateName: string) => {
+    setSelectedState(stateName);
+    setSelectedDistrictId('all');
+    const matched = blocksData.filter(b => stateName === 'all' || normalizeStateName(b.state) === stateName);
+    if (matched.length > 0) {
+      setSelectedBlockId(matched[0].id);
+      setOverrideApplied(false);
+    }
+  };
+
+  const handleDistrictChange = (distId: string) => {
+    setSelectedDistrictId(distId);
+    const matched = blocksData.filter(b => {
+      const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
+      const matchDistrict = distId === 'all' || b.districtId === distId;
+      return matchState && matchDistrict;
+    });
+    if (matched.length > 0) {
+      setSelectedBlockId(matched[0].id);
+      setOverrideApplied(false);
+    }
+  };
 
   const isReadOnly = !canMutateDemoWorkflows(activeRole);
   const restrictionNotice = demoRestrictionNotice(activeRole);
@@ -145,19 +193,63 @@ function RiskAssessmentContent() {
               </div>
             ) : selectedBlock ? (
               <>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-text-muted">Select Target Block:</span>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <FilterIcon className="w-3.5 h-3.5 text-text-muted" />
+                <div className="space-y-2 pb-3 border-b border-border">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-semibold text-text-muted">Target Filter:</span>
+                    <span className="text-[11px] text-text-muted">{selectedBlock.name} ({selectedBlock.state})</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                    {/* State */}
+                    <select
+                      value={selectedState}
+                      onChange={(e) => handleStateChange(e.target.value)}
+                      className="bg-subtle border border-border rounded px-2 py-1 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
+                    >
+                      <option value="all">All States</option>
+                      <optgroup label="Active Monitored States">
+                        {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
+                          <option key={st.code} value={st.name}>
+                            {st.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Telemetry Pending">
+                        {ALL_INDIAN_STATES.filter(s => !s.hasData).map((st) => (
+                          <option key={st.code} value={st.name} disabled className="text-gray-400 italic">
+                            {st.name} (Pending)
+                          </option>
+                        ))}
+                      </optgroup>
+                    </select>
+
+                    {/* District */}
+                    <select
+                      value={selectedDistrictId}
+                      onChange={(e) => handleDistrictChange(e.target.value)}
+                      className="bg-subtle border border-border rounded px-2 py-1 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
+                    >
+                      <option value="all">
+                        {selectedState === 'all'
+                          ? `All Districts`
+                          : `All in ${selectedState}`}
+                      </option>
+                      {availableDistricts.map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    {/* Block */}
                     <select
                       value={selectedBlockId}
                       onChange={(e) => {
                         setSelectedBlockId(e.target.value);
                         setOverrideApplied(false);
                       }}
-                      className="bg-subtle border border-border rounded px-2.5 py-1 text-xs font-medium text-text-main focus:outline-none"
+                      className="bg-subtle border border-border rounded px-2 py-1 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                     >
-                      {blocksData.map((b: any) => (
+                      {filteredBlocks.map((b: any) => (
                         <option key={b.id} value={b.id}>
                           {b.name} ({b.districtName})
                         </option>
