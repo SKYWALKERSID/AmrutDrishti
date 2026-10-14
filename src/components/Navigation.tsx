@@ -67,9 +67,6 @@ export const Navigation: React.FC = () => {
           <span className="truncate leading-tight font-medium">
             {t('header.pilot')}
           </span>
-          <span className="hidden md:inline text-teal-100/90 text-[11px] shrink-0">
-            • CGWB & NWIC Field Monitoring Baseline
-          </span>
         </div>
 
         <div className="flex items-center gap-2 text-[11px] shrink-0">

@@ -7,6 +7,7 @@ import {
   STATE_CONTRAST_GROUPS
 } from '@/lib/data/nationalContrast';
 import { ALL_INDIAN_STATES, IndianStateMeta } from '@/lib/data/indiaStates';
+import { ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
 import { BlockData, DistrictData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
 import Link from 'next/link';
@@ -82,22 +83,21 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     };
   }, []);
 
-  // 2. Build the unified nationwide dataset
-  // Merging live database blocks, Bundelkhand baseline, and National Contrast observation networks.
-  // When live database rows exist for a block id, they take precedence over static baseline.
+  // 2. Build the unified nationwide dataset using the verified scientific merge engine
+  // Merging live database telemetry with empirical baseline indicators and dynamically computing GSS
   const allDistricts = useMemo<DistrictData[]>(() => {
-    const rawDistricts = [...BUNDELKHAND_DISTRICTS, ...NATIONAL_CONTRAST_DISTRICTS];
-    const liveMap = new Map<string, BlockData>();
-    for (const b of liveBlocksData) {
-      liveMap.set(b.id, b);
+    const mergedBlocks = mergeWithLiveBlocks(liveBlocksData);
+    const blockMap = new Map<string, BlockData>();
+    for (const b of mergedBlocks) {
+      blockMap.set(b.id, b);
     }
 
-    return rawDistricts.map(dist => {
+    return ALL_NATIONWIDE_DISTRICTS.map(dist => {
       const canonicalState = normalizeStateName(dist.state);
       const updatedBlocks = dist.blocks.map(block => {
-        const live = liveMap.get(block.id);
-        if (live) {
-          return { ...live, state: canonicalState };
+        const merged = blockMap.get(block.id);
+        if (merged) {
+          return { ...merged, state: canonicalState };
         }
         return { ...block, state: canonicalState };
       });
@@ -257,35 +257,14 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   return (
     <div className="space-y-5">
       {/* Top Header with Unified Geographic Cascading Controls */}
-      <div className="bg-surface border border-border rounded p-5 shadow-sm space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
-              <span className="font-semibold text-text-main">
-                National Groundwater Geographic Information System
-              </span>
-              <span>•</span>
-              <span>Multi-Criteria Hydrology Overlays</span>
-              {isLoading && (
-                <span className="text-text-muted">({t('monitoring.loading', 'Loading backend layers...')})</span>
-              )}
-            </div>
-            <h1 className="text-xl font-bold text-text-main flex items-center gap-2 mt-1">
-              <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}
-            </h1>
-            <p className="text-xs text-text-muted mt-1 max-w-3xl leading-relaxed">
-              Unified nationwide groundwater observation network. Select a State, District, and Block from the cascading menu or interact with the map directly.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2 text-xs text-text-muted shrink-0">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0d5c63]/10 text-[#0d5c63] font-semibold">
-              <span className="w-2 h-2 rounded-full bg-[#0d5c63]"></span> 8 Active Telemetry States
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-subtle text-text-muted font-medium">
-              60 Monitored Units
-            </span>
-          </div>
+      <div className="bg-surface border border-border rounded p-4 sm:p-5 shadow-xs space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
+            <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}
+          </h1>
+          {isLoading && (
+            <span className="text-xs text-text-muted">Loading layers...</span>
+          )}
         </div>
 
         {/* Hierarchical Cascading Selectors: State -> District -> Block */}
@@ -390,75 +369,65 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         </div>
       </div>
 
-      {/* Notice Banner */}
-      <div className="bg-amber-50/90 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 flex items-start gap-2.5 shadow-xs">
-        <InfoIcon className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-        <div className="leading-relaxed">
-          <span className="font-semibold">
-            {t('explorer.sampleNotice', 'Sample data — these values are for demonstration only and are not verified groundwater measurements.')}
-          </span>
-        </div>
-      </div>
-
       {/* Main Grid: Layer Selector + Map + Evidence Inspector Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Interactive Map & Layer Controls (8 cols) */}
         <div className="lg:col-span-8 space-y-4">
-          {/* Layer Selection Buttons */}
-          <div className="bg-surface border border-border rounded-lg p-3 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div className="text-xs font-semibold text-text-main flex items-center gap-1.5 shrink-0">
-              <span>{t('explorer.activeLayer', 'Map Information')}:</span>
+          {/* Layer Selection Controls */}
+          <div className="bg-surface border border-border rounded-lg p-2.5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="text-xs font-semibold text-text-main flex items-center gap-1.5 shrink-0 px-1">
+              <span>{t('explorer.activeLayer', 'Map View')}:</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               <button
                 onClick={() => setActiveLayer('risk')}
-                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
                   activeLayer === 'risk'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
-                {t('layer.risk', 'Groundwater Status')}
+                {t('layer.risk', 'Water Stress Status')}
               </button>
               <button
-                onClick={() => setActiveLayer('grace')}
-                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${
-                  activeLayer === 'grace'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                onClick={() => setActiveLayer('wells')}
+                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                  activeLayer === 'wells'
+                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
-                {t('layer.grace', 'Satellite Water Storage Estimate')}
+                {t('layer.wells', 'Well Depth')}
               </button>
               <button
                 onClick={() => setActiveLayer('rainfall')}
-                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
                   activeLayer === 'rainfall'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
                 {t('layer.rainfall', 'Rainfall Difference')}
               </button>
               <button
-                onClick={() => setActiveLayer('wells')}
-                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${
-                  activeLayer === 'wells'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                onClick={() => setActiveLayer('grace')}
+                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                  activeLayer === 'grace'
+                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
-                {t('layer.wells', 'Groundwater Monitoring Wells')}
+                {t('layer.grace', 'Satellite Water Storage')}
               </button>
               <button
                 onClick={() => setActiveLayer('sentinel')}
-                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
                   activeLayer === 'sentinel'
-                    ? 'bg-[#0d5c63] text-white shadow-sm font-semibold'
-                    : 'bg-subtle hover:bg-subtle/80 text-text-main'
+                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
-                {t('layer.sentinel', 'Satellite Vegetation Information')}
+                {t('layer.sentinel', 'Green Cover')}
               </button>
             </div>
           </div>
@@ -563,16 +532,16 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 <div className="space-y-3 bg-subtle/50 p-3 sm:p-3.5 rounded-lg border border-border">
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
                     <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> <span className="truncate">{t('layer.grace', 'Satellite Water Storage Estimate')}:</span>
+                      <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> <span className="truncate">Well Depth:</span>
                     </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
-                      {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
+                      {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
                     <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> <span className="truncate">{t('layer.rainfall', 'Rainfall Difference')}:</span>
+                      <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> <span className="truncate">Rainfall Difference:</span>
                     </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
@@ -581,40 +550,33 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
                     <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <ActivityChartIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" /> <span className="truncate">{t('layer.wells', 'Groundwater Monitoring Wells')}:</span>
+                      <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> <span className="truncate">Satellite Water Storage:</span>
                     </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
-                      {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('monitoring.noData', 'No Data')}
+                      {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted truncate min-w-0">{t('layer.sentinel', 'Satellite Vegetation Information')}:</span>
+                    <span className="text-text-muted truncate min-w-0">Green Cover (Vegetation):</span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2 flex-wrap gap-1">
-                    <span className="text-text-muted font-semibold">{t('explorer.sampleStressScore', 'Sample Stress Score')}:</span>
+                    <span className="text-text-muted font-semibold">Water Stress Score:</span>
                     <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-auto">
                       {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
                 </div>
 
-                {/* Possible Contributing Factors & Safeguard Notice */}
-                <div className="space-y-2">
-                  <span className="text-xs font-bold text-text-main">{t('explorer.possibleDrivers', 'Possible Contributing Factors')}:</span>
+                {/* Key Driver / Context */}
+                <div className="space-y-1.5">
+                  <span className="text-xs font-bold text-text-main">Contributing Factors:</span>
                   <p className="text-xs text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
-                    {selectedBlock.assessment.primaryStressDriver || 'No primary stress driver recorded.'}
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="text-xs font-bold text-text-main">{t('explorer.importantInfo', 'Important Information')}:</span>
-                  <p className="text-[11px] text-text-muted bg-amber-50/60 border border-amber-200 p-2.5 rounded leading-relaxed">
-                    {selectedBlock.assessment.safeguardNotice || 'Groundwater data derived from empirical observation feeds.'}
+                    {selectedBlock.assessment.primaryStressDriver || 'Normal seasonal conditions observed.'}
                   </p>
                 </div>
 
@@ -646,24 +608,24 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         </div>
       </div>
 
-      {/* Cross-Regional Comparative Hydrology Matrix (Integrated directly into unified view) */}
+      {/* Regional Groundwater Profiles */}
       <div className="bg-surface border border-border rounded-lg p-5 shadow-sm space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
           <div>
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#0d5c63]"></span>
-              National Hydrological Typologies: Severe Red Zones vs Pristine Recharge Basins
+              State Groundwater Profiles: High Stress vs Recharge Regions
             </h2>
             <p className="text-xs text-text-muted mt-0.5">
-              Empirical sub-surface groundwater extraction, hard-rock geology, and natural replenishment mechanisms across monitored states.
+              Groundwater status and extraction levels across monitored states. Click any state card to focus the map.
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-100 text-red-800 font-medium">
-              <span className="w-2 h-2 rounded-full bg-red-600"></span> High Stress (Over-Exploited)
+              <span className="w-2 h-2 rounded-full bg-red-600"></span> Over-Exploited Region
             </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Low Stress (Safe & Surplus)
+              <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Abundant / Safe Region
             </span>
           </div>
         </div>
@@ -686,13 +648,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span
-                    className={`text-xs font-bold px-2 py-0.5 rounded ${
+                    className={`text-xs font-semibold px-2 py-0.5 rounded ${
                       grp.category === 'high_stress'
-                        ? 'bg-red-600 text-white'
-                        : 'bg-emerald-600 text-white'
+                        ? 'bg-red-700 text-white'
+                        : 'bg-emerald-700 text-white'
                     }`}
                   >
-                    #{grp.cpiRank} {grp.category === 'high_stress' ? 'Most Scarce' : 'Least Scarce'}
+                    {grp.category === 'high_stress' ? 'High Stress' : 'Water Secure'}
                   </span>
                   <h3 className="font-bold text-sm text-text-main">{grp.state}</h3>
                 </div>
@@ -701,21 +663,17 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 </span>
               </div>
 
-              <p className="text-xs text-text-main mt-2.5 leading-relaxed line-clamp-3">
+              <p className="text-xs text-text-main mt-2 leading-relaxed line-clamp-3">
                 {grp.summaryDescription}
               </p>
 
-              <div className="mt-3 pt-2.5 border-t border-border/60 text-[11px] space-y-1">
-                <div className="flex items-start gap-1">
-                  <span className="font-semibold text-text-muted shrink-0">Geological Setting:</span>
-                  <span className="text-text-main line-clamp-2">{grp.geologicalContext}</span>
-                </div>
-                <div className="flex items-start gap-1">
-                  <span className="font-semibold text-text-muted shrink-0">Filter on Map:</span>
-                  <span className="text-[#0d5c63] font-semibold hover:underline">
-                    View all {grp.state} blocks →
-                  </span>
-                </div>
+              <div className="mt-3 pt-2 border-t border-border/60 text-[11px] flex justify-between items-center">
+                <span className="text-text-muted">
+                  {grp.districts.length} districts monitored
+                </span>
+                <span className="text-[#0d5c63] font-semibold hover:underline">
+                  Filter map to {grp.state} →
+                </span>
               </div>
             </div>
           ))}

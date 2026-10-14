@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
-import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, normalizeStateName, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { summarizeBlocks } from '@/lib/demo/demoPolicy';
 import type { BlockData } from '@/lib/types';
@@ -49,24 +49,7 @@ export default function OverviewDashboard() {
       if (res.ok) {
         const json = await res.json();
         const liveBlocks: BlockData[] = json.blocks || [];
-        
-        // Merge live PostGIS rows into the nationwide dataset of 60 blocks across 8 states
-        const liveMap = new Map<string, BlockData>();
-        for (const b of liveBlocks) {
-          liveMap.set(b.id, b);
-        }
-
-        const combined = ALL_NATIONWIDE_BLOCKS.map(block => {
-          const live = liveMap.get(block.id);
-          if (live) {
-            return {
-              ...live,
-              state: normalizeStateName(live.state || block.state)
-            };
-          }
-          return block;
-        });
-
+        const combined = mergeWithLiveBlocks(liveBlocks);
         setBlocksData(combined);
         return;
       }
@@ -118,22 +101,11 @@ export default function OverviewDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header Banner with Nationwide Coverage Scope */}
-      <div className="bg-surface border border-border rounded p-6 shadow-sm">
+      {/* Header Banner */}
+      <div className="bg-surface border border-border rounded p-5 sm:p-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
-              {isLoading ? (
-                <span className="inline-block h-3.5 bg-subtle rounded w-52 animate-pulse"></span>
-              ) : (
-                <span className="font-semibold text-text-main">
-                  National Monitored Geography: {selectedState === 'all' ? '8 Active States (Bundelkhand & Contrast Networks)' : selectedState} • {summary.districtCount} Districts, {summary.total} Blocks
-                </span>
-              )}
-              <span>•</span>
-              <span>CGWB & NWIC Telemetry Network Active</span>
-            </div>
-            <h1 className="text-2xl font-bold text-text-main mt-1.5 tracking-tight">
+            <h1 className="text-2xl font-bold text-text-main tracking-tight">
               {t('overview.title')}
             </h1>
             <p className="text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">

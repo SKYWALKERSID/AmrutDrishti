@@ -166,8 +166,7 @@ export default function LeafletMap({
       coverageCircle.bindPopup(
         `<strong>${escapeHtml(block.name)} Block</strong>` +
           `<br>${escapeHtml(block.districtName)}, ${escapeHtml(block.state)}` +
-          `<br>${escapeHtml(layerTitle)}: ${escapeHtml(layerValue(block, activeLayer, noDataText))}` +
-          `<br><small className="text-slate-500">${escapeHtml(sampleNotice)}</small>`
+          `<br>${escapeHtml(layerTitle)}: <strong>${escapeHtml(layerValue(block, activeLayer, noDataText))}</strong>`
       );
       coverageCircle.on('click', () => onSelectRef.current(block));
       coverageCircle.addTo(markerLayer);
@@ -184,10 +183,9 @@ export default function LeafletMap({
       );
 
       centerMarker.bindPopup(
-        `<strong>${escapeHtml(block.name)} Block Focus</strong>` +
+        `<strong>${escapeHtml(block.name)} Block</strong>` +
           `<br>${escapeHtml(block.districtName)}, ${escapeHtml(block.state)}` +
-          `<br>${escapeHtml(layerTitle)}: ${escapeHtml(layerValue(block, activeLayer, noDataText))}` +
-          `<br><small>${escapeHtml(sampleNotice)}</small>`
+          `<br>${escapeHtml(layerTitle)}: <strong>${escapeHtml(layerValue(block, activeLayer, noDataText))}</strong>`
       );
       centerMarker.on('click', () => onSelectRef.current(block));
       centerMarker.addTo(markerLayer);

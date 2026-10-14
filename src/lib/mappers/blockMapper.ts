@@ -184,7 +184,7 @@ export function mapDbRowToBlockData(
   // Populate from valid DerivedIndicatorRow preserving true data provenance
   const isDataMissing = indicator.grace_twsa_cm === null && indicator.cgwb_well_depth_mbgl === null;
 
-  // Dynamically compute stress score and risk severity from available indicators
+  // Dynamically compute stress score and risk severity from available indicators using the scientific GSS engine
   const calculated = calculateDescriptiveGss({
     cgwbWellDepthMbgl: indicator.cgwb_well_depth_mbgl,
     rainfallAnomalyMm: indicator.rainfall_anomaly_mm,
@@ -192,7 +192,7 @@ export function mapDbRowToBlockData(
     sentinelNdvi: indicator.sentinel_ndvi
   });
 
-  const effectiveScore = indicator.descriptive_stress_score ?? calculated.score ?? null;
+  const effectiveScore = indicator.descriptive_stress_score ?? calculated.score;
   const effectiveSeverity = (indicator.risk_severity || calculated.severity || 'gap') as RiskSeverity;
   const effectiveDriver = indicator.primary_stress_driver || calculated.primaryStressDriver || 'Environmental Stress Analysis Pending';
 

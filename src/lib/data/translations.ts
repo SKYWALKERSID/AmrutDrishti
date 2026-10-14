@@ -10,7 +10,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.alerts': 'चेतावनी व सूचना (Alerts & SMS)',
     'nav.datasources': 'जानकारी के स्रोत (Data Sources)',
     'nav.admin': 'प्रशासन (Administration)',
-    'header.pilot': 'जलदृष्टि (JalDrishti) पायलट: बुंदेलखंड क्षेत्र — साक्ष्य आधारित निर्णय सहायता',
+    'header.pilot': 'जलदृष्टि (JalDrishti) — राष्ट्रीय भूजल निगरानी एवं निर्णय सहायता प्रणाली',
     'header.demoMode': 'Prototype Demonstration Mode — Simulated Data',
     'header.demoRole': 'भूमिका:',
 
@@ -331,7 +331,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.alerts': 'Alerts & SMS',
     'nav.datasources': 'Data Sources',
     'nav.admin': 'Administration',
-    'header.pilot': 'JalDrishti Pilot: Bundelkhand Region — Evidence-Backed Decision Support',
+    'header.pilot': 'JalDrishti — Satellite-Assisted Groundwater Intelligence & Early-Warning Platform',
     'header.demoMode': 'Prototype Demonstration Mode — Simulated Data',
     'header.demoRole': 'Demo Role:',
 
