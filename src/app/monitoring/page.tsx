@@ -309,7 +309,7 @@ function MonitoringContent() {
       )}
 
       {/* Informational Guidance Strip */}
-      <div className="bg-subtle/70 border border-border rounded p-3 text-xs text-text-muted flex items-center justify-between">
+      <div className="bg-surface border border-border rounded p-3 text-xs text-text-muted flex items-center justify-between shadow-xs">
         <div className="flex items-center gap-2">
           <InfoIcon className="w-4 h-4 text-[#0d5c63] shrink-0" />
           <span>Multi-Scale Indicators: Evaluating observed CGWB well depths alongside satellite mass anomalies (GRACE-FO).</span>
@@ -398,8 +398,8 @@ function MonitoringContent() {
                     <span className="text-sm font-bold text-text-main">{selectedBlock.indicators.spi3Month ?? 'Pending calculation'}</span>
                   </div>
                   <div className="p-2.5 bg-surface rounded border border-border">
-                    <span className="text-[10px] text-text-muted font-semibold block">DATA STATUS</span>
-                    <span className="text-sm font-bold text-text-main">{selectedBlock.assessment.dataStatus.toUpperCase()}</span>
+                    <span className="text-[10px] text-text-muted font-semibold block">METEOROLOGICAL PROVIDER</span>
+                    <span className="text-sm font-bold text-text-main">IMD GRIDDED</span>
                   </div>
                 </div>
               </div>

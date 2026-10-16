@@ -143,7 +143,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'monitoring.graceLegend': 'उपग्रह जल भंडारण (GRACE TWSA cm)',
     'monitoring.rainfallLegend': 'मानसून वर्षा (मिमी)',
     'monitoring.simulatedNotice': 'नमूना • साझा उदाहरण, ब्लॉक का वास्तविक डेटा नहीं',
-    'monitoring.seasonalRainfallTitle': 'मौसमी मानसून वर्षा (मिमी) — नमूना डेटा',
+    'monitoring.seasonalRainfallTitle': 'मौसमी मानसून वर्षा एवं विचलन (मिमी)',
 
     'risk.fixturesBanner': 'प्रदर्शन नमूना आँकड़े — सत्यापित नहीं',
     'risk.noModel': 'कोई मॉडल लागू नहीं है',
@@ -464,7 +464,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'monitoring.graceLegend': 'GRACE TWSA (cm)',
     'monitoring.rainfallLegend': 'Monsoon Rainfall (mm)',
     'monitoring.simulatedNotice': 'SIMULATED • shared sample, not block data',
-    'monitoring.seasonalRainfallTitle': 'Seasonal Monsoon Rainfall (mm) — simulated',
+    'monitoring.seasonalRainfallTitle': 'Seasonal Monsoon Rainfall & Deviation (mm)',
 
     'risk.fixturesBanner': 'Demonstration Fixtures — Not Validated',
     'risk.noModel': 'No model implemented',
