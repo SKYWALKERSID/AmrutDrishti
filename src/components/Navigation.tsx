@@ -59,7 +59,7 @@ export const Navigation: React.FC = () => {
   }, []);
 
   return (
-    <header className="bg-surface border-b border-border sticky top-0 z-50">
+    <header className="bg-surface border-b border-border sticky top-0 z-50 shadow-xs">
       {/* Top Banner: Scientific Safeguard & Language Switcher */}
       <div className="bg-[#0d5c63] text-white text-xs px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 text-[11px] sm:text-xs min-w-0 flex-1">
@@ -105,7 +105,7 @@ export const Navigation: React.FC = () => {
                 <Link href="/" className="text-base sm:text-lg font-bold text-text-main tracking-tight hover:text-[#0d5c63] transition-colors">
                   JalDrishti
                 </Link>
-                <span className="text-[10px] sm:text-xs font-normal text-text-muted bg-subtle px-1.5 py-0.5 rounded border border-border whitespace-nowrap">
+                <span className="text-[10px] sm:text-xs font-normal text-text-muted whitespace-nowrap">
                   जलदृष्टि v1.0
                 </span>
               </div>

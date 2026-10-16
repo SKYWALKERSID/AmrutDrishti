@@ -101,31 +101,36 @@ export default function OverviewDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header Banner */}
-      <div className="bg-surface border border-border rounded p-5 sm:p-6 shadow-xs">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-text-main tracking-tight">
-              {t('overview.title')}
-            </h1>
-            <p className="text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
-              {t('overview.subtitle')}
-            </p>
+      {/* Top Header */}
+      <div className="bg-surface border border-border rounded p-5 sm:p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted mb-1.5">
+            <span className="font-semibold text-text-main">
+              National Groundwater Telemetry
+            </span>
+            <span>•</span>
+            <span>Multi-Source Geospatial Monitoring</span>
           </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <Link
-              href="/explorer"
-              className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2 rounded shadow-xs transition-colors flex items-center gap-2"
-            >
-              <MapPinIcon className="w-4 h-4" /> {t('overview.openGis')}
-            </Link>
-            <Link
-              href="/interventions"
-              className="bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold px-4 py-2 rounded transition-colors"
-            >
-              {t('overview.interventionsBtn')} ({interventionCount})
-            </Link>
-          </div>
+          <h1 className="text-xl sm:text-2xl font-bold text-text-main tracking-tight">
+            Groundwater Overview & Telemetry Status
+          </h1>
+          <p className="text-xs sm:text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
+            Monitored observation units, satellite-derived storage anomalies, and ground telemetry for water security decision support.
+          </p>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <Link
+            href="/explorer"
+            className="bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold px-4 py-2 rounded shadow-xs transition-colors flex items-center gap-2"
+          >
+            {t('overview.openGis', 'Open GIS Explorer')}
+          </Link>
+          <Link
+            href="/interventions"
+            className="bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold px-4 py-2 rounded transition-colors"
+          >
+            {t('overview.interventionsBtn', 'Interventions')} ({interventionCount})
+          </Link>
         </div>
       </div>
 
@@ -267,11 +272,8 @@ export default function OverviewDashboard() {
         <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
-            <div className="p-1.5 rounded bg-subtle text-text-main">
-              <MapPinIcon className="w-4 h-4 text-[#0d5c63]" />
-            </div>
           </div>
-          <div className="mt-3">
+          <div className="mt-2">
             {isLoading ? (
               <div className="h-8 bg-subtle rounded w-24 animate-pulse"></div>
             ) : (
@@ -290,12 +292,9 @@ export default function OverviewDashboard() {
         {/* KPI 2 */}
         <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'GRACE Storage Anomaly')}</span>
-            <div className="p-1.5 rounded bg-subtle text-water">
-              <WaterDropletIcon className="w-4 h-4 text-[#1b4965]" />
-            </div>
+            <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'Satellite Water Storage')}</span>
           </div>
-          <div className="mt-3">
+          <div className="mt-2">
             {isLoading ? (
               <div className="h-8 bg-subtle rounded w-20 animate-pulse"></div>
             ) : (
@@ -311,17 +310,14 @@ export default function OverviewDashboard() {
         <div className="bg-surface border border-border rounded p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'Monsoon Rainfall Deficit')}</span>
-            <div className="p-1.5 rounded bg-subtle text-amber-700">
-              <CloudRainIcon className="w-4 h-4 text-amber-600" />
-            </div>
           </div>
-          <div className="mt-3">
+          <div className="mt-2">
             {isLoading ? (
               <div className="h-8 bg-subtle rounded w-20 animate-pulse"></div>
             ) : (
               <>
                 <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanRainfallAnomalyMm, 'mm')}</div>
-                <p className="text-xs text-text-muted mt-1">{t('overview.rainfallSubtext', 'Mean rainfall anomaly vs long-term normal')}</p>
+                <p className="text-xs text-text-muted mt-1">{t('overview.rainfallSubtext', 'Average monsoon rainfall anomaly vs baseline')}</p>
               </>
             )}
           </div>
@@ -332,13 +328,13 @@ export default function OverviewDashboard() {
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'CGWB Mean Well Depth')}</span>
           </div>
-          <div className="mt-3">
+          <div className="mt-2">
             {isLoading ? (
               <div className="h-8 bg-subtle rounded w-20 animate-pulse"></div>
             ) : (
               <>
                 <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanWellDepthMbgl, 'm bgl')}</div>
-                <p className="text-xs text-text-muted mt-1">{t('overview.wellSubtext', 'Average depth below ground across stations')}</p>
+                <p className="text-xs text-text-muted mt-1">{t('overview.wellSubtext', 'Average water table depth below ground across stations')}</p>
               </>
             )}
           </div>

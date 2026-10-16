@@ -47,6 +47,16 @@ body {
   height: 100%;
   background: #e9e7e0 !important;
   font-family: inherit !important;
+  z-index: 1 !important;
+}
+
+.leaflet-pane {
+  z-index: 2 !important;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 10 !important;
 }
 
 .leaflet-popup-content-wrapper {

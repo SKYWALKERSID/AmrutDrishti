@@ -204,10 +204,10 @@ export default function LeafletMap({
   }, [blocks, selectedBlockId, activeLayer, isMapReady, t]);
 
   return (
-    <div className="relative h-full min-h-[450px] w-full">
+    <div className="relative h-full w-full overflow-hidden">
       <div
         ref={containerRef}
-        className="h-full min-h-[450px] w-full bg-[#e8eee9]"
+        className="h-full w-full bg-[#e8eee9]"
         aria-label="Interactive Bundelkhand geographic map"
       />
 

@@ -129,24 +129,27 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   }, [initialBlockId, allBlocks]);
 
   // 3. Cascading Dropdown Filter Options
-  // Districts available under the current state selection
+  // Districts available under the current state selection (Alphabetical Order)
   const availableDistricts = useMemo<DistrictData[]>(() => {
-    if (selectedState === 'all') {
-      return allDistricts;
+    let list = allDistricts;
+    if (selectedState !== 'all') {
+      list = allDistricts.filter(d => normalizeStateName(d.state) === selectedState);
     }
-    return allDistricts.filter(d => normalizeStateName(d.state) === selectedState);
+    return [...list].sort((a, b) => a.name.localeCompare(b.name));
   }, [allDistricts, selectedState]);
 
-  // Blocks available under the current district / state selection
+  // Blocks available under the current district / state selection (Alphabetical Order)
   const availableBlocks = useMemo<BlockData[]>(() => {
+    let list: BlockData[] = [];
     if (selectedDistrictId !== 'all') {
       const dist = availableDistricts.find(d => d.id === selectedDistrictId);
-      return dist ? dist.blocks : [];
+      list = dist ? dist.blocks : [];
+    } else if (selectedState !== 'all') {
+      list = availableDistricts.flatMap(d => d.blocks);
+    } else {
+      list = allBlocks;
     }
-    if (selectedState !== 'all') {
-      return availableDistricts.flatMap(d => d.blocks);
-    }
-    return allBlocks;
+    return [...list].sort((a, b) => a.name.localeCompare(b.name));
   }, [availableDistricts, selectedDistrictId, selectedState, allBlocks]);
 
   // Currently filtered blocks passed directly to the Leaflet GIS canvas
@@ -285,11 +288,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             >
               <option value="all">All Available States (8 Monitored)</option>
               <optgroup label="Active Monitored States (8)">
-                {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
-                  <option key={st.code} value={st.name}>
-                    {st.name}
-                  </option>
-                ))}
+                {[...ALL_INDIAN_STATES.filter(s => s.hasData)]
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((st) => (
+                    <option key={st.code} value={st.name}>
+                      {st.name}
+                    </option>
+                  ))}
               </optgroup>
               <optgroup label="Telemetry Ingestion Pending (28)">
                 {ALL_INDIAN_STATES.filter(s => !s.hasData).map((st) => (
@@ -433,7 +438,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
 
           {/* Interactive Map Visualizer Canvas Container */}
-          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-card relative h-[380px] sm:h-[480px]">
+          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-card relative isolate h-[420px] sm:h-[480px] w-full">
             {/* Layer Info Chip */}
             <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5 max-w-[calc(100%-1.5rem)] sm:max-w-sm">
               <div className="font-semibold text-text-main flex items-center gap-1.5">
@@ -512,8 +517,8 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </div>
             ) : selectedBlock ? (
               <>
-                {/* Header */}
-                <div>
+                {/* Header with sequential cascading selectors: State -> District -> Block */}
+                <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
                       {t('explorer.blockDetails', 'Block Details')}
@@ -528,49 +533,118 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                       {getSeverityText(selectedBlock.riskSeverity)}
                     </span>
                   </div>
-                  <h2 className="text-lg sm:text-xl font-bold text-text-main mt-1">{selectedBlock.name} Block</h2>
-                  <p className="text-xs text-text-muted">
-                    {selectedBlock.districtName} District, {selectedBlock.state}
-                  </p>
+
+                  {/* Sequential Cascading Selectors */}
+                  <div className="space-y-2 pt-1 border-t border-border/70">
+                    {/* 1. First: Select State */}
+                    <div>
+                      <label htmlFor="inspector-state-select" className="block text-[11px] font-medium text-text-muted mb-0.5">
+                        1. Select State:
+                      </label>
+                      <select
+                        id="inspector-state-select"
+                        value={selectedState}
+                        onChange={(e) => handleStateChange(e.target.value)}
+                        className="w-full bg-subtle border border-border rounded px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
+                      >
+                        <option value="all">All Monitored States ({ALL_INDIAN_STATES.filter(s => s.hasData).length})</option>
+                        <optgroup label="Active Monitored States">
+                          {[...ALL_INDIAN_STATES.filter(s => s.hasData)]
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((st) => (
+                              <option key={st.code} value={st.name}>
+                                {st.name}
+                              </option>
+                            ))}
+                        </optgroup>
+                      </select>
+                    </div>
+
+                    {/* 2. Second: Select District */}
+                    <div>
+                      <label htmlFor="inspector-district-select" className="block text-[11px] font-medium text-text-muted mb-0.5">
+                        2. Select District:
+                      </label>
+                      <select
+                        id="inspector-district-select"
+                        value={selectedDistrictId}
+                        onChange={(e) => handleDistrictChange(e.target.value)}
+                        disabled={selectedState !== 'all' && availableDistricts.length === 0}
+                        className="w-full bg-subtle border border-border rounded px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <option value="all">
+                          {selectedState === 'all'
+                            ? `All Districts (${availableDistricts.length})`
+                            : `All Districts in ${selectedState} (${availableDistricts.length})`}
+                        </option>
+                        {availableDistricts.map((d) => (
+                          <option key={d.id} value={d.id}>
+                            {d.name} {selectedState === 'all' ? `(${d.state})` : ''}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* 3. Third: Select Block (Alphabetical Order) */}
+                    <div>
+                      <label htmlFor="inspector-block-select" className="block text-[11px] font-medium text-text-muted mb-0.5">
+                        3. Select Block (A-Z):
+                      </label>
+                      <select
+                        id="inspector-block-select"
+                        value={selectedBlock.id}
+                        onChange={(e) => handleBlockChange(e.target.value)}
+                        disabled={availableBlocks.length === 0}
+                        className="w-full bg-subtle border border-border rounded px-2.5 py-1.5 text-xs font-semibold text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {availableBlocks.map((b) => (
+                          <option key={b.id} value={b.id}>
+                            {b.name} Block {selectedDistrictId === 'all' ? `(${b.districtName}, ${b.state})` : ''}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="pt-1 border-t border-border/70">
+                    <h2 className="text-lg font-bold text-text-main">{selectedBlock.name} Block</h2>
+                    <p className="text-xs text-text-muted">
+                      {selectedBlock.districtName} District, {selectedBlock.state}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Key Indicators Grid */}
-                <div className="space-y-3 bg-subtle/50 p-3 sm:p-3.5 rounded-lg border border-border">
+                {/* Key Indicators List - Clean, no cream background or borders */}
+                <div className="space-y-2.5 py-1">
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <span className="truncate">Well Depth:</span>
-                    </span>
+                    <span className="text-text-muted">Well Depth:</span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <CloudRainIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" /> <span className="truncate">Rainfall Difference:</span>
-                    </span>
+                    <span className="text-text-muted">Rainfall Difference:</span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted flex items-center gap-1 min-w-0">
-                      <WaterDropletIcon className="w-3.5 h-3.5 text-water shrink-0" /> <span className="truncate">Satellite Water Storage:</span>
-                    </span>
+                    <span className="text-text-muted">Satellite Water Storage:</span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted truncate min-w-0">Green Cover (Vegetation):</span>
+                    <span className="text-text-muted">Green Cover (Vegetation):</span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center text-xs border-t border-border/60 pt-2 flex-wrap gap-1">
+                  <div className="flex justify-between items-center text-xs border-t border-border/80 pt-2 flex-wrap gap-1">
                     <span className="text-text-muted font-semibold">Water Stress Score:</span>
                     <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-auto">
                       {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
@@ -578,10 +652,10 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   </div>
                 </div>
 
-                {/* Key Driver / Context */}
-                <div className="space-y-1.5">
+                {/* Key Driver / Context - Clean text, no pillbox container */}
+                <div className="space-y-1 pt-1 border-t border-border/60">
                   <span className="text-xs font-bold text-text-main">Contributing Factors:</span>
-                  <p className="text-xs text-text-muted bg-surface p-2.5 rounded border border-border leading-relaxed">
+                  <p className="text-xs text-text-muted leading-relaxed">
                     {selectedBlock.assessment.primaryStressDriver || 'Normal seasonal conditions observed.'}
                   </p>
                 </div>
@@ -603,35 +677,64 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 </div>
               </>
             ) : (
-              <div className="py-12 text-center text-xs text-text-muted space-y-2" data-testid="map-inspector-empty">
-                <p className="font-semibold text-sm text-text-main">No Unit Selected</p>
-                <p>
-                  Click a monitoring block marker on the map or choose a block from the cascading menu to inspect observed telemetry.
-                </p>
+              <div className="py-6 text-xs text-text-muted space-y-4" data-testid="map-inspector-empty">
+                <div>
+                  <p className="font-semibold text-sm text-text-main">Choose a Block to Inspect</p>
+                  <p className="text-xs text-text-muted mt-0.5">
+                    Select any monitoring block below or click on the map to view detailed ground telemetry and water stress indicators:
+                  </p>
+                </div>
+                <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
+                  {availableBlocks.slice(0, 10).map((blk) => (
+                    <button
+                      key={blk.id}
+                      onClick={() => handleMapSelectBlock(blk)}
+                      className="w-full text-left p-2 rounded border border-border hover:bg-subtle transition-colors flex items-center justify-between group"
+                    >
+                      <div>
+                        <div className="font-semibold text-text-main text-xs group-hover:text-[#0d5c63]">
+                          {blk.name} Block
+                        </div>
+                        <div className="text-[11px] text-text-muted">
+                          {blk.districtName}, {blk.state}
+                        </div>
+                      </div>
+                      <span className={`text-[11px] font-semibold ${
+                        blk.riskSeverity === 'severe'
+                          ? 'text-red-700'
+                          : blk.riskSeverity === 'watch'
+                          ? 'text-amber-700'
+                          : 'text-emerald-700'
+                      }`}>
+                        {getSeverityText(blk.riskSeverity)}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Regional Groundwater Profiles */}
+      {/* State Groundwater Profiles */}
       <div className="bg-surface border border-border rounded-lg p-5 shadow-sm space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
           <div>
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#0d5c63]"></span>
-              State Groundwater Profiles: High Stress vs Recharge Regions
+              State Groundwater Profiles: Extraction & Recharge Regimes
             </h2>
             <p className="text-xs text-text-muted mt-0.5">
-              Groundwater status and extraction levels across monitored states. Click any state card to focus the map.
+              Empirical groundwater status and extraction regimes. Source: Central Ground Water Board (CGWB) Dynamic Resource Assessments.
             </p>
           </div>
-          <div className="flex items-center gap-2 text-xs">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-100 text-red-800 font-medium">
-              <span className="w-2 h-2 rounded-full bg-red-600"></span> Over-Exploited Region
+          <div className="flex items-center gap-4 text-xs font-medium">
+            <span className="flex items-center gap-1.5 text-red-700">
+              <span className="w-2 h-2 rounded-full bg-red-600"></span> Over-Exploited (Extraction &gt;100%)
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Abundant / Safe Region
+            <span className="flex items-center gap-1.5 text-emerald-700">
+              <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Safe / Recharge Region
             </span>
           </div>
         </div>
@@ -641,27 +744,24 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <div
               key={grp.state}
               onClick={() => handleStateChange(grp.state)}
-              className={`p-4 rounded-lg border transition-all cursor-pointer hover:shadow-sm ${
+              className={`p-4 rounded-lg border bg-surface transition-all cursor-pointer hover:border-text-muted/40 hover:shadow-xs ${
                 normalizeStateName(grp.state) === selectedState
-                  ? 'ring-2 ring-[#0d5c63]'
-                  : ''
-              } ${
-                grp.category === 'high_stress'
-                  ? 'border-red-200 bg-red-50/40'
-                  : 'border-emerald-200 bg-emerald-50/40'
+                  ? 'border-[#0d5c63] ring-1 ring-[#0d5c63]'
+                  : 'border-border'
               }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span
-                    className={`text-xs font-semibold px-2 py-0.5 rounded ${
+                    className={`text-xs font-semibold ${
                       grp.category === 'high_stress'
-                        ? 'bg-red-700 text-white'
-                        : 'bg-emerald-700 text-white'
+                        ? 'text-red-700'
+                        : 'text-emerald-700'
                     }`}
                   >
-                    {grp.category === 'high_stress' ? 'High Stress' : 'Water Secure'}
+                    {grp.category === 'high_stress' ? 'Over-Exploited' : 'Safe / Abundant'}
                   </span>
+                  <span className="text-text-muted">•</span>
                   <h3 className="font-bold text-sm text-text-main">{grp.state}</h3>
                 </div>
                 <span className="text-[11px] text-text-muted">
@@ -669,16 +769,16 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 </span>
               </div>
 
-              <p className="text-xs text-text-main mt-2 leading-relaxed line-clamp-3">
+              <p className="text-xs text-text-muted mt-2.5 leading-relaxed line-clamp-3">
                 {grp.summaryDescription}
               </p>
 
-              <div className="mt-3 pt-2 border-t border-border/60 text-[11px] flex justify-between items-center">
+              <div className="mt-3 pt-2 border-t border-border/80 text-[11px] flex justify-between items-center">
                 <span className="text-text-muted">
                   {grp.districts.length} districts monitored
                 </span>
                 <span className="text-[#0d5c63] font-semibold hover:underline">
-                  Filter map to {grp.state} →
+                  Filter to {grp.state} →
                 </span>
               </div>
             </div>
