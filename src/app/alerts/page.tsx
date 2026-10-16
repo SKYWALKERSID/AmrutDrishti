@@ -251,7 +251,7 @@ function AlertsContent() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Dispatch Simulator (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
+          <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
               <SendIcon className="w-4 h-4 text-[#0d5c63]" /> {t('alerts.dispatchSimulator', 'Advisory Dispatch Simulator')}
             </h2>
@@ -347,14 +347,14 @@ function AlertsContent() {
               {/* Generated Message Preview */}
               <div className="space-y-1.5 pt-2">
                 <label className="font-semibold text-text-main">{t('alerts.hindiPreview', 'Hindi Advisory Message Preview:')}</label>
-                <div className="p-3 bg-subtle/80 rounded border border-border text-xs text-text-main leading-relaxed font-sans">
+                <div className="p-3 bg-subtle/50 rounded border border-border text-xs text-text-main leading-relaxed font-sans">
                   {generatedHindiText}
                 </div>
               </div>
 
               <div className="space-y-1.5">
                 <label className="font-semibold text-text-main">{t('alerts.englishPreview', 'English Advisory Message Preview:')}</label>
-                <div className="p-3 bg-subtle/80 rounded border border-border text-[11px] text-text-muted leading-relaxed">
+                <div className="p-3 bg-subtle/50 rounded border border-border text-[11px] text-text-muted leading-relaxed">
                   {generatedEnglishText}
                 </div>
               </div>
@@ -366,7 +366,7 @@ function AlertsContent() {
               <button
                 type="submit"
                 disabled={!dispatchDecision.allowed}
-                className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white font-semibold py-2.5 rounded-md transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white font-semibold py-2.5 rounded transition-colors shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {t('alerts.createRecordBtn', 'Create Simulated Advisory Record')} ({selectedChannel === 'SMS' ? t('alerts.smsGateway', 'NIC SMS Gateway') : t('alerts.whatsappGatewayLabel', 'WhatsApp Gateway')}) — {t('alerts.nothingSent', 'nothing is sent')}
               </button>
@@ -377,21 +377,21 @@ function AlertsContent() {
 
         {/* Right Column: Dispatch History & Audit Trail (7 cols) */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
+          <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
               <UserRoleIcon className="w-4 h-4 text-[#0d5c63]" /> {t('alerts.dispatchLogTitle', 'Dispatch History & Delivery Audit Log')} ({notifications.length})
             </h2>
 
-            <div className="space-y-3">
+            <div className="divide-y divide-border border border-border rounded overflow-hidden">
               {notifications.map((notif) => (
-                <div key={notif.id} className="p-3.5 bg-subtle/40 rounded-lg border border-border space-y-2 text-xs">
+                <div key={notif.id} className="p-3.5 bg-surface hover:bg-subtle/30 space-y-2 text-xs">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-text-main">
                         {t(`alerts.recipient.${notif.id === 'notif_001' ? 'collector' : notif.id === 'notif_002' ? 'bdo' : 'jalsamiti'}`, notif.recipientName)}
                       </span>
                       <span className="text-[11px] text-text-muted">({t(`role.${notif.recipientRole}`, notif.recipientRole.toUpperCase())})</span>
-                      <span className="bg-surface px-2 py-0.5 rounded border border-border text-[10px] font-mono text-[#0d5c63]">
+                      <span className="bg-subtle px-2 py-0.5 rounded border border-border text-[10px] font-mono text-[#0d5c63]">
                         {notif.channel}
                       </span>
                     </div>
@@ -400,7 +400,7 @@ function AlertsContent() {
                     </span>
                   </div>
 
-                  <p className="text-text-main leading-snug bg-surface p-2 rounded border border-border text-[11px]">
+                  <p className="text-text-main leading-snug bg-subtle/30 p-2.5 rounded border border-border text-[11px]">
                     {language === 'hi' ? notif.messageHindi : notif.messageEnglish}
                   </p>
 

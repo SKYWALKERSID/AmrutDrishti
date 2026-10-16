@@ -438,7 +438,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
 
           {/* Interactive Map Visualizer Canvas Container */}
-          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-card relative isolate h-[420px] sm:h-[480px] w-full">
+          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-xs relative isolate h-[500px] sm:h-[620px] w-full">
             {/* Layer Info Chip */}
             <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5 max-w-[calc(100%-1.5rem)] sm:max-w-sm">
               <div className="font-semibold text-text-main flex items-center gap-1.5">
@@ -490,7 +490,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
         {/* Right Column: Block Details Inspector Panel (4 cols) */}
         <div className="lg:col-span-4">
-          <div className="bg-surface border border-border rounded-lg p-4 sm:p-5 shadow-card space-y-4 sm:space-y-5 lg:sticky lg:top-24">
+          <div className="bg-surface border border-border rounded-lg p-4 sm:p-5 shadow-xs space-y-4 sm:space-y-5 lg:sticky lg:top-24">
             {isLoading ? (
               <div className="space-y-4 animate-pulse" data-testid="map-inspector-loading">
                 <div className="flex items-center justify-between">
@@ -717,8 +717,8 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         </div>
       </div>
 
-      {/* State Groundwater Profiles */}
-      <div className="bg-surface border border-border rounded-lg p-5 shadow-sm space-y-4">
+      {/* State Groundwater Profiles: Continuous Directory Table */}
+      <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
           <div>
             <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
@@ -731,58 +731,86 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
           <div className="flex items-center gap-4 text-xs font-medium">
             <span className="flex items-center gap-1.5 text-red-700">
-              <span className="w-2 h-2 rounded-full bg-red-600"></span> Over-Exploited (Extraction &gt;100%)
+              <span className="w-2 h-2 rounded-full bg-red-600"></span> Over-Exploited (&gt;100% Extraction)
             </span>
             <span className="flex items-center gap-1.5 text-emerald-700">
-              <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Safe / Recharge Region
+              <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Safe / Recharge Basin
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {STATE_CONTRAST_GROUPS.map((grp) => (
-            <div
-              key={grp.state}
-              onClick={() => handleStateChange(grp.state)}
-              className={`p-4 rounded-lg border bg-surface transition-all cursor-pointer hover:border-text-muted/40 hover:shadow-xs ${
-                normalizeStateName(grp.state) === selectedState
-                  ? 'border-[#0d5c63] ring-1 ring-[#0d5c63]'
-                  : 'border-border'
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span
-                    className={`text-xs font-semibold ${
-                      grp.category === 'high_stress'
-                        ? 'text-red-700'
-                        : 'text-emerald-700'
+        {/* Structured Directory Table */}
+        <div className="overflow-x-auto border border-border rounded">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="border-b border-border bg-subtle/50 text-text-muted uppercase text-[11px] font-semibold tracking-wider">
+                <th className="py-2.5 px-3.5">State & Regime</th>
+                <th className="py-2.5 px-3.5">Extraction Classification</th>
+                <th className="py-2.5 px-3.5">Monitored Scope</th>
+                <th className="py-2.5 px-3.5">Hydrogeological Profile & Assessment</th>
+                <th className="py-2.5 px-3.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {STATE_CONTRAST_GROUPS.map((grp) => {
+                const isSelected = normalizeStateName(grp.state) === selectedState;
+                const totalBlocks = grp.districts.flatMap(d => d.blocks).length;
+                const isOverExploited = grp.category === 'high_stress';
+
+                return (
+                  <tr
+                    key={grp.state}
+                    onClick={() => handleStateChange(grp.state)}
+                    className={`transition-colors cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#0d5c63]/5 font-medium'
+                        : 'bg-surface hover:bg-subtle/30'
                     }`}
                   >
-                    {grp.category === 'high_stress' ? 'Over-Exploited' : 'Safe / Abundant'}
-                  </span>
-                  <span className="text-text-muted">•</span>
-                  <h3 className="font-bold text-sm text-text-main">{grp.state}</h3>
-                </div>
-                <span className="text-[11px] text-text-muted">
-                  {grp.districts.flatMap(d => d.blocks).length} blocks
-                </span>
-              </div>
+                    {/* State */}
+                    <td className="py-3 px-3.5">
+                      <div className="font-bold text-text-main text-xs">{grp.state}</div>
+                      <div className="text-[10px] text-text-muted mt-0.5">Rank #{grp.cpiRank} National Contrast</div>
+                    </td>
 
-              <p className="text-xs text-text-muted mt-2.5 leading-relaxed line-clamp-3">
-                {grp.summaryDescription}
-              </p>
+                    {/* Extraction Regime */}
+                    <td className="py-3 px-3.5 whitespace-nowrap">
+                      <span className={`inline-flex items-center gap-1.5 font-semibold text-xs ${
+                        isOverExploited ? 'text-red-700' : 'text-emerald-700'
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${isOverExploited ? 'bg-red-600' : 'bg-emerald-600'}`}></span>
+                        {isOverExploited ? 'Over-Exploited (>100%)' : 'Safe / Abundant'}
+                      </span>
+                    </td>
 
-              <div className="mt-3 pt-2 border-t border-border/80 text-[11px] flex justify-between items-center">
-                <span className="text-text-muted">
-                  {grp.districts.length} districts monitored
-                </span>
-                <span className="text-[#0d5c63] font-semibold hover:underline">
-                  Filter to {grp.state} →
-                </span>
-              </div>
-            </div>
-          ))}
+                    {/* Scope */}
+                    <td className="py-3 px-3.5 whitespace-nowrap text-text-muted">
+                      <div><strong className="text-text-main font-semibold">{totalBlocks}</strong> blocks</div>
+                      <div className="text-[11px]">{grp.districts.length} districts</div>
+                    </td>
+
+                    {/* Hydrogeological Profile */}
+                    <td className="py-3 px-3.5 text-text-muted max-w-md leading-relaxed text-[11px]">
+                      {grp.summaryDescription}
+                    </td>
+
+                    {/* Actions */}
+                    <td className="py-3 px-3.5 text-right whitespace-nowrap">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleStateChange(grp.state);
+                        }}
+                        className="text-[#0d5c63] hover:text-[#094348] font-semibold text-xs hover:underline"
+                      >
+                        Filter to {grp.state} →
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

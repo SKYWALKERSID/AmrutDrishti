@@ -28,11 +28,11 @@ export default function RootLayout({
         <LanguageProvider>
           <RoleProvider>
             <Navigation />
-            <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <main className="flex-1 w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
               {children}
             </main>
-            <footer className="bg-surface border-t border-border mt-12 py-5 text-xs text-text-muted">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <footer className="bg-surface border-t border-border mt-10 py-5 text-xs text-text-muted">
+              <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                   <p className="font-semibold text-text-main">JalDrishti (जलदृष्टि) — Satellite-Assisted Groundwater Intelligence Platform</p>
                   <div className="flex items-center gap-4 text-text-muted text-xs">

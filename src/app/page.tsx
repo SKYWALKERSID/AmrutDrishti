@@ -134,33 +134,105 @@ export default function OverviewDashboard() {
         </div>
       </div>
 
-      {/* High Water Stress Blocks Section */}
-      <div className="bg-surface border border-border rounded p-5 shadow-sm space-y-3">
-        <div className="border-b border-border pb-3">
-          <h2 className="text-base font-bold text-text-main tracking-tight">
-            High Water Stress Blocks
-          </h2>
-          <p className="text-xs text-text-muted mt-0.5">
-            {isLoading
-              ? t('monitoring.loading', 'Loading live database...')
-              : severeCount > 0
-              ? `${severeCount} flagged of ${summary.total} monitored blocks`
-              : `${displayBlocks.length} monitored blocks active`}
-          </p>
+      {/* Unified Telemetry Metric Strip */}
+      <div className="bg-surface border border-border rounded p-4 sm:p-5 shadow-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
+          {/* KPI 1 */}
+          <div className="py-2 sm:py-0 sm:px-4 first:sm:pl-0">
+            <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
+            <div className="mt-1.5">
+              {isLoading ? (
+                <div className="h-7 bg-subtle rounded w-24 animate-pulse"></div>
+              ) : (
+                <>
+                  <div className="text-xl sm:text-2xl font-bold text-text-main tracking-tight">
+                    {filteredBlocks.length} <span className="text-xs font-normal text-text-muted">{t('overview.blocksUnit', 'Blocks')}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[11px] mt-0.5 text-text-muted">
+                    <span className="text-red-700 font-semibold">{severeCount} {t('severity.severe', 'Severe')}</span> •
+                    <span className="text-amber-700 font-semibold">{watchCount} {t('severity.watch', 'Watch')}</span> •
+                    <span className="text-emerald-700 font-semibold">{normalCount} {t('severity.normal', 'Normal')}</span>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* KPI 2 */}
+          <div className="py-2 sm:py-0 sm:px-4">
+            <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'Satellite Water Storage')}</span>
+            <div className="mt-1.5">
+              {isLoading ? (
+                <div className="h-7 bg-subtle rounded w-20 animate-pulse"></div>
+              ) : (
+                <>
+                  <div className="text-xl sm:text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanGraceTwsaCm, 'cm')}</div>
+                  <p className="text-[11px] text-text-muted mt-0.5 truncate">{t('overview.graceSubtext', `Mean GRACE TWSA anomaly`)}</p>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* KPI 3 */}
+          <div className="py-2 sm:py-0 sm:px-4">
+            <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'Monsoon Rainfall Deficit')}</span>
+            <div className="mt-1.5">
+              {isLoading ? (
+                <div className="h-7 bg-subtle rounded w-20 animate-pulse"></div>
+              ) : (
+                <>
+                  <div className="text-xl sm:text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanRainfallAnomalyMm, 'mm')}</div>
+                  <p className="text-[11px] text-text-muted mt-0.5 truncate">{t('overview.rainfallSubtext', 'Average monsoon deficit vs baseline')}</p>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* KPI 4 */}
+          <div className="py-2 sm:py-0 sm:px-4 last:sm:pr-0">
+            <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'CGWB Mean Well Depth')}</span>
+            <div className="mt-1.5">
+              {isLoading ? (
+                <div className="h-7 bg-subtle rounded w-20 animate-pulse"></div>
+              ) : (
+                <>
+                  <div className="text-xl sm:text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanWellDepthMbgl, 'm bgl')}</div>
+                  <p className="text-[11px] text-text-muted mt-0.5 truncate">{t('overview.wellSubtext', 'Average water table depth below ground')}</p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* High Water Stress Blocks Section (Structured Priority Directory) */}
+      <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-3">
+          <div>
+            <h2 className="text-base font-bold text-text-main tracking-tight">
+              High Water Stress Priority Units
+            </h2>
+            <p className="text-xs text-text-muted mt-0.5">
+              {isLoading
+                ? t('monitoring.loading', 'Loading live database...')
+                : severeCount > 0
+                ? `${severeCount} flagged of ${summary.total} monitored blocks requiring priority administrative attention`
+                : `${displayBlocks.length} monitored blocks active`}
+            </p>
+          </div>
+          <Link
+            href="/risk-assessment"
+            className="text-xs font-semibold text-[#0d5c63] hover:underline"
+          >
+            All Risk Scores & Methodology →
+          </Link>
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-            <div className="bg-surface border border-border rounded p-4 animate-pulse space-y-3">
-              <div className="h-4 bg-subtle rounded w-1/3"></div>
-              <div className="h-8 bg-subtle/60 rounded"></div>
-              <div className="h-3 bg-subtle rounded w-1/2"></div>
-            </div>
-            <div className="bg-surface border border-border rounded p-4 animate-pulse space-y-3">
-              <div className="h-4 bg-subtle rounded w-1/3"></div>
-              <div className="h-8 bg-subtle/60 rounded"></div>
-              <div className="h-3 bg-subtle rounded w-1/2"></div>
-            </div>
+          <div className="space-y-2 pt-1 animate-pulse">
+            <div className="h-10 bg-subtle rounded w-full"></div>
+            <div className="h-10 bg-subtle rounded w-full"></div>
+            <div className="h-10 bg-subtle rounded w-full"></div>
           </div>
         ) : loadError ? (
           <div className="bg-red-50 border border-red-200 rounded p-4 text-xs text-red-900 flex items-center justify-between">
@@ -181,164 +253,89 @@ export default function OverviewDashboard() {
             <p className="mt-1">No administrative monitoring records were returned for this geographical filter.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
-            {(() => {
-              const severeBlocks = filteredBlocks.filter(b => b.riskSeverity === 'severe');
-              const watchBlocks = filteredBlocks.filter(b => b.riskSeverity === 'watch');
-              const priorityBlocks = severeBlocks.length > 0 
-                ? severeBlocks.slice(0, 6) 
-                : (watchBlocks.length > 0 ? watchBlocks.slice(0, 6) : filteredBlocks.slice(0, 6));
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-subtle/50 text-[11px] font-semibold text-text-muted uppercase tracking-wider border-b border-border">
+                  <th className="py-2.5 px-3">Administrative Block</th>
+                  <th className="py-2.5 px-3">Severity & GSS Score</th>
+                  <th className="py-2.5 px-3">Well Depth</th>
+                  <th className="py-2.5 px-3">Rainfall Deficit</th>
+                  <th className="py-2.5 px-3">Satellite TWSA</th>
+                  <th className="py-2.5 px-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {(() => {
+                  const severeBlocks = filteredBlocks.filter(b => b.riskSeverity === 'severe');
+                  const watchBlocks = filteredBlocks.filter(b => b.riskSeverity === 'watch');
+                  const priorityBlocks = severeBlocks.length > 0 
+                    ? severeBlocks.slice(0, 6) 
+                    : (watchBlocks.length > 0 ? watchBlocks.slice(0, 6) : filteredBlocks.slice(0, 6));
 
-              return priorityBlocks.map(block => {
-                const isSevere = block.riskSeverity === 'severe';
-                const isWatch = block.riskSeverity === 'watch';
-                const badgeBg = isSevere 
-                  ? 'bg-red-50 text-red-800 border-red-200' 
-                  : isWatch 
-                  ? 'bg-amber-50 text-amber-800 border-amber-200' 
-                  : 'bg-emerald-50 text-emerald-800 border-emerald-200';
+                  return priorityBlocks.map(block => {
+                    const isSevere = block.riskSeverity === 'severe';
+                    const isWatch = block.riskSeverity === 'watch';
 
-                return (
-                  <div key={block.id} className="bg-surface border border-border rounded p-3.5 space-y-2 text-xs">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="font-semibold text-text-main text-sm">{block.name} Block</h3>
-                        <span className="text-text-muted text-[11px]">{block.districtName} District, {block.state}</span>
-                      </div>
-                      <div className="text-right">
-                        <span className={`text-xs font-bold ${isSevere ? 'text-red-700' : isWatch ? 'text-amber-700' : 'text-emerald-700'}`}>
-                          GSS: {block.assessment.descriptiveStressScore !== null ? `${block.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
-                        </span>
-                        <span className="block text-[10px] text-text-muted capitalize mt-0.5">
-                          {block.riskSeverity} Priority
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-2 text-[11px] bg-subtle/40 p-2 rounded border border-border">
-                      <div>
-                        <span className="text-text-muted block text-[10px]">{t('layer.wells', 'Well Depth')}</span>
-                        <span className={`font-bold ${isSevere ? 'text-red-700' : 'text-text-main'}`}>
-                          {block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl}m bgl` : t('monitoring.noData', 'No Data')}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-text-muted block text-[10px]">{t('layer.rainfall', 'Rain Deficit')}</span>
-                        <span className={`font-bold ${isSevere ? 'text-red-700' : 'text-text-main'}`}>
-                          {block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm}mm` : t('monitoring.noData', 'No Data')}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-text-muted block text-[10px]">{t('layer.grace', 'GRACE TWSA')}</span>
-                        <span className="font-bold text-text-main">
+                    return (
+                      <tr key={block.id} className="hover:bg-subtle/30 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="font-semibold text-text-main text-xs">{block.name} Block</div>
+                          <div className="text-[11px] text-text-muted">{block.districtName} District, {block.state}</div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className={`font-bold ${isSevere ? 'text-red-700' : isWatch ? 'text-amber-700' : 'text-emerald-700'}`}>
+                            {block.assessment.descriptiveStressScore !== null ? `${block.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
+                          </span>
+                          <span className="block text-[10px] text-text-muted capitalize">
+                            {block.riskSeverity} Priority
+                          </span>
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className={`font-medium ${isSevere ? 'text-red-700 font-semibold' : 'text-text-main'}`}>
+                            {block.indicators.cgwbWellDepthMbgl !== null ? `${block.indicators.cgwbWellDepthMbgl}m bgl` : t('monitoring.noData', 'No Data')}
+                          </span>
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className={`font-medium ${isSevere ? 'text-red-700 font-semibold' : 'text-text-main'}`}>
+                            {block.indicators.rainfallAnomalyMm !== null ? `${block.indicators.rainfallAnomalyMm}mm` : t('monitoring.noData', 'No Data')}
+                          </span>
+                        </td>
+                        <td className="py-3 px-3 text-text-main font-medium">
                           {block.indicators.graceTwsaCm !== null ? `${block.indicators.graceTwsaCm}cm` : t('monitoring.noData', 'No Data')}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/60">
-                      <Link
-                        href={`/explorer?block=${block.id}`}
-                        className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
-                      >
-                        {t('overview.inspectEvidence', 'Inspect Map Evidence →')}
-                      </Link>
-                      <span className="text-text-muted">•</span>
-                      <Link
-                        href={`/risk-assessment?block=${block.id}`}
-                        className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
-                      >
-                        {t('overview.viewGss', 'View GSS Breakdown →')}
-                      </Link>
-                      <span className="text-text-muted">•</span>
-                      <Link
-                        href={`/interventions?block=${block.id}`}
-                        className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
-                      >
-                        {t('overview.prioritizeScheme', 'Prioritize Scheme →')}
-                      </Link>
-                    </div>
-                  </div>
-                );
-              });
-            })()}
+                        </td>
+                        <td className="py-3 px-3 text-right">
+                          <div className="inline-flex items-center gap-2">
+                            <Link
+                              href={`/explorer?block=${block.id}`}
+                              className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                            >
+                              {t('overview.inspectEvidence', 'Inspect Map →')}
+                            </Link>
+                            <span className="text-text-muted">•</span>
+                            <Link
+                              href={`/risk-assessment?block=${block.id}`}
+                              className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                            >
+                              {t('overview.viewGss', 'GSS →')}
+                            </Link>
+                            <span className="text-text-muted">•</span>
+                            <Link
+                              href={`/interventions?block=${block.id}`}
+                              className="text-[#0d5c63] hover:underline font-semibold text-[11px]"
+                            >
+                              {t('overview.prioritizeScheme', 'Intervention →')}
+                            </Link>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  });
+                })()}
+              </tbody>
+            </table>
           </div>
         )}
-      </div>
-
-      {/* KPI Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* KPI 1 */}
-        <div className="bg-surface border border-border rounded p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
-          </div>
-          <div className="mt-2">
-            {isLoading ? (
-              <div className="h-8 bg-subtle rounded w-24 animate-pulse"></div>
-            ) : (
-              <>
-                <div className="text-2xl font-bold text-text-main tracking-tight">{filteredBlocks.length} {t('overview.blocksUnit', 'Blocks')}</div>
-                <div className="flex items-center gap-2 text-xs mt-1 text-text-muted">
-                  <span className="text-red-700 font-semibold">{severeCount} {t('severity.severe', 'Severe')}</span> •
-                  <span className="text-amber-700 font-semibold">{watchCount} {t('severity.watch', 'Watch')}</span> •
-                  <span className="text-emerald-700 font-semibold">{normalCount} {t('severity.normal', 'Normal')}</span>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* KPI 2 */}
-        <div className="bg-surface border border-border rounded p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'Satellite Water Storage')}</span>
-          </div>
-          <div className="mt-2">
-            {isLoading ? (
-              <div className="h-8 bg-subtle rounded w-20 animate-pulse"></div>
-            ) : (
-              <>
-                <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanGraceTwsaCm, 'cm')}</div>
-                <p className="text-xs text-text-muted mt-1">{t('overview.graceSubtext', `Mean GRACE TWSA across ${summary.total} blocks`)}</p>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* KPI 3 */}
-        <div className="bg-surface border border-border rounded p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'Monsoon Rainfall Deficit')}</span>
-          </div>
-          <div className="mt-2">
-            {isLoading ? (
-              <div className="h-8 bg-subtle rounded w-20 animate-pulse"></div>
-            ) : (
-              <>
-                <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanRainfallAnomalyMm, 'mm')}</div>
-                <p className="text-xs text-text-muted mt-1">{t('overview.rainfallSubtext', 'Average monsoon rainfall anomaly vs baseline')}</p>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* KPI 4 */}
-        <div className="bg-surface border border-border rounded p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'CGWB Mean Well Depth')}</span>
-          </div>
-          <div className="mt-2">
-            {isLoading ? (
-              <div className="h-8 bg-subtle rounded w-20 animate-pulse"></div>
-            ) : (
-              <>
-                <div className="text-2xl font-bold text-text-main tracking-tight">{fmt(summary.meanWellDepthMbgl, 'm bgl')}</div>
-                <p className="text-xs text-text-muted mt-1">{t('overview.wellSubtext', 'Average water table depth below ground across stations')}</p>
-              </>
-            )}
-          </div>
-        </div>
       </div>
 
       {/* Main Content Grid: Filterable Block Table & Evidence Overview */}

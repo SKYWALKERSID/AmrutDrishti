@@ -307,7 +307,7 @@ function InterventionsContent() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Proposals List (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-surface border border-border rounded-lg p-4 shadow-card">
+          <div className="bg-surface border border-border rounded p-4 shadow-xs">
             <div className="flex items-center justify-between gap-2 mb-3">
               <h2 className="text-xs font-bold text-text-muted uppercase tracking-wider">
                 {t('interventions.activeProposals', 'Active Intervention Proposals')} ({proposals.filter(p => {
@@ -330,12 +330,12 @@ function InterventionsContent() {
 
             {isLoading ? (
               <div className="space-y-3 animate-pulse">
-                <div className="h-20 bg-subtle rounded-lg"></div>
-                <div className="h-20 bg-subtle rounded-lg"></div>
-                <div className="h-20 bg-subtle rounded-lg"></div>
+                <div className="h-20 bg-subtle rounded"></div>
+                <div className="h-20 bg-subtle rounded"></div>
+                <div className="h-20 bg-subtle rounded"></div>
               </div>
             ) : proposals.length > 0 ? (
-              <div className="space-y-3">
+              <div className="divide-y divide-border border border-border rounded overflow-hidden">
                 {proposals.filter(p => {
                   if (selectedStateFilter === 'all') return true;
                   const b = blocksData.find(blk => blk.id === p.blockId);
@@ -346,10 +346,10 @@ function InterventionsContent() {
                     <button
                       key={prop.id}
                       onClick={() => setSelectedProposal(prop)}
-                      className={`w-full text-left p-3.5 rounded-lg border transition-all ${
+                      className={`w-full text-left p-3.5 transition-colors ${
                         isSelected
-                          ? 'bg-subtle/80 border-[#0d5c63] ring-1 ring-[#0d5c63]'
-                          : 'bg-surface hover:bg-subtle/40 border-border'
+                          ? 'bg-[#0d5c63]/5 border-l-2 border-l-[#0d5c63]'
+                          : 'bg-surface hover:bg-subtle/30'
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
@@ -380,7 +380,7 @@ function InterventionsContent() {
           </div>
 
           {/* Government Scheme Reference Cards */}
-          <div className="bg-surface border border-border rounded-lg p-4 shadow-card space-y-3">
+          <div className="bg-surface border border-border rounded p-4 shadow-xs space-y-3">
             <h2 className="text-xs font-bold text-text-main flex items-center gap-1.5">
               <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> {t('interventions.supportedSchemes', 'Supported Government Schemes')}
             </h2>
@@ -388,9 +388,9 @@ function InterventionsContent() {
               {t('interventions.schemesNotice', SCHEME_UNVERIFIED_NOTICE)}
             </p>
 
-            <div className="space-y-2 text-xs">
+            <div className="divide-y divide-border border border-border rounded overflow-hidden text-xs">
               {INTERVENTION_SCHEMES.map((sch) => (
-                <div key={sch.id} className="p-2.5 bg-subtle/50 rounded border border-border space-y-1">
+                <div key={sch.id} className="p-3 bg-surface hover:bg-subtle/30 space-y-1">
                   <div className="flex justify-between font-bold text-text-main">
                     <span>{sch.name}</span>
                     <span className="text-[10px] text-[#0d5c63]">{t('interventions.demonstrationCap', 'Demonstration Cap')}: ₹{(sch.maxSanctionUnitAmountInr / 100000).toFixed(1)}{t('interventions.unverifiedCap', 'L (unverified)')}</span>
@@ -404,7 +404,7 @@ function InterventionsContent() {
 
         {/* Right Column: Proposal Inspection & Governance Review Panel (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-5">
+          <div className="bg-surface border border-border rounded p-6 shadow-xs space-y-5">
             {isLoading ? (
               <div className="space-y-4 animate-pulse">
                 <div className="h-6 bg-subtle rounded w-1/3"></div>

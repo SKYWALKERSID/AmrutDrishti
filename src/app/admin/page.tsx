@@ -51,7 +51,7 @@ export default function AdminPage() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-lg border border-border bg-surface p-6 shadow-card">
+      <section className="rounded border border-border bg-surface p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-[#0d5c63] flex items-center gap-1.5">
@@ -62,14 +62,14 @@ export default function AdminPage() {
               {t('admin.subtitle', 'Platform-wide administration interface for System Administrators with full access.')}
             </p>
           </div>
-          <span className="inline-flex shrink-0 items-center rounded-md border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-900">
+          <span className="inline-flex shrink-0 items-center rounded border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-900">
             {t('admin.modeActive', 'Superuser Mode Active')}
           </span>
         </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+        <article className="rounded border border-border bg-surface p-5 shadow-xs space-y-2">
           <h2 className="font-bold text-text-main text-sm">Simulated Role Context Switcher</h2>
           <p className="text-xs leading-5 text-text-muted">
             The top navigation role selector provides instant client-side evaluation context for all prototype personas.
@@ -77,7 +77,7 @@ export default function AdminPage() {
           <p className="text-xs font-semibold text-emerald-700">Status: Client-Side Demonstration Active</p>
         </article>
 
-        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+        <article className="rounded border border-border bg-surface p-5 shadow-xs space-y-2">
           <h2 className="font-bold text-text-main text-sm">Audit Trail & Access Logging</h2>
           <p className="text-xs leading-5 text-text-muted">
             Inspect or log administrative changes, human risk overrides, and notification dispatches across all administrative jurisdictions.
@@ -85,7 +85,7 @@ export default function AdminPage() {
           <p className="text-xs font-semibold text-text-main">Status: PostgreSQL audit_events Table Active</p>
         </article>
 
-        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+        <article className="rounded border border-border bg-surface p-5 shadow-xs space-y-2">
           <h2 className="font-bold text-text-main text-sm">Geospatial & Ingestion Pipelines</h2>
           <p className="text-xs leading-5 text-text-muted">
             Review data source cadence, provider licenses, and spatial resolution metadata across configured GEE, IMD, and CGWB pipelines.
@@ -95,7 +95,7 @@ export default function AdminPage() {
           </Link>
         </article>
 
-        <article className="rounded-lg border border-border bg-surface p-5 shadow-card space-y-2">
+        <article className="rounded border border-border bg-surface p-5 shadow-xs space-y-2">
           <h2 className="font-bold text-text-main text-sm">Operational Scientific Safeguards</h2>
           <p className="text-xs leading-5 text-text-muted">
             All predictive scores and advisories require authorized human review and ground piezometer validation before emergency financial sanctions.
@@ -107,7 +107,7 @@ export default function AdminPage() {
       </section>
 
       {/* Live Audit Log Section */}
-      <section className="rounded-lg border border-border bg-surface p-6 shadow-card space-y-4">
+      <section className="rounded border border-border bg-surface p-6 shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-base font-bold text-text-main">Recent System & Role Audit Events</h2>
@@ -128,7 +128,7 @@ export default function AdminPage() {
           </button>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto border border-border rounded">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-border bg-subtle/50 text-text-muted">

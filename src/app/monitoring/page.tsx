@@ -477,8 +477,9 @@ function MonitoringContent() {
       </div>
 
       {/* Detailed Indicator Matrix for Selected Block */}
+      {/* Detailed Indicator Matrix for Selected Block */}
       {isLoading ? (
-        <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4 animate-pulse">
+        <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4 animate-pulse">
           <div className="h-5 bg-subtle rounded w-1/3"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="h-24 bg-subtle rounded"></div>
@@ -487,44 +488,46 @@ function MonitoringContent() {
           </div>
         </div>
       ) : selectedBlock ? (
-        <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
-          <h2 className="text-sm font-bold text-text-main flex items-center justify-between">
-            <span>{t('monitoring.matrixTitle', 'Current Indicator Matrix')} — {selectedBlock.name} Block ({selectedBlock.districtName})</span>
-            <span className="text-xs font-normal text-text-muted">
-              Status: {selectedBlock.indicators.dataQualityFlag.toUpperCase()} (Data Status: {selectedBlock.assessment.dataStatus})
+        <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-border pb-3">
+            <h2 className="text-sm font-semibold text-text-main">
+              {t('monitoring.matrixTitle', 'Current Indicator Matrix')} — {selectedBlock.name} Block ({selectedBlock.districtName})
+            </h2>
+            <span className="text-xs text-text-muted">
+              Quality Flag: {selectedBlock.indicators.dataQualityFlag.toUpperCase()} • Telemetry: {selectedBlock.assessment.dataStatus.toUpperCase()}
             </span>
-          </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-            <div className="p-4 bg-subtle/50 rounded-lg border border-border space-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border text-xs">
+            <div className="py-2 md:py-0 md:pr-4 first:md:pl-0 space-y-1">
               <span className="text-text-muted font-medium">NASA GRACE-FO TWSA</span>
-              <div className="text-lg font-bold text-text-main">{fmtVal(selectedBlock.indicators.graceTwsaCm, 'cm')}</div>
-              <p className="text-[11px] text-text-muted">Coarse satellite grid (1.0° resolution). Regional mass anomaly.</p>
+              <div className="text-xl font-bold text-text-main">{fmtVal(selectedBlock.indicators.graceTwsaCm, 'cm')}</div>
+              <p className="text-[11px] text-text-muted leading-relaxed">Coarse satellite grid (1.0° resolution). Regional mass anomaly.</p>
             </div>
 
-            <div className="p-4 bg-subtle/50 rounded-lg border border-border space-y-1">
+            <div className="py-2 md:py-0 md:px-4 space-y-1">
               <span className="text-text-muted font-medium">IMD Rainfall Anomaly</span>
-              <div className="text-lg font-bold text-amber-700">{fmtVal(selectedBlock.indicators.rainfallAnomalyMm, 'mm')}</div>
-              <p className="text-[11px] text-text-muted">SPI 3-Month: {selectedBlock.indicators.spi3Month ?? 'N/A'}. Gridded rain gauge deficit.</p>
+              <div className="text-xl font-bold text-amber-700">{fmtVal(selectedBlock.indicators.rainfallAnomalyMm, 'mm')}</div>
+              <p className="text-[11px] text-text-muted leading-relaxed">SPI 3-Month: {selectedBlock.indicators.spi3Month ?? 'N/A'}. Gridded rain gauge deficit.</p>
             </div>
 
-            <div className="p-4 bg-subtle/50 rounded-lg border border-border space-y-1">
+            <div className="py-2 md:py-0 md:pl-4 last:md:pr-0 space-y-1">
               <span className="text-text-muted font-medium">CGWB Well Level (m bgl)</span>
-              <div className="text-lg font-bold text-red-700">{fmtVal(selectedBlock.indicators.cgwbWellDepthMbgl, 'm bgl')}</div>
-              <p className="text-[11px] text-text-muted">Trend: {selectedBlock.indicators.wellDepthTrendMperYr !== null ? `${selectedBlock.indicators.wellDepthTrendMperYr} m/yr drawdown rate.` : 'No trend data'}</p>
+              <div className="text-xl font-bold text-red-700">{fmtVal(selectedBlock.indicators.cgwbWellDepthMbgl, 'm bgl')}</div>
+              <p className="text-[11px] text-text-muted leading-relaxed">Trend: {selectedBlock.indicators.wellDepthTrendMperYr !== null ? `${selectedBlock.indicators.wellDepthTrendMperYr} m/yr drawdown rate.` : 'No trend data'}</p>
             </div>
           </div>
         </div>
       ) : (
-        <div className="p-8 text-center bg-surface border border-border rounded-lg text-xs text-text-muted">
+        <div className="p-8 text-center bg-surface border border-border rounded text-xs text-text-muted">
           No block selected or administrative unit unavailable.
         </div>
       )}
 
       {/* Genuine Historical Observations Panel */}
       {selectedBlock && (
-        <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
-          <h2 className="text-sm font-bold text-text-main">
+        <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
+          <h2 className="text-sm font-semibold text-text-main">
             {t('monitoring.historicalObservationsTitle', 'Published CGWB / NWIC Historical Groundwater Observations')}
           </h2>
           <HistoricalObservationsPanel enabled={true} block={selectedBlock.id} />

@@ -93,7 +93,7 @@ export const Navigation: React.FC = () => {
       </div>
 
       {/* Main Header Bar */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between py-2.5 sm:py-0 sm:h-16 gap-2 sm:gap-4">
           {/* Brand */}
           <div className="flex items-center gap-2.5 min-w-0">

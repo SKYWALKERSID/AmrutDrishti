@@ -177,14 +177,14 @@ function RiskAssessmentContent() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Block Selection & Stress Score Card (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
+          <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
             {isLoading ? (
               <div className="space-y-4 animate-pulse">
                 <div className="flex items-center justify-between">
                   <div className="h-4 bg-subtle rounded w-28"></div>
                   <div className="h-8 bg-subtle rounded w-36"></div>
                 </div>
-                <div className="p-5 bg-subtle/40 rounded-lg space-y-3">
+                <div className="p-5 bg-subtle/40 rounded space-y-3">
                   <div className="h-3 bg-subtle rounded w-1/3 mx-auto"></div>
                   <div className="h-10 bg-subtle rounded w-24 mx-auto"></div>
                   <div className="h-4 bg-subtle rounded w-2/3 mx-auto"></div>
@@ -259,7 +259,7 @@ function RiskAssessmentContent() {
                 </div>
 
                 {/* Score Display Card */}
-                <div className="p-5 bg-subtle/50 rounded-lg border border-border text-center space-y-2">
+                <div className="p-5 bg-subtle/30 rounded border border-border text-center space-y-2">
                   <div className="text-xs text-text-muted uppercase font-semibold">
                     Calculated Stress Score (0 to 100)
                   </div>
@@ -302,10 +302,10 @@ function RiskAssessmentContent() {
 
           {/* Human Override Controls */}
           {restrictionNotice && (
-            <div role="note" className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-xs text-amber-900">{restrictionNotice}</div>
+            <div role="note" className="bg-amber-50 border border-amber-200 rounded p-4 text-xs text-amber-900">{restrictionNotice}</div>
           )}
           {!isReadOnly && (
-            <div className="bg-surface border border-border rounded-lg p-5 shadow-card space-y-4">
+            <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
                 <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" /> {t('risk.humanOverrideTitle', 'Human Review & Risk Override')}
               </h2>
@@ -314,7 +314,7 @@ function RiskAssessmentContent() {
               </p>
 
               {overrideApplied ? (
-                <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-md text-xs space-y-1">
+                <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded text-xs space-y-1">
                   <div className="font-bold flex items-center gap-1.5">
                     <CheckCircleIcon className="w-4 h-4 text-emerald-700" /> {t('risk.overrideSuccessTitle', 'Review Note Held In Memory')}
                   </div>
@@ -327,7 +327,7 @@ function RiskAssessmentContent() {
                     <select
                       value={overrideSeverity}
                       onChange={(e) => setOverrideSeverity(e.target.value as RiskSeverity)}
-                      className="w-full bg-subtle border border-border rounded-md px-3 py-1.5 text-xs text-text-main focus:outline-none"
+                      className="w-full bg-subtle border border-border rounded px-3 py-1.5 text-xs text-text-main focus:outline-none"
                     >
                       <option value="severe">{t('overview.severeCount', 'Severe Stress')}</option>
                       <option value="watch">{t('overview.watchCount', 'Watch Advisory')}</option>
@@ -342,14 +342,14 @@ function RiskAssessmentContent() {
                       onChange={(e) => setOverrideReason(e.target.value)}
                       placeholder={t('risk.reviewPlaceholder', 'Enter ground inspection evidence or hydrogeologist report reference...')}
                       rows={3}
-                      className="w-full bg-subtle border border-border rounded-md p-2 text-xs text-text-main focus:outline-none"
+                      className="w-full bg-subtle border border-border rounded p-2 text-xs text-text-main focus:outline-none"
                       required
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2 rounded-md transition-colors"
+                    className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2 rounded transition-colors"
                   >
                     {t('risk.recordNoteBtn', 'Record Review Note (this session only)')}
                   </button>
@@ -359,11 +359,10 @@ function RiskAssessmentContent() {
           )}
         </div>
 
-
         {/* Right Column: Model Governance & Indicator Weights (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
           {/* Formula Breakdown */}
-          <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
+          <div className="bg-surface border border-border rounded p-6 shadow-xs space-y-4">
             <h2 className="text-base font-bold text-text-main">
               Calculated Multi-Criteria Breakdown
             </h2>
@@ -378,16 +377,16 @@ function RiskAssessmentContent() {
               </div>
             ) : selectedBlock ? (
               <div className="space-y-3 text-xs">
-                <div className="p-3 bg-blue-50 rounded border border-blue-200 text-[11px] text-blue-950 leading-relaxed">
+                <div className="p-3 bg-blue-50/60 rounded border border-blue-200 text-[11px] text-blue-950 leading-relaxed">
                   This score is calculated live by combining 4 environmental signals into a weighted 0–100 index. It provides a descriptive estimate of water pressure based on current readings. It is an index, not a ground-measured well depth.
                 </div>
 
-                <div className="space-y-2">
+                <div className="divide-y divide-border border border-border rounded overflow-hidden">
                   {/* 1. CGWB Well Depth */}
-                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                  <div className="flex justify-between items-center p-3 bg-surface hover:bg-subtle/30 transition-colors">
                     <div>
                       <span className="font-semibold text-text-main">CGWB Well Water Depth</span>
-                      <p className="text-[11px] text-text-muted">
+                      <p className="text-[11px] text-text-muted mt-0.5">
                         Current: {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m below ground` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.wellDepthNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.wellDepthNorm * 100)}%` : 'N/A'}
                       </p>
                     </div>
@@ -398,10 +397,10 @@ function RiskAssessmentContent() {
                   </div>
 
                   {/* 2. Rainfall Deficit */}
-                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                  <div className="flex justify-between items-center p-3 bg-surface hover:bg-subtle/30 transition-colors">
                     <div>
                       <span className="font-semibold text-text-main">Monsoon Rainfall Deficit</span>
-                      <p className="text-[11px] text-text-muted">
+                      <p className="text-[11px] text-text-muted mt-0.5">
                         Current: {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm vs normal` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.rainDeficitNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.rainDeficitNorm * 100)}%` : 'N/A'}
                       </p>
                     </div>
@@ -412,10 +411,10 @@ function RiskAssessmentContent() {
                   </div>
 
                   {/* 3. GRACE TWSA */}
-                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                  <div className="flex justify-between items-center p-3 bg-surface hover:bg-subtle/30 transition-colors">
                     <div>
                       <span className="font-semibold text-text-main">Satellite Water Storage (GRACE-FO)</span>
-                      <p className="text-[11px] text-text-muted">
+                      <p className="text-[11px] text-text-muted mt-0.5">
                         Current: {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm regional anomaly` : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.graceTwsaNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.graceTwsaNorm * 100)}%` : 'N/A'}
                       </p>
                     </div>
@@ -426,10 +425,10 @@ function RiskAssessmentContent() {
                   </div>
 
                   {/* 4. Sentinel NDVI */}
-                  <div className="flex justify-between items-center p-2.5 bg-subtle/30 rounded border border-border">
+                  <div className="flex justify-between items-center p-3 bg-surface hover:bg-subtle/30 transition-colors">
                     <div>
                       <span className="font-semibold text-text-main">Plant Health / Crop Greenness (NDVI)</span>
-                      <p className="text-[11px] text-text-muted">
+                      <p className="text-[11px] text-text-muted mt-0.5">
                         Current: {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'} • Stress level: {calculatedResult.normalizationBreakdown.ndviNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.ndviNorm * 100)}%` : 'N/A'}
                       </p>
                     </div>
@@ -448,7 +447,7 @@ function RiskAssessmentContent() {
           </div>
 
           {/* Validation & Operational Status */}
-          <div className="bg-surface border border-border rounded-lg p-6 shadow-card space-y-4">
+          <div className="bg-surface border border-border rounded p-6 shadow-xs space-y-4">
             <h2 className="text-base font-bold text-text-main">System Status & Safety Rules</h2>
             <p className="text-xs text-text-muted">
               How this score is calculated and how it should be used in day-to-day operations:
@@ -460,11 +459,11 @@ function RiskAssessmentContent() {
                 ['Decision Safety Rule', 'This score helps prioritize areas for review. It does not automatically approve funds or launch emergency orders.'],
                 ['Missing Data Protection', 'If key sensors are offline, the system marks a data gap instead of assuming water is safe.'],
               ].map(([title, note]) => (
-                <div key={title} className="flex items-start gap-2 p-2.5 bg-subtle/50 border border-border rounded text-text-main">
+                <div key={title} className="flex items-start gap-2 p-3 bg-surface border border-border rounded text-text-main">
                   <InfoIcon className="w-4 h-4 text-[#0d5c63] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold">{title}</span>
-                    <p className="text-[11px] text-text-muted mt-0.5">{note}</p>
+                    <p className="text-[11px] text-text-muted mt-0.5 leading-relaxed">{note}</p>
                   </div>
                 </div>
               ))}
