@@ -1,0 +1,115 @@
+{
+  "horizon": "6M (Spatial Holdout on Unseen Stations)",
+  "protocol": "Strict Global Cutoff (Train < 2025-01-01, Test >= 2025-01-01)",
+  "train_samples": 27577,
+  "train_stations": 133,
+  "train_target_span": "2023-08-13 to 2024-12-31",
+  "test_samples": 4103,
+  "test_stations": 35,
+  "test_target_span": "2025-05-31 to 2025-12-31",
+  "metrics_pooled": {
+    "persistence": {
+      "mae": 1.754,
+      "rmse": 2.84,
+      "nse": 0.859,
+      "n": 4103
+    },
+    "seasonal": {
+      "mae": 1.875,
+      "rmse": 2.794,
+      "nse": 0.863,
+      "n": 4103
+    },
+    "ridge": {
+      "mae": 1.748,
+      "rmse": 2.823,
+      "nse": 0.861,
+      "n": 4103
+    },
+    "quantile_gb_p50": {
+      "mae": 1.702,
+      "rmse": 2.868,
+      "nse": 0.856,
+      "n": 4103
+    },
+    "qgb_improvement_over_persist_pct": -0.99,
+    "interval_coverage_80": 0.8274,
+    "mean_interval_width": 5.575,
+    "quantile_crossings_rate": 0.0
+  },
+  "station_distribution": {
+    "qualifying_stations_count": 33,
+    "persistence_rmse_median": 1.412,
+    "persistence_rmse_iqr": [
+      0.872,
+      2.376
+    ],
+    "qgb_rmse_median": 1.349,
+    "qgb_rmse_iqr": [
+      0.632,
+      2.51
+    ],
+    "station_coverage_median": 1.0
+  },
+  "temporal_breakdown_2025": {
+    "2025Q2": {
+      "samples": 554,
+      "stations": 32,
+      "persistence_rmse": 1.628,
+      "qgb_rmse": 1.472,
+      "qgb_improvement_pct": 9.59
+    },
+    "2025Q3": {
+      "samples": 2240,
+      "stations": 34,
+      "persistence_rmse": 2.91,
+      "qgb_rmse": 3.126,
+      "qgb_improvement_pct": -7.42
+    },
+    "2025Q4": {
+      "samples": 1309,
+      "stations": 31,
+      "persistence_rmse": 3.11,
+      "qgb_rmse": 2.854,
+      "qgb_improvement_pct": 8.22
+    }
+  },
+  "unseen_stations_count": 35,
+  "unseen_stations_list": [
+    "Agya Buzurg",
+    "Baragaon_4",
+    "Belaon_1",
+    "Bhadurpur-I",
+    "Damodarpur_2",
+    "Dugraiyya Brahmpur-I (Dp)",
+    "Ferozpur_1",
+    "Garh Mukteshwar_1",
+    "Gopalpur_4",
+    "Govt. ITI College_1",
+    "Gujauli Kalan",
+    "Hasanpur Jalalpur",
+    "Jaspura_1",
+    "Kabraut-I (Dp)",
+    "Kishanpur Grant",
+    "Kondari",
+    "Lakhaothi Pz_1",
+    "Mahubar Khutoli (Jal Nigam)",
+    "Mauzpur",
+    "Milak Dhurata",
+    "Morna_2",
+    "Mundakondra",
+    "Nanpara_1",
+    "Pachperwa I",
+    "Pilana_1",
+    "Pipari-II",
+    "Rahawati_1",
+    "SSB Camp Pachpokhri",
+    "Sarra Kalan",
+    "Shekhupura_1",
+    "Sirsiya_2",
+    "Tappal-I",
+    "Umargahna_1",
+    "Uttar Patti-I",
+    "Vishunpur Khairaniya"
+  ]
+}

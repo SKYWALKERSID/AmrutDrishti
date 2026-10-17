@@ -11,7 +11,7 @@ import {
 
 describe('Survey of India Boundary Validation & Reprojection Tests', () => {
   it('should accurately reproject between LCC and WGS84 with roundtrip precision', () => {
-    // Known points in Bundelkhand: (79.5°E, 24.5°N)
+    // Known points in Central India (MP): (79.5°E, 24.5°N)
     const testLon = 79.5;
     const testLat = 24.5;
 

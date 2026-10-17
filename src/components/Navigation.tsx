@@ -25,7 +25,8 @@ export const Navigation: React.FC = () => {
 
   // Role-based navigation tab visibility for prototype demonstration
   const allNavItems = [
-    { key: 'nav.overview', label: t('nav.overview', 'Overview'), href: '/', publicAllowed: true },
+    { key: 'nav.explainer', label: t('nav.explainer', 'Project Brief'), href: '/', publicAllowed: true },
+    { key: 'nav.overview', label: t('nav.overview', 'Overview'), href: '/overview', publicAllowed: true },
     { key: 'nav.explorer', label: t('nav.explorer', 'Map Explorer'), href: '/explorer', publicAllowed: true },
     { key: 'nav.monitoring', label: t('nav.monitoring', 'Monitoring'), href: '/monitoring', publicAllowed: true },
     { key: 'nav.risk', label: t('nav.risk', 'Risk & Scoring'), href: '/risk-assessment', publicAllowed: true },
@@ -59,11 +60,11 @@ export const Navigation: React.FC = () => {
   }, []);
 
   return (
-    <header className="bg-surface border-b border-border sticky top-0 z-50 shadow-xs">
+    <header className="bg-surface border-b border-border sticky top-0 z-50">
       {/* Top Banner: Scientific Safeguard & Language Switcher */}
-      <div className="bg-[#0d5c63] text-white text-xs px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2">
+      <div className="bg-primary text-text-inverted text-xs px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 text-[11px] sm:text-xs min-w-0 flex-1">
-          <ShieldCheckIcon className="w-3.5 h-3.5 text-teal-200 shrink-0" />
+          <ShieldCheckIcon className="w-3.5 h-3.5 text-primary-accent shrink-0" />
           <span className="truncate leading-tight font-medium">
             {t('header.pilot')}
           </span>
@@ -71,11 +72,11 @@ export const Navigation: React.FC = () => {
 
         <div className="flex items-center gap-2 text-[11px] shrink-0">
           {/* Hindi / English Switch */}
-          <div className="flex items-center bg-teal-900/80 rounded border border-teal-600 p-0.5">
+          <div className="flex items-center bg-black/20 rounded border border-white/20 p-0.5">
             <button
               onClick={() => setLanguage('hi')}
               className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-bold transition-colors ${
-                language === 'hi' ? 'bg-amber-400 text-teal-950' : 'text-teal-100 hover:text-white'
+                language === 'hi' ? 'bg-status-warning text-text-main' : 'text-white/80 hover:text-white'
               }`}
             >
               हिन्दी
@@ -83,7 +84,7 @@ export const Navigation: React.FC = () => {
             <button
               onClick={() => setLanguage('en')}
               className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-bold transition-colors ${
-                language === 'en' ? 'bg-amber-400 text-teal-950' : 'text-teal-100 hover:text-white'
+                language === 'en' ? 'bg-status-warning text-text-main' : 'text-white/80 hover:text-white'
               }`}
             >
               English
@@ -97,12 +98,12 @@ export const Navigation: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between py-2.5 sm:py-0 sm:h-16 gap-2 sm:gap-4">
           {/* Brand */}
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-[#0d5c63] text-white flex items-center justify-center shadow-sm shrink-0">
-              <WaterDropletIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-teal-200" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded bg-primary text-text-inverted flex items-center justify-center shrink-0">
+              <WaterDropletIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-primary-accent" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <Link href="/" className="text-base sm:text-lg font-bold text-text-main tracking-tight hover:text-[#0d5c63] transition-colors">
+                <Link href="/" className="text-base sm:text-lg font-bold text-text-main tracking-tight hover:text-primary transition-colors">
                   JalDrishti
                 </Link>
                 <span className="text-[10px] sm:text-xs font-normal text-text-muted whitespace-nowrap">
@@ -110,15 +111,15 @@ export const Navigation: React.FC = () => {
                 </span>
               </div>
               <p className="text-[10px] sm:text-[11px] text-text-muted leading-tight truncate">
-                Satellite-Assisted Groundwater Governance
+                Groundwater observations and research forecasts for India
               </p>
             </div>
           </div>
 
           {/* User Role Context Selector */}
-          <div className="flex items-center justify-between sm:justify-start gap-2 bg-subtle border border-border px-2.5 py-1.5 rounded-md shadow-xs text-xs w-full sm:w-auto">
+          <div className="flex items-center justify-between sm:justify-start gap-2 bg-subtle border border-border px-2.5 py-1.5 rounded text-xs w-full sm:w-auto">
             <div className="flex items-center gap-1.5 min-w-0">
-              <UserRoleIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0d5c63] shrink-0" />
+              <UserRoleIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary shrink-0" />
               <span className="text-xs text-text-muted font-medium shrink-0">{t('header.demoRole', 'Role:')}</span>
             </div>
             <select
@@ -143,9 +144,9 @@ export const Navigation: React.FC = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-2.5 py-1.5 sm:px-3 sm:py-2 text-[11px] sm:text-xs font-medium rounded-md sm:rounded-b-none sm:rounded-t-md transition-colors text-center ${
+                className={`px-2.5 py-1.5 sm:px-3 sm:py-2 text-[11px] sm:text-xs font-medium rounded sm:rounded-b-none sm:rounded-t transition-colors text-center ${
                   isActive
-                    ? 'bg-[#0d5c63] text-white sm:bg-subtle sm:text-[#0d5c63] sm:border-b-2 sm:border-[#0d5c63] font-semibold shadow-xs'
+                    ? 'bg-primary text-text-inverted sm:bg-subtle sm:text-primary sm:border-b-2 sm:border-primary font-semibold'
                     : 'bg-subtle/70 text-text-main hover:bg-subtle sm:bg-transparent sm:text-text-muted sm:hover:text-text-main'
                 }`}
               >

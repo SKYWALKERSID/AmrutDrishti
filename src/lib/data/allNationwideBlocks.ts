@@ -1,10 +1,10 @@
 /**
  * JAL DRISHTI — Nationwide Monitored Administrative Geography Dataset
  * 
- * Aggregates all empirical monitoring units across:
- * - Madhya Pradesh & Uttar Pradesh (Bundelkhand Pilot Basin)
+ * Aggregates all empirical monitoring units across initial priority states:
+ * - Madhya Pradesh & Uttar Pradesh (Central hard-rock & alluvial basins)
  * - Punjab, Rajasthan, Haryana (Over-Exploited / High-Scarcity Red Zones)
- * - Arunachal Pradesh, Sikkim, Assam (Pristine Recharge / Surplus Basins)
+ * - Arunachal Pradesh, Assam, Meghalaya (Himalayan / Brahmaputra Recharge Basins)
  * 
  * Provides unified datasets for Overview, Explorer, Monitoring, Risk & Scoring, and Interventions.
  */
@@ -26,6 +26,7 @@ export function normalizeStateName(stateName: string): string {
   if (lower.includes('haryana')) return 'Haryana';
   if (lower.includes('arunachal')) return 'Arunachal Pradesh';
   if (lower.includes('sikkim')) return 'Sikkim';
+  if (lower.includes('meghalaya')) return 'Meghalaya';
   if (lower.includes('assam')) return 'Assam';
   return stateName;
 }

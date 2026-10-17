@@ -38,7 +38,10 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       fetch('/api/audit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-jaldrishti-role': role,
+        },
         body: JSON.stringify({
           actorRole: role,
           action: 'switch_active_role',

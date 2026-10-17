@@ -19,7 +19,7 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     officialGuidanceUrl: 'https://ataljal.mowr.gov.in/',
     officialSource: 'Ministry of Jal Shakti, DoWR, RD & GR (National Guidelines 2020)',
     effectiveDate: '2020-04-01',
-    applicability: 'Identified water-stressed blocks across 7 participating States including MP and UP Bundelkhand',
+    applicability: 'Identified water-stressed blocks across participating States including Madhya Pradesh and Uttar Pradesh',
     eligibilityCaveat: 'Requires Gram Panchayat Water Security Plan approved by District Implementation Unit; not an automatic entitlement',
     reviewOwnerRole: 'district_collector'
   },
@@ -69,7 +69,7 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     id: 'sch_amrit_sarovar',
     code: 'ASA-WB-04',
     name: 'Mission Amrit Sarovar',
-    description: 'Creation and rejuvenation of at least 75 traditional water bodies (minimum 1 acre area with minimum 10,000 cu.m water storage capacity) per district in Bundelkhand to boost local storage.',
+    description: 'Creation and rejuvenation of at least 75 traditional water bodies (minimum 1 acre area with minimum 10,000 cu.m water storage capacity) per district to boost local storage across priority districts.',
     primaryFocus: 'Traditional Water Body Rejuvenation & Storage Capacity',
     fundingStructure: 'Convergence of MGNREGA, XV Finance Commission & State Funds',
     eligibleTargetConditions: [
@@ -82,7 +82,7 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     officialGuidanceUrl: 'https://amritsarovar.gov.in/',
     officialSource: 'Government of India Mission Amrit Sarovar Guidelines 2022',
     effectiveDate: '2022-04-24',
-    applicability: 'Target minimum 75 Amrit Sarovars per district in Bundelkhand',
+    applicability: 'Target minimum 75 Amrit Sarovars per district across priority states',
     eligibilityCaveat: 'Site verification by district nodal officer and user water committee formation required',
     reviewOwnerRole: 'bdo'
   }

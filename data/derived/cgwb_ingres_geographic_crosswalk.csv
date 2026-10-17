@@ -1,0 +1,13 @@
+jaldrishti_block_id,jaldrishti_block_name,state,district,cgwb_assessment_unit,cgwb_district,official_category_2023,match_type,confidence
+blk_bijawar,Bijawar,Madhya Pradesh,Chhatarpur,Bijawar,Chhatarpur,Semi-Critical,EXACT_BLOCK_MATCH,HIGH
+blk_baldeogarh,Baldeogarh,Madhya Pradesh,Tikamgarh,Baldeogarh,Tikamgarh,Semi-Critical,EXACT_BLOCK_MATCH,HIGH
+blk_jatara,Jatara,Madhya Pradesh,Tikamgarh,Jatara,Tikamgarh,Semi-Critical,EXACT_BLOCK_MATCH,HIGH
+blk_palera,Palera,Madhya Pradesh,Tikamgarh,Palera,Tikamgarh,Semi-Critical,EXACT_BLOCK_MATCH,HIGH
+blk_tikamgarh_main,Tikamgarh,Madhya Pradesh,Tikamgarh,Tikamgarh,Tikamgarh,Semi-Critical,EXACT_BLOCK_MATCH,HIGH
+blk_barara,Barara,Haryana,Ambala,Barara,Ambala,Over-Exploited,EXACT_BLOCK_MATCH,HIGH
+blk_naraingarh,Naraingarh,Haryana,Ambala,Naraingarh,Ambala,Over-Exploited,EXACT_BLOCK_MATCH,HIGH
+blk_faridabad,Faridabad,Haryana,Faridabad,Faridabad,Faridabad,Over-Exploited,EXACT_BLOCK_MATCH,HIGH
+blk_tarsikka,Tarsikka,Punjab,Amritsar,Tarsikka,Amritsar,Over-Exploited,EXACT_BLOCK_MATCH,HIGH
+blk_rayya,Rayya,Punjab,Amritsar,Rayya,Amritsar,Over-Exploited,EXACT_BLOCK_MATCH,HIGH
+blk_kamrup_urban,Kamrup (M) Urban,Assam,Kamrup (M) Urban,Kamrup (M) Urban,Kamrup (M) Urban,Semi-Critical,EXACT_BLOCK_MATCH,HIGH
+blk_agra_city,Agra City,Uttar Pradesh,Agra,Agra City,Agra,Over-Exploited,EXACT_BLOCK_MATCH,HIGH

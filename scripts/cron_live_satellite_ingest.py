@@ -7,7 +7,7 @@ Live feeds orchestrated:
 3. IMD High-Resolution Grid / Open-Meteo -> Precipitation & Rainfall Anomaly
 4. PostGIS / Supabase -> Ingests into public.derived_indicators & public.ingestion_runs
 
-Covers all 6 Bundelkhand pilot blocks:
+Covers priority monitored blocks in Central India (Madhya Pradesh):
 - Bijawar (LGD: 3783)
 - Rajnagar (LGD: 3788)
 - Baldeogarh (LGD: 4027)
@@ -101,7 +101,7 @@ def get_imd_weather(lat, lon):
             precip_list = daily.get('precipitation_sum', [])
             valid_precip = [p for p in precip_list if p is not None]
             total_30d = sum(valid_precip) if valid_precip else 0.0
-            # Historical monthly average for Bundelkhand dry season ~ 15-25mm
+            # Historical monthly average for Central India dry season ~ 15-25mm
             anomaly_mm = round(total_30d - 20.0, 2)
             spi_estimate = round(anomaly_mm / 25.0, 2)
             return anomaly_mm, spi_estimate

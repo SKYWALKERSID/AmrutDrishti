@@ -48,9 +48,11 @@ class QuantileGroundwaterModel:
             self.models_[q] = reg
         return self
 
-    def predict(self, X: pd.DataFrame) -> Dict[str, np.ndarray]:
+    def predict(self, X: pd.DataFrame, enforce_ordering: bool = True) -> Dict[str, np.ndarray]:
         """
         Returns predictions dictionary with keys: 'p10', 'p50', 'p90'.
+        When enforce_ordering=True, guarantees monotonic non-crossing ordering:
+        P10 <= P50 <= P90 via order_quantiles while anchoring to P50.
         """
         results = {}
         for q in self.quantiles:
@@ -59,6 +61,14 @@ class QuantileGroundwaterModel:
                 results[key] = self.models_[q].predict(X)
             else:
                 results[key] = np.zeros(len(X))
+
+        if enforce_ordering and "p10" in results and "p50" in results and "p90" in results:
+            from ml.validation import order_quantiles
+            safe_p10, safe_p50, safe_p90 = order_quantiles(results["p10"], results["p50"], results["p90"])
+            results["p10"] = safe_p10
+            results["p50"] = safe_p50
+            results["p90"] = safe_p90
+
         return results
 
 

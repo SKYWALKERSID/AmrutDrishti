@@ -1,61 +1,95 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DATA_SOURCES } from "@/lib/data/dataSources";
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 export default function DataSourcesPage() {
   const { t } = useLanguage();
   const healthy = DATA_SOURCES.filter((source) => source.status === "healthy").length;
+  const [isLiveConnected, setIsLiveConnected] = useState<boolean>(false);
+  const [liveBlocksCount, setLiveBlocksCount] = useState<number>(0);
+  const [lastCheckTime, setLastCheckTime] = useState<string>('');
+
+  useEffect(() => {
+    setLastCheckTime(new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC');
+    fetch('/api/geospatial/blocks')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.source === 'live_database') {
+          setIsLiveConnected(true);
+          setLiveBlocksCount(data.blocks?.length || 0);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
-    <div className="space-y-6">
-      <section className="bg-surface border border-border rounded p-6 shadow-xs">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#0d5c63]">
+    <div className="space-y-8">
+      {/* Top Header - Open Editorial Layout */}
+      <div className="border-b border-border pb-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary">
           {t('datasources.provenanceTitle', 'Data provenance & limitations')}
         </p>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-2">
-          <h1 className="text-2xl font-bold text-text-main">{t('datasources.title', 'Data Sources & Evidence Registry')}</h1>
-          <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-amber-50 text-amber-900 border border-amber-300 w-fit">
-            Prototype Demonstration Mode — Simulated Data
-          </span>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-2">
+          <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
+            {t('datasources.title', 'Data Sources & Evidence Registry')}*
+          </h1>
+          <div className="text-xs text-text-muted flex items-center gap-2">
+            <span>Page checked: <strong className="text-text-main font-semibold">{lastCheckTime || 'checking…'}</strong></span>
+            <span aria-hidden="true">•</span>
+            <span className={isLiveConnected ? "text-emerald-700 font-semibold" : "text-text-main font-semibold"}>
+              {isLiveConnected ? "Database connected" : "Database not reached; showing bundled reference values"}
+            </span>
+          </div>
         </div>
-        <p className="mt-2 max-w-3xl text-xs leading-5 text-text-muted">
+        <p className="mt-2 max-w-3xl text-xs sm:text-sm leading-relaxed text-text-muted">
           {t('datasources.subtitle', "Review the declared providers, spatial resolution, observation cadence, provenance notes and limitations for JalDrishti's configured evidence sources.")}
         </p>
-        <div className="mt-3 p-3 bg-emerald-50/70 border border-emerald-300 rounded text-xs text-emerald-900 leading-relaxed">
-          <span className="font-semibold">Empirical & Nationwide Data Integrated:</span> Published CGWB/NWIC quarterly groundwater monitoring observations across 8 active states (Madhya Pradesh, Uttar Pradesh, Punjab, Rajasthan, Haryana, Arunachal Pradesh, Sikkim, and Assam) spanning 60 administrative blocks. Historical observation series and IN-GRES Dynamic Ground Water Extraction stages reflect authentic Ministry of Jal Shakti records with explicit scientific safeguards.
+        <div className="mt-4 p-3.5 bg-emerald-50/70 border border-emerald-300 text-xs text-emerald-900 leading-relaxed space-y-1">
+          <div>
+            <span className="font-semibold">Geographic scope:</span> The eight initial priority states are Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya and Arunachal Pradesh. The application lists 60 administrative blocks. Data availability, model coverage and validation differ by state and are not equivalent everywhere.
+          </div>
+          <div className="text-[11px] text-emerald-800">
+            <strong>Update frequency:</strong> Field telemetry is published on daily to quarterly schedules; satellite products follow 5-day to monthly cycles; official IN-GRES extraction assessments are published annually. A source being listed here does not mean its latest data has been ingested or validated; see each source's Observed and Ingested dates.
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Summary KPI Strip */}
-      <section className="bg-surface border border-border rounded shadow-xs divide-y sm:divide-y-0 sm:divide-x divide-border grid grid-cols-1 sm:grid-cols-3">
-        <div className="p-4 sm:p-5">
+      {/* Summary KPI Strip (Unboxed) */}
+      <div className="border-b border-border pb-6 divide-y sm:divide-y-0 sm:divide-x divide-border grid grid-cols-1 sm:grid-cols-3">
+        <div className="py-2 sm:py-0 sm:px-4 first:sm:pl-0">
           <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('datasources.configuredSources', 'Configured Sources')}</p>
-          <p className="mt-1 text-2xl sm:text-3xl font-extrabold text-text-main">{DATA_SOURCES.length}</p>
+          <p className="mt-1 text-2xl sm:text-3xl font-bold text-text-main">{DATA_SOURCES.length}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Hydrological & Earth Observation</p>
         </div>
-        <div className="p-4 sm:p-5">
+        <div className="py-2 sm:py-0 sm:px-4">
           <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('datasources.healthySources', 'Provider Specifications Declared')}</p>
-          <p className="mt-1 text-2xl sm:text-3xl font-extrabold text-emerald-700">{healthy}</p>
+          <p className="mt-1 text-2xl sm:text-3xl font-bold text-text-main">{healthy} of {DATA_SOURCES.length}</p>
+          <p className="text-[11px] text-text-muted mt-0.5">Marked healthy in registry configuration. This is not a live ingestion check.</p>
         </div>
-        <div className="p-4 sm:p-5">
-          <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('datasources.liveConnectivity', 'Live Ingestion Verified Here')}</p>
-          <p className="mt-1 text-2xl sm:text-3xl font-extrabold text-amber-700">{t('datasources.notVerified', 'Not verified')}</p>
+        <div className="py-2 sm:py-0 sm:px-4 last:sm:pr-0">
+          <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('datasources.liveConnectivity', 'Live Database Synchronization')}</p>
+          <p className={`mt-1 text-2xl sm:text-3xl font-bold ${isLiveConnected ? 'text-emerald-700' : 'text-teal-700'}`}>
+            {isLiveConnected ? `Connected (${liveBlocksCount} blocks returned)` : 'Not connected'}
+          </p>
+          <p className="text-[11px] text-text-muted mt-0.5">Check Time: {lastCheckTime || 'Active'}</p>
         </div>
-      </section>
+      </div>
 
-      {/* Registry Articles */}
-      <section className="space-y-4">
-        {DATA_SOURCES.map((source) => (
-          <article key={source.id} className="rounded border border-border bg-surface p-5 shadow-xs space-y-4">
-            <div className="flex flex-wrap items-start justify-between gap-3 pb-3 border-b border-border">
+      {/* Registry Articles - Clean Hairline Dividers (De-boxed) */}
+      <div className="space-y-8">
+        {DATA_SOURCES.map((source, idx) => (
+          <article key={source.id} className={`pt-6 space-y-4 ${idx !== 0 ? 'border-t border-border' : ''}`}>
+            <div className="flex flex-wrap items-start justify-between gap-3 pb-2 border-b border-border/60">
               <div>
                 <h2 className="text-base font-bold text-text-main">{source.name}</h2>
                 <p className="text-xs text-text-muted mt-0.5">{source.provider}</p>
               </div>
-              <span className="rounded border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-900">
-                Specification: {source.status} (Live ingestion unverified)
-              </span>
+              <div className="text-right text-xs text-text-muted">
+                <div>Observed: <span className="font-semibold text-text-main">{source.latestObservationDate}</span></div>
+                <div className="text-[11px]">Ingested: <span className="font-medium text-text-main">{source.lastSuccessfulIngestion}</span></div>
+              </div>
             </div>
 
             <dl className="grid gap-4 text-xs sm:grid-cols-2 lg:grid-cols-3">
@@ -85,13 +119,15 @@ export default function DataSourcesPage() {
               </div>
             </dl>
 
-            <div className="rounded bg-subtle/40 p-3.5 border border-border/60">
-              <h3 className="text-[11px] font-bold text-text-main uppercase tracking-wide">{t('datasources.provenanceTitle', 'Provenance and limitations')}</h3>
-              <p className="mt-1 text-xs leading-5 text-text-muted">{source.provenanceDetails}</p>
+            <div className="border-l-2 border-primary pl-3 py-1 bg-subtle/30 text-xs">
+              <span className="font-bold text-text-main uppercase tracking-wide text-[10px] block mb-0.5">
+                {t('datasources.provenanceTitle', 'Provenance & Limitations')}:
+              </span>
+              <p className="text-text-muted leading-relaxed">{source.provenanceDetails}</p>
             </div>
           </article>
         ))}
-      </section>
+      </div>
     </div>
   );
 }

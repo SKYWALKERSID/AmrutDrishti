@@ -1,9 +1,7 @@
 # JalDrishti
 ### Satellite-Assisted Groundwater Intelligence for Climate Resilience
 
-**JalDrishti** is a proposed geospatial intelligence and decision-support platform that combines Earth observation, environmental data, groundwater measurements, and machine learning to help identify emerging water stress and support evidence-based intervention planning.
-
-The initial proposed pilot focuses on **Bundelkhand, Madhya Pradesh, India**, a drought-prone region where groundwater sustainability, agricultural resilience, and rural water security are important planning priorities.
+**JAL DRISHTI** is an India-focused groundwater intelligence and decision-support platform designed to address groundwater scarcity, depletion, and concerning groundwater conditions across India. Its initial geographic priorities are Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh. The broader vision is nationwide coverage, with expansion guided by groundwater conditions, data availability, hydrogeological context, and scientific validation.
 
 > **Project status:** Under development. Data integrations, predictive models, and operational capabilities must be independently verified before being treated as production-ready.
 >
@@ -188,7 +186,7 @@ Relevant areas include:
 | Existing work or system | Relevance |
 |---|---|
 | GRACE and GRACE-FO research | Regional terrestrial water-storage monitoring and groundwater-related analysis |
-| Bundelkhand groundwater modelling research | Directly relevant prior work in the proposed pilot region |
+| Regional groundwater modelling research (Bundelkhand study 2025) | Relevant prior literature evaluating satellite-assisted machine learning in drought-prone semi-arid hard-rock aquifers |
 | ISRO Bhuvan-Bhujal | Groundwater-prospect mapping and geospatial information |
 | Central Ground Water Board (CGWB) | Groundwater monitoring and related observations |
 | India-WRIS | Water-resource information and visualization |
@@ -200,7 +198,7 @@ These systems and research areas may provide complementary information or existi
 ### Further reading
 
 - [GRACE and groundwater depletion research](https://www.nature.com/articles/srep24398)
-- [Bundelkhand groundwater assessment study](https://www.sciencedirect.com/science/article/pii/S2950263225001036)
+- [Regional groundwater assessment study (Bundelkhand 2025)](https://www.sciencedirect.com/science/article/pii/S2950263225001036)
 - [ISRO Bhuvan-Bhujal](https://bhuvan-app1.nrsc.gov.in/gwis/)
 - [Central Ground Water Board](https://cgwb.gov.in/)
 - [India-WRIS](https://indiawris.gov.in/)

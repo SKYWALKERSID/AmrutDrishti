@@ -1,0 +1,43 @@
+{
+  "grid_spec": {
+    "dataset_name": "IMD High Resolution Daily Gridded Rainfall (0.25 x 0.25)",
+    "publisher": "National Climate Centre, India Meteorological Department (IMD Pune)",
+    "spatial_resolution_degrees": 0.25,
+    "approx_resolution_km": "25 km x 25 km",
+    "grid_dimensions": {
+      "nx_lon": 135,
+      "ny_lat": 129
+    },
+    "spatial_bounds": {
+      "lat_min": 6.5,
+      "lat_max": 38.5,
+      "lon_min": 66.5,
+      "lon_max": 100.0
+    },
+    "missing_value_flag": -999.0,
+    "units": "millimeters per day (mm/day)",
+    "temporal_coverage_requested": "2018-01-01 to 2024-12-31",
+    "official_portal_url": "https://cdsp.imdpune.gov.in/home_gridded_data.php",
+    "archive_post_endpoint": "https://imdpune.gov.in/cmpg/Griddata/rainfall.php"
+  },
+  "connectivity_audit": {
+    "IMD CDSP Portal": {
+      "accessible": false,
+      "error": "<urlopen error _ssl.c:1064: The handshake operation timed out>"
+    },
+    "IMD Pune CMPG Endpoint": {
+      "accessible": false,
+      "error": "<urlopen error _ssl.c:1064: The handshake operation timed out>"
+    }
+  },
+  "access_status": "AUTHENTICATED_PORTAL_ONLY",
+  "access_blocker_documentation": "Direct unauthenticated HTTPS connection to IMD Pune portals (cdsp.imdpune.gov.in / imdpune.gov.in) encounters TLS/TCP connect timeout from commercial/external networks. Official IMD policy requires user registration on CDSP with credentials or formal academic data request through Climate Data Services Portal.",
+  "local_staged_sample": {
+    "path": "data/sources/imd_rainfall_staged_sample.csv",
+    "present": true,
+    "sha256": "e7963b4afbfe624cc1d8b1f6ed9602b9f5fa0fde251b0eec5926d0a26fce1f70",
+    "coverage_cells": 4,
+    "date_range": "2023-06-01 to 2023-06-05"
+  },
+  "next_acquisition_action": "Obtain registered CDSP institutional credentials or ingest official NetCDF yearly archive bundles (2018-2024) into data/sources/imd_rainfall/archives/."
+}

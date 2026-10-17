@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { BlockData } from '@/lib/types';
 import type * as Leaflet from 'leaflet';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { MAP_COLORS } from '@/lib/design/mapPalette';
 
 type MapLayer = 'risk' | 'grace' | 'rainfall' | 'wells' | 'sentinel';
 
@@ -17,30 +18,30 @@ interface LeafletMapProps {
 function markerColor(block: BlockData, layer: MapLayer): string {
   switch (layer) {
     case 'risk':
-      if (block.riskSeverity === 'severe') return '#dc2626';
-      if (block.riskSeverity === 'watch') return '#f59e0b';
-      if (block.riskSeverity === 'normal') return '#059669';
-      return '#6b7280'; // honest gap representation
+      if (block.riskSeverity === 'severe') return MAP_COLORS.severe;
+      if (block.riskSeverity === 'watch') return MAP_COLORS.watch;
+      if (block.riskSeverity === 'normal') return MAP_COLORS.normal;
+      return MAP_COLORS.gap; // honest gap representation
 
     case 'grace':
-      if (block.indicators.graceTwsaCm === null) return '#6b7280';
-      return block.indicators.graceTwsaCm < -6 ? '#dc2626' : '#f59e0b';
+      if (block.indicators.graceTwsaCm === null) return MAP_COLORS.gap;
+      return block.indicators.graceTwsaCm < -6 ? MAP_COLORS.severe : MAP_COLORS.watch;
 
     case 'rainfall':
-      if (block.indicators.rainfallAnomalyMm === null) return '#6b7280';
+      if (block.indicators.rainfallAnomalyMm === null) return MAP_COLORS.gap;
       return block.indicators.rainfallAnomalyMm < -200
-        ? '#dc2626'
-        : '#2563eb';
+        ? MAP_COLORS.severe
+        : MAP_COLORS.rainfallNormal;
 
     case 'wells':
-      if (block.indicators.cgwbWellDepthMbgl === null) return '#6b7280';
+      if (block.indicators.cgwbWellDepthMbgl === null) return MAP_COLORS.gap;
       return block.indicators.cgwbWellDepthMbgl > 14
-        ? '#dc2626'
-        : '#059669';
+        ? MAP_COLORS.severe
+        : MAP_COLORS.normal;
 
     case 'sentinel':
-      if (block.indicators.sentinelNdvi === null) return '#6b7280';
-      return '#0d5c63';
+      if (block.indicators.sentinelNdvi === null) return MAP_COLORS.gap;
+      return MAP_COLORS.outlineSelected;
   }
 }
 
@@ -155,7 +156,7 @@ export default function LeafletMap({
         [block.coordinates[0], block.coordinates[1]],
         {
           radius: calculatedRadiusMeters,
-          color: selected ? '#0d5c63' : color,
+          color: selected ? MAP_COLORS.outlineSelected : color,
           weight: selected ? 2.5 : 1.2,
           fillColor: color,
           fillOpacity: selected ? 0.30 : 0.20,
@@ -175,7 +176,7 @@ export default function LeafletMap({
         [block.coordinates[0], block.coordinates[1]],
         {
           radius: selected ? 8 : 5,
-          color: selected ? '#0d5c63' : '#ffffff',
+          color: selected ? MAP_COLORS.outlineSelected : MAP_COLORS.outlineDefault,
           weight: selected ? 3 : 1.5,
           fillColor: color,
           fillOpacity: 1.0,
@@ -207,20 +208,20 @@ export default function LeafletMap({
     <div className="relative h-full w-full overflow-hidden">
       <div
         ref={containerRef}
-        className="h-full w-full bg-[#e8eee9]"
-        aria-label="Interactive Bundelkhand geographic map"
+        className="h-full w-full bg-background"
+        aria-label="Interactive India groundwater monitoring map"
       />
 
       {blocks.length === 0 && (
-        <div className="absolute inset-0 z-[400] flex items-center justify-center bg-surface/80 backdrop-blur-xs p-4 text-center">
-          <div className="max-w-xs rounded-lg border border-border bg-white p-4 shadow-sm text-xs text-text-muted">
+        <div className="absolute inset-0 z-[400] flex items-center justify-center bg-surface/80 p-4 text-center">
+          <div className="max-w-xs rounded border border-border bg-surface p-4 text-xs text-text-muted">
             {t('explorer.noBlocks', 'No valid blocks found for selected filter.')}
           </div>
         </div>
       )}
 
       {/* Dynamic Layer Guide / Legend */}
-      <div className="absolute bottom-3 left-3 z-[500] rounded border border-border bg-white/95 p-2.5 text-xs shadow-sm backdrop-blur-sm max-w-[calc(100%-1.5rem)] sm:max-w-[280px]">
+      <div className="absolute bottom-3 left-3 z-[500] rounded border border-border bg-surface p-2.5 text-xs max-w-[calc(100%-1.5rem)] sm:max-w-[280px]">
         <div className="font-semibold text-text-main mb-1.5 flex items-center justify-between">
           <span>{t('explorer.mapGuide', 'Map Guide')}</span>
           <span className="text-[10px] text-text-muted font-normal">({activeLayerLabel(activeLayer, t)})</span>
@@ -228,55 +229,55 @@ export default function LeafletMap({
 
         {activeLayer === 'risk' && (
           <div className="flex flex-col gap-1 text-[11px]">
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> High Concern (Score &gt; 70)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> High Concern (Score &gt; 70)
             </span>
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0 inline-block"></span> Needs Checking (Score 40–70)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-status-warning shrink-0 inline-block"></span> Needs Checking (Score 40–70)
             </span>
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0 inline-block"></span> Normal Water Level (Score &lt; 40)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-normal shrink-0 inline-block"></span> Normal Water Level (Score &lt; 40)
             </span>
           </div>
         )}
 
         {activeLayer === 'grace' && (
           <div className="flex flex-col gap-1 text-[11px]">
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> Large Loss (&lt; -6 cm anomaly)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> Large Loss (&lt; -6 cm anomaly)
             </span>
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0 inline-block"></span> Moderate Deficit (&gt; -6 cm anomaly)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-status-warning shrink-0 inline-block"></span> Moderate Deficit (&gt; -6 cm anomaly)
             </span>
           </div>
         )}
 
         {activeLayer === 'rainfall' && (
           <div className="flex flex-col gap-1 text-[11px]">
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-600 shrink-0 inline-block"></span> Normal or Low Rain Deficit
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-data-rainfall shrink-0 inline-block"></span> Normal or Low Rain Deficit
             </span>
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> High Rain Deficit (&gt; 200 mm shortfall)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> High Rain Deficit (&gt; 200 mm shortfall)
             </span>
           </div>
         )}
 
         {activeLayer === 'wells' && (
           <div className="flex flex-col gap-1 text-[11px]">
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0 inline-block"></span> Shallow Well Level (&lt; 14 m bgl)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-normal shrink-0 inline-block"></span> Shallow Well Level (&lt; 14 m bgl)
             </span>
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0 inline-block"></span> Deep Well Depletion (&gt; 14 m bgl)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> Deep Well Depletion (&gt; 14 m bgl)
             </span>
           </div>
         )}
 
         {activeLayer === 'sentinel' && (
           <div className="flex flex-col gap-1 text-[11px]">
-            <span className="flex items-center gap-1.5 text-slate-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#0d5c63] shrink-0 inline-block"></span> Vegetation Greenness Index (NDVI)
+            <span className="flex items-center gap-1.5 text-text-main">
+              <span className="w-2.5 h-2.5 rounded-full bg-primary shrink-0 inline-block"></span> Vegetation Greenness Index (NDVI)
             </span>
           </div>
         )}

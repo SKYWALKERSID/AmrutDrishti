@@ -1,6 +1,10 @@
 import { DistrictData, BlockData } from '../types';
 
-export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
+/**
+ * Priority Monitored Districts (Central India - Madhya Pradesh & Uttar Pradesh)
+ * Initial priority monitoring blocks for JalDrishti's multi-state monitoring framework.
+ */
+export const CENTRAL_INDIA_DISTRICTS: DistrictData[] = [
   {
     id: 'dist_tikamgarh',
     name: 'Tikamgarh',
@@ -519,4 +523,5 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
   }
 ];
 
-export const ALL_BLOCKS: BlockData[] = BUNDELKHAND_DISTRICTS.flatMap(d => d.blocks);
+export const BUNDELKHAND_DISTRICTS: DistrictData[] = CENTRAL_INDIA_DISTRICTS;
+export const ALL_BLOCKS: BlockData[] = CENTRAL_INDIA_DISTRICTS.flatMap(d => d.blocks);

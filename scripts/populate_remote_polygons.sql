@@ -1,7 +1,7 @@
 -- ============================================================================
 -- ACT-05: Remote PostGIS Polygons Ingestion Script
 -- Populates public.administrative_units.geom column with Survey of India (SOI) 2025
--- GeoJSON MultiPolygon coordinates for the 6 pilot blocks in Bundelkhand.
+-- GeoJSON MultiPolygon coordinates for the 6 monitored priority blocks in Central India (Madhya Pradesh).
 -- ============================================================================
 
 -- Block: BIJAWAR (3783) - Area: 1203.16 sq km

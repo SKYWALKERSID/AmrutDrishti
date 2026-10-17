@@ -129,7 +129,7 @@ export default function MonitoringPage() {
             </ResponsiveContainer>
           </div>
           <p className="text-[11px] text-text-muted">
-            Monsoon precipitation deficit directly limits seasonal hard-rock aquifer recharge in Bundelkhand.
+            Monsoon precipitation deficit directly limits seasonal aquifer recharge across priority monitoring blocks.
           </p>
         </div>
       </div>

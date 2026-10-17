@@ -1,0 +1,133 @@
+{
+  "horizon": "6M_Variable_Window [150-210d] (19 Probable Co-located Stations Excluded)",
+  "protocol": "Strict Global Cutoff (Train target <= 2024-12-31, Test origin >= 2025-01-01)",
+  "train_samples": 30478,
+  "train_stations": 147,
+  "test_samples": 15861,
+  "test_stations": 142,
+  "metrics_pooled": {
+    "persistence": {
+      "rmse": 3.449,
+      "mae": 1.844,
+      "nse": 0.847
+    },
+    "seasonal": {
+      "rmse": 3.976,
+      "mae": 2.211,
+      "nse": 0.796
+    },
+    "ridge": {
+      "rmse": 3.381,
+      "mae": 1.824,
+      "nse": 0.853
+    },
+    "quantile_gb_p50": {
+      "rmse": 3.297,
+      "mae": 1.719,
+      "nse": 0.86
+    },
+    "qgb_improvement_over_persist_pct": 4.4,
+    "interval_coverage_80": 0.844,
+    "mean_interval_width": 5.729,
+    "median_interval_width": 5.089,
+    "quantile_crossings_rate": 0.0
+  },
+  "station_distribution": {
+    "qualifying_stations_count": 135,
+    "persistence_rmse_median": 1.447,
+    "qgb_rmse_median": 1.211,
+    "qgb_station_median_improvement_pct": 16.33
+  },
+  "station_cluster_bootstrap_2000": {
+    "seed_42": {
+      "delta_rmse_mean": 0.148,
+      "delta_rmse_ci95": [
+        -0.045,
+        0.309
+      ],
+      "delta_mae_mean": 0.124,
+      "delta_mae_ci95": [
+        -0.027,
+        0.257
+      ]
+    },
+    "seed_2026": {
+      "delta_rmse_mean": 0.152,
+      "delta_rmse_ci95": [
+        -0.05,
+        0.31
+      ],
+      "delta_mae_mean": 0.127,
+      "delta_mae_ci95": [
+        -0.027,
+        0.254
+      ]
+    },
+    "method": "empirical_percentile_95ci",
+    "resamples": 2000,
+    "resampling_unit": "monitoring_station_cluster"
+  },
+  "date_block_bootstrap_2000_supplementary": {
+    "seed_42": {
+      "date_block_delta_rmse_mean": 0.155,
+      "date_block_delta_rmse_ci95": [
+        0.062,
+        0.256
+      ]
+    },
+    "seed_2026": {
+      "date_block_delta_rmse_mean": 0.156,
+      "date_block_delta_rmse_ci95": [
+        0.06,
+        0.257
+      ]
+    },
+    "method": "empirical_percentile_95ci",
+    "resamples": 2000,
+    "resampling_unit": "calendar_month_block",
+    "block_count": 8,
+    "status": "exploratory_supplementary_only"
+  },
+  "co_located_stations_excluded_count": 19,
+  "co_located_stations_excluded_list": [
+    "Bardwari-I",
+    "Bhuawapar",
+    "Budaun Polytechnic College",
+    "Dapsaura_1",
+    "Digner_1",
+    "Dugraiyya Brahmpur-I (Dp)",
+    "Ferozpur_1",
+    "Jaspura_1",
+    "Kathela Garvi",
+    "Modi Nagar- Pz Ii",
+    "Mohanlalganj_2",
+    "Mustafabad_5",
+    "Naharpur-I",
+    "Pali-I",
+    "Parikshat Garh Pz_1",
+    "Rahawati_1",
+    "Rehman Khera_1",
+    "Sanjarpur Kaidwa",
+    "Shohratgarh_1"
+  ],
+  "side_by_side_with_18_stations": {
+    "18_stations_excluded": {
+      "train_samples": 30658,
+      "test_samples": 15987,
+      "test_stations": 143,
+      "persistence_rmse": 3.436,
+      "qgb_rmse": 3.291,
+      "qgb_gain_pct": 4.21,
+      "interval_coverage_80": 0.8427
+    },
+    "19_stations_excluded": {
+      "train_samples": 30478,
+      "test_samples": 15861,
+      "test_stations": 142,
+      "persistence_rmse": 3.449,
+      "qgb_rmse": 3.297,
+      "qgb_gain_pct": 4.4,
+      "interval_coverage_80": 0.844
+    }
+  }
+}

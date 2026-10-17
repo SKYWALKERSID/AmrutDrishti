@@ -4,22 +4,177 @@
 @tailwind utilities;
 
 :root {
-  --bg-main: #f8f7f4;
-  --bg-surface: #ffffff;
-  --border-color: #e2e0d8;
-  --text-main: #1c242b;
-  --text-muted: #5c6773;
-  --primary-teal: #0d5c63;
-  --water-cobalt: #1b4965;
+  /* DBIM Functional Canvas & Surfaces */
+  --bg-main: #f1f1f4; /* DBIM Azureish White Bg / Neutral canvas */
+  --bg-surface: #ffffff; /* DBIM Inclusive White */
+  --bg-subtle: #ebeaea; /* DBIM Linen / Bright Gray */
+  --bg-highlight: #d9f2f2; /* DBIM Azureish White Bg Forest Tint */
+  
+  /* DBIM Borders & Separators */
+  --border-main: #d5cbbd; /* DBIM Profile / Linen Border */
+  --border-subtle: #c6c6c6; /* DBIM Functional Grey 1 */
+  --border-accent: #a6d9d9; /* DBIM Azureish White Tint Border */
+
+  /* DBIM Text Colors */
+  --text-main: #150202; /* DBIM Earthy Dark Text (20:1 contrast) */
+  --text-muted: #3d4043; /* DBIM Rhythm Text (10:1 contrast) */
+  --text-subtle: #606060; /* DBIM Functional Grey 3 (6:1 contrast) */
+  --text-inverted: #ffffff;
+
+  /* DBIM Forest Green Mode Primary Brand */
+  --primary-main: #0f5757; /* DBIM Wintergreen Dream / Forest Green */
+  --primary-hover: #2d8686; /* DBIM Powder Blue */
+  --primary-active: #093737;
+  --primary-accent: #75bdbd; /* DBIM Columbia Blue */
+
+  /* DBIM Gov.In Root & National Identity */
+  --gov-blue: #1d0a69; /* DBIM Deep Blue */
+  --emblem-black: #000000; /* DBIM Black Pure */
+
+  /* DBIM Functional Feedback & Status */
+  --status-success: #198754; /* DBIM Liberty Green */
+  --status-success-bg: #e8f5e9;
+  --status-warning: #ffc107; /* DBIM Mustard Yellow */
+  --status-warning-text: #916100; /* DBIM Accessible Yellow Text */
+  --status-warning-bg: #fffbeb;
+  --status-error: #dc3545; /* DBIM Coral Red */
+  --status-error-bg: #fde8e8;
+  --status-info: #0d6efd; /* DBIM Blue */
+  --status-info-bg: #eff6ff;
+  --status-gap: #606060; /* DBIM Functional Grey 3 */
+  --status-gap-bg: #f1f1f4;
+
+  /* Status text variants for tinted backgrounds (values previously hardcoded in freshness.ts) */
+  --status-success-text: #0f5132;
+  --status-info-text: #162f6a;
+  --status-error-text: #842029;
+
+  /* Provenance states with no existing status equivalent (FRESHNESS_STYLES: DEMO, RESEARCH_ONLY).
+     Kept distinct from each other and from the warning/stale colours. */
+  --status-demo-bg: #ffeecc;
+  --status-demo-text: #5d3e00;
+  --status-demo-border: #f4d390;
+  --status-research-bg: #eeebfa;
+  --status-research-text: #29136c;
+  --status-research-border: #bdadeb;
+
+  /* Elevation */
+  --shadow-popup: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  /* Scientific Data Series (Preserved) */
+  --data-observed-well: #162f6a; /* DBIM Classic Blue / Deep Water */
+  --data-satellite-twsa: #2d8686; /* DBIM Forest Powder Blue */
+  --data-rainfall-precip: #0284c7; /* Precipitation Blue */
+  --data-rainfall-baseline: #64748b; /* Neutral LPA Slate */
+  --data-sentinel-ndvi: #16a34a; /* Vegetation Green */
+  --data-forecast-projection: #dc3545; /* ML projection and its P10/P90 bounds. Same value as --status-error but a separate token so a forecast series is not semantically tied to an error state. */
 }
 
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Noto Sans', 'Noto Sans Devanagari', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.875rem; /* 14px (DBIM Paragraph 2 default) */
+  line-height: 1.5; /* DBIM line-height ratio 1.5 */
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* DBIM Authoritative Typography Scale Utilities */
+.dbim-heading-1 {
+  font-size: 1.5rem; /* 24px mobile */
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 640px) {
+  .dbim-heading-1 {
+    font-size: 2.25rem; /* 36px desktop */
+    line-height: 1.2;
+  }
+}
+
+.dbim-heading-2 {
+  font-size: 1.25rem; /* 20px mobile */
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 640px) {
+  .dbim-heading-2 {
+    font-size: 1.5rem; /* 24px desktop */
+    line-height: 1.3;
+  }
+}
+
+.dbim-heading-3 {
+  font-size: 1rem; /* 16px mobile */
+  line-height: 1.4;
+  font-weight: 600;
+}
+@media (min-width: 640px) {
+  .dbim-heading-3 {
+    font-size: 1.25rem; /* 20px desktop */
+    line-height: 1.35;
+  }
+}
+
+.dbim-paragraph-lead {
+  font-size: 0.875rem; /* 14px mobile */
+  line-height: 1.5;
+  font-weight: 400;
+}
+@media (min-width: 640px) {
+  .dbim-paragraph-lead {
+    font-size: 1rem; /* 16px desktop */
+    line-height: 1.5;
+  }
+}
+
+.dbim-paragraph {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.dbim-caption {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.4;
+}
+
+.dbim-micro {
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.3;
+}
+
+/* DBIM Table Typography Standard: Left-aligned text, right-aligned numbers, center/standard column headers */
+.dbim-table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.dbim-table td {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.dbim-table td.numeric, .dbim-table th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessible focus outlines following WCAG 2.2 AA */
+:focus-visible {
+  outline: 2px solid var(--primary-main);
+  outline-offset: 2px;
+}
+
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary-main);
+  outline-offset: 2px;
 }
 
 /* Custom Scrollbar */
@@ -29,23 +184,23 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1efe9;
+  background: var(--bg-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d0c5;
+  background: var(--border-main);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b5b0a3;
+  background: var(--border-subtle);
 }
 
 /* Leaflet map custom fixes */
 .leaflet-container {
   width: 100%;
   height: 100%;
-  background: #e9e7e0 !important;
+  background: var(--bg-subtle) !important;
   font-family: inherit !important;
   z-index: 1 !important;
 }
@@ -60,28 +215,28 @@ body {
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
-  border: 1px solid #e2e0d8;
+  border-radius: 4px !important;
+  box-shadow: var(--shadow-popup) !important;
+  border: 1px solid var(--border-main);
 }
 
 /* Status text styles (clean text, no pill container) */
 .badge-severe {
-  color: #b91c1c;
+  color: var(--status-error);
   font-weight: 600;
 }
 
 .badge-watch {
-  color: #b45309;
+  color: var(--status-warning-text);
   font-weight: 600;
 }
 
 .badge-normal {
-  color: #15803d;
+  color: var(--status-success);
   font-weight: 600;
 }
 
 .badge-gap {
-  color: #475569;
+  color: var(--status-gap);
   font-weight: 500;
 }

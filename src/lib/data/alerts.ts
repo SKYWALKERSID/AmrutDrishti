@@ -39,7 +39,7 @@ export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
     messageEnglish: `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "Severe stress" signal category for Tikamgarh block. Demonstration fixture values, not verified measurements: well depth 14.8 m bgl, rainfall anomaly -235 mm. ${ADVISORY_DISCLAIMER_EN}`,
     sentTimestamp: '2026-10-08 09:30 IST (simulated log entry)',
     deliveryStatus: 'simulated',
-    confidenceScore: 0.88,
+    confidenceScore: null,
     dataFreshnessDate: '2026-09-28'
   },
   {
@@ -55,7 +55,7 @@ export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
     messageEnglish: `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "Severe stress" signal category for Jatara block. Demonstration fixture value, not a verified measurement: well depth 16.2 m bgl. ${ADVISORY_DISCLAIMER_EN}`,
     sentTimestamp: '2026-10-08 09:32 IST (simulated log entry)',
     deliveryStatus: 'simulated',
-    confidenceScore: 0.84,
+    confidenceScore: null,
     dataFreshnessDate: '2026-09-28'
   },
   {
@@ -71,7 +71,7 @@ export const INITIAL_NOTIFICATIONS: NotificationRecord[] = [
     messageEnglish: `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "Severe stress" signal category for Chhatarpur block. Demonstration fixture score 84/100 (not computed or validated). ${ADVISORY_DISCLAIMER_EN}`,
     sentTimestamp: '2026-10-07 14:15 IST (simulated log entry)',
     deliveryStatus: 'simulated',
-    confidenceScore: 0.91,
+    confidenceScore: null,
     dataFreshnessDate: '2026-09-28'
   }
 ];

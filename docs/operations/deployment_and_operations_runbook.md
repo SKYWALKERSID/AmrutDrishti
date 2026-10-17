@@ -7,7 +7,7 @@
 ---
 
 ## 1. System Overview & Architecture
-JalDrishti is a Next.js (App Router) + PostgreSQL (Supabase with PostGIS) groundwater intelligence platform deployed for the Bundelkhand pilot (Chhatarpur and Tikamgarh districts).
+JalDrishti is an India-focused groundwater intelligence and decision-support platform (Next.js App Router + PostgreSQL/Supabase with PostGIS) designed to address groundwater scarcity across India, with initial geographic priorities in Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh.
 
 - **Frontend & Server Components**: Next.js 15 (Node.js runtime)
 - **Spatial Database**: PostgreSQL 15 + PostGIS (`public.administrative_units` with SOI 2025 boundary polygons)

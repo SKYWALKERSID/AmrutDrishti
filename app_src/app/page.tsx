@@ -35,7 +35,7 @@ export default function OverviewDashboard() {
           <div>
             <div className="flex items-center gap-2">
               <span className="bg-primary-light text-primary font-semibold text-xs px-2.5 py-1 rounded">
-                Pilot Geography: Bundelkhand, MP & UP Border
+                Initial Priority States (Central, North & Northeast India)
               </span>
               <span className="text-xs text-text-muted">Observation Period: Post-Monsoon 2026</span>
             </div>
@@ -150,7 +150,7 @@ export default function OverviewDashboard() {
                 onChange={(e) => setSelectedDistrictId(e.target.value)}
                 className="bg-subtle border border-border text-xs rounded-md px-2.5 py-1.5 font-medium text-text-main focus:outline-none"
               >
-                <option value="all">All Pilot Districts ({BUNDELKHAND_DISTRICTS.length})</option>
+                <option value="all">All Priority Districts ({BUNDELKHAND_DISTRICTS.length})</option>
                 {BUNDELKHAND_DISTRICTS.map((d) => (
                   <option key={d.id} value={d.id}>
                     {d.name} ({d.state})

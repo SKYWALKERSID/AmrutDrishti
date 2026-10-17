@@ -1,0 +1,10 @@
+State,Method,Source,Stations,Valid Obs,Date Min,Date Max,Total Span Months,Active Months,Missing Month %,Gap Median (d),Gap P25 (d),Gap P75 (d),Pairs 1M (20-40d),Pairs 3M (45-135d),Pairs 12M (315-415d),Actual Cadence,Supports Monthly,Supports Quarterly,Supports Annual
+Arunachal Pradesh,Manual Piezometer,CGWB National Hydrograph Network via NWIC,35,192,2021-01-10,2024-01-31,37,11,70.3,92.0,59.0,153.0,0,97,91,Quarterly (med=92d),False,False,False
+Assam,Manual Piezometer,CGWB National Hydrograph Network via NWIC,473,2169,2021-01-10,2024-01-31,37,11,70.3,92.0,61.0,212.0,0,1198,1048,Quarterly (med=92d),False,True,True
+Haryana,Manual Piezometer,CGWB National Hydrograph Network via NWIC,1065,3969,2021-01-10,2024-01-01,37,13,64.9,91.0,73.0,152.0,49,2157,1918,Quarterly (med=91d),False,True,True
+Madhya Pradesh (Manual),Manual Dug/Tube Well,"CGWB Regional Directorate, Bhopal",1459,3466,2021-10-01,2023-10-01,25,3,88.0,375.0,355.0,730.0,0,0,1452,Annual (med=375d),False,False,True
+Punjab,Manual Piezometer,CGWB National Hydrograph Network via NWIC,1074,4445,2021-01-10,2024-01-01,37,14,62.2,92.0,73.0,151.0,7,2708,2022,Quarterly (med=92d),False,True,True
+Rajasthan,Manual Piezometer,CGWB National Hydrograph Network via NWIC,1398,8894,2021-01-10,2024-08-30,44,15,65.9,91.0,61.0,120.0,0,6853,5565,Quarterly (med=91d),False,True,True
+Sikkim,Springshed Discharge,None in repository,0,0,N/A,N/A,0,0,100.0,,,,0,0,0,No Data,False,False,False
+Uttar Pradesh,Manual Piezometer,None in repository,0,0,N/A,N/A,0,0,100.0,,,,0,0,0,No Data,False,False,False
+Madhya Pradesh (DWLR Telemetry),Automated DWLR Telemetry,NWIC National Water Data Portal (6-hourly aggregated to monthly),65,997,2021-01-10,2025-11-15,59,37,37.3,31.0,30.0,61.0,659,2037,1258,Monthly (med=31d),True,True,True

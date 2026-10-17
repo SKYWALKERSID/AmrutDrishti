@@ -1,0 +1,728 @@
+{
+  "1M_Variable_Window": {
+    "elapsed_time_distribution_days": {
+      "min": 20,
+      "p10": 20.0,
+      "p25": 20.0,
+      "median": 20.0,
+      "mean": 21.2,
+      "p75": 20.0,
+      "p90": 24.0,
+      "max": 40
+    },
+    "train_pairs": 53896,
+    "test_pairs": 30279,
+    "test_stations": 170,
+    "metrics_independently_verified": {
+      "persistence": {
+        "rmse": 1.661,
+        "mae": 0.534,
+        "nse": 0.965
+      },
+      "seasonal": {
+        "rmse": 3.484,
+        "mae": 1.449,
+        "nse": 0.848
+      },
+      "ridge": {
+        "rmse": 1.558,
+        "mae": 0.528,
+        "nse": 0.97
+      },
+      "quantile_gb": {
+        "rmse": 1.87,
+        "mae": 0.685,
+        "nse": 0.956
+      }
+    },
+    "uncertainty_calibration": {
+      "raw_crossings_rate": 0.002,
+      "safeguard_crossings_rate": 0.0,
+      "empirical_80_coverage": 0.8856,
+      "mean_width_m": 4.584,
+      "median_width_m": 3.201
+    },
+    "station_clustered_bootstrap_qgb_vs_persist": {
+      "delta_rmse_mean": -0.27,
+      "delta_rmse_ci95": [
+        -0.846,
+        0.114
+      ],
+      "delta_mae_mean": -0.156,
+      "delta_mae_ci95": [
+        -0.352,
+        -0.026
+      ]
+    },
+    "elapsed_time_sub_buckets": {
+      "20-26d": {
+        "samples": 28357,
+        "stations": 170,
+        "persistence_rmse": 1.515,
+        "qgb_rmse": 1.74,
+        "qgb_gain_pct": -14.88,
+        "coverage_80": 0.8931,
+        "mean_width": 4.584
+      },
+      "27-33d": {
+        "samples": 949,
+        "stations": 158,
+        "persistence_rmse": 3.255,
+        "qgb_rmse": 3.43,
+        "qgb_gain_pct": -5.37,
+        "coverage_80": 0.785,
+        "mean_width": 4.615
+      },
+      "34-40d": {
+        "samples": 973,
+        "stations": 120,
+        "persistence_rmse": 2.938,
+        "qgb_rmse": 3.015,
+        "qgb_gain_pct": -2.63,
+        "coverage_80": 0.7646,
+        "mean_width": 4.545
+      }
+    },
+    "station_cluster_bootstrap_2000": {
+      "seed_42": {
+        "delta_rmse_mean": -0.245,
+        "delta_rmse_ci95": [
+          -0.812,
+          0.14
+        ],
+        "delta_mae_mean": -0.152,
+        "delta_mae_ci95": [
+          -0.339,
+          -0.024
+        ]
+      },
+      "seed_2026": {
+        "delta_rmse_mean": -0.244,
+        "delta_rmse_ci95": [
+          -0.83,
+          0.139
+        ],
+        "delta_mae_mean": -0.154,
+        "delta_mae_ci95": [
+          -0.346,
+          -0.023
+        ]
+      },
+      "method": "empirical_percentile_95ci",
+      "resamples": 2000,
+      "resampling_unit": "monitoring_station_cluster"
+    },
+    "date_block_bootstrap_2000_supplementary": {
+      "seed_42": {
+        "date_block_delta_rmse_mean": -0.211,
+        "date_block_delta_rmse_ci95": [
+          -0.28,
+          -0.143
+        ]
+      },
+      "seed_2026": {
+        "date_block_delta_rmse_mean": -0.211,
+        "date_block_delta_rmse_ci95": [
+          -0.28,
+          -0.141
+        ]
+      },
+      "method": "empirical_percentile_95ci",
+      "resamples": 2000,
+      "resampling_unit": "calendar_month_block",
+      "status": "exploratory_supplementary_only"
+    }
+  },
+  "3M_Variable_Window": {
+    "elapsed_time_distribution_days": {
+      "min": 75,
+      "p10": 75.0,
+      "p25": 75.0,
+      "median": 75.0,
+      "mean": 77.0,
+      "p75": 76.0,
+      "p90": 81.0,
+      "max": 105
+    },
+    "train_pairs": 45376,
+    "test_pairs": 24342,
+    "test_stations": 167,
+    "metrics_independently_verified": {
+      "persistence": {
+        "rmse": 2.887,
+        "mae": 1.295,
+        "nse": 0.897
+      },
+      "seasonal": {
+        "rmse": 3.904,
+        "mae": 1.774,
+        "nse": 0.811
+      },
+      "ridge": {
+        "rmse": 2.787,
+        "mae": 1.219,
+        "nse": 0.904
+      },
+      "quantile_gb": {
+        "rmse": 2.836,
+        "mae": 1.307,
+        "nse": 0.9
+      }
+    },
+    "uncertainty_calibration": {
+      "raw_crossings_rate": 0.0003,
+      "safeguard_crossings_rate": 0.0,
+      "empirical_80_coverage": 0.8623,
+      "mean_width_m": 4.972,
+      "median_width_m": 4.138
+    },
+    "station_clustered_bootstrap_qgb_vs_persist": {
+      "delta_rmse_mean": 0.051,
+      "delta_rmse_ci95": [
+        -0.187,
+        0.234
+      ],
+      "delta_mae_mean": -0.009,
+      "delta_mae_ci95": [
+        -0.126,
+        0.087
+      ]
+    },
+    "elapsed_time_sub_buckets": {
+      "75-84d": {
+        "samples": 22439,
+        "stations": 167,
+        "persistence_rmse": 2.772,
+        "qgb_rmse": 2.726,
+        "qgb_gain_pct": 1.64,
+        "coverage_80": 0.8621,
+        "mean_width": 4.997
+      },
+      "85-94d": {
+        "samples": 927,
+        "stations": 127,
+        "persistence_rmse": 4.731,
+        "qgb_rmse": 4.588,
+        "qgb_gain_pct": 3.03,
+        "coverage_80": 0.8598,
+        "mean_width": 4.881
+      },
+      "95-105d": {
+        "samples": 976,
+        "stations": 109,
+        "persistence_rmse": 3.167,
+        "qgb_rmse": 3.124,
+        "qgb_gain_pct": 1.38,
+        "coverage_80": 0.8689,
+        "mean_width": 4.489
+      }
+    },
+    "station_cluster_bootstrap_2000": {
+      "seed_42": {
+        "delta_rmse_mean": 0.046,
+        "delta_rmse_ci95": [
+          -0.208,
+          0.214
+        ],
+        "delta_mae_mean": -0.011,
+        "delta_mae_ci95": [
+          -0.145,
+          0.088
+        ]
+      },
+      "seed_2026": {
+        "delta_rmse_mean": 0.044,
+        "delta_rmse_ci95": [
+          -0.18,
+          0.21
+        ],
+        "delta_mae_mean": -0.012,
+        "delta_mae_ci95": [
+          -0.139,
+          0.091
+        ]
+      },
+      "method": "empirical_percentile_95ci",
+      "resamples": 2000,
+      "resampling_unit": "monitoring_station_cluster"
+    },
+    "date_block_bootstrap_2000_supplementary": {
+      "seed_42": {
+        "date_block_delta_rmse_mean": 0.051,
+        "date_block_delta_rmse_ci95": [
+          -0.002,
+          0.104
+        ]
+      },
+      "seed_2026": {
+        "date_block_delta_rmse_mean": 0.05,
+        "date_block_delta_rmse_ci95": [
+          -0.005,
+          0.105
+        ]
+      },
+      "method": "empirical_percentile_95ci",
+      "resamples": 2000,
+      "resampling_unit": "calendar_month_block",
+      "status": "exploratory_supplementary_only"
+    }
+  },
+  "6M_Variable_Window": {
+    "elapsed_time_distribution_days": {
+      "min": 150,
+      "p10": 150.0,
+      "p25": 150.0,
+      "median": 150.0,
+      "mean": 152.1,
+      "p75": 151.0,
+      "p90": 154.0,
+      "max": 210
+    },
+    "train_pairs": 34677,
+    "test_pairs": 18318,
+    "test_stations": 161,
+    "metrics_independently_verified": {
+      "persistence": {
+        "rmse": 3.534,
+        "mae": 1.816,
+        "nse": 0.852
+      },
+      "seasonal": {
+        "rmse": 3.966,
+        "mae": 2.149,
+        "nse": 0.813
+      },
+      "ridge": {
+        "rmse": 3.426,
+        "mae": 1.788,
+        "nse": 0.861
+      },
+      "quantile_gb": {
+        "rmse": 3.394,
+        "mae": 1.719,
+        "nse": 0.863
+      }
+    },
+    "uncertainty_calibration": {
+      "raw_crossings_rate": 0.0021,
+      "safeguard_crossings_rate": 0.0,
+      "empirical_80_coverage": 0.8439,
+      "mean_width_m": 6.193,
+      "median_width_m": 5.075
+    },
+    "station_clustered_bootstrap_qgb_vs_persist": {
+      "delta_rmse_mean": 0.14,
+      "delta_rmse_ci95": [
+        -0.008,
+        0.248
+      ],
+      "delta_mae_mean": 0.098,
+      "delta_mae_ci95": [
+        -0.008,
+        0.206
+      ]
+    },
+    "elapsed_time_sub_buckets": {
+      "150-169d": {
+        "samples": 17517,
+        "stations": 161,
+        "persistence_rmse": 3.565,
+        "qgb_rmse": 3.424,
+        "qgb_gain_pct": 3.95,
+        "coverage_80": 0.8423,
+        "mean_width": 6.219
+      },
+      "170-189d": {
+        "samples": 726,
+        "stations": 83,
+        "persistence_rmse": 2.752,
+        "qgb_rmse": 2.622,
+        "qgb_gain_pct": 4.72,
+        "coverage_80": 0.8967,
+        "mean_width": 5.722
+      },
+      "190-210d": {
+        "samples": 75,
+        "stations": 12,
+        "persistence_rmse": 2.955,
+        "qgb_rmse": 2.858,
+        "qgb_gain_pct": 3.26,
+        "coverage_80": 0.7067,
+        "mean_width": 4.742
+      }
+    },
+    "station_cluster_bootstrap_2000": {
+      "seed_42": {
+        "delta_rmse_mean": 0.139,
+        "delta_rmse_ci95": [
+          -0.008,
+          0.26
+        ],
+        "delta_mae_mean": 0.099,
+        "delta_mae_ci95": [
+          -0.01,
+          0.21
+        ]
+      },
+      "seed_2026": {
+        "delta_rmse_mean": 0.139,
+        "delta_rmse_ci95": [
+          -0.01,
+          0.255
+        ],
+        "delta_mae_mean": 0.097,
+        "delta_mae_ci95": [
+          -0.019,
+          0.196
+        ]
+      },
+      "method": "empirical_percentile_95ci",
+      "resamples": 2000,
+      "resampling_unit": "monitoring_station_cluster"
+    },
+    "date_block_bootstrap_2000_supplementary": {
+      "seed_42": {
+        "date_block_delta_rmse_mean": 0.141,
+        "date_block_delta_rmse_ci95": [
+          0.073,
+          0.204
+        ]
+      },
+      "seed_2026": {
+        "date_block_delta_rmse_mean": 0.141,
+        "date_block_delta_rmse_ci95": [
+          0.072,
+          0.207
+        ]
+      },
+      "method": "empirical_percentile_95ci",
+      "resamples": 2000,
+      "resampling_unit": "calendar_month_block",
+      "status": "exploratory_supplementary_only"
+    }
+  },
+  "station_reconciliation_audit": {
+    "total_candidate_pairs": 78,
+    "unique_telemetry_stations": 65,
+    "unique_manual_stations": 73,
+    "distance_bands": [
+      {
+        "band": "0-100m",
+        "pairs_count": 1,
+        "unique_telemetry_stations": 1,
+        "unique_manual_stations": 1
+      },
+      {
+        "band": "100-500m",
+        "pairs_count": 19,
+        "unique_telemetry_stations": 19,
+        "unique_manual_stations": 19
+      },
+      {
+        "band": "500-1000m",
+        "pairs_count": 24,
+        "unique_telemetry_stations": 23,
+        "unique_manual_stations": 23
+      },
+      {
+        "band": "1000-1500m",
+        "pairs_count": 34,
+        "unique_telemetry_stations": 30,
+        "unique_manual_stations": 30
+      }
+    ],
+    "status_breakdown": [
+      {
+        "status": "confirmed_match",
+        "pairs_count": 0,
+        "unique_telemetry_stations": 0,
+        "unique_manual_stations": 0
+      },
+      {
+        "status": "probable_match",
+        "pairs_count": 19,
+        "unique_telemetry_stations": 19,
+        "unique_manual_stations": 19
+      },
+      {
+        "status": "unresolved",
+        "pairs_count": 25,
+        "unique_telemetry_stations": 24,
+        "unique_manual_stations": 24
+      },
+      {
+        "status": "no_match_established",
+        "pairs_count": 34,
+        "unique_telemetry_stations": 30,
+        "unique_manual_stations": 30
+      }
+    ],
+    "distance_band_x_status_crosstab": {
+      "no_match_established": {
+        "0-100m": 0,
+        "100-500m": 0,
+        "500-1000m": 0,
+        "1000-1500m": 34
+      },
+      "probable_match": {
+        "0-100m": 1,
+        "100-500m": 18,
+        "500-1000m": 0,
+        "1000-1500m": 0
+      },
+      "unresolved": {
+        "0-100m": 0,
+        "100-500m": 1,
+        "500-1000m": 24,
+        "1000-1500m": 0
+      }
+    },
+    "pilana_1_exact_record": {
+      "telemetry_station": "Pilana_1",
+      "telemetry_district_lgd": "124",
+      "telemetry_district": "BAGHPAT",
+      "telemetry_block": "PILANA",
+      "telemetry_village": "Pilana Pz",
+      "telemetry_lat": 28.93583333,
+      "telemetry_lon": 77.37222222,
+      "manual_station": "Pilana  P",
+      "manual_district_lgd": "124",
+      "manual_district": "BAGHPAT",
+      "manual_block": "-",
+      "manual_village": "-",
+      "manual_lat": 28.936389,
+      "manual_lon": 77.369722,
+      "distance_method": "WGS84_Haversine_Spherical",
+      "geodesic_distance_m": 251.0,
+      "status": "unresolved",
+      "confidence": "LOW",
+      "name_evidence": "DIFFERENT",
+      "admin_label_agreement": "DISTRICT_ONLY",
+      "manual_review_status": "PENDING_OFFICIAL_WELL_INVENTORY",
+      "rationale": "Geodesic distance 251.0m <= 500m across administrative boundaries."
+    }
+  },
+  "sensitivity_18_vs_19_comparison": {
+    "18_stations_excluded": {
+      "excluded_stations_count": 18,
+      "excluded_stations_list": [
+        "Bardwari-I",
+        "Bhuawapar",
+        "Dapsaura_1",
+        "Digner_1",
+        "Dugraiyya Brahmpur-I (Dp)",
+        "Ferozpur_1",
+        "Jaspura_1",
+        "Kathela Garvi",
+        "Modi Nagar- Pz Ii",
+        "Mohanlalganj_2",
+        "Mustafabad_5",
+        "Naharpur-I",
+        "Pali-I",
+        "Parikshat Garh Pz_1",
+        "Rahawati_1",
+        "Rehman Khera_1",
+        "Sanjarpur Kaidwa",
+        "Shohratgarh_1"
+      ],
+      "train_pairs": 30658,
+      "train_stations": 148,
+      "test_pairs": 15987,
+      "test_stations": 143,
+      "metrics_pooled": {
+        "persistence": {
+          "rmse": 3.436,
+          "mae": 1.834,
+          "nse": 0.848
+        },
+        "seasonal": {
+          "rmse": 3.961,
+          "mae": 2.2,
+          "nse": 0.798
+        },
+        "ridge": {
+          "rmse": 3.369,
+          "mae": 1.815,
+          "nse": 0.854
+        },
+        "quantile_gb_p50": {
+          "rmse": 3.291,
+          "mae": 1.71,
+          "nse": 0.861
+        },
+        "qgb_improvement_over_persist_pct": 4.21,
+        "interval_coverage_80": 0.8427,
+        "mean_interval_width": 5.754,
+        "median_interval_width": 5.088,
+        "quantile_crossings_rate": 0.0
+      },
+      "station_distribution": {
+        "qualifying_stations_count": 136,
+        "persistence_rmse_median": 1.431,
+        "qgb_rmse_median": 1.214,
+        "qgb_station_median_improvement_pct": 15.12
+      },
+      "station_cluster_bootstrap_2000": {
+        "seed_42": {
+          "delta_rmse_mean": 0.143,
+          "delta_rmse_ci95": [
+            -0.052,
+            0.309
+          ],
+          "delta_mae_mean": 0.126,
+          "delta_mae_ci95": [
+            -0.03,
+            0.252
+          ]
+        },
+        "seed_2026": {
+          "delta_rmse_mean": 0.143,
+          "delta_rmse_ci95": [
+            -0.065,
+            0.295
+          ],
+          "delta_mae_mean": 0.124,
+          "delta_mae_ci95": [
+            -0.024,
+            0.249
+          ]
+        },
+        "method": "empirical_percentile_95ci",
+        "resamples": 2000,
+        "resampling_unit": "monitoring_station_cluster"
+      },
+      "date_block_bootstrap_2000_supplementary": {
+        "seed_42": {
+          "date_block_delta_rmse_mean": 0.148,
+          "date_block_delta_rmse_ci95": [
+            0.058,
+            0.245
+          ]
+        },
+        "seed_2026": {
+          "date_block_delta_rmse_mean": 0.149,
+          "date_block_delta_rmse_ci95": [
+            0.055,
+            0.248
+          ]
+        },
+        "method": "empirical_percentile_95ci",
+        "resamples": 2000,
+        "resampling_unit": "calendar_month_block",
+        "block_count": 8,
+        "status": "exploratory_supplementary_only"
+      }
+    },
+    "19_stations_excluded": {
+      "excluded_stations_count": 19,
+      "excluded_stations_list": [
+        "Bardwari-I",
+        "Bhuawapar",
+        "Budaun Polytechnic College",
+        "Dapsaura_1",
+        "Digner_1",
+        "Dugraiyya Brahmpur-I (Dp)",
+        "Ferozpur_1",
+        "Jaspura_1",
+        "Kathela Garvi",
+        "Modi Nagar- Pz Ii",
+        "Mohanlalganj_2",
+        "Mustafabad_5",
+        "Naharpur-I",
+        "Pali-I",
+        "Parikshat Garh Pz_1",
+        "Rahawati_1",
+        "Rehman Khera_1",
+        "Sanjarpur Kaidwa",
+        "Shohratgarh_1"
+      ],
+      "train_pairs": 30478,
+      "train_stations": 147,
+      "test_pairs": 15861,
+      "test_stations": 142,
+      "metrics_pooled": {
+        "persistence": {
+          "rmse": 3.449,
+          "mae": 1.844,
+          "nse": 0.847
+        },
+        "seasonal": {
+          "rmse": 3.976,
+          "mae": 2.211,
+          "nse": 0.796
+        },
+        "ridge": {
+          "rmse": 3.381,
+          "mae": 1.824,
+          "nse": 0.853
+        },
+        "quantile_gb_p50": {
+          "rmse": 3.297,
+          "mae": 1.719,
+          "nse": 0.86
+        },
+        "qgb_improvement_over_persist_pct": 4.4,
+        "interval_coverage_80": 0.844,
+        "mean_interval_width": 5.729,
+        "median_interval_width": 5.089,
+        "quantile_crossings_rate": 0.0
+      },
+      "station_distribution": {
+        "qualifying_stations_count": 135,
+        "persistence_rmse_median": 1.447,
+        "qgb_rmse_median": 1.211,
+        "qgb_station_median_improvement_pct": 16.33
+      },
+      "station_cluster_bootstrap_2000": {
+        "seed_42": {
+          "delta_rmse_mean": 0.148,
+          "delta_rmse_ci95": [
+            -0.045,
+            0.309
+          ],
+          "delta_mae_mean": 0.124,
+          "delta_mae_ci95": [
+            -0.027,
+            0.257
+          ]
+        },
+        "seed_2026": {
+          "delta_rmse_mean": 0.152,
+          "delta_rmse_ci95": [
+            -0.05,
+            0.31
+          ],
+          "delta_mae_mean": 0.127,
+          "delta_mae_ci95": [
+            -0.027,
+            0.254
+          ]
+        },
+        "method": "empirical_percentile_95ci",
+        "resamples": 2000,
+        "resampling_unit": "monitoring_station_cluster"
+      },
+      "date_block_bootstrap_2000_supplementary": {
+        "seed_42": {
+          "date_block_delta_rmse_mean": 0.155,
+          "date_block_delta_rmse_ci95": [
+            0.062,
+            0.256
+          ]
+        },
+        "seed_2026": {
+          "date_block_delta_rmse_mean": 0.156,
+          "date_block_delta_rmse_ci95": [
+            0.06,
+            0.257
+          ]
+        },
+        "method": "empirical_percentile_95ci",
+        "resamples": 2000,
+        "resampling_unit": "calendar_month_block",
+        "block_count": 8,
+        "status": "exploratory_supplementary_only"
+      }
+    }
+  }
+}

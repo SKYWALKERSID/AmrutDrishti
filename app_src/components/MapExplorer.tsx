@@ -43,7 +43,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> Geospatial Evidence Explorer
           </h1>
           <p className="text-xs text-text-muted mt-1">
-            Interactive multi-resolution environmental layer inspection for Bundelkhand Pilot Blocks.
+            Interactive multi-resolution environmental layer inspection for priority monitoring blocks.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               onChange={(e) => setSelectedDistrictFilter(e.target.value)}
               className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none"
             >
-              <option value="all">All Pilot Districts</option>
+              <option value="all">All Priority Districts</option>
               {BUNDELKHAND_DISTRICTS.map((d) => (
                 <option key={d.id} value={d.id}>
                   {d.name} ({d.blocksCount} Blocks)

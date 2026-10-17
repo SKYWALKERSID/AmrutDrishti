@@ -56,6 +56,7 @@ test('initial notifications and delivery helper always return SIMULATED status',
   assert.equal(displayDeliveryStatus(), 'SIMULATED');
   for (const n of INITIAL_NOTIFICATIONS) {
     assert.equal(n.deliveryStatus, 'simulated');
+    assert.equal(n.confidenceScore, null, 'Initial notifications must have confidenceScore: null');
     assert.ok(n.messageEnglish.includes(ADVISORY_DISCLAIMER_EN));
   }
 });
@@ -88,4 +89,6 @@ test('Alerts view explicitly states no real message is sent', () => {
   );
   assert.match(alertsPageContent, /No real SMS or WhatsApp message is sent/i);
   assert.doesNotMatch(alertsPageContent, /DELIVERED/);
+  // Verify no fabricated confidence score
+  assert.doesNotMatch(alertsPageContent, /confidenceScore:\s*0\.89/);
 });

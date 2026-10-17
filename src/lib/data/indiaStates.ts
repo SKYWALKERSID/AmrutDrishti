@@ -14,17 +14,18 @@ export interface IndianStateMeta {
 }
 
 export const ALL_INDIAN_STATES: IndianStateMeta[] = [
-  // Active states with data
-  { code: 'MP', name: 'Madhya Pradesh', hasData: true, statusLabel: 'Live / Empirical Data Available' },
-  { code: 'UP', name: 'Uttar Pradesh', hasData: true, statusLabel: 'Bundelkhand Pilot Observation Network' },
+  // Initial Geographic Priority States
+  { code: 'MP', name: 'Madhya Pradesh', hasData: true, statusLabel: 'Live / Empirical Data Available (Priority State)' },
+  { code: 'UP', name: 'Uttar Pradesh', hasData: true, statusLabel: 'DWLR Telemetry Network (Priority State)' },
   { code: 'PB', name: 'Punjab', hasData: true, statusLabel: 'Over-Exploited Red Zone (CGWB / NWIC)' },
   { code: 'RJ', name: 'Rajasthan', hasData: true, statusLabel: 'Critical Arid Red Zone (CGWB / NWIC)' },
   { code: 'HR', name: 'Haryana', hasData: true, statusLabel: 'High Extraction Zone (CGWB / NWIC)' },
   { code: 'AR', name: 'Arunachal Pradesh', hasData: true, statusLabel: 'Surplus Basin Benchmark (CGWB / NWIC)' },
-  { code: 'SK', name: 'Sikkim', hasData: true, statusLabel: 'Pristine Springshed Benchmark (CGWB / NWIC)' },
   { code: 'AS', name: 'Assam', hasData: true, statusLabel: 'Brahmaputra Valley Benchmark (CGWB / NWIC)' },
+  { code: 'ML', name: 'Meghalaya', hasData: false, statusLabel: 'Priority State (DWLR Station Ingestion Pending)' },
+  { code: 'SK', name: 'Sikkim', hasData: true, statusLabel: 'Mountain Springshed Contrast Region (Dhara Vikas)' },
 
-  // Remaining States & UTs (A-Z) - Unwired / Data Pending (Grayed out)
+  // Remaining States & UTs (A-Z) - Unwired / Expansion Phase (Grayed out)
   { code: 'AN', name: 'Andaman and Nicobar Islands', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'AP', name: 'Andhra Pradesh', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'BR', name: 'Bihar', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
@@ -43,7 +44,6 @@ export const ALL_INDIAN_STATES: IndianStateMeta[] = [
   { code: 'LD', name: 'Lakshadweep', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'MH', name: 'Maharashtra', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'MN', name: 'Manipur', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
-  { code: 'ML', name: 'Meghalaya', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'MZ', name: 'Mizoram', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'NL', name: 'Nagaland', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },
   { code: 'OR', name: 'Odisha', hasData: false, statusLabel: 'Telemetry Ingestion Pending' },

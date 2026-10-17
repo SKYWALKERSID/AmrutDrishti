@@ -32,20 +32,20 @@ export const Navigation: React.FC = () => {
 
   return (
     <header className="bg-surface border-b border-border sticky top-0 z-50">
-      {/* Top Banner: Scientific Safeguard & Pilot Context */}
+      {/* Top Banner: Scientific Safeguard & Context */}
       <div className="bg-[#0d5c63] text-white text-xs px-4 py-1.5 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <ShieldCheckIcon className="w-4 h-4 text-teal-200" />
           <span>
-            <strong>JalDrishti (जलदृष्टि) Pilot:</strong> Bundelkhand Region, MP — Evidence-Backed Decision Support.
+            <strong>JalDrishti (जलदृष्टि):</strong> India Groundwater Intelligence & Decision Support Platform.
           </span>
           <span className="hidden md:inline bg-teal-800/60 px-2 py-0.5 rounded text-[11px] text-teal-100">
-            Demonstration Mode: Subject to Field Verification
+            Initial Priority States: MP, PB, RJ, HR, UP, Assam, Meghalaya, Arunachal Pradesh
           </span>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-teal-100">
           <span className="flex items-center gap-1">
-            <MapPinIcon className="w-3.5 h-3.5 text-teal-300" /> Pilot Area: Tikamgarh & Chhatarpur
+            <MapPinIcon className="w-3.5 h-3.5 text-teal-300" /> Multi-State Monitored Blocks
           </span>
           <span>•</span>
           <span>Last Data Refresh: 2026-10-08</span>

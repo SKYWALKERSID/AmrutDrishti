@@ -1,6 +1,10 @@
+/**
+ * JAL DRISHTI — Central India Monitored Priority Districts (Madhya Pradesh & Uttar Pradesh)
+ * Provides baseline monitoring blocks for priority hard-rock and semi-arid basins.
+ */
 import type { DistrictData, BlockData } from '../types.ts';
 
-export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
+export const CENTRAL_INDIA_DISTRICTS: DistrictData[] = [
   {
     id: 'dist_tikamgarh',
     name: 'Tikamgarh',
@@ -294,7 +298,7 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
   {
     id: 'dist_jhansi',
     name: 'Jhansi',
-    state: 'Uttar Pradesh / MP Border Zone',
+    state: 'Uttar Pradesh',
     centerCoordinates: [25.4484, 78.5685],
     blocksCount: 8,
     overallSeverity: 'watch',
@@ -382,7 +386,7 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
   {
     id: 'dist_lalitpur',
     name: 'Lalitpur',
-    state: 'Uttar Pradesh / MP Border',
+    state: 'Uttar Pradesh',
     centerCoordinates: [24.6900, 78.4100],
     blocksCount: 6,
     overallSeverity: 'watch',
@@ -519,4 +523,5 @@ export const BUNDELKHAND_DISTRICTS: DistrictData[] = [
   }
 ];
 
-export const ALL_BLOCKS: BlockData[] = BUNDELKHAND_DISTRICTS.flatMap(d => d.blocks);
+export const BUNDELKHAND_DISTRICTS: DistrictData[] = CENTRAL_INDIA_DISTRICTS;
+export const ALL_BLOCKS: BlockData[] = CENTRAL_INDIA_DISTRICTS.flatMap(d => d.blocks);

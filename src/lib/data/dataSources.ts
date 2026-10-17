@@ -1,4 +1,4 @@
-import { DataSourceStatus } from '../types';
+import type { DataSourceStatus } from '../types.ts';
 
 export const DATA_SOURCES: DataSourceStatus[] = [
   {
@@ -64,7 +64,7 @@ export const DATA_SOURCES: DataSourceStatus[] = [
     status: 'healthy',
     missingDataRatePct: 4.2,
     licenseTerms: 'India-WRIS / CGWB National Hydrograph Network Terms',
-    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in DWLR piezometers and open wells across 8 states: MP & UP (Bundelkhand crystalline rock), Punjab, Rajasthan, Haryana (high extraction alluvium/arid zones), and Arunachal Pradesh, Sikkim, Assam (Himalayan/Brahmaputra recharge basins).'
+    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in DWLR piezometers and open wells across initial priority states: Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, and Arunachal Pradesh (Meghalaya DWLR stations pending ingestion; Sikkim included as mountain springshed contrast region).'
   },
   {
     id: 'src_isro_bhuvan',

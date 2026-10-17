@@ -1,6 +1,6 @@
 # JalDrishti — AI & Machine Learning Implementation Plan & Roadmap
 **Document ID:** `PLN-AIML-001`  
-**Target:** Robust, Scientifically Validated Groundwater Level Forecasting for Pilot Blocks in Bundelkhand  
+**Target:** Robust, Scientifically Validated Groundwater Level Forecasting for Priority Monitored Blocks Across Priority States  
 **Compliance Standards:** JalDrishti TRD v1.0, Project Rules (Data & Scientific Integrity), WMO Guidelines  
 
 ---

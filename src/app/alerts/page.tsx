@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { ALL_BLOCKS } from '@/lib/data/bundelkhand';
 import { INITIAL_NOTIFICATIONS } from '@/lib/data/alerts';
 import { NotificationRecord, UserRole } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
@@ -133,7 +132,11 @@ function AlertsContent() {
     try {
       const res = await fetch('/api/alerts/dispatch', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-jaldrishti-role': activeRole,
+          'x-jaldrishti-district': selectedBlock.districtName,
+        },
         body: JSON.stringify({
           recipientPhone,
           recipientName,
@@ -165,7 +168,7 @@ function AlertsContent() {
       messageEnglish: generatedEnglishText,
       sentTimestamp: `${new Date().toISOString().split('T')[0]} ${new Date().toLocaleTimeString()} IST`,
       deliveryStatus: finalStatus,
-      confidenceScore: 0.89,
+      confidenceScore: null,
       dataFreshnessDate: selectedBlock.indicators.lastUpdatedDate
     };
 
@@ -177,7 +180,11 @@ function AlertsContent() {
     try {
       fetch('/api/audit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-jaldrishti-role': activeRole,
+          'x-jaldrishti-district': selectedBlock.districtName,
+        },
         body: JSON.stringify({
           actorRole: activeRole,
           action: 'dispatch_advisory_alert',
@@ -201,38 +208,40 @@ function AlertsContent() {
   return (
     <div className="space-y-6">
       {storageError && (
-        <div className="p-3 bg-amber-50 border border-amber-300 text-amber-900 rounded-lg text-xs font-semibold flex items-center justify-between">
+        <div className="p-3 bg-amber-50 border border-amber-300 text-amber-900 rounded text-xs font-semibold flex items-center justify-between">
           <span>{storageError}</span>
           <button onClick={() => setStorageError(null)} className="text-amber-700 hover:text-amber-900 font-bold ml-2">×</button>
         </div>
       )}
 
-      {/* Header */}
-      <div className="bg-surface border border-border rounded p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Header - Open Editorial Layout */}
+      <div className="border-b border-border pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted mb-1.5">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted mb-2">
             <span className="font-semibold text-text-main">
-              Advisory Dispatch Gateway
+              Advisory Dispatch Gateway*
             </span>
-            <span>•</span>
-            <span>Local Language Notifications</span>
+            <span aria-hidden="true">•</span>
+            <span>Simulated Advisory Delivery Protocol</span>
+            <span aria-hidden="true">•</span>
+            <span>DLT Template Compliance (Demonstration)</span>
           </div>
-          <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <AlertTriangleIcon className="w-5 h-5 text-[#0d5c63]" /> {t('alerts.title')}
+          <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
+            <AlertTriangleIcon className="w-6 h-6 text-primary" /> {t('alerts.title')}*
           </h1>
-          <p className="text-xs text-text-muted mt-1">
+          <p className="text-xs sm:text-sm text-text-muted mt-1.5 leading-relaxed">
             {t('alerts.subtitle')} No real SMS or WhatsApp message is sent.
           </p>
         </div>
 
         <div className="flex items-center gap-2 text-xs text-text-muted">
-          <ShieldCheckIcon className="w-4 h-4 text-[#0d5c63]" />
+          <ShieldCheckIcon className="w-4 h-4 text-primary" />
           <span>Dispatch Protocols Configured</span>
         </div>
       </div>
 
       {/* Safe Wording Safeguard Banner */}
-      <div className="bg-amber-50/80 border border-amber-300 rounded-lg p-4 text-xs text-amber-900 space-y-1">
+      <div className="bg-amber-50/80 border-l-4 border-l-amber-600 border border-amber-200 p-4 text-xs text-amber-900 space-y-1">
         <div className="font-bold flex items-center gap-1.5">
           <ShieldCheckIcon className="w-4 h-4 text-amber-700" /> {t('alerts.simulationOnlyHeader', 'Simulation only — no real message is sent')}
         </div>
@@ -242,29 +251,29 @@ function AlertsContent() {
       </div>
 
       {restrictionNotice && (
-        <div className="bg-subtle border border-border rounded-lg p-3 text-xs text-text-muted">
+        <div className="bg-subtle border border-border p-3 text-xs text-text-muted">
           {restrictionNotice}
         </div>
       )}
 
-      {/* Main Grid: Alert Dispatch Simulator + History Log */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* Main Grid: Alert Dispatch Simulator + History Log (Open Layout) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Dispatch Simulator (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
-            <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
-              <SendIcon className="w-4 h-4 text-[#0d5c63]" /> {t('alerts.dispatchSimulator', 'Advisory Dispatch Simulator')}
+          <div className="space-y-4">
+            <h2 className="text-sm font-bold text-text-main flex items-center gap-2 pb-2 border-b border-border">
+              <SendIcon className="w-4 h-4 text-primary" /> {t('alerts.dispatchSimulator', 'Advisory Dispatch Simulator')}
             </h2>
 
             {dispatchSuccess && (
-              <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-900 rounded text-xs flex items-center gap-2">
+              <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center gap-2">
                 <CheckCircleIcon className="w-4 h-4 text-emerald-700 shrink-0" />
                 <span>{t('alerts.simulatedSuccess', 'Simulated advisory added to the local demo log (this browser only). No message was sent.')}</span>
               </div>
             )}
 
             {dispatchError && (
-              <div className="p-3 bg-red-50 border border-red-200 text-red-900 rounded text-xs" role="alert">
+              <div className="p-3 bg-red-50 border border-red-200 text-red-900 text-xs" role="alert">
                 {dispatchError}
               </div>
             )}
@@ -278,12 +287,12 @@ function AlertsContent() {
               <div className="space-y-1">
                 <label className="font-semibold text-text-main">{t('alerts.targetGeography', 'Target Block Geography')}:</label>
                 {isLoading ? (
-                  <div className="h-8 bg-subtle rounded animate-pulse"></div>
+                  <div className="h-8 bg-subtle animate-pulse"></div>
                 ) : (
                   <select
                     value={selectedBlockId}
                     onChange={(e) => setSelectedBlockId(e.target.value)}
-                    className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
+                    className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   >
                     {blocksData.map((b: any) => (
                       <option key={b.id} value={b.id}>
@@ -300,7 +309,7 @@ function AlertsContent() {
                   <select
                     value={recipientRole}
                     onChange={(e) => setRecipientRole(e.target.value as UserRole)}
-                    className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
+                    className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   >
                     <option value="district_collector">{t('role.district_collector', 'District Collector')}</option>
                     <option value="bdo">{t('role.bdo', 'BDO')}</option>
@@ -314,7 +323,7 @@ function AlertsContent() {
                   <select
                     value={selectedChannel}
                     onChange={(e) => setSelectedChannel(e.target.value as 'SMS' | 'WhatsApp')}
-                    className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
+                    className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   >
                     <option value="WhatsApp">{t('alerts.whatsappGatewayLabel', 'WhatsApp Gateway')}</option>
                     <option value="SMS">{t('alerts.smsGateway', 'NIC SMS Gateway')}</option>
@@ -329,7 +338,7 @@ function AlertsContent() {
                     type="text"
                     value={recipientName}
                     onChange={(e) => setRecipientName(e.target.value)}
-                    className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
+                    className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   />
                 </div>
 
@@ -339,7 +348,7 @@ function AlertsContent() {
                     type="text"
                     value={recipientPhone}
                     onChange={(e) => setRecipientPhone(e.target.value)}
-                    className="w-full bg-subtle border border-border rounded p-2 text-text-main focus:outline-none"
+                    className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   />
                 </div>
               </div>
@@ -347,26 +356,26 @@ function AlertsContent() {
               {/* Generated Message Preview */}
               <div className="space-y-1.5 pt-2">
                 <label className="font-semibold text-text-main">{t('alerts.hindiPreview', 'Hindi Advisory Message Preview:')}</label>
-                <div className="p-3 bg-subtle/50 rounded border border-border text-xs text-text-main leading-relaxed font-sans">
+                <div className="p-3 bg-subtle/50 border border-border text-xs text-text-main leading-relaxed font-sans">
                   {generatedHindiText}
                 </div>
               </div>
 
               <div className="space-y-1.5">
                 <label className="font-semibold text-text-main">{t('alerts.englishPreview', 'English Advisory Message Preview:')}</label>
-                <div className="p-3 bg-subtle/50 rounded border border-border text-[11px] text-text-muted leading-relaxed">
+                <div className="p-3 bg-subtle/50 border border-border text-[11px] text-text-muted leading-relaxed">
                   {generatedEnglishText}
                 </div>
               </div>
 
               {!dispatchDecision.allowed && (
-                <p className="text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded p-2">{dispatchDecision.reason}</p>
+                <p className="text-xs text-amber-900 bg-amber-50 border border-amber-200 p-2">{dispatchDecision.reason}</p>
               )}
 
               <button
                 type="submit"
                 disabled={!dispatchDecision.allowed}
-                className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white font-semibold py-2.5 rounded transition-colors shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-primary hover:bg-primary-hover text-text-inverted font-semibold py-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {t('alerts.createRecordBtn', 'Create Simulated Advisory Record')} ({selectedChannel === 'SMS' ? t('alerts.smsGateway', 'NIC SMS Gateway') : t('alerts.whatsappGatewayLabel', 'WhatsApp Gateway')}) — {t('alerts.nothingSent', 'nothing is sent')}
               </button>
@@ -375,36 +384,36 @@ function AlertsContent() {
           </div>
         </div>
 
-        {/* Right Column: Dispatch History & Audit Trail (7 cols) */}
+        {/* Right Column: Dispatch History & Audit Trail (Divided List, Unboxed) */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="bg-surface border border-border rounded p-5 shadow-xs space-y-4">
-            <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
-              <UserRoleIcon className="w-4 h-4 text-[#0d5c63]" /> {t('alerts.dispatchLogTitle', 'Dispatch History & Delivery Audit Log')} ({notifications.length})
+          <div className="space-y-4">
+            <h2 className="text-sm font-bold text-text-main flex items-center gap-2 pb-2 border-b border-border">
+              <UserRoleIcon className="w-4 h-4 text-primary" /> {t('alerts.dispatchLogTitle', 'Dispatch History & Delivery Audit Log')} ({notifications.length})
             </h2>
 
-            <div className="divide-y divide-border border border-border rounded overflow-hidden">
+            <div className="divide-y divide-border border-y border-border">
               {notifications.map((notif) => (
-                <div key={notif.id} className="p-3.5 bg-surface hover:bg-subtle/30 space-y-2 text-xs">
+                <div key={notif.id} className="py-3.5 space-y-2 text-xs">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-text-main">
                         {t(`alerts.recipient.${notif.id === 'notif_001' ? 'collector' : notif.id === 'notif_002' ? 'bdo' : 'jalsamiti'}`, notif.recipientName)}
                       </span>
                       <span className="text-[11px] text-text-muted">({t(`role.${notif.recipientRole}`, notif.recipientRole.toUpperCase())})</span>
-                      <span className="bg-subtle px-2 py-0.5 rounded border border-border text-[10px] font-mono text-[#0d5c63]">
-                        {notif.channel}
+                      <span className="text-[11px] font-mono font-medium text-primary">
+                        • {notif.channel}
                       </span>
                     </div>
-                    <span className="text-[10px] text-text-muted">
+                    <span className="text-[10px] text-text-muted font-mono">
                       {notif.sentTimestamp.replace('(simulated log entry)', t('alerts.simulatedLogNotice', '(simulated log entry)'))}
                     </span>
                   </div>
 
-                  <p className="text-text-main leading-snug bg-subtle/30 p-2.5 rounded border border-border text-[11px]">
+                  <p className="text-text-main leading-snug p-2.5 bg-subtle/40 border border-border text-xs">
                     {language === 'hi' ? notif.messageHindi : notif.messageEnglish}
                   </p>
 
-                  <div className="flex justify-between items-center text-[10px] text-text-muted pt-1">
+                  <div className="flex justify-between items-center text-[11px] text-text-muted pt-0.5">
                     <span>{t('alerts.targetLabel', 'Target')}: {notif.blockName} ({notif.districtName})</span>
                     <span className="text-amber-800 font-semibold">{t('alerts.statusLabel', 'Status')}: {t(`status.${notif.deliveryStatus}`, 'SIMULATED')} ({t('alerts.noRealSent', 'no real message sent')})</span>
                   </div>

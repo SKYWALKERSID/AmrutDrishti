@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import './globals.css';
 import { Navigation } from '@/components/Navigation';
 import { RoleProvider } from '@/lib/context/RoleContext';
 import { LanguageProvider } from '@/lib/context/LanguageContext';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'JalDrishti (जलदृष्टि) | Groundwater Intelligence & Governance Platform',
-  description: 'Satellite-assisted groundwater early warning and decision-support platform for Bundelkhand, Madhya Pradesh, India.',
+  description: 'India-focused groundwater intelligence and decision-support platform for priority states including Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh.',
 };
 
 export default function RootLayout({
@@ -31,19 +33,7 @@ export default function RootLayout({
             <main className="flex-1 w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
               {children}
             </main>
-            <footer className="bg-surface border-t border-border mt-10 py-5 text-xs text-text-muted">
-              <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-                  <p className="font-semibold text-text-main">JalDrishti (जलदृष्टि) — Satellite-Assisted Groundwater Intelligence Platform</p>
-                  <div className="flex items-center gap-4 text-text-muted text-xs">
-                    <a href="/data-sources" className="hover:underline text-[#0d5c63]">Data Sources</a>
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-border text-[11px] leading-relaxed text-text-muted">
-                  <span className="font-semibold text-text-main">Disclaimer:</span> All indicators are derived from verified Central Ground Water Board (CGWB) observation wells, National Water Informatics Centre telemetry, and satellite products across 8 active states (Madhya Pradesh, Uttar Pradesh, Punjab, Rajasthan, Haryana, Arunachal Pradesh, Sikkim, Assam). Missing observations are preserved as unavailable data and never fabricated.
-                </div>
-              </div>
-            </footer>
+            <Footer />
           </RoleProvider>
         </LanguageProvider>
       </body>

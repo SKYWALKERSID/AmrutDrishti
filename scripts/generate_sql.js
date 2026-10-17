@@ -20,7 +20,7 @@ const blockMap = {
 let sql = '-- ============================================================================\n';
 sql += '-- ACT-05: Remote PostGIS Polygons Ingestion Script\n';
 sql += '-- Populates public.administrative_units.geom column with Survey of India (SOI) 2025\n';
-sql += '-- GeoJSON MultiPolygon coordinates for the 6 pilot blocks in Bundelkhand.\n';
+sql += '-- GeoJSON MultiPolygon coordinates for the 6 monitored priority blocks in Central India (Madhya Pradesh).\n';
 sql += '-- ============================================================================\n\n';
 
 geojson.features.forEach((feat) => {

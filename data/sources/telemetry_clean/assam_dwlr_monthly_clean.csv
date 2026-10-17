@@ -1,0 +1,11 @@
+station,state,district,latitude,longitude,observation_date,water_level_mbgl,sample_count,method
+Champabati,Assam,GOALPARA,26.02744200,90.66889200,2023-04-15,2.234,366,DWLR Telemetry Monthly Median
+Champabati,Assam,GOALPARA,26.02744200,90.66889200,2023-05-15,2.198,294,DWLR Telemetry Monthly Median
+NH15 Crossing Doomdooma Dibru,Assam,TINSUKIA,27.56694000,95.55086000,2023-02-15,1.335,362,DWLR Telemetry Monthly Median
+NH15 Crossing Doomdooma Dibru,Assam,TINSUKIA,27.56694000,95.55086000,2023-03-15,1.318,610,DWLR Telemetry Monthly Median
+NH15 Crossing Doomdooma Dibru,Assam,TINSUKIA,27.56694000,95.55086000,2023-04-15,1.33,653,DWLR Telemetry Monthly Median
+NH15 Crossing Doomdooma Dibru,Assam,TINSUKIA,27.56694000,95.55086000,2023-05-15,1.278,296,DWLR Telemetry Monthly Median
+NH27 Crossing Amlighat Killing,Assam,MARIGAON,26.12027000,92.27875000,2023-02-15,1.886,357,DWLR Telemetry Monthly Median
+NH27 Crossing Amlighat Killing,Assam,MARIGAON,26.12027000,92.27875000,2023-03-15,1.846,626,DWLR Telemetry Monthly Median
+NH27 Crossing Amlighat Killing,Assam,MARIGAON,26.12027000,92.27875000,2023-04-15,1.778,647,DWLR Telemetry Monthly Median
+NH27 Crossing Amlighat Killing,Assam,MARIGAON,26.12027000,92.27875000,2023-05-15,1.827,295,DWLR Telemetry Monthly Median

@@ -45,7 +45,7 @@ export const AUTHORITATIVE_SOURCES: Record<string, AuthoritativeSourceMetadata> 
     temporalCadence: 'Quarterly Hydrograph & DWLR Telemetry',
     coordinateReferenceSystem: 'EPSG:4326 (WGS84)',
     licenseTerms: 'India-WRIS / National Hydrograph Network Open Terms',
-    provenanceDetails: 'Direct depth to groundwater level below ground level (meters bgl) in Bundelkhand hard-rock crystalline aquifers.',
+    provenanceDetails: 'Direct depth to groundwater level below ground level (meters bgl) in monitored observation well and telemetry networks across priority states.',
     isActive: true
   },
   src_grace_fo: {
@@ -248,7 +248,7 @@ export function validateCgwbObservationRecord(raw: unknown): ValidatedIngestionR
     if (isNaN(val)) {
       errors.push(`waterLevelMbgl must be a valid number or null, got: ${String(rec.waterLevelMbgl)}`);
     } else if (val < -2 || val > 300) {
-      warnings.push(`waterLevelMbgl value ${val} m bgl is unusual for Bundelkhand crystalline aquifers`);
+      warnings.push(`waterLevelMbgl value ${val} m bgl is unusual for monitored shallow aquifer networks`);
       waterLevelMbgl = val;
     } else {
       waterLevelMbgl = val;

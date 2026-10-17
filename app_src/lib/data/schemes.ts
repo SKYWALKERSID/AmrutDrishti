@@ -54,7 +54,7 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     id: 'sch_amrit_sarovar',
     code: 'ASA-WB-04',
     name: 'Mission Amrit Sarovar',
-    description: 'Creation and rejuvenation of at least 75 traditional water bodies (minimum 1 acre area with minimum 10,000 cu.m water storage capacity) per district in Bundelkhand to boost local storage.',
+    description: 'Creation and rejuvenation of at least 75 traditional water bodies (minimum 1 acre area with minimum 10,000 cu.m water storage capacity) per district to boost local storage in water-stressed priority districts.',
     primaryFocus: 'Traditional Water Body Rejuvenation & Storage Capacity',
     fundingStructure: 'Convergence of MGNREGA, XV Finance Commission & State Funds',
     eligibleTargetConditions: [

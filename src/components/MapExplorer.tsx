@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { BUNDELKHAND_DISTRICTS } from '@/lib/data/bundelkhand';
 import {
   NATIONAL_CONTRAST_DISTRICTS,
   STATE_CONTRAST_GROUPS
@@ -13,6 +12,7 @@ import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, 
 import Link from 'next/link';
 import LeafletMap from '@/components/LeafletMap';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import contrastProjectionsData from '@/lib/data/contrastProjections.json';
 
 interface MapExplorerProps {
   initialBlockId?: string;
@@ -260,11 +260,17 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   return (
     <div className="space-y-5">
       {/* Top Header with Unified Geographic Cascading Controls */}
-      <div className="bg-surface border border-border rounded p-4 sm:p-5 shadow-xs space-y-3">
+      <div className="bg-surface border border-border p-4 sm:p-5 space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <h1 className="text-xl font-bold text-text-main flex items-center gap-2">
-            <MapPinIcon className="w-5 h-5 text-[#0d5c63]" /> {t('explorer.title', 'Explore the Map')}
-          </h1>
+          <div className="flex items-center gap-2 flex-wrap text-xs text-text-muted">
+            <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
+              <MapPinIcon className="w-5 h-5 text-primary" /> {t('explorer.title', 'Explore the Map')}*
+            </h1>
+            <span aria-hidden="true">•</span>
+            <span>8 Monitored States (60 Blocks)</span>
+            <span aria-hidden="true">•</span>
+            <span>Observation Cutoff: 2026-10-12</span>
+          </div>
           {isLoading && (
             <span className="text-xs text-text-muted">Loading layers...</span>
           )}
@@ -273,7 +279,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         {/* Hierarchical Cascading Selectors: State -> District -> Block */}
         <div className="pt-3 border-t border-border/80 flex flex-wrap items-center gap-3 text-xs">
           <div className="flex items-center gap-1.5 text-text-muted font-semibold">
-            <FilterIcon className="w-3.5 h-3.5 text-[#0d5c63]" />
+            <FilterIcon className="w-3.5 h-3.5 text-primary" />
             <span>Select Geography:</span>
           </div>
 
@@ -284,7 +290,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               id="state-select"
               value={selectedState}
               onChange={(e) => handleStateChange(e.target.value)}
-              className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer max-w-[220px]"
+              className="bg-subtle border border-border px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer max-w-[220px]"
             >
               <option value="all">All Available States (8 Monitored)</option>
               <optgroup label="Active Monitored States (8)">
@@ -319,7 +325,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               value={selectedDistrictId}
               onChange={(e) => handleDistrictChange(e.target.value)}
               disabled={selectedState !== 'all' && availableDistricts.length === 0}
-              className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-w-[200px]"
+              className="bg-subtle border border-border px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-w-[200px]"
             >
               <option value="all">
                 {selectedState === 'all'
@@ -342,7 +348,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               value={selectedBlockId}
               onChange={(e) => handleBlockChange(e.target.value)}
               disabled={availableBlocks.length === 0}
-              className="bg-subtle border border-border rounded-md px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-w-[200px]"
+              className="bg-subtle border border-border px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed max-w-[200px]"
             >
               <option value="all">
                 {selectedDistrictId === 'all'
@@ -366,7 +372,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 setSelectedBlockId('all');
                 if (allBlocks.length > 0) setSelectedBlock(allBlocks[0]);
               }}
-              className="text-[#0d5c63] hover:underline font-semibold text-xs ml-auto"
+              className="text-primary hover:underline font-semibold text-xs ml-auto"
             >
               Reset to All India
             </button>
@@ -379,16 +385,16 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         {/* Left Column: Interactive Map & Layer Controls (8 cols) */}
         <div className="lg:col-span-8 space-y-4">
           {/* Layer Selection Controls */}
-          <div className="bg-surface border border-border rounded-lg p-2.5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="bg-surface border border-border p-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="text-xs font-semibold text-text-main flex items-center gap-1.5 shrink-0 px-1">
               <span>{t('explorer.activeLayer', 'Map View')}:</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               <button
                 onClick={() => setActiveLayer('risk')}
-                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                className={`px-3 py-1.5 text-xs transition-colors ${
                   activeLayer === 'risk'
-                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    ? 'bg-primary text-text-inverted font-semibold'
                     : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
@@ -396,9 +402,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('wells')}
-                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                className={`px-3 py-1.5 text-xs transition-colors ${
                   activeLayer === 'wells'
-                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    ? 'bg-primary text-text-inverted font-semibold'
                     : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
@@ -406,9 +412,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('rainfall')}
-                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                className={`px-3 py-1.5 text-xs transition-colors ${
                   activeLayer === 'rainfall'
-                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    ? 'bg-primary text-text-inverted font-semibold'
                     : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
@@ -416,9 +422,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('grace')}
-                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                className={`px-3 py-1.5 text-xs transition-colors ${
                   activeLayer === 'grace'
-                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    ? 'bg-primary text-text-inverted font-semibold'
                     : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
@@ -426,9 +432,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               </button>
               <button
                 onClick={() => setActiveLayer('sentinel')}
-                className={`px-3 py-1.5 rounded-md text-xs transition-colors ${
+                className={`px-3 py-1.5 text-xs transition-colors ${
                   activeLayer === 'sentinel'
-                    ? 'bg-[#0d5c63] text-white font-semibold shadow-xs'
+                    ? 'bg-primary text-text-inverted font-semibold'
                     : 'bg-subtle hover:bg-subtle/80 text-text-main font-medium'
                 }`}
               >
@@ -438,11 +444,11 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
 
           {/* Interactive Map Visualizer Canvas Container */}
-          <div className="bg-surface border border-border rounded-lg overflow-hidden shadow-xs relative isolate h-[500px] sm:h-[620px] w-full">
+          <div className="bg-surface border border-border overflow-hidden relative isolate h-[500px] sm:h-[620px] w-full">
             {/* Layer Info Chip */}
-            <div className="absolute top-3 left-3 z-10 bg-surface/95 backdrop-blur-sm border border-border rounded-md px-3 py-1.5 shadow-sm text-xs space-y-0.5 max-w-[calc(100%-1.5rem)] sm:max-w-sm">
+            <div className="absolute top-3 left-3 z-10 bg-surface border border-border px-3 py-1.5 text-xs space-y-0.5 max-w-[calc(100%-1.5rem)] sm:max-w-sm">
               <div className="font-semibold text-text-main flex items-center gap-1.5">
-                <InfoIcon className="w-3.5 h-3.5 text-[#0d5c63] shrink-0" />
+                <InfoIcon className="w-3.5 h-3.5 text-primary shrink-0" />
                 {activeLayer === 'risk' && t('layer.risk', 'Groundwater Status')}
                 {activeLayer === 'grace' && t('layer.grace', 'Satellite Water Storage Estimate')}
                 {activeLayer === 'rainfall' && t('layer.rainfall', 'Rainfall Difference')}
@@ -460,9 +466,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
             {/* Map Loading & Empty Overlays */}
             {isLoading && (
-              <div className="absolute inset-0 z-20 bg-surface/50 backdrop-blur-[1px] flex items-center justify-center">
-                <div className="bg-surface border border-border px-4 py-2 rounded shadow-md text-xs font-medium text-text-main flex items-center gap-2">
-                  <div className="w-3.5 h-3.5 border-2 border-[#0d5c63] border-t-transparent rounded-full animate-spin"></div>
+              <div className="absolute inset-0 z-20 bg-surface/70 flex items-center justify-center">
+                <div className="bg-surface border border-border px-4 py-2 rounded text-xs font-medium text-text-main flex items-center gap-2">
+                  <div className="w-3.5 h-3.5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
                   {t('monitoring.loading', 'Loading verified geospatial layers...')}
                 </div>
               </div>
@@ -490,29 +496,29 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
         {/* Right Column: Block Details Inspector Panel (4 cols) */}
         <div className="lg:col-span-4">
-          <div className="bg-surface border border-border rounded-lg p-4 sm:p-5 shadow-xs space-y-4 sm:space-y-5 lg:sticky lg:top-24">
+          <div className="bg-surface border border-border rounded p-4 sm:p-5 space-y-4 sm:space-y-5 lg:sticky lg:top-24">
             {isLoading ? (
               <div className="space-y-4 animate-pulse" data-testid="map-inspector-loading">
                 <div className="flex items-center justify-between">
-                  <div className="h-4 bg-subtle rounded w-28"></div>
-                  <div className="h-4 bg-subtle rounded w-16"></div>
+                  <div className="h-4 bg-subtle w-28"></div>
+                  <div className="h-4 bg-subtle w-16"></div>
                 </div>
-                <div className="h-6 bg-subtle rounded w-3/4"></div>
-                <div className="h-4 bg-subtle rounded w-1/2"></div>
-                <div className="space-y-3 bg-subtle/50 p-3.5 rounded-lg border border-border">
-                  <div className="h-4 bg-subtle rounded w-full"></div>
-                  <div className="h-4 bg-subtle rounded w-full"></div>
-                  <div className="h-4 bg-subtle rounded w-full"></div>
-                  <div className="h-4 bg-subtle rounded w-full"></div>
-                  <div className="h-5 bg-subtle rounded w-1/2 pt-2 border-t border-border/60"></div>
+                <div className="h-6 bg-subtle w-3/4"></div>
+                <div className="h-4 bg-subtle w-1/2"></div>
+                <div className="space-y-3 bg-subtle/50 p-3.5 border border-border">
+                  <div className="h-4 bg-subtle w-full"></div>
+                  <div className="h-4 bg-subtle w-full"></div>
+                  <div className="h-4 bg-subtle w-full"></div>
+                  <div className="h-4 bg-subtle w-full"></div>
+                  <div className="h-5 bg-subtle w-1/2 pt-2 border-t border-border/60"></div>
                 </div>
                 <div className="space-y-2">
-                  <div className="h-3.5 bg-subtle rounded w-1/3"></div>
-                  <div className="h-12 bg-subtle rounded"></div>
+                  <div className="h-3.5 bg-subtle w-1/3"></div>
+                  <div className="h-12 bg-subtle"></div>
                 </div>
                 <div className="space-y-2 pt-2 border-t border-border">
-                  <div className="h-9 bg-subtle rounded"></div>
-                  <div className="h-8 bg-subtle rounded"></div>
+                  <div className="h-9 bg-subtle"></div>
+                  <div className="h-8 bg-subtle"></div>
                 </div>
               </div>
             ) : selectedBlock ? (
@@ -545,7 +551,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         id="inspector-state-select"
                         value={selectedState}
                         onChange={(e) => handleStateChange(e.target.value)}
-                        className="w-full bg-subtle border border-border rounded px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
+                        className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                       >
                         <option value="all">All Monitored States ({ALL_INDIAN_STATES.filter(s => s.hasData).length})</option>
                         <optgroup label="Active Monitored States">
@@ -570,7 +576,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         value={selectedDistrictId}
                         onChange={(e) => handleDistrictChange(e.target.value)}
                         disabled={selectedState !== 'all' && availableDistricts.length === 0}
-                        className="w-full bg-subtle border border-border rounded px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <option value="all">
                           {selectedState === 'all'
@@ -595,7 +601,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         value={selectedBlock.id}
                         onChange={(e) => handleBlockChange(e.target.value)}
                         disabled={availableBlocks.length === 0}
-                        className="w-full bg-subtle border border-border rounded px-2.5 py-1.5 text-xs font-semibold text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs font-semibold text-text-main focus:outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {availableBlocks.map((b) => (
                           <option key={b.id} value={b.id}>
@@ -606,11 +612,16 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                     </div>
                   </div>
 
-                  <div className="pt-1 border-t border-border/70">
+                  <div className="pt-1 border-t border-border/70 space-y-1.5">
                     <h2 className="text-lg font-bold text-text-main">{selectedBlock.name} Block</h2>
                     <p className="text-xs text-text-muted">
                       {selectedBlock.districtName} District, {selectedBlock.state}
                     </p>
+                    <div className="flex items-center gap-2 pt-0.5 flex-wrap text-[11px] text-text-muted">
+                      <span>Observed: <strong className="text-text-main font-medium">{selectedBlock.indicators.lastUpdatedDate || '2026-10-12'}</strong></span>
+                      <span aria-hidden="true">•</span>
+                      <span>Quality: <strong className="uppercase text-text-main font-medium">{selectedBlock.indicators.dataQualityFlag}</strong></span>
+                    </div>
                   </div>
                 </div>
 
@@ -646,7 +657,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
                   <div className="flex justify-between items-center text-xs border-t border-border/80 pt-2 flex-wrap gap-1">
                     <span className="text-text-muted font-semibold">Water Stress Score:</span>
-                    <span className="font-bold text-[#0d5c63] text-sm shrink-0 ml-auto">
+                    <span className="font-bold text-primary text-sm shrink-0 ml-auto">
                       {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
@@ -660,17 +671,84 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   </p>
                 </div>
 
+                {/* Projected Depth Section */}
+                {(() => {
+                  const blockProj = (contrastProjectionsData as Record<string, any>)[selectedBlock.id];
+                  const hasValidForecast = Boolean(blockProj && blockProj.modelStatus !== 'unavailable' && blockProj.forecasts?.length > 0);
+                  const q1 = hasValidForecast ? blockProj.forecasts[0] : null;
+                  const isTrainedMl = Boolean(hasValidForecast && blockProj.modelIdentifier && String(blockProj.modelIdentifier).startsWith('QuantileGB-v2.0'));
+                  const badgeLabel = isTrainedMl ? 'QuantileGB-v2.0' : (hasValidForecast ? 'Empirical Trend' : null);
+                  const titleLabel = isTrainedMl ? 'ML Depth Forecast (Q1):' : 'Projected Depth (Q1):';
+                  const auditNotice = blockProj?.scientificAuditNotice;
+
+                  return (
+                    <div className="space-y-1.5 pt-2 border-t border-border/80" data-testid="map-inspector-ml-forecast">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-text-main">
+                          {titleLabel}
+                        </span>
+                        {badgeLabel && (
+                          <span className={`text-[10px] font-mono px-1.5 py-0.5 border ${
+                            isTrainedMl ? 'text-primary bg-primary/10 border-primary/20' : 'text-text-muted bg-subtle border-border'
+                          }`}>
+                            {badgeLabel}
+                          </span>
+                        )}
+                      </div>
+                      {hasValidForecast && q1 ? (
+                        <div className="space-y-1 text-xs">
+                          <div className="flex justify-between items-center min-w-0">
+                            <span className="text-text-muted">Target (Water Depth):</span>
+                            <span className="font-bold text-text-main shrink-0 ml-auto font-mono">
+                              {q1.expectedDepthMbgl} m bgl
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center text-[11px] text-text-muted min-w-0">
+                            <span>P10–P90 Uncertainty:</span>
+                            <span className="font-mono shrink-0 ml-auto">
+                              [{q1.uncertaintyInterval?.lowerBoundP10Mbgl ?? '—'} to {q1.uncertaintyInterval?.upperBoundP90Mbgl ?? '—'} m]
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-text-muted italic">
+                            {q1.targetSeason}
+                          </div>
+                          {auditNotice && (
+                            <div className="text-[10px] text-amber-700 bg-amber-500/10 p-1.5 border border-amber-500/30 leading-snug">
+                              {auditNotice}
+                            </div>
+                          )}
+                          {!isTrainedMl && (
+                            <div className="text-[10px] text-text-muted italic leading-snug">
+                              * Historical drawdown-velocity projection; no trained ML artifact exists for this geography.
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="text-[11px] text-text-muted italic bg-subtle/50 p-2 border border-border">
+                          Forecast Model: Unavailable for this geography (Historical telemetry only)
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+
                 {/* Quick Actions */}
                 <div className="space-y-2 pt-2 border-t border-border">
                   <Link
+                    href={`/monitoring?block=${selectedBlock.id}`}
+                    className="w-full bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold py-2 flex items-center justify-center gap-2 transition-colors"
+                  >
+                    View Multi-Horizon Forecast →
+                  </Link>
+                  <Link
                     href={`/interventions?block=${selectedBlock.id}`}
-                    className="w-full bg-[#0d5c63] hover:bg-[#094348] text-white text-xs font-semibold py-2.5 rounded-md flex items-center justify-center gap-2 transition-colors shadow-sm"
+                    className="w-full bg-primary hover:bg-primary-hover text-text-inverted text-xs font-semibold py-2 flex items-center justify-center gap-2 transition-colors"
                   >
                     {t('explorer.suggestSolution', 'Suggest a Solution')} →
                   </Link>
                   <Link
                     href={`/alerts?block=${selectedBlock.id}`}
-                    className="w-full bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold py-2 rounded-md flex items-center justify-center gap-2 transition-colors"
+                    className="w-full bg-surface border border-border hover:bg-subtle text-text-main text-xs font-semibold py-2 flex items-center justify-center gap-2 transition-colors"
                   >
                     {t('explorer.previewAdvisory', 'Preview Advisory')}
                   </Link>
@@ -689,10 +767,10 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                     <button
                       key={blk.id}
                       onClick={() => handleMapSelectBlock(blk)}
-                      className="w-full text-left p-2 rounded border border-border hover:bg-subtle transition-colors flex items-center justify-between group"
+                      className="w-full text-left p-2 border border-border hover:bg-subtle transition-colors flex items-center justify-between group"
                     >
                       <div>
-                        <div className="font-semibold text-text-main text-xs group-hover:text-[#0d5c63]">
+                        <div className="font-semibold text-text-main text-xs group-hover:text-primary">
                           {blk.name} Block
                         </div>
                         <div className="text-[11px] text-text-muted">
@@ -701,10 +779,10 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                       </div>
                       <span className={`text-[11px] font-semibold ${
                         blk.riskSeverity === 'severe'
-                          ? 'text-red-700'
+                          ? 'text-risk-severe'
                           : blk.riskSeverity === 'watch'
-                          ? 'text-amber-700'
-                          : 'text-emerald-700'
+                          ? 'text-risk-watch'
+                          : 'text-risk-normal'
                       }`}>
                         {getSeverityText(blk.riskSeverity)}
                       </span>

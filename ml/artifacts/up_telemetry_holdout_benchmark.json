@@ -1,0 +1,41 @@
+{
+  "state": "Uttar Pradesh",
+  "network": "UPGW / CGWB Telemetry Network (NWIC)",
+  "source_url": "https://nwdp.nwic.gov.in/dataset/e6a8307d-de95-4773-8e9f-a84d7a177d53/resource/84bfda45-8ead-436d-9c8e-f7a93ee57522/download/gwl_tel_6_hourly_upgw_up_2021_2025.csv",
+  "sha256": "44f35251df0b98e9acb3072dc343113b02388d3d3619db4dc2a09b1300f11814",
+  "horizon": "Semi-Annual (h=6m)",
+  "test_target_window": "2025-05-26 to 2025-12-31",
+  "train_samples": 28675,
+  "test_samples": 18417,
+  "test_stations": 161,
+  "metrics": {
+    "persistence": {
+      "mae": 1.815,
+      "rmse": 3.539,
+      "nse": 0.851,
+      "n": 18417
+    },
+    "seasonal": {
+      "mae": 2.15,
+      "rmse": 3.974,
+      "nse": 0.813,
+      "n": 18417
+    },
+    "ridge": {
+      "mae": 1.836,
+      "rmse": 3.464,
+      "nse": 0.858,
+      "n": 18417
+    },
+    "quantile_gb_p50": {
+      "mae": 1.845,
+      "rmse": 3.304,
+      "nse": 0.871,
+      "n": 18417
+    },
+    "qgb_improvement_over_persist_pct": 6.64,
+    "interval_coverage_80": 0.8033,
+    "mean_interval_width": 5.942,
+    "quantile_crossings_rate": 0.0
+  }
+}

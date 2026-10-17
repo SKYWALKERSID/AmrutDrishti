@@ -35,7 +35,7 @@ export interface GssCalculationResult {
 
 /**
  * Normalizes depth to groundwater in meters below ground level (mbgl).
- * Baseline for Bundelkhand hard-rock:
+ * Baseline for crystalline and hard-rock aquifer zones:
  * - 0 to 5m: low stress (0.0)
  * - 25m+: critical stress (1.0)
  */
@@ -225,8 +225,10 @@ export function matchInterventionRecommendations(
       const rainDeficit = block.indicators.rainfallAnomalyMm;
 
       if (wellDepth === null && wellTrend === null) {
-        matchReason = 'Ineligible: Missing groundwater level observation data.';
+        matchReason = 'Ineligible / Data Gap: Missing groundwater level and drawdown trend observation data.';
         eligible = false;
+        matchConfidence = 'low';
+        recType = 'Groundwater Telemetry Monitoring';
       } else if (
         (block.riskSeverity === 'severe' || block.riskSeverity === 'watch') &&
         (wellTrend !== null && wellTrend < -0.4)
@@ -234,14 +236,21 @@ export function matchInterventionRecommendations(
         eligible = true;
         matchConfidence = 'high';
         recType = 'Community Artificial Recharge & Piezometer Network';
-        matchReason = `High stress condition (${block.riskSeverity}) with active drawdown trend (${wellTrend} m/yr) and rainfall deficit (${rainDeficit ?? 'N/A'} mm).`;
+        matchReason = `High stress condition (${block.riskSeverity}) with active drawdown trend (${wellTrend} m/yr) and rainfall deficit (${rainDeficit ?? 'unverified'} mm).`;
         minCost = 1500000;
-      } else {
-        eligible = block.riskSeverity === 'severe';
+      } else if (block.riskSeverity === 'severe') {
+        eligible = true;
         matchConfidence = 'medium';
         recType = 'Water Security Plan & Demand Management';
-        matchReason = 'Target block in water-stressed district eligible for Gram Panchayat water budget planning.';
+        matchReason = 'Target block categorized under severe stress; eligible for Gram Panchayat water budget planning.';
         minCost = 800000;
+      } else {
+        eligible = false;
+        matchConfidence = 'low';
+        recType = 'Water Security Plan (Low Priority)';
+        matchReason = block.riskSeverity === 'gap'
+          ? 'Ineligible: Groundwater stress level unverified due to missing observations.'
+          : 'Criteria not met: Block not categorized under severe stress or active drawdown trend.';
       }
     }
 
@@ -250,18 +259,23 @@ export function matchInterventionRecommendations(
       const ndwi = block.indicators.sentinelNdwi;
       const soilMoisture = block.indicators.smapSoilMoisture;
 
-      if (ndwi !== null && ndwi < -0.25) {
+      if (ndwi === null && soilMoisture === null) {
+        eligible = false;
+        matchConfidence = 'low';
+        recType = 'Village Water Body Survey';
+        matchReason = 'Data Gap: Surface water index (NDWI) and microwave soil moisture unavailable for this block. On-site pond survey required.';
+      } else if (ndwi !== null && ndwi < -0.25) {
         eligible = true;
         matchConfidence = 'high';
         recType = 'Desilting and Rejuvenation of Silted Village Water Body';
-        matchReason = `Surface water index (NDWI ${ndwi}) and soil moisture (${soilMoisture ?? 'N/A'}) indicate depleted local storage capacity.`;
+        matchReason = `Surface water index (NDWI ${ndwi}) and soil moisture (${soilMoisture ?? 'unverified'}) indicate depleted local storage capacity.`;
         minCost = 1000000;
         maxCost = 3500000;
       } else {
         eligible = true;
         matchConfidence = 'medium';
         recType = 'Traditional Pond Re-excavation';
-        matchReason = 'General eligibility for Bundelkhand district water retention capacity expansion.';
+        matchReason = 'General eligibility for priority district water retention capacity expansion.';
         minCost = 750000;
         maxCost = 2500000;
       }
@@ -273,9 +287,14 @@ export function matchInterventionRecommendations(
         eligible = true;
         matchConfidence = 'high';
         recType = 'Contour Trenching, Check Dams & Boulder Bunds';
-        matchReason = `Natural resource conservation works matched to arrest runoff in hard-rock granitic terrain.`;
+        matchReason = `Natural resource conservation works matched to arrest runoff in hard-rock terrain.`;
         minCost = 500000;
         maxCost = 1500000;
+      } else if (block.riskSeverity === 'gap') {
+        eligible = false;
+        matchConfidence = 'low';
+        recType = 'Watershed Pre-feasibility Survey';
+        matchReason = 'Data Gap: Hydrological stress unverified due to missing telemetry; civil works subject to local survey.';
       } else {
         eligible = true;
         matchConfidence = 'low';
@@ -289,7 +308,12 @@ export function matchInterventionRecommendations(
     // 4. Jal Jeevan Mission
     else if (scheme.id === 'sch_jjm') {
       const wellDepth = block.indicators.cgwbWellDepthMbgl;
-      if (wellDepth !== null && wellDepth > 14) {
+      if (wellDepth === null) {
+        eligible = false;
+        matchConfidence = 'low';
+        recType = 'Source Depth Survey';
+        matchReason = 'Ineligible / Data Gap: Missing groundwater well depth observation to verify source sustainability threshold (>14m bgl).';
+      } else if (wellDepth > 14) {
         eligible = true;
         matchConfidence = 'high';
         recType = 'Deep Piped Water Source Sustainability & Infiltration Well';
@@ -298,7 +322,9 @@ export function matchInterventionRecommendations(
         maxCost = 5000000;
       } else {
         eligible = false;
-        matchReason = 'Drinking water source sustainability criteria not met or baseline depth stable.';
+        matchConfidence = 'low';
+        recType = 'Drinking Water Source Monitoring';
+        matchReason = `Source depth (${wellDepth}m bgl) is currently within stable limits (<= 14m bgl threshold).`;
       }
     }
 
@@ -309,7 +335,7 @@ export function matchInterventionRecommendations(
       matchReason,
       recommendedInterventionType: recType || 'Water Conservation Work',
       estimatedSanctionRangeInr: [minCost, maxCost],
-      safeguardNotice: 'Rule-Based Recommendation — Field hydrogeological survey and administrative sanction required before implementation.'
+      safeguardNotice: 'Rule-Based Pre-feasibility Suggestion — Detailed Project Report (DPR) and field hydrogeological survey required before financial sanction.'
     });
   }
 

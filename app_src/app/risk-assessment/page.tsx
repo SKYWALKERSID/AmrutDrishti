@@ -218,7 +218,7 @@ export default function RiskAssessmentPage() {
                 <CheckCircleIcon className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
                 <div>
                   <span className="font-semibold">Target Condition Defined</span>
-                  <p className="text-[11px]">Post-monsoon aquifer drawdown in Bundelkhand</p>
+                  <p className="text-[11px]">Post-monsoon aquifer drawdown across priority monitoring blocks</p>
                 </div>
               </div>
 

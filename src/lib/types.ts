@@ -137,7 +137,7 @@ export interface NotificationRecord {
   messageEnglish: string;
   sentTimestamp: string;
   deliveryStatus: 'delivered' | 'pending' | 'failed' | 'simulated';
-  confidenceScore: number;
+  confidenceScore: number | null;
   dataFreshnessDate: string;
 }
 

@@ -71,7 +71,7 @@ export async function runImdQuarterlyIngestion(csvFilePath?: string): Promise<In
     const lon = parseFloat(lonStr);
     const rain = rainStr === 'null' || rainStr === '' ? null : parseFloat(rainStr);
 
-    // QA Check: Geodetic bounds within Central India / Bundelkhand & physical rainfall sanity [0, 500] mm
+    // QA Check: Geodetic bounds within Central & Northern India priority zones & physical rainfall sanity [0, 500] mm
     const isValidCoords = lat >= 20.0 && lat <= 30.0 && lon >= 75.0 && lon <= 85.0;
     const isValidRain = rain === null || (!isNaN(rain) && rain >= 0 && rain <= 500);
 

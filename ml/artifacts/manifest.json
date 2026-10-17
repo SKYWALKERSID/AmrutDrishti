@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-10-16T20:30:00Z",
+  "pipeline_version": "v2.0_station_autonomous",
+  "description": "Offline reproducible model package with non-crossing quantiles and chronological split",
+  "operational_eligibility": false,
+  "models": {
+    "Punjab": {
+      "state_code": "punjab",
+      "qgb_artifact": "ml/artifacts/qgb_v2_punjab.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_punjab.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 1918,
+      "n_test": 563,
+      "test_dates": [
+        "2023-11-01",
+        "2024-01-01"
+      ],
+      "metrics": {
+        "qgb_rmse": 4.5,
+        "qgb_mae": 1.938,
+        "qgb_nse": 0.908,
+        "coverage_80pct": 83.7,
+        "mean_width_m": 8.92,
+        "crossing_rate": 0.0
+      }
+    },
+    "Haryana": {
+      "state_code": "haryana",
+      "qgb_artifact": "ml/artifacts/qgb_v2_haryana.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_haryana.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 1442,
+      "n_test": 472,
+      "test_dates": [
+        "2023-11-01",
+        "2024-01-01"
+      ],
+      "metrics": {
+        "qgb_rmse": 5.819,
+        "qgb_mae": 2.3,
+        "qgb_nse": 0.842,
+        "coverage_80pct": 82.0,
+        "mean_width_m": 8.55,
+        "crossing_rate": 0.0
+      }
+    },
+    "Rajasthan": {
+      "state_code": "rajasthan",
+      "qgb_artifact": "ml/artifacts/qgb_v2_rajasthan.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_rajasthan.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 4272,
+      "n_test": 1500,
+      "test_dates": [
+        "2023-11-10",
+        "2024-01-10"
+      ],
+      "metrics": {
+        "qgb_rmse": 6.842,
+        "qgb_mae": 3.101,
+        "qgb_nse": 0.911,
+        "coverage_80pct": 78.9,
+        "mean_width_m": 10.85,
+        "crossing_rate": 0.0
+      }
+    },
+    "Assam": {
+      "state_code": "assam",
+      "qgb_artifact": "ml/artifacts/qgb_v2_assam.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_assam.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 555,
+      "n_test": 413,
+      "test_dates": [
+        "2023-01-31",
+        "2023-03-31"
+      ],
+      "metrics": {
+        "qgb_rmse": 2.222,
+        "qgb_mae": 1.145,
+        "qgb_nse": 0.475,
+        "coverage_80pct": 71.9,
+        "mean_width_m": 2.56,
+        "crossing_rate": 0.0
+      }
+    },
+    "Arunachal Pradesh": {
+      "state_code": "arunachal_pradesh",
+      "qgb_artifact": "ml/artifacts/qgb_v2_arunachal_pradesh.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_arunachal_pradesh.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 36,
+      "n_test": 43,
+      "test_dates": [
+        "2023-01-31",
+        "2023-03-31"
+      ],
+      "metrics": {
+        "qgb_rmse": 2.866,
+        "qgb_mae": 2.139,
+        "qgb_nse": 0.129,
+        "coverage_80pct": 48.8,
+        "mean_width_m": 2.54,
+        "crossing_rate": 0.0
+      }
+    },
+    "Madhya Pradesh": {
+      "state_code": "madhya_pradesh",
+      "qgb_artifact": "ml/artifacts/qgb_v2_madhya_pradesh.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_madhya_pradesh.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 187250,
+      "n_test": 22551,
+      "test_dates": [
+        "2024-01-01",
+        "2025-11-30"
+      ],
+      "metrics": {
+        "qgb_rmse": 2.735,
+        "qgb_mae": 1.476,
+        "qgb_nse": 0.852,
+        "coverage_80pct": 81.7,
+        "mean_width_m": 5.42,
+        "crossing_rate": 0.0,
+        "persistence_rmse": 4.797,
+        "gain_over_persistence_pct": 42.99,
+        "unseen_rmse": 2.957,
+        "unseen_gain_pct": 37.04
+      }
+    }
+  }
+}

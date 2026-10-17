@@ -72,11 +72,44 @@ test('matchInterventionRecommendations returns rule-based matches with clear saf
 
   assert.ok(matches.length > 0);
   for (const m of matches) {
-    assert.ok(m.safeguardNotice.includes('Rule-Based Recommendation'));
+    assert.ok(m.safeguardNotice.includes('Rule-Based Pre-feasibility Suggestion'));
     assert.ok(m.estimatedSanctionRangeInr[0] > 0);
     assert.ok(m.estimatedSanctionRangeInr[1] >= m.estimatedSanctionRangeInr[0]);
     if (m.eligible) {
       assert.ok(m.matchReason.length > 0);
     }
   }
+});
+
+test('matchInterventionRecommendations handles missing indicators and gap blocks gracefully', () => {
+  const gapBlock: any = {
+    id: 'blk_test_gap',
+    name: 'Gap Test Block',
+    districtId: 'dst_test',
+    districtName: 'Test District',
+    state: 'Madhya Pradesh',
+    riskSeverity: 'gap',
+    indicators: {
+      cgwbWellDepthMbgl: null,
+      rainfallAnomalyMm: null,
+      wellDepthTrendMperYr: null,
+      sentinelNdwi: null,
+      smapSoilMoisture: null,
+      graceTwsaCm: null,
+      sentinelNdvi: null,
+      lastUpdatedDate: '2026-10-01'
+    }
+  };
+
+  const matches = matchInterventionRecommendations(gapBlock);
+  assert.equal(matches.length, 4);
+
+  // When indicators are missing, eligibility fails closed with clear reason
+  const atalBhujal = matches.find(m => m.scheme.id === 'sch_atal_bhujal')!;
+  assert.equal(atalBhujal.eligible, false);
+  assert.match(atalBhujal.matchReason, /Missing groundwater level/i);
+
+  const jjm = matches.find(m => m.scheme.id === 'sch_jjm')!;
+  assert.equal(jjm.eligible, false);
+  assert.match(jjm.matchReason, /Missing groundwater well depth/i);
 });

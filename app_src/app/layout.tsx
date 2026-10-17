@@ -4,7 +4,7 @@ import { Navigation } from '@/components/Navigation';
 
 export const metadata: Metadata = {
   title: 'JalDrishti (जलदृष्टि) | Groundwater Intelligence & Governance Platform',
-  description: 'Satellite-assisted groundwater early warning and decision-support platform for Bundelkhand, Madhya Pradesh, India.',
+  description: 'JAL DRISHTI is an India-focused groundwater intelligence and decision-support platform designed to address groundwater scarcity, depletion, and concerning groundwater conditions across India. Initial geographic priorities: Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh.',
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <p className="font-semibold text-text-main">JalDrishti (जलदृष्टि) — Groundwater Intelligence Platform</p>
-              <p className="text-[11px] text-text-muted">Pilot Geography: Bundelkhand Region, MP | Scientific & Engineering Safeguards Enforced</p>
+              <p className="text-[11px] text-text-muted">India-Focused Platform • Initial Priority States: MP, PB, RJ, HR, UP, Assam, Meghalaya, Arunachal Pradesh | Scientific & Engineering Safeguards Enforced</p>
             </div>
             <div className="flex items-center gap-4 text-text-muted text-[11px]">
               <span>Data Refresh: Oct 2026</span>

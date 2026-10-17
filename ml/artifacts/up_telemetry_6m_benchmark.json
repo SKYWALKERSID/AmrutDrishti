@@ -1,0 +1,77 @@
+{
+  "horizon": "6M (h=180d)",
+  "protocol": "Strict Global Cutoff (Train < 2025-01-01, Test >= 2025-01-01)",
+  "train_samples": 34677,
+  "train_stations": 165,
+  "train_target_span": "2023-08-13 to 2024-12-31",
+  "test_samples": 18318,
+  "test_stations": 161,
+  "test_target_span": "2025-05-31 to 2025-12-31",
+  "metrics_pooled": {
+    "persistence": {
+      "mae": 1.816,
+      "rmse": 3.534,
+      "nse": 0.852,
+      "n": 18318
+    },
+    "seasonal": {
+      "mae": 2.149,
+      "rmse": 3.966,
+      "nse": 0.813,
+      "n": 18318
+    },
+    "ridge": {
+      "mae": 1.788,
+      "rmse": 3.426,
+      "nse": 0.861,
+      "n": 18318
+    },
+    "quantile_gb_p50": {
+      "mae": 1.719,
+      "rmse": 3.394,
+      "nse": 0.863,
+      "n": 18318
+    },
+    "qgb_improvement_over_persist_pct": 3.96,
+    "interval_coverage_80": 0.8439,
+    "mean_interval_width": 6.193,
+    "quantile_crossings_rate": 0.0
+  },
+  "station_distribution": {
+    "qualifying_stations_count": 153,
+    "persistence_rmse_median": 1.394,
+    "persistence_rmse_iqr": [
+      0.79,
+      2.49
+    ],
+    "qgb_rmse_median": 1.163,
+    "qgb_rmse_iqr": [
+      0.655,
+      2.25
+    ],
+    "station_coverage_median": 1.0
+  },
+  "temporal_breakdown_2025": {
+    "2025Q2": {
+      "samples": 2427,
+      "stations": 139,
+      "persistence_rmse": 3.063,
+      "qgb_rmse": 2.891,
+      "qgb_improvement_pct": 5.63
+    },
+    "2025Q3": {
+      "samples": 10316,
+      "stations": 153,
+      "persistence_rmse": 3.519,
+      "qgb_rmse": 3.433,
+      "qgb_improvement_pct": 2.44
+    },
+    "2025Q4": {
+      "samples": 5575,
+      "stations": 142,
+      "persistence_rmse": 3.746,
+      "qgb_rmse": 3.52,
+      "qgb_improvement_pct": 6.03
+    }
+  }
+}

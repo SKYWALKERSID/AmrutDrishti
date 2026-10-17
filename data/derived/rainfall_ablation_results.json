@@ -1,0 +1,13 @@
+{
+  "n_train": 1190,
+  "n_test": 329,
+  "rmse_persist": 4.288,
+  "rmse_seasonal": 3.481,
+  "rmse_qgb_no_rain": 3.109,
+  "rmse_qgb_with_rain": 3.074,
+  "rmse_ridge_with_rain": 3.068,
+  "delta_rmse_pct": 1.14,
+  "skill_vs_seasonal_pct": 11.71,
+  "cov_80_no_rain": 0.796,
+  "cov_80_with_rain": 0.799
+}

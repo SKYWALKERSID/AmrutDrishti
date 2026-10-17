@@ -1,7 +1,7 @@
-import { InterventionProposal } from '../types';
+import type { InterventionProposal } from '../types.ts';
 
 export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
-  // Madhya Pradesh / Uttar Pradesh (Bundelkhand Pilot)
+  // Priority State Interventions (Madhya Pradesh & Uttar Pradesh)
   {
     id: 'prop_tikamgarh_01',
     title: 'Check Dam & Piezometer Network Augmentation at Kundeshwar Catchment',

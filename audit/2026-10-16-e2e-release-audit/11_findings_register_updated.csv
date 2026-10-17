@@ -1,0 +1,8 @@
+finding_id,severity,category,affected_component,evidence,impact,recommendation,verification,status
+F-001,Critical,Authorization,"interventions,audit,alerts APIs","service-role use without caller auth","unauthorized read/write/SMS abuse","server identity, RBAC, validation, negative tests","independently verified runtime and static",CLOSED
+F-002,High,Configuration,"Supabase service access","read-only checks HTTP 401","persistence/live data unavailable","approved secret repair then read-only validation","verified HTTP 200/206 across 15 tables",CLOSED
+F-003,High,Workflow,"interventions,audit APIs","memory fallback returns success","non-durable authoritative-looking records","hard failure or explicit demo isolation","verified fail-closed HTTP 503 in operational mode",CLOSED
+F-004,High,Scientific,"GSS/risk UI","fixed heuristic weights and thresholds","misleading operational decisions","independent validation and expert approval","verified research-only gate and formula sensitivity",AUDITED_GATED
+F-005,High,Database,"RLS/migrations","remediation says unexecuted; remote state blocked","policy state unknown","owner-controlled deployment verification","verified 10 tables RLS deny anon (HTTP 401 code 42501)",CLOSED
+F-006,Medium,Configuration,"Supabase clients","placeholder clients","masked configuration error","explicit unavailable errors","verified service-role status check and diagnostics",CLOSED
+F-007,Medium,Testing,"Python ML tests","pytest missing","ML claims unverified","pinned environment and rerun","verified ML model registry: negative NSE disqualified",AUDITED_DISQUALIFIED

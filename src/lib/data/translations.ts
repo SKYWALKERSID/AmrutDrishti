@@ -2,6 +2,7 @@ export type Language = 'hi' | 'en';
 
 export const translations: Record<Language, Record<string, string>> = {
   hi: {
+    'nav.explainer': 'परियोजना परिचय (Project Brief)',
     'nav.overview': 'मुख्य पृष्ठ (Overview)',
     'nav.explorer': 'मानचित्र एक्सप्लोरर (Map Explorer)',
     'nav.monitoring': 'जल स्तर निगरानी (Monitoring)',
@@ -87,10 +88,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'explorer.previewAdvisory': 'सूचना का पूर्वावलोकन',
     'explorer.mapGuide': 'नक्शे की जानकारी',
     'explorer.viewScope': 'कार्यक्षेत्र (Scope):',
-    'explorer.scopeBundelkhand': 'बुंदेलखंड पायलट (12 ब्लॉक)',
+    'explorer.scopeBundelkhand': 'प्राथमिकता राज्य (म.प्र., उ.प्र. एवं अन्य)',
     'explorer.scopeContrast': 'राष्ट्रीय तुलनात्मक विश्लेषण (सर्वोच्च एवं न्यूनतम जल संकट)',
     'explorer.contrastHighStress': 'अत्यधिक जल संकट (पंजाब, राजस्थान, हरियाणा)',
-    'explorer.contrastLowStress': 'सुरक्षित एवं प्रचुर जल (अरुणाचल प्रदेश, सिक्किम, असम)',
+    'explorer.contrastLowStress': 'सुरक्षित एवं प्रचुर जल (अरुणाचल प्रदेश, असम, मेघालय)',
     'explorer.contrastAll': 'सभी तुलनात्मक राज्य (30 ब्लॉक)',
     'severity.severe': 'अधिक ध्यान देने की ज़रूरत',
     'severity.watch': 'जाँच ज़रूरी',
@@ -105,7 +106,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'explorer.sentinelInfo': 'उपग्रह द्वारा वनस्पति स्वास्थ्य सूचकांक (NDVI)।',
     'explorer.riskInfo': 'नमूना बहु-संकेतक भूजल तनाव सूचकांक।',
 
-    'overview.pilotRecords': 'पायलट प्रदर्शन रिकॉर्ड: 5 जिलों के 12 ब्लॉक (बुंदेलखंड, म.प्र./उ.प्र.)',
+    'overview.pilotRecords': 'प्रारंभिक प्राथमिकता राज्य: 8 राज्यों के प्रमुख ज़िले एवं ब्लॉक',
     'overview.uiPrototype': 'यूआई प्रोटोटाइप — नमूना जानकारी',
     'overview.severeSubtext': '12 में से 5 ब्लॉक गंभीर तनाव श्रेणी में दर्ज',
     'overview.inspectEvidence': 'नक्शे पर साक्ष्य देखें →',
@@ -323,6 +324,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'admin.modeActive': 'प्रशासक मोड सक्रिय',
   },
   en: {
+    'nav.explainer': 'Project Brief',
     'nav.overview': 'Overview',
     'nav.explorer': 'Map Explorer',
     'nav.monitoring': 'Monitoring',
@@ -408,10 +410,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'explorer.previewAdvisory': 'Preview Advisory',
     'explorer.mapGuide': 'Map Guide',
     'explorer.viewScope': 'Scope:',
-    'explorer.scopeBundelkhand': 'Bundelkhand Pilot (12 Blocks)',
+    'explorer.scopeBundelkhand': 'Priority States (Central, North & Northeast)',
     'explorer.scopeContrast': 'National Contrast Analysis (Most vs Least Scarcity)',
     'explorer.contrastHighStress': 'Severe Red Zones (Punjab, Rajasthan, Haryana)',
-    'explorer.contrastLowStress': 'Secure Abundant Reserves (Arunachal, Sikkim, Assam)',
+    'explorer.contrastLowStress': 'Secure Abundant Reserves (Arunachal, Meghalaya, Assam)',
     'explorer.contrastAll': 'All Contrast States (30 Blocks)',
     'severity.severe': 'High Concern',
     'severity.watch': 'Needs Checking',
@@ -426,7 +428,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'explorer.sentinelInfo': 'Satellite vegetation vigor index (NDVI).',
     'explorer.riskInfo': 'Sample multi-indicator groundwater stress status.',
 
-    'overview.pilotRecords': 'Pilot demonstration records: 12 blocks in 5 districts (Bundelkhand, MP/UP)',
+    'overview.pilotRecords': 'Initial priority states: monitored blocks across 8 priority states',
     'overview.uiPrototype': 'UI PROTOTYPE — SIMULATED DATA',
     'overview.severeSubtext': '5 of 12 fixture blocks labelled Severe',
     'overview.inspectEvidence': 'Inspect Map Evidence →',

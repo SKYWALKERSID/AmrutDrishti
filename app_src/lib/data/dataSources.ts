@@ -64,7 +64,7 @@ export const DATA_SOURCES: DataSourceStatus[] = [
     status: 'healthy',
     missingDataRatePct: 5.8,
     licenseTerms: 'India-WRIS / CGWB National Hydrograph Network Terms',
-    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in piezometers & open dug wells in Bundelkhand hard-rock crystalline aquifers.'
+    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in piezometers & open dug wells across priority state monitoring networks (covering crystalline hard-rock and alluvial aquifer zones).'
   },
   {
     id: 'src_isro_bhuvan',
