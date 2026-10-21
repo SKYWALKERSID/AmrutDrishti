@@ -52,12 +52,15 @@ export async function getServerUserContext(request: Request): Promise<UserContex
 
       if (verifyRes.ok) {
         const userData = await verifyRes.json();
-        const rawRole = userData.app_metadata?.role || userData.user_metadata?.role || 'general_public';
-        const role: UserRole = VALID_ROLES.has(rawRole) ? rawRole : 'general_public';
+        // SECURITY (R1 Remediation): Roles and jurisdiction districts MUST strictly derive
+        // from server-controlled app_metadata. User-editable user_metadata must NEVER be trusted
+        // for authorization or RBAC decisions.
+        const rawRole = userData.app_metadata?.role;
+        const role: UserRole = rawRole && VALID_ROLES.has(rawRole) ? rawRole : 'general_public';
         const district: string | null =
-          userData.app_metadata?.jurisdiction_district ||
-          userData.user_metadata?.jurisdiction_district ||
-          null;
+          typeof userData.app_metadata?.jurisdiction_district === 'string'
+            ? userData.app_metadata.jurisdiction_district
+            : null;
 
         return {
           userId: userData.id || 'verified-user',

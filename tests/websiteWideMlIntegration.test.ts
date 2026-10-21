@@ -78,17 +78,17 @@ test('Website-wide ML: Overview page integrates ML forecast column alongside obs
   // 2. Contains distinct column headers for Observed Well Depth and Projected Depth Q1
   assert.match(
     overviewContent,
-    /<th[^>]*>Well Depth \(m bgl\)<\/th>/i,
+    /<th[^>]*>[\s\S]*?Well Depth \(m bgl\)[\s\S]*?<\/th>/i,
     'Must have a dedicated column for observed Well Depth (m bgl)'
   );
   assert.match(
     overviewContent,
-    /<th[^>]*>(Projected Depth Q1|ML Forecast Q1) \(m bgl\)<\/th>/i,
+    /<th[^>]*>[\s\S]*?(Projected Depth Q1|ML Forecast Q1) \(m bgl\)[\s\S]*?<\/th>/i,
     'Must have a dedicated column for Projected Depth Q1 (m bgl)'
   );
   assert.match(
     overviewContent,
-    /<th[^>]*>Descriptive GSS<\/th>/i,
+    /<th[^>]*>[\s\S]*?Descriptive GSS[\s\S]*?<\/th>/i,
     'Must preserve Descriptive GSS column clearly identified as non-ML'
   );
 

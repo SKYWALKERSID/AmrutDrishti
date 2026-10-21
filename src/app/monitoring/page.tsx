@@ -20,9 +20,10 @@ import { WaterDropletIcon, CloudRainIcon, ActivityChartIcon, FilterIcon, InfoIco
 import HistoricalObservationsPanel from '@/components/HistoricalObservationsPanel';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
-import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import contrastHistoricalSeries from '@/lib/data/contrastHistoricalSeries.json';
 import { CHART_COLORS, deviationColor } from '@/lib/design/chartPalette';
+import { TermHelp } from '@/components/ui/PlainLanguageHelp';
 
 interface HistoricalPoint {
   month: string;
@@ -91,14 +92,16 @@ function MonitoringContent() {
 
   // Derived filtered districts
   const availableDistricts = useMemo(() => {
-    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS;
+    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
     return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
   }, [selectedState]);
 
   // Derived filtered blocks
   const filteredBlocks = useMemo(() => {
     return blocksData.filter(b => {
-      const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
+      const matchState = selectedState === 'all'
+        ? isTargetState(b.state)
+        : normalizeStateName(b.state) === selectedState;
       const matchDistrict = selectedDistrictId === 'all' || b.districtId === selectedDistrictId;
       return matchState && matchDistrict;
     });
@@ -299,14 +302,16 @@ interface RainfallChartPoint {
 
     // Official IMD 30-year Long Period Average (LPA, 1991–2020) for monsoon season (JJAS) by state
     const lpaByState: Record<string, number> = {
-      'Punjab': 480,
-      'Haryana': 450,
-      'Rajasthan': 420,
+      'Karnataka': 860,
+      'Telangana': 750,
+      'Tamil Nadu': 440,
       'Madhya Pradesh': 850,
-      'Uttar Pradesh': 800,
-      'Assam': 1800,
+      'Rajasthan': 420,
+      'Haryana': 450,
+      'Punjab': 480,
       'Meghalaya': 2500,
-      'Arunachal Pradesh': 2200,
+      'Assam': 1800,
+      'Tripura': 1400,
     };
 
     const lpa = lpaByState[selectedBlock.state] || 800;
@@ -352,21 +357,19 @@ interface RainfallChartPoint {
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border rounded px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
             >
-              <option value="all">All States</option>
-              <optgroup label="Active Monitored States">
-                {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
-                  <option key={st.code} value={st.name}>
-                    {st.name}
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label="Telemetry Pending">
-                {ALL_INDIAN_STATES.filter(s => !s.hasData).map((st) => (
-                  <option key={st.code} value={st.name} disabled className="text-gray-400 italic">
-                    {st.name} (Pending)
-                  </option>
-                ))}
-              </optgroup>
+              <option value="all">All 10 Target States</option>
+              {TARGET_REGIONS.map((region) => {
+                const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
+                return (
+                  <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
+                    {statesInRegion.map((st) => (
+                      <option key={st.code} value={st.name}>
+                        {st.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                );
+              })}
             </select>
           </div>
 
@@ -441,9 +444,14 @@ interface RainfallChartPoint {
             <div>
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
                 <WaterDropletIcon className="w-4 h-4 text-water" /> {t('monitoring.wellVsGrace', 'Groundwater Monitoring Well Depth vs Satellite Water Storage')}*
+                <TermHelp termId="well_depth" />
+                <TermHelp termId="satellite_water_storage" />
               </h2>
               <p className="text-xs text-text-muted mt-1">
                 Source: CGWB DWLR Hydrograph &amp; NASA GRACE-FO TWSA • Last Observation: {selectedBlock?.indicators.lastUpdatedDate || '2026-10-12'} • Scope: {selectedBlock ? `${selectedBlock.name}, ${selectedBlock.state}` : 'Monitored Unit'}
+              </p>
+              <p className="text-[11px] text-text-muted mt-0.5">
+                <strong>How to read:</strong> Measured in meters below ground level (<span className="font-mono">m bgl</span>). A higher depth number means the water table is dropping further underground.
               </p>
             </div>
             <span className="text-xs font-mono text-text-muted shrink-0">
@@ -560,6 +568,28 @@ interface RainfallChartPoint {
               Regional Satellite Note: GRACE-FO TWSA represents coarse regional water-storage mass changes (~100 km grid). It reflects basin-scale terrestrial mass anomalies and is not a direct localized measurement of individual village wells.
             </p>
           </div>
+
+          {/* Plain-Language Citizen Takeaway for Chart 1 */}
+          {combinedChartData.length > 0 && (
+            <div className="bg-subtle/70 border border-border/80 rounded p-3 text-xs space-y-1">
+              <span className="font-semibold text-text-main flex items-center gap-1.5">
+                <InfoIcon className="w-3.5 h-3.5 text-primary" /> Plain-Language Takeaway:
+              </span>
+              <p className="text-text-muted leading-relaxed">
+                {(() => {
+                  const validObs = combinedChartData.filter(d => !d.isForecast && d.wellDepth !== null);
+                  if (validObs.length < 1) {
+                    return 'Historical water depth measurements are currently not published for this specific block in the digital registry.';
+                  }
+                  const first = validObs[0];
+                  const last = validObs[validObs.length - 1];
+                  const diff = Number((last.wellDepth! - first.wellDepth!).toFixed(2));
+                  const direction = diff > 0.5 ? 'dropped further underground (depletion)' : diff < -0.5 ? 'rose closer to the surface (recharge)' : 'remained relatively stable';
+                  return `Over the recorded period (${first.month} to ${last.month}), the monitored water level changed from ${first.wellDepth} m bgl to ${last.wellDepth} m bgl, meaning the water table has ${direction}. Satellite regional storage is currently ${selectedBlock?.indicators.graceTwsaCm !== null && selectedBlock?.indicators.graceTwsaCm !== undefined ? `${selectedBlock.indicators.graceTwsaCm} cm` : 'unavailable'} for this sector.`;
+                })()}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Subtle Divider Between the Two Main Charts */}
@@ -571,9 +601,13 @@ interface RainfallChartPoint {
             <div>
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
                 <CloudRainIcon className="w-4 h-4 text-amber-600" /> {t('monitoring.seasonalRainfallTitle', 'Seasonal Monsoon Rainfall & Deviation (mm)')}*
+                <TermHelp termId="rainfall_anomaly" />
               </h2>
               <p className="text-xs text-text-muted mt-1">
                 Source: IMD Pune 0.25° Gridded Precipitation Product • Baseline: State 30-Year LPA Normal (1991–2020)
+              </p>
+              <p className="text-[11px] text-text-muted mt-0.5">
+                <strong>How to read:</strong> Compares total monsoon rain against the 30-year average. A negative deviation (red bar) means a rain deficit, reducing natural groundwater recharge.
               </p>
             </div>
             <span className="text-xs font-mono text-text-muted shrink-0">
@@ -668,6 +702,23 @@ interface RainfallChartPoint {
           <p className="text-xs text-text-muted">
             Seasonal monsoon rainfall (Jun–Sep) compared with the state 30-year Long Period Average (LPA, 1991–2020). The observed total shown here is calculated in the app as the state LPA reference value plus the stored rainfall difference for this block; it is not a separately measured block total. Only one season is shown.
           </p>
+
+          {/* Plain-Language Citizen Takeaway for Chart 2 */}
+          {rainfallChartData.length > 0 && (
+            <div className="bg-subtle/70 border border-border/80 rounded p-3 text-xs space-y-1">
+              <span className="font-semibold text-text-main flex items-center gap-1.5">
+                <InfoIcon className="w-3.5 h-3.5 text-primary" /> Plain-Language Takeaway:
+              </span>
+              <p className="text-text-muted leading-relaxed">
+                {(() => {
+                  const pt = rainfallChartData[0];
+                  const isDeficit = pt.deviationMm < 0;
+                  const pct = Math.abs(Number(((pt.deviationMm / pt.normalLpaMm) * 100).toFixed(1)));
+                  return `${selectedBlock?.name || 'This block'} received ${pt.observedMm} mm of monsoon rainfall compared to its 30-year normal of ${pt.normalLpaMm} mm (${pt.period}). This is a ${isDeficit ? `deficit of ${Math.abs(pt.deviationMm)} mm (${pct}% below normal)` : `surplus of ${pt.deviationMm} mm (${pct}% above normal)`}, meaning natural monsoon replenishment of the local aquifer was ${isDeficit ? 'substantially reduced' : 'favorable'} this season.`;
+                })()}
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

@@ -5,7 +5,7 @@ import {
   NATIONAL_CONTRAST_DISTRICTS,
   STATE_CONTRAST_GROUPS
 } from '@/lib/data/nationalContrast';
-import { ALL_INDIAN_STATES, IndianStateMeta } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS } from '@/lib/data/indiaStates';
 import { ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
 import { BlockData, DistrictData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
@@ -13,23 +13,28 @@ import Link from 'next/link';
 import LeafletMap from '@/components/LeafletMap';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import contrastProjectionsData from '@/lib/data/contrastProjections.json';
+import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
 interface MapExplorerProps {
   initialBlockId?: string;
 }
 
-// Helper to normalize state strings to match ALL_INDIAN_STATES canonical names
 function normalizeStateName(stateName: string): string {
   if (!stateName) return '';
   const lower = stateName.toLowerCase().trim();
+  if (lower.includes('karnataka')) return 'Karnataka';
+  if (lower.includes('telangana')) return 'Telangana';
+  if (lower.includes('tamil nadu')) return 'Tamil Nadu';
   if (lower.includes('uttar pradesh')) return 'Uttar Pradesh';
   if (lower.includes('madhya pradesh')) return 'Madhya Pradesh';
   if (lower.includes('punjab')) return 'Punjab';
   if (lower.includes('rajasthan')) return 'Rajasthan';
   if (lower.includes('haryana')) return 'Haryana';
+  if (lower.includes('meghalaya')) return 'Meghalaya';
+  if (lower.includes('assam')) return 'Assam';
+  if (lower.includes('tripura')) return 'Tripura';
   if (lower.includes('arunachal')) return 'Arunachal Pradesh';
   if (lower.includes('sikkim')) return 'Sikkim';
-  if (lower.includes('assam')) return 'Assam';
   return stateName;
 }
 
@@ -110,7 +115,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     });
   }, [liveBlocksData]);
 
-  // Flattened pool of all 60 monitored blocks across the 8 wired states
+  // Flattened pool of all 60 monitored blocks across the 10 target states
   const allBlocks = useMemo<BlockData[]>(() => {
     return allDistricts.flatMap(d => d.blocks);
   }, [allDistricts]);
@@ -267,7 +272,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               <MapPinIcon className="w-5 h-5 text-primary" /> {t('explorer.title', 'Explore the Map')}*
             </h1>
             <span aria-hidden="true">•</span>
-            <span>8 Monitored States (60 Blocks)</span>
+            <span>10 Monitored States (60 Blocks across 4 Regions)</span>
             <span aria-hidden="true">•</span>
             <span>Observation Cutoff: 2026-10-12</span>
           </div>
@@ -283,7 +288,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <span>Select Geography:</span>
           </div>
 
-          {/* 1. STATE SELECTOR (All 28 States & 8 UTs) */}
+          {/* 1. STATE SELECTOR (Authoritative Ten Target States) */}
           <div className="flex items-center gap-1.5">
             <label htmlFor="state-select" className="text-text-muted font-medium">State:</label>
             <select
@@ -292,28 +297,19 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer max-w-[220px]"
             >
-              <option value="all">All Available States (8 Monitored)</option>
-              <optgroup label="Active Monitored States (8)">
-                {[...ALL_INDIAN_STATES.filter(s => s.hasData)]
-                  .sort((a, b) => a.name.localeCompare(b.name))
-                  .map((st) => (
-                    <option key={st.code} value={st.name}>
-                      {st.name}
-                    </option>
-                  ))}
-              </optgroup>
-              <optgroup label="Telemetry Ingestion Pending (28)">
-                {ALL_INDIAN_STATES.filter(s => !s.hasData).map((st) => (
-                  <option
-                    key={st.code}
-                    value={st.name}
-                    disabled
-                    className="text-gray-400 bg-gray-50 italic"
-                  >
-                    {st.name} (Telemetry Ingestion Pending)
-                  </option>
-                ))}
-              </optgroup>
+              <option value="all">All 10 Target States</option>
+              {TARGET_REGIONS.map((region) => {
+                const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
+                return (
+                  <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
+                    {statesInRegion.map((st) => (
+                      <option key={st.code} value={st.name}>
+                        {st.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                );
+              })}
             </select>
           </div>
 
@@ -379,6 +375,17 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           )}
         </div>
       </div>
+
+      {/* 5-Question Guide Card: Explaining the Map */}
+      <WhatAmILookingAt
+        title="💡 How do I read this Groundwater Map?"
+        what="An interactive GIS map displaying all 60 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators."
+        meaning="Blocks colored red have severe groundwater decline; amber blocks require close monitoring; green blocks have normal water conditions."
+        whyCare="Visualizing regional patterns reveals clusters of rapid water drop across adjacent districts, helping authorities coordinate basin-level water management."
+        recentAndReliable="Water levels come from Central Ground Water Board (CGWB) observation wells; rainfall from India Meteorological Department (IMD); and regional storage from NASA GRACE satellites."
+        nextSteps="Select a state or click any point on the map to inspect its well depth, monsoon rainfall, and machine learning forecast in the right-hand panel."
+        initiallyOpen={false}
+      />
 
       {/* Main Grid: Layer Selector + Map + Evidence Inspector Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -456,11 +463,11 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 {activeLayer === 'sentinel' && t('layer.sentinel', 'Satellite Vegetation Information')}
               </div>
               <div className="text-[10px] text-text-muted leading-tight">
-                {activeLayer === 'risk' && t('explorer.riskInfo', 'Sample multi-indicator groundwater stress status.')}
-                {activeLayer === 'grace' && t('explorer.graceInfo', 'Broad regional water-storage estimate (~100km). Not a direct groundwater measurement in an individual block.')}
-                {activeLayer === 'rainfall' && t('explorer.rainfallInfo', 'Monsoon rainfall difference compared to long-period average (mm).')}
-                {activeLayer === 'wells' && t('explorer.wellsInfo', 'Direct measured groundwater level below ground level (m bgl).')}
-                {activeLayer === 'sentinel' && t('explorer.sentinelInfo', 'Satellite vegetation vigor index (NDVI).')}
+                {activeLayer === 'risk' && t('explorer.riskInfo', 'Water Stress Score (0–100). Red: High Concern (>70), Amber: Needs Checking (40–70), Green: Normal (<40).')}
+                {activeLayer === 'grace' && t('explorer.graceInfo', 'Regional water-storage anomaly (~100km). Red: Large Loss (<-6 cm), Amber: Moderate Deficit (>-6 cm). Coarse regional mass estimate.')}
+                {activeLayer === 'rainfall' && t('explorer.rainfallInfo', 'Monsoon rain vs 30-year average (mm). Red: High Deficit (>200 mm shortfall), Blue: Normal / Low Deficit.')}
+                {activeLayer === 'wells' && t('explorer.wellsInfo', 'Depth to groundwater in meters below ground level (m bgl). Red: Deep Depletion (>14 m bgl), Green: Shallow (<14 m bgl).')}
+                {activeLayer === 'sentinel' && t('explorer.sentinelInfo', 'Satellite vegetation vigor index (NDVI). Higher index indicates healthier green surface crops.')}
               </div>
             </div>
 
@@ -553,16 +560,19 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         onChange={(e) => handleStateChange(e.target.value)}
                         className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                       >
-                        <option value="all">All Monitored States ({ALL_INDIAN_STATES.filter(s => s.hasData).length})</option>
-                        <optgroup label="Active Monitored States">
-                          {[...ALL_INDIAN_STATES.filter(s => s.hasData)]
-                            .sort((a, b) => a.name.localeCompare(b.name))
-                            .map((st) => (
-                              <option key={st.code} value={st.name}>
-                                {st.name}
-                              </option>
-                            ))}
-                        </optgroup>
+                        <option value="all">All 10 Target States</option>
+                        {TARGET_REGIONS.map((region) => {
+                          const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
+                          return (
+                            <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
+                              {statesInRegion.map((st) => (
+                                <option key={st.code} value={st.name}>
+                                  {st.name}
+                                </option>
+                              ))}
+                            </optgroup>
+                          );
+                        })}
                       </select>
                     </div>
 
@@ -628,35 +638,50 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 {/* Key Indicators List - Clean, no cream background or borders */}
                 <div className="space-y-2.5 py-1">
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted">Well Depth:</span>
+                    <span className="text-text-muted inline-flex items-center gap-1">
+                      Well Depth:
+                      <TermHelp termId="well_depth" />
+                    </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted">Rainfall Difference:</span>
+                    <span className="text-text-muted inline-flex items-center gap-1">
+                      Rainfall Difference:
+                      <TermHelp termId="rainfall_anomaly" />
+                    </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted">Satellite Water Storage:</span>
+                    <span className="text-text-muted inline-flex items-center gap-1">
+                      Satellite Water Storage:
+                      <TermHelp termId="satellite_water_storage" />
+                    </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted">Green Cover (Vegetation):</span>
+                    <span className="text-text-muted inline-flex items-center gap-1">
+                      Green Cover (Vegetation):
+                      <TermHelp termId="vegetation_greenness" />
+                    </span>
                     <span className="font-bold text-text-main shrink-0 ml-auto">
                       {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center text-xs border-t border-border/80 pt-2 flex-wrap gap-1">
-                    <span className="text-text-muted font-semibold">Water Stress Score:</span>
+                    <span className="text-text-muted font-semibold inline-flex items-center gap-1">
+                      Water Stress Score:
+                      <TermHelp termId="groundwater_stress_score" />
+                    </span>
                     <span className="font-bold text-primary text-sm shrink-0 ml-auto">
                       {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
                     </span>
@@ -684,8 +709,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   return (
                     <div className="space-y-1.5 pt-2 border-t border-border/80" data-testid="map-inspector-ml-forecast">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-text-main">
+                        <span className="text-xs font-bold text-text-main inline-flex items-center gap-1">
                           {titleLabel}
+                          <TermHelp termId="ml_groundwater_forecast" />
                         </span>
                         {badgeLabel && (
                           <span className={`text-[10px] font-mono px-1.5 py-0.5 border ${

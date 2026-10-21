@@ -12,6 +12,7 @@ dist/
 .turbo/
 .swc/
 .eslintcache
+*.tsbuildinfo
 
 # Environment Variables & Secrets
 .env
@@ -58,6 +59,7 @@ Thumbs.db
 data/sources/cgwb_contrast/
 scripts/*extracted*.json
 scripts/*contrast*.json
+scripts/scratch/
 
 # Large Raw External Datasets & Source PDFs (>5MB)
 data/sources/cgwb_ingres/*.pdf
@@ -65,6 +67,10 @@ data/sources/up_cgwb_telemetry_2021_2025.csv
 data/sources/mp_gwd_manual_monthly.csv
 data/sources/up_nwic_manual.csv
 data/sources/assam_dwlr_raw.csv
+data/sources/rajasthan_gw_manual_2021_2025.csv
+data/sources/haryana_gw_manual_2021_2025.csv
+data/sources/meghalaya_dwlr_historical.csv
+data/sources/meghalaya_gw_manual.csv
 data/sources/imd_rainfall/rain/
 
 # Large Binary Model Artifacts

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { DATA_SOURCES } from "@/lib/data/dataSources";
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
 export default function DataSourcesPage() {
   const { t } = useLanguage();
@@ -46,9 +47,32 @@ export default function DataSourcesPage() {
         <p className="mt-2 max-w-3xl text-xs sm:text-sm leading-relaxed text-text-muted">
           {t('datasources.subtitle', "Review the declared providers, spatial resolution, observation cadence, provenance notes and limitations for JalDrishti's configured evidence sources.")}
         </p>
-        <div className="mt-4 p-3.5 bg-emerald-50/70 border border-emerald-300 text-xs text-emerald-900 leading-relaxed space-y-1">
+
+        {/* 5-Question Plain-Language Guide Card */}
+        <div className="mt-4">
+          <WhatAmILookingAt
+            title="💡 How do I understand JalDrishti's Data Sources & Limitations?"
+            what="This page catalogs all official government and scientific data providers that feed into JalDrishti, detailing who supplies each measurement, how fine-grained the data is, and what scientific limits apply."
+            meaning="No single sensor covers all groundwater aspects. JalDrishti synthesizes physical well measurements (CGWB), satellite gravity observations (NASA/DLR GRACE-FO), radar surface soil moisture (NASA SMAP), optical vegetation indices (ESA Sentinel-2), and precipitation grids (IMD)."
+            whyCare="Transparency is essential in public hydrologic policy. Understanding observation cadence (quarterly vs daily) and spatial resolution (from 500m up to 300km) ensures decisions aren't made on coarse data mistaken for ultra-local telemetry."
+            recentAndReliable="Each card indicates the exact latest observation date, ingestion timestamp, and missing data rate. All sources adhere to open-access government and space agency protocols."
+            nextSteps="Cross-reference a block's indicators in the Explorer or Risk Assessment tabs with the resolutions and cadences documented here to understand the physical basis of alerts."
+            initiallyOpen={false}
+          />
+        </div>
+
+        <div className="mt-4 p-3.5 bg-emerald-50/70 border border-emerald-300 text-xs text-emerald-900 leading-relaxed space-y-1.5">
           <div>
-            <span className="font-semibold">Geographic scope:</span> The eight initial priority states are Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya and Arunachal Pradesh. The application lists 60 administrative blocks. Data availability, model coverage and validation differ by state and are not equivalent everywhere.
+            <span className="font-semibold">Authoritative Geographic Scope:</span> The ten active target states across four project regions are:
+            <ul className="list-disc list-inside mt-1 ml-1 space-y-0.5">
+              <li><strong>South India (3 states):</strong> Karnataka, Telangana, Tamil Nadu</li>
+              <li><strong>Central India (1 state):</strong> Madhya Pradesh</li>
+              <li><strong>North India (3 states):</strong> Rajasthan, Haryana, Punjab</li>
+              <li><strong>Northeast India (3 states):</strong> Meghalaya, Assam, Tripura</li>
+            </ul>
+          </div>
+          <div className="text-[11px] text-emerald-800">
+            <strong>Out of Scope / Scientific Reference Regions:</strong> Sikkim, Uttar Pradesh, and Arunachal Pradesh are preserved in the codebase as scientific reference fixtures and baseline comparisons, but are strictly excluded from active target navigation, target summaries, and active operational scope.
           </div>
           <div className="text-[11px] text-emerald-800">
             <strong>Update frequency:</strong> Field telemetry is published on daily to quarterly schedules; satellite products follow 5-day to monthly cycles; official IN-GRES extraction assessments are published annually. A source being listed here does not mean its latest data has been ingested or validated; see each source's Observed and Ingested dates.

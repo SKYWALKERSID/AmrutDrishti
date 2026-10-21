@@ -20,12 +20,12 @@ export const DATA_SOURCES: DataSourceStatus[] = [
     provider: 'India Meteorological Department (IMD Pune)',
     spatialResolution: '0.25° × 0.25° (approx 25km × 25km grid)',
     temporalCadence: 'Daily (24-hour update lag)',
-    lastSuccessfulIngestion: '2026-10-08 08:15 UTC',
-    latestObservationDate: '2026-10-07',
+    lastSuccessfulIngestion: '2026-10-20 13:17 UTC',
+    latestObservationDate: '2026-10-15',
     status: 'healthy',
     missingDataRatePct: 0.4,
     licenseTerms: 'Government of India Data Sharing & Accessibility Policy (NDSAP)',
-    provenanceDetails: 'Interpolated daily rainfall totals (mm) & calculated SPI (Standardized Precipitation Index) against 30-year long-period average (1991-2020).'
+    provenanceDetails: 'Interpolated daily rainfall totals (mm) & calculated SPI (Standardized Precipitation Index) against 30-year long-period average (1991-2020). CMPG endpoint verified; high-res stream verified through October 15, 2026.'
   },
   {
     id: 'src_sentinel2_sr',
@@ -57,14 +57,27 @@ export const DATA_SOURCES: DataSourceStatus[] = [
     id: 'src_cgwb_wells',
     name: 'CGWB & NWIC National Groundwater Well Monitoring Network',
     provider: 'Central Ground Water Board (CGWB) & National Water Informatics Centre (NWIC)',
-    spatialResolution: 'Point Observations (Piezometers & Dug Wells across 60 monitored blocks in 8 States)',
+    spatialResolution: 'Point Observations (Piezometers & Dug Wells across monitored blocks)',
     temporalCadence: 'Quarterly Telemetric Hydrograph (DWLR) & Seasonal Field Monitoring (Pre/Post-Monsoon)',
-    lastSuccessfulIngestion: '2026-09-30 06:00 UTC',
-    latestObservationDate: '2026-09-28',
+    lastSuccessfulIngestion: '2026-10-20 13:18 UTC',
+    latestObservationDate: '2025-12-31',
     status: 'healthy',
-    missingDataRatePct: 4.2,
+    missingDataRatePct: 3.8,
     licenseTerms: 'India-WRIS / CGWB National Hydrograph Network Terms',
-    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in DWLR piezometers and open wells across initial priority states: Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, and Arunachal Pradesh (Meghalaya DWLR stations pending ingestion; Sikkim included as mountain springshed contrast region).'
+    provenanceDetails: 'Direct depth to water level below ground level (m bgl) measured in DWLR piezometers, telemetry networks, and dug wells across the ten target states in four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). Historical research records for Uttar Pradesh, Sikkim, and Arunachal Pradesh are retained as out-of-scope reference baselines.'
+  },
+  {
+    id: 'src_meghalaya_gwd',
+    name: 'Meghalaya Ground Water Department Monitoring Network',
+    provider: 'Meghalaya Ground Water Department & NWIC',
+    spatialResolution: 'Station-level monitoring points (West Jaintia Hills, Ri Bhoi, East Jaintia Hills, West Khasi Hills, East Khasi Hills)',
+    temporalCadence: 'Quarterly Manual Monitoring & Telemetry Archive',
+    lastSuccessfulIngestion: '2026-10-20 13:18 UTC',
+    latestObservationDate: '2023-04-10',
+    status: 'healthy',
+    missingDataRatePct: 0.0,
+    licenseTerms: 'NWIC / State Department Open Data Access',
+    provenanceDetails: 'Official manual quarterly groundwater depth observations (m bgl) fetched directly from NWIC CKAN portal (75 valid observations, 0 rejected). Quadridaily telemetry archive covers Latyrke and Zikzak stations.'
   },
   {
     id: 'src_isro_bhuvan',

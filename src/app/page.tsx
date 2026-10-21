@@ -13,8 +13,9 @@ import {
   CheckCircleIcon,
 } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import { ALL_NATIONWIDE_BLOCKS, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
 export default function LandingPage() {
   const { t } = useLanguage();
@@ -25,7 +26,9 @@ export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<'research' | 'software' | 'platform'>('research');
 
   const filteredPreviewBlocks = ALL_NATIONWIDE_BLOCKS.filter((block) => {
-    const matchesState = selectedState === 'all' || normalizeStateName(block.state) === selectedState;
+    const matchesState = selectedState === 'all'
+      ? isTargetState(block.state)
+      : normalizeStateName(block.state) === selectedState;
     const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
     return matchesState && matchesSeverity;
   }).slice(0, 6);
@@ -43,21 +46,21 @@ export default function LandingPage() {
               India-Focused Groundwater Intelligence Platform*
             </span>
             <span aria-hidden="true">•</span>
-            <span>CGWB DWLR Telemetry &amp; Remote Sensing</span>
+            <span>Government Well Telemetry (CGWB) &amp; NASA Satellites</span>
             <span aria-hidden="true">•</span>
-            <span>Observation dates are shown on each page</span>
+            <span>Every observation date is clearly stated</span>
           </div>
 
           <h1 className="dbim-heading-1 text-text-main">
-            Groundwater observations for India, with their limits stated.
+            Clear, honest groundwater information for India.
           </h1>
 
           <p className="dbim-paragraph-lead text-text-muted max-w-3xl leading-relaxed">
-            JAL DRISHTI is an India-focused groundwater intelligence and decision-support platform designed to help users explore groundwater observations, understand concerning conditions, and examine available research-stage forecasts and potential interventions.
+            JAL DRISHTI helps citizens, farmers, and administrative officers see where water is dropping, understand upcoming seasonal risks, and plan local water conservation works before wells run dry.
           </p>
 
           <p className="dbim-paragraph text-text-muted max-w-3xl leading-relaxed">
-            Its initial geographic priorities are Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh. Nationwide coverage is the broader ambition, not a claim that every location currently has equivalent data, models, or validation.
+            Our priority focus spans ten states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). We state the exact date, source, and accuracy of every reading without hiding data gaps or pretending unmeasured villages have verified sensors.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -65,82 +68,93 @@ export default function LandingPage() {
               href="/explorer"
               className="bg-primary hover:bg-primary-hover text-text-inverted text-sm font-semibold px-6 py-3 rounded transition-colors inline-flex items-center gap-2"
             >
-              <span>Explore Platform</span>
+              <span>Open the Map Explorer</span>
               <span aria-hidden="true">→</span>
             </Link>
             <a
               href="#how-it-works"
               className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
             >
-              Discover How It Works
+              How It Works (5 Simple Steps)
             </a>
             <Link
               href="/overview"
               className="text-xs font-semibold text-primary hover:underline px-2 py-3"
             >
-              Open Overview Dashboard →
+              Open State &amp; District Overview →
             </Link>
           </div>
         </div>
 
-        {/* Subsurface Stratigraphy & Sensor Ingestion Profile (Single Open Cross-Section) */}
-        <div className="pt-8 border-t border-border space-y-4">
+        {/* 5-Question Guide Card: Making the Platform Self-Explanatory */}
+        <WhatAmILookingAt
+          title="💡 Quick Guide: How to Use JalDrishti (5 Plain-Language Answers)"
+          what="A national groundwater monitoring platform that combines measurements from government observation wells with satellite images and rainfall records."
+          meaning="It tells you how deep water is below the ground in your block, whether water reserves are dropping compared to past years, and where rainfall was deficient."
+          whyCare="If well levels are falling and monsoon rain was low, shallow drinking water wells and crop irrigation could run dry months before the next rains arrive."
+          recentAndReliable="Observations come directly from official Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Every page shows the exact date of observation."
+          nextSteps="1. Use the Map Explorer to check your district. 2. Look at the 3-month forecast. 3. Review suggested check dams, ponds, and recharge shafts in the Solutions workspace."
+          initiallyOpen={true}
+        />
+
+        {/* Where Our Information Comes From: Sky to Underground (Single Open Cross-Section) */}
+        <div className="pt-6 border-t border-border space-y-4">
           <div className="flex items-center justify-between text-xs text-text-muted">
             <span className="font-semibold text-text-main flex items-center gap-1.5">
               <ActivityChartIcon className="w-4 h-4 text-primary" />
-              Aquifer Stratigraphy &amp; Sensor Ingestion Profile
+              Where Our Water Information Comes From: From Sky to Deep Underground
             </span>
-            <span>Integrated Subsurface Cross-Section</span>
+            <span>Integrated Environmental Layers</span>
           </div>
 
           {/* Single Coherent Subsurface Cross-Section Container */}
-          <div className="border border-border bg-subtle divide-y divide-border/80 text-xs font-mono">
+          <div className="border border-border bg-subtle divide-y divide-border/80 text-xs">
             {/* Stratum 1: Spaceborne & Atmospheric Signals */}
             <div className="p-3 bg-sky-50/50 flex flex-wrap items-center justify-between gap-2 text-sky-950">
-              <div className="flex items-center gap-2 font-sans font-semibold">
+              <div className="flex items-center gap-2 font-semibold">
                 <CloudRainIcon className="w-4 h-4 text-sky-700" />
-                <span>Spaceborne &amp; Atmospheric Signals</span>
+                <span>Sky &amp; Weather: Rainfall &amp; Regional Water Changes</span>
               </div>
-              <span className="text-[11px] text-sky-800 font-sans">
-                NASA GRACE-FO (100km footprint) • IMD 0.25° Precipitation Grid • Sentinel-2 MultiSpectral
+              <span className="text-[11px] text-sky-800">
+                NASA GRACE-FO Satellites (~100 km regional view) • IMD 0.25° Weather Grids • Sentinel-2 Earth Imagery
               </span>
             </div>
 
             {/* Stratum 2: Topsoil & Root Zone */}
             <div className="p-3 bg-amber-50/50 flex flex-wrap items-center justify-between gap-2 text-amber-950">
-              <div className="flex items-center gap-2 font-sans font-semibold">
+              <div className="flex items-center gap-2 font-semibold">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
-                <span>Topsoil &amp; Vadose Root Zone (0 – 2 m depth)</span>
+                <span>Ground Surface &amp; Crops: Topsoil Moisture &amp; Crop Greenness (0 – 2 m depth)</span>
               </div>
-              <span className="text-[11px] text-amber-800 font-sans">
-                SMAP L3 Surface Soil Moisture • 10m Sentinel-2 NDVI / NDWI Vegetative Vigor
+              <span className="text-[11px] text-amber-800">
+                SMAP Satellite Soil Moisture • Sentinel-2 Crop Greenness &amp; Surface Water Vigor
               </span>
             </div>
 
             {/* Stratum 3: Unconfined Weathered Aquifer */}
             <div className="p-3.5 bg-teal-50/60 flex flex-wrap items-center justify-between gap-2 text-teal-950">
               <div>
-                <div className="flex items-center gap-2 font-sans font-semibold">
+                <div className="flex items-center gap-2 font-semibold">
                   <WaterDropletIcon className="w-4 h-4 text-teal-700" />
-                  <span>Unconfined Weathered Aquifer (2 – 25 m bgl)</span>
+                  <span>Main Underground Water Table: Village &amp; Farming Wells (2 – 25 m depth)</span>
                 </div>
-                <p className="text-[11px] text-teal-800 font-sans mt-0.5">
-                  Central Ground Water Board (CGWB) &amp; NWIC Digital Water Level Recorders (DWLR)
+                <p className="text-[11px] text-teal-800 mt-0.5">
+                  Direct physical water table depth from Central Ground Water Board (CGWB) &amp; NWIC Digital Telemetry Wells
                 </p>
               </div>
-              <span className="text-xs font-mono font-semibold text-teal-950">
-                Depth to water in m bgl (metres below ground level)
+              <span className="text-xs font-semibold text-teal-950">
+                Depth to water in m bgl (meters below ground level)
               </span>
             </div>
 
             {/* Stratum 4: Semi-Confined Fractured Crystalline Bedrock */}
             <div className="p-3 bg-stone-100/70 flex flex-wrap items-center justify-between gap-2 text-stone-800">
-              <div className="flex items-center gap-2 font-sans font-semibold">
+              <div className="flex items-center gap-2 font-semibold">
                 <span className="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
-                <span>Semi-Confined Fractured Crystalline Bedrock (&gt; 25 m bgl)</span>
+                <span>Deep Bedrock Aquifers: Deep Rock Water Reserves (&gt; 25 m depth)</span>
               </div>
-              <span className="text-[11px] text-stone-600 font-sans">
-                Decoupled Regional Deep Storage • Piezometer Transmissivity Logs
+              <span className="text-[11px] text-stone-600">
+                Deep water locked in rock fractures that takes years to refill • Deep Piezometer Network
               </span>
             </div>
           </div>
@@ -410,12 +424,26 @@ export default function LandingPage() {
                 onChange={(e) => setSelectedState(e.target.value)}
                 className="bg-subtle border border-border rounded px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
-                <option value="all">All 8 Priority States</option>
-                {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
-                  <option key={st.code} value={normalizeStateName(st.name)}>
-                    {st.name}
-                  </option>
-                ))}
+                <option value="all">All 10 Target States</option>
+                {TARGET_REGIONS.map((region) => {
+                  const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
+                  return (
+                    <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
+                      {statesInRegion.map((st) => (
+                        <option key={st.code} value={normalizeStateName(st.name)}>
+                          {st.name}
+                        </option>
+                      ))}
+                    </optgroup>
+                  );
+                })}
+                <optgroup label="Historical References (Out of Scope)">
+                  {HISTORICAL_REFERENCE_STATES.map((st) => (
+                    <option key={st.code} value={normalizeStateName(st.name)}>
+                      {st.name} (Historical Reference)
+                    </option>
+                  ))}
+                </optgroup>
               </select>
 
               <select
@@ -440,13 +468,33 @@ export default function LandingPage() {
             <table className="w-full text-left text-xs border-collapse dbim-table">
               <thead>
                 <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                  <th className="py-2.5 px-3 text-left">Administrative Block</th>
+                  <th className="py-2.5 px-3 text-left">Block (Sub-District)</th>
                   <th className="py-2.5 px-3 text-left">District &amp; State</th>
-                  <th className="py-2.5 px-3 text-left">Stress Tier</th>
-                  <th className="py-2.5 px-3 text-right">DWLR Depth</th>
-                  <th className="py-2.5 px-3 text-right">Monsoon Deficit</th>
-                  <th className="py-2.5 px-3 text-right">GRACE TWSA</th>
-                  <th className="py-2.5 px-3 text-right">Action</th>
+                  <th className="py-2.5 px-3 text-left">
+                    <span className="inline-flex items-center gap-1">
+                      Water Stress
+                      <TermHelp termId="groundwater_stress_score" />
+                    </span>
+                  </th>
+                  <th className="py-2.5 px-3 text-right">
+                    <span className="inline-flex items-center gap-1 justify-end">
+                      Well Depth
+                      <TermHelp termId="well_depth" />
+                    </span>
+                  </th>
+                  <th className="py-2.5 px-3 text-right">
+                    <span className="inline-flex items-center gap-1 justify-end">
+                      Rainfall Difference
+                      <TermHelp termId="rainfall_anomaly" />
+                    </span>
+                  </th>
+                  <th className="py-2.5 px-3 text-right">
+                    <span className="inline-flex items-center gap-1 justify-end">
+                      Satellite Storage
+                      <TermHelp termId="satellite_water_storage" />
+                    </span>
+                  </th>
+                  <th className="py-2.5 px-3 text-right">Explore</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -607,7 +655,7 @@ export default function LandingPage() {
                 <div className="space-y-1">
                   <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
                   <p className="text-text-muted">
-                    Aquifers across India vary radically—from multi-tier alluvial plains in Uttar Pradesh to hard-rock basaltic Deccan traps in Madhya Pradesh and karst springsheds in Meghalaya. Direct comparison of raw water levels across diverse monitoring network densities misleads planners.
+                    Aquifers across India vary radically—from multi-tier alluvial plains in Punjab and Haryana to hard-rock basaltic Deccan traps in Madhya Pradesh and karst springsheds in Meghalaya. Direct comparison of raw water levels across diverse monitoring network densities misleads planners.
                   </p>
                 </div>
                 <div className="space-y-1">
@@ -948,7 +996,7 @@ export default function LandingPage() {
               </div>
               <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
                 <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/nationalContrast.test.ts</code> (Honest data tags)</span>
-                <span><strong>6. Remaining Limitations:</strong> Remote northeastern states (Meghalaya, Arunachal Pradesh) currently rely on baseline synchronizations pending DWLR rollouts.</span>
+                <span><strong>6. Remaining Limitations:</strong> Remote northeastern states (Meghalaya, Tripura) currently rely on baseline synchronizations pending DWLR rollouts.</span>
               </div>
             </article>
 
@@ -1159,11 +1207,11 @@ export default function LandingPage() {
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Uttar Pradesh</span>
-              <span className="text-xs font-semibold text-emerald-700">● DWLR Live</span>
+              <span className="font-bold text-text-main text-sm">Karnataka</span>
+              <span className="text-xs font-semibold text-emerald-700">● Telemetry Active</span>
             </div>
             <p className="text-xs text-text-muted leading-relaxed">
-              Indo-Gangetic deep multi-aquifer alluvial basin contrasted with southern hard-rock peninsular fringe.
+              Western Ghats peripheral recharge & hard-rock granitic aquifers. Monitored blocks in Shivamogga and Davanagere.
             </p>
           </div>
 
@@ -1219,11 +1267,11 @@ export default function LandingPage() {
 
           <div className="space-y-2 border-t border-border/60 pt-4">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Arunachal Pradesh</span>
-              <span className="text-xs font-semibold text-amber-700">● Baseline Synced</span>
+              <span className="font-bold text-text-main text-sm">Telangana</span>
+              <span className="text-xs font-semibold text-emerald-700">● Telemetry Active</span>
             </div>
             <p className="text-xs text-text-muted leading-relaxed">
-              Eastern Himalayan foothill springsheds with complex structural geology and localized observation density.
+              Godavari & Krishna basalt/granitic plateau; monitoring across Hyderabad and Nalgonda agricultural zones.
             </p>
           </div>
         </div>

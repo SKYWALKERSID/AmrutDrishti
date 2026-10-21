@@ -133,4 +133,13 @@ test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is availa
   assert.equal(jsonUnmon.modelStatus, 'unavailable');
   assert.equal(jsonUnmon.forecasts.length, 0);
   assert.equal(jsonUnmon.operationalEligibility, false);
+
+  // 5. Sikkim mountain springshed block -> 200, unavailable, 0 forecasts (no CGWB piezometer wells)
+  const resSikkim = await fetch('http://localhost:3000/api/forecast?block=blk_gangtok_rakdong_tintek');
+  assert.equal(resSikkim.status, 200);
+  const jsonSikkim = await resSikkim.json();
+  assert.equal(jsonSikkim.modelStatus, 'unavailable');
+  assert.equal(jsonSikkim.forecasts.length, 0);
+  assert.equal(jsonSikkim.operationalEligibility, false);
 });
+

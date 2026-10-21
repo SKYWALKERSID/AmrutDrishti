@@ -108,32 +108,6 @@
         "crossing_rate": 0.0
       }
     },
-    "Arunachal Pradesh": {
-      "state_code": "arunachal_pradesh",
-      "qgb_artifact": "ml/artifacts/qgb_v2_arunachal_pradesh.joblib",
-      "ridge_artifact": "ml/artifacts/ridge_v2_arunachal_pradesh.joblib",
-      "features": [
-        "wl_origin",
-        "wl_prev",
-        "wl_year_before_target",
-        "drawdown_velocity_q1",
-        "season_code"
-      ],
-      "n_train": 36,
-      "n_test": 43,
-      "test_dates": [
-        "2023-01-31",
-        "2023-03-31"
-      ],
-      "metrics": {
-        "qgb_rmse": 2.866,
-        "qgb_mae": 2.139,
-        "qgb_nse": 0.129,
-        "coverage_80pct": 48.8,
-        "mean_width_m": 2.54,
-        "crossing_rate": 0.0
-      }
-    },
     "Madhya Pradesh": {
       "state_code": "madhya_pradesh",
       "qgb_artifact": "ml/artifacts/qgb_v2_madhya_pradesh.joblib",
@@ -162,6 +136,35 @@
         "gain_over_persistence_pct": 42.99,
         "unseen_rmse": 2.957,
         "unseen_gain_pct": 37.04
+      }
+    }
+  },
+  "archived_models": {
+    "Arunachal Pradesh": {
+      "state_code": "arunachal_pradesh",
+      "status": "archived_out_of_target_scope",
+      "qgb_artifact": "ml/artifacts/qgb_v2_arunachal_pradesh.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_arunachal_pradesh.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 36,
+      "n_test": 43,
+      "test_dates": [
+        "2023-01-31",
+        "2023-03-31"
+      ],
+      "metrics": {
+        "qgb_rmse": 2.866,
+        "qgb_mae": 2.139,
+        "qgb_nse": 0.129,
+        "coverage_80pct": 48.8,
+        "mean_width_m": 2.54,
+        "crossing_rate": 0.0
       }
     }
   }

@@ -113,11 +113,15 @@ test('National Contrast: Low stress blocks match specified surplus basins', () =
   assert.ok(blockNames.includes('Lakhipur'));
   assert.ok(blockNames.includes('Sonai'));
 
-  // All low stress blocks must have normal risk severity and shallow well depth
+  // Low stress blocks have normal risk severity; Arunachal & Assam have shallow well depth, Sikkim has honest null
   for (const b of lowBlocks) {
     assert.equal(b.riskSeverity, 'normal');
     assert.ok(b.assessment.descriptiveStressScore <= 20);
-    assert.ok(b.indicators.cgwbWellDepthMbgl! <= 7.5);
+    if (b.state === 'Sikkim') {
+      assert.equal(b.indicators.cgwbWellDepthMbgl, null);
+    } else {
+      assert.ok(b.indicators.cgwbWellDepthMbgl !== null && b.indicators.cgwbWellDepthMbgl <= 7.5);
+    }
   }
 });
 
@@ -126,8 +130,16 @@ test('National Contrast: Every contrast block has valid coordinates and honest d
   for (const block of ALL_CONTRAST_BLOCKS) {
     assert.ok(Array.isArray(block.coordinates));
     assert.ok(hasValidCoordinates(block.coordinates as [number, number]));
-    assert.equal(block.assessment.dataStatus, 'observed');
-    assert.equal(block.assessment.validationStatus, 'validated');
+    if (block.state === 'Sikkim') {
+      // Mountain springshed blocks without CGWB piezometer wells are honestly tagged as derived / pending_field_review
+      assert.equal(block.assessment.dataStatus, 'derived');
+      assert.equal(block.assessment.validationStatus, 'pending_field_review');
+      assert.equal(block.indicators.cgwbWellDepthMbgl, null);
+    } else {
+      assert.equal(block.assessment.dataStatus, 'observed');
+      assert.equal(block.assessment.validationStatus, 'validated');
+      assert.ok(block.indicators.cgwbWellDepthMbgl !== null);
+    }
   }
 });
 

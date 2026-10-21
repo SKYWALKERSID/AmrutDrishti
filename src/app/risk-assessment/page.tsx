@@ -9,8 +9,9 @@ import { calculateDescriptiveGss } from '@/lib/services/scientificEngine';
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
-import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import type { BlockForecastResponse, ForecastPoint } from '@/app/api/forecast/route';
+import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
 function RiskAssessmentContent() {
   const { t } = useLanguage();
@@ -93,14 +94,16 @@ function RiskAssessmentContent() {
 
   // Derived filtered districts
   const availableDistricts = useMemo(() => {
-    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS;
+    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
     return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
   }, [selectedState]);
 
   // Derived filtered blocks
   const filteredBlocks = useMemo(() => {
     return blocksData.filter(b => {
-      const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
+      const matchState = selectedState === 'all'
+        ? isTargetState(b.state)
+        : normalizeStateName(b.state) === selectedState;
       const matchDistrict = selectedDistrictId === 'all' || b.districtId === selectedDistrictId;
       return matchState && matchDistrict;
     });
@@ -211,6 +214,17 @@ function RiskAssessmentContent() {
         </p>
       </div>
 
+      {/* 5-Question Plain-Language Guide Card */}
+      <WhatAmILookingAt
+        title="💡 How do I read this Risk Assessment & Forecast Page?"
+        what="This page provides two complementary evaluations: (1) an immediate Water Stress Score (0–100) based on today's environmental measurements, and (2) a machine learning forecast predicting physical well water levels (in meters below ground) for upcoming seasons."
+        meaning="A Water Stress Score above 70 means the block is experiencing acute depletion across multiple indicators (deep wells, low rain, declining storage). A projected increase in well depth (e.g. from 12 m to 16 m) means the water table is dropping further."
+        whyCare="Comparing current stress against future projections helps water managers identify not only which blocks are suffering right now, but which will reach critical depth in the next 3 to 12 months."
+        recentAndReliable="Observations are updated per government schedule (IMD rain: daily; CGWB wells: quarterly; Sentinel & GRACE satellites: 10–30 days). The ML model is trained on historical data and provides calibrated P10–P90 uncertainty intervals."
+        nextSteps="Examine the indicator breakdown to see what is driving stress (e.g. deficient monsoon vs continuous over-extraction), and use the Interventions tab to explore targeted conservation measures."
+        initiallyOpen={false}
+      />
+
       {/* Main Content Layout: Block Selector & Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Target Selector & Descriptive Stress Score Baseline (5 cols) */}
@@ -235,21 +249,19 @@ function RiskAssessmentContent() {
                       onChange={(e) => handleStateChange(e.target.value)}
                       className="bg-subtle border border-border px-2 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                     >
-                      <option value="all">All States</option>
-                      <optgroup label="Active Monitored States">
-                        {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
-                          <option key={st.code} value={st.name}>
-                            {st.name}
-                          </option>
-                        ))}
-                      </optgroup>
-                      <optgroup label="Telemetry Pending">
-                        {ALL_INDIAN_STATES.filter(s => !s.hasData).map((st) => (
-                          <option key={st.code} value={st.name} disabled className="text-gray-400 italic">
-                            {st.name} (Pending)
-                          </option>
-                        ))}
-                      </optgroup>
+                      <option value="all">All 10 Target States</option>
+                      {TARGET_REGIONS.map((region) => {
+                        const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
+                        return (
+                          <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
+                            {statesInRegion.map((st) => (
+                              <option key={st.code} value={st.name}>
+                                {st.name}
+                              </option>
+                            ))}
+                          </optgroup>
+                        );
+                      })}
                     </select>
 
                     {/* District */}
@@ -290,8 +302,9 @@ function RiskAssessmentContent() {
 
                 {/* Descriptive Stress Score Display */}
                 <div className="py-4 border-y border-border text-center space-y-2">
-                  <div className="text-xs text-text-muted uppercase font-semibold">
-                    Descriptive Stress Score (GSS Baseline: 0 to 100)*
+                  <div className="text-xs text-text-muted uppercase font-semibold inline-flex items-center justify-center gap-1">
+                    <span>Descriptive Stress Score (GSS Baseline: 0 to 100)*</span>
+                    <TermHelp termId="groundwater_stress_score" />
                   </div>
                   <div className="text-4xl font-extrabold text-primary">
                     {calculatedResult.score !== null ? calculatedResult.score : 'Data Gap'}{' '}
@@ -424,8 +437,11 @@ function RiskAssessmentContent() {
                     {/* 1. CGWB Well Depth */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main block">CGWB Well Water Depth</span>
-                        <span className="text-[11px] text-text-muted">Digital Water Level Recorder (DWLR)</span>
+                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                          CGWB Well Water Depth
+                          <TermHelp termId="well_depth" />
+                        </span>
+                        <span className="text-[11px] text-text-muted block">Digital Water Level Recorder (DWLR)</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : 'Missing data'}
@@ -441,8 +457,11 @@ function RiskAssessmentContent() {
                     {/* 2. Rainfall Deficit */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main block">Monsoon Rainfall Deficit</span>
-                        <span className="text-[11px] text-text-muted">IMD 30-Year LPA Deviation</span>
+                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                          Monsoon Rainfall Deficit
+                          <TermHelp termId="rainfall_anomaly" />
+                        </span>
+                        <span className="text-[11px] text-text-muted block">IMD 30-Year LPA Deviation</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : 'Missing data'}
@@ -458,8 +477,11 @@ function RiskAssessmentContent() {
                     {/* 3. GRACE TWSA */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main block">Satellite Water Storage (GRACE-FO)</span>
-                        <span className="text-[11px] text-text-muted">Regional Terrestrial Storage Anomaly</span>
+                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                          Satellite Water Storage (GRACE-FO)
+                          <TermHelp termId="satellite_water_storage" />
+                        </span>
+                        <span className="text-[11px] text-text-muted block">Regional Terrestrial Storage Anomaly</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : 'Missing data'}
@@ -475,8 +497,11 @@ function RiskAssessmentContent() {
                     {/* 4. Sentinel NDVI */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main block">Vegetation Health (NDVI)</span>
-                        <span className="text-[11px] text-text-muted">Sentinel-2 Canopy Reflectance</span>
+                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                          Vegetation Health (NDVI)
+                          <TermHelp termId="vegetation_greenness" />
+                        </span>
+                        <span className="text-[11px] text-text-muted block">Sentinel-2 Canopy Reflectance</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'}
@@ -554,8 +579,18 @@ function RiskAssessmentContent() {
                       <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
                         <th className="py-2.5 px-3 text-left">Forecast Horizon</th>
                         <th className="py-2.5 px-3 text-right">Target Period</th>
-                        <th className="py-2.5 px-3 text-right">Expected Depth (m bgl)</th>
-                        <th className="py-2.5 px-3 text-right">P10–P90 Uncertainty Interval</th>
+                        <th className="py-2.5 px-3 text-right">
+                          <span className="inline-flex items-center gap-1 justify-end">
+                            Expected Depth (m bgl)
+                            <TermHelp termId="ml_groundwater_forecast" />
+                          </span>
+                        </th>
+                        <th className="py-2.5 px-3 text-right">
+                          <span className="inline-flex items-center gap-1 justify-end">
+                            P10–P90 Uncertainty Interval
+                            <TermHelp termId="uncertainty_interval" />
+                          </span>
+                        </th>
                         <th className="py-2.5 px-3 text-right">Baseline Depth</th>
                       </tr>
                     </thead>
@@ -611,7 +646,7 @@ function RiskAssessmentContent() {
                 </div>
                 <p className="leading-relaxed">
                   No verified machine learning model artifact exists in the offline model registry for {selectedBlock?.name || 'this block'} ({selectedBlock?.state || 'selected region'}).
-                  JAL DRISHTI's Quantile Gradient Boosting (v2.0) models are currently packaged for 5 priority states (Punjab, Haryana, Rajasthan, Assam, and Arunachal Pradesh).
+                  JAL DRISHTI&apos;s machine learning forecasting models are packaged for priority target states with calibrated telemetry baselines (Punjab, Haryana, Rajasthan, Assam, and Madhya Pradesh).
                   Per Section 5 scientific rules, predictions are not extrapolated to uncalibrated regions or fabricated with synthetic defaults.
                 </p>
                 <p className="text-[11px] text-text-muted/80 italic">

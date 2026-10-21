@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, normalizeStateName, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
 import contrastProjectionsData from '@/lib/data/contrastProjections.json';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
@@ -17,6 +17,7 @@ import {
   FilterIcon
 } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
+import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
 export default function OverviewDashboard() {
   const { t } = useLanguage();
@@ -95,7 +96,7 @@ export default function OverviewDashboard() {
   // Compute available districts based on selected State
   const availableDistricts = React.useMemo(() => {
     if (selectedState === 'all') {
-      return ALL_NATIONWIDE_DISTRICTS;
+      return ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
     }
     return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
   }, [selectedState]);
@@ -109,7 +110,9 @@ export default function OverviewDashboard() {
   const displayBlocks = blocksData.length > 0 ? blocksData : ALL_NATIONWIDE_BLOCKS;
 
   const filteredBlocks = displayBlocks.filter((block) => {
-    const matchesState = selectedState === 'all' || normalizeStateName(block.state) === selectedState;
+    const matchesState = selectedState === 'all'
+      ? isTargetState(block.state)
+      : normalizeStateName(block.state) === selectedState;
     const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
     const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
     return matchesState && matchesDistrict && matchesSeverity;
@@ -146,7 +149,7 @@ export default function OverviewDashboard() {
             Groundwater Overview & Telemetry Status*
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 max-w-3xl leading-relaxed">
-            Multi-source groundwater intelligence synthesizing verified Central Ground Water Board (CGWB) telemetry, IMD precipitation baselines, and satellite storage anomalies across 8 priority states.
+            Multi-source groundwater intelligence synthesizing verified Central Ground Water Board (CGWB) telemetry, NWIC feeds, IMD precipitation baselines, and satellite storage anomalies across ten target states in four project regions.
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
@@ -165,12 +168,23 @@ export default function OverviewDashboard() {
         </div>
       </div>
 
+      {/* 5-Question Guide Card: Making the Overview Page Self-Explanatory */}
+      <WhatAmILookingAt
+        title="💡 What am I looking at on this Overview page?"
+        what="A nationwide directory of all 60 monitored administrative blocks across 10 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts."
+        meaning="It highlights which regions have critically falling water levels (Severe Stress), moderate concerns (Watch), or stable conditions (Normal)."
+        whyCare="Block development officers and district magistrates can immediately identify where emergency water tankers, crop advisories, or recharge structures will be needed."
+        recentAndReliable="Observations are gathered from Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Last verified observation cutoff: October 2026."
+        nextSteps="Filter by your state and district in the dropdowns below, check whether water is dropping, and click 'Inspect in GIS' to explore detailed local maps."
+        initiallyOpen={false}
+      />
+
       {/* Priority Geographic Coverage Indicator */}
       <div className="text-xs text-text-muted flex flex-wrap items-center justify-between gap-2 border-b border-border pb-4">
         <div className="flex items-center gap-2">
           <MapPinIcon className="w-3.5 h-3.5 text-primary shrink-0" />
           <span>
-            <strong className="text-text-main font-semibold">Priority Coverage:</strong> 60 Monitored Units across 8 States (Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, Arunachal Pradesh).
+            <strong className="text-text-main font-semibold">Target State Coverage:</strong> Monitored Units across 10 Target States in 4 Regions: South (Karnataka, Telangana, Tamil Nadu), Central (Madhya Pradesh), North (Rajasthan, Haryana, Punjab), and Northeast (Meghalaya, Assam, Tripura).
           </span>
         </div>
         <span className="text-[11px] font-medium text-text-muted">
@@ -183,7 +197,10 @@ export default function OverviewDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
           {/* KPI 1 */}
           <div className="py-2 sm:py-0 sm:px-4 first:sm:pl-0">
-            <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
+              <TermHelp termId="groundwater_stress_score" />
+            </div>
             <div className="mt-1.5">
               {isLoading ? (
                 <div className="h-7 bg-subtle rounded w-24 animate-pulse"></div>
@@ -204,39 +221,48 @@ export default function OverviewDashboard() {
 
           {/* KPI 2 */}
           <div className="py-2 sm:py-0 sm:px-4">
-            <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'GRACE TWSA Anomaly')}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'GRACE TWSA Anomaly')}</span>
+              <TermHelp termId="satellite_water_storage" />
+            </div>
             <div className="mt-1.5">
               <div className="text-2xl sm:text-3xl font-bold text-text-main tracking-tight">
-                {meanGrace ?? '—'} <span className="text-xs font-normal text-text-muted">cm (TWSA)</span>
+                {meanGrace !== null ? (meanGrace > 0 ? `+${meanGrace}` : `${meanGrace}`) : '—'} <span className="text-xs font-normal text-text-muted">cm (TWSA)</span>
               </div>
               <div className="text-[11px] mt-0.5 text-text-muted flex items-center gap-1">
-                <span>Mean of listed blocks. Satellite regional storage anomaly (~100 km grid), not a well measurement.</span>
+                <span>Regional satellite water mass change (~100 km grid). Negative means regional storage loss.</span>
               </div>
             </div>
           </div>
 
           {/* KPI 3 */}
           <div className="py-2 sm:py-0 sm:px-4">
-            <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'IMD Monsoon Rainfall')}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'IMD Monsoon Rainfall')}</span>
+              <TermHelp termId="rainfall_anomaly" />
+            </div>
             <div className="mt-1.5">
               <div className="text-2xl sm:text-3xl font-bold text-text-main tracking-tight">
-                {meanRain ?? '—'} <span className="text-xs font-normal text-text-muted">mm vs 30-yr average</span>
+                {meanRain !== null ? (meanRain > 0 ? `+${meanRain}` : `${meanRain}`) : '—'} <span className="text-xs font-normal text-text-muted">mm vs 30-yr average</span>
               </div>
               <div className="text-[11px] mt-0.5 text-text-muted">
-                <span>Mean monsoon rainfall difference across listed blocks (IMD gridded data; average period 1991–2020)</span>
+                <span>Mean monsoon rainfall deviation vs 1991–2020 normal. Negative means seasonal rain deficit.</span>
               </div>
             </div>
           </div>
 
           {/* KPI 4 */}
           <div className="py-2 sm:py-0 sm:px-4 last:sm:pr-0">
-            <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'Mean DWLR Well Depth')}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'Mean DWLR Well Depth')}</span>
+              <TermHelp termId="well_depth" />
+            </div>
             <div className="mt-1.5">
               <div className="text-2xl sm:text-3xl font-bold text-text-main tracking-tight">
                 {meanDepth ?? '—'} <span className="text-xs font-normal text-text-muted">m bgl</span>
               </div>
               <div className="text-[11px] mt-0.5 text-text-muted">
-                <span>Mean depth to water across listed blocks; a simple average, not an area-weighted value</span>
+                <span>Meters below ground level. Higher depth means water is further underground.</span>
               </div>
             </div>
           </div>
@@ -261,12 +287,19 @@ export default function OverviewDashboard() {
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
             >
-              <option value="all">All Priority States (8)</option>
-              {ALL_INDIAN_STATES.filter(s => s.hasData).map((st) => (
-                <option key={st.code} value={normalizeStateName(st.name)}>
-                  {st.name} ({st.code})
-                </option>
-              ))}
+              <option value="all">All Target States (10)</option>
+              {TARGET_REGIONS.map((region) => {
+                const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
+                return (
+                  <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
+                    {statesInRegion.map((st) => (
+                      <option key={st.code} value={normalizeStateName(st.name)}>
+                        {st.name} ({st.code})
+                      </option>
+                    ))}
+                  </optgroup>
+                );
+              })}
             </select>
           </div>
 
@@ -333,11 +366,36 @@ export default function OverviewDashboard() {
                 <th className="py-2.5 px-3 text-left">State &amp; District</th>
                 <th className="py-2.5 px-3 text-left">Block Name</th>
                 <th className="py-2.5 px-3 text-left">Stress Severity</th>
-                <th className="py-2.5 px-3 text-right">Descriptive GSS</th>
-                <th className="py-2.5 px-3 text-right">Well Depth (m bgl)</th>
-                <th className="py-2.5 px-3 text-right">Projected Depth Q1 (m bgl)</th>
-                <th className="py-2.5 px-3 text-right">Rainfall Anomaly</th>
-                <th className="py-2.5 px-3 text-right">GRACE TWSA</th>
+                <th className="py-2.5 px-3 text-right">
+                  <span className="inline-flex items-center gap-1">
+                    Descriptive GSS
+                    <TermHelp termId="groundwater_stress_score" />
+                  </span>
+                </th>
+                <th className="py-2.5 px-3 text-right">
+                  <span className="inline-flex items-center gap-1">
+                    Well Depth (m bgl)
+                    <TermHelp termId="well_depth" />
+                  </span>
+                </th>
+                <th className="py-2.5 px-3 text-right">
+                  <span className="inline-flex items-center gap-1">
+                    Projected Depth Q1 (m bgl)
+                    <TermHelp termId="groundwater_forecast" />
+                  </span>
+                </th>
+                <th className="py-2.5 px-3 text-right">
+                  <span className="inline-flex items-center gap-1">
+                    Rainfall Anomaly
+                    <TermHelp termId="rainfall_anomaly" />
+                  </span>
+                </th>
+                <th className="py-2.5 px-3 text-right">
+                  <span className="inline-flex items-center gap-1">
+                    GRACE TWSA
+                    <TermHelp termId="satellite_water_storage" />
+                  </span>
+                </th>
                 <th className="py-2.5 px-3 text-right">Action</th>
               </tr>
             </thead>

@@ -46,7 +46,7 @@ export default function AdminPage() {
           status: 'ONLINE',
           code: res.status,
           latencyMs: lat,
-          details: `${count} nationwide blocks loaded across 8 focus states`,
+          details: `${count} nationwide blocks loaded across 10 target states in 4 project regions`,
           source: 'PostgreSQL / DWLR & Remote Sensing',
         };
       } else {

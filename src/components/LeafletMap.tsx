@@ -281,6 +281,11 @@ export default function LeafletMap({
             </span>
           </div>
         )}
+
+        {/* Universal Honest Gap Representation in Legend */}
+        <div className="pt-1.5 mt-1.5 border-t border-border/60 flex items-center gap-1.5 text-[10px] text-text-muted">
+          <span className="w-2.5 h-2.5 rounded-full bg-status-neutral shrink-0 inline-block"></span> Gray: Data Not Available / Pending
+        </div>
       </div>
     </div>
   );

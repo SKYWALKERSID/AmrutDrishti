@@ -1,7 +1,7 @@
 # JalDrishti
 ### Satellite-Assisted Groundwater Intelligence for Climate Resilience
 
-**JAL DRISHTI** is an India-focused groundwater intelligence and decision-support platform designed to address groundwater scarcity, depletion, and concerning groundwater conditions across India. Its initial geographic priorities are Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh. The broader vision is nationwide coverage, with expansion guided by groundwater conditions, data availability, hydrogeological context, and scientific validation.
+**JAL DRISHTI** is an India-focused groundwater intelligence and decision-support platform designed to address groundwater scarcity, depletion, and concerning groundwater conditions across India. Its authoritative target scope comprises ten states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). Historical research records for Uttar Pradesh, Sikkim, and Arunachal Pradesh are retained in the codebase as scientific reference baselines. The broader vision is nationwide coverage, with expansion guided by groundwater conditions, data availability, hydrogeological context, and scientific validation.
 
 > **Project status:** Under development. Data integrations, predictive models, and operational capabilities must be independently verified before being treated as production-ready.
 >

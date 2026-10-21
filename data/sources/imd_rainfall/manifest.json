@@ -26,12 +26,12 @@
       "error": "<urlopen error _ssl.c:1064: The handshake operation timed out>"
     },
     "IMD Pune CMPG Endpoint": {
-      "accessible": false,
-      "error": "<urlopen error _ssl.c:1064: The handshake operation timed out>"
+      "accessible": true,
+      "http_status": 200
     }
   },
-  "access_status": "AUTHENTICATED_PORTAL_ONLY",
-  "access_blocker_documentation": "Direct unauthenticated HTTPS connection to IMD Pune portals (cdsp.imdpune.gov.in / imdpune.gov.in) encounters TLS/TCP connect timeout from commercial/external networks. Official IMD policy requires user registration on CDSP with credentials or formal academic data request through Climate Data Services Portal.",
+  "access_status": "PUBLICLY_AVAILABLE",
+  "access_blocker_documentation": "Portal endpoint verified accessible.",
   "local_staged_sample": {
     "path": "data/sources/imd_rainfall_staged_sample.csv",
     "present": true,

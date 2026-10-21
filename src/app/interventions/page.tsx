@@ -8,7 +8,7 @@ import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice, SCHEME_UNVERIFIED_NOTICE } from '@/lib/demo/demoPolicy';
 import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon, FilterIcon } from '@/components/ui/Icons';
 import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
-import { ALL_INDIAN_STATES } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES } from '@/lib/data/indiaStates';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { matchInterventionRecommendations, SchemeRecommendationMatch } from '@/lib/services/scientificEngine';
 import { BlockData } from '@/lib/types';
@@ -490,8 +490,8 @@ function InterventionsContent() {
                 onChange={(e) => setSelectedStateFilter(e.target.value)}
                 className="bg-subtle border border-border px-2 py-1 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
               >
-                <option value="all">All States</option>
-                {ALL_INDIAN_STATES.filter(s => s.hasData).map(st => (
+                <option value="all">All 10 Target States</option>
+                {ALL_TARGET_STATES.map(st => (
                   <option key={st.code} value={st.name}>{st.name}</option>
                 ))}
               </select>

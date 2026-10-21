@@ -519,3 +519,143 @@ test('P0-CONFIG-002: getServiceRoleConfigStatus detects placeholder values safel
     }
   }
 });
+
+// ---------------------------------------------------------------------------
+// 9. R1 REMEDIATION: UNTRUSTED USER_METADATA REJECTION & STRICT APP_METADATA RBAC
+// ---------------------------------------------------------------------------
+
+test('P0-R1-001: Self-asserted user_metadata.role cannot grant privileged admin/collector role', async () => {
+  const { getServerUserContext } = await import('../src/lib/auth/serverAuth.ts');
+  const origFetch = globalThis.fetch;
+  const origUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const origKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const origDemo = process.env.JALDRISHTI_DEMO_MODE;
+
+  try {
+    delete process.env.JALDRISHTI_DEMO_MODE;
+    process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://mock.supabase.co';
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'mock-anon-key';
+
+    // Mock Supabase Auth /user endpoint returning an attacker's self-asserted user_metadata
+    globalThis.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          id: 'user_attacker_123',
+          email: 'attacker@evil.com',
+          // Attacker injects user_metadata in signup/profile
+          user_metadata: {
+            role: 'admin',
+            jurisdiction_district: 'Tikamgarh',
+          },
+          // Trusted server-controlled app_metadata has NO role or standard default
+          app_metadata: {},
+        }),
+      } as unknown as Response;
+    };
+
+    const req = createMockRequest('http://localhost:3000/api/interventions', {
+      method: 'POST',
+      headers: {
+        authorization: 'Bearer valid-jwt-token-with-injected-user-metadata',
+      },
+      body: {},
+    });
+
+    const ctx = await getServerUserContext(req);
+
+    // CRITICAL: Must FAIL CLOSED to 'general_public' and isAuthenticated: false
+    assert.equal(ctx.role, 'general_public', 'Injected user_metadata.role MUST NOT elevate role');
+    assert.equal(ctx.isAuthenticated, false, 'User without valid app_metadata role must not be authenticated');
+    assert.equal(ctx.jurisdictionDistrict, null, 'Injected user_metadata district MUST NOT be trusted');
+  } finally {
+    globalThis.fetch = origFetch;
+    if (origUrl) process.env.NEXT_PUBLIC_SUPABASE_URL = origUrl; else delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+    if (origKey) process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = origKey; else delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (origDemo) process.env.JALDRISHTI_DEMO_MODE = origDemo;
+  }
+});
+
+test('P0-R1-002: Missing or invalid app_metadata.role fails closed to general_public', async () => {
+  const { getServerUserContext } = await import('../src/lib/auth/serverAuth.ts');
+  const origFetch = globalThis.fetch;
+  const origUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const origKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  try {
+    process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://mock.supabase.co';
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'mock-anon-key';
+
+    globalThis.fetch = async () => {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          id: 'user_invalid_role_456',
+          app_metadata: {
+            role: 'super_hacker_unrecognized',
+          },
+          user_metadata: {
+            role: 'admin',
+          },
+        }),
+      } as unknown as Response;
+    };
+
+    const req = createMockRequest('http://localhost:3000/api/audit', {
+      headers: { authorization: 'Bearer mock-jwt' },
+    });
+
+    const ctx = await getServerUserContext(req);
+    assert.equal(ctx.role, 'general_public', 'Unrecognized app_metadata role must fail closed');
+    assert.equal(ctx.isAuthenticated, false);
+  } finally {
+    globalThis.fetch = origFetch;
+    if (origUrl) process.env.NEXT_PUBLIC_SUPABASE_URL = origUrl; else delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+    if (origKey) process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = origKey; else delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  }
+});
+
+test('P0-R1-003: Valid server-controlled app_metadata.role establishes authorized session', async () => {
+  const { getServerUserContext } = await import('../src/lib/auth/serverAuth.ts');
+  const origFetch = globalThis.fetch;
+  const origUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const origKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  try {
+    process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://mock.supabase.co';
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'mock-anon-key';
+
+    globalThis.fetch = async () => {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          id: 'user_dc_789',
+          app_metadata: {
+            role: 'district_collector',
+            jurisdiction_district: 'Tikamgarh',
+          },
+          user_metadata: {
+            role: 'general_public', // ignored even if user_metadata claims lower or different
+          },
+        }),
+      } as unknown as Response;
+    };
+
+    const req = createMockRequest('http://localhost:3000/api/interventions', {
+      headers: { authorization: 'Bearer mock-jwt' },
+    });
+
+    const ctx = await getServerUserContext(req);
+    assert.equal(ctx.role, 'district_collector', 'Legitimate app_metadata role must be respected');
+    assert.equal(ctx.jurisdictionDistrict, 'Tikamgarh');
+    assert.equal(ctx.isAuthenticated, true);
+  } finally {
+    globalThis.fetch = origFetch;
+    if (origUrl) process.env.NEXT_PUBLIC_SUPABASE_URL = origUrl; else delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+    if (origKey) process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = origKey; else delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  }
+});
+

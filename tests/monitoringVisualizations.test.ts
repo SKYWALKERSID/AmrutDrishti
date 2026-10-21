@@ -145,7 +145,7 @@ test('Monitoring Visualizations: Chart 2 (Seasonal Monsoon Rainfall & Deviation)
   assert.match(monitoringPage, /'Punjab':\s*480/, 'Must specify Punjab LPA ~480 mm');
   assert.match(monitoringPage, /'Rajasthan':\s*420/, 'Must specify Rajasthan LPA ~420 mm');
   assert.match(monitoringPage, /'Madhya Pradesh':\s*850/, 'Must specify MP LPA ~850 mm');
-  assert.match(monitoringPage, /'Uttar Pradesh':\s*800/, 'Must specify UP LPA ~800 mm');
+  assert.match(monitoringPage, /'Karnataka':\s*860/, 'Must specify Karnataka LPA ~860 mm');
 
   // 6. Fail-closed empty state when rainfall anomaly is missing/null
   assert.match(
