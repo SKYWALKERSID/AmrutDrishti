@@ -43,7 +43,6 @@ test('FORECAST-INTEGRITY: Contrast projections data adheres to scientific constr
   const blockKeys = Object.keys(data);
   assert.ok(blockKeys.length > 50, 'Must have at least 50 block forecasts');
 
-  let activeEvaluatedCount = 0;
   let unavailableCount = 0;
 
   for (const key of blockKeys) {
@@ -51,7 +50,6 @@ test('FORECAST-INTEGRITY: Contrast projections data adheres to scientific constr
     assert.equal(entry.operationalEligibility, false, `Block ${key} must have operationalEligibility: false`);
 
     if (entry.modelStatus === 'research_prototype' || entry.modelStatus === 'empirical_baseline') {
-      activeEvaluatedCount++;
       assert.ok(entry.stationName, `Block ${key} must have stationName`);
       assert.ok(entry.forecasts.length > 0 && entry.forecasts.length <= 4);
 
@@ -80,8 +78,7 @@ test('FORECAST-INTEGRITY: Contrast projections data adheres to scientific constr
     }
   }
 
-  assert.ok(activeEvaluatedCount >= 45, 'Must have at least 45 verified evaluated blocks');
-  assert.ok(unavailableCount >= 5, 'Must have honest unavailable blocks without fabrication');
+  assert.equal(unavailableCount, blockKeys.length, 'Stale bundled artifacts must be unavailable rather than relabelled as current forecasts');
 });
 
 test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is available', async (t) => {
@@ -106,25 +103,33 @@ test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is availa
   assert.equal(jsonEmpty.modelStatus, 'unavailable');
   assert.equal(jsonEmpty.forecasts.length, 0);
 
-  // 2. Verified Tikamgarh block -> 200, research_prototype, non-operational
+  // 2. Verified Tikamgarh block -> 200, research_prototype or unavailable (freshness gate)
   const resTikam = await fetch('http://localhost:3000/api/forecast?block=blk_tikamgarh_main');
   assert.equal(resTikam.status, 200);
   const jsonTikam = await resTikam.json();
   assert.equal(jsonTikam.operationalEligibility, false);
-  assert.equal(jsonTikam.modelStatus, 'research_prototype');
-  assert.ok(jsonTikam.forecasts.length > 0);
-  assert.equal(jsonTikam.forecasts[0].units, 'm bgl');
-  assert.equal(jsonTikam.forecasts[0].forecastHorizonMonths, 3);
+  assert.ok(['research_prototype', 'unavailable'].includes(jsonTikam.modelStatus));
+  if (jsonTikam.modelStatus === 'research_prototype') {
+    assert.ok(jsonTikam.forecasts.length > 0);
+    assert.equal(jsonTikam.forecasts[0].units, 'm bgl');
+    assert.equal(jsonTikam.forecasts[0].forecastHorizonMonths, 3);
+  } else {
+    assert.equal(jsonTikam.forecasts.length, 0);
+  }
 
-  // 3. Verified Punjab block (Khanna) -> 200, multi-horizon
+  // 3. Verified Punjab block (Khanna) -> 200, multi-horizon or unavailable (freshness gate)
   const resKhanna = await fetch('http://localhost:3000/api/forecast?block=blk_ludhiana_khanna');
   assert.equal(resKhanna.status, 200);
   const jsonKhanna = await resKhanna.json();
   assert.equal(jsonKhanna.operationalEligibility, false);
-  assert.equal(jsonKhanna.modelStatus, 'research_prototype');
-  assert.equal(jsonKhanna.forecasts.length, 4);
-  assert.equal(jsonKhanna.forecasts[0].units, 'm bgl');
-  assert.ok(jsonKhanna.forecasts[0].baselinePersistence.lastObservationPersistenceMbgl > 0);
+  assert.ok(['research_prototype', 'unavailable'].includes(jsonKhanna.modelStatus));
+  if (jsonKhanna.modelStatus === 'research_prototype') {
+    assert.equal(jsonKhanna.forecasts.length, 4);
+    assert.equal(jsonKhanna.forecasts[0].units, 'm bgl');
+    assert.ok(jsonKhanna.forecasts[0].baselinePersistence.lastObservationPersistenceMbgl > 0);
+  } else {
+    assert.equal(jsonKhanna.forecasts.length, 0);
+  }
 
   // 4. Remote unmonitored block -> 200, unavailable, 0 forecasts
   const resUnmon = await fetch('http://localhost:3000/api/forecast?block=blk_remote_unmonitored_xyz');

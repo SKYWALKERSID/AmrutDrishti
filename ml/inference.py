@@ -189,8 +189,10 @@ def predict_single_horizon(
 
     # Uncertainty width and crossing status
     width = round(p90 - p10, 2)
+    # Ordered quantiles are not statistically calibrated without held-out
+    # coverage evidence. Keep those distinct in every consumer.
     crossing_status = (
-        "calibrated_ordered" if (p10 <= p50 <= p90) else "invalid_crossing"
+        "ordered_uncalibrated" if (p10 <= p50 <= p90) else "invalid_crossing"
     )
 
     # Severity classification (heuristic depth thresholds)

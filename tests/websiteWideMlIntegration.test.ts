@@ -164,12 +164,11 @@ test('Website-wide ML: Data integrity and safety across all modules', () => {
     assert.equal(entry.operationalEligibility, false, `Unavailable block ${k} must not be operationally eligible`);
   }
 
-  // Verify that available blocks have properly ordered quantiles
+  // Any available future artifacts must have properly ordered, explicitly
+  // uncalibrated intervals. The current bundled ledger is intentionally stale.
   const availKeys = blockKeys.filter(
     (k) => contrastProjections[k].modelStatus !== 'unavailable'
   );
-  assert.ok(availKeys.length > 0, 'Must have available modeled blocks');
-
   for (const k of availKeys) {
     const entry = contrastProjections[k];
     assert.equal(entry.operationalEligibility, false, 'Research models must not claim operational eligibility');

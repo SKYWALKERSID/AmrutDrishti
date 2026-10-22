@@ -203,13 +203,12 @@ function RiskAssessmentContent() {
         </div>
       </div>
 
-      {/* Operational Safety Safeguard Banner */}
-      <div className="border-l-2 border-primary bg-subtle p-4 text-xs text-text-muted space-y-1.5">
-        <div className="flex items-center gap-2 font-bold text-text-main">
-          <ShieldCheckIcon className="w-4 h-4 text-primary" />
-          <span>Operational Safety Safeguard Gate (FR-033 &amp; TRD Section 7.2)</span>
-        </div>
-        <p className="leading-relaxed">
+      {/* Operational Safety Safeguard Section */}
+      <div className="space-y-1.5 max-w-4xl">
+        <h3 className="dbim-heading-3 text-text-main">
+          Operational Safety Safeguard Gate (FR-033 &amp; TRD Section 7.2)
+        </h3>
+        <p className="dbim-paragraph text-text-muted leading-relaxed">
           The Groundwater Stress Score (GSS) is a descriptive, multi-criteria index calculated from 4 environmental readings (wells, rain, satellite storage, and vegetation). It is a rule-based indicator index, not a trained ML result. It serves to identify areas requiring investigation, not as an automated authorization for financial sanctions or emergency decrees without local physical verification.
         </p>
       </div>
@@ -302,10 +301,12 @@ function RiskAssessmentContent() {
 
                 {/* Descriptive Stress Score Display */}
                 <div className="py-4 border-y border-border text-center space-y-2">
-                  <div className="text-xs text-text-muted uppercase font-semibold inline-flex items-center justify-center gap-1">
+                  <div className="text-xs text-text-muted uppercase font-semibold">
                     <span>Descriptive Stress Score (GSS Baseline: 0 to 100)*</span>
-                    <TermHelp termId="groundwater_stress_score" />
                   </div>
+                  <p className="text-[11px] text-text-muted max-w-sm mx-auto">
+                    An overall 0-100 guide showing where water stress needs investigation (0–39 Normal, 40–69 Watch, 70–100 Severe).
+                  </p>
                   <div className="text-4xl font-extrabold text-primary">
                     {calculatedResult.score !== null ? calculatedResult.score : 'Data Gap'}{' '}
                     {calculatedResult.score !== null && <span className="text-sm font-normal text-text-muted">/ 100</span>}
@@ -437,11 +438,10 @@ function RiskAssessmentContent() {
                     {/* 1. CGWB Well Depth */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                        <span className="font-bold text-text-main block">
                           CGWB Well Water Depth
-                          <TermHelp termId="well_depth" />
                         </span>
-                        <span className="text-[11px] text-text-muted block">Digital Water Level Recorder (DWLR)</span>
+                        <span className="text-[11px] text-text-muted block">How deep you must dig or drill to reach water (meters below ground level).</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : 'Missing data'}
@@ -457,11 +457,10 @@ function RiskAssessmentContent() {
                     {/* 2. Rainfall Deficit */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                        <span className="font-bold text-text-main block">
                           Monsoon Rainfall Deficit
-                          <TermHelp termId="rainfall_anomaly" />
                         </span>
-                        <span className="text-[11px] text-text-muted block">IMD 30-Year LPA Deviation</span>
+                        <span className="text-[11px] text-text-muted block">How much more or less rain fell compared to the 30-year average.</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : 'Missing data'}
@@ -477,11 +476,10 @@ function RiskAssessmentContent() {
                     {/* 3. GRACE TWSA */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                        <span className="font-bold text-text-main block">
                           Satellite Water Storage (GRACE-FO)
-                          <TermHelp termId="satellite_water_storage" />
                         </span>
-                        <span className="text-[11px] text-text-muted block">Regional Terrestrial Storage Anomaly</span>
+                        <span className="text-[11px] text-text-muted block">Regional water gain or loss measured from space (NASA GRACE satellite gravity).</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : 'Missing data'}
@@ -497,11 +495,10 @@ function RiskAssessmentContent() {
                     {/* 4. Sentinel NDVI */}
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-3 px-3">
-                        <span className="font-bold text-text-main inline-flex items-center gap-1">
+                        <span className="font-bold text-text-main block">
                           Vegetation Health (NDVI)
-                          <TermHelp termId="vegetation_greenness" />
                         </span>
-                        <span className="text-[11px] text-text-muted block">Sentinel-2 Canopy Reflectance</span>
+                        <span className="text-[11px] text-text-muted block">How green and healthy crops appear from satellite images (0.0 to 1.0 index).</span>
                       </td>
                       <td className="py-3 px-3 text-right tabular-nums">
                         {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'}
@@ -579,18 +576,8 @@ function RiskAssessmentContent() {
                       <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
                         <th className="py-2.5 px-3 text-left">Forecast Horizon</th>
                         <th className="py-2.5 px-3 text-right">Target Period</th>
-                        <th className="py-2.5 px-3 text-right">
-                          <span className="inline-flex items-center gap-1 justify-end">
-                            Expected Depth (m bgl)
-                            <TermHelp termId="ml_groundwater_forecast" />
-                          </span>
-                        </th>
-                        <th className="py-2.5 px-3 text-right">
-                          <span className="inline-flex items-center gap-1 justify-end">
-                            P10–P90 Uncertainty Interval
-                            <TermHelp termId="uncertainty_interval" />
-                          </span>
-                        </th>
+                        <th className="py-2.5 px-3 text-right">Expected Depth (m bgl)</th>
+                        <th className="py-2.5 px-3 text-right">P10–P90 Uncertainty Interval</th>
                         <th className="py-2.5 px-3 text-right">Baseline Depth</th>
                       </tr>
                     </thead>
@@ -602,7 +589,7 @@ function RiskAssessmentContent() {
                               Horizon Q{f.horizonQuarter} ({f.forecastHorizonMonths || f.horizonQuarter * 3} Months)
                             </span>
                             <span className="text-[11px] text-text-muted">
-                              {f.uncertaintyInterval.intervalStatus === 'calibrated_ordered' ? 'Calibrated & Ordered' : 'Uncalibrated'}
+                              {f.uncertaintyInterval.intervalStatus === 'ordered_uncalibrated' ? 'Ordered, uncalibrated' : 'Uncalibrated'}
                             </span>
                           </td>
                           <td className="py-3 px-3 text-right tabular-nums text-text-main">

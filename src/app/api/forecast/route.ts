@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ALL_NATIONWIDE_BLOCKS } from '@/lib/data/allNationwideBlocks';
 import contrastProjectionsData from '@/lib/data/contrastProjections.json';
+import { hasCurrentForecastWindow } from '@/lib/data/forecastIntegrity';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +16,7 @@ export interface ForecastPoint {
     upperBoundP90Mbgl: number | null;
     intervalWidthM?: number | null;
     isIntervalCalibrated: boolean;
-    intervalStatus: 'uncalibrated' | 'invalid_crossing' | 'calibrated' | 'calibrated_ordered';
+    intervalStatus: 'uncalibrated' | 'ordered_uncalibrated' | 'invalid_crossing' | 'calibrated';
   };
   baselinePersistence?: {
     lastObservationPersistenceMbgl?: number | null;
@@ -109,7 +110,7 @@ export async function GET(request: NextRequest) {
     const cData = contrastProj[blockId];
     
     // If block projection is flagged unavailable due to insufficient data
-    if (cData.modelStatus === 'unavailable' || !cData.forecasts || cData.forecasts.length === 0) {
+    if (cData.modelStatus === 'unavailable' || !hasCurrentForecastWindow(cData)) {
       return NextResponse.json({
         blockId,
         blockName,
@@ -118,8 +119,8 @@ export async function GET(request: NextRequest) {
         modelIdentifier: 'none',
         modelVersion: 'none',
         modelStatus: 'unavailable',
-        provenanceStatus: 'unverified',
-        horizonStatus: 'unverified',
+        provenanceStatus: cData.provenanceStatus === 'stale_observation' ? 'stale_observation' : 'unverified',
+        horizonStatus: cData.horizonStatus === 'stale_origin' ? 'stale_origin' : 'unverified',
         operationalEligibility: false,
         baselineHistoricalDepthMbgl: currentDepth,
         forecasts: [],
@@ -232,8 +233,8 @@ export async function GET(request: NextRequest) {
         (rawP10 !== null && rawP90 !== null && rawP10 > rawP90)
       );
 
-      const intervalStatus: 'uncalibrated' | 'invalid_crossing' | 'calibrated' | 'calibrated_ordered' =
-        hasCrossing ? 'invalid_crossing' : 'calibrated_ordered';
+      const intervalStatus: 'uncalibrated' | 'ordered_uncalibrated' | 'invalid_crossing' | 'calibrated' =
+        hasCrossing ? 'invalid_crossing' : 'ordered_uncalibrated';
 
       let targetSeason = 'Quarterly Horizon';
       if (pred.target_date) {
@@ -306,7 +307,7 @@ export async function GET(request: NextRequest) {
       const cData = contrastProj[blockId];
       
       // If block projection is flagged unavailable due to insufficient data
-      if (cData.modelStatus === 'unavailable' || !cData.forecasts || cData.forecasts.length === 0) {
+      if (cData.modelStatus === 'unavailable' || !hasCurrentForecastWindow(cData)) {
         return NextResponse.json({
           blockId,
           blockName,
@@ -315,8 +316,8 @@ export async function GET(request: NextRequest) {
           modelIdentifier: 'none',
           modelVersion: 'none',
           modelStatus: 'unavailable',
-          provenanceStatus: 'unverified',
-          horizonStatus: 'unverified',
+          provenanceStatus: cData.provenanceStatus === 'stale_observation' ? 'stale_observation' : 'unverified',
+          horizonStatus: cData.horizonStatus === 'stale_origin' ? 'stale_origin' : 'unverified',
           operationalEligibility: false,
           baselineHistoricalDepthMbgl: currentDepth,
           forecasts: [],

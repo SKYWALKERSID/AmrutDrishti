@@ -214,7 +214,7 @@ export default function AdminPage() {
                 <UserRoleIcon className="w-4 h-4 text-primary" /> {t('nav.admin', 'Administration')}
               </p>
               <span aria-hidden="true">•</span>
-              <span>Pan-India Governance (8 Priority States)</span>
+              <span>Pan-India Governance (10 Active States)</span>
               <span aria-hidden="true">•</span>
               <span>Telemetry: <strong className="text-text-main font-semibold">{lastCheckTime ? `Checked ${lastCheckTime}` : 'Active'}</strong></span>
             </div>

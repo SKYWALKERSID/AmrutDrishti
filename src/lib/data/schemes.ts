@@ -19,7 +19,7 @@ export const INTERVENTION_SCHEMES: SchemeItem[] = [
     officialGuidanceUrl: 'https://ataljal.mowr.gov.in/',
     officialSource: 'Ministry of Jal Shakti, DoWR, RD & GR (National Guidelines 2020)',
     effectiveDate: '2020-04-01',
-    applicability: 'Identified water-stressed blocks across participating States including Madhya Pradesh and Uttar Pradesh',
+    applicability: 'Identified water-stressed blocks across active participating States including Madhya Pradesh, Rajasthan, Haryana, and Karnataka',
     eligibilityCaveat: 'Requires Gram Panchayat Water Security Plan approved by District Implementation Unit; not an automatic entitlement',
     reviewOwnerRole: 'district_collector'
   },

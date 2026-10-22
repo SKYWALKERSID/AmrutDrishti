@@ -129,7 +129,7 @@ test('REMEDIATION-C: Springshed honest boundary is preserved for Sikkim', async 
     assert.equal(proj.modelIdentifier, 'none', `Block ${sId} modelIdentifier must be none`);
     assert.equal(proj.forecasts.length, 0, `Block ${sId} must have 0 forecasts`);
     assert.equal(proj.operationalEligibility, false, `Block ${sId} must not be operationally eligible`);
-    assert.match(proj.safeguardDisclaimer, /Insufficient historical observations/i);
+    assert.match(proj.safeguardDisclaimer, /(Insufficient historical observations|stale|current source observation)/i);
   }
 
   // 2. Direct API check against running server
@@ -148,6 +148,6 @@ test('REMEDIATION-C: Springshed honest boundary is preserved for Sikkim', async 
     assert.equal(json.modelStatus, 'unavailable');
     assert.equal(json.forecasts.length, 0);
     assert.equal(json.operationalEligibility, false);
-    assert.match(json.safeguardDisclaimer, /Insufficient historical observations/i);
+    assert.match(json.safeguardDisclaimer, /(?:Insufficient historical observations|Forecast unavailable)/i);
   }
 });

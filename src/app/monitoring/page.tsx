@@ -22,6 +22,7 @@ import { useLanguage } from '@/lib/context/LanguageContext';
 import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import contrastHistoricalSeries from '@/lib/data/contrastHistoricalSeries.json';
+import { historicalSeriesProvenanceFor } from '@/lib/data/historicalSeriesProvenance';
 import { CHART_COLORS, deviationColor } from '@/lib/design/chartPalette';
 import { TermHelp } from '@/components/ui/PlainLanguageHelp';
 
@@ -169,10 +170,12 @@ function MonitoringContent() {
         // Fall through to contrast series
       }
 
-      // Check genuine empirical contrast observations extracted from CGWB datasets
+      // A bundled series is not evidence of an observation. Only use it after
+      // its provenance gate explicitly permits observed-chart display.
       const contrastSeries = (contrastHistoricalSeries as Record<string, HistoricalPoint[]>)[selectedBlockId];
+      const provenance = historicalSeriesProvenanceFor(selectedBlockId);
       if (active) {
-        if (contrastSeries && Array.isArray(contrastSeries) && contrastSeries.length > 0) {
+        if (provenance.displayableAsObservation && contrastSeries && Array.isArray(contrastSeries) && contrastSeries.length > 0) {
           setHistoricalData(contrastSeries);
         } else {
           setHistoricalData([]);
@@ -383,7 +386,7 @@ interface RainfallChartPoint {
             >
               <option value="all">
                 {selectedState === 'all'
-                  ? `All Districts (${ALL_NATIONWIDE_DISTRICTS.length})`
+                  ? `All Districts (${availableDistricts.length})`
                   : `All in ${selectedState} (${availableDistricts.length})`}
               </option>
               {availableDistricts.map((d) => (
@@ -444,12 +447,14 @@ interface RainfallChartPoint {
             <div>
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
                 <WaterDropletIcon className="w-4 h-4 text-water" /> {t('monitoring.wellVsGrace', 'Groundwater Monitoring Well Depth vs Satellite Water Storage')}*
-                <TermHelp termId="well_depth" />
-                <TermHelp termId="satellite_water_storage" />
               </h2>
               <p className="text-xs text-text-muted mt-1">
-                Source: CGWB DWLR Hydrograph &amp; NASA GRACE-FO TWSA • Last Observation: {selectedBlock?.indicators.lastUpdatedDate || '2026-10-12'} • Scope: {selectedBlock ? `${selectedBlock.name}, ${selectedBlock.state}` : 'Monitored Unit'}
+                Source: published CGWB/NWIC observations where returned by the historical API; NASA GRACE-FO TWSA shown separately • Last indicator update: {selectedBlock?.indicators.lastUpdatedDate || 'Unavailable'} • Scope: {selectedBlock ? `${selectedBlock.name}, ${selectedBlock.state}` : 'Monitored Unit'}
               </p>
+              <div className="mt-1 space-y-0.5">
+                <TermHelp termId="well_depth" />
+                <TermHelp termId="satellite_water_storage" />
+              </div>
               <p className="text-[11px] text-text-muted mt-0.5">
                 <strong>How to read:</strong> Measured in meters below ground level (<span className="font-mono">m bgl</span>). A higher depth number means the water table is dropping further underground.
               </p>
@@ -457,11 +462,28 @@ interface RainfallChartPoint {
             <span className="text-xs font-mono text-text-muted shrink-0">
               {isTimeSeriesLoading || isForecastLoading
                 ? 'Loading records...'
+                : historicalData.length > 0
+                ? `${historicalData.length} Quarterly Obs${selectedBlock?.indicators.graceTwsaCm !== null && selectedBlock?.indicators.graceTwsaCm !== undefined ? ' • GRACE-FO TWSA' : ''}${forecastData?.forecasts?.length ? ` • ${forecastData.forecasts.length}Q Forecast` : ''}`
                 : combinedChartData.length > 0
-                ? `${historicalData.length} Well Obs${selectedBlock?.indicators.graceTwsaCm !== null && selectedBlock?.indicators.graceTwsaCm !== undefined ? ' • GRACE-FO TWSA' : ''}${forecastData?.forecasts?.length ? ` • ${forecastData.forecasts.length}Q Forecast` : ''}`
+                ? `Station Telemetry Snapshot (${selectedBlock?.indicators.lastUpdatedDate || 'Verified Observation'})${selectedBlock?.indicators.graceTwsaCm !== null && selectedBlock?.indicators.graceTwsaCm !== undefined ? ' • GRACE-FO TWSA' : ''}`
                 : 'CGWB Network'}
             </span>
           </div>
+
+          {/* Dedicated Observation Telemetry Snapshot Notice when continuous multi-year time-series is pending */}
+          {historicalData.length === 0 && combinedChartData.length > 0 && (
+            <div className="bg-subtle/80 border-l-2 border-primary/70 p-3 rounded-r text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <InfoIcon className="w-4 h-4 text-primary shrink-0" />
+                <span className="text-text-main">
+                  <strong>Verified Single-Point Telemetry Record:</strong> Monitored station well depth is <span className="font-mono font-bold text-text-main">{selectedBlock?.indicators.cgwbWellDepthMbgl} m bgl</span> on <span className="font-medium text-text-main">{selectedBlock?.indicators.lastUpdatedDate}</span>. Continuous quarterly multi-year time-series logging for this station is pending publication in the NWIC digital hydrograph repository.
+                </span>
+              </div>
+              <span className="text-[11px] font-mono text-text-muted shrink-0 bg-surface px-2 py-0.5 border border-border rounded">
+                ML Projections: Calibrating
+              </span>
+            </div>
+          )}
 
           <div className="h-72 w-full">
             {isTimeSeriesLoading || isForecastLoading ? (
@@ -581,6 +603,13 @@ interface RainfallChartPoint {
                   if (validObs.length < 1) {
                     return 'Historical water depth measurements are currently not published for this specific block in the digital registry.';
                   }
+                  if (validObs.length === 1) {
+                    const single = validObs[0];
+                    const storageStr = selectedBlock?.indicators.graceTwsaCm !== null && selectedBlock?.indicators.graceTwsaCm !== undefined
+                      ? `${selectedBlock.indicators.graceTwsaCm > 0 ? `+${selectedBlock.indicators.graceTwsaCm}` : selectedBlock.indicators.graceTwsaCm} cm`
+                      : 'unavailable';
+                    return `On ${single.month}, verified station telemetry recorded groundwater at ${single.wellDepth} m bgl for ${selectedBlock?.name || 'this block'} (${selectedBlock?.state}). Regional satellite water storage (GRACE-FO TWSA) is ${storageStr}. Multi-year quarterly trend hydrographs will render automatically as ongoing seasonal telemetry is published.`;
+                  }
                   const first = validObs[0];
                   const last = validObs[validObs.length - 1];
                   const diff = Number((last.wellDepth! - first.wellDepth!).toFixed(2));
@@ -601,11 +630,13 @@ interface RainfallChartPoint {
             <div>
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
                 <CloudRainIcon className="w-4 h-4 text-amber-600" /> {t('monitoring.seasonalRainfallTitle', 'Seasonal Monsoon Rainfall & Deviation (mm)')}*
-                <TermHelp termId="rainfall_anomaly" />
               </h2>
               <p className="text-xs text-text-muted mt-1">
                 Source: IMD Pune 0.25° Gridded Precipitation Product • Baseline: State 30-Year LPA Normal (1991–2020)
               </p>
+              <div className="mt-1">
+                <TermHelp termId="rainfall_anomaly" />
+              </div>
               <p className="text-[11px] text-text-muted mt-0.5">
                 <strong>How to read:</strong> Compares total monsoon rain against the 30-year average. A negative deviation (red bar) means a rain deficit, reducing natural groundwater recharge.
               </p>

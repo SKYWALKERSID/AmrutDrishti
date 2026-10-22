@@ -7,8 +7,8 @@ import { InterventionProposal, UserRole } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice, SCHEME_UNVERIFIED_NOTICE } from '@/lib/demo/demoPolicy';
 import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon, FilterIcon } from '@/components/ui/Icons';
-import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES } from '@/lib/data/indiaStates';
+import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, ACTIVE_TARGET_BLOCKS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, isTargetState } from '@/lib/data/indiaStates';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { matchInterventionRecommendations, SchemeRecommendationMatch } from '@/lib/services/scientificEngine';
 import { BlockData } from '@/lib/types';
@@ -25,8 +25,8 @@ function InterventionsContent() {
 
   const [proposals, setProposals] = useState<InterventionProposal[]>(INITIAL_INTERVENTIONS);
   const [selectedProposal, setSelectedProposal] = useState<InterventionProposal | null>(INITIAL_INTERVENTIONS[0] || null);
-  const [blocksData, setBlocksData] = useState<any[]>(ALL_NATIONWIDE_BLOCKS);
-  const [selectedBlockId, setSelectedBlockId] = useState<string>(urlBlockParam || ALL_NATIONWIDE_BLOCKS[0]?.id || '');
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ACTIVE_TARGET_BLOCKS);
+  const [selectedBlockId, setSelectedBlockId] = useState<string>(urlBlockParam || ACTIVE_TARGET_BLOCKS[0]?.id || '');
   const [selectedStateFilter, setSelectedStateFilter] = useState<string>('all');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showNewModal, setShowNewModal] = useState<boolean>(false);
@@ -37,7 +37,7 @@ function InterventionsContent() {
 
   // New Proposal Form State
   const [title, setTitle] = useState('');
-  const [blockId, setBlockId] = useState(ALL_NATIONWIDE_BLOCKS[0]?.id || '');
+  const [blockId, setBlockId] = useState(ACTIVE_TARGET_BLOCKS[0]?.id || '');
   const [schemeId, setSchemeId] = useState(INTERVENTION_SCHEMES[0].id);
   const [targetVillage, setTargetVillage] = useState('');
   const [estimatedCost, setEstimatedCost] = useState('2000000');
@@ -67,9 +67,9 @@ function InterventionsContent() {
         if (geoRes.status === 'fulfilled' && geoRes.value.ok && active) {
           const geoJson = await geoRes.value.json();
           if (Array.isArray(geoJson.blocks)) {
-            const merged = mergeWithLiveBlocks(geoJson.blocks);
+            const merged = mergeWithLiveBlocks(geoJson.blocks).filter(b => isTargetState(b.state));
             setBlocksData(merged);
-            if (merged.length > 0) {
+            if (merged.length > 0 && !blockId) {
               setBlockId(merged[0].id);
             }
           }

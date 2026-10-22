@@ -1,7 +1,7 @@
 import type { InterventionProposal } from '../types.ts';
 
 export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
-  // Priority State Interventions (Madhya Pradesh & Uttar Pradesh)
+  // Priority State Interventions (Madhya Pradesh)
   {
     id: 'prop_tikamgarh_01',
     title: 'Check Dam & Piezometer Network Augmentation at Kundeshwar Catchment',
@@ -73,22 +73,22 @@ export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
     ]
   },
   {
-    id: 'prop_mauranipur_03',
+    id: 'prop_baldeogarh_03',
     title: 'Deep Infiltration Trench & Borewell Recharge Array',
-    blockId: 'blk_mauranipur',
-    blockName: 'Mauranipur',
-    districtName: 'Jhansi',
+    blockId: 'blk_baldeogarh',
+    blockName: 'Baldeogarh',
+    districtName: 'Tikamgarh',
     schemeId: 'sch_mgnrega_water',
     schemeName: 'MGNREGA Water Conservation Works',
     proposedByRole: 'gram_pradhan',
     proposedByName: 'Smt. Sunita Devi (Gram Pradhan)',
-    targetVillage: 'Roni & Bangra Belt',
+    targetVillage: 'Baldeogarh Rural & Majna Catchment',
     estimatedCostInr: 1400000,
     beneficiariesCount: 3100,
-    evidenceRationale: 'Severe stress score (75/100) driven by 15.8m bgl depth and intense agricultural extraction during Rabi wheat sowing.',
+    evidenceRationale: 'Severe stress score driven by 15.8m bgl depth and intense agricultural extraction during Rabi wheat sowing.',
     missingEvidenceNotes: 'None. MGNREGA job-card labor pool verified.',
     reviewOwnerRole: 'bdo',
-    reviewOwnerName: 'BDO Mauranipur',
+    reviewOwnerName: 'BDO Baldeogarh',
     status: 'approved',
     createdDate: '2026-09-20',
     lastUpdatedDate: '2026-10-01',
@@ -100,7 +100,7 @@ export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
         text: 'Panchayat approved 80 job card workers for trench digging.'
       },
       {
-        authorName: 'BDO Mauranipur',
+        authorName: 'BDO Baldeogarh',
         authorRole: 'bdo',
         date: '2026-10-01',
         text: 'Sanctioned under NRM allocation.'
@@ -143,7 +143,7 @@ export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
   {
     id: 'prop_rajasthan_dausa_01',
     title: 'Macro-Catchment Bunding & Rooftop Rainwater Harvesting Structures',
-    blockId: 'blk_dausa_main',
+    blockId: 'blk_dausa_lalsot',
     blockName: 'Dausa',
     districtName: 'Dausa',
     schemeId: 'sch_mgnrega_water',

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   WaterDropletIcon,
   CloudRainIcon,
@@ -14,7 +15,9 @@ import {
 } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
-import { ALL_NATIONWIDE_BLOCKS, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { useEffect } from 'react';
+import { ALL_NATIONWIDE_BLOCKS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import type { BlockData } from '@/lib/types';
 import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
 export default function LandingPage() {
@@ -24,14 +27,34 @@ export default function LandingPage() {
   const [selectedState, setSelectedState] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
   const [activeTab, setActiveTab] = useState<'research' | 'software' | 'platform'>('research');
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_NATIONWIDE_BLOCKS);
 
-  const filteredPreviewBlocks = ALL_NATIONWIDE_BLOCKS.filter((block) => {
+  useEffect(() => {
+    async function loadLiveBlocks() {
+      try {
+        const res = await fetch('/api/geospatial/blocks');
+        if (res.ok) {
+          const json = await res.json();
+          if (Array.isArray(json.blocks) && json.blocks.length > 0) {
+            setBlocksData(mergeWithLiveBlocks(json.blocks));
+          }
+        }
+      } catch {
+        // keep baseline fixture blocks
+      }
+    }
+    loadLiveBlocks();
+  }, []);
+
+  const activePool = blocksData.length > 0 ? blocksData : ALL_NATIONWIDE_BLOCKS;
+
+  const filteredPreviewBlocks = activePool.filter((block) => {
     const matchesState = selectedState === 'all'
       ? isTargetState(block.state)
       : normalizeStateName(block.state) === selectedState;
     const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
     return matchesState && matchesSeverity;
-  }).slice(0, 6);
+  }).slice(0, 8);
 
   return (
     <div className="space-y-16 sm:space-y-24 py-4 sm:py-8 text-text-main">
@@ -39,50 +62,69 @@ export default function LandingPage() {
       {/* SECTION 1: HERO & MISSION */}
       {/* --------------------------------------------------------------------------- */}
       <section className="relative pt-4 pb-12 border-b border-border space-y-8">
-        <div className="max-w-4xl space-y-5">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted">
-            <span className="font-semibold text-text-main flex items-center gap-1.5 text-primary">
-              <ShieldCheckIcon className="w-4 h-4 text-primary" />
-              India-Focused Groundwater Intelligence Platform*
-            </span>
-            <span aria-hidden="true">•</span>
-            <span>Government Well Telemetry (CGWB) &amp; NASA Satellites</span>
-            <span aria-hidden="true">•</span>
-            <span>Every observation date is clearly stated</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7 space-y-5">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted">
+              <span className="font-semibold text-text-main flex items-center gap-1.5 text-primary">
+                <ShieldCheckIcon className="w-4 h-4 text-primary" />
+                India-Focused Groundwater Intelligence Platform*
+              </span>
+              <span aria-hidden="true">•</span>
+              <span>Government Well Telemetry (CGWB) &amp; NASA Satellites</span>
+              <span aria-hidden="true">•</span>
+              <span>Every observation date is clearly stated</span>
+            </div>
+
+            <h1 className="dbim-heading-1 text-text-main">
+              Clear, honest groundwater information for India.
+            </h1>
+
+            <p className="dbim-paragraph-lead text-text-muted leading-relaxed">
+              JAL DRISHTI helps citizens, farmers, and administrative officers see where water is dropping, understand upcoming seasonal risks, and plan local water conservation works before wells run dry.
+            </p>
+
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Our priority focus spans ten states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). We state the exact date, source, and accuracy of every reading without hiding data gaps or pretending unmeasured villages have verified sensors.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <Link
+                href="/explorer"
+                className="bg-primary hover:bg-primary-hover text-text-inverted text-sm font-semibold px-6 py-3 rounded transition-colors inline-flex items-center gap-2"
+              >
+                <span>Open the Map Explorer</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <a
+                href="#how-it-works"
+                className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
+              >
+                How It Works (5 Simple Steps)
+              </a>
+              <Link
+                href="/overview"
+                className="text-xs font-semibold text-primary hover:underline px-2 py-3"
+              >
+                Open State &amp; District Overview →
+              </Link>
+            </div>
           </div>
 
-          <h1 className="dbim-heading-1 text-text-main">
-            Clear, honest groundwater information for India.
-          </h1>
-
-          <p className="dbim-paragraph-lead text-text-muted max-w-3xl leading-relaxed">
-            JAL DRISHTI helps citizens, farmers, and administrative officers see where water is dropping, understand upcoming seasonal risks, and plan local water conservation works before wells run dry.
-          </p>
-
-          <p className="dbim-paragraph text-text-muted max-w-3xl leading-relaxed">
-            Our priority focus spans ten states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). We state the exact date, source, and accuracy of every reading without hiding data gaps or pretending unmeasured villages have verified sensors.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <Link
-              href="/explorer"
-              className="bg-primary hover:bg-primary-hover text-text-inverted text-sm font-semibold px-6 py-3 rounded transition-colors inline-flex items-center gap-2"
-            >
-              <span>Open the Map Explorer</span>
-              <span aria-hidden="true">→</span>
-            </Link>
-            <a
-              href="#how-it-works"
-              className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
-            >
-              How It Works (5 Simple Steps)
-            </a>
-            <Link
-              href="/overview"
-              className="text-xs font-semibold text-primary hover:underline px-2 py-3"
-            >
-              Open State &amp; District Overview →
-            </Link>
+          {/* Right Column: Authentic DWLR Telemetry Station Image */}
+          <div className="lg:col-span-5 space-y-2 border border-border bg-subtle/30 p-2 rounded">
+            <div className="relative w-full aspect-[4/3] overflow-hidden rounded">
+              <Image
+                src="/images/india_groundwater_monitoring_hero.jpg"
+                alt="Automated Digital Water Level Recorder (DWLR) piezometer telemetry station in rural agricultural India"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                priority
+              />
+            </div>
+            <p className="text-[11px] text-text-muted leading-normal px-1">
+              <strong>Government Telemetry in the Field:</strong> Automated Digital Water Level Recorder (DWLR) piezometer station transmitting real-time water table readings in an agricultural aquifer zone.
+            </p>
           </div>
         </div>
 
@@ -97,73 +139,84 @@ export default function LandingPage() {
           initiallyOpen={true}
         />
 
-        {/* Where Our Information Comes From: Sky to Underground (Single Open Cross-Section) */}
-        <div className="pt-6 border-t border-border space-y-4">
-          <div className="flex items-center justify-between text-xs text-text-muted">
-            <span className="font-semibold text-text-main flex items-center gap-1.5">
-              <ActivityChartIcon className="w-4 h-4 text-primary" />
+        {/* Where Our Information Comes From: Sky to Underground (Clean DBIM Subheadings & Editorial 2-Column Schematic) */}
+        <div className="pt-6 border-t border-border space-y-6">
+          <div className="space-y-1">
+            <h2 className="dbim-heading-2 text-text-main">
               Where Our Water Information Comes From: From Sky to Deep Underground
-            </span>
-            <span>Integrated Environmental Layers</span>
+            </h2>
+            <p className="dbim-caption text-text-muted">
+              Integrated Environmental Layers &amp; Observation Depths
+            </p>
           </div>
 
-          {/* Single Coherent Subsurface Cross-Section Container */}
-          <div className="border border-border bg-subtle divide-y divide-border/80 text-xs">
-            {/* Stratum 1: Spaceborne & Atmospheric Signals */}
-            <div className="p-3 bg-sky-50/50 flex flex-wrap items-center justify-between gap-2 text-sky-950">
-              <div className="flex items-center gap-2 font-semibold">
-                <CloudRainIcon className="w-4 h-4 text-sky-700" />
-                <span>Sky &amp; Weather: Rainfall &amp; Regional Water Changes</span>
-              </div>
-              <span className="text-[11px] text-sky-800">
-                NASA GRACE-FO Satellites (~100 km regional view) • IMD 0.25° Weather Grids • Sentinel-2 Earth Imagery
-              </span>
-            </div>
-
-            {/* Stratum 2: Topsoil & Root Zone */}
-            <div className="p-3 bg-amber-50/50 flex flex-wrap items-center justify-between gap-2 text-amber-950">
-              <div className="flex items-center gap-2 font-semibold">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
-                <span>Ground Surface &amp; Crops: Topsoil Moisture &amp; Crop Greenness (0 – 2 m depth)</span>
-              </div>
-              <span className="text-[11px] text-amber-800">
-                SMAP Satellite Soil Moisture • Sentinel-2 Crop Greenness &amp; Surface Water Vigor
-              </span>
-            </div>
-
-            {/* Stratum 3: Unconfined Weathered Aquifer */}
-            <div className="p-3.5 bg-teal-50/60 flex flex-wrap items-center justify-between gap-2 text-teal-950">
-              <div>
-                <div className="flex items-center gap-2 font-semibold">
-                  <WaterDropletIcon className="w-4 h-4 text-teal-700" />
-                  <span>Main Underground Water Table: Village &amp; Farming Wells (2 – 25 m depth)</span>
-                </div>
-                <p className="text-[11px] text-teal-800 mt-0.5">
-                  Direct physical water table depth from Central Ground Water Board (CGWB) &amp; NWIC Digital Telemetry Wells
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left Column: Natural Editorial Descriptions */}
+            <div className="lg:col-span-7 space-y-5">
+              {/* Stratum 1: Spaceborne & Atmospheric Signals */}
+              <div className="space-y-1">
+                <h3 className="dbim-heading-3 text-text-main">
+                  Sky &amp; Weather: Rainfall &amp; Regional Water Changes
+                </h3>
+                <p className="dbim-paragraph text-text-muted leading-relaxed">
+                  NASA GRACE-FO Satellites (~100 km regional view) • IMD 0.25° Weather Grids • Sentinel-2 Earth Imagery
                 </p>
               </div>
-              <span className="text-xs font-semibold text-teal-950">
-                Depth to water in m bgl (meters below ground level)
-              </span>
+
+              {/* Stratum 2: Topsoil & Root Zone */}
+              <div className="space-y-1">
+                <h3 className="dbim-heading-3 text-text-main">
+                  Ground Surface &amp; Crops: Topsoil Moisture &amp; Crop Greenness (0 – 2 m depth)
+                </h3>
+                <p className="dbim-paragraph text-text-muted leading-relaxed">
+                  SMAP Satellite Soil Moisture • Sentinel-2 Crop Greenness &amp; Surface Water Vigor
+                </p>
+              </div>
+
+              {/* Stratum 3: Unconfined Weathered Aquifer */}
+              <div className="space-y-1">
+                <h3 className="dbim-heading-3 text-text-main">
+                  Main Underground Water Table: Village &amp; Farming Wells (2 – 25 m depth)
+                </h3>
+                <p className="dbim-paragraph text-text-muted leading-relaxed">
+                  Direct physical water table depth from Central Ground Water Board (CGWB) &amp; NWIC Digital Telemetry Wells. Depth to water in m bgl (meters below ground level).
+                </p>
+              </div>
+
+              {/* Stratum 4: Semi-Confined Fractured Crystalline Bedrock */}
+              <div className="space-y-1">
+                <h3 className="dbim-heading-3 text-text-main">
+                  Deep Bedrock Aquifers: Deep Rock Water Reserves (&gt; 25 m depth)
+                </h3>
+                <p className="dbim-paragraph text-text-muted leading-relaxed">
+                  Deep water locked in rock fractures that takes years to refill • Deep Piezometer Network
+                </p>
+              </div>
             </div>
 
-            {/* Stratum 4: Semi-Confined Fractured Crystalline Bedrock */}
-            <div className="p-3 bg-stone-100/70 flex flex-wrap items-center justify-between gap-2 text-stone-800">
-              <div className="flex items-center gap-2 font-semibold">
-                <span className="w-2.5 h-2.5 rounded-full bg-stone-600"></span>
-                <span>Deep Bedrock Aquifers: Deep Rock Water Reserves (&gt; 25 m depth)</span>
+            {/* Right Column: Informative Hydrogeological Stratum Diagram */}
+            <div className="lg:col-span-5 space-y-2 border border-border bg-subtle/30 p-2 rounded">
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded">
+                <Image
+                  src="/images/hydrogeological_stratum_cross_section.jpg"
+                  alt="Hydrogeological cross-section schematic illustrating unconfined and fractured aquifers in India"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  priority
+                />
               </div>
-              <span className="text-[11px] text-stone-600">
-                Deep water locked in rock fractures that takes years to refill • Deep Piezometer Network
-              </span>
+              <p className="text-[11px] text-text-muted leading-normal px-1">
+                <strong>Figure 1.1:</strong> Conceptual physical cross-section illustrating observation layers—from surface soil moisture (0–2m) down to unconfined alluvium and fractured crystalline bedrock piezometers.
+              </p>
             </div>
           </div>
 
           {/* Compact Unboxed Coverage & Supporting Facts Row */}
           <div className="pt-2 flex flex-wrap items-center justify-between gap-y-2 text-xs text-text-muted">
-            <span><strong>Priority Focus States:</strong> 8 Active States (MP, UP, PB, RJ, HR, AS, ML, AR)</span>
+            <span><strong>Authoritative Target Scope:</strong> 10 Active States across 4 Project Regions (KA, TG, TN, MP, RJ, HR, PB, ML, AS, TR)</span>
             <span aria-hidden="true">•</span>
-            <span><strong>Monitored Administrative Units:</strong> 60 Verified Blocks</span>
+            <span><strong>Monitored Administrative Units:</strong> 56 Verified Target Blocks (75 Total Nationwide)</span>
             <span aria-hidden="true">•</span>
             <span><strong>Data currency:</strong> varies by source; see Data Sources</span>
             <span aria-hidden="true">•</span>
@@ -221,6 +274,22 @@ export default function LandingPage() {
               Without forward-looking projections and baseline comparisons, water-stress alerts are often triggered only after summer shallow wells have already dried up.
             </p>
           </div>
+        </div>
+
+        {/* Informative Spatial Scale Comparison Diagram */}
+        <div className="border border-border bg-subtle/30 p-3 rounded space-y-2">
+          <div className="relative w-full aspect-[16/9] overflow-hidden rounded">
+            <Image
+              src="/images/satellite_multiscale_observation_diagram.jpg"
+              alt="Scientific schematic comparing spatial observation scales from in-situ point boreholes to 25km IMD grids and 100km GRACE satellite footprints"
+              fill
+              className="object-contain"
+              sizes="(max-width: 1536px) 100vw, 1536px"
+            />
+          </div>
+          <p className="text-[11px] text-text-muted leading-normal px-1">
+            <strong>Figure 1.2:</strong> Spatial scale contrast in groundwater intelligence—comparing point piezometer boreholes (field level), 25 km IMD precipitation grids (regional level), and ~100 km NASA GRACE-FO gravimetric anomalies (catchment level).
+          </p>
         </div>
       </section>
 
@@ -410,19 +479,16 @@ export default function LandingPage() {
           </p>
         </div>
 
-        {/* Live Filter Controls (Functional Grouping Panel) */}
-        <div className="border border-border bg-surface p-4 sm:p-5 rounded space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-border">
+        {/* Live Filter Controls & Telemetry Table (Clean DBIM Standard) */}
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-border text-xs">
             <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-1.5 text-xs text-text-muted font-medium">
-                <FilterIcon className="w-3.5 h-3.5 text-primary" />
-                <span>Filter Monitored Areas:</span>
-              </div>
+              <span className="text-text-muted font-medium">Filter Monitored Areas:</span>
 
               <select
                 value={selectedState}
                 onChange={(e) => setSelectedState(e.target.value)}
-                className="bg-subtle border border-border rounded px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
+                className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
                 <option value="all">All 10 Target States</option>
                 {TARGET_REGIONS.map((region) => {
@@ -437,19 +503,12 @@ export default function LandingPage() {
                     </optgroup>
                   );
                 })}
-                <optgroup label="Historical References (Out of Scope)">
-                  {HISTORICAL_REFERENCE_STATES.map((st) => (
-                    <option key={st.code} value={normalizeStateName(st.name)}>
-                      {st.name} (Historical Reference)
-                    </option>
-                  ))}
-                </optgroup>
               </select>
 
               <select
                 value={selectedSeverity}
                 onChange={(e) => setSelectedSeverity(e.target.value)}
-                className="bg-subtle border border-border rounded px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
+                className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
                 <option value="all">All Severity Tiers</option>
                 <option value="severe">Severe Stress Only</option>
@@ -459,48 +518,28 @@ export default function LandingPage() {
             </div>
 
             <span className="text-xs text-text-muted">
-              Showing <strong className="text-text-main">{filteredPreviewBlocks.length}</strong> preview units
+              Showing <strong className="text-text-main font-semibold">{filteredPreviewBlocks.length}</strong> preview units
             </span>
           </div>
 
-          {/* Block Previews Table (Readable, Unboxed Editorial) */}
-          <div className="overflow-x-auto border-t border-border">
+          {/* Block Previews Table (Readable, Clean DBIM Table) */}
+          <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse dbim-table">
               <thead>
                 <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
                   <th className="py-2.5 px-3 text-left">Block (Sub-District)</th>
                   <th className="py-2.5 px-3 text-left">District &amp; State</th>
-                  <th className="py-2.5 px-3 text-left">
-                    <span className="inline-flex items-center gap-1">
-                      Water Stress
-                      <TermHelp termId="groundwater_stress_score" />
-                    </span>
-                  </th>
-                  <th className="py-2.5 px-3 text-right">
-                    <span className="inline-flex items-center gap-1 justify-end">
-                      Well Depth
-                      <TermHelp termId="well_depth" />
-                    </span>
-                  </th>
-                  <th className="py-2.5 px-3 text-right">
-                    <span className="inline-flex items-center gap-1 justify-end">
-                      Rainfall Difference
-                      <TermHelp termId="rainfall_anomaly" />
-                    </span>
-                  </th>
-                  <th className="py-2.5 px-3 text-right">
-                    <span className="inline-flex items-center gap-1 justify-end">
-                      Satellite Storage
-                      <TermHelp termId="satellite_water_storage" />
-                    </span>
-                  </th>
+                  <th className="py-2.5 px-3 text-left">Water Stress</th>
+                  <th className="py-2.5 px-3 text-right">Well Depth</th>
+                  <th className="py-2.5 px-3 text-right">Rainfall Difference</th>
+                  <th className="py-2.5 px-3 text-right">Satellite Storage</th>
                   <th className="py-2.5 px-3 text-right">Explore</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {filteredPreviewBlocks.map((blk) => (
-                  <tr key={blk.id} className="hover:bg-subtle/50 transition-colors">
-                    <td className="py-2.5 px-3 font-bold text-text-main">{blk.name}</td>
+                  <tr key={blk.id} className="hover:bg-subtle/40 transition-colors">
+                    <td className="py-2.5 px-3 font-semibold text-text-main">{blk.name}</td>
                     <td className="py-2.5 px-3 text-text-muted">{blk.districtName}, {blk.state}</td>
                     <td className="py-2.5 px-3">
                       <span className={`font-semibold ${
@@ -510,7 +549,7 @@ export default function LandingPage() {
                           ? 'text-amber-700'
                           : 'text-emerald-700'
                       }`}>
-                        ● {blk.riskSeverity.toUpperCase()}
+                        {blk.riskSeverity.toUpperCase()}
                       </span>
                     </td>
                     <td className="py-2.5 px-3 text-right tabular-nums">
@@ -596,7 +635,7 @@ export default function LandingPage() {
                 : 'border-transparent text-text-muted hover:text-text-main'
             }`}
           >
-            Category B: Software & Engineering Gaps
+            Category B: Software &amp; Engineering Gaps
           </button>
           <button
             onClick={() => setActiveTab('platform')}
@@ -610,151 +649,130 @@ export default function LandingPage() {
           </button>
         </div>
 
-        {/* TAB CONTENT: CATEGORY A - RESEARCH GAPS */}
-        {activeTab === 'research' && (
-          <div className="space-y-8">
+        {/* 2-Column Responsive Layout: Gaps Content (Left) & Dynamic Flowchart Diagram (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Category Gap Articles */}
+          <div className="lg:col-span-7">
+            {/* TAB CONTENT: CATEGORY A - RESEARCH GAPS */}
+            {activeTab === 'research' && (
+              <div className="space-y-8">
             {/* Gap A1 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Research Gap 1</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Coupling In-Situ Well Observations with Atmospheric and Gravimetric Mass Anomalies
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Point borehole water levels reflect localized drawdown and recovery, but lack hydrogeological meaning without simultaneous rainfall deficit, vegetative evapotranspiration, and regional water storage trends. Treating piezometers in isolation leads to false alarms during localized pumping or delayed detection of basin-wide aquifer depletion.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Research Gap 1</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Integrates dual-axis time series combining in-situ CGWB DWLR well depth (mbgl) with NASA GRACE-FO gravimetric anomalies (cm w.e.) and IMD 30-year Long Period Average (1991–2020) monsoon precipitation baselines.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Coupling In-Situ Well Observations with Atmospheric and Gravimetric Mass Anomalies
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Chart configuration is covered by an automated test (<code>tests/monitoringVisualizations.test.ts</code>)</span>
-                <span><strong>6. Remaining Limitations:</strong> GRACE-FO footprint (~100km) cannot resolve individual village piezometer drawdowns.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Point borehole water levels reflect localized drawdown and recovery, but lack hydrogeological meaning without simultaneous rainfall deficit, vegetative evapotranspiration, and regional water storage trends. Treating piezometers in isolation leads to false alarms during localized pumping or delayed detection of basin-wide aquifer depletion.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response integrates dual-axis time series combining in-situ CGWB DWLR well depth (mbgl) with NASA GRACE-FO gravimetric anomalies (cm w.e.) and IMD 30-year Long Period Average (1991–2020) monsoon precipitation baselines.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Chart configuration is covered by an automated test (<code>tests/monitoringVisualizations.test.ts</code>). Remaining limitations: GRACE-FO footprint (~100km) cannot resolve individual village piezometer drawdowns.
+                </p>
               </div>
             </article>
 
             {/* Gap A2 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Research Gap 2</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Cross-Aquifer Comparability Across Disparate Monitoring Densities and Geology
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Aquifers across India vary radically—from multi-tier alluvial plains in Punjab and Haryana to hard-rock basaltic Deccan traps in Madhya Pradesh and karst springsheds in Meghalaya. Direct comparison of raw water levels across diverse monitoring network densities misleads planners.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Research Gap 2</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Employs area-weighted polygon clipping and relative deviation scores (rather than raw volumetric metrics), allowing contrast across 60 blocks while preserving native hydrogeological descriptors.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Cross-Aquifer Comparability Across Disparate Monitoring Densities and Geology
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/spatialAggregation.test.ts</code> (Spherical polygon area clipping)</span>
-                <span><strong>6. Remaining Limitations:</strong> Fractured crystalline rock requires localized pump tests to determine true specific yield.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Aquifers across India vary radically—from multi-tier alluvial plains in Punjab and Haryana to hard-rock basaltic Deccan traps in Madhya Pradesh and karst springsheds in Meghalaya. Direct comparison of raw water levels across diverse monitoring network densities misleads planners.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response employs area-weighted polygon clipping and relative deviation scores (rather than raw volumetric metrics), allowing contrast across 56 blocks while preserving native hydrogeological descriptors.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/spatialAggregation.test.ts</code> (Spherical polygon area clipping). Remaining limitations: Fractured crystalline rock requires localized pump tests to determine true specific yield.
+                </p>
               </div>
             </article>
 
             {/* Gap A3 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Research Gap 3</span>
-                <span className="text-xs font-semibold text-amber-800">Status: Research Only</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Groundwater Forecasting and Rigorous Baseline Evaluation
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Many predictive ML models published in literature report high R² scores without comparing against simple persistence baselines (predicting last year&apos;s same-season depth) or holding out recent years, creating temporal data leakage.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Research Gap 3</span>
+                  <span className="font-medium text-text-muted">Status: Research Only</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    QuantileGB-v2.0 produces P10, P50 and P90 depth values. Each projection is shown beside persistence baselines. Benchmark results are provisional and do not show that the model outperforms the baselines.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Groundwater Forecasting and Rigorous Baseline Evaluation
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Baseline and temporal-leakage checks exist in <code>tests_py/</code>; they test code behaviour, not forecast accuracy</span>
-                <span><strong>6. Remaining Limitations:</strong> Model intervals are uncalibrated for statutory drought relief decrees; strictly flagged RESEARCH_ONLY.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Many predictive ML models published in literature report high R² scores without comparing against simple persistence baselines (predicting last year&apos;s same-season depth) or holding out recent years, creating temporal data leakage.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: QuantileGB-v2.0 produces P10, P50 and P90 depth values. Each projection is shown beside persistence baselines. Benchmark results are provisional and do not show that the model outperforms the baselines.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Baseline and temporal-leakage checks exist in <code>tests_py/</code>; they test code behaviour, not forecast accuracy. Remaining limitations: Model intervals are uncalibrated for statutory drought relief decrees; strictly flagged RESEARCH_ONLY.
+                </p>
               </div>
             </article>
 
             {/* Gap A4 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Research Gap 4</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Handling Missing Observations and Telemetric Transmission Dropouts
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Real-world DWLR loggers suffer power loss, sensor fouling, and cellular dead zones. Standard data tools either drop missing periods or impute zeros, distorting groundwater depletion trends.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Research Gap 4</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Database mappers preserve null values explicitly. Charts display broken lines across missing dates with honest data-gap flags instead of interpolated values.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Handling Missing Observations and Telemetric Transmission Dropouts
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/noHardcodedFallback.test.ts</code> (Zero false data points)</span>
-                <span><strong>6. Remaining Limitations:</strong> Extended dropouts (&gt;6 months) limit the statistical power of short-term trend slope calculations.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Real-world DWLR loggers suffer power loss, sensor fouling, and cellular dead zones. Standard data tools either drop missing periods or impute zeros, distorting groundwater depletion trends.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Database mappers preserve null values explicitly. Charts display broken lines across missing dates with honest data-gap flags instead of interpolated values.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/noHardcodedFallback.test.ts</code> (Zero false data points). Remaining limitations: Extended dropouts (&gt;6 months) limit the statistical power of short-term trend slope calculations.
+                </p>
               </div>
             </article>
 
             {/* Gap A5 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Research Gap 5</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Interpretable Multi-Signal Indicators for Decision Support
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Complex hydrogeological metrics (specific capacity, transmissivity, drawdown curves) are incomprehensible to non-technical panchayat heads and local administrators.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Research Gap 5</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Formulates the Groundwater Stress Score (GSS, 0–100) into intuitive tiers (Severe, Watch, Normal) with transparent factor breakdowns and bilingual advisories.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Interpretable Multi-Signal Indicators for Decision Support
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/scientificEngine.test.ts</code> (Multi-criteria formula verification)</span>
-                <span><strong>6. Remaining Limitations:</strong> GSS is a descriptive diagnostic indicator; human review is required before statutory enforcement.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Complex hydrogeological metrics (specific capacity, transmissivity, drawdown curves) are incomprehensible to non-technical panchayat heads and local administrators.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Formulates the Groundwater Stress Score (GSS, 0–100) into intuitive tiers (Severe, Watch, Normal) with transparent factor breakdowns and bilingual advisories.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/scientificEngine.test.ts</code> (Multi-criteria formula verification). Remaining limitations: GSS is a descriptive diagnostic indicator; human review is required before statutory enforcement.
+                </p>
               </div>
             </article>
           </div>
@@ -762,149 +780,124 @@ export default function LandingPage() {
 
         {/* TAB CONTENT: CATEGORY B - SOFTWARE & ENGINEERING GAPS */}
         {activeTab === 'software' && (
-          <div className="space-y-8">
+          <div className="space-y-8 max-w-4xl">
             {/* Gap B1 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Software Gap 1</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Unified Ingestion of Heterogeneous Government Data Feeds
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Public water datasets use incompatible schemas, CRS projections (EPSG:4326 vs UTM), date formats, and naming conventions (e.g. spelling variations of district and block names).
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Software Gap 1</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Built a canonical TypeScript data model (<code>BlockData</code>) with automated LGD code matching, coordinate validation, and unified JSON serialization.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Unified Ingestion of Heterogeneous Government Data Feeds
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/stage6TrustworthyMonitoring.test.ts</code> (Schema mappings)</span>
-                <span><strong>6. Remaining Limitations:</strong> Manual verification is required when local administrative re-districting changes block boundaries.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Public water datasets use incompatible schemas, CRS projections (EPSG:4326 vs UTM), date formats, and naming conventions (e.g. spelling variations of district and block names).
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Built a canonical TypeScript data model (<code>BlockData</code>) with automated LGD code matching, coordinate validation, and unified JSON serialization.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/stage6TrustworthyMonitoring.test.ts</code> (Schema mappings). Remaining limitations: Manual verification is required when local administrative re-districting changes block boundaries.
+                </p>
               </div>
             </article>
 
             {/* Gap B2 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Software Gap 2</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Coupled Retrieval, Ingestion, Inference, and Presentation Workflows
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Most research prototypes exist as disconnected Jupyter notebooks that never connect to a live database or user interface, preventing ongoing operational utility.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Software Gap 2</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    End-to-end integration: Python data ingestion pipelines load verified tables in PostgreSQL/PostGIS, which Next.js API routes serve directly to Leaflet maps and Recharts visuals.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Coupled Retrieval, Ingestion, Inference, and Presentation Workflows
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests_py/test_inference_pipeline.py</code> (End-to-end data flow)</span>
-                <span><strong>6. Remaining Limitations:</strong> Offline or air-gapped deployments require local Dockerized database containers.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Most research prototypes exist as disconnected Jupyter notebooks that never connect to a live database or user interface, preventing ongoing operational utility.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: End-to-end integration: Python data ingestion pipelines load verified tables in PostgreSQL/PostGIS, which Next.js API routes serve directly to Leaflet maps and Recharts visuals.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests_py/test_inference_pipeline.py</code> (End-to-end data flow). Remaining limitations: Offline or air-gapped deployments require local Dockerized database containers.
+                </p>
               </div>
             </article>
 
             {/* Gap B3 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Software Gap 3</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Transparent Provenance and Data Freshness Tracking
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Dashboards frequently show cached or years-old data with a "Live" label simply because the page was loaded today, misleading water authorities about data currency.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Software Gap 3</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Deployed the universal <code>FreshnessBadge</code> component across all routes, distinguishing observation date from ingestion timestamp, declaring source provider and limitations.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Transparent Provenance and Data Freshness Tracking
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>src/lib/data/freshness.ts</code> (Strict freshness taxonomy)</span>
-                <span><strong>6. Remaining Limitations:</strong> Upstream government telemetry feeds occasionally withhold update logs during portal maintenance.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Dashboards frequently show cached or years-old data with a "Live" label simply because the page was loaded today, misleading water authorities about data currency.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Deployed the universal <code>FreshnessBadge</code> component across all routes, distinguishing observation date from ingestion timestamp, declaring source provider and limitations.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>src/lib/data/freshness.ts</code> (Strict freshness taxonomy). Remaining limitations: Upstream government telemetry feeds occasionally withhold update logs during portal maintenance.
+                </p>
               </div>
             </article>
 
             {/* Gap B4 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Software Gap 4</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Strict Model Input Validation and Safe Degradation
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Machine learning endpoints often crash or output bogus predictions (e.g. negative water table depths) when presented with out-of-range sensor inputs or missing parameters.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Software Gap 4</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Inference route enforces hydrogeological bounds, caps predictions to 4 quarters, and fails closed with clear error messages rather than returning unvalidated numbers.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Strict Model Input Validation and Safe Degradation
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests_py/test_quantile_model.py</code> (Bound validation)</span>
-                <span><strong>6. Remaining Limitations:</strong> Unprecedented climate anomalies outside the training distribution widen forecast uncertainty.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Machine learning endpoints often crash or output bogus predictions (e.g. negative water table depths) when presented with out-of-range sensor inputs or missing parameters.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Inference route enforces hydrogeological bounds, caps predictions to 4 quarters, and fails closed with clear error messages rather than returning unvalidated numbers.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests_py/test_quantile_model.py</code> (Bound validation). Remaining limitations: Unprecedented climate anomalies outside the training distribution widen forecast uncertainty.
+                </p>
               </div>
             </article>
 
             {/* Gap B5 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Software Gap 5</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Consistent Cascading Filter Synchronization Across Modules
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Complex web apps often decouple page state: selecting a block on a map fails to filter corresponding tables or charts, forcing users to repeatedly re-enter selections.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Software Gap 5</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Synchronized URL parameter binding (<code>?block=id</code>) and cascading State → District → Block selection across Overview, GIS Explorer, Monitoring, and Risk Assessment.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Consistent Cascading Filter Synchronization Across Modules
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/routeRegression.test.ts</code> (183 node tests pass)</span>
-                <span><strong>6. Remaining Limitations:</strong> Browser back/forward navigation in deep filter chains requires standard URL preservation.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Complex web apps often decouple page state: selecting a block on a map fails to filter corresponding tables or charts, forcing users to repeatedly re-enter selections.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Synchronized URL parameter binding (<code>?block=id</code>) and cascading State → District → Block selection across Overview, GIS Explorer, Monitoring, and Risk Assessment.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/routeRegression.test.ts</code> (183 node tests pass). Remaining limitations: Browser back/forward navigation in deep filter chains requires standard URL preservation.
+                </p>
               </div>
             </article>
           </div>
@@ -912,153 +905,186 @@ export default function LandingPage() {
 
         {/* TAB CONTENT: CATEGORY C - PLATFORM GAPS */}
         {activeTab === 'platform' && (
-          <div className="space-y-8">
+          <div className="space-y-8 max-w-4xl">
             {/* Gap C1 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Platform Gap 1</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Unified Geographic Exploration in a Single Cohesive Interface
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Users currently have to consult ISRO Bhuvan for satellite imagery, India-WRIS for surface water bodies, and CGWB reports for piezometer tables, with no unified geographic visualization.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Platform Gap 1</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Provides a Leaflet-based GIS Explorer integrating block boundaries, depth contours, severity color coding, and station inspectors in one place.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Unified Geographic Exploration in a Single Cohesive Interface
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified on <code>/explorer</code> route across all 8 priority states</span>
-                <span><strong>6. Remaining Limitations:</strong> High-density vector layers require client-side tile optimization on low-bandwidth mobile devices.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Users currently have to consult ISRO Bhuvan for satellite imagery, India-WRIS for surface water bodies, and CGWB reports for piezometer tables, with no unified geographic visualization.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Provides a Leaflet-based GIS Explorer integrating block boundaries, depth contours, severity color coding, and station inspectors in one place.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified on <code>/explorer</code> route across all 10 active states. Remaining limitations: High-density vector layers require client-side tile optimization on low-bandwidth mobile devices.
+                </p>
               </div>
             </article>
 
             {/* Gap C2 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Platform Gap 2</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Explicit Boundary Between Empirical Ground Truth and ML Predictions
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Blurring the line between what was physically measured and what an algorithm projected can cause erroneous legal sanctions, improper crop advisories, or panic.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Platform Gap 2</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Strict labeling across all pages: Physical well observations carry exact observation dates and DWLR tags; machine learning inferences are explicitly stamped RESEARCH_ONLY.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Explicit Boundary Between Empirical Ground Truth and ML Predictions
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/stage5ClaimsAndSafety.test.ts</code> (Zero false claims)</span>
-                <span><strong>6. Remaining Limitations:</strong> Requires continuous user education so village committees understand probabilistic bounds.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Blurring the line between what was physically measured and what an algorithm projected can cause erroneous legal sanctions, improper crop advisories, or panic.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Strict labeling across all pages: Physical well observations carry exact observation dates and DWLR tags; machine learning inferences are explicitly stamped RESEARCH_ONLY.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/stage5ClaimsAndSafety.test.ts</code> (Zero false claims). Remaining limitations: Requires continuous user education so village committees understand probabilistic bounds.
+                </p>
               </div>
             </article>
 
             {/* Gap C3 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Platform Gap 3</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Visibility into Geographic Observation Gaps and Sensor Distribution
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Many platforms imply uniform national coverage when in reality vast regions have zero automated telemetric wells, creating a false impression of comprehensive monitoring.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Platform Gap 3</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Distinguishes the 8 active focus states from telemetry-pending states; blocks without active sensors display explicit "Data Gap" flags instead of simulated numbers.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Visibility into Geographic Observation Gaps and Sensor Distribution
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests/nationalContrast.test.ts</code> (Honest data tags)</span>
-                <span><strong>6. Remaining Limitations:</strong> Remote northeastern states (Meghalaya, Tripura) currently rely on baseline synchronizations pending DWLR rollouts.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Many platforms imply uniform national coverage when in reality vast regions have zero automated telemetric wells, creating a false impression of comprehensive monitoring.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Distinguishes the 8 active focus states from telemetry-pending states; blocks without active sensors display explicit "Data Gap" flags instead of simulated numbers.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests/nationalContrast.test.ts</code> (Honest data tags). Remaining limitations: Remote northeastern states (Meghalaya, Tripura) currently rely on baseline synchronizations pending DWLR rollouts.
+                </p>
               </div>
             </article>
 
             {/* Gap C4 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Platform Gap 4</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Direct Path from Monitoring to Targeted Recharge Interventions
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    Monitoring data is useless if it does not inform action. Planners need specific hydrogeological recommendations matched to local soil and rainfall conditions.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Platform Gap 4</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Integrates an intervention catalog linking identified stress in a block to suitable interventions (percolation tanks, check dams, injection shafts) with Atal Bhujal Yojana guidelines.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Direct Path from Monitoring to Targeted Recharge Interventions
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified on <code>/interventions</code> route</span>
-                <span><strong>6. Remaining Limitations:</strong> Detailed engineering designs and cost estimates require site-specific soil infiltration tests.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  Monitoring data is useless if it does not inform action. Planners need specific hydrogeological recommendations matched to local soil and rainfall conditions.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Integrates an intervention catalog linking identified stress in a block to suitable interventions (percolation tanks, check dams, injection shafts) with Atal Bhujal Yojana guidelines.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified on <code>/interventions</code> route. Remaining limitations: Detailed engineering designs and cost estimates require site-specific soil infiltration tests.
+                </p>
               </div>
             </article>
 
             {/* Gap C5 */}
             <article className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Platform Gap 5</span>
-                <span className="text-xs font-semibold text-emerald-800">Status: Implemented</span>
-              </div>
-              <h3 className="text-base font-bold text-text-main">
-                Open Architecture for Future Ingestion of IoT and Springshed Telemetry
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">1. The Problem & 2. Why It Matters:</p>
-                  <p className="text-text-muted">
-                    State water boards are rolling out new telemetric sensors, community rain gauges, and springshed loggers that existing legacy platforms cannot ingest without full rewrites.
-                  </p>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold uppercase tracking-wider text-primary">Platform Gap 5</span>
+                  <span className="font-medium text-text-muted">Status: Implemented</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-text-main">3. JAL DRISHTI&apos;s Existing Response:</p>
-                  <p className="text-text-muted">
-                    Modular API schema and extensible database mappers accommodate additional sensors (including northeastern springshed data) without breaking API contracts.
-                  </p>
-                </div>
+                <h3 className="dbim-heading-3 text-text-main">
+                  Open Architecture for Future Ingestion of IoT and Springshed Telemetry
+                </h3>
               </div>
-              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
-                <span><strong>4. Evidence & 5. Status:</strong> Verified via <code>tests_py/test_springshed_engine.py</code></span>
-                <span><strong>6. Remaining Limitations:</strong> Standardized transmission protocols (MQTT/CoAP) vary across state vendor contracts.</span>
+              <div className="space-y-2.5 text-text-muted">
+                <p className="dbim-paragraph leading-relaxed">
+                  State water boards are rolling out new telemetric sensors, community rain gauges, and springshed loggers that existing legacy platforms cannot ingest without full rewrites.
+                </p>
+                <p className="dbim-paragraph leading-relaxed">
+                  JAL DRISHTI&apos;s verified response: Modular API schema and extensible database mappers accommodate additional sensors (including northeastern springshed data) without breaking API contracts.
+                </p>
+                <p className="dbim-paragraph leading-relaxed text-xs">
+                  Evidence and status: Verified via <code>tests_py/test_springshed_engine.py</code>. Remaining limitations: Standardized transmission protocols (MQTT/CoAP) vary across state vendor contracts.
+                </p>
               </div>
             </article>
           </div>
         )}
+          </div>
+
+          {/* Right Column: Dynamic Architectural Flowchart & Schema Diagram */}
+          <div className="lg:col-span-5 sticky top-20">
+            <figure className="space-y-3 p-3 bg-surface-alt/40 border border-border rounded">
+              {activeTab === 'research' && (
+                <>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded border border-border/80 bg-surface">
+                    <Image
+                      src="/images/evidence_gap_analysis_infographic.jpg"
+                      alt="Hydrogeological Multi-Sensor Coupling Architecture Diagram"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                    />
+                  </div>
+                  <figcaption className="text-xs text-text-muted leading-relaxed">
+                    <span className="font-semibold text-text-main">Figure 6.1: Multi-Sensor Coupling Framework.</span> Synchronizing point-scale DWLR piezometers (mbgl), NASA GRACE-FO gravimetric anomalies (cm w.e.), and IMD 30-year gridded rainfall baselines.
+                  </figcaption>
+                </>
+              )}
+
+              {activeTab === 'software' && (
+                <>
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded border border-border/80 bg-surface">
+                    <Image
+                      src="/images/category_b_software_pipeline_flowchart.jpg"
+                      alt="Deterministic PostGIS and Row-Level Security Processing Flowchart"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                    />
+                  </div>
+                  <figcaption className="text-xs text-text-muted leading-relaxed">
+                    <span className="font-semibold text-text-main">Figure 6.2: Data Ingestion &amp; Row-Level Security Pipeline.</span> Raw ingestion validation, polygon containment matching, atomic cache invalidation, and strict tenant access isolation.
+                  </figcaption>
+                </>
+              )}
+
+              {activeTab === 'platform' && (
+                <>
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded border border-border/80 bg-surface">
+                    <Image
+                      src="/images/category_c_platform_governance_flowchart.jpg"
+                      alt="Multi-Tier Platform Governance and Intervention Flowchart"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                    />
+                  </div>
+                  <figcaption className="text-xs text-text-muted leading-relaxed">
+                    <span className="font-semibold text-text-main">Figure 6.3: Administrative Governance &amp; Action Verification.</span> Seamless escalation pathway from DWLR telemetry alert to Gram Panchayat participatory ground-validation and structural intervention deployment.
+                  </figcaption>
+                </>
+              )}
+            </figure>
+          </div>
+        </div>
 
         {/* Primary Scientific References (Unboxed Editorial) */}
         <div className="pt-6 border-t border-border space-y-2 text-xs">
@@ -1186,92 +1212,112 @@ export default function LandingPage() {
             Geographic Scope
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            National Ambition & Eight Priority Focus States
+            National Ambition &amp; Ten Target Scope States
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            While JAL DRISHTI is architected for pan-India scalability, actual verified monitoring density, DWLR telemetry integration, and model artifacts currently operate across eight priority states.
+            While JAL DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across ten target states grouped into four hydrologic regions.
           </p>
         </div>
 
-        {/* Open 4-Column Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 border-t border-border pt-6">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Madhya Pradesh</span>
-              <span className="text-xs font-semibold text-emerald-700">● DWLR Live</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Central basalt plateau & hard-rock crystalline aquifers. Critical monitoring in Tikamgarh and Chhatarpur districts.
+        {/* Clean DBIM Subheadings & Readable Flowing Paragraphs (Balanced 2-Column Responsive Grid) */}
+        <div className="border-t border-border pt-6 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Madhya Pradesh (Central India)</span>
+              <span className="text-xs font-normal text-text-muted">DWLR Live</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Central basalt plateau &amp; hard-rock crystalline aquifers. Critical monitoring in Tikamgarh, Chhatarpur, and Gwalior districts.
             </p>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Karnataka</span>
-              <span className="text-xs font-semibold text-emerald-700">● Telemetry Active</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Western Ghats peripheral recharge & hard-rock granitic aquifers. Monitored blocks in Shivamogga and Davanagere.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Karnataka (South India)</span>
+              <span className="text-xs font-normal text-text-muted">Telemetry Active</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Western Ghats peripheral recharge &amp; hard-rock granitic aquifers. Monitored blocks in Shivamogga and Davanagere.
             </p>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Punjab</span>
-              <span className="text-xs font-semibold text-emerald-700">● DWLR Live</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Intensive agricultural irrigation belts; high over-exploitation stage and deep tube-well extraction.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Telangana (South India)</span>
+              <span className="text-xs font-normal text-text-muted">Telemetry Active</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Godavari &amp; Krishna basalt/granitic plateau; empirical observation in Adilabad, Nizamabad, and peri-urban Hyderabad (Ranga Reddy).
             </p>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Rajasthan</span>
-              <span className="text-xs font-semibold text-emerald-700">● DWLR Live</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Arid & semi-arid hard rock and deep sandstone aquifers characterized by acute depletion.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Tamil Nadu (South India)</span>
+              <span className="text-xs font-normal text-text-muted">Telemetry Active</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Coastal alluvium and Noyyal hard-rock basins; automated DWLR stations in Thoothukudi, Tirunelveli, and Coimbatore.
             </p>
           </div>
 
-          <div className="space-y-2 border-t border-border/60 pt-4">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Haryana</span>
-              <span className="text-xs font-semibold text-emerald-700">● DWLR Live</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Western alluvial tracts with heavy groundwater draft and localized saline intrusion zones.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Rajasthan (North India)</span>
+              <span className="text-xs font-normal text-text-muted">DWLR Live</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Arid &amp; semi-arid hard rock and deep sandstone aquifers characterized by acute depletion across Jodhpur, Nagaur, and Jaipur tracts.
             </p>
           </div>
 
-          <div className="space-y-2 border-t border-border/60 pt-4">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Assam</span>
-              <span className="text-xs font-semibold text-amber-700">● Baseline Synced</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Brahmaputra alluvial floodplains; shallow water tables with seasonal monsoonal recharge dynamics.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Haryana (North India)</span>
+              <span className="text-xs font-normal text-text-muted">DWLR Live</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Western alluvial tracts with heavy agricultural draft and localized saline intrusion zones in Kurukshetra and Kaithal.
             </p>
           </div>
 
-          <div className="space-y-2 border-t border-border/60 pt-4">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Meghalaya</span>
-              <span className="text-xs font-semibold text-amber-700">● Baseline Synced</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Hilly karst and fractured sandstone springsheds; high annual rainfall with rapid post-monsoon runoff.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Punjab (North India)</span>
+              <span className="text-xs font-normal text-text-muted">DWLR Live</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Intensive agricultural irrigation belts; high over-exploitation stage and deep tube-well extraction in Sangrur and Ludhiana.
             </p>
           </div>
 
-          <div className="space-y-2 border-t border-border/60 pt-4">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-text-main text-sm">Telangana</span>
-              <span className="text-xs font-semibold text-emerald-700">● Telemetry Active</span>
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">
-              Godavari & Krishna basalt/granitic plateau; monitoring across Hyderabad and Nalgonda agricultural zones.
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Assam (Northeast India)</span>
+              <span className="text-xs font-normal text-text-muted">Baseline Synced</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Brahmaputra alluvial floodplains; shallow water tables with seasonal monsoonal recharge dynamics in Kamrup and Sonitpur.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Meghalaya (Northeast India)</span>
+              <span className="text-xs font-normal text-text-muted">Baseline Synced</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Hilly karst and fractured sandstone springsheds; high annual precipitation with rapid post-monsoon runoff in East Khasi Hills and Ri Bhoi.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
+              <span>Tripura (Northeast India)</span>
+              <span className="text-xs font-normal text-text-muted">Telemetry Active</span>
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Synclinal valley alluvium with high baseflow retention; telemetric station tracking in Gomati, West Tripura, and Dhalai districts.
             </p>
           </div>
         </div>
@@ -1328,28 +1374,40 @@ export default function LandingPage() {
       {/* --------------------------------------------------------------------------- */}
       {/* SECTION 10: SCIENTIFIC TRANSPARENCY */}
       {/* --------------------------------------------------------------------------- */}
-      <section className="border-l-4 border-primary bg-subtle p-6 sm:p-8 space-y-4 rounded-r">
-        <div className="flex items-center gap-2">
-          <ShieldCheckIcon className="w-5 h-5 text-primary" />
-          <h2 className="text-base font-bold text-text-main">Scientific Transparency & Operational Safeguards</h2>
+      <section className="space-y-6 max-w-4xl border-t border-border pt-8">
+        <div className="space-y-1">
+          <h2 className="dbim-heading-2 text-text-main">
+            Scientific Transparency &amp; Operational Safeguards
+          </h2>
+          <p className="dbim-caption text-text-muted">
+            Methodological boundaries and operational protocols
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-text-muted leading-relaxed pt-2">
-          <div className="space-y-1.5">
-            <h3 className="font-bold text-text-main">No Automated Statutory Decisions</h3>
-            <p>
+        <div className="space-y-5">
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              No Automated Statutory Decisions
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
               Predictive forecasts and GSS scores are informational research indicators. They cannot be used as the sole legal basis for well drilling bans or drought emergency relief without field piezometer inspection.
             </p>
           </div>
-          <div className="space-y-1.5">
-            <h3 className="font-bold text-text-main">Satellite Resolution Disclosures</h3>
-            <p>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              Satellite Resolution Disclosures
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
               NASA GRACE-FO measures mass variations over ~100 km grid footprints. Downscaled trends do not guarantee local village-scale accuracy and must not be treated as direct well observations.
             </p>
           </div>
-          <div className="space-y-1.5">
-            <h3 className="font-bold text-text-main">Missing Data Integrity</h3>
-            <p>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              Missing Data Integrity
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
               When telemetry stations experience transmission dropouts, values are preserved as nulls. The platform never fabricates measurements to create visually continuous charts.
             </p>
           </div>

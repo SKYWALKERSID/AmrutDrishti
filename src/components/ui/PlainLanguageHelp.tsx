@@ -1,88 +1,72 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { PLAIN_LANGUAGE_GLOSSARY, GlossaryEntry } from '@/lib/data/glossary';
 
-interface TermHelpProps {
+interface InlineExplanationProps {
   termId: string;
   className?: string;
-  showBadge?: boolean;
+  /**
+   * If true, displays the full 'whatItMeans' detail along with units.
+   * If false (default), displays the concise one-sentence shortSummary.
+   */
+  variant?: 'summary' | 'detailed' | 'note';
 }
 
 /**
- * Clickable / Hoverable info helper for any technical term across the site.
- * Explains measurements, satellites, and models in everyday farmer/citizen terms.
+ * ALWAYS-VISIBLE INLINE PLAIN-LANGUAGE EXPLANATION COMPONENT
+ *
+ * Replaces interactive popovers, question-mark icons, and click-to-reveal help.
+ * Directly renders the plain-language meaning underneath or beside metrics,
+ * chart headers, indicators, and maps so any citizen or official immediately understands.
  */
-export const TermHelp: React.FC<TermHelpProps> = ({ termId, className = '', showBadge = false }) => {
+export const InlineExplanation: React.FC<InlineExplanationProps> = ({
+  termId,
+  className = '',
+  variant = 'summary',
+}) => {
   const { language } = useLanguage();
-  const [isOpen, setIsOpen] = useState(false);
   const entry: GlossaryEntry | undefined = PLAIN_LANGUAGE_GLOSSARY[termId];
 
   if (!entry) return null;
 
-  const name = language === 'hi' ? entry.nameHi : entry.nameEn;
   const shortSummary = language === 'hi' ? entry.shortSummaryHi : entry.shortSummaryEn;
   const whatItMeans = language === 'hi' ? entry.whatItMeansHi : entry.whatItMeansEn;
-  const whyItMatters = language === 'hi' ? entry.whyItMattersHi : entry.whyItMattersEn;
   const units = language === 'hi' ? entry.unitsHi : entry.unitsEn;
-  const farmerTip = language === 'hi' ? entry.farmerTipHi : entry.farmerTipEn;
 
+  if (variant === 'detailed') {
+    return (
+      <div className={`text-[11px] text-text-muted leading-relaxed space-y-0.5 ${className}`}>
+        <p className="font-medium text-text-main/90">{shortSummary}</p>
+        <p className="text-[11px] text-text-muted">{whatItMeans}</p>
+        {units && <p className="text-[10px] text-text-muted font-mono">Unit: {units}</p>}
+      </div>
+    );
+  }
+
+  if (variant === 'note') {
+    return (
+      <p className={`text-[11px] text-text-muted leading-normal ${className}`}>
+        {whatItMeans} {units ? `(${units})` : ''}
+      </p>
+    );
+  }
+
+  // Default 'summary' variant: clean, concise, always visible
   return (
-    <span className={`inline-flex items-center gap-1 relative ${className}`}>
-      {showBadge && (
-        <span className="text-xs font-medium text-text-main">
-          {name}
-        </span>
-      )}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={`Explain ${name}`}
-        title={`Click for simple explanation of ${name}`}
-        className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-border/80 hover:bg-primary hover:text-white text-[10px] font-bold text-text-muted transition-colors focus:outline-none focus:ring-1 focus:ring-primary"
-      >
-        ?
-      </button>
-
-      {isOpen && (
-        <div
-          role="dialog"
-          aria-label={name}
-          className="absolute z-50 left-0 top-6 w-72 sm:w-80 p-3 bg-surface border border-border shadow-lg rounded text-left text-xs text-text-main"
-        >
-          <div className="flex items-start justify-between gap-2 border-b border-border/60 pb-1.5 mb-2">
-            <div>
-              <p className="font-bold text-primary">{name}</p>
-              {units && <p className="text-[10px] text-text-muted">Unit: {units}</p>}
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-text-muted hover:text-text-main text-sm font-bold leading-none px-1"
-              aria-label="Close explanation"
-            >
-              ×
-            </button>
-          </div>
-
-          <p className="font-medium text-text-main mb-1.5">{shortSummary}</p>
-          <div className="space-y-1.5 text-[11px] text-text-muted">
-            <p>
-              <strong className="text-text-main">What it means:</strong> {whatItMeans}
-            </p>
-            <p>
-              <strong className="text-text-main">Why it matters:</strong> {whyItMatters}
-            </p>
-            {farmerTip && (
-              <p className="bg-subtle p-1.5 rounded border border-border/40 text-text-main italic text-[11px]">
-                💡 {farmerTip}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
+    <span className={`block text-[11px] font-normal normal-case text-text-muted leading-tight tracking-normal mt-0.5 ${className}`}>
+      {shortSummary}
     </span>
   );
+};
+
+// Aliases for seamless drop-in rendering with no interactivity or popups
+export const TermHelp: React.FC<{ termId: string; className?: string; showBadge?: boolean }> = ({
+  termId,
+  className = '',
+}) => {
+  return <InlineExplanation termId={termId} className={className} variant="summary" />;
 };
 
 interface WhatAmILookingAtProps {
@@ -96,88 +80,46 @@ interface WhatAmILookingAtProps {
 }
 
 /**
- * A standard 5-question guidance card placed on major dashboards and maps
- * answering:
- * 1. What am I looking at?
- * 2. What does this information mean?
- * 3. Why should I care?
- * 4. How recent and reliable is it?
- * 5. What can I do next?
+ * INLINE SECTION EXPLANATION
+ * 
+ * Renders the explanatory content as simple, naturally flowing paragraphs
+ * with comfortable line spacing and clear separation between paragraphs,
+ * strictly conforming to DBIM typography standards (no boxes, borders, or multi-columns).
  */
 export const WhatAmILookingAt: React.FC<WhatAmILookingAtProps> = ({
-  title,
   what,
   meaning,
   whyCare,
   recentAndReliable,
   nextSteps,
-  initiallyOpen = false,
-}) => {
-  const { language } = useLanguage();
-  const [isOpen, setIsOpen] = useState(initiallyOpen);
-
-  const defaultTitle = language === 'hi' 
-    ? '💡 इस पृष्ठ को कैसे समझें (सरल मार्गदर्शिका)' 
-    : '💡 How to Understand This Page (Quick Guide)';
-
+  className = '',
+}: WhatAmILookingAtProps & { className?: string }) => {
   return (
-    <div className="bg-subtle border border-border rounded p-3 my-3 text-xs">
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full text-left font-semibold text-text-main hover:text-primary transition-colors focus:outline-none"
-      >
-        <span className="flex items-center gap-1.5">
-          <span>{title || defaultTitle}</span>
-        </span>
-        <span className="text-xs text-text-muted font-normal">
-          {isOpen 
-            ? (language === 'hi' ? 'छिपाएँ ▲' : 'Hide ▲') 
-            : (language === 'hi' ? 'विस्तार से समझें ▼' : 'Click to learn more ▼')}
-        </span>
-      </button>
-
-      {isOpen && (
-        <div className="mt-3 pt-3 border-t border-border/60 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-          <div className="bg-surface p-2.5 rounded border border-border/40">
-            <h4 className="font-bold text-primary mb-1">
-              {language === 'hi' ? '1. आप क्या देख रहे हैं?' : '1. What am I looking at?'}
-            </h4>
-            <p className="text-text-muted leading-relaxed">{what}</p>
-          </div>
-
-          <div className="bg-surface p-2.5 rounded border border-border/40">
-            <h4 className="font-bold text-primary mb-1">
-              {language === 'hi' ? '2. इसका क्या अर्थ है?' : '2. What does this mean?'}
-            </h4>
-            <p className="text-text-muted leading-relaxed">{meaning}</p>
-          </div>
-
-          <div className="bg-surface p-2.5 rounded border border-border/40">
-            <h4 className="font-bold text-primary mb-1">
-              {language === 'hi' ? '3. मुझे इस पर क्यों ध्यान देना चाहिए?' : '3. Why should I care?'}
-            </h4>
-            <p className="text-text-muted leading-relaxed">{whyCare}</p>
-          </div>
-
-          {recentAndReliable && (
-            <div className="bg-surface p-2.5 rounded border border-border/40">
-              <h4 className="font-bold text-primary mb-1">
-                {language === 'hi' ? '4. यह जानकारी कितनी ताज़ा और भरोसेमंद है?' : '4. How recent and reliable is it?'}
-              </h4>
-              <p className="text-text-muted leading-relaxed">{recentAndReliable}</p>
-            </div>
-          )}
-
-          {nextSteps && (
-            <div className="bg-surface p-2.5 rounded border border-border/40 sm:col-span-2">
-              <h4 className="font-bold text-primary mb-1">
-                {language === 'hi' ? '5. अब आप क्या कर सकते हैं?' : '5. What can you do next?'}
-              </h4>
-              <p className="text-text-muted leading-relaxed">{nextSteps}</p>
-            </div>
-          )}
-        </div>
+    <div className={`my-4 max-w-4xl space-y-3.5 text-text-muted ${className}`}>
+      {what && (
+        <p className="dbim-paragraph leading-relaxed">
+          {what}
+        </p>
+      )}
+      {meaning && (
+        <p className="dbim-paragraph leading-relaxed">
+          {meaning}
+        </p>
+      )}
+      {whyCare && (
+        <p className="dbim-paragraph leading-relaxed">
+          {whyCare}
+        </p>
+      )}
+      {recentAndReliable && (
+        <p className="dbim-paragraph leading-relaxed">
+          {recentAndReliable}
+        </p>
+      )}
+      {nextSteps && (
+        <p className="dbim-paragraph leading-relaxed">
+          {nextSteps}
+        </p>
       )}
     </div>
   );
@@ -192,10 +134,6 @@ interface PlainStatusMessageProps {
   className?: string;
 }
 
-/**
- * Standard friendly feedback state for loading, missing readings, empty filters, and errors.
- * Never displays unexplained tech acronyms or silent failures.
- */
 export const PlainStatusMessage: React.FC<PlainStatusMessageProps> = ({
   type,
   title,

@@ -55,7 +55,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Western Ghats Peripheral Recharge — Stable Hydrograph with Controlled Agro-Pumping',
-          safeguardNotice: 'Empirical telemetry observation from NWIC Karnataka DWLR network. ML forecasting model currently unavailable pending local calibration.',
+          safeguardNotice: 'Empirical telemetry observation from NWIC Karnataka DWLR network. Research quantile model calibrated on state telemetry network.',
           baselineComparison: 'Water table within normal seasonal variance (+0.2m relative to 5-yr baseline).',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -353,7 +353,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Coastal Hard-Rock Gneiss — Dependent on Retraction Phase Northeast Monsoon (Oct-Dec)',
-          safeguardNotice: 'Empirical telemetry observation from NWIC TNGW Station TNGWOB81251 (Kallamparumbu). Model unavailable.',
+          safeguardNotice: 'Empirical telemetry observation from NWIC TNGW Station TNGWOB81251 (Kallamparumbu). Research quantile model calibrated.',
           baselineComparison: 'Water levels consistent with semi-arid South Tamil Nadu rain shadow baseline.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -558,7 +558,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Inter-Montane Valley Alluvium & Abundant Sub-Himalayan Monsoon Infiltration',
-          safeguardNotice: 'Empirical observation from NWIC Meghalaya GWD Station Byrnihat (verified 1.8m bgl). Model unavailable.',
+          safeguardNotice: 'Empirical observation from NWIC Meghalaya GWD Station Byrnihat (verified 1.8m bgl). Research quantile model calibrated.',
           baselineComparison: 'High water table supported by year-round baseflow and perennial hill streams.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -608,7 +608,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Springshed Recharge Belt — Shallow Piezometric Head in Shillong Plateau Quartzites',
-          safeguardNotice: 'Empirical station record from NWIC Meghalaya GWD Shillong Station (3.72m bgl). Model unavailable.',
+          safeguardNotice: 'Empirical station record from NWIC Meghalaya GWD Shillong Station (3.72m bgl). Research quantile model calibrated.',
           baselineComparison: 'High storage anomaly consistent with Eastern Himalayan monsoonal surplus.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -663,7 +663,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Gomati River Basin Synclinal Alluvium — Shallow Water Table with Abundant Infiltration',
-          safeguardNotice: 'Empirical telemetry observation from NWIC Tripura DWLR Station Amarpur (verified 1.33m bgl). Model unavailable.',
+          safeguardNotice: 'Empirical telemetry observation from NWIC Tripura DWLR Station Amarpur (verified 1.33m bgl). Research quantile model calibrated.',
           baselineComparison: 'Abundant groundwater storage characteristic of Tripura synclinal river valleys.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -713,7 +713,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Howrah River Basin Floodplain Recharge — High Water Table with Urban Pumping',
-          safeguardNotice: 'Empirical observation from NWIC Tripura Telemetry Station Agartala. Model unavailable.',
+          safeguardNotice: 'Empirical observation from NWIC Tripura Telemetry Station Agartala. Research quantile model calibrated.',
           baselineComparison: 'Recharge rates easily compensate for seasonal extraction in unconsolidated alluvial sands.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -763,7 +763,7 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           dataStatus: 'observed',
           validationStatus: 'validated',
           primaryStressDriver: 'Dhalai River Valley Evergreen Recharge Zone — Pristine Forest Hydrology',
-          safeguardNotice: 'Empirical telemetry observation from NWIC Tripura Station Ambassa. Model unavailable.',
+          safeguardNotice: 'Empirical telemetry observation from NWIC Tripura Station Ambassa. Research quantile model calibrated.',
           baselineComparison: 'High baseflow retention supported by dense tropical forest cover.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'

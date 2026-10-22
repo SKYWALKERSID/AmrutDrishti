@@ -39,7 +39,7 @@ export const SOURCE_CATALOG = {
     url: 'https://nwic.gov.in',
     cadence: 'Daily telemetry / Quarterly manual',
     typicalLagDays: 30,
-    scope: '8 Priority States (MP, UP, Punjab, Rajasthan, Haryana, Assam, Meghalaya, Arunachal Pradesh)',
+    scope: '10 Active States (Karnataka, Telangana, Tamil Nadu, MP, Rajasthan, Haryana, Punjab, Meghalaya, Assam, Tripura)',
     limitations: 'Station density varies by hydrogeological setting; irregular observation intervals preserved.',
   },
   grace_fo: {

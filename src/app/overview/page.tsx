@@ -171,7 +171,7 @@ export default function OverviewDashboard() {
       {/* 5-Question Guide Card: Making the Overview Page Self-Explanatory */}
       <WhatAmILookingAt
         title="💡 What am I looking at on this Overview page?"
-        what="A nationwide directory of all 60 monitored administrative blocks across 10 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts."
+        what="A nationwide directory of all 56 monitored administrative blocks across 10 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts."
         meaning="It highlights which regions have critically falling water levels (Severe Stress), moderate concerns (Watch), or stable conditions (Normal)."
         whyCare="Block development officers and district magistrates can immediately identify where emergency water tankers, crop advisories, or recharge structures will be needed."
         recentAndReliable="Observations are gathered from Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Last verified observation cutoff: October 2026."
@@ -197,7 +197,7 @@ export default function OverviewDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
           {/* KPI 1 */}
           <div className="py-2 sm:py-0 sm:px-4 first:sm:pl-0">
-            <div className="flex items-center gap-1">
+            <div>
               <span className="text-xs font-medium text-text-muted">{t('overview.monitoredBlocks', 'Monitored Blocks')}</span>
               <TermHelp termId="groundwater_stress_score" />
             </div>
@@ -221,7 +221,7 @@ export default function OverviewDashboard() {
 
           {/* KPI 2 */}
           <div className="py-2 sm:py-0 sm:px-4">
-            <div className="flex items-center gap-1">
+            <div>
               <span className="text-xs font-medium text-text-muted">{t('overview.graceAnomaly', 'GRACE TWSA Anomaly')}</span>
               <TermHelp termId="satellite_water_storage" />
             </div>
@@ -237,7 +237,7 @@ export default function OverviewDashboard() {
 
           {/* KPI 3 */}
           <div className="py-2 sm:py-0 sm:px-4">
-            <div className="flex items-center gap-1">
+            <div>
               <span className="text-xs font-medium text-text-muted">{t('overview.rainfallDeficit', 'IMD Monsoon Rainfall')}</span>
               <TermHelp termId="rainfall_anomaly" />
             </div>
@@ -253,7 +253,7 @@ export default function OverviewDashboard() {
 
           {/* KPI 4 */}
           <div className="py-2 sm:py-0 sm:px-4 last:sm:pr-0">
-            <div className="flex items-center gap-1">
+            <div>
               <span className="text-xs font-medium text-text-muted">{t('overview.wellDepth', 'Mean DWLR Well Depth')}</span>
               <TermHelp termId="well_depth" />
             </div>
@@ -366,36 +366,11 @@ export default function OverviewDashboard() {
                 <th className="py-2.5 px-3 text-left">State &amp; District</th>
                 <th className="py-2.5 px-3 text-left">Block Name</th>
                 <th className="py-2.5 px-3 text-left">Stress Severity</th>
-                <th className="py-2.5 px-3 text-right">
-                  <span className="inline-flex items-center gap-1">
-                    Descriptive GSS
-                    <TermHelp termId="groundwater_stress_score" />
-                  </span>
-                </th>
-                <th className="py-2.5 px-3 text-right">
-                  <span className="inline-flex items-center gap-1">
-                    Well Depth (m bgl)
-                    <TermHelp termId="well_depth" />
-                  </span>
-                </th>
-                <th className="py-2.5 px-3 text-right">
-                  <span className="inline-flex items-center gap-1">
-                    Projected Depth Q1 (m bgl)
-                    <TermHelp termId="groundwater_forecast" />
-                  </span>
-                </th>
-                <th className="py-2.5 px-3 text-right">
-                  <span className="inline-flex items-center gap-1">
-                    Rainfall Anomaly
-                    <TermHelp termId="rainfall_anomaly" />
-                  </span>
-                </th>
-                <th className="py-2.5 px-3 text-right">
-                  <span className="inline-flex items-center gap-1">
-                    GRACE TWSA
-                    <TermHelp termId="satellite_water_storage" />
-                  </span>
-                </th>
+                <th className="py-2.5 px-3 text-right">Descriptive GSS</th>
+                <th className="py-2.5 px-3 text-right">Well Depth (m bgl)</th>
+                <th className="py-2.5 px-3 text-right">Projected Depth Q1 (m bgl)</th>
+                <th className="py-2.5 px-3 text-right">Rainfall Anomaly</th>
+                <th className="py-2.5 px-3 text-right">GRACE TWSA</th>
                 <th className="py-2.5 px-3 text-right">Action</th>
               </tr>
             </thead>

@@ -5,8 +5,8 @@ import {
   NATIONAL_CONTRAST_DISTRICTS,
   STATE_CONTRAST_GROUPS
 } from '@/lib/data/nationalContrast';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS } from '@/lib/data/indiaStates';
-import { ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
+import { ACTIVE_TARGET_DISTRICTS, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
 import { BlockData, DistrictData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
 import Link from 'next/link';
@@ -97,7 +97,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
       blockMap.set(b.id, b);
     }
 
-    return ALL_NATIONWIDE_DISTRICTS.map(dist => {
+    return ACTIVE_TARGET_DISTRICTS.map(dist => {
       const canonicalState = normalizeStateName(dist.state);
       const updatedBlocks = dist.blocks.map(block => {
         const merged = blockMap.get(block.id);
@@ -115,7 +115,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     });
   }, [liveBlocksData]);
 
-  // Flattened pool of all 60 monitored blocks across the 10 target states
+  // Flattened pool of all 56 monitored blocks across the 10 target states
   const allBlocks = useMemo<BlockData[]>(() => {
     return allDistricts.flatMap(d => d.blocks);
   }, [allDistricts]);
@@ -272,7 +272,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               <MapPinIcon className="w-5 h-5 text-primary" /> {t('explorer.title', 'Explore the Map')}*
             </h1>
             <span aria-hidden="true">•</span>
-            <span>10 Monitored States (60 Blocks across 4 Regions)</span>
+            <span>10 Monitored States (56 Blocks across 4 Regions)</span>
             <span aria-hidden="true">•</span>
             <span>Observation Cutoff: 2026-10-12</span>
           </div>
@@ -379,7 +379,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
       {/* 5-Question Guide Card: Explaining the Map */}
       <WhatAmILookingAt
         title="💡 How do I read this Groundwater Map?"
-        what="An interactive GIS map displaying all 60 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators."
+        what="An interactive GIS map displaying all 56 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators."
         meaning="Blocks colored red have severe groundwater decline; amber blocks require close monitoring; green blocks have normal water conditions."
         whyCare="Visualizing regional patterns reveals clusters of rapid water drop across adjacent districts, helping authorities coordinate basin-level water management."
         recentAndReliable="Water levels come from Central Ground Water Board (CGWB) observation wells; rainfall from India Meteorological Department (IMD); and regional storage from NASA GRACE satellites."
@@ -636,55 +636,55 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                 </div>
 
                 {/* Key Indicators List - Clean, no cream background or borders */}
-                <div className="space-y-2.5 py-1">
-                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted inline-flex items-center gap-1">
-                      Well Depth:
-                      <TermHelp termId="well_depth" />
-                    </span>
-                    <span className="font-bold text-text-main shrink-0 ml-auto">
-                      {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
-                    </span>
+                <div className="space-y-3 py-1">
+                  <div>
+                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                      <span className="text-text-main font-medium">Well Depth:</span>
+                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                        {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-text-muted block">How deep you must dig or drill to reach water (meters below ground).</span>
                   </div>
 
-                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted inline-flex items-center gap-1">
-                      Rainfall Difference:
-                      <TermHelp termId="rainfall_anomaly" />
-                    </span>
-                    <span className="font-bold text-text-main shrink-0 ml-auto">
-                      {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
-                    </span>
+                  <div>
+                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                      <span className="text-text-main font-medium">Rainfall Difference:</span>
+                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                        {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-text-muted block">How much more or less rain fell compared to the long-term average.</span>
                   </div>
 
-                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted inline-flex items-center gap-1">
-                      Satellite Water Storage:
-                      <TermHelp termId="satellite_water_storage" />
-                    </span>
-                    <span className="font-bold text-text-main shrink-0 ml-auto">
-                      {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
-                    </span>
+                  <div>
+                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                      <span className="text-text-main font-medium">Satellite Water Storage:</span>
+                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                        {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-text-muted block">Regional water gain or loss measured from space (NASA GRACE gravity).</span>
                   </div>
 
-                  <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
-                    <span className="text-text-muted inline-flex items-center gap-1">
-                      Green Cover (Vegetation):
-                      <TermHelp termId="vegetation_greenness" />
-                    </span>
-                    <span className="font-bold text-text-main shrink-0 ml-auto">
-                      {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
-                    </span>
+                  <div>
+                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                      <span className="text-text-main font-medium">Green Cover (Vegetation):</span>
+                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                        {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-text-muted block">How green and healthy crops appear from satellite images (0.0 to 1.0).</span>
                   </div>
 
-                  <div className="flex justify-between items-center text-xs border-t border-border/80 pt-2 flex-wrap gap-1">
-                    <span className="text-text-muted font-semibold inline-flex items-center gap-1">
-                      Water Stress Score:
-                      <TermHelp termId="groundwater_stress_score" />
-                    </span>
-                    <span className="font-bold text-primary text-sm shrink-0 ml-auto">
-                      {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
-                    </span>
+                  <div className="border-t border-border/80 pt-2">
+                    <div className="flex justify-between items-center text-xs flex-wrap gap-1">
+                      <span className="text-text-main font-semibold">Water Stress Score:</span>
+                      <span className="font-bold text-primary text-sm shrink-0 ml-auto">
+                        {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-text-muted block">Overall 0-100 guide showing where water stress needs investigation.</span>
                   </div>
                 </div>
 
@@ -709,9 +709,8 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   return (
                     <div className="space-y-1.5 pt-2 border-t border-border/80" data-testid="map-inspector-ml-forecast">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-text-main inline-flex items-center gap-1">
+                        <span className="text-xs font-bold text-text-main">
                           {titleLabel}
-                          <TermHelp termId="ml_groundwater_forecast" />
                         </span>
                         {badgeLabel && (
                           <span className={`text-[10px] font-mono px-1.5 py-0.5 border ${
@@ -721,6 +720,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                           </span>
                         )}
                       </div>
+                      <TermHelp termId="ml_groundwater_forecast" />
                       {hasValidForecast && q1 ? (
                         <div className="space-y-1 text-xs">
                           <div className="flex justify-between items-center min-w-0">
