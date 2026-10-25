@@ -30,8 +30,8 @@ export const Footer: React.FC = () => {
             <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
               <Link href="/overview" className="hover:text-primary hover:underline">Overview</Link>
               <Link href="/explorer" className="hover:text-primary hover:underline">Map Explorer</Link>
-              <Link href="/monitoring" className="hover:text-primary hover:underline">Monitoring*</Link>
-              <Link href="/risk-assessment" className="hover:text-primary hover:underline">Risk &amp; Scoring**</Link>
+              <Link href="/monitoring" className="hover:text-primary hover:underline">Monitoring</Link>
+              <Link href="/risk-assessment" className="hover:text-primary hover:underline">Risk &amp; Scoring</Link>
               <Link href="/interventions" className="hover:text-primary hover:underline">Interventions</Link>
               <Link href="/alerts" className="hover:text-primary hover:underline">Alerts &amp; SMS (simulated)</Link>
               <Link href="/data-sources" className="hover:text-primary hover:underline">Data Sources</Link>
@@ -48,10 +48,10 @@ export const Footer: React.FC = () => {
                 <Link href="/" className="hover:text-primary hover:underline">Project Brief & Gaps</Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-primary hover:underline">Terms of Service (Draft)****</Link>
+                <Link href="/terms" className="hover:text-primary hover:underline">Terms of Service (Draft)</Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-primary hover:underline">Privacy Policy (Draft)****</Link>
+                <Link href="/privacy" className="hover:text-primary hover:underline">Privacy Policy (Draft)</Link>
               </li>
               <li className="pt-2 text-[11px] text-text-muted flex items-center gap-1.5">
                 <ShieldCheckIcon className="w-3.5 h-3.5 text-primary shrink-0" />

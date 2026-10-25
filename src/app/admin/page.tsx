@@ -220,7 +220,7 @@ export default function AdminPage() {
               <span>Telemetry: <strong className="text-text-main font-semibold">{lastCheckTime ? `Checked ${lastCheckTime}` : 'Active'}</strong></span>
             </div>
             <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-              {t('admin.title', 'System Administration Superuser Workspace')}*
+              {t('admin.title', 'System Administration Superuser Workspace')}
             </h1>
             <p className="mt-2 max-w-3xl text-xs sm:text-sm leading-relaxed text-text-muted">
               {t('admin.subtitle', 'Platform-wide administration interface for System Administrators with full access.')}

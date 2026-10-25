@@ -393,7 +393,7 @@ function RiskAssessmentContent() {
         <div>
           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-text-muted">
             <span className="font-semibold text-text-main">
-              Groundwater Assessment &amp; Model Governance*
+              Groundwater Assessment &amp; Model Governance
             </span>
             <span aria-hidden="true">•</span>
             <span>Descriptive Heuristic Baseline (0–100) &amp; ML Depth Forecasting (m bgl)</span>
@@ -401,7 +401,7 @@ function RiskAssessmentContent() {
             <span>Latest Observation: {selectedBlock?.indicators.lastUpdatedDate || '2026-10-12'}</span>
           </div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap mt-1">
-            {t('risk.title')}*
+            {t('risk.title')}
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
             {t('risk.subtitle')}
@@ -1139,7 +1139,7 @@ function RiskAssessmentContent() {
                     <p className="leading-relaxed text-[11px]">
                       This section displays the retrospective research baseline generated from historical CGWB quarterly measurements up to late 2023.
                       Model identifier: <span className="font-mono">GlobalBlockAwareQuantileGB-v1</span>.
-                      Observation origin: <strong className="font-mono">{forecastData?.observationDatesRange?.latest || '2023-11-01'}</strong>.
+                      Observation origin: <strong className="font-mono">{forecastData?.observationDatesRange?.latest || forecastData?.forecastOriginDate || 'Historical Archive'}</strong>.
                       This historical benchmark does NOT reflect current groundwater conditions or forward-looking telemetry.
                     </p>
                   </div>
@@ -1158,15 +1158,23 @@ function RiskAssessmentContent() {
                         </div>
                         <div>
                           <span className="text-[10px] uppercase font-semibold text-text-muted block">Archive Origin</span>
-                          <span className="font-medium text-text-main">{forecastData.observationDatesRange?.latest || '2023-11-01'}</span>
+                          <span className="font-medium text-text-main">{forecastData.observationDatesRange?.latest || forecastData.forecastOriginDate || 'Historical Archive'}</span>
                         </div>
                         <div>
                           <span className="text-[10px] uppercase font-semibold text-text-muted block">Model Status</span>
-                          <span className="font-medium text-text-main">Historical Research Prototype</span>
+                          <span className="font-medium text-text-main capitalize">
+                            {forecastData.modelStatus === 'unavailable'
+                              ? 'Unavailable'
+                              : forecastData.modelStatus === 'research_prototype'
+                              ? 'Research Prototype'
+                              : forecastData.modelStatus || 'Uncalibrated'}
+                          </span>
                         </div>
                         <div>
                           <span className="text-[10px] uppercase font-semibold text-text-muted block">Operational Use</span>
-                          <span className="font-medium text-text-muted">Prohibited (Historical Only)</span>
+                          <span className="font-medium text-text-muted">
+                            {forecastData.operationalEligibility ? 'Eligible' : 'Prohibited (Historical/Research Only)'}
+                          </span>
                         </div>
                       </div>
 

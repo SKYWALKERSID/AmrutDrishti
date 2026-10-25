@@ -15,6 +15,7 @@ export interface DltSmsPayload {
   recipientRole: string;
   messageText: string;
   language: 'hi' | 'en';
+  channel?: 'SMS' | 'WhatsApp';
   templateId?: string;
   blockName: string;
   districtName: string;

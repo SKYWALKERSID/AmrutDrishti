@@ -149,10 +149,10 @@ export default function OverviewDashboard() {
             <span>CGWB / NWIC / NASA JPL Feeds</span>
           </div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-            Groundwater Overview & Telemetry Status*
+            {t('overview.title', 'Groundwater Overview & Telemetry Status')}
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 max-w-3xl leading-relaxed">
-            Multi-source groundwater intelligence synthesizing verified Central Ground Water Board (CGWB) telemetry, NWIC feeds, IMD precipitation baselines, and satellite storage anomalies across nine monitored states in four project regions.
+            {t('overview.subtitle', 'Multi-source groundwater intelligence synthesizing verified Central Ground Water Board (CGWB) telemetry, NWIC feeds, IMD precipitation baselines, and satellite storage anomalies across nine monitored states in four project regions.')}
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">

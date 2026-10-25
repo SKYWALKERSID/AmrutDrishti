@@ -205,6 +205,9 @@ export const translations: Record<Language, Record<string, string>> = {
     'alerts.statusDelivered': 'प्रेषित (नमूना)',
     'alerts.noRealSent': 'कोई वास्तविक संदेश नहीं भेजा गया',
     'alerts.targetLabel': 'लक्ष्य',
+    'alerts.statusLabel': 'स्थिति',
+    'alerts.invalidPhone': 'कम से कम 10 अंकों का प्राप्तकर्ता फोन नंबर दर्ज करें।',
+    'alerts.dispatchFailed': 'सलाह संदेश प्रेषण दर्ज नहीं किया जा सका।',
     'alerts.integrationMode': 'एकीकरण मोड (Integration)',
     'alerts.simulatedAdapter': 'सिमुलेटेड एडाप्टर (साख लंबित)',
 
@@ -527,6 +530,9 @@ export const translations: Record<Language, Record<string, string>> = {
     'alerts.statusDelivered': 'DELIVERED',
     'alerts.noRealSent': 'no real message sent',
     'alerts.targetLabel': 'Target',
+    'alerts.statusLabel': 'Status',
+    'alerts.invalidPhone': 'Enter a recipient phone number containing at least 10 digits.',
+    'alerts.dispatchFailed': 'The advisory dispatch could not be recorded.',
     'alerts.integrationMode': 'Integration Mode',
     'alerts.simulatedAdapter': 'Simulated Adapter (Credentials Pending)',
 

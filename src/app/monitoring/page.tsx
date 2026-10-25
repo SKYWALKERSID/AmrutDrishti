@@ -761,7 +761,7 @@ interface RainfallChartPoint {
       <div className="border-b border-border pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-            {t('monitoring.title', 'Groundwater Monitoring & Trends')}*
+            {t('monitoring.title', 'Groundwater Monitoring & Trends')}
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 leading-relaxed">
             {t('monitoring.subtitle', 'Track verified groundwater telemetry and multi-source hydrological indicators.')}

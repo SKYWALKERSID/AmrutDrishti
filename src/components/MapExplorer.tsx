@@ -369,7 +369,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2 flex-wrap text-xs text-text-muted">
             <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-              <MapPinIcon className="w-5 h-5 text-primary" /> {t('explorer.title', 'Explore the Map')}*
+              <MapPinIcon className="w-5 h-5 text-primary" /> {t('explorer.title', 'Explore the Map')}
             </h1>
             <span aria-hidden="true">•</span>
             <span>9 Monitored States (43 Blocks across 4 Regions)</span>

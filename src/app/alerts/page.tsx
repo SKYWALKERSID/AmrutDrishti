@@ -152,6 +152,7 @@ function AlertsContent() {
           recipientPhone,
           recipientName,
           recipientRole,
+          channel: selectedChannel,
           messageText: generatedHindiText,
           language: 'hi',
           blockName: selectedBlock.name,
@@ -232,7 +233,7 @@ function AlertsContent() {
         <div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted mb-2">
             <span className="font-semibold text-text-main">
-              Advisory Dispatch Gateway*
+              Advisory Dispatch Gateway
             </span>
             <span aria-hidden="true">•</span>
             <span>Simulated Advisory Delivery Protocol</span>
@@ -240,7 +241,7 @@ function AlertsContent() {
             <span>DLT Template Compliance (Demonstration)</span>
           </div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-            <AlertTriangleIcon className="w-6 h-6 text-primary" /> {t('alerts.title')}*
+            <AlertTriangleIcon className="w-6 h-6 text-primary" /> {t('alerts.title')}
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 leading-relaxed">
             {t('alerts.subtitle')} No real SMS or WhatsApp message is sent.
@@ -304,7 +305,17 @@ function AlertsContent() {
                 ) : (
                   <select
                     value={selectedBlockId}
-                    onChange={(e) => setSelectedBlockId(e.target.value)}
+                    onChange={(e) => {
+                      const newId = e.target.value;
+                      setSelectedBlockId(newId);
+                      const targetB = blocksData.find((b: any) => b.id === newId);
+                      if (targetB) {
+                        if (recipientRole === 'bdo') setRecipientName(`BDO ${targetB.name}`);
+                        else if (recipientRole === 'district_collector') setRecipientName(`Collector ${targetB.districtName}`);
+                        else if (recipientRole === 'gram_pradhan') setRecipientName(`Gram Pradhan ${targetB.name}`);
+                        else if (recipientRole === 'jal_samiti') setRecipientName(`Jal Samiti (${targetB.name})`);
+                      }
+                    }}
                     className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   >
                     {blocksData.map((b: any) => (
@@ -321,7 +332,16 @@ function AlertsContent() {
                   <label className="font-semibold text-text-main">{t('alerts.recipientRole', 'Recipient Role:')}</label>
                   <select
                     value={recipientRole}
-                    onChange={(e) => setRecipientRole(e.target.value as UserRole)}
+                    onChange={(e) => {
+                      const newRole = e.target.value as UserRole;
+                      setRecipientRole(newRole);
+                      if (selectedBlock) {
+                        if (newRole === 'bdo') setRecipientName(`BDO ${selectedBlock.name}`);
+                        else if (newRole === 'district_collector') setRecipientName(`Collector ${selectedBlock.districtName}`);
+                        else if (newRole === 'gram_pradhan') setRecipientName(`Gram Pradhan ${selectedBlock.name}`);
+                        else if (newRole === 'jal_samiti') setRecipientName(`Jal Samiti (${selectedBlock.name})`);
+                      }
+                    }}
                     className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   >
                     <option value="district_collector">{t('role.district_collector', 'District Collector')}</option>
@@ -413,7 +433,13 @@ function AlertsContent() {
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-text-main">
-                        {t(`alerts.recipient.${notif.id === 'notif_001' ? 'collector' : notif.id === 'notif_002' ? 'bdo' : 'jalsamiti'}`, notif.recipientName)}
+                        {notif.id === 'notif_001'
+                          ? t('alerts.recipient.collector', notif.recipientName)
+                          : notif.id === 'notif_002'
+                          ? t('alerts.recipient.bdo', notif.recipientName)
+                          : notif.id === 'notif_003'
+                          ? t('alerts.recipient.jalsamiti', notif.recipientName)
+                          : notif.recipientName}
                       </span>
                       <span className="text-[11px] text-text-muted">({t(`role.${notif.recipientRole}`, notif.recipientRole.toUpperCase())})</span>
                       <span className="text-[11px] font-mono font-medium text-primary">

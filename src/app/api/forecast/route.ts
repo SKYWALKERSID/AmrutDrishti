@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ALL_NATIONWIDE_BLOCKS, CANONICAL_43_BLOCKS } from '@/lib/data/allNationwideBlocks';
 import readinessLedger from '../../../../audit/global_model_block_readiness.json';
 import { getObservationAgeInfo, isValidGlobalForecastResponse, invokeGlobalForecast, type GlobalModelRequest, type ModelInvocationFailure } from '@/lib/services/globalForecastBridge';
-import { computeObservationAge, type DataFreshnessStatus } from '@/lib/data/forecastIntegrity';
+import { computeObservationAge, getModelTrainingCutoff, KNOWN_TRAINING_CUTOFF, type DataFreshnessStatus } from '@/lib/data/forecastIntegrity';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 30;
@@ -81,8 +81,7 @@ const BLOCK_SLUG_TO_UNIT_ID: Record<string, string> = {
   '4032': '4032'
 };
 
-// Known training data cutoff: updated from 2023-08-20 (manual CGWB) to 2025-11-15 (NWIC DWLR Telemetry)
-const KNOWN_TRAINING_CUTOFF = '2025-11-15';
+
 
 type ReadinessRow = {
   block_id: string;
@@ -272,6 +271,17 @@ export async function GET(request: NextRequest) {
       if (liveFailure) limitations.push(`Live inference unavailable (${liveFailure}).`);
     }
 
+    // Determine horizon status and check whether target dates are in the past
+    const nowIso = new Date().toISOString().slice(0, 10);
+    const hasPastTargetDates = Array.isArray(forecast.forecasts) && forecast.forecasts.some((f) => f.targetDate && f.targetDate < nowIso);
+    let effectiveHorizonStatus: 'valid' | 'inconsistent_origin' | 'unverified' | 'stale_origin' = forecast.horizonStatus || 'valid';
+
+    if (hasPastTargetDates) {
+      effectiveHorizonStatus = 'stale_origin';
+      forecastEligibilityStatus = 'historical_research';
+      limitations.push('Forecast target dates have elapsed relative to current calendar date; served strictly as retrospective benchmark.');
+    }
+
     return NextResponse.json({
       ...forecast,
       forecastServingMode: servingMode,
@@ -279,7 +289,8 @@ export async function GET(request: NextRequest) {
       inferenceLatencyMs: servingMode === 'live_inference' ? invocation.latencyMs : null,
       generatedAt: servingMode === 'live_inference' && typeof served.generatedAt === 'string' ? served.generatedAt : forecast.generatedAt,
       operationalEligibility: false,
-      isDemonstrationData: isHistoricalOrigin,
+      isDemonstrationData: isHistoricalOrigin || hasPastTargetDates,
+      horizonStatus: effectiveHorizonStatus,
       dataAvailabilityMode,
       observationDatesRange,
       safeguardDisclaimer,
@@ -328,10 +339,11 @@ export async function GET(request: NextRequest) {
     const recordCreatedStr = rawPred.created_at || '';
 
     // Evaluate Provenance and Horizon Consistency:
-    // If training data ended on 2025-11-15, target date cannot be > 180 days after training cutoff
+    // Uses model-aware training cutoff (e.g. 2023-11-01 for CGWB global models, 2025-11-15 for telemetry)
+    const effectiveTrainingCutoff = getModelTrainingCutoff(rawPred.model_id);
     const isHorizonInconsistent = Boolean(
       targetDateStr &&
-      new Date(targetDateStr).getTime() - new Date(KNOWN_TRAINING_CUTOFF).getTime() > 180 * 24 * 60 * 60 * 1000
+      new Date(targetDateStr).getTime() - new Date(effectiveTrainingCutoff).getTime() > 180 * 24 * 60 * 60 * 1000
     );
 
     // If horizon or origin provenance is invalid, present honest unavailable state
@@ -352,7 +364,7 @@ export async function GET(request: NextRequest) {
         safeguardDisclaimer:
           'Scientific Audit Notice: Stored prediction target date is temporally decoupled from the underlying model training cutoff. Forecast record origin cannot be verified for the displayed horizon. Prediction is marked unavailable for operational use.',
         scientificAuditNotice:
-          `Horizon inconsistency detected: Observation data cutoff is ${KNOWN_TRAINING_CUTOFF}, but prediction record was created at ${recordCreatedStr.slice(0, 10)} projecting to ${targetDateStr}. Cannot serve temporal extrapolation as a calibrated forecast.`,
+          `Horizon inconsistency detected: Observation data cutoff for model ${rawPred.model_id || 'unspecified'} is ${effectiveTrainingCutoff}, but prediction record was created at ${recordCreatedStr.slice(0, 10)} projecting to ${targetDateStr}. Cannot serve temporal extrapolation as a calibrated forecast.`,
         generatedAt: recordCreatedStr || new Date().toISOString(),
         isDemonstrationData: false,
       });

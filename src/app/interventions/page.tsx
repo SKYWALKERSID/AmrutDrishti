@@ -369,7 +369,7 @@ function InterventionsContent() {
         <div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted mb-2">
             <span className="font-semibold text-text-main">
-              Intervention Planning Workspace*
+              Intervention Planning Workspace
             </span>
             <span aria-hidden="true">•</span>
             <span>MoJS / PMKSY / Atal Bhujal Yojana Guidelines</span>
@@ -377,7 +377,7 @@ function InterventionsContent() {
             <span>Observation Cutoff: October 2026</span>
           </div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-            <DocumentTextIcon className="w-6 h-6 text-primary" /> {t('interventions.title')}*
+            <DocumentTextIcon className="w-6 h-6 text-primary" /> {t('interventions.title')}
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 leading-relaxed">
             {t('interventions.subtitle')}

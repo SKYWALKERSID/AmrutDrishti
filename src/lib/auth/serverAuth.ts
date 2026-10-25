@@ -27,8 +27,11 @@ export const VALID_ROLES: ReadonlySet<UserRole> = new Set([
  *    - Unauthenticated anonymous caller (role: 'general_public', isAuthenticated: false).
  */
 export async function getServerUserContext(request: Request): Promise<UserContext> {
-  // Demo mode cannot be enabled in production under any circumstance
-  const isDemo = process.env.JALDRISHTI_DEMO_MODE === 'true' && process.env.NODE_ENV !== 'production';
+  // Demo mode is active when explicitly flagged or running in non-production development environments.
+  // It cannot be enabled in production under any circumstance.
+  const isDemo =
+    (process.env.JALDRISHTI_DEMO_MODE === 'true' || process.env.NODE_ENV !== 'production') &&
+    process.env.NODE_ENV !== 'production';
 
   // 1. Check for genuine Supabase auth token
   const authHeader = request.headers.get('authorization');

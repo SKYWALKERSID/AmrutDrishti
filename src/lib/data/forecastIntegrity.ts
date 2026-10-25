@@ -1,7 +1,23 @@
+import globalModelValidation from '../../../audit/global_groundwater_model_validation.json' with { type: 'json' };
+
 export interface OfflineForecastLike {
   latestObservationDate?: string | null;
   forecasts?: Array<{ targetDate?: string | null }>;
 }
+
+/**
+ * Authoritative training observation cutoff dynamically resolved from model validation manifest.
+ * For GlobalBlockAwareQuantileGB-v1, manual CGWB training records end at '2023-11-01'.
+ * Telemetry NWDP training records end at '2025-11-15'.
+ */
+export function getModelTrainingCutoff(modelIdentifier?: string): string {
+  if (modelIdentifier && modelIdentifier.toLowerCase().includes('telemetry')) {
+    return '2025-11-15';
+  }
+  return (globalModelValidation as { chronological_cutoff?: string }).chronological_cutoff || '2023-11-01';
+}
+
+export const KNOWN_TRAINING_CUTOFF = getModelTrainingCutoff('GlobalBlockAwareQuantileGB-v1');
 
 /**
  * Age-aware observation freshness classification.

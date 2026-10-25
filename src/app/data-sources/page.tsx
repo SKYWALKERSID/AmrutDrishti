@@ -34,7 +34,7 @@ export default function DataSourcesPage() {
         </p>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-2">
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
-            {t('datasources.title', 'Data Sources & Evidence Registry')}*
+            {t('datasources.title', 'Data Sources & Evidence Registry')}
           </h1>
           <div className="text-xs text-text-muted flex items-center gap-2">
             <span>Page checked: <strong className="text-text-main font-semibold">{lastCheckTime || 'checking…'}</strong></span>

@@ -73,11 +73,11 @@ export default function LandingPage() {
             </h1>
 
             <p className="dbim-paragraph-lead text-text-muted leading-relaxed">
-              JAL DRISHTI helps citizens, farmers, and administrative officers see where water is dropping, understand upcoming seasonal risks, and plan local water conservation works before wells run dry.
+              JAL DRISHTI is a satellite-assisted groundwater intelligence and early-warning platform for India that integrates verified groundwater well observations, 30-year gridded rainfall baselines, multi-sensor satellite indices, quantile machine learning forecasting, objective risk assessment, and situation-aware intervention planning.
             </p>
 
             <p className="dbim-paragraph text-text-muted leading-relaxed">
-              Our priority focus spans nine monitored states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Tripura). We state the exact date, source, and accuracy of every reading without hiding data gaps or pretending unmeasured villages have verified sensors.
+              The platform transforms fragmented environmental observations into transparent groundwater trends, forward-looking forecasts with explicit uncertainty bounds, and evidence-based decisions for citizens, farmers, and administrative authorities. Our priority focus spans 43 verified active blocks across 28 districts in nine target states: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Tripura). Every reading discloses its exact observation date, official source attribution, and known hydrogeological limitations without concealing missing data or simulating unmeasured wells.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -92,7 +92,7 @@ export default function LandingPage() {
                 href="#how-it-works"
                 className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
               >
-                How It Works (5 Simple Steps)
+                End-to-End Intelligence Workflow
               </a>
               <Link
                 href="/overview"
@@ -105,12 +105,12 @@ export default function LandingPage() {
             {/* Quick Plain-Language Guide: Fitted neatly inside hero alongside image */}
             <div className="pt-2 border-t border-border/70">
               <WhatAmILookingAt
-                title="💡 Quick Guide: How to Use JalDrishti (5 Plain-Language Answers)"
-                what="A national groundwater monitoring platform that combines measurements from government observation wells with satellite images and rainfall records."
-                meaning="It tells you how deep water is below the ground in your block, whether water reserves are dropping compared to past years, and where rainfall was deficient."
-                whyCare="If well levels are falling and monsoon rain was low, shallow drinking water wells and crop irrigation could run dry months before the next rains arrive."
-                recentAndReliable="Observations come directly from official Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Every page shows the exact date of observation."
-                nextSteps="1. Use the Map Explorer to check your district. 2. Look at the 3-month forecast. 3. Review suggested check dams, ponds, and recharge shafts in the Solutions workspace."
+                title="Quick Guide: How to Use JalDrishti (5 Plain-Language Answers)"
+                what="A national groundwater monitoring and early-warning platform that pairs verified in-situ measurements from government observation wells with IMD gridded rainfall and satellite observations."
+                meaning="It tracks how deep water is below the ground in your block, whether aquifer storage is recovering or depleting compared to historical baselines, and where seasonal rainfall deficits threaten local supplies."
+                whyCare="When water tables decline alongside monsoon deficits, shallow community drinking wells and rabi crop irrigation risk exhaustion months before the arrival of the subsequent monsoon."
+                recentAndReliable="Observations are ingested directly from official Central Ground Water Board (CGWB) digital water level recorders, State Groundwater Departments, and IMD meteorological grids. Every page records observation timestamps, latency periods, and data quality states."
+                nextSteps="1. Use the Map Explorer to inspect your administrative block. 2. Examine 1-to-4 quarter ML depth forecasts and persistence baselines. 3. Review site-appropriate check dams, percolation ponds, and recharge shafts in the Interventions catalog."
                 initiallyOpen={true}
                 className="my-2"
               />
@@ -216,7 +216,7 @@ export default function LandingPage() {
             <span aria-hidden="true">•</span>
             <span><strong>Data currency:</strong> varies by source; see Data Sources</span>
             <span aria-hidden="true">•</span>
-            <span><strong>Inference Status:</strong> Research-stage bounds (P10–P90)*</span>
+            <span><strong>Inference Status:</strong> Research-stage bounds (P10–P90)</span>
           </div>
         </div>
       </section>
@@ -311,14 +311,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">01</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Piezometer Monitoring &amp; Dual-Axis Trends</h3>
+              <h3 className="text-sm font-bold text-text-main">Groundwater Monitoring &amp; Dual-Axis Telemetry</h3>
               <Link href="/monitoring" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>View Charts</span>
+                <span>View Monitoring Charts</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Dual-axis plots decouple in-situ CGWB DWLR well depth (m bgl) from NASA GRACE-FO Terrestrial Water Storage Anomaly (cm). Historical missing data intervals are preserved honestly without zero-filling.
+              Integrates official Central Ground Water Board (CGWB) Digital Water Level Recorder (DWLR) automated piezometer records alongside state-level ground telemetry (e.g. MP GWD). Dual-axis charts decouple point well depth (m bgl) from regional NASA GRACE-FO gravimetric anomalies (cm). Historical dropouts and transmission interruptions are honestly preserved as gaps without zero-filling or false smoothing.
             </div>
           </div>
 
@@ -333,13 +333,28 @@ export default function LandingPage() {
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Full Leaflet-based map rendering 60 administrative blocks across 8 focus states. Interactive layer toggles allow inspecting stress severity, water table depth, and aquifer properties on click.
+              Full Leaflet-based geospatial explorer rendering 43 canonical active administrative blocks across 28 districts in nine active target states. Interactive layers allow toggling Groundwater Stress Score (GSS) tiers, well water depths, 30-year IMD rainfall anomalies, and downscaled GRACE-FO mass anomalies with geodesic polygon containment.
             </div>
           </div>
 
           {/* Module 03 */}
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">03</div>
+            <div className="md:col-span-4 space-y-1">
+              <h3 className="text-sm font-bold text-text-main">Unified Rainfall Intelligence &amp; Drought Tracking</h3>
+              <Link href="/monitoring" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
+                <span>Inspect Rainfall Trends</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+            <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
+              Harmonizes IMD high-resolution 0.25° gridded daily rainfall series (1901–present) with verified State Water Data Portal resources. Tracks 30-year Long Period Average (LPA) deviations, meteorological dry spell durations, and Standardized Precipitation Index (SPI) across monsoon seasons, distinguishing meteorological drought from hydrological storage response.
+            </div>
+          </div>
+
+          {/* Module 04 */}
+          <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
+            <div className="md:col-span-1 text-xs font-mono font-bold text-primary">04</div>
             <div className="md:col-span-4 space-y-1">
               <h3 className="text-sm font-bold text-text-main">Multi-Criteria Stress Scoring (GSS)</h3>
               <Link href="/risk-assessment" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
@@ -348,22 +363,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Descriptive composite index (0–100) combining well depth trend, 30-year IMD monsoon deficit, Sentinel-2 NDVI vegetative health, and SMAP surface soil moisture with human-review safeguard gates.
-            </div>
-          </div>
-
-          {/* Module 04 */}
-          <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
-            <div className="md:col-span-1 text-xs font-mono font-bold text-primary">04</div>
-            <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Research-Stage Quantile ML Forecasting</h3>
-              <Link href="/monitoring#forecast" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Examine Model Projections</span>
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-            <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Quantile Gradient Boosted regressor generating 1-to-4 quarter ahead projections with calibrated P10–P90 uncertainty intervals, benchmarked against seasonal persistence baselines.
+              Computes an objective, descriptive composite index (0–100) combining well depth depletion trends, 30-year rainfall deficits, Sentinel-2 NDVI vegetative vigor, and SMAP root-zone soil moisture. GSS acts strictly as a relative prioritization tool and is clearly differentiated from calibrated event probabilities or statutory drought declarations, with mandatory human-review override capabilities.
             </div>
           </div>
 
@@ -371,14 +371,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">05</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Artificial Recharge &amp; Policy Interventions</h3>
-              <Link href="/interventions" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Review Catalog</span>
+              <h3 className="text-sm font-bold text-text-main">Quantile ML Forecasting &amp; Uncertainty Bounds</h3>
+              <Link href="/monitoring#forecast" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
+                <span>Examine Forecast Projections</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Targeted hydrogeological recommendations (check dams, injection recharge shafts, crop diversification) aligned with Ministry of Jal Shakti, PMKSY, and Atal Bhujal Yojana guidelines.
+              Research-stage Quantile Gradient Boosted regressor (QuantileGB-v2.0) producing forward-looking 1-to-4 quarter water depth projections (m bgl) with explicit P10, P50, and P90 uncertainty intervals. Projections are strictly evaluated beside simple seasonal persistence baselines, with uncalibrated intervals explicitly marked ineligible for automatic statutory declarations.
             </div>
           </div>
 
@@ -386,74 +386,130 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">06</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Data Provenance &amp; Ingestion Transparency</h3>
-              <Link href="/data-sources" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>View Registry</span>
+              <h3 className="text-sm font-bold text-text-main">Situation-Aware Interventions &amp; Governance</h3>
+              <Link href="/interventions" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
+                <span>Review Interventions Catalog</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Centralized catalog disclosing official source providers, typical lag days, observation dates vs ingestion timestamps, spatial resolution, and known scientific constraints.
+              Generates targeted, hydrogeologically appropriate conservation proposals (check dams, percolation tanks, injection recharge shafts, and crop rotation) linked to Ministry of Jal Shakti, PMKSY, and Atal Bhujal Yojana guidelines. All recommendations require on-site field hydrogeological validation and human officer approval before statutory execution.
             </div>
           </div>
         </div>
       </section>
 
       {/* --------------------------------------------------------------------------- */}
-      {/* SECTION 4: HOW IT WORKS */}
+      {/* SECTION 4: END-TO-END INTELLIGENCE WORKFLOW */}
       {/* --------------------------------------------------------------------------- */}
       <section id="how-it-works" className="space-y-8 scroll-mt-20">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            System Architecture
+            Intelligence Architecture
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            How JAL DRISHTI Works
+            End-to-End Groundwater Intelligence Workflow
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            The platform follows a verified 5-stage pipeline connecting authoritative public feeds to role-aware decision interfaces.
+            The platform follows a verified eight-stage workflow connecting raw in-situ sensor telemetry and atmospheric grids to responsible, human-governed conservation decisions.
           </p>
         </div>
 
-        {/* Sequential 5-Stage Pipeline (Open, Unboxed) */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 border-y border-border py-6">
+        {/* Sequential 8-Stage Pipeline (Clean Editorial Grid, Open & Unboxed) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 border-y border-border py-6">
+          {/* Stage 1 */}
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Stage 1</span>
-            <h3 className="font-bold text-xs text-text-main">Official Source Ingestion</h3>
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 1</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Data Collection &amp; Ingestion</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Pulls CGWB/NWIC DWLR levels, IMD 0.25° gridded precipitation, NASA GRACE-FO TWSA, and Sentinel-2 reflectance.
+              Automated ingestion from CGWB DWLR telemetry wells, State GWD records, IMD 0.25° precipitation grids, and NASA GRACE-FO gravimetry.
             </p>
           </div>
 
+          {/* Stage 2 */}
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Stage 2</span>
-            <h3 className="font-bold text-xs text-text-main">Validation & Geodesic Clipping</h3>
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 2</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Validation &amp; Geographic Alignment</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Area-weighted polygon aggregation over LGD block boundaries; strict preservation of missing records without imputation.
+              Geodesic polygon clipping to LGD block boundaries; strict preservation of missing records and sensor dropouts without synthetic imputation.
             </p>
           </div>
 
+          {/* Stage 3 */}
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Stage 3</span>
-            <h3 className="font-bold text-xs text-text-main">Multi-Criteria Stress Scoring</h3>
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 3</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Historical Trend Analysis</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Computes descriptive GSS index (0–100) combining piezometer trends, 30-year LPA deficit, and soil moisture.
+              Multi-year decadal drawdown rates, 30-year IMD monsoon baseline comparisons (1991–2020 LPA), and Standardized Precipitation Index (SPI) tracking.
             </p>
           </div>
 
+          {/* Stage 4 */}
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Stage 4</span>
-            <h3 className="font-bold text-xs text-text-main">Quantile Predictive Inference</h3>
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 4</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Current Condition Assessment</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Research-stage QuantileGB-v2.0 model produces 1-to-4 quarter depth ranges (P10–P90), shown next to simple persistence baselines. Not an official forecast.
+              Real-time well depth evaluation (m bgl) contrasted against surface soil moisture (SMAP) and vegetative vigor (Sentinel-2 NDVI) canopy health.
             </p>
           </div>
 
-          <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Stage 5</span>
-            <h3 className="font-bold text-xs text-text-main">Decision Support & Safeguards</h3>
+          {/* Stage 5 */}
+          <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 5</span>
+              <span className="text-[10px] uppercase font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">Research Prototype</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Forecasting &amp; Uncertainty</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Role-tailored views with explicit human-review gates before statutory conservation sanctions.
+              QuantileGB-v2.0 generates 1-to-4 quarter water depth ranges (P10–P90) benchmarked against seasonal persistence baselines; strictly uncalibrated for statutory orders.
+            </p>
+          </div>
+
+          {/* Stage 6 */}
+          <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 6</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Risk Assessment &amp; GSS Scoring</h3>
+            <p className="text-xs text-text-muted leading-relaxed">
+              Computes descriptive Groundwater Stress Score (0–100) combining physical signals to prioritize administrative units needing urgent conservation attention.
+            </p>
+          </div>
+
+          {/* Stage 7 */}
+          <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 7</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Intervention Recommendations</h3>
+            <p className="text-xs text-text-muted leading-relaxed">
+              Situation-aware matching of hydrogeological constraints to MoJS/PMKSY recharge interventions (check dams, injection shafts, farm ponds, crop diversification).
+            </p>
+          </div>
+
+          {/* Stage 8 */}
+          <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold uppercase tracking-wider text-primary">Stage 8</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+            </div>
+            <h3 className="font-bold text-xs text-text-main">Monitoring &amp; Human Governance</h3>
+            <p className="text-xs text-text-muted leading-relaxed">
+              Role-based review workflows with mandatory human-in-the-loop validation, risk overrides, and simulated DLT advisory alerts with audit logging.
             </p>
           </div>
         </div>
@@ -1201,10 +1257,10 @@ export default function LandingPage() {
             Geographic Scope
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            National Ambition &amp; Ten Target Scope States
+            National Ambition &amp; Nine Target Scope States
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            While JAL DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across nine monitored states grouped into four hydrologic regions.
+            While JAL DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across nine active target states (43 verified blocks across 28 districts) grouped into four hydrologic regions.
           </p>
         </div>
 
@@ -1304,7 +1360,128 @@ export default function LandingPage() {
       </section>
 
       {/* --------------------------------------------------------------------------- */}
-      {/* SECTION 9: APPLICATIONS AND POTENTIAL IMPACT */}
+      {/* SECTION 9: TRANSPARENT PLATFORM IMPLEMENTATION STATUS */}
+      {/* --------------------------------------------------------------------------- */}
+      <section id="platform-status" className="space-y-8 scroll-mt-20">
+        <div className="max-w-3xl space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+            Platform Audit &amp; Readiness Matrix
+          </p>
+          <h2 className="dbim-heading-2 text-text-main">
+            Transparent Platform Implementation Status
+          </h2>
+          <p className="text-sm text-text-muted leading-relaxed">
+            In accordance with scientific integrity and open governance standards, every platform capability is classified strictly by its verified runtime status in the repository. We do not conflate research prototypes with operational government systems.
+          </p>
+        </div>
+
+        {/* 4-Tier Classification Matrix (Clean Editorial DBIM Grid) */}
+        <div className="border-t border-border pt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Tier 1: Implemented & Verified */}
+          <div className="space-y-3 border-l-2 border-emerald-600 pl-4">
+            <div className="space-y-1">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Tier 1 • Implemented &amp; Verified
+              </span>
+              <h3 className="font-bold text-text-main text-sm">
+                Operational Production Modules
+              </h3>
+            </div>
+            <ul className="text-xs text-text-muted space-y-2 list-disc pl-4 leading-relaxed">
+              <li>
+                <strong>Groundwater Monitoring Telemetry:</strong> In-situ CGWB DWLR automated records and MP GWD monthly series across 43 verified active blocks with null-preserving data-gap visualization.
+              </li>
+              <li>
+                <strong>Unified Rainfall Intelligence:</strong> 30-year IMD 0.25° gridded daily baseline (1901–present), monsoon anomaly (% deviation from LPA), dry-spell durations, and SPI drought metrics.
+              </li>
+              <li>
+                <strong>Geospatial Map Explorer:</strong> Interactive Leaflet GIS rendering 43 active blocks, 28 districts, and 9 target states with geodesic clipping and multi-layer indicator overlays.
+              </li>
+              <li>
+                <strong>Provenance Catalog:</strong> Transparent registry of 27 approved data source manifests disclosing observation dates, ingestion timestamps, resolution, and data quality states.
+              </li>
+              <li>
+                <strong>Role-Based Access &amp; Audit Logs:</strong> Cryptographic tenant authentication with simulated DLT SMS advisory dispatch protocols and immutable action audit logging.
+              </li>
+            </ul>
+          </div>
+
+          {/* Tier 2: Implemented with Research / Validation Limitations */}
+          <div className="space-y-3 border-l-2 border-amber-600 pl-4">
+            <div className="space-y-1">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                Tier 2 • Research &amp; Validation Limitations
+              </span>
+              <h3 className="font-bold text-text-main text-sm">
+                Empirical Research Prototypes
+              </h3>
+            </div>
+            <ul className="text-xs text-text-muted space-y-2 list-disc pl-4 leading-relaxed">
+              <li>
+                <strong>Quantile ML Forecasting (QuantileGB-v2.0):</strong> 1-to-4 quarter water table depth projections (m bgl) with P10–P90 uncertainty intervals. Evaluated against seasonal persistence baselines; strictly uncalibrated for statutory relief decree.
+              </li>
+              <li>
+                <strong>Groundwater Stress Score (GSS):</strong> Multi-criteria heuristic composite index (0–100) weighting well trend, rainfall anomaly, soil moisture, and NDVI. Serves as prioritization support, not legal ground truth.
+              </li>
+              <li>
+                <strong>Satellite Storage Downscaling:</strong> NASA GRACE-FO gravimetry provides catchment-scale mass variation (~100 km) and cannot resolve individual village borehole drawdowns.
+              </li>
+              <li>
+                <strong>Intervention Recommendations:</strong> Algorithmic matching to MoJS/PMKSY catalog. Estimates unverified cost caps; requires field hydrogeological validation before sanction.
+              </li>
+            </ul>
+          </div>
+
+          {/* Tier 3: In Progress */}
+          <div className="space-y-3 border-l-2 border-sky-600 pl-4">
+            <div className="space-y-1">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
+                Tier 3 • In Progress
+              </span>
+              <h3 className="font-bold text-text-main text-sm">
+                Active Engineering &amp; Pipeline Refinement
+              </h3>
+            </div>
+            <ul className="text-xs text-text-muted space-y-2 list-disc pl-4 leading-relaxed">
+              <li>
+                <strong>Station-to-Block Telemetry Crosswalks:</strong> Continuous automated calibration mapping high-frequency state-level DWLR sensors directly to unconfined LGD block polygons.
+              </li>
+              <li>
+                <strong>NWDP Rainfall Telemetry Ingestion:</strong> Ingestion and schema harmonization of raw state-level rain gauge telemetry from the National Water Data Portal across retained states.
+              </li>
+              <li>
+                <strong>Block-Specific Specific Yield Calibration:</strong> Incorporating localized pumping test coefficients across Bundelkhand hard-rock basalt and crystalline granitic formations.
+              </li>
+            </ul>
+          </div>
+
+          {/* Tier 4: Planned */}
+          <div className="space-y-3 border-l-2 border-slate-500 pl-4">
+            <div className="space-y-1">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-300">
+                Tier 4 • Planned
+              </span>
+              <h3 className="font-bold text-text-main text-sm">
+                Future Governance &amp; Scale Architecture
+              </h3>
+            </div>
+            <ul className="text-xs text-text-muted space-y-2 list-disc pl-4 leading-relaxed">
+              <li>
+                <strong>Statutory Multi-Department Interoperability:</strong> API connectors directly bridging JalDrishti advisory outputs into State Disaster Management Authority (SDMA) drought platforms.
+              </li>
+              <li>
+                <strong>Field-Calibrated Event Probabilities:</strong> Independent empirical validation trials converting heuristic quantiles into statistically calibrated extreme drawdown probabilities.
+              </li>
+              <li>
+                <strong>Crowdsourced Well Verification:</strong> Mobile participatory groundwater telemetry logging for Gram Panchayat Jal Samitis under Atal Bhujal Yojana.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* --------------------------------------------------------------------------- */}
+      {/* SECTION 10: APPLICATIONS AND POTENTIAL IMPACT */}
       {/* --------------------------------------------------------------------------- */}
       <section className="space-y-8">
         <div className="max-w-3xl space-y-3">
@@ -1352,7 +1529,7 @@ export default function LandingPage() {
       </section>
 
       {/* --------------------------------------------------------------------------- */}
-      {/* SECTION 10: SCIENTIFIC TRANSPARENCY */}
+      {/* SECTION 11: SCIENTIFIC TRANSPARENCY */}
       {/* --------------------------------------------------------------------------- */}
       <section className="space-y-6 max-w-4xl border-t border-border pt-8">
         <div className="space-y-1">
@@ -1360,26 +1537,62 @@ export default function LandingPage() {
             Scientific Transparency &amp; Operational Safeguards
           </h2>
           <p className="dbim-caption text-text-muted">
-            Methodological boundaries and operational protocols
+            Methodological boundaries, physical constraints, and governance protocols
           </p>
         </div>
 
         <div className="space-y-5">
           <div className="space-y-1">
             <h3 className="dbim-heading-3 text-text-main">
-              No Automated Statutory Decisions
+              Forecasts are Statistical Estimates with Explicit Uncertainty
             </h3>
             <p className="dbim-paragraph text-text-muted leading-relaxed">
-              Predictive forecasts and GSS scores are informational research indicators. They cannot be used as the sole legal basis for well drilling bans or drought emergency relief without field piezometer inspection.
+              Groundwater projections generated by QuantileGB-v2.0 are statistical estimates rather than deterministic predictions. Every forecast discloses P10 (optimistic), P50 (expected), and P90 (conservative) depth intervals (m bgl). Intervals are currently research prototypes and must not be treated as calibrated probabilities for emergency relief decrees.
             </p>
           </div>
 
           <div className="space-y-1">
             <h3 className="dbim-heading-3 text-text-main">
-              Satellite Resolution Disclosures
+              Rainfall is Not Equivalent to Groundwater Recharge
             </h3>
             <p className="dbim-paragraph text-text-muted leading-relaxed">
-              NASA GRACE-FO measures mass variations over ~100 km grid footprints. Downscaled trends do not guarantee local village-scale accuracy and must not be treated as direct well observations.
+              Monsoonal precipitation does not translate directly or uniformly into aquifer recharge. Infiltration depends heavily on soil permeability, rainfall intensity, topography, and antecedent saturation. In hard-rock or steep terrain, high-intensity showers produce rapid surface runoff rather than deep storage replenishment.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              Groundwater Dynamics Depend on Local Hydrogeology and Anthropogenic Extraction
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Piezometric responses vary fundamentally across geological formations—from crystalline granites with low storage coefficient in Bundelkhand to multi-layered alluvial systems in Punjab and Haryana. Local seasonal draft for paddy-wheat irrigation can cause acute localized drawdown independent of regional atmospheric indicators.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              Geographic Scope Depends on Verified Observation Wells and Validated Mappings
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              Platform coverage is constrained strictly by authentic in-situ monitoring stations and validated Local Government Directory (LGD) block boundary crosswalks. Unmonitored administrative units are reported with an explicit data-gap status rather than extrapolated or simulated values.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              Risk Scores Support Prioritization and Do Not Authorize Statutory Actions
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              The Groundwater Stress Score (GSS 0–100) is an objective heuristic index intended to help planners prioritize field inspections and conservation investments. GSS does not independently authorize well drilling bans, emergency financial sanctions, or statutory drought relief without on-site hydrogeological verification and authorized officer review.
+            </p>
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="dbim-heading-3 text-text-main">
+              Satellite Gravimetric Footprint Disclosures
+            </h3>
+            <p className="dbim-paragraph text-text-muted leading-relaxed">
+              NASA GRACE-FO gravimetry measures total terrestrial water storage mass variations over ~100 km grid footprints. Downscaled trends provide valuable regional catchment context but cannot resolve individual village-scale water table drawdowns or replace physical observation wells.
             </p>
           </div>
 
@@ -1388,14 +1601,14 @@ export default function LandingPage() {
               Missing Data Integrity
             </h3>
             <p className="dbim-paragraph text-text-muted leading-relaxed">
-              When telemetry stations experience transmission dropouts, values are preserved as nulls. The platform never fabricates measurements to create visually continuous charts.
+              When telemetry stations experience transmission dropouts or sensor maintenance periods, missing values are preserved as explicit nulls. The platform never fabricates measurements to create visually continuous charts.
             </p>
           </div>
         </div>
       </section>
 
       {/* --------------------------------------------------------------------------- */}
-      {/* SECTION 11: FINAL CALL TO ACTION */}
+      {/* SECTION 12: FINAL CALL TO ACTION */}
       {/* --------------------------------------------------------------------------- */}
       <section className="pt-8 pb-12 border-t border-border text-center space-y-6">
         <div className="max-w-2xl mx-auto space-y-3">
@@ -1406,7 +1619,7 @@ export default function LandingPage() {
             Explore the Groundwater Intelligence Platform
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            Examine in-situ piezometric observations, inspect block-level risk scores, review empirical models, and evaluate decision-support workflows across eight priority states.
+            Examine in-situ piezometric observations, inspect block-level risk scores, review empirical models, and evaluate decision-support workflows across nine target states.
           </p>
         </div>
 

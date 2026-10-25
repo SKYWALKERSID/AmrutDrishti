@@ -161,6 +161,17 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    is_prod = (
+        os.environ.get("NODE_ENV") == "production"
+        or os.environ.get("ENVIRONMENT") == "production"
+        or os.environ.get("VERCEL_ENV") == "production"
+        or os.environ.get("VERCEL") == "1"
+    )
+    token = os.environ.get("JALDRISHTI_MODEL_SERVICE_TOKEN", "")
+    if is_prod and (not token or token == "local_preview_secure_token_32_chars"):
+        raise SystemExit(
+            "FATAL: JALDRISHTI_MODEL_SERVICE_TOKEN must be explicitly set to a cryptographically random secret in production."
+        )
     if "JALDRISHTI_MODEL_SERVICE_TOKEN" not in os.environ:
         os.environ["JALDRISHTI_MODEL_SERVICE_TOKEN"] = "local_preview_secure_token_32_chars"
     port = int(os.environ.get("JALDRISHTI_MODEL_SERVICE_PORT", "8081"))
