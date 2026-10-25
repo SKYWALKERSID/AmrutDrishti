@@ -63,3 +63,98 @@ test('TELEMETRY-INTEGRATION: Monitoring page implements dual-source selection an
   const hexMatches = monitoringCode.match(/#[0-9a-fA-F]{3,8}\b/g);
   assert.strictEqual(hexMatches, null, 'Monitoring page must contain zero hex literals');
 });
+
+test('TELEMETRY-FORECAST: Primary 90-day & 180-day forecast panel uses live telemetry station model', () => {
+  const monitoringCode = fs.readFileSync('src/app/monitoring/page.tsx', 'utf8');
+
+  // Verify forecast panel exists with id="forecast"
+  const forecastIndex = monitoringCode.indexOf('id="forecast"');
+  assert.ok(forecastIndex > 0, 'id="forecast" must exist');
+
+  // Verify fetch of live telemetry station forecasts
+  assert.match(
+    monitoringCode,
+    /\/api\/station-forecast\?stationId=\$\{encodeURIComponent\(selectedTelemetryStationId\)\}&horizonDays=90/,
+    'Must fetch 90-day horizon from /api/station-forecast using selectedTelemetryStationId'
+  );
+  assert.match(
+    monitoringCode,
+    /\/api\/station-forecast\?stationId=\$\{encodeURIComponent\(selectedTelemetryStationId\)\}&horizonDays=180/,
+    'Must fetch 180-day horizon from /api/station-forecast using selectedTelemetryStationId'
+  );
+
+  // Verify primary panel displays live telemetry station model when telemetry source is active
+  assert.match(
+    monitoringCode,
+    /Live Telemetry Station Model · Experimental/,
+    'Must display Live Telemetry Station Model badge'
+  );
+  assert.match(
+    monitoringCode,
+    /NWDP-Station-Experimental/,
+    'Must specify NWDP-Station-Experimental model'
+  );
+
+  // Verify forecast origin comes dynamically from model data or telemetry metadata, not hardcoded 2023-11-01
+  assert.match(
+    monitoringCode,
+    /telemetryStationForecast\?\.fc90\?\.originDate \|\| telemetryMetadata\?\.latestDate/,
+    'Forecast origin must come dynamically from model data or latest telemetry observation'
+  );
+
+  // Verify forward-looking 90-day and 180-day target dates
+  assert.match(
+    monitoringCode,
+    /fc\.targetDate/,
+    'Forecast target date must be rendered dynamically from fc.targetDate'
+  );
+  assert.match(
+    monitoringCode,
+    /fc\.forecastHorizonDays/,
+    'Must display horizon days relative to origin'
+  );
+
+  // Verify P10, P50, P90 quantiles and interval width
+  assert.match(monitoringCode, /p50\.toFixed\(3\)/, 'Must display P50 expected depth');
+  assert.match(monitoringCode, /p10\.toFixed\(3\)/, 'Must display P10 lower bound');
+  assert.match(monitoringCode, /p90\.toFixed\(3\)/, 'Must display P90 upper bound');
+  assert.match(monitoringCode, /intervalWidth\.toFixed\(3\)/, 'Must display empirical interval width');
+
+  // Verify latest observed comparison
+  assert.match(
+    monitoringCode,
+    /latestObs\.water_level_mbgl\.toFixed\(2\)/,
+    'Must display latest observed depth for comparison'
+  );
+
+  // Verify honest uncalibrated limitation notice
+  assert.match(
+    monitoringCode,
+    /ordered_uncalibrated/,
+    'Must show interval status ordered_uncalibrated'
+  );
+  assert.match(
+    monitoringCode,
+    /Intervals reflect empirical uncalibrated quantiles/,
+    'Must include honest uncalibrated limitation disclaimer'
+  );
+
+  // Verify retrospective CGWB manual archive model is separated under manual mode
+  assert.match(
+    monitoringCode,
+    /CGWB Manual Archive: Retrospective Quarterly Research Forecasts/,
+    'CGWB manual archive predictions must be distinctly labeled retrospective'
+  );
+  assert.match(
+    monitoringCode,
+    /Historical Quarterly Model · 2023 Origin/,
+    'CGWB manual archive must explicitly note historical quarterly 2023 origin'
+  );
+
+  // Verify duplicate panel component was removed from page
+  assert.doesNotMatch(
+    monitoringCode,
+    /<NwdpStationForecastPanel/,
+    'Duplicate NwdpStationForecastPanel component must be removed from page'
+  );
+});
