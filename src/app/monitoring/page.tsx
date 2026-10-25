@@ -15,6 +15,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  LabelList,
 } from 'recharts';
 import { WaterDropletIcon, CloudRainIcon, ActivityChartIcon, FilterIcon, InfoIcon } from '@/components/ui/Icons';
 import HistoricalObservationsPanel from '@/components/HistoricalObservationsPanel';
@@ -1233,58 +1234,165 @@ interface RainfallChartPoint {
             </span>
           </div>
 
-          <div className="h-72 w-full flex flex-col justify-center">
+          <div className="h-80 w-full flex flex-col justify-center">
             {isLoading ? (
               <div className="h-full w-full bg-subtle/40 flex items-center justify-center animate-pulse">
                 <span className="text-xs text-text-muted">Loading rainfall indicators...</span>
               </div>
             ) : rainfallChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={rainfallChartData} margin={{ top: 15, right: 25, left: -5, bottom: 5 }}>
+                <ComposedChart data={rainfallChartData} margin={{ top: 25, right: 35, left: 10, bottom: 5 }} barGap={12}>
                   <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
-                  <XAxis dataKey="period" tick={{ fontSize: 11, fill: CHART_COLORS.axisText }} />
+                  <XAxis
+                    dataKey="period"
+                    tick={{ fontSize: 12, fill: CHART_COLORS.axisText, fontWeight: 600 }}
+                    tickLine={false}
+                  />
                   {/* Left Axis: Rainfall Total (mm) */}
                   <YAxis
                     yAxisId="left"
                     orientation="left"
                     tick={{ fontSize: 11, fill: CHART_COLORS.axisText }}
-                    domain={[0, (dataMax: number) => Math.max(dataMax * 1.25, 1000)]}
-                    label={{ value: 'Rainfall (mm)', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fontSize: 10, fill: CHART_COLORS.axisText }, offset: 15 }}
+                    domain={[0, (dataMax: number) => Math.max(Math.ceil((dataMax * 1.3) / 100) * 100, 600)]}
+                    label={{
+                      value: 'Rainfall (mm)',
+                      angle: -90,
+                      position: 'insideLeft',
+                      style: { textAnchor: 'middle', fontSize: 11, fill: CHART_COLORS.axisText, fontWeight: 500 },
+                      offset: 5
+                    }}
                   />
-                  {/* Right Axis: Deviation (mm) */}
+                  {/* Right Axis: Deviation (mm) - Center-aligned at 0 with Left Axis baseline */}
                   <YAxis
                     yAxisId="right"
                     orientation="right"
                     tick={{ fontSize: 11, fill: CHART_COLORS.axisText }}
-                    domain={[(min: number) => Math.min(min * 1.25, -300), (max: number) => Math.max(max * 1.25, 100)]}
-                    label={{ value: 'Deviation (mm)', angle: 90, position: 'insideRight', style: { textAnchor: 'middle', fontSize: 10, fill: CHART_COLORS.axisText }, offset: 15 }}
+                    domain={[
+                      (min: number) => {
+                        const bound = Math.max(Math.abs(min), 100) * 1.4;
+                        return -Math.ceil(bound / 50) * 50;
+                      },
+                      (max: number) => {
+                        const bound = Math.max(Math.abs(max), 100) * 1.4;
+                        return Math.ceil(bound / 50) * 50;
+                      }
+                    ]}
+                    label={{
+                      value: 'Deviation (mm)',
+                      angle: 90,
+                      position: 'insideRight',
+                      style: { textAnchor: 'middle', fontSize: 11, fill: CHART_COLORS.axisText, fontWeight: 500 },
+                      offset: 15
+                    }}
                   />
                   <Tooltip
-                    contentStyle={{ backgroundColor: CHART_COLORS.tooltipBg, borderColor: CHART_COLORS.tooltipBorder, fontSize: '11px' }}
+                    content={({ active, payload, label }) => {
+                      if (!active || !payload || !payload.length) return null;
+                      const obs = payload.find(p => p.dataKey === 'observedMm')?.value as number | undefined;
+                      const normal = payload.find(p => p.dataKey === 'normalLpaMm')?.value as number | undefined;
+                      const dev = payload.find(p => p.dataKey === 'deviationMm')?.value as number | undefined;
+                      const isDeficit = (dev ?? 0) < 0;
+                      const pct = normal && dev !== undefined ? Math.abs(Number(((dev / normal) * 100).toFixed(1))) : null;
+
+                      return (
+                        <div className="bg-surface border border-border p-3 rounded shadow-md text-xs space-y-2 max-w-xs">
+                          <div className="font-bold text-text-main border-b border-border pb-1">
+                            {label} Monsoon Season
+                          </div>
+                          <div className="space-y-1">
+                            <div className="flex justify-between items-center gap-4">
+                              <span className="flex items-center gap-1.5 text-text-muted">
+                                <span className="w-2.5 h-2.5 inline-block rounded-xs bg-primary" style={{ backgroundColor: 'var(--data-rainfall-precip)' }} />
+                                Observed Total:
+                              </span>
+                              <span className="font-bold text-text-main tabular-nums">{obs ?? '—'} mm</span>
+                            </div>
+                            <div className="flex justify-between items-center gap-4">
+                              <span className="flex items-center gap-1.5 text-text-muted">
+                                <span className="w-2.5 h-2.5 inline-block rounded-xs bg-subtle" style={{ backgroundColor: 'var(--data-rainfall-baseline)' }} />
+                                30-Yr Normal (LPA):
+                              </span>
+                              <span className="font-bold text-text-main tabular-nums">{normal ?? '—'} mm</span>
+                            </div>
+                            <div className="flex justify-between items-center gap-4 pt-1 border-t border-border/60">
+                              <span className="font-medium text-text-main">Anomaly Status:</span>
+                              <span className={`font-bold tabular-nums ${isDeficit ? 'text-status-errorText' : 'text-status-successText'}`}>
+                                {(dev ?? 0) > 0 ? '+' : ''}{dev ?? '—'} mm {pct !== null ? `(${pct}% ${isDeficit ? 'deficit' : 'surplus'})` : ''}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }}
                   />
-                  <Legend wrapperStyle={{ fontSize: '11px' }} />
-                  <ReferenceLine yAxisId="right" y={0} stroke={CHART_COLORS.referenceLine} strokeDasharray="3 3" />
+                  <Legend
+                    wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
+                    iconType="rect"
+                  />
+                  {/* Prominent 0-level reference line for Deviation */}
+                  <ReferenceLine
+                    yAxisId="right"
+                    y={0}
+                    stroke={CHART_COLORS.referenceLine}
+                    strokeDasharray="4 4"
+                    strokeWidth={1.5}
+                    label={{
+                      value: 'Normal Baseline (0 mm deviation)',
+                      position: 'insideTopRight',
+                      fill: CHART_COLORS.axisText,
+                      fontSize: 10,
+                      offset: 8
+                    }}
+                  />
                   <Bar
                     yAxisId="left"
                     dataKey="observedMm"
                     name="Observed Monsoon Total (mm)"
                     fill={CHART_COLORS.rainfallObserved}
-                    barSize={40}
-                  />
+                    barSize={48}
+                    radius={[3, 3, 0, 0]}
+                  >
+                    <LabelList
+                      dataKey="observedMm"
+                      position="top"
+                      formatter={(val: any) => `${val} mm`}
+                      style={{ fontSize: '11px', fill: CHART_COLORS.axisText, fontWeight: 600 }}
+                    />
+                  </Bar>
                   <Bar
                     yAxisId="left"
                     dataKey="normalLpaMm"
                     name="30-Yr Normal LPA (mm)"
                     fill={CHART_COLORS.rainfallBaseline}
-                    barSize={40}
-                  />
+                    barSize={48}
+                    radius={[3, 3, 0, 0]}
+                  >
+                    <LabelList
+                      dataKey="normalLpaMm"
+                      position="top"
+                      formatter={(val: any) => `${val} mm`}
+                      style={{ fontSize: '11px', fill: CHART_COLORS.axisText, fontWeight: 600 }}
+                    />
+                  </Bar>
                   <Bar
                     yAxisId="right"
                     dataKey="deviationMm"
                     name="Deviation from LPA (mm)"
                     fill={deviationColor(rainfallChartData[0].deviationMm)}
-                    barSize={30}
-                  />
+                    barSize={36}
+                    radius={[3, 3, 3, 3]}
+                  >
+                    <LabelList
+                      dataKey="deviationMm"
+                      position={rainfallChartData[0]?.deviationMm < 0 ? 'bottom' : 'top'}
+                      formatter={(val: any) => (val > 0 ? `+${val} mm` : `${val} mm`)}
+                      style={{
+                        fontSize: '11px',
+                        fill: rainfallChartData[0]?.deviationMm < 0 ? 'var(--status-error)' : 'var(--status-success)',
+                        fontWeight: 700
+                      }}
+                    />
+                  </Bar>
                 </ComposedChart>
               </ResponsiveContainer>
             ) : (

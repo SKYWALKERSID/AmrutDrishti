@@ -252,27 +252,6 @@ function RiskAssessmentContent() {
         </div>
       </div>
 
-      {/* Operational Safety Safeguard Section */}
-      <div className="space-y-1 max-w-4xl">
-        <h3 className="dbim-heading-3 text-text-main">
-          Operational Safety Safeguard Gate (FR-033 &amp; TRD Section 7.2)
-        </h3>
-        <p className="dbim-paragraph text-text-muted leading-relaxed">
-          The Groundwater Stress Score (GSS) is a descriptive, multi-criteria index calculated from 4 environmental readings (wells, rain, satellite storage, and vegetation). It is a rule-based indicator index, not a trained ML result. It serves to identify areas requiring investigation, not as an automated authorization for financial sanctions or emergency decrees without local physical verification.
-        </p>
-      </div>
-
-      {/* 5-Question Plain-Language Guide Card */}
-      <WhatAmILookingAt
-        title="💡 How do I read this Risk Assessment & Forecast Page?"
-        what="This page provides two complementary evaluations: (1) an immediate Water Stress Score (0–100) based on today's environmental measurements, and (2) a machine learning forecast predicting physical well water levels (in meters below ground) for upcoming seasons."
-        meaning="A Water Stress Score above 70 means the block is experiencing acute depletion across multiple indicators (deep wells, low rain, declining storage). A projected increase in well depth (e.g. from 12 m to 16 m) means the water table is dropping further."
-        whyCare="Comparing current stress against future projections helps water managers identify not only which blocks are suffering right now, but which will reach critical depth in the next 3 to 12 months."
-        recentAndReliable="Observations are updated per government schedule (IMD rain: daily; CGWB wells: quarterly; Sentinel & GRACE satellites: 10–30 days). The ML model is trained on historical data and provides calibrated P10–P90 uncertainty intervals."
-        nextSteps="Examine the indicator breakdown to see what is driving stress (e.g. deficient monsoon vs continuous over-extraction), and use the Interventions tab to explore targeted conservation measures."
-        initiallyOpen={false}
-      />
-
       {/* Main Content Layout: Block Selector & Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Target Selector & Descriptive Stress Score Baseline (5 cols) */}
@@ -444,6 +423,28 @@ function RiskAssessmentContent() {
               )}
             </div>
           )}
+
+          {/* Validation & Operational Status: System Status & Safety Rules */}
+          <div className="pt-3.5 border-t border-border space-y-2">
+            <h2 className="text-sm font-bold text-text-main">System Status &amp; Safety Rules</h2>
+            <p className="text-xs text-text-muted">
+              How these scores are calculated and how they must be used in day-to-day operations:
+            </p>
+            <div className="divide-y divide-border border-y border-border text-xs">
+              {[
+                ['Score Calculation', 'The GSS score is calculated live using the 4 weighted empirical environmental indicators. It is a descriptive heuristic, not an ML prediction.'],
+                ['ML Depth Forecasting', 'Machine learning forecasts physical water table depth (m bgl) where station models are packaged. It does not output a composite stress score.'],
+                ['Ground Well Calibration', 'Ongoing. Scores provide early warnings but must be confirmed with local well tests and physical inspection before administrative action.'],
+                ['Decision Safety Rule', 'This score helps prioritize areas for review. It does not automatically approve funds or launch emergency orders.'],
+                ['Missing Data Protection', 'If key sensors are offline, the system marks an explicit data gap instead of assuming water is safe.'],
+              ].map(([title, note]) => (
+                <div key={title} className="py-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                  <span className="font-semibold text-text-main sm:w-36 shrink-0">{title}</span>
+                  <span className="text-text-muted leading-relaxed">{note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Right Column: Multi-Criteria Breakdown & Machine Learning Physical Depth Forecast (7 cols) */}
@@ -776,28 +777,33 @@ function RiskAssessmentContent() {
               );
             })()}
           </div>
+        </div>
+      </div>
 
-          {/* Validation & Operational Status */}
-          <div className="pt-4 border-t border-border space-y-2">
-            <h2 className="text-base font-bold text-text-main">System Status &amp; Safety Rules</h2>
-            <p className="text-xs text-text-muted">
-              How these scores are calculated and how they must be used in day-to-day operations:
-            </p>
-            <div className="divide-y divide-border border-y border-border text-xs">
-              {[
-                ['Score Calculation', 'The GSS score is calculated live using the 4 weighted empirical environmental indicators above. It is a descriptive heuristic, not an ML prediction.'],
-                ['ML Depth Forecasting', 'Machine learning forecasts physical water table depth (m bgl) where station models are packaged. It does not output a composite stress score.'],
-                ['Ground Well Calibration', 'Ongoing. Scores provide early warnings but must be confirmed with local well tests and physical inspection before administrative action.'],
-                ['Decision Safety Rule', 'This score helps prioritize areas for review. It does not automatically approve funds or launch emergency orders.'],
-                ['Missing Data Protection', 'If key sensors are offline, the system marks an explicit data gap instead of assuming water is safe.'],
-              ].map(([title, note]) => (
-                <div key={title} className="py-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                  <span className="font-semibold text-text-main sm:w-48 shrink-0">{title}</span>
-                  <span className="text-text-muted leading-relaxed">{note}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* Operational Safety Safeguard Section */}
+      <div className="space-y-2 pt-4 border-t border-border max-w-5xl">
+        <h3 className="dbim-heading-3 text-text-main">
+          Operational Safety Safeguard Gate (FR-033 &amp; TRD Section 7.2)
+        </h3>
+        <div className="dbim-paragraph text-text-muted leading-relaxed space-y-2 text-xs sm:text-sm">
+          <p>
+            The Groundwater Stress Score (GSS) is a descriptive, multi-criteria index calculated from 4 environmental readings (wells, rain, satellite storage, and vegetation). It is a rule-based indicator index, not a trained ML result. It serves to identify areas requiring investigation, not as an automated authorization for financial sanctions or emergency decrees without local physical verification.
+          </p>
+          <p>
+            This page provides two complementary evaluations: (1) an immediate Water Stress Score (0–100) based on today&apos;s environmental measurements, and (2) a machine learning forecast predicting physical well water levels (in meters below ground) for upcoming seasons.
+          </p>
+          <p>
+            A Water Stress Score above 70 means the block is experiencing acute depletion across multiple indicators (deep wells, low rain, declining storage). A projected increase in well depth (e.g. from 12 m to 16 m) means the water table is dropping further.
+          </p>
+          <p>
+            Comparing current stress against future projections helps water managers identify not only which blocks are suffering right now, but which will reach critical depth in the next 3 to 12 months.
+          </p>
+          <p>
+            Observations are updated per government schedule (IMD rain: daily; CGWB wells: quarterly; Sentinel &amp; GRACE satellites: 10–30 days). The ML model is trained on historical data and provides calibrated P10–P90 uncertainty intervals.
+          </p>
+          <p>
+            Examine the indicator breakdown to see what is driving stress (e.g. deficient monsoon vs continuous over-extraction), and use the Interventions tab to explore targeted conservation measures.
+          </p>
         </div>
       </div>
     </div>

@@ -291,7 +291,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
       case 'watch':
         return t('severity.watch', 'Needs Checking');
       case 'normal':
-        return t('severity.normal', 'No Flag in Sample Data');
+        return t('overview.normalCount', 'Normal');
       default:
         return severity.toUpperCase();
     }
@@ -479,7 +479,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
           </div>
 
           {/* Interactive Map Visualizer Canvas Container */}
-          <div className="bg-surface border border-border overflow-hidden relative isolate h-[500px] sm:h-[620px] w-full">
+          <div className="bg-surface border border-border overflow-hidden relative isolate h-[500px] sm:h-[620px] lg:h-[700px] w-full">
             {/* Layer Info Chip */}
             <div className="absolute top-3 left-3 z-10 bg-surface border border-border px-3 py-1.5 text-xs space-y-0.5 max-w-[calc(100%-1.5rem)] sm:max-w-sm">
               <div className="font-semibold text-text-main flex items-center gap-1.5">
@@ -656,56 +656,56 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   </div>
                 </div>
 
-                {/* Key Indicators List - Clean, no cream background or borders */}
-                <div className="space-y-3 py-1">
-                  <div>
-                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                {/* Key Indicators List - Clean, compact alignment without excessive horizontal gap */}
+                <div className="space-y-2.5 py-1">
+                  <div className="space-y-0.5">
+                    <div className="flex items-baseline justify-between gap-3 text-xs">
                       <span className="text-text-main font-medium">Well Depth:</span>
-                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                      <span className="font-bold text-text-main text-right tabular-nums">
                         {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m deep` : t('monitoring.noData', 'No Data')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-text-muted block">How deep you must dig or drill to reach water (meters below ground).</span>
+                    <span className="text-[11px] text-text-muted block leading-tight">How deep you must dig or drill to reach water (meters below ground).</span>
                   </div>
 
-                  <div>
-                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                  <div className="space-y-0.5">
+                    <div className="flex items-baseline justify-between gap-3 text-xs">
                       <span className="text-text-main font-medium">Rainfall Difference:</span>
-                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                      <span className="font-bold text-text-main text-right tabular-nums">
                         {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('monitoring.noData', 'No Data')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-text-muted block">How much more or less rain fell compared to the long-term average.</span>
+                    <span className="text-[11px] text-text-muted block leading-tight">How much more or less rain fell compared to the long-term average.</span>
                   </div>
 
-                  <div>
-                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                  <div className="space-y-0.5">
+                    <div className="flex items-baseline justify-between gap-3 text-xs">
                       <span className="text-text-main font-medium">Satellite Water Storage:</span>
-                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                      <span className="font-bold text-text-main text-right tabular-nums">
                         {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('monitoring.noData', 'No Data')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-text-muted block">Regional water gain or loss measured from space (NASA GRACE gravity).</span>
+                    <span className="text-[11px] text-text-muted block leading-tight">Regional water gain or loss measured from space (NASA GRACE gravity).</span>
                   </div>
 
-                  <div>
-                    <div className="flex justify-between items-center text-xs flex-wrap gap-1 min-w-0">
+                  <div className="space-y-0.5">
+                    <div className="flex items-baseline justify-between gap-3 text-xs">
                       <span className="text-text-main font-medium">Green Cover (Vegetation):</span>
-                      <span className="font-bold text-text-main shrink-0 ml-auto">
+                      <span className="font-bold text-text-main text-right tabular-nums">
                         {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('monitoring.noData', 'No Data')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-text-muted block">How green and healthy crops appear from satellite images (0.0 to 1.0).</span>
+                    <span className="text-[11px] text-text-muted block leading-tight">How green and healthy crops appear from satellite images (0.0 to 1.0).</span>
                   </div>
 
-                  <div className="border-t border-border/80 pt-2">
-                    <div className="flex justify-between items-center text-xs flex-wrap gap-1">
+                  <div className="border-t border-border/80 pt-2 space-y-0.5">
+                    <div className="flex items-baseline justify-between gap-3 text-xs">
                       <span className="text-text-main font-semibold">Water Stress Score:</span>
-                      <span className="font-bold text-primary text-sm shrink-0 ml-auto">
+                      <span className="font-bold text-primary text-sm text-right tabular-nums">
                         {selectedBlock.assessment.descriptiveStressScore !== null ? `${selectedBlock.assessment.descriptiveStressScore}/100` : t('monitoring.noData', 'No Data')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-text-muted block">Overall 0-100 guide showing where water stress needs investigation.</span>
+                    <span className="text-[11px] text-text-muted block leading-tight">Overall 0-100 guide showing where water stress needs investigation.</span>
                   </div>
                 </div>
 
@@ -750,15 +750,15 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                       <TermHelp termId="ml_groundwater_forecast" />
                       {hasLiveForecast && q1 ? (
                         <div className="space-y-1 text-xs">
-                          <div className="flex justify-between items-center min-w-0">
+                          <div className="flex items-baseline justify-between gap-3">
                             <span className="text-text-muted">Target (Water Depth):</span>
-                            <span className="font-bold text-text-main shrink-0 ml-auto font-mono">
+                            <span className="font-bold text-text-main text-right tabular-nums font-mono">
                               {q1.expectedDepthMbgl} m bgl
                             </span>
                           </div>
-                          <div className="flex justify-between items-center text-[11px] text-text-muted min-w-0">
+                          <div className="flex items-baseline justify-between gap-3 text-[11px] text-text-muted">
                             <span>P10–P90 Uncertainty:</span>
-                            <span className="font-mono shrink-0 ml-auto">
+                            <span className="font-mono text-right tabular-nums">
                               [{q1.uncertaintyInterval?.lowerBoundP10Mbgl ?? '—'} to {q1.uncertaintyInterval?.upperBoundP90Mbgl ?? '—'} m]
                             </span>
                           </div>
@@ -785,7 +785,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   const intel = evaluateGroundwaterIntelligence(selectedBlock.indicators);
                   return (
                     <div className="space-y-1.5 pt-2 border-t border-border/80 text-xs">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-2">
                         <span className="font-bold text-text-main text-[11px] uppercase tracking-wider">
                           Drought Risk &amp; Intelligence:
                         </span>
@@ -800,15 +800,15 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         </span>
                       </div>
                       <div className="bg-subtle/60 p-2 border border-border/70 space-y-1 text-[11px]">
-                        <div className="flex justify-between text-text-muted">
+                        <div className="flex items-baseline justify-between gap-3 text-text-muted">
                           <span>Aquifer Storage Trend:</span>
-                          <span className="font-semibold text-text-main capitalize">{intel.waterAvailability.direction}</span>
+                          <span className="font-semibold text-text-main capitalize text-right">{intel.waterAvailability.direction}</span>
                         </div>
-                        <div className="flex justify-between text-text-muted">
+                        <div className="flex items-baseline justify-between gap-3 text-text-muted">
                           <span>Recharge Potential:</span>
-                          <span className="font-semibold text-text-main capitalize">{intel.rechargeIntelligence.rechargePotential}</span>
+                          <span className="font-semibold text-text-main capitalize text-right">{intel.rechargeIntelligence.rechargePotential}</span>
                         </div>
-                        <p className="text-[10px] text-text-muted pt-1 border-t border-border/60">
+                        <p className="text-[10px] text-text-muted pt-1 border-t border-border/60 leading-normal">
                           {intel.actionableSummary}
                         </p>
                       </div>

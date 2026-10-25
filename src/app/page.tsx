@@ -74,8 +74,6 @@ export default function LandingPage() {
               </span>
               <span aria-hidden="true">•</span>
               <span>Government Well Telemetry (CGWB) &amp; NASA Satellites</span>
-              <span aria-hidden="true">•</span>
-              <span>Every observation date is clearly stated</span>
             </div>
 
             <h1 className="dbim-heading-1 text-text-main">
