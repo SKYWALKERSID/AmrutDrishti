@@ -542,37 +542,7 @@ function RiskAssessmentContent() {
               </span>
             </div>
 
-            {/* Prediction Mode Selector */}
-            <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 bg-subtle border border-border text-xs">
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-text-main">Prediction Mode:</span>
-                <div className="inline-flex border border-border bg-surface">
-                  <button
-                    type="button"
-                    onClick={() => setIsDemoMode(true)}
-                    className={`px-3 py-1 font-medium transition-colors ${
-                      isDemoMode ? 'bg-primary text-white' : 'text-text-muted hover:text-text-main hover:bg-subtle'
-                    }`}
-                  >
-                    Historical Demo Mode
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsDemoMode(false)}
-                    className={`px-3 py-1 font-medium transition-colors border-l border-border ${
-                      !isDemoMode ? 'bg-primary text-white' : 'text-text-muted hover:text-text-main hover:bg-subtle'
-                    }`}
-                  >
-                    Operational Forecast Mode
-                  </button>
-                </div>
-              </div>
-              <span className="text-[11px] text-text-muted">
-                {isDemoMode
-                  ? 'Permits experimental inference from verified historical CGWB series'
-                  : 'Enforces strict 400-day observation freshness gate'}
-              </span>
-            </div>
+
 
             {/* Prominent Demo & Telemetry Compliance Banner */}
             {forecastData?.isDemonstrationData && (

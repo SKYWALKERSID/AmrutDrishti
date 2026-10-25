@@ -1,0 +1,4496 @@
+{
+  "blk_adilabad_main": {
+    "blockId": "blk_adilabad_main",
+    "blockName": "Adilabad",
+    "districtName": "Adilabad",
+    "stationName": "CGWB Manual - Adilabad (Adilabad)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 3.74,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 3.88,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.84,
+          "upperBoundP90Mbgl": 6.72,
+          "intervalWidthM": 4.88,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.74,
+          "seasonalPersistenceMbgl": 2.94
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 3.98,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.96,
+          "upperBoundP90Mbgl": 5.37,
+          "intervalWidthM": 2.41,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.74,
+          "seasonalPersistenceMbgl": 2.94
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 4.49,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.12,
+          "upperBoundP90Mbgl": 6.41,
+          "intervalWidthM": 3.29,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.74,
+          "seasonalPersistenceMbgl": 2.94
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 3.52,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.56,
+          "upperBoundP90Mbgl": 5.01,
+          "intervalWidthM": 3.45,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.74,
+          "seasonalPersistenceMbgl": 2.94
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:11.123006+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_amarpur": {
+    "blockId": "blk_amarpur",
+    "blockName": "Amarpur",
+    "districtName": "South Tripura",
+    "stationName": "CGWB Manual - Amarpur (South Tripura)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 5.59,
+    "latestObservationDate": "2023-08-31",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-30",
+        "expectedDepthMbgl": 4.78,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.44,
+          "upperBoundP90Mbgl": 6.68,
+          "intervalWidthM": 4.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.59,
+          "seasonalPersistenceMbgl": 4.75
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-29",
+        "expectedDepthMbgl": 5.39,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.99,
+          "upperBoundP90Mbgl": 6.83,
+          "intervalWidthM": 2.84,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.59,
+          "seasonalPersistenceMbgl": 4.75
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-31",
+        "expectedDepthMbgl": 6.3,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.32,
+          "upperBoundP90Mbgl": 8.52,
+          "intervalWidthM": 4.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.59,
+          "seasonalPersistenceMbgl": 4.75
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-31",
+        "expectedDepthMbgl": 4.56,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.36,
+          "upperBoundP90Mbgl": 6.53,
+          "intervalWidthM": 4.17,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.59,
+          "seasonalPersistenceMbgl": 4.75
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:11.403711+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_baldeogarh": {
+    "blockId": "blk_baldeogarh",
+    "blockName": "Baldeogarh",
+    "districtName": "Tikamgarh",
+    "stationName": "CGWB Manual - Baldeogarh (Tikamgarh)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 1.23,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 1.07,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.89,
+          "upperBoundP90Mbgl": 2.5,
+          "intervalWidthM": 1.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.23,
+          "seasonalPersistenceMbgl": 1.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 1.54,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.24,
+          "upperBoundP90Mbgl": 3.35,
+          "intervalWidthM": 2.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.23,
+          "seasonalPersistenceMbgl": 1.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 2.06,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.51,
+          "upperBoundP90Mbgl": 4.11,
+          "intervalWidthM": 2.6,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.23,
+          "seasonalPersistenceMbgl": 1.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 1.27,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.98,
+          "upperBoundP90Mbgl": 2.88,
+          "intervalWidthM": 1.9,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.23,
+          "seasonalPersistenceMbgl": 1.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:11.759758+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_banda": {
+    "blockId": "blk_banda",
+    "blockName": "Banda",
+    "districtName": "Sagar",
+    "stationName": "CGWB Manual - Banda (Sagar)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 7.18,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 6.32,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.61,
+          "upperBoundP90Mbgl": 8.5,
+          "intervalWidthM": 4.89,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.18,
+          "seasonalPersistenceMbgl": 5.61
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 6.9,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.34,
+          "upperBoundP90Mbgl": 8.67,
+          "intervalWidthM": 3.34,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.18,
+          "seasonalPersistenceMbgl": 5.61
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 7.8,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.76,
+          "upperBoundP90Mbgl": 10.93,
+          "intervalWidthM": 5.17,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.18,
+          "seasonalPersistenceMbgl": 5.61
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 5.98,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.44,
+          "upperBoundP90Mbgl": 8.78,
+          "intervalWidthM": 5.34,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.18,
+          "seasonalPersistenceMbgl": 5.61
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:12.038213+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_bhadravati": {
+    "blockId": "blk_bhadravati",
+    "blockName": "Bhadravati",
+    "districtName": "Shivamogga",
+    "stationName": "CGWB Manual - Bhadravati (Shivamogga)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 1.51,
+    "latestObservationDate": "2024-08-25",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-11-25",
+        "expectedDepthMbgl": 2.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.09,
+          "upperBoundP90Mbgl": 3.57,
+          "intervalWidthM": 2.48,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.51,
+          "seasonalPersistenceMbgl": 3.18
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-02-25",
+        "expectedDepthMbgl": 2.93,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.11,
+          "upperBoundP90Mbgl": 4.34,
+          "intervalWidthM": 2.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.51,
+          "seasonalPersistenceMbgl": 3.18
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2025",
+        "targetDate": "2025-05-25",
+        "expectedDepthMbgl": 4.0,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.64,
+          "upperBoundP90Mbgl": 5.51,
+          "intervalWidthM": 2.87,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.51,
+          "seasonalPersistenceMbgl": 3.18
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2025",
+        "targetDate": "2025-08-25",
+        "expectedDepthMbgl": 3.3,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.69,
+          "upperBoundP90Mbgl": 4.82,
+          "intervalWidthM": 3.13,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 1.51,
+          "seasonalPersistenceMbgl": 3.18
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:12.340525+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_bijawar": {
+    "blockId": "blk_bijawar",
+    "blockName": "Bijawar",
+    "districtName": "Chhatarpur",
+    "stationName": "CGWB Manual - Bijawar (Chhatarpur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 7.47,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 5.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.17,
+          "upperBoundP90Mbgl": 10.77,
+          "intervalWidthM": 7.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.47,
+          "seasonalPersistenceMbgl": 5.34
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 6.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.3,
+          "upperBoundP90Mbgl": 8.65,
+          "intervalWidthM": 4.35,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.47,
+          "seasonalPersistenceMbgl": 5.34
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 6.87,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.77,
+          "upperBoundP90Mbgl": 9.61,
+          "intervalWidthM": 4.84,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.47,
+          "seasonalPersistenceMbgl": 5.34
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 4.8,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.58,
+          "upperBoundP90Mbgl": 7.86,
+          "intervalWidthM": 5.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.47,
+          "seasonalPersistenceMbgl": 5.34
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:12.645495+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_chhatarpur_nowgaon": {
+    "blockId": "blk_chhatarpur_nowgaon",
+    "blockName": "Nowgaon",
+    "districtName": "Chhatarpur",
+    "stationName": "CGWB Manual - Nowgaon (Chhatarpur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 4.07,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 3.4,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.29,
+          "upperBoundP90Mbgl": 6.28,
+          "intervalWidthM": 4.98,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.07,
+          "seasonalPersistenceMbgl": 1.65
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 3.31,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.22,
+          "upperBoundP90Mbgl": 5.32,
+          "intervalWidthM": 3.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.07,
+          "seasonalPersistenceMbgl": 1.65
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 3.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.25,
+          "upperBoundP90Mbgl": 5.98,
+          "intervalWidthM": 3.72,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.07,
+          "seasonalPersistenceMbgl": 1.65
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 2.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.17,
+          "upperBoundP90Mbgl": 4.09,
+          "intervalWidthM": 2.93,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.07,
+          "seasonalPersistenceMbgl": 1.65
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:12.948558+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_dausa_bandikui": {
+    "blockId": "blk_dausa_bandikui",
+    "blockName": "Bandikui",
+    "districtName": "Dausa",
+    "stationName": "CGWB Manual - Bandikui (Dausa)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 56.75,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 56.9,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 42.09,
+          "upperBoundP90Mbgl": 61.7,
+          "intervalWidthM": 19.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 56.75,
+          "seasonalPersistenceMbgl": 56.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 56.34,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.85,
+          "upperBoundP90Mbgl": 60.13,
+          "intervalWidthM": 19.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 56.75,
+          "seasonalPersistenceMbgl": 56.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 56.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.27,
+          "upperBoundP90Mbgl": 59.93,
+          "intervalWidthM": 19.66,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 56.75,
+          "seasonalPersistenceMbgl": 56.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 56.18,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 42.09,
+          "upperBoundP90Mbgl": 60.22,
+          "intervalWidthM": 18.13,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 56.75,
+          "seasonalPersistenceMbgl": 56.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:13.275094+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_dausa_mahuwa": {
+    "blockId": "blk_dausa_mahuwa",
+    "blockName": "Mahuwa",
+    "districtName": "Dausa",
+    "stationName": "CGWB Manual - Mahuwa (Dausa)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 16.48,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 16.29,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.55,
+          "upperBoundP90Mbgl": 20.08,
+          "intervalWidthM": 9.53,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.48,
+          "seasonalPersistenceMbgl": 11.32
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 14.94,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 9.59,
+          "upperBoundP90Mbgl": 17.0,
+          "intervalWidthM": 7.41,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.48,
+          "seasonalPersistenceMbgl": 11.32
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 14.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.46,
+          "upperBoundP90Mbgl": 15.95,
+          "intervalWidthM": 7.5,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.48,
+          "seasonalPersistenceMbgl": 11.32
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 14.23,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.71,
+          "upperBoundP90Mbgl": 16.49,
+          "intervalWidthM": 5.78,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.48,
+          "seasonalPersistenceMbgl": 11.32
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:13.568443+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_dausa_main": {
+    "blockId": "blk_dausa_main",
+    "blockName": "Dausa",
+    "districtName": "Dausa",
+    "stationName": "CGWB Manual - Dausa (Dausa)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 23.75,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 24.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 18.39,
+          "upperBoundP90Mbgl": 28.76,
+          "intervalWidthM": 10.37,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 23.75,
+          "seasonalPersistenceMbgl": 19.64
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 23.26,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.34,
+          "upperBoundP90Mbgl": 26.97,
+          "intervalWidthM": 9.63,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 23.75,
+          "seasonalPersistenceMbgl": 19.64
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 22.6,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.04,
+          "upperBoundP90Mbgl": 26.71,
+          "intervalWidthM": 11.67,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 23.75,
+          "seasonalPersistenceMbgl": 19.64
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 22.78,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.07,
+          "upperBoundP90Mbgl": 24.81,
+          "intervalWidthM": 7.75,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 23.75,
+          "seasonalPersistenceMbgl": 19.64
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:13.871888+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_davanagere_main": {
+    "blockId": "blk_davanagere_main",
+    "blockName": "Davanagere",
+    "districtName": "Davanagere",
+    "stationName": "CGWB Manual - Davanagere (Davanagere)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 3.45,
+    "latestObservationDate": "2024-08-25",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-11-25",
+        "expectedDepthMbgl": 3.54,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.89,
+          "upperBoundP90Mbgl": 5.1,
+          "intervalWidthM": 3.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.45,
+          "seasonalPersistenceMbgl": 3.83
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-02-25",
+        "expectedDepthMbgl": 4.03,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.07,
+          "upperBoundP90Mbgl": 5.43,
+          "intervalWidthM": 2.36,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.45,
+          "seasonalPersistenceMbgl": 3.83
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2025",
+        "targetDate": "2025-05-25",
+        "expectedDepthMbgl": 4.8,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.35,
+          "upperBoundP90Mbgl": 6.96,
+          "intervalWidthM": 3.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.45,
+          "seasonalPersistenceMbgl": 3.83
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2025",
+        "targetDate": "2025-08-25",
+        "expectedDepthMbgl": 3.86,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.98,
+          "upperBoundP90Mbgl": 5.27,
+          "intervalWidthM": 3.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.45,
+          "seasonalPersistenceMbgl": 3.83
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:14.160792+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jaipur_amer": {
+    "blockId": "blk_jaipur_amer",
+    "blockName": "Amer",
+    "districtName": "Jaipur",
+    "stationName": "CGWB Manual - Amer (Jaipur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 51.64,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 49.54,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 42.09,
+          "upperBoundP90Mbgl": 55.13,
+          "intervalWidthM": 13.04,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 51.64,
+          "seasonalPersistenceMbgl": 47.51
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 49.82,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.95,
+          "upperBoundP90Mbgl": 53.59,
+          "intervalWidthM": 14.63,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 51.64,
+          "seasonalPersistenceMbgl": 47.51
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 48.2,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.37,
+          "upperBoundP90Mbgl": 52.27,
+          "intervalWidthM": 13.9,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 51.64,
+          "seasonalPersistenceMbgl": 47.51
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 47.08,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.19,
+          "upperBoundP90Mbgl": 51.24,
+          "intervalWidthM": 11.05,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 51.64,
+          "seasonalPersistenceMbgl": 47.51
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:14.490183+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jaipur_bassi": {
+    "blockId": "blk_jaipur_bassi",
+    "blockName": "Bassi",
+    "districtName": "Jaipur",
+    "stationName": "CGWB Manual - Bassi (Jaipur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 48.42,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 49.22,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.19,
+          "upperBoundP90Mbgl": 52.63,
+          "intervalWidthM": 12.44,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 48.42,
+          "seasonalPersistenceMbgl": 49.6
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 48.27,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.95,
+          "upperBoundP90Mbgl": 52.56,
+          "intervalWidthM": 13.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 48.42,
+          "seasonalPersistenceMbgl": 49.6
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 47.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.37,
+          "upperBoundP90Mbgl": 50.6,
+          "intervalWidthM": 12.23,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 48.42,
+          "seasonalPersistenceMbgl": 49.6
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 47.08,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.19,
+          "upperBoundP90Mbgl": 50.91,
+          "intervalWidthM": 10.72,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 48.42,
+          "seasonalPersistenceMbgl": 49.6
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:14.816343+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jaipur_govindgarh": {
+    "blockId": "blk_jaipur_govindgarh",
+    "blockName": "Govindgarh",
+    "districtName": "Jaipur",
+    "stationName": "CGWB Manual - Govindgarh (Jaipur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 66.61,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 66.31,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 42.09,
+          "upperBoundP90Mbgl": 69.7,
+          "intervalWidthM": 27.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 66.61,
+          "seasonalPersistenceMbgl": 65.42
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 66.0,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.85,
+          "upperBoundP90Mbgl": 68.06,
+          "intervalWidthM": 27.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 66.61,
+          "seasonalPersistenceMbgl": 65.42
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 65.92,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.27,
+          "upperBoundP90Mbgl": 68.06,
+          "intervalWidthM": 27.79,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 66.61,
+          "seasonalPersistenceMbgl": 65.42
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 65.87,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 42.09,
+          "upperBoundP90Mbgl": 68.15,
+          "intervalWidthM": 26.06,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 66.61,
+          "seasonalPersistenceMbgl": 65.42
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:15.250407+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jaipur_sanganer": {
+    "blockId": "blk_jaipur_sanganer",
+    "blockName": "Sanganer",
+    "districtName": "Jaipur",
+    "stationName": "CGWB Manual - Sanganer (Jaipur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 45.94,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 45.81,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.19,
+          "upperBoundP90Mbgl": 50.42,
+          "intervalWidthM": 10.23,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 45.94,
+          "seasonalPersistenceMbgl": 48.79
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 44.83,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.95,
+          "upperBoundP90Mbgl": 48.85,
+          "intervalWidthM": 9.89,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 45.94,
+          "seasonalPersistenceMbgl": 48.79
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 43.95,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 38.37,
+          "upperBoundP90Mbgl": 46.88,
+          "intervalWidthM": 8.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 45.94,
+          "seasonalPersistenceMbgl": 48.79
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 43.93,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 40.19,
+          "upperBoundP90Mbgl": 47.08,
+          "intervalWidthM": 6.89,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 45.94,
+          "seasonalPersistenceMbgl": 48.79
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:15.557837+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jaisalmer_sam": {
+    "blockId": "blk_jaisalmer_sam",
+    "blockName": "Sam",
+    "districtName": "Jaisalmer",
+    "stationName": "CGWB Manual - Sam (Jaisalmer)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 38.95,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 39.62,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 31.71,
+          "upperBoundP90Mbgl": 48.27,
+          "intervalWidthM": 16.56,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.95,
+          "seasonalPersistenceMbgl": 45.8
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 39.28,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 34.83,
+          "upperBoundP90Mbgl": 43.07,
+          "intervalWidthM": 8.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.95,
+          "seasonalPersistenceMbgl": 45.8
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 39.15,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 34.25,
+          "upperBoundP90Mbgl": 42.83,
+          "intervalWidthM": 8.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.95,
+          "seasonalPersistenceMbgl": 45.8
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 39.2,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 36.08,
+          "upperBoundP90Mbgl": 43.41,
+          "intervalWidthM": 7.33,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.95,
+          "seasonalPersistenceMbgl": 45.8
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:15.887442+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jalandhar_phillaur": {
+    "blockId": "blk_jalandhar_phillaur",
+    "blockName": "Phillaur",
+    "districtName": "Jalandhar",
+    "stationName": "CGWB Manual - Phillaur (Jalandhar)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 18.6,
+    "latestObservationDate": "2023-11-01",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-01",
+        "expectedDepthMbgl": 19.07,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 14.64,
+          "upperBoundP90Mbgl": 20.79,
+          "intervalWidthM": 6.16,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 18.6,
+          "seasonalPersistenceMbgl": 18.46
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-01",
+        "expectedDepthMbgl": 19.61,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.16,
+          "upperBoundP90Mbgl": 24.01,
+          "intervalWidthM": 8.84,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 18.6,
+          "seasonalPersistenceMbgl": 18.46
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-01",
+        "expectedDepthMbgl": 18.98,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 13.21,
+          "upperBoundP90Mbgl": 21.65,
+          "intervalWidthM": 8.44,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 18.6,
+          "seasonalPersistenceMbgl": 18.46
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-11-01",
+        "expectedDepthMbgl": 18.91,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 12.14,
+          "upperBoundP90Mbgl": 21.59,
+          "intervalWidthM": 9.45,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 18.6,
+          "seasonalPersistenceMbgl": 18.46
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:16.196478+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jatara": {
+    "blockId": "blk_jatara",
+    "blockName": "Jatara",
+    "districtName": "Tikamgarh",
+    "stationName": "CGWB Manual - Jatara (Tikamgarh)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 3.9,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 3.33,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.93,
+          "upperBoundP90Mbgl": 4.62,
+          "intervalWidthM": 2.69,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.9,
+          "seasonalPersistenceMbgl": 3.15
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 3.88,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.84,
+          "upperBoundP90Mbgl": 5.34,
+          "intervalWidthM": 2.5,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.9,
+          "seasonalPersistenceMbgl": 3.15
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 4.5,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.12,
+          "upperBoundP90Mbgl": 6.64,
+          "intervalWidthM": 3.52,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.9,
+          "seasonalPersistenceMbgl": 3.15
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 3.41,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.72,
+          "upperBoundP90Mbgl": 5.15,
+          "intervalWidthM": 3.43,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.9,
+          "seasonalPersistenceMbgl": 3.15
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:16.488623+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jodhpur_mandore": {
+    "blockId": "blk_jodhpur_mandore",
+    "blockName": "Mandore",
+    "districtName": "Jodhpur",
+    "stationName": "CGWB Manual - Mandore (Jodhpur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 16.93,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 17.02,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 12.33,
+          "upperBoundP90Mbgl": 20.36,
+          "intervalWidthM": 8.03,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.93,
+          "seasonalPersistenceMbgl": 13.38
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 15.57,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.47,
+          "upperBoundP90Mbgl": 17.92,
+          "intervalWidthM": 7.45,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.93,
+          "seasonalPersistenceMbgl": 13.38
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 14.51,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.97,
+          "upperBoundP90Mbgl": 16.81,
+          "intervalWidthM": 7.84,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.93,
+          "seasonalPersistenceMbgl": 13.38
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 14.99,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 11.27,
+          "upperBoundP90Mbgl": 16.93,
+          "intervalWidthM": 5.66,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 16.93,
+          "seasonalPersistenceMbgl": 13.38
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:16.804382+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_jodhpur_osian": {
+    "blockId": "blk_jodhpur_osian",
+    "blockName": "Osian",
+    "districtName": "Jodhpur",
+    "stationName": "CGWB Manual - Osian (Jodhpur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 46.55,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 36.47,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 26.87,
+          "upperBoundP90Mbgl": 49.94,
+          "intervalWidthM": 23.07,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 46.55,
+          "seasonalPersistenceMbgl": 28.29
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 37.32,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 29.88,
+          "upperBoundP90Mbgl": 45.38,
+          "intervalWidthM": 15.5,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 46.55,
+          "seasonalPersistenceMbgl": 28.29
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 36.04,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 28.09,
+          "upperBoundP90Mbgl": 39.37,
+          "intervalWidthM": 11.29,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 46.55,
+          "seasonalPersistenceMbgl": 28.29
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 36.52,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 29.91,
+          "upperBoundP90Mbgl": 40.02,
+          "intervalWidthM": 10.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 46.55,
+          "seasonalPersistenceMbgl": 28.29
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:17.192500+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_kaithal_rajound": {
+    "blockId": "blk_kaithal_rajound",
+    "blockName": "Rajound",
+    "districtName": "Kaithal",
+    "stationName": "CGWB Manual - Rajound (Kaithal)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 17.5,
+    "latestObservationDate": "2023-11-01",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-01",
+        "expectedDepthMbgl": 17.53,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 12.78,
+          "upperBoundP90Mbgl": 20.13,
+          "intervalWidthM": 7.35,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 17.5,
+          "seasonalPersistenceMbgl": 15.48
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-01",
+        "expectedDepthMbgl": 17.82,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 12.87,
+          "upperBoundP90Mbgl": 21.0,
+          "intervalWidthM": 8.13,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 17.5,
+          "seasonalPersistenceMbgl": 15.48
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-01",
+        "expectedDepthMbgl": 16.66,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 10.62,
+          "upperBoundP90Mbgl": 18.79,
+          "intervalWidthM": 8.17,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 17.5,
+          "seasonalPersistenceMbgl": 15.48
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-11-01",
+        "expectedDepthMbgl": 15.89,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 9.48,
+          "upperBoundP90Mbgl": 17.56,
+          "intervalWidthM": 8.08,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 17.5,
+          "seasonalPersistenceMbgl": 15.48
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:17.481582+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_karnal_assandh": {
+    "blockId": "blk_karnal_assandh",
+    "blockName": "Assandh",
+    "districtName": "Karnal",
+    "stationName": "CGWB Manual - Assandh (Karnal)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 30.11,
+    "latestObservationDate": "2024-01-01",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-01",
+        "expectedDepthMbgl": 30.94,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 25.74,
+          "upperBoundP90Mbgl": 35.86,
+          "intervalWidthM": 10.11,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 30.11,
+          "seasonalPersistenceMbgl": 28.72
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-01",
+        "expectedDepthMbgl": 30.19,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 24.43,
+          "upperBoundP90Mbgl": 34.24,
+          "intervalWidthM": 9.81,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 30.11,
+          "seasonalPersistenceMbgl": 28.72
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-01",
+        "expectedDepthMbgl": 29.99,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 23.26,
+          "upperBoundP90Mbgl": 33.98,
+          "intervalWidthM": 10.72,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 30.11,
+          "seasonalPersistenceMbgl": 28.72
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-01",
+        "expectedDepthMbgl": 30.54,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 25.72,
+          "upperBoundP90Mbgl": 34.52,
+          "intervalWidthM": 8.81,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 30.11,
+          "seasonalPersistenceMbgl": 28.72
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:17.776902+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_kurukshetra_pehowa": {
+    "blockId": "blk_kurukshetra_pehowa",
+    "blockName": "Pehowa",
+    "districtName": "Kurukshetra",
+    "stationName": "CGWB Manual - Pehowa (Kurukshetra)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 38.32,
+    "latestObservationDate": "2024-01-01",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-01",
+        "expectedDepthMbgl": 39.47,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 31.98,
+          "upperBoundP90Mbgl": 46.88,
+          "intervalWidthM": 14.9,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.32,
+          "seasonalPersistenceMbgl": 41.93
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-01",
+        "expectedDepthMbgl": 39.28,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 30.89,
+          "upperBoundP90Mbgl": 43.13,
+          "intervalWidthM": 12.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.32,
+          "seasonalPersistenceMbgl": 41.93
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-01",
+        "expectedDepthMbgl": 39.15,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 29.72,
+          "upperBoundP90Mbgl": 42.83,
+          "intervalWidthM": 13.12,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.32,
+          "seasonalPersistenceMbgl": 41.93
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-01",
+        "expectedDepthMbgl": 39.2,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 32.13,
+          "upperBoundP90Mbgl": 43.41,
+          "intervalWidthM": 11.27,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 38.32,
+          "seasonalPersistenceMbgl": 41.93
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:18.174078+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_ludhiana_khanna": {
+    "blockId": "blk_ludhiana_khanna",
+    "blockName": "Khanna",
+    "districtName": "Ludhiana",
+    "stationName": "CGWB Manual - Khanna (Ludhiana)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 19.98,
+    "latestObservationDate": "2023-11-01",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-01",
+        "expectedDepthMbgl": 20.46,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 14.94,
+          "upperBoundP90Mbgl": 22.75,
+          "intervalWidthM": 7.8,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 19.98,
+          "seasonalPersistenceMbgl": 18.74
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-01",
+        "expectedDepthMbgl": 21.32,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.37,
+          "upperBoundP90Mbgl": 24.61,
+          "intervalWidthM": 8.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 19.98,
+          "seasonalPersistenceMbgl": 18.74
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-01",
+        "expectedDepthMbgl": 20.98,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.79,
+          "upperBoundP90Mbgl": 23.35,
+          "intervalWidthM": 7.56,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 19.98,
+          "seasonalPersistenceMbgl": 18.74
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-11-01",
+        "expectedDepthMbgl": 20.72,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 15.52,
+          "upperBoundP90Mbgl": 23.34,
+          "intervalWidthM": 7.82,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 19.98,
+          "seasonalPersistenceMbgl": 18.74
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:18.648420+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_mylliem": {
+    "blockId": "blk_mylliem",
+    "blockName": "Mylliem",
+    "districtName": "East Khasi Hills",
+    "stationName": "CGWB Manual - Mylliem (East Khasi Hills)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 5.23,
+    "latestObservationDate": "2024-01-31",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-30",
+        "expectedDepthMbgl": 4.45,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.94,
+          "upperBoundP90Mbgl": 8.19,
+          "intervalWidthM": 6.24,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.23,
+          "seasonalPersistenceMbgl": 0.0
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-31",
+        "expectedDepthMbgl": 3.08,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.62,
+          "upperBoundP90Mbgl": 5.17,
+          "intervalWidthM": 4.55,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.23,
+          "seasonalPersistenceMbgl": 0.0
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-31",
+        "expectedDepthMbgl": 2.21,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.56,
+          "upperBoundP90Mbgl": 3.99,
+          "intervalWidthM": 3.43,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.23,
+          "seasonalPersistenceMbgl": 0.0
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-31",
+        "expectedDepthMbgl": 2.04,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.21,
+          "upperBoundP90Mbgl": 4.13,
+          "intervalWidthM": 2.91,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.23,
+          "seasonalPersistenceMbgl": 0.0
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:18.986832+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_nandipet": {
+    "blockId": "blk_nandipet",
+    "blockName": "Nandipet",
+    "districtName": "Nizamabad",
+    "stationName": "CGWB Manual - Nandipet (Nizamabad)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 6.85,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 7.2,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.59,
+          "upperBoundP90Mbgl": 9.52,
+          "intervalWidthM": 6.92,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.85,
+          "seasonalPersistenceMbgl": 5.35
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 7.59,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.11,
+          "upperBoundP90Mbgl": 9.84,
+          "intervalWidthM": 4.72,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.85,
+          "seasonalPersistenceMbgl": 5.35
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 8.4,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.25,
+          "upperBoundP90Mbgl": 11.42,
+          "intervalWidthM": 6.18,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.85,
+          "seasonalPersistenceMbgl": 5.35
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 6.84,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.85,
+          "upperBoundP90Mbgl": 9.38,
+          "intervalWidthM": 6.54,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.85,
+          "seasonalPersistenceMbgl": 5.35
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:19.372408+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_ottapidaram": {
+    "blockId": "blk_ottapidaram",
+    "blockName": "Ottapidaram",
+    "districtName": "Tuticorin",
+    "stationName": "CGWB Manual - Ottapidaram (Tuticorin)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 3.97,
+    "latestObservationDate": "2024-11-30",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-02-28",
+        "expectedDepthMbgl": 3.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.4,
+          "upperBoundP90Mbgl": 6.39,
+          "intervalWidthM": 5.0,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.97,
+          "seasonalPersistenceMbgl": 1.38
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2025",
+        "targetDate": "2025-05-30",
+        "expectedDepthMbgl": 3.58,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.8,
+          "upperBoundP90Mbgl": 5.84,
+          "intervalWidthM": 4.04,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.97,
+          "seasonalPersistenceMbgl": 1.38
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2025",
+        "targetDate": "2025-08-30",
+        "expectedDepthMbgl": 2.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.93,
+          "upperBoundP90Mbgl": 4.24,
+          "intervalWidthM": 3.31,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.97,
+          "seasonalPersistenceMbgl": 1.38
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2025",
+        "targetDate": "2025-11-30",
+        "expectedDepthMbgl": 2.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.89,
+          "upperBoundP90Mbgl": 3.81,
+          "intervalWidthM": 2.92,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 3.97,
+          "seasonalPersistenceMbgl": 1.38
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:19.664180+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_palera": {
+    "blockId": "blk_palera",
+    "blockName": "Palera",
+    "districtName": "Tikamgarh",
+    "stationName": "CGWB Manual - Palera (Tikamgarh)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 4.83,
+    "latestObservationDate": "2023-05-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2023",
+        "targetDate": "2023-08-20",
+        "expectedDepthMbgl": 5.12,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.0,
+          "upperBoundP90Mbgl": 7.16,
+          "intervalWidthM": 4.15,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.83,
+          "seasonalPersistenceMbgl": 6.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 4.94,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.08,
+          "upperBoundP90Mbgl": 6.58,
+          "intervalWidthM": 3.49,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.83,
+          "seasonalPersistenceMbgl": 6.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 6.23,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.05,
+          "upperBoundP90Mbgl": 7.64,
+          "intervalWidthM": 2.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.83,
+          "seasonalPersistenceMbgl": 6.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 7.58,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.71,
+          "upperBoundP90Mbgl": 10.14,
+          "intervalWidthM": 4.44,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.83,
+          "seasonalPersistenceMbgl": 6.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:19.997993+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_patiala_patran": {
+    "blockId": "blk_patiala_patran",
+    "blockName": "Patran",
+    "districtName": "Patiala",
+    "stationName": "CGWB Manual - Patran (Patiala)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 50.37,
+    "latestObservationDate": "2024-01-01",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-01",
+        "expectedDepthMbgl": 50.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 36.15,
+          "upperBoundP90Mbgl": 54.87,
+          "intervalWidthM": 18.72,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 50.37,
+          "seasonalPersistenceMbgl": 49.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-01",
+        "expectedDepthMbgl": 50.28,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 35.16,
+          "upperBoundP90Mbgl": 53.44,
+          "intervalWidthM": 18.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 50.37,
+          "seasonalPersistenceMbgl": 49.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-01",
+        "expectedDepthMbgl": 50.18,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 33.98,
+          "upperBoundP90Mbgl": 53.21,
+          "intervalWidthM": 19.22,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 50.37,
+          "seasonalPersistenceMbgl": 49.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-01",
+        "expectedDepthMbgl": 50.13,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 36.15,
+          "upperBoundP90Mbgl": 53.53,
+          "intervalWidthM": 17.38,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 50.37,
+          "seasonalPersistenceMbgl": 49.34
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:20.474789+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_periyanaickenpalayam": {
+    "blockId": "blk_periyanaickenpalayam",
+    "blockName": "P.N.Palayam",
+    "districtName": "Coimbatore",
+    "stationName": "CGWB Manual - P.N.Palayam (Coimbatore)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 24.79,
+    "latestObservationDate": "2025-01-30",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2025",
+        "targetDate": "2025-04-30",
+        "expectedDepthMbgl": 24.48,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.2,
+          "upperBoundP90Mbgl": 29.25,
+          "intervalWidthM": 12.05,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 24.79,
+          "seasonalPersistenceMbgl": null
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2025",
+        "targetDate": "2025-07-30",
+        "expectedDepthMbgl": 24.0,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 17.24,
+          "upperBoundP90Mbgl": 27.45,
+          "intervalWidthM": 10.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 24.79,
+          "seasonalPersistenceMbgl": null
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2025",
+        "targetDate": "2025-10-30",
+        "expectedDepthMbgl": 23.83,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.15,
+          "upperBoundP90Mbgl": 27.05,
+          "intervalWidthM": 10.9,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 24.79,
+          "seasonalPersistenceMbgl": null
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2026",
+        "targetDate": "2026-01-30",
+        "expectedDepthMbgl": 23.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 16.71,
+          "upperBoundP90Mbgl": 27.22,
+          "intervalWidthM": 10.52,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 24.79,
+          "seasonalPersistenceMbgl": null
+        },
+        "stressRiskCategory": "severe",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:20.768274+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_rajendranagar": {
+    "blockId": "blk_rajendranagar",
+    "blockName": "Rajendranagar",
+    "districtName": "Ranga Reddy",
+    "stationName": "CGWB Manual - Rajendranagar (Ranga Reddy)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 0.45,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 0.74,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.19,
+          "upperBoundP90Mbgl": 2.47,
+          "intervalWidthM": 2.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.45,
+          "seasonalPersistenceMbgl": 0.25
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 1.09,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.48,
+          "upperBoundP90Mbgl": 3.04,
+          "intervalWidthM": 2.57,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.45,
+          "seasonalPersistenceMbgl": 0.25
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 1.48,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.86,
+          "upperBoundP90Mbgl": 3.25,
+          "intervalWidthM": 2.39,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.45,
+          "seasonalPersistenceMbgl": 0.25
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 0.85,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.23,
+          "upperBoundP90Mbgl": 2.27,
+          "intervalWidthM": 2.04,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.45,
+          "seasonalPersistenceMbgl": 0.25
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:21.190425+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_rajnagar": {
+    "blockId": "blk_rajnagar",
+    "blockName": "Rajnagar",
+    "districtName": "Chhatarpur",
+    "stationName": "CGWB Manual - Rajnagar (Chhatarpur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 4.38,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 4.31,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.31,
+          "upperBoundP90Mbgl": 6.82,
+          "intervalWidthM": 4.51,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.38,
+          "seasonalPersistenceMbgl": 4.14
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 4.85,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.54,
+          "upperBoundP90Mbgl": 6.38,
+          "intervalWidthM": 2.84,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.38,
+          "seasonalPersistenceMbgl": 4.14
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 5.87,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.13,
+          "upperBoundP90Mbgl": 7.67,
+          "intervalWidthM": 3.53,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.38,
+          "seasonalPersistenceMbgl": 4.14
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 4.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.26,
+          "upperBoundP90Mbgl": 6.46,
+          "intervalWidthM": 4.19,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 4.38,
+          "seasonalPersistenceMbgl": 4.14
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:21.548486+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_sagar_main": {
+    "blockId": "blk_sagar_main",
+    "blockName": "Sagar",
+    "districtName": "Sagar",
+    "stationName": "CGWB Manual - Sagar (Sagar)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 7.24,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 7.26,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.95,
+          "upperBoundP90Mbgl": 10.3,
+          "intervalWidthM": 6.35,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.24,
+          "seasonalPersistenceMbgl": 6.46
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 7.71,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.19,
+          "upperBoundP90Mbgl": 9.82,
+          "intervalWidthM": 3.63,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.24,
+          "seasonalPersistenceMbgl": 6.46
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 8.61,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.44,
+          "upperBoundP90Mbgl": 11.47,
+          "intervalWidthM": 5.03,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.24,
+          "seasonalPersistenceMbgl": 6.46
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 6.74,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.87,
+          "upperBoundP90Mbgl": 9.2,
+          "intervalWidthM": 5.33,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.24,
+          "seasonalPersistenceMbgl": 6.46
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:21.832983+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_sawai_madhopur_bamanwas": {
+    "blockId": "blk_sawai_madhopur_bamanwas",
+    "blockName": "Bamanwas",
+    "districtName": "Sawai Madhopur",
+    "stationName": "CGWB Manual - Bamanwas (Sawai Madhopur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 7.48,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 8.83,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.42,
+          "upperBoundP90Mbgl": 11.11,
+          "intervalWidthM": 4.69,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.48,
+          "seasonalPersistenceMbgl": 7.42
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 7.39,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.9,
+          "upperBoundP90Mbgl": 9.31,
+          "intervalWidthM": 5.41,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.48,
+          "seasonalPersistenceMbgl": 7.42
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 7.07,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.7,
+          "upperBoundP90Mbgl": 8.88,
+          "intervalWidthM": 5.18,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.48,
+          "seasonalPersistenceMbgl": 7.42
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 8.1,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.31,
+          "upperBoundP90Mbgl": 9.74,
+          "intervalWidthM": 3.43,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.48,
+          "seasonalPersistenceMbgl": 7.42
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:22.135472+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_sawai_madhopur_bonli": {
+    "blockId": "blk_sawai_madhopur_bonli",
+    "blockName": "Bonli",
+    "districtName": "Sawai Madhopur",
+    "stationName": "CGWB Manual - Bonli (Sawai Madhopur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 7.84,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 7.78,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.82,
+          "upperBoundP90Mbgl": 10.97,
+          "intervalWidthM": 6.16,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.84,
+          "seasonalPersistenceMbgl": 3.89
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 5.23,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.72,
+          "upperBoundP90Mbgl": 8.14,
+          "intervalWidthM": 5.42,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.84,
+          "seasonalPersistenceMbgl": 3.89
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 4.61,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.26,
+          "upperBoundP90Mbgl": 6.72,
+          "intervalWidthM": 4.46,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.84,
+          "seasonalPersistenceMbgl": 3.89
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 4.84,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.75,
+          "upperBoundP90Mbgl": 6.41,
+          "intervalWidthM": 2.66,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 7.84,
+          "seasonalPersistenceMbgl": 3.89
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:22.418801+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_sawai_madhopur_khandar": {
+    "blockId": "blk_sawai_madhopur_khandar",
+    "blockName": "Khandar",
+    "districtName": "Sawai Madhopur",
+    "stationName": "CGWB Manual - Khandar (Sawai Madhopur)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 8.76,
+    "latestObservationDate": "2024-01-10",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-10",
+        "expectedDepthMbgl": 9.43,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 6.46,
+          "upperBoundP90Mbgl": 12.07,
+          "intervalWidthM": 5.61,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 8.76,
+          "seasonalPersistenceMbgl": 5.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-10",
+        "expectedDepthMbgl": 7.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.0,
+          "upperBoundP90Mbgl": 10.16,
+          "intervalWidthM": 6.16,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 8.76,
+          "seasonalPersistenceMbgl": 5.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-10",
+        "expectedDepthMbgl": 7.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.43,
+          "upperBoundP90Mbgl": 9.2,
+          "intervalWidthM": 5.77,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 8.76,
+          "seasonalPersistenceMbgl": 5.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-10",
+        "expectedDepthMbgl": 7.82,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.89,
+          "upperBoundP90Mbgl": 9.76,
+          "intervalWidthM": 3.86,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 8.76,
+          "seasonalPersistenceMbgl": 5.7
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:22.722752+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_shivamogga_main": {
+    "blockId": "blk_shivamogga_main",
+    "blockName": "Shimoga",
+    "districtName": "Shivamogga",
+    "stationName": "CGWB Manual - Shimoga (Shivamogga)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 2.71,
+    "latestObservationDate": "2024-08-25",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-11-25",
+        "expectedDepthMbgl": 2.7,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.42,
+          "upperBoundP90Mbgl": 4.0,
+          "intervalWidthM": 2.59,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.71,
+          "seasonalPersistenceMbgl": 3.06
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-02-25",
+        "expectedDepthMbgl": 3.33,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.44,
+          "upperBoundP90Mbgl": 4.72,
+          "intervalWidthM": 2.28,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.71,
+          "seasonalPersistenceMbgl": 3.06
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2025",
+        "targetDate": "2025-05-25",
+        "expectedDepthMbgl": 4.27,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.78,
+          "upperBoundP90Mbgl": 5.99,
+          "intervalWidthM": 3.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.71,
+          "seasonalPersistenceMbgl": 3.06
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2025",
+        "targetDate": "2025-08-25",
+        "expectedDepthMbgl": 3.44,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.63,
+          "upperBoundP90Mbgl": 5.06,
+          "intervalWidthM": 3.43,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.71,
+          "seasonalPersistenceMbgl": 3.06
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:23.005261+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_st_thomas_mount": {
+    "blockId": "blk_st_thomas_mount",
+    "blockName": "St.Thomas",
+    "districtName": "Kancheepuram",
+    "stationName": "CGWB Manual - St.Thomas (Kancheepuram)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 2.67,
+    "latestObservationDate": "2025-01-30",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2025",
+        "targetDate": "2025-04-30",
+        "expectedDepthMbgl": 3.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.9,
+          "upperBoundP90Mbgl": 5.27,
+          "intervalWidthM": 3.37,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.67,
+          "seasonalPersistenceMbgl": 1.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2025",
+        "targetDate": "2025-07-30",
+        "expectedDepthMbgl": 2.48,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.18,
+          "upperBoundP90Mbgl": 3.74,
+          "intervalWidthM": 2.55,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.67,
+          "seasonalPersistenceMbgl": 1.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2025",
+        "targetDate": "2025-10-30",
+        "expectedDepthMbgl": 2.1,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.14,
+          "upperBoundP90Mbgl": 3.7,
+          "intervalWidthM": 2.56,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.67,
+          "seasonalPersistenceMbgl": 1.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2026",
+        "targetDate": "2026-01-30",
+        "expectedDepthMbgl": 2.16,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.25,
+          "upperBoundP90Mbgl": 3.97,
+          "intervalWidthM": 2.73,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.67,
+          "seasonalPersistenceMbgl": 1.81
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:23.289399+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_thadlaskein": {
+    "blockId": "blk_thadlaskein",
+    "blockName": "Thadlaskein",
+    "districtName": "East Jaintia Hills",
+    "stationName": "CGWB Manual - Thadlaskein (East Jaintia Hills)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 0.57,
+    "latestObservationDate": "2023-08-31",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-30",
+        "expectedDepthMbgl": 0.64,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.12,
+          "upperBoundP90Mbgl": 2.06,
+          "intervalWidthM": 1.95,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.57,
+          "seasonalPersistenceMbgl": 0.27
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-29",
+        "expectedDepthMbgl": 0.99,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.42,
+          "upperBoundP90Mbgl": 2.98,
+          "intervalWidthM": 2.56,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.57,
+          "seasonalPersistenceMbgl": 0.27
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-31",
+        "expectedDepthMbgl": 1.39,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.81,
+          "upperBoundP90Mbgl": 3.18,
+          "intervalWidthM": 2.37,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.57,
+          "seasonalPersistenceMbgl": 0.27
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-31",
+        "expectedDepthMbgl": 0.85,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 0.28,
+          "upperBoundP90Mbgl": 2.18,
+          "intervalWidthM": 1.9,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 0.57,
+          "seasonalPersistenceMbgl": 0.27
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:23.567422+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_tikamgarh_main": {
+    "blockId": "blk_tikamgarh_main",
+    "blockName": "Tikamgarh",
+    "districtName": "Tikamgarh",
+    "stationName": "CGWB Manual - Tikamgarh (Tikamgarh)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 5.96,
+    "latestObservationDate": "2023-08-20",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-20",
+        "expectedDepthMbgl": 4.85,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.46,
+          "upperBoundP90Mbgl": 7.86,
+          "intervalWidthM": 5.4,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.96,
+          "seasonalPersistenceMbgl": 4.23
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-20",
+        "expectedDepthMbgl": 5.48,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.17,
+          "upperBoundP90Mbgl": 6.77,
+          "intervalWidthM": 2.6,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.96,
+          "seasonalPersistenceMbgl": 4.23
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-20",
+        "expectedDepthMbgl": 6.36,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.35,
+          "upperBoundP90Mbgl": 8.7,
+          "intervalWidthM": 4.35,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.96,
+          "seasonalPersistenceMbgl": 4.23
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-20",
+        "expectedDepthMbgl": 4.24,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.38,
+          "upperBoundP90Mbgl": 6.53,
+          "intervalWidthM": 4.14,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 5.96,
+          "seasonalPersistenceMbgl": 4.23
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:23.881945+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_umling": {
+    "blockId": "blk_umling",
+    "blockName": "Nongpoh",
+    "districtName": "Ri Bhoi",
+    "stationName": "CGWB Manual - Nongpoh (Ri Bhoi)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 2.45,
+    "latestObservationDate": "2024-01-31",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-04-30",
+        "expectedDepthMbgl": 4.11,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 2.3,
+          "upperBoundP90Mbgl": 5.5,
+          "intervalWidthM": 3.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.45,
+          "seasonalPersistenceMbgl": 4.3
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-07-31",
+        "expectedDepthMbgl": 3.74,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.77,
+          "upperBoundP90Mbgl": 4.89,
+          "intervalWidthM": 3.12,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.45,
+          "seasonalPersistenceMbgl": 4.3
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2024",
+        "targetDate": "2024-10-31",
+        "expectedDepthMbgl": 3.73,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 1.9,
+          "upperBoundP90Mbgl": 4.45,
+          "intervalWidthM": 2.55,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.45,
+          "seasonalPersistenceMbgl": 4.3
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2025",
+        "targetDate": "2025-01-31",
+        "expectedDepthMbgl": 4.51,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 3.14,
+          "upperBoundP90Mbgl": 5.52,
+          "intervalWidthM": 2.38,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 2.45,
+          "seasonalPersistenceMbgl": 4.3
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:24.172375+00:00",
+    "isDemonstrationData": false
+  },
+  "blk_west_tripura_mohanpur": {
+    "blockId": "blk_west_tripura_mohanpur",
+    "blockName": "Mohanpur",
+    "districtName": "West Tripura",
+    "stationName": "CGWB Manual - Mohanpur (West Tripura)",
+    "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+    "modelVersion": "1.0.0",
+    "modelStatus": "research_prototype",
+    "provenanceStatus": "verified",
+    "horizonStatus": "valid",
+    "operationalEligibility": false,
+    "baselineHistoricalDepthMbgl": 6.36,
+    "latestObservationDate": "2023-08-31",
+    "forecasts": [
+      {
+        "horizonQuarter": 1,
+        "forecastHorizonMonths": 3,
+        "forecastHorizonDays": 90,
+        "horizonDays": 90,
+        "targetSeason": "Post-Monsoon (Oct-Dec) 2023",
+        "targetDate": "2023-11-30",
+        "expectedDepthMbgl": 8.14,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 4.13,
+          "upperBoundP90Mbgl": 11.67,
+          "intervalWidthM": 7.54,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.36,
+          "seasonalPersistenceMbgl": 11.28
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 2,
+        "forecastHorizonMonths": 6,
+        "forecastHorizonDays": 180,
+        "horizonDays": 180,
+        "targetSeason": "Winter Rabi (Jan-Mar) 2024",
+        "targetDate": "2024-02-29",
+        "expectedDepthMbgl": 9.73,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 7.29,
+          "upperBoundP90Mbgl": 11.49,
+          "intervalWidthM": 4.2,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.36,
+          "seasonalPersistenceMbgl": 11.28
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 3,
+        "forecastHorizonMonths": 9,
+        "forecastHorizonDays": 270,
+        "horizonDays": 270,
+        "targetSeason": "Pre-Monsoon (Apr-Jun) 2024",
+        "targetDate": "2024-05-31",
+        "expectedDepthMbgl": 11.2,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 8.64,
+          "upperBoundP90Mbgl": 13.85,
+          "intervalWidthM": 5.21,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.36,
+          "seasonalPersistenceMbgl": 11.28
+        },
+        "stressRiskCategory": "watch",
+        "units": "m bgl"
+      },
+      {
+        "horizonQuarter": 4,
+        "forecastHorizonMonths": 12,
+        "forecastHorizonDays": 360,
+        "horizonDays": 360,
+        "targetSeason": "Monsoon Peak (Jul-Sep) 2024",
+        "targetDate": "2024-08-31",
+        "expectedDepthMbgl": 9.56,
+        "uncertaintyInterval": {
+          "lowerBoundP10Mbgl": 5.89,
+          "upperBoundP90Mbgl": 12.21,
+          "intervalWidthM": 6.32,
+          "isIntervalCalibrated": false,
+          "intervalStatus": "ordered_uncalibrated"
+        },
+        "baselinePersistence": {
+          "lastObservationPersistenceMbgl": 6.36,
+          "seasonalPersistenceMbgl": 11.28
+        },
+        "stressRiskCategory": "normal",
+        "units": "m bgl"
+      }
+    ],
+    "safeguardDisclaimer": "Research Prototype Notice: Groundwater forecasts represent statistical quantile gradient boosting estimates trained on verified historical CGWB observation series. Intervals represent empirical uncalibrated bounds. Not authorized for statutory drought notifications without field verification.",
+    "generatedAt": "2026-10-25T08:36:24.467216+00:00",
+    "isDemonstrationData": false
+  }
+}

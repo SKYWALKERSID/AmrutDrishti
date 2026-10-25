@@ -39,7 +39,7 @@ function localArchivePayload(trusted: Awaited<ReturnType<typeof import('@/lib/se
       quality_flag: trusted.provenance.isVerifiedMapping ? 'accepted_local_processed' : 'mapping_unverified',
       source_name: trusted.provenance.sourceOrganization,
       source_provider: trusted.provenance.sourceOrganization,
-      source_resource_url: 'https://nwdp.nwic.gov.in',
+      source_resource_url: trusted.provenance.sourceOrganization === 'CGWB' ? 'https://cgwb.gov.in' : 'https://nwdp.nwic.gov.in',
     })),
     totalCount, limit, offset,
   };
@@ -104,7 +104,7 @@ export async function GET(request: NextRequest) {
     },
     loadLocal: block ? async () => {
       const { getTrustedBlockObservations } = await import('@/lib/services/trustedObservationProvider');
-      const trusted = await getTrustedBlockObservations(block);
+      const trusted = await getTrustedBlockObservations(block, { includeHistoricalCgwb: true });
       if (!mayPublishLocalHistoricalFallback({
         readinessStatus: trusted.availabilityStatus,
         mappingVerified: trusted.provenance.isVerifiedMapping,

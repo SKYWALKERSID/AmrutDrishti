@@ -695,7 +695,7 @@ interface RainfallChartPoint {
               </div>
             ) : rainfallChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={rainfallChartData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
+                <ComposedChart data={rainfallChartData} margin={{ top: 15, right: 25, left: -5, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
                   <XAxis dataKey="period" tick={{ fontSize: 11, fill: CHART_COLORS.axisText }} />
                   {/* Left Axis: Rainfall Total (mm) */}
@@ -703,7 +703,7 @@ interface RainfallChartPoint {
                     yAxisId="left"
                     orientation="left"
                     tick={{ fontSize: 11, fill: CHART_COLORS.axisText }}
-                    domain={[0, 'auto']}
+                    domain={[0, (dataMax: number) => Math.max(dataMax * 1.25, 1000)]}
                     label={{ value: 'Rainfall (mm)', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fontSize: 10, fill: CHART_COLORS.axisText }, offset: 15 }}
                   />
                   {/* Right Axis: Deviation (mm) */}
@@ -711,6 +711,7 @@ interface RainfallChartPoint {
                     yAxisId="right"
                     orientation="right"
                     tick={{ fontSize: 11, fill: CHART_COLORS.axisText }}
+                    domain={[(min: number) => Math.min(min * 1.25, -300), (max: number) => Math.max(max * 1.25, 100)]}
                     label={{ value: 'Deviation (mm)', angle: 90, position: 'insideRight', style: { textAnchor: 'middle', fontSize: 10, fill: CHART_COLORS.axisText }, offset: 15 }}
                   />
                   <Tooltip
