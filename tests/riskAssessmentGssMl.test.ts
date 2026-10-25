@@ -149,7 +149,7 @@ test('Risk & Scoring: ML manifest confirms target is water level depth and opera
     'ML models in manifest must have operational_eligibility = false'
   );
 
-  const supportedStates = ['Punjab', 'Haryana', 'Rajasthan', 'Assam', 'Madhya Pradesh'];
+  const supportedStates = ['Punjab', 'Haryana', 'Rajasthan', 'Madhya Pradesh'];
   for (const st of supportedStates) {
     const modelMeta = manifest.models[st];
     assert.ok(modelMeta, `Model metadata for ${st} must exist in manifest`);

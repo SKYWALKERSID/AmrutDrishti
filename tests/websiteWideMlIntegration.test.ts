@@ -9,11 +9,11 @@ test('Website-wide ML: Map Explorer integrates ML groundwater depth forecast and
     'utf-8'
   );
 
-  // 1. Imports verified contrast projections data
-  assert.match(
+  // 1. Must NOT import legacy contrast projections data
+  assert.doesNotMatch(
     explorerContent,
     /import contrastProjectionsData from '@\/lib\/data\/contrastProjections\.json'/i,
-    'MapExplorer must import contrastProjectionsData'
+    'MapExplorer must NOT import legacy contrastProjectionsData'
   );
 
   // 2. Contains dedicated ML Depth Forecast section with QuantileGB-v2.0 label
@@ -68,11 +68,11 @@ test('Website-wide ML: Overview page integrates ML forecast column alongside obs
     'utf-8'
   );
 
-  // 1. Imports contrast projections
-  assert.match(
+  // 1. Must NOT import legacy contrast projections
+  assert.doesNotMatch(
     overviewContent,
     /import contrastProjectionsData from '@\/lib\/data\/contrastProjections\.json'/i,
-    'Overview must import contrastProjectionsData'
+    'Overview must NOT import legacy contrastProjectionsData'
   );
 
   // 2. Contains distinct column headers for Observed Well Depth and Projected Depth Q1
@@ -141,48 +141,16 @@ test('Website-wide ML: Risk Assessment page connects to live forecast API and pr
 });
 
 test('Website-wide ML: Data integrity and safety across all modules', () => {
-  // Check contrast projections structure
-  const contrastProjections = JSON.parse(
-    fs.readFileSync(
-      path.join(process.cwd(), 'src/lib/data/contrastProjections.json'),
-      'utf-8'
-    )
+  // Verify that the legacy hardcoded artifacts are completely removed
+  assert.ok(!fs.existsSync(path.join(process.cwd(), 'src/lib/data/contrastProjections.json')));
+  assert.ok(!fs.existsSync(path.join(process.cwd(), 'src/lib/data/contrastHistoricalSeries.json')));
+
+  // Verify that active readiness ledger covers exactly 43 blocks
+  const readiness = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), 'audit/global_model_block_readiness.json'), 'utf-8')
   );
-
-  const blockKeys = Object.keys(contrastProjections);
-  assert.ok(blockKeys.length >= 60, 'Must have at least 60 nationwide blocks covered');
-
-  // Verify that unavailable blocks have modelStatus === "unavailable" and empty forecasts
-  const unavailKeys = blockKeys.filter(
-    (k) => contrastProjections[k].modelStatus === 'unavailable'
-  );
-  assert.ok(unavailKeys.length > 0, 'Must have explicitly identified unavailable blocks');
-
-  for (const k of unavailKeys) {
-    const entry = contrastProjections[k];
-    assert.equal(entry.forecasts.length, 0, `Unavailable block ${k} must not have fabricated forecast points`);
-    assert.equal(entry.operationalEligibility, false, `Unavailable block ${k} must not be operationally eligible`);
-  }
-
-  // Any available future artifacts must have properly ordered, explicitly
-  // uncalibrated intervals. The current bundled ledger is intentionally stale.
-  const availKeys = blockKeys.filter(
-    (k) => contrastProjections[k].modelStatus !== 'unavailable'
-  );
-  for (const k of availKeys) {
-    const entry = contrastProjections[k];
-    assert.equal(entry.operationalEligibility, false, 'Research models must not claim operational eligibility');
-    for (const f of entry.forecasts) {
-      assert.equal(f.units, 'm bgl', 'Forecast units must be m bgl');
-      if (
-        f.uncertaintyInterval?.lowerBoundP10Mbgl !== null &&
-        f.uncertaintyInterval?.upperBoundP90Mbgl !== null
-      ) {
-        assert.ok(
-          f.uncertaintyInterval.lowerBoundP10Mbgl <= f.uncertaintyInterval.upperBoundP90Mbgl,
-          `Lower bound P10 (${f.uncertaintyInterval.lowerBoundP10Mbgl}) must be <= Upper bound P90 (${f.uncertaintyInterval.upperBoundP90Mbgl}) in block ${k}`
-        );
-      }
-    }
+  assert.equal(readiness.blocks.length, 43, 'Readiness ledger must cover exactly 43 canonical blocks');
+  for (const block of readiness.blocks) {
+    assert.equal(block.operational_eligibility, false, 'Operational eligibility must remain false');
   }
 });

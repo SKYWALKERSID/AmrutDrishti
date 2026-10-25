@@ -11,14 +11,14 @@ import {
 import { hasValidCoordinates } from '../src/lib/mappers/blockMapper.ts';
 import { translations } from '../src/lib/data/translations.ts';
 
-test('National Contrast: Validates Top 3 Most Scarce and Top 3 Least Scarce states', () => {
-  assert.equal(STATE_CONTRAST_GROUPS.length, 6);
+test('National Contrast: Validates High Stress and Low Stress contrast groups without Assam', () => {
+  assert.equal(STATE_CONTRAST_GROUPS.length, 5);
 
   const highStress = STATE_CONTRAST_GROUPS.filter(g => g.category === 'high_stress');
   const lowStress = STATE_CONTRAST_GROUPS.filter(g => g.category === 'low_stress');
 
   assert.equal(highStress.length, 3);
-  assert.equal(lowStress.length, 3);
+  assert.equal(lowStress.length, 2);
 
   // High Stress States
   const highNames = highStress.map(g => g.state);
@@ -30,7 +30,7 @@ test('National Contrast: Validates Top 3 Most Scarce and Top 3 Least Scarce stat
   const lowNames = lowStress.map(g => g.state);
   assert.ok(lowNames.includes('Arunachal Pradesh'));
   assert.ok(lowNames.includes('Sikkim'));
-  assert.ok(lowNames.includes('Assam'));
+  assert.ok(!lowNames.includes('Assam'), 'Assam must not be in national contrast groups');
 });
 
 test('National Contrast: High stress blocks match specified red zones', () => {
@@ -76,7 +76,7 @@ test('National Contrast: High stress blocks match specified red zones', () => {
 
 test('National Contrast: Low stress blocks match specified surplus basins', () => {
   const lowBlocks = LOW_STRESS_STATE_DISTRICTS.flatMap(d => d.blocks);
-  assert.equal(lowBlocks.length, 27);
+  assert.equal(lowBlocks.length, 16);
 
   const blockNames = lowBlocks.map(b => b.name);
 
@@ -100,20 +100,7 @@ test('National Contrast: Low stress blocks match specified surplus basins', () =
   assert.ok(blockNames.includes('Dentam'));
   assert.ok(blockNames.includes('Chumbong'));
 
-  // Assam (Boko, Chaygaon, Hajo, Barbaruah, Tingkhong, Joypur, Balipara, Gabharu, Dhekiajuli, Lakhipur, Sonai)
-  assert.ok(blockNames.includes('Boko'));
-  assert.ok(blockNames.includes('Chaygaon'));
-  assert.ok(blockNames.includes('Hajo'));
-  assert.ok(blockNames.includes('Barbaruah'));
-  assert.ok(blockNames.includes('Tingkhong'));
-  assert.ok(blockNames.includes('Joypur'));
-  assert.ok(blockNames.includes('Balipara'));
-  assert.ok(blockNames.includes('Gabharu'));
-  assert.ok(blockNames.includes('Dhekiajuli'));
-  assert.ok(blockNames.includes('Lakhipur'));
-  assert.ok(blockNames.includes('Sonai'));
-
-  // Low stress blocks have normal risk severity; Arunachal & Assam have shallow well depth, Sikkim has honest null
+  // Low stress blocks have normal risk severity; Arunachal has shallow well depth, Sikkim has honest null
   for (const b of lowBlocks) {
     assert.equal(b.riskSeverity, 'normal');
     assert.ok(b.assessment.descriptiveStressScore <= 20);
@@ -126,7 +113,7 @@ test('National Contrast: Low stress blocks match specified surplus basins', () =
 });
 
 test('National Contrast: Every contrast block has valid coordinates and honest data tags', () => {
-  assert.equal(ALL_CONTRAST_BLOCKS.length, 48);
+  assert.equal(ALL_CONTRAST_BLOCKS.length, 37);
   for (const block of ALL_CONTRAST_BLOCKS) {
     assert.ok(Array.isArray(block.coordinates));
     assert.ok(hasValidCoordinates(block.coordinates as [number, number]));

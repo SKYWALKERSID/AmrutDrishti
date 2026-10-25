@@ -1,0 +1,31 @@
+{
+  "model_identifier": "NWDP-Station-Experimental-7d",
+  "version": "1.0.0-experimental",
+  "feature_columns": [
+    "origin_value",
+    "lag_1_observation",
+    "lag_2_observations",
+    "lag_7_observations",
+    "rolling_mean_7_observations",
+    "rolling_std_7_observations",
+    "change_over_7_observations",
+    "target_sin_doy",
+    "target_cos_doy"
+  ],
+  "feature_semantics": {
+    "origin_value": "latest observed daily median at forecast origin",
+    "lag_1_observation": "previous observed daily median, not necessarily previous calendar day",
+    "lag_2_observations": "second previous observed daily median",
+    "lag_7_observations": "seventh previous observed daily median",
+    "rolling_mean_7_observations": "mean over seven observed daily medians through origin",
+    "rolling_std_7_observations": "population standard deviation over same seven values",
+    "change_over_7_observations": "origin minus seventh previous observed value",
+    "target_sin_doy": "sine of target calendar day-of-year",
+    "target_cos_doy": "cosine of target calendar day-of-year"
+  },
+  "target": "Groundwater Level Telemetry 6 Hourly (meter)",
+  "horizon_days": 7,
+  "unit_status": "source header reports meter; depth datum and sign convention unverified",
+  "missing_policy": "no imputation; no missing date fill",
+  "deduplication": "median within exact state/district/station/calendar date; all source IDs retained"
+}

@@ -63,19 +63,19 @@ export default function DataSourcesPage() {
 
         <div className="mt-4 p-3.5 bg-emerald-50/70 border border-emerald-300 text-xs text-emerald-900 leading-relaxed space-y-1.5">
           <div>
-            <span className="font-semibold">Authoritative Geographic Scope:</span> The ten active target states across four project regions are:
+            <span className="font-semibold">Authoritative Geographic Scope:</span> The nine active target states across four project regions are:
             <ul className="list-disc list-inside mt-1 ml-1 space-y-0.5">
               <li><strong>South India (3 states):</strong> Karnataka, Telangana, Tamil Nadu</li>
               <li><strong>Central India (1 state):</strong> Madhya Pradesh</li>
               <li><strong>North India (3 states):</strong> Rajasthan, Haryana, Punjab</li>
-              <li><strong>Northeast India (3 states):</strong> Meghalaya, Assam, Tripura</li>
+              <li><strong>Northeast India (2 states):</strong> Meghalaya, Tripura</li>
             </ul>
           </div>
           <div className="text-[11px] text-emerald-800">
-            <strong>Out of Scope / Scientific Reference Regions:</strong> Sikkim, Uttar Pradesh, and Arunachal Pradesh are preserved in the codebase as scientific reference fixtures and baseline comparisons, but are strictly excluded from active target navigation, target summaries, and active operational scope.
+            <strong>Out of Scope / Excluded Regions:</strong> Assam, Sikkim, Uttar Pradesh, and Arunachal Pradesh are strictly excluded from active target navigation, target summaries, and active operational scope.
           </div>
           <div className="text-[11px] text-emerald-800">
-            <strong>Update frequency:</strong> Field telemetry is published on daily to quarterly schedules; satellite products follow 5-day to monthly cycles; official IN-GRES extraction assessments are published annually. A source being listed here does not mean its latest data has been ingested or validated; see each source's Observed and Ingested dates.
+            <strong>Update frequency:</strong> Field telemetry is published on daily to quarterly schedules; satellite products follow 5-day to monthly cycles; official IN-GRES extraction assessments are published annually. A source being listed here does not mean its latest data has been ingested or validated; see each source&apos;s Observed and Ingested dates.
           </div>
         </div>
       </div>

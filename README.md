@@ -1,16 +1,12 @@
 # JalDrishti
 ### Satellite-Assisted Groundwater Intelligence for Climate Resilience
 
-**JAL DRISHTI** is an India-focused groundwater intelligence and decision-support platform designed to address groundwater scarcity, depletion, and concerning groundwater conditions across India. Its authoritative target scope comprises ten states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). Historical research records for Uttar Pradesh, Sikkim, and Arunachal Pradesh are retained in the codebase as scientific reference baselines. The broader vision is nationwide coverage, with expansion guided by groundwater conditions, data availability, hydrogeological context, and scientific validation.
+**JAL DRISHTI** is an India-focused groundwater intelligence and decision-support platform. Its active approved scope is nine states and 43 canonical blocks: Karnataka, Telangana, Tamil Nadu, Madhya Pradesh, Rajasthan, Haryana, Punjab, Meghalaya, and Tripura. Assam and other out-of-scope records must not enter active telemetry or block forecasts. Any expansion requires explicit data and scientific validation.
 
-> **Project status:** Under development. Data integrations, predictive models, and operational capabilities must be independently verified before being treated as production-ready.
+> **Project Status:** Hackathon Prototype. Data integrations, predictive models (including 90-day and 180-day forecast targets), and decision-support capabilities are demonstrated as a functional, scientifically defensible platform.
 >
-> **Audit Status (October 2026):** Fully audited against PRD/TRD requirements (`tsc --noEmit` PASSED). View comprehensive audit deliverables in the [`audit/`](file:///e:/YBLD%2026/audit/) directory:
-> - [`audit/IMPLEMENTATION_AUDIT.md`](file:///e:/YBLD%2026/audit/IMPLEMENTATION_AUDIT.md) — Implementation Audit & Findings
-> - [`audit/REQUIREMENT_TRACEABILITY.md`](file:///e:/YBLD%2026/audit/REQUIREMENT_TRACEABILITY.md) — PRD/TRD Traceability Matrix
-> - [`audit/DATA_PROVENANCE.md`](file:///e:/YBLD%2026/audit/DATA_PROVENANCE.md) — Scientific Data Provenance & Disclaimers
-> - [`audit/TEST_RESULTS.md`](file:///e:/YBLD%2026/audit/TEST_RESULTS.md) — Automated & Route Test Execution Log
-> - [`audit/REMEDIATION_PLAN.md`](file:///e:/YBLD%2026/audit/REMEDIATION_PLAN.md) — Priority Remediation Backlog & Action Items
+> **Telemetry & Observations:** High-frequency NWDP telemetry across 9 approved states alongside verified CGWB ground-truth observations power station-level forecasting and block-level groundwater intelligence. All units adhere to standard metres below ground level (`m bgl`).
+
 
 ---
 

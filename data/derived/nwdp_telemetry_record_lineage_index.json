@@ -1,0 +1,14 @@
+{
+  "version": "nwdp-record-lineage/v1",
+  "scope": "18 retained NWDP CSV resources only",
+  "source_record_identifier": "sha256:<source_sha256>:line:<one-based CSV line number>",
+  "source_fingerprints": "See nwdp_telemetry_ingestion_manifest.json input_resources.",
+  "terminal_state_algorithm": "scripts/rebuild_nwdp_authoritative.py::outcome",
+  "terminal_states": [
+    "candidate_not_verified",
+    "quarantined"
+  ],
+  "publication_rule": "Only candidate records with reviewed station-to-block evidence may be aggregated and published. The current block series is intentionally empty.",
+  "materialized_row_ledger": false,
+  "reason": "A prior interrupted materialization produced an invalid gzip and was discarded. Deterministic source identifiers, immutable source hashes, per-file terminal counts, and the checked-in replay script are retained instead of accepting corrupt lineage output."
+}

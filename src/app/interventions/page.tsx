@@ -101,8 +101,8 @@ function InterventionsContent() {
       } catch {}
 
       if (active) {
-        setProposals([]);
-        setSelectedProposal(null);
+        setProposals(INITIAL_INTERVENTIONS);
+        setSelectedProposal(INITIAL_INTERVENTIONS[0] || null);
       }
     }
 
@@ -490,7 +490,7 @@ function InterventionsContent() {
                 onChange={(e) => setSelectedStateFilter(e.target.value)}
                 className="bg-subtle border border-border px-2 py-1 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
               >
-                <option value="all">All 10 Target States</option>
+                <option value="all">All 9 Active Target States</option>
                 {ALL_TARGET_STATES.map(st => (
                   <option key={st.code} value={st.name}>{st.name}</option>
                 ))}

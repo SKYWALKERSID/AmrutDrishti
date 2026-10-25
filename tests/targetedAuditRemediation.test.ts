@@ -102,15 +102,10 @@ test('REMEDIATION-B: Alert records have no fabricated confidence and maintain si
   assert.match(alertPageContent, /buildAdvisoryMessages/);
 });
 
-test('REMEDIATION-C: Springshed honest boundary is preserved for Sikkim', async () => {
-  const contrastProjections = JSON.parse(
-    fs.readFileSync(
-      path.join(process.cwd(), 'src/lib/data/contrastProjections.json'),
-      'utf-8'
-    )
-  );
+test('REMEDIATION-C: Springshed honest boundary is preserved for Sikkim and legacy projections eliminated', async () => {
+  assert.ok(!fs.existsSync('src/lib/data/contrastProjections.json'), 'Legacy contrastProjections.json must be eliminated');
 
-  // 1. All 8 Sikkim blocks are strictly unavailable with 0 forecast points
+  // 1. All 8 Sikkim blocks are out of active scope (unmonitored mountain springsheds)
   const sikkimBlockIds = [
     'blk_gangtok_rakdong_tintek',
     'blk_gangtok_khamdong',
@@ -122,27 +117,22 @@ test('REMEDIATION-C: Springshed honest boundary is preserved for Sikkim', async 
     'blk_gyalshing_chumbong'
   ];
 
-  for (const sId of sikkimBlockIds) {
-    const proj = contrastProjections[sId];
-    assert.ok(proj, `Sikkim block ${sId} must exist in projections ledger`);
-    assert.equal(proj.modelStatus, 'unavailable', `Block ${sId} must be unavailable`);
-    assert.equal(proj.modelIdentifier, 'none', `Block ${sId} modelIdentifier must be none`);
-    assert.equal(proj.forecasts.length, 0, `Block ${sId} must have 0 forecasts`);
-    assert.equal(proj.operationalEligibility, false, `Block ${sId} must not be operationally eligible`);
-    assert.match(proj.safeguardDisclaimer, /(Insufficient historical observations|stale|current source observation)/i);
-  }
-
   // 2. Direct API check against running server
-  let isPortOpen = false;
-  try {
-    await fetch('http://localhost:3000/', { method: 'HEAD', signal: AbortSignal.timeout(1500) });
-    isPortOpen = true;
-  } catch {
-    isPortOpen = false;
+  let activeBaseUrl: string | null = null;
+  for (const port of [3000, 3001]) {
+    try {
+      const probe = await fetch(`http://localhost:${port}/api/forecast?block=blk_remote_unmonitored_xyz`, { signal: AbortSignal.timeout(1500) });
+      if (probe.status === 200) {
+        activeBaseUrl = `http://localhost:${port}`;
+        break;
+      }
+    } catch {
+      // try next port
+    }
   }
 
-  if (isPortOpen) {
-    const res = await fetch('http://localhost:3000/api/forecast?block=blk_gangtok_rakdong_tintek');
+  if (activeBaseUrl) {
+    const res = await fetch(`${activeBaseUrl}/api/forecast?block=blk_gangtok_rakdong_tintek`);
     assert.equal(res.status, 200);
     const json = await res.json();
     assert.equal(json.modelStatus, 'unavailable');

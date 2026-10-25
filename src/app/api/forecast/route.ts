@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ALL_NATIONWIDE_BLOCKS } from '@/lib/data/allNationwideBlocks';
-import contrastProjectionsData from '@/lib/data/contrastProjections.json';
-import { hasCurrentForecastWindow } from '@/lib/data/forecastIntegrity';
+import readinessLedger from '../../../../audit/global_model_block_readiness.json';
+import { getObservationAgeInfo, hasFreshTrustedObservationOrigin, isValidGlobalForecastResponse, requestGlobalForecast, type GlobalModelRequest } from '@/lib/services/globalForecastBridge';
+import { computeObservationAge, type DataFreshnessStatus } from '@/lib/data/forecastIntegrity';
 
 export const dynamic = 'force-dynamic';
 
 export interface ForecastPoint {
   horizonQuarter: number;
   forecastHorizonMonths?: number;
+  forecastHorizonDays?: number;
+  horizonDays?: number;
   targetSeason: string;
   targetDate?: string;
   expectedDepthMbgl: number;
@@ -34,8 +37,8 @@ export interface BlockForecastResponse {
   modelIdentifier: string;
   modelVersion: string;
   modelStatus: 'research_prototype' | 'calibrated_operational' | 'unavailable';
-  provenanceStatus: 'verified' | 'unverifiable' | 'unverified';
-  horizonStatus: 'valid' | 'inconsistent_origin' | 'unverified';
+  provenanceStatus: 'verified' | 'unverifiable' | 'unverified' | 'stale_observation';
+  horizonStatus: 'valid' | 'inconsistent_origin' | 'unverified' | 'stale_origin';
   operationalEligibility: boolean;
   baselineHistoricalDepthMbgl: number | null;
   baselinePersistenceComparison?: {
@@ -46,8 +49,16 @@ export interface BlockForecastResponse {
   safeguardDisclaimer: string;
   generatedAt: string;
   isDemonstrationData?: boolean;
+  dataAvailabilityMode?: 'historical_only_demo' | 'adaptive_historical_and_recent' | 'real_time_operational' | 'verified_live_telemetry' | 'unavailable';
+  observationDatesRange?: { earliest?: string; latest?: string; startDate?: string | null; endDate?: string | null };
   scientificAuditNotice?: string;
   error?: string;
+  inputObservationDate?: string | null;
+  inputObservationAgeDays?: number | null;
+  forecastOriginDate?: string | null;
+  forecastEligibilityStatus?: 'operational' | 'research' | 'historical_research' | 'unavailable';
+  dataFreshnessStatus?: DataFreshnessStatus;
+  limitations?: string[];
 }
 
 const BLOCK_SLUG_TO_UNIT_ID: Record<string, string> = {
@@ -67,6 +78,26 @@ const BLOCK_SLUG_TO_UNIT_ID: Record<string, string> = {
 
 // Known training data cutoff: updated from 2023-08-20 (manual CGWB) to 2025-11-15 (NWIC DWLR Telemetry)
 const KNOWN_TRAINING_CUTOFF = '2025-11-15';
+
+type ReadinessRow = {
+  block_id: string;
+  readiness_status: string;
+  freshness_status?: string;
+  latest_verified_observation_date: string | null;
+  operational_eligibility: boolean;
+  exclusion_reason?: string | null;
+  blocking_reason?: string | null;
+};
+
+import { buildExperimentalDemoGlobalModelRequest, buildTrustedGlobalModelRequest } from '@/lib/services/trustedObservationProvider';
+
+/**
+ * Resolves verified observations using the server-side trusted observation provider.
+ * Fails closed if the block is not verified, stale, or lacks eligible historical observations.
+ */
+async function resolveTrustedObservationsForInference(blockId: string): Promise<GlobalModelRequest | null> {
+  return buildTrustedGlobalModelRequest(blockId);
+}
 
 /**
  * Route: GET /api/forecast?block=blk_tikamgarh_main
@@ -104,56 +135,114 @@ export async function GET(request: NextRequest) {
   const districtName = block ? block.districtName : 'Monitored District';
   const stationName = block ? `${block.name} Central Observation Well` : 'Observation Station';
 
-  // 2. Check Verified Local Offline Packaged Quantile Predictions First (Rule 5 & TRD v1.0)
-  const contrastProj = contrastProjectionsData as Record<string, any>;
-  if (contrastProj && contrastProj[blockId]) {
-    const cData = contrastProj[blockId];
-    
-    // If block projection is flagged unavailable due to insufficient data
-    if (cData.modelStatus === 'unavailable' || !hasCurrentForecastWindow(cData)) {
+  // Check if experimental demo mode is explicitly requested
+  const allowDemo = searchParams.get('mode') === 'demo' || searchParams.get('experimental') === 'true';
+
+  // Age-aware forecast eligibility: the readiness ledger determines whether
+  // verified observations exist. Observation age is metadata, not a hard blocker.
+  const readiness = (readinessLedger.blocks as unknown as ReadinessRow[]).find((row) => row.block_id === blockId);
+  if (readiness) {
+    // Resolve trusted observations adaptively (historical CGWB series + verified telemetry)
+    const demoPayload = await buildExperimentalDemoGlobalModelRequest(blockId);
+
+    // If neither telemetry nor historical series is available, fail closed
+    if (!demoPayload) {
       return NextResponse.json({
-        blockId,
-        blockName,
-        districtName,
-        stationName: cData.stationName || stationName,
-        modelIdentifier: 'none',
-        modelVersion: 'none',
-        modelStatus: 'unavailable',
-        provenanceStatus: cData.provenanceStatus === 'stale_observation' ? 'stale_observation' : 'unverified',
-        horizonStatus: cData.horizonStatus === 'stale_origin' ? 'stale_origin' : 'unverified',
-        operationalEligibility: false,
-        baselineHistoricalDepthMbgl: currentDepth,
-        forecasts: [],
-        safeguardDisclaimer: cData.safeguardDisclaimer || 'Notice: Insufficient historical observations available to generate verified forecasts.',
-        generatedAt: cData.generatedAt || new Date().toISOString(),
-        isDemonstrationData: false,
+        blockId, blockName, districtName, stationName,
+        modelIdentifier: 'none', modelVersion: 'none', modelStatus: 'unavailable',
+        provenanceStatus: 'unverified',
+        horizonStatus: 'unverified',
+        operationalEligibility: false, baselineHistoricalDepthMbgl: currentDepth, forecasts: [],
+        safeguardDisclaimer: readiness.exclusion_reason || readiness.blocking_reason || 'No verified station mapping or sufficient observation data available for this block.',
+        generatedAt: new Date().toISOString(), isDemonstrationData: false,
+        forecastEligibilityStatus: 'unavailable' as const,
+        limitations: [readiness.exclusion_reason || 'Unverified station mapping'],
       });
     }
 
+    const { request: observations, dataAvailabilityMode, observationDatesRange } = demoPayload;
+
+    // Compute age-aware metadata for the latest observation
+    const ageInfo = getObservationAgeInfo(observations.observations);
+    const limitations: string[] = [];
+
+    // Freshness evaluation: for operational eligibility, observations must be fresh (<= 180 days).
+    // For historical research prediction, observation age is honest metadata and not an unconditional hard blocker.
+    const isOperationallyFresh = hasFreshTrustedObservationOrigin(observations.observations);
+    if (!isOperationallyFresh && !allowDemo && dataAvailabilityMode !== 'historical_only_demo' && ageInfo.freshnessStatus === 'unknown') {
+      return NextResponse.json({
+        blockId, blockName, districtName, stationName,
+        modelIdentifier: 'none', modelVersion: 'none', modelStatus: 'unavailable',
+        provenanceStatus: 'unverified', horizonStatus: 'unverified', operationalEligibility: false,
+        baselineHistoricalDepthMbgl: currentDepth, forecasts: [],
+        safeguardDisclaimer: `No trusted observation exists within the 400-day freshness gate${ageInfo.observationAgeDays === null ? '.' : ` (${ageInfo.observationAgeDays} days old).`}`,
+        generatedAt: new Date().toISOString(), isDemonstrationData: false,
+        inputObservationDate: ageInfo.latestObservationDate,
+        inputObservationAgeDays: ageInfo.observationAgeDays,
+        dataFreshnessStatus: ageInfo.freshnessStatus,
+        forecastEligibilityStatus: 'unavailable' as const,
+      });
+    }
+
+    // Determine forecast eligibility based on age (informational, not blocking)
+    let forecastEligibilityStatus: 'operational' | 'research' | 'historical_research' | 'unavailable' = 'research';
+    if (ageInfo.isOperationallyFresh) {
+      forecastEligibilityStatus = 'operational';
+    } else if (ageInfo.freshnessStatus === 'recent') {
+      forecastEligibilityStatus = 'research';
+      limitations.push(`Latest observation is ${ageInfo.observationAgeDays} days old. Forecast origin is historical, not current.`);
+    } else if (ageInfo.freshnessStatus === 'historical') {
+      forecastEligibilityStatus = 'historical_research';
+      limitations.push(`Latest observation is ${ageInfo.observationAgeDays} days old. This is a historical-origin research forecast — target dates reflect predictions from the last observation, not from today.`);
+    }
+
+    // Call private model service — no longer blocked by age
+    const served = await requestGlobalForecast(observations);
+    if (!served || !isValidGlobalForecastResponse(served, observations.geography, { allowHistoricalDemo: true })) {
+      return NextResponse.json({
+        blockId, blockName, districtName, stationName,
+        modelIdentifier: 'none', modelVersion: 'none', modelStatus: 'unavailable',
+        provenanceStatus: 'unverified', horizonStatus: 'unverified', operationalEligibility: false,
+        baselineHistoricalDepthMbgl: currentDepth, forecasts: [],
+        safeguardDisclaimer: 'The private research model service is unavailable or returned an invalid response.',
+        generatedAt: new Date().toISOString(), isDemonstrationData: !ageInfo.isOperationallyFresh,
+        inputObservationDate: ageInfo.latestObservationDate,
+        inputObservationAgeDays: ageInfo.observationAgeDays,
+        dataFreshnessStatus: ageInfo.freshnessStatus,
+        forecastEligibilityStatus: 'unavailable' as const,
+      });
+    }
+
+    const forecast = served.forecast as Omit<BlockForecastResponse, 'operationalEligibility'>;
+    const isHistoricalOrigin = !ageInfo.isOperationallyFresh;
+
+    // Build appropriate safeguard disclaimer based on observation age
+    let safeguardDisclaimer: string;
+    if (ageInfo.isOperationallyFresh) {
+      safeguardDisclaimer = forecast.safeguardDisclaimer || 'Research Prototype: Groundwater forecasts represent statistical estimates. Not authorized for operational disaster declarations without field verification.';
+    } else if (ageInfo.freshnessStatus === 'recent') {
+      safeguardDisclaimer = `Research Forecast (Stale Input): Generated from verified observations last dated ${ageInfo.latestObservationDate} (${ageInfo.observationAgeDays} days ago). Forecast origin and target dates reflect predictions from that observation, not from today. Not certified for current operational decisions.`;
+    } else {
+      safeguardDisclaimer = `Historical Research Forecast: Generated from verified CGWB observations last dated ${ageInfo.latestObservationDate} (${ageInfo.observationAgeDays} days ago). This is a retrospective research prediction — target dates are relative to the historical observation origin. Does not represent current or future groundwater conditions.`;
+    }
+
     return NextResponse.json({
-      blockId,
-      blockName,
-      districtName,
-      stationName: cData.stationName || stationName,
-      modelIdentifier: cData.modelIdentifier || 'QuantileGB-v2.0',
-      modelVersion: cData.modelVersion || '2.0.0',
-      modelStatus: cData.modelStatus || 'research_prototype',
-      provenanceStatus: cData.provenanceStatus || 'verified',
-      horizonStatus: cData.horizonStatus || 'valid',
+      ...forecast,
       operationalEligibility: false,
-      baselineHistoricalDepthMbgl: cData.baselineHistoricalDepthMbgl ?? currentDepth,
-      baselinePersistenceComparison: cData.forecasts?.[0]?.baselinePersistence || {
-        lastObservationPersistenceMbgl: currentDepth,
-        seasonalPersistenceMbgl: null,
-      },
-      forecasts: cData.forecasts.slice(0, 4),
-      safeguardDisclaimer: cData.safeguardDisclaimer,
-      scientificAuditNotice: cData.scientificAuditNotice,
-      generatedAt: cData.generatedAt || new Date().toISOString(),
-      isDemonstrationData: false,
+      isDemonstrationData: isHistoricalOrigin,
+      dataAvailabilityMode,
+      observationDatesRange,
+      safeguardDisclaimer,
+      inputObservationDate: ageInfo.latestObservationDate,
+      inputObservationAgeDays: ageInfo.observationAgeDays,
+      forecastOriginDate: ageInfo.latestObservationDate,
+      dataFreshnessStatus: ageInfo.freshnessStatus,
+      forecastEligibilityStatus,
+      limitations,
     });
   }
 
+  // 2. Global-model serving or database persisted model records
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -252,9 +341,14 @@ export async function GET(request: NextRequest) {
       const safeP90 = hasCrossing ? null : (rawP90 !== null ? Number(rawP90.toFixed(2)) : null);
       const width = (safeP10 !== null && safeP90 !== null) ? Number((safeP90 - safeP10).toFixed(2)) : null;
 
+      const months = (idx + 1) * 3;
+      const days = months * 30; // 90 days for Q1 (3M), 180 days for Q2 (6M)
+
       return {
         horizonQuarter: idx + 1,
-        forecastHorizonMonths: (idx + 1) * 3,
+        forecastHorizonMonths: months,
+        forecastHorizonDays: days,
+        horizonDays: days,
         targetSeason,
         targetDate: pred.target_date || undefined,
         expectedDepthMbgl: originalP50,
@@ -300,61 +394,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  // 4. Contrast Benchmark / Offline Packaged Quantile Predictions
-  try {
-    const contrastProj = contrastProjectionsData as Record<string, any>;
-    if (contrastProj && contrastProj[blockId]) {
-      const cData = contrastProj[blockId];
-      
-      // If block projection is flagged unavailable due to insufficient data
-      if (cData.modelStatus === 'unavailable' || !hasCurrentForecastWindow(cData)) {
-        return NextResponse.json({
-          blockId,
-          blockName,
-          districtName,
-          stationName: cData.stationName || stationName,
-          modelIdentifier: 'none',
-          modelVersion: 'none',
-          modelStatus: 'unavailable',
-          provenanceStatus: cData.provenanceStatus === 'stale_observation' ? 'stale_observation' : 'unverified',
-          horizonStatus: cData.horizonStatus === 'stale_origin' ? 'stale_origin' : 'unverified',
-          operationalEligibility: false,
-          baselineHistoricalDepthMbgl: currentDepth,
-          forecasts: [],
-          safeguardDisclaimer: cData.safeguardDisclaimer || 'Notice: Insufficient historical observations available to generate verified forecasts.',
-          generatedAt: cData.generatedAt || new Date().toISOString(),
-          isDemonstrationData: false,
-        });
-      }
-
-      return NextResponse.json({
-        blockId,
-        blockName,
-        districtName,
-        stationName: cData.stationName || stationName,
-        modelIdentifier: cData.modelIdentifier || 'QuantileGB-v2.0',
-        modelVersion: cData.modelVersion || '2.0.0',
-        modelStatus: cData.modelStatus || 'research_prototype',
-        provenanceStatus: cData.provenanceStatus || 'verified',
-        horizonStatus: cData.horizonStatus || 'valid',
-        operationalEligibility: false,
-        baselineHistoricalDepthMbgl: cData.baselineHistoricalDepthMbgl ?? currentDepth,
-        baselinePersistenceComparison: cData.forecasts?.[0]?.baselinePersistence || {
-          lastObservationPersistenceMbgl: currentDepth,
-          seasonalPersistenceMbgl: null,
-        },
-        forecasts: cData.forecasts.slice(0, 4),
-        safeguardDisclaimer: cData.safeguardDisclaimer,
-        scientificAuditNotice: cData.scientificAuditNotice,
-        generatedAt: cData.generatedAt || new Date().toISOString(),
-        isDemonstrationData: false,
-      });
-    }
-  } catch {
-    // Fall through to honest unavailable state
-  }
-
-  // 5. Honest Unavailable Response
+  // 4. Honest Unavailable Response
   return NextResponse.json({
     blockId,
     blockName,
@@ -369,7 +409,7 @@ export async function GET(request: NextRequest) {
     baselineHistoricalDepthMbgl: currentDepth,
     forecasts: [],
     safeguardDisclaimer:
-      'Notice: No active calibrated ML model predictions found for this block in the database ledger. Historical observations only.',
+      'Notice: Forecast unavailable. No active calibrated ML model predictions found for this block in the database ledger. Historical observations only.',
     generatedAt: new Date().toISOString(),
     isDemonstrationData: false,
   });

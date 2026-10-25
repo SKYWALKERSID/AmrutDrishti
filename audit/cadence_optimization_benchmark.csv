@@ -1,4 +1,0 @@
-Cadence Horizon,N_train,N_test,Persistence RMSE,Seasonal RMSE,Ridge RMSE,Quantile GB RMSE,Quantile GB MAE,Quantile GB NSE,QGB vs Persist %,QGB vs Seasonal %,80% Coverage,Mean Width (m),Crossing Inversions
-1-Month Horizon (h=1m),634,25,2.715,5.034,2.848,2.759,2.231,0.295,-1.6206261510128828,45.192689709972186,44.0,3.38,0.0
-3-Month Horizon (h=3m / 1Q),785,48,3.548,5.305,3.951,3.831,3.05,-0.196,-7.9763246899661855,27.785108388312906,52.1,5.65,0.0
-12-Month Horizon (h=12m / 1Y),252,3,2.683,2.488,1.511,1.039,0.88,-25.287,61.27469250838613,58.2395498392283,100.0,5.45,0.0

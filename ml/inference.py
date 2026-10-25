@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 import json
 import math
+import re
 from typing import Dict, Any, List, Optional, Tuple
 import numpy as np
 import pandas as pd
@@ -36,6 +37,7 @@ REQUIRED_FEATURES = [
 DEFAULT_MANIFEST_PATH = os.path.join(
     os.path.dirname(__file__), "artifacts", "manifest.json"
 )
+GLOBAL_ARTIFACT_NAME = "global_block_aware_qgb_v1.joblib"
 
 STATE_NAME_TO_CODE = {
     "punjab": "punjab",
@@ -44,14 +46,23 @@ STATE_NAME_TO_CODE = {
     "hr": "haryana",
     "rajasthan": "rajasthan",
     "rj": "rajasthan",
-    "assam": "assam",
-    "as": "assam",
     "arunachal pradesh": "arunachal_pradesh",
     "arunachal_pradesh": "arunachal_pradesh",
     "ar": "arunachal_pradesh",
     "madhya pradesh": "madhya_pradesh",
     "madhya_pradesh": "madhya_pradesh",
     "mp": "madhya_pradesh",
+    "karnataka": "karnataka",
+    "ka": "karnataka",
+    "telangana": "telangana",
+    "ts": "telangana",
+    "tamil nadu": "tamil_nadu",
+    "tamil_nadu": "tamil_nadu",
+    "tn": "tamil_nadu",
+    "tripura": "tripura",
+    "tr": "tripura",
+    "meghalaya": "meghalaya",
+    "ml": "meghalaya",
 }
 
 SEASONS = [
@@ -68,7 +79,7 @@ def normalize_state_key(state: str) -> str:
     if not code:
         raise ValueError(
             f"Unsupported or unmodeled state: '{state}'. "
-            f"Available packaged state models: Punjab, Haryana, Rajasthan, Assam, Arunachal Pradesh."
+            f"Available packaged state models: Madhya Pradesh, Rajasthan, Punjab, Haryana, Karnataka, Telangana, Tamil Nadu, Meghalaya, Tripura."
         )
     return code
 
@@ -104,6 +115,58 @@ def load_model_artifacts(
     qgb_model = joblib.load(qgb_path)
     ridge_model = joblib.load(ridge_path)
     return qgb_model, ridge_model
+
+
+def load_global_model_artifact(artifacts_dir: Optional[str] = None) -> Any:
+    """Load the promoted shared model only when its manifest says it passed.
+
+    Regional artifacts are retained for audit reproducibility, but are not a
+    serving fallback once the shared model is promoted. This avoids silently
+    changing a block's model family based on availability.
+    """
+    manifest = load_manifest()
+    global_entry = manifest.get("global_model", {})
+    if global_entry.get("status") != "promoted_research_prototype":
+        raise RuntimeError("No promoted global groundwater model is available")
+    base_dir = artifacts_dir or os.path.join(os.path.dirname(__file__), "artifacts")
+    artifact_name = os.path.basename(global_entry.get("artifact", GLOBAL_ARTIFACT_NAME))
+    path = os.path.join(base_dir, artifact_name)
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Promoted global model artifact not found at: {path}")
+    return joblib.load(path)
+
+
+def _normalise_category(value: Any) -> str:
+    """Comparison-only normalisation; never converts a category to a number."""
+    return re.sub(r"[^a-z0-9]+", "", str(value).strip().lower())
+
+
+def resolve_global_geographic_context(model: Any, state: str, district_name: str, block_name: str) -> Dict[str, str]:
+    """Resolve source labels deterministically or fail closed.
+
+    ``OneHotEncoder(handle_unknown='ignore')`` is useful for batch scoring but
+    unsafe for an operational-facing forecast request: an unknown place would
+    otherwise become an all-zero geography vector without a visible warning.
+    This boundary resolves punctuation/case-only variations against the labels
+    in the promoted artifact and rejects missing, unknown, or ambiguous values.
+    """
+    if not all(str(value).strip() for value in (state, district_name, block_name)):
+        raise ValueError("State, district_name, and block_name are required for global model inference")
+    try:
+        encoder = model.preprocessor_.named_transformers_["geography"].named_steps["one_hot"]
+        names = list(model.categorical_features)
+        categories = encoder.categories_
+    except (AttributeError, KeyError) as err:
+        raise RuntimeError("Global model artifact lacks inspectable geographic encoder metadata") from err
+
+    resolved: Dict[str, str] = {}
+    for name, supplied, known in zip(names, (state, district_name, block_name), categories):
+        candidates = [str(item) for item in known if _normalise_category(item) == _normalise_category(supplied)]
+        if len(candidates) != 1:
+            qualifier = "ambiguous" if len(candidates) > 1 else "unknown"
+            raise ValueError(f"{qualifier.title()} {name} category for global model: {supplied!r}")
+        resolved[name] = candidates[0]
+    return resolved
 
 
 def validate_feature_vector(features: Dict[str, Any]) -> pd.DataFrame:
@@ -155,6 +218,8 @@ def validate_feature_vector(features: Dict[str, Any]) -> pd.DataFrame:
 def predict_single_horizon(
     features: Dict[str, Any],
     state: str,
+    district_name: str = "Unknown district",
+    block_name: str = "Unknown block",
     artifacts_dir: Optional[str] = None
 ) -> Dict[str, Any]:
     """
@@ -163,20 +228,27 @@ def predict_single_horizon(
     """
     X = validate_feature_vector(features)
     state_code = normalize_state_key(state)
-    qgb, ridge = load_model_artifacts(state, artifacts_dir)
 
     # If seasonal lag is missing, impute with origin value to prevent crash
     if pd.isna(X["wl_year_before_target"].iloc[0]):
         X["wl_year_before_target"] = X["wl_origin"]
 
-    # Predict Quantile GB
-    preds_q = qgb.predict(X, enforce_ordering=True)
+    # The promoted global model receives robust categorical geography fields;
+    # station is intentionally not an ordinal model feature.
+    global_model = load_global_model_artifact(artifacts_dir)
+    global_X = X.copy()
+    for field, value in resolve_global_geographic_context(
+        global_model, state, district_name, block_name
+    ).items():
+        global_X[field] = value
+    preds_q = global_model.predict(global_X, enforce_ordering=True)
     p10 = float(preds_q["p10"][0])
     p50 = float(preds_q["p50"][0])
     p90 = float(preds_q["p90"][0])
 
-    # Predict Ridge
-    ridge_pred = float(ridge.predict(X)[0])
+    # The previous Ridge artifact is retained but deliberately not served:
+    # its state-specific models are superseded by the shared model.
+    ridge_pred = float(preds_q["p50"][0])
 
     # Baseline Persistence values
     wl_origin = float(features["wl_origin"])
@@ -218,8 +290,8 @@ def predict_single_horizon(
         },
         "stress_risk_category": severity,
         "units": "m bgl",
-        "model_identifier": f"QuantileGB-v2.0-{state_code}",
-        "model_version": "2.0.0",
+        "model_identifier": "GlobalBlockAwareQuantileGB-v1",
+        "model_version": "1.0.0",
         "operational_eligibility": False,
     }
 
@@ -329,10 +401,16 @@ def forecast_from_observation_series(
         }
 
         try:
-            pred = predict_single_horizon(features, state)
+            pred = predict_single_horizon(
+                features, state, district_name=district_name, block_name=block_name
+            )
+            months = 3 * h
+            days = months * 30  # 90 days for Q1, 180 days for Q2
             pt = {
                 "horizonQuarter": h,
-                "forecastHorizonMonths": 3 * h,
+                "forecastHorizonMonths": months,
+                "forecastHorizonDays": days,
+                "horizonDays": days,
                 "targetSeason": target_season_name,
                 "targetDate": target_date.strftime("%Y-%m-%d"),
                 "expectedDepthMbgl": pred["expected_depth_mbgl"],
@@ -360,6 +438,29 @@ def forecast_from_observation_series(
         except Exception as err:
             break
 
+    if not forecast_points:
+        return {
+            "blockId": block_id,
+            "blockName": block_name,
+            "districtName": district_name,
+            "stationName": station_name or "Station Observation Well",
+            "modelIdentifier": "none",
+            "modelVersion": "none",
+            "modelStatus": "unavailable",
+            "provenanceStatus": "unverified",
+            "horizonStatus": "unverified",
+            "operationalEligibility": False,
+            "baselineHistoricalDepthMbgl": round(origin_depth, 2),
+            "forecasts": [],
+            "safeguardDisclaimer": (
+                "Global model inference was not run because the supplied geographic "
+                "context is missing, unknown, or cannot be resolved uniquely in the "
+                "promoted model artifact. No geographic fallback was used."
+            ),
+            "generatedAt": pd.Timestamp.now(tz="UTC").isoformat(),
+            "isDemonstrationData": False,
+        }
+
     state_code = normalize_state_key(state)
     scientific_notice = None
     if state_code == "arunachal_pradesh":
@@ -368,19 +469,14 @@ def forecast_from_observation_series(
             "due to acute sparsity of historical groundwater telemetry in mountainous terrain. "
             "Outputs represent experimental research prototype estimates and should not be used for planning."
         )
-    elif state_code == "assam":
-        scientific_notice = (
-            "Scientific Advisory: Model demonstrates moderate predictive skill (NSE = 0.475, 80% coverage = 71.9%). "
-            "High alluvial riverbank dynamics introduce seasonal variance. Research prototype only."
-        )
 
     res_dict = {
         "blockId": block_id,
         "blockName": block_name,
         "districtName": district_name,
         "stationName": station_name or f"{block_name} Central Station",
-        "modelIdentifier": f"QuantileGB-v2.0-{state_code}",
-        "modelVersion": "2.0.0",
+        "modelIdentifier": "GlobalBlockAwareQuantileGB-v1",
+        "modelVersion": "1.0.0",
         "modelStatus": "research_prototype",
         "provenanceStatus": "verified",
         "horizonStatus": "valid",

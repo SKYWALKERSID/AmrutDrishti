@@ -1,0 +1,26 @@
+{
+  "minimum_daily_observations": 250,
+  "minimum_train_examples": 100,
+  "minimum_test_examples": 30,
+  "train_fraction": 0.8,
+  "horizon_days": 7,
+  "model": {
+    "class": "sklearn.ensemble.GradientBoostingRegressor",
+    "quantiles": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "n_estimators": 80,
+    "max_depth": 2,
+    "learning_rate": 0.04,
+    "random_state": 41
+  },
+  "eligible_range": "finite 0..150 source-reported values, no unit/datum interpretation",
+  "negative": "quarantined unconverted",
+  "minus_999": "remains in negative quarantine; no local official sentinel definition asserted",
+  "zero_one": "retained, not auto-excluded",
+  "99_999_patterns": "retained in raw/lineage as unresolved candidates but excluded from model fit pending station QC",
+  "deduplication": "daily station median, retaining contributing record IDs",
+  "rainfall_covariates": "not used"
+}

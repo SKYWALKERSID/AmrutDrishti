@@ -12,8 +12,8 @@ import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, 
 import Link from 'next/link';
 import LeafletMap from '@/components/LeafletMap';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import contrastProjectionsData from '@/lib/data/contrastProjections.json';
 import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
+import { evaluateGroundwaterIntelligence } from '@/lib/services/scientificEngine';
 
 interface MapExplorerProps {
   initialBlockId?: string;
@@ -31,7 +31,6 @@ function normalizeStateName(stateName: string): string {
   if (lower.includes('rajasthan')) return 'Rajasthan';
   if (lower.includes('haryana')) return 'Haryana';
   if (lower.includes('meghalaya')) return 'Meghalaya';
-  if (lower.includes('assam')) return 'Assam';
   if (lower.includes('tripura')) return 'Tripura';
   if (lower.includes('arunachal')) return 'Arunachal Pradesh';
   if (lower.includes('sikkim')) return 'Sikkim';
@@ -57,6 +56,39 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   // Inspector & Map Layers
   const [selectedBlock, setSelectedBlock] = useState<BlockData | null>(null);
   const [activeLayer, setActiveLayer] = useState<'risk' | 'grace' | 'rainfall' | 'wells' | 'sentinel'>('risk');
+  const [blockForecast, setBlockForecast] = useState<any | null>(null);
+  const [isForecastLoading, setIsForecastLoading] = useState<boolean>(false);
+
+  // Fetch live model forecast whenever selectedBlock changes
+  useEffect(() => {
+    if (!selectedBlock) {
+      setBlockForecast(null);
+      setIsForecastLoading(false);
+      return;
+    }
+    let active = true;
+    setBlockForecast(null);
+    setIsForecastLoading(true);
+
+    fetch(`/api/forecast?block=${encodeURIComponent(selectedBlock.id)}&mode=demo`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (active) {
+          setBlockForecast(data);
+          setIsForecastLoading(false);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setBlockForecast(null);
+          setIsForecastLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [selectedBlock?.id]);
 
   // 1. Fetch live database geospatial blocks on mount
   useEffect(() => {
@@ -115,7 +147,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     });
   }, [liveBlocksData]);
 
-  // Flattened pool of all 56 monitored blocks across the 10 target states
+  // Flattened pool of the active canonical block set; telemetry mappings do not expand this scope.
   const allBlocks = useMemo<BlockData[]>(() => {
     return allDistricts.flatMap(d => d.blocks);
   }, [allDistricts]);
@@ -272,9 +304,9 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               <MapPinIcon className="w-5 h-5 text-primary" /> {t('explorer.title', 'Explore the Map')}*
             </h1>
             <span aria-hidden="true">•</span>
-            <span>10 Monitored States (56 Blocks across 4 Regions)</span>
+            <span>9 Monitored States (43 Blocks across 4 Regions)</span>
             <span aria-hidden="true">•</span>
-            <span>Observation Cutoff: 2026-10-12</span>
+            <span>Observation Cutoff: 2026-10-21</span>
           </div>
           {isLoading && (
             <span className="text-xs text-text-muted">Loading layers...</span>
@@ -288,7 +320,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             <span>Select Geography:</span>
           </div>
 
-          {/* 1. STATE SELECTOR (Authoritative Ten Target States) */}
+          {/* 1. STATE SELECTOR (Authoritative Nine Target States) */}
           <div className="flex items-center gap-1.5">
             <label htmlFor="state-select" className="text-text-muted font-medium">State:</label>
             <select
@@ -297,7 +329,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer max-w-[220px]"
             >
-              <option value="all">All 10 Target States</option>
+              <option value="all">All 9 Target States</option>
               {TARGET_REGIONS.map((region) => {
                 const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
                 return (
@@ -379,7 +411,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
       {/* 5-Question Guide Card: Explaining the Map */}
       <WhatAmILookingAt
         title="💡 How do I read this Groundwater Map?"
-        what="An interactive GIS map displaying all 56 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators."
+        what="An interactive GIS map displaying all 43 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators."
         meaning="Blocks colored red have severe groundwater decline; amber blocks require close monitoring; green blocks have normal water conditions."
         whyCare="Visualizing regional patterns reveals clusters of rapid water drop across adjacent districts, helping authorities coordinate basin-level water management."
         recentAndReliable="Water levels come from Central Ground Water Board (CGWB) observation wells; rainfall from India Meteorological Department (IMD); and regional storage from NASA GRACE satellites."
@@ -560,7 +592,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         onChange={(e) => handleStateChange(e.target.value)}
                         className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                       >
-                        <option value="all">All 10 Target States</option>
+                        <option value="all">All 9 Target States</option>
                         {TARGET_REGIONS.map((region) => {
                           const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
                           return (
@@ -698,13 +730,21 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
                 {/* Projected Depth Section */}
                 {(() => {
-                  const blockProj = (contrastProjectionsData as Record<string, any>)[selectedBlock.id];
-                  const hasValidForecast = Boolean(blockProj && blockProj.modelStatus !== 'unavailable' && blockProj.forecasts?.length > 0);
-                  const q1 = hasValidForecast ? blockProj.forecasts[0] : null;
-                  const isTrainedMl = Boolean(hasValidForecast && blockProj.modelIdentifier && String(blockProj.modelIdentifier).startsWith('QuantileGB-v2.0'));
-                  const badgeLabel = isTrainedMl ? 'QuantileGB-v2.0' : (hasValidForecast ? 'Empirical Trend' : null);
-                  const titleLabel = isTrainedMl ? 'ML Depth Forecast (Q1):' : 'Projected Depth (Q1):';
-                  const auditNotice = blockProj?.scientificAuditNotice;
+                  if (isForecastLoading) {
+                    return (
+                      <div className="space-y-1.5 pt-2 border-t border-border/80" data-testid="map-inspector-ml-forecast">
+                        <div className="text-xs font-bold text-text-main">Groundwater Forecast:</div>
+                        <div className="text-[11px] text-text-muted italic">Querying ML forecast service…</div>
+                      </div>
+                    );
+                  }
+
+                  const liveForecasts = blockForecast?.forecasts;
+                  const hasLiveForecast = Boolean(blockForecast && blockForecast.modelStatus !== 'unavailable' && Array.isArray(liveForecasts) && liveForecasts.length > 0);
+                  const q1 = hasLiveForecast ? liveForecasts[0] : null;
+                  const isTrainedMl = Boolean(hasLiveForecast && (blockForecast?.modelIdentifier?.includes('QuantileGB') || blockForecast?.modelIdentifier === 'GlobalBlockAwareQuantileGB-v1'));
+                  const badgeLabel = isTrainedMl ? (blockForecast?.modelIdentifier || 'QuantileGB-v2.0') : (hasLiveForecast ? 'Empirical Trend' : null);
+                  const titleLabel = isTrainedMl ? 'ML Depth Forecast (Q1): 90-Day Horizon Target' : 'Projected 90-Day Depth (Q1):';
 
                   return (
                     <div className="space-y-1.5 pt-2 border-t border-border/80" data-testid="map-inspector-ml-forecast">
@@ -713,15 +753,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                           {titleLabel}
                         </span>
                         {badgeLabel && (
-                          <span className={`text-[10px] font-mono px-1.5 py-0.5 border ${
-                            isTrainedMl ? 'text-primary bg-primary/10 border-primary/20' : 'text-text-muted bg-subtle border-border'
-                          }`}>
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 border text-primary bg-primary/10 border-primary/20">
                             {badgeLabel}
                           </span>
                         )}
                       </div>
                       <TermHelp termId="ml_groundwater_forecast" />
-                      {hasValidForecast && q1 ? (
+                      {hasLiveForecast && q1 ? (
                         <div className="space-y-1 text-xs">
                           <div className="flex justify-between items-center min-w-0">
                             <span className="text-text-muted">Target (Water Depth):</span>
@@ -738,22 +776,53 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                           <div className="text-[11px] text-text-muted italic">
                             {q1.targetSeason}
                           </div>
-                          {auditNotice && (
-                            <div className="text-[10px] text-amber-700 bg-amber-500/10 p-1.5 border border-amber-500/30 leading-snug">
-                              {auditNotice}
-                            </div>
-                          )}
-                          {!isTrainedMl && (
-                            <div className="text-[10px] text-text-muted italic leading-snug">
-                              * Historical drawdown-velocity projection; no trained ML artifact exists for this geography.
+                          {q1.uncertaintyInterval?.intervalStatus && (
+                            <div className="text-[10px] text-text-muted bg-subtle p-1 border border-border">
+                              Interval calibration: {q1.uncertaintyInterval.intervalStatus}
                             </div>
                           )}
                         </div>
                       ) : (
                         <div className="text-[11px] text-text-muted italic bg-subtle/50 p-2 border border-border">
-                          Forecast Model: Unavailable for this geography (Historical telemetry only)
+                          {blockForecast?.safeguardDisclaimer ? `Forecast Model: ${blockForecast.safeguardDisclaimer}` : 'Forecast Model: Unavailable for this geography (Historical telemetry only)'}
                         </div>
                       )}
+                    </div>
+                  );
+                })()}
+
+                {/* Groundwater Intelligence & Drought Risk Summary */}
+                {(() => {
+                  const intel = evaluateGroundwaterIntelligence(selectedBlock.indicators);
+                  return (
+                    <div className="space-y-1.5 pt-2 border-t border-border/80 text-xs">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-text-main text-[11px] uppercase tracking-wider">
+                          Drought Risk &amp; Intelligence:
+                        </span>
+                        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${
+                          intel.droughtRisk.category === 'Severe Drought Watch'
+                            ? 'bg-red-50 text-red-800 border-red-300'
+                            : intel.droughtRisk.category === 'Watch / Moderate Deficit'
+                            ? 'bg-amber-50 text-amber-800 border-amber-300'
+                            : 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                        }`}>
+                          {intel.droughtRisk.category}
+                        </span>
+                      </div>
+                      <div className="bg-subtle/60 p-2 border border-border/70 space-y-1 text-[11px]">
+                        <div className="flex justify-between text-text-muted">
+                          <span>Aquifer Storage Trend:</span>
+                          <span className="font-semibold text-text-main capitalize">{intel.waterAvailability.direction}</span>
+                        </div>
+                        <div className="flex justify-between text-text-muted">
+                          <span>Recharge Potential:</span>
+                          <span className="font-semibold text-text-main capitalize">{intel.rechargeIntelligence.rechargePotential}</span>
+                        </div>
+                        <p className="text-[10px] text-text-muted pt-1 border-t border-border/60">
+                          {intel.actionableSummary}
+                        </p>
+                      </div>
                     </div>
                   );
                 })()}

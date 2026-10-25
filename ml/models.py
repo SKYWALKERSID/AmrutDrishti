@@ -72,6 +72,75 @@ class QuantileGroundwaterModel:
         return results
 
 
+class GlobalBlockAwareQuantileModel:
+    """One shared groundwater model with non-ordinal geographic encoding.
+
+    State, district and block are one-hot encoded inside the artifact rather
+    than converted to arbitrary numeric codes, so the model cannot infer an
+    artificial ordering between places. Station remains a non-ordinal grouping
+    key for causal feature construction and station-held-out evaluation; it is
+    intentionally not a predictor, preventing station memorisation and making
+    unseen-station validation meaningful. Numeric features are median-imputed
+    using training data only.
+    """
+
+    numeric_features = [
+        "wl_origin", "wl_prev", "wl_year_before_target",
+        "drawdown_velocity_q1", "season_code",
+    ]
+    categorical_features = ["state", "district_name", "block_name"]
+
+    def __init__(self, quantiles: List[float] = [0.10, 0.50, 0.90]):
+        self.quantiles = quantiles
+        self.preprocessor_: Any = None
+        self.models_: Dict[float, Any] = {}
+
+    def fit(self, X: pd.DataFrame, y: pd.Series):
+        from sklearn.compose import ColumnTransformer
+        from sklearn.ensemble import GradientBoostingRegressor
+        from sklearn.impute import SimpleImputer
+        from sklearn.pipeline import Pipeline
+        from sklearn.preprocessing import OneHotEncoder
+
+        required = self.numeric_features + self.categorical_features
+        missing = [column for column in required if column not in X.columns]
+        if missing:
+            raise ValueError(f"Global model input missing columns: {missing}")
+
+        self.preprocessor_ = ColumnTransformer(
+            transformers=[
+                ("numeric", SimpleImputer(strategy="median"), self.numeric_features),
+                ("geography", Pipeline([
+                    ("imputer", SimpleImputer(strategy="most_frequent")),
+                    ("one_hot", OneHotEncoder(handle_unknown="ignore")),
+                ]), self.categorical_features),
+            ],
+            remainder="drop",
+        )
+        transformed = self.preprocessor_.fit_transform(X[required])
+        for q in self.quantiles:
+            model = GradientBoostingRegressor(
+                loss="quantile", alpha=q, n_estimators=150,
+                max_depth=3, learning_rate=0.05, random_state=42,
+            )
+            model.fit(transformed, y)
+            self.models_[q] = model
+        return self
+
+    def predict(self, X: pd.DataFrame, enforce_ordering: bool = True) -> Dict[str, np.ndarray]:
+        if self.preprocessor_ is None:
+            raise RuntimeError("Global model has not been fit")
+        required = self.numeric_features + self.categorical_features
+        transformed = self.preprocessor_.transform(X[required])
+        results = {f"p{int(q * 100)}": self.models_[q].predict(transformed) for q in self.quantiles}
+        if enforce_ordering:
+            from ml.validation import order_quantiles
+            results["p10"], results["p50"], results["p90"] = order_quantiles(
+                results["p10"], results["p50"], results["p90"]
+            )
+        return results
+
+
 def export_to_onnx(model: Any, dummy_input: np.ndarray, output_path: str):
     """
     Exports trained scikit-learn or PyTorch model to standard ONNX format.

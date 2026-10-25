@@ -22,7 +22,7 @@ export default function AdminPage() {
   const [auditEvents, setAuditEvents] = useState<any[]>([]);
   const [healthMap, setHealthMap] = useState<Record<string, EndpointHealth>>({
     geospatial: { endpoint: '/api/geospatial/blocks', name: 'Geospatial Block API', status: 'PENDING', code: null, latencyMs: null, details: 'Not tested yet', source: 'PostgreSQL / PostGIS / DWLR' },
-    alerts: { endpoint: '/api/alerts', name: 'Alerts & Governance Dispatch', status: 'PENDING', code: null, latencyMs: null, details: 'Not tested yet', source: 'PostgreSQL alerts schema' },
+    alerts: { endpoint: '/api/alerts/dispatch', name: 'Alerts & Governance Dispatch', status: 'PENDING', code: null, latencyMs: null, details: 'Not tested yet', source: 'Simulated advisory dispatch boundary' },
     audit: { endpoint: '/api/audit?limit=5', name: 'Audit Events Ingestion', status: 'PENDING', code: null, latencyMs: null, details: 'Not tested yet', source: 'PostgreSQL audit_events' },
   });
   const [isCheckingHealth, setIsCheckingHealth] = useState(false);
@@ -46,7 +46,7 @@ export default function AdminPage() {
           status: 'ONLINE',
           code: res.status,
           latencyMs: lat,
-          details: `${count} nationwide blocks loaded across 10 target states in 4 project regions`,
+          details: `${count} blocks loaded across the 9 active target states in 4 project regions`,
           source: 'PostgreSQL / DWLR & Remote Sensing',
         };
       } else {
@@ -75,42 +75,43 @@ export default function AdminPage() {
     // 2. Test Alerts
     const t1 = performance.now();
     try {
-      const res = await fetch('/api/alerts', {
+      const res = await fetch('/api/alerts/dispatch', {
         headers: { 'x-jaldrishti-role': activeRole },
       });
       const lat = Math.round(performance.now() - t1);
       if (res.ok) {
         const data = await res.json();
-        const alertCount = Array.isArray(data.alerts) ? data.alerts.length : 0;
         updated.alerts = {
-          endpoint: '/api/alerts',
+          endpoint: '/api/alerts/dispatch',
           name: 'Alerts & Governance Dispatch',
           status: 'ONLINE',
           code: res.status,
           latencyMs: lat,
-          details: `${alertCount} active alerts retrieved under role policy`,
-          source: 'PostgreSQL public.alerts',
+          details: data.simulationDefault
+            ? 'Dispatch boundary is available; simulated delivery remains the default.'
+            : 'Dispatch boundary is available.',
+          source: 'Simulated advisory dispatch boundary',
         };
       } else {
         updated.alerts = {
-          endpoint: '/api/alerts',
+          endpoint: '/api/alerts/dispatch',
           name: 'Alerts & Governance Dispatch',
           status: res.status === 403 ? 'DEGRADED' : 'FAILED',
           code: res.status,
           latencyMs: lat,
           details: `HTTP ${res.status}: ${res.statusText}`,
-          source: 'PostgreSQL public.alerts',
+          source: 'Simulated advisory dispatch boundary',
         };
       }
     } catch (e: any) {
       updated.alerts = {
-        endpoint: '/api/alerts',
+        endpoint: '/api/alerts/dispatch',
         name: 'Alerts & Governance Dispatch',
         status: 'FAILED',
         code: 500,
         latencyMs: Math.round(performance.now() - t1),
         details: e.message || 'Alerts fetch failed',
-        source: 'PostgreSQL public.alerts',
+        source: 'Simulated advisory dispatch boundary',
       };
     }
 
@@ -214,7 +215,7 @@ export default function AdminPage() {
                 <UserRoleIcon className="w-4 h-4 text-primary" /> {t('nav.admin', 'Administration')}
               </p>
               <span aria-hidden="true">•</span>
-              <span>Pan-India Governance (10 Active States)</span>
+              <span>Governance Scope (9 Approved States)</span>
               <span aria-hidden="true">•</span>
               <span>Telemetry: <strong className="text-text-main font-semibold">{lastCheckTime ? `Checked ${lastCheckTime}` : 'Active'}</strong></span>
             </div>

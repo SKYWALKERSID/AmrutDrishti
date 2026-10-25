@@ -413,7 +413,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'explorer.scopeBundelkhand': 'Target States (South, Central, North & Northeast)',
     'explorer.scopeContrast': 'National Contrast Analysis (Most vs Least Scarcity)',
     'explorer.contrastHighStress': 'Severe Red Zones (Punjab, Rajasthan, Haryana)',
-    'explorer.contrastLowStress': 'Secure Abundant Reserves (Meghalaya, Assam, Tripura)',
+    'explorer.contrastLowStress': 'Secure Abundant Reserves (Meghalaya, Tripura)',
     'explorer.contrastAll': 'All Contrast States (30 Blocks)',
     'severity.severe': 'High Concern',
     'severity.watch': 'Needs Checking',
@@ -428,7 +428,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'explorer.sentinelInfo': 'Satellite vegetation vigor index (NDVI).',
     'explorer.riskInfo': 'Sample multi-indicator groundwater stress status.',
 
-    'overview.pilotRecords': 'Initial target scope: monitored blocks across 10 target states in 4 project regions',
+    'overview.pilotRecords': 'Active target scope: 43 canonical blocks across 9 approved states in 4 project regions',
     'overview.uiPrototype': 'UI PROTOTYPE — SIMULATED DATA',
     'overview.severeSubtext': '5 of 12 fixture blocks labelled Severe',
     'overview.inspectEvidence': 'Inspect Map Evidence →',

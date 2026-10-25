@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import {
   calculateDescriptiveGss,
+  evaluateGroundwaterIntelligence,
   matchInterventionRecommendations
 } from '../src/lib/services/scientificEngine.ts';
 import { ALL_BLOCKS } from '../src/lib/data/bundelkhand.ts';
@@ -112,4 +113,48 @@ test('matchInterventionRecommendations handles missing indicators and gap blocks
   const jjm = matches.find(m => m.scheme.id === 'sch_jjm')!;
   assert.equal(jjm.eligible, false);
   assert.match(jjm.matchReason, /Missing groundwater well depth/i);
+});
+
+test('evaluateGroundwaterIntelligence calculates rule-based drought risk and water availability without fabricated claims', () => {
+  // Severe drought test
+  const severeResult = evaluateGroundwaterIntelligence({
+    cgwbWellDepthMbgl: 22.5,
+    rainfallAnomalyMm: -280,
+    graceTwsaCm: -7.5,
+    sentinelNdvi: 0.18,
+    wellDepthTrendMperYr: -0.65,
+    spi3Month: -1.8,
+  });
+
+  assert.equal(severeResult.droughtRisk.category, 'Severe Drought Watch');
+  assert.equal(severeResult.waterAvailability.direction, 'depleting');
+  assert.equal(severeResult.rechargeIntelligence.rechargePotential, 'depleted');
+  assert.match(severeResult.waterAvailability.storageLimitationNotice, /Absolute groundwater volume/i);
+  assert.ok(severeResult.actionableSummary.includes('artificial recharge'));
+
+  // Normal conditions test
+  const normalResult = evaluateGroundwaterIntelligence({
+    cgwbWellDepthMbgl: 4.2,
+    rainfallAnomalyMm: 35,
+    graceTwsaCm: 1.5,
+    sentinelNdvi: 0.65,
+    wellDepthTrendMperYr: 0.25,
+    spi3Month: 0.4,
+  });
+
+  assert.equal(normalResult.droughtRisk.category, 'Normal / Low Risk');
+  assert.equal(normalResult.waterAvailability.direction, 'recharging');
+  assert.equal(normalResult.rechargeIntelligence.rechargePotential, 'favorable');
+
+  // Missing data fails closed to Data Gap
+  const gapResult = evaluateGroundwaterIntelligence({
+    cgwbWellDepthMbgl: null,
+    rainfallAnomalyMm: null,
+    graceTwsaCm: null,
+    sentinelNdvi: null,
+  });
+
+  assert.equal(gapResult.droughtRisk.category, 'Data Gap / Unverified');
+  assert.equal(gapResult.waterAvailability.direction, 'unverified');
+  assert.equal(gapResult.rechargeIntelligence.rechargePotential, 'unverified');
 });

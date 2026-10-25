@@ -1,0 +1,58 @@
+# Jal Drishti — Staging Docker Compose Configuration
+# ========================================================
+# Orchestrates:
+# 1. Next.js Web Application (Port 3000)
+# 2. Private Python Model Serving (Port 8081, internal loopback/VPC network)
+#
+# Constraints Enforced:
+# - Model service is NOT exposed on host port or public interfaces.
+# - High-entropy Bearer token passed securely between containers.
+# - Health checks configured for graceful dependency startup.
+# - Operational eligibility strictly false.
+
+version: '3.8'
+
+services:
+  model-serving:
+    build:
+      context: .
+      dockerfile: Dockerfile.model
+    container_name: jaldrishti-model-service
+    restart: unless-stopped
+    environment:
+      - JALDRISHTI_MODEL_SERVICE_PORT=8081
+      - JALDRISHTI_MODEL_SERVICE_TOKEN=${JALDRISHTI_MODEL_SERVICE_TOKEN:?TokenRequired}
+      - PYTHONUNBUFFERED=1
+    networks:
+      - private-ml-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8081/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: jaldrishti-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - JALDRISHTI_MODEL_SERVICE_URL=http://model-serving:8081
+      - JALDRISHTI_MODEL_SERVICE_TOKEN=${JALDRISHTI_MODEL_SERVICE_TOKEN:?TokenRequired}
+    depends_on:
+      model-serving:
+        condition: service_healthy
+    networks:
+      - private-ml-net
+      - public-web-net
+
+networks:
+  private-ml-net:
+    internal: true
+  public-web-net:
+    driver: bridge

@@ -18,13 +18,14 @@ import {
 } from 'recharts';
 import { WaterDropletIcon, CloudRainIcon, ActivityChartIcon, FilterIcon, InfoIcon } from '@/components/ui/Icons';
 import HistoricalObservationsPanel from '@/components/HistoricalObservationsPanel';
+import NwdpStationForecastPanel from '@/components/NwdpStationForecastPanel';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ACTIVE_TARGET_BLOCKS, ACTIVE_TARGET_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
-import contrastHistoricalSeries from '@/lib/data/contrastHistoricalSeries.json';
 import { historicalSeriesProvenanceFor } from '@/lib/data/historicalSeriesProvenance';
 import { CHART_COLORS, deviationColor } from '@/lib/design/chartPalette';
 import { TermHelp } from '@/components/ui/PlainLanguageHelp';
+import { evaluateGroundwaterIntelligence } from '@/lib/services/scientificEngine';
 
 interface HistoricalPoint {
   month: string;
@@ -38,15 +39,17 @@ function MonitoringContent() {
   const [selectedState, setSelectedState] = useState<string>('all');
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedBlockId, setSelectedBlockId] = useState<string>('');
-  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_NATIONWIDE_BLOCKS);
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ACTIVE_TARGET_BLOCKS);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
     source: 'nationwide_empirical',
     isDemonstration: false
   });
   const [historicalData, setHistoricalData] = useState<HistoricalPoint[]>([]);
+  const [obsSource, setObsSource] = useState<'db' | 'local_archive' | 'none'>('none');
   const [isTimeSeriesLoading, setIsTimeSeriesLoading] = useState<boolean>(true);
   const [forecastData, setForecastData] = useState<any>(null);
   const [isForecastLoading, setIsForecastLoading] = useState<boolean>(true);
+  const [isDemoMode, setIsDemoMode] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Load available administrative units and merge with nationwide catalog
@@ -93,8 +96,8 @@ function MonitoringContent() {
 
   // Derived filtered districts
   const availableDistricts = useMemo(() => {
-    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
-    return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    if (selectedState === 'all') return ACTIVE_TARGET_DISTRICTS;
+    return ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
   }, [selectedState]);
 
   // Derived filtered blocks
@@ -135,8 +138,12 @@ function MonitoringContent() {
   useEffect(() => {
     if (!selectedBlockId) return;
     let active = true;
+    // Clear stale chart state immediately when selected block changes
+    setHistoricalData([]);
+    setForecastData(null);
     setIsTimeSeriesLoading(true);
     setIsForecastLoading(true);
+    setObsSource('none');
 
     async function loadTimeSeries() {
       try {
@@ -162,31 +169,30 @@ function MonitoringContent() {
                 wellDepth: Number((item.sum / item.count).toFixed(2)),
               }));
 
-            setHistoricalData(chartPoints);
+            if (active) {
+              setHistoricalData(chartPoints);
+              setObsSource(json.source === 'local_verified_cgwb_archive' ? 'local_archive' : 'db');
+            }
             return;
           }
         }
       } catch {
-        // Fall through to contrast series
+        // Query failed: fail closed
       }
 
-      // A bundled series is not evidence of an observation. Only use it after
-      // its provenance gate explicitly permits observed-chart display.
-      const contrastSeries = (contrastHistoricalSeries as Record<string, HistoricalPoint[]>)[selectedBlockId];
-      const provenance = historicalSeriesProvenanceFor(selectedBlockId);
       if (active) {
-        if (provenance.displayableAsObservation && contrastSeries && Array.isArray(contrastSeries) && contrastSeries.length > 0) {
-          setHistoricalData(contrastSeries);
-        } else {
-          setHistoricalData([]);
-        }
+        setHistoricalData([]);
+        setObsSource('none');
         setIsTimeSeriesLoading(false);
       }
     }
 
     async function loadForecast() {
       try {
-        const res = await fetch(`/api/forecast?block=${encodeURIComponent(selectedBlockId)}`);
+        const endpoint = isDemoMode
+          ? `/api/forecast?block=${encodeURIComponent(selectedBlockId)}&mode=demo`
+          : `/api/forecast?block=${encodeURIComponent(selectedBlockId)}`;
+        const res = await fetch(endpoint);
         if (res.ok && active) {
           const json = await res.json();
           setForecastData(json);
@@ -208,7 +214,7 @@ function MonitoringContent() {
     return () => {
       active = false;
     };
-  }, [selectedBlockId]);
+  }, [selectedBlockId, isDemoMode]);
 
   useEffect(() => {
     if (urlBlockParam && blocksData.length > 0) {
@@ -313,7 +319,6 @@ interface RainfallChartPoint {
       'Haryana': 450,
       'Punjab': 480,
       'Meghalaya': 2500,
-      'Assam': 1800,
       'Tripura': 1400,
     };
 
@@ -360,7 +365,7 @@ interface RainfallChartPoint {
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border rounded px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
             >
-              <option value="all">All 10 Target States</option>
+              <option value="all">All 9 Active States</option>
               {TARGET_REGIONS.map((region) => {
                 const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
                 return (
@@ -470,18 +475,55 @@ interface RainfallChartPoint {
             </span>
           </div>
 
-          {/* Dedicated Observation Telemetry Snapshot Notice when continuous multi-year time-series is pending */}
+          {/* Forecast mode is fixed to demo/research — all blocks are stale by 400-day gate */}
+          {/* No dual-mode selector shown; forecast section handles this contextually */}
+
+          {/* Prominent Demo & Telemetry Compliance Banner */}
+          {forecastData?.isDemonstrationData && (
+            <div className="border-l-4 border-amber-600 bg-amber-50/80 p-3 text-xs text-amber-950 space-y-1">
+              <div className="font-bold tracking-wide uppercase flex items-center gap-1.5">
+                <InfoIcon className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                <span>
+                  {forecastData.dataAvailabilityMode === 'verified_live_telemetry'
+                    ? 'EXPERIMENTAL PREDICTION — NOT VERIFIED OR OPERATIONAL'
+                    : forecastData.dataAvailabilityMode === 'adaptive_historical_and_recent'
+                    ? 'MIXED-INPUT EXPERIMENT — NOT VERIFIED OR OPERATIONAL'
+                    : 'HISTORICAL DEMO — EXPERIMENTAL PREDICTION, NOT A CURRENT OPERATIONAL FORECAST'}
+                </span>
+              </div>
+              <p className="leading-relaxed text-[11px]">
+                {forecastData.dataAvailabilityMode === 'verified_live_telemetry' || forecastData.dataAvailabilityMode === 'adaptive_historical_and_recent'
+                  ? `Projected from the experimental telemetry input series (${forecastData.observationDatesRange?.startDate || forecastData.observationDatesRange?.earliest || 'earliest'} to ${forecastData.observationDatesRange?.endDate || forecastData.observationDatesRange?.latest || 'latest'}); this is not verified groundwater depth. Model `
+                  : `Projected using verified historical CGWB observations (${forecastData.observationDatesRange?.startDate || forecastData.observationDatesRange?.earliest || 'earliest'} to ${forecastData.observationDatesRange?.endDate || forecastData.observationDatesRange?.latest || 'latest'}) by model `}
+                <span className="font-mono">{forecastData.modelIdentifier}</span>. Operational eligibility is strictly false. P10–P90 intervals are uncalibrated against localized pumping stress.
+              </p>
+            </div>
+          )}
+
+          {/* Stale archive notice when serving from local CGWB archive rather than live database */}
+          {obsSource === 'local_archive' && historicalData.length > 0 && (
+            <div className="bg-amber-50/80 border-l-2 border-amber-600 p-3 rounded-r text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <InfoIcon className="w-4 h-4 text-amber-700 shrink-0" />
+                <span className="text-amber-900">
+                  <strong>Historical Archive (Stale):</strong> These records are from the verified CGWB quarterly manual monitoring archive. The latest date shown does <em>not</em> represent current groundwater conditions — all records are &gt;400 days old as of Oct 2026. No newer CGWB/NWIC measurements are currently available for this block in the published dataset.
+                </span>
+              </div>
+              <span className="text-[11px] font-mono text-amber-700 shrink-0 bg-amber-100 px-2 py-0.5 border border-amber-300 rounded">
+                STALE DATA
+              </span>
+            </div>
+          )}
+
+          {/* No observations notice */}
           {historicalData.length === 0 && combinedChartData.length > 0 && (
             <div className="bg-subtle/80 border-l-2 border-primary/70 p-3 rounded-r text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <InfoIcon className="w-4 h-4 text-primary shrink-0" />
                 <span className="text-text-main">
-                  <strong>Verified Single-Point Telemetry Record:</strong> Monitored station well depth is <span className="font-mono font-bold text-text-main">{selectedBlock?.indicators.cgwbWellDepthMbgl} m bgl</span> on <span className="font-medium text-text-main">{selectedBlock?.indicators.lastUpdatedDate}</span>. Continuous quarterly multi-year time-series logging for this station is pending publication in the NWIC digital hydrograph repository.
+                  <strong>Indicator Snapshot:</strong> Satellite-derived GRACE-FO TWSA and block indicators are shown. No continuous quarterly well-depth time-series is currently available for this block.
                 </span>
               </div>
-              <span className="text-[11px] font-mono text-text-muted shrink-0 bg-surface px-2 py-0.5 border border-border rounded">
-                ML Projections: Calibrating
-              </span>
             </div>
           )}
 
@@ -608,7 +650,7 @@ interface RainfallChartPoint {
                     const storageStr = selectedBlock?.indicators.graceTwsaCm !== null && selectedBlock?.indicators.graceTwsaCm !== undefined
                       ? `${selectedBlock.indicators.graceTwsaCm > 0 ? `+${selectedBlock.indicators.graceTwsaCm}` : selectedBlock.indicators.graceTwsaCm} cm`
                       : 'unavailable';
-                    return `On ${single.month}, verified station telemetry recorded groundwater at ${single.wellDepth} m bgl for ${selectedBlock?.name || 'this block'} (${selectedBlock?.state}). Regional satellite water storage (GRACE-FO TWSA) is ${storageStr}. Multi-year quarterly trend hydrographs will render automatically as ongoing seasonal telemetry is published.`;
+                    return `On ${single.month}, the published observation record reports ${single.wellDepth} m bgl for ${selectedBlock?.name || 'this block'} (${selectedBlock?.state}); consult the source label and provenance before interpreting it. Regional satellite water storage (GRACE-FO TWSA) is ${storageStr}.`;
                   }
                   const first = validObs[0];
                   const last = validObs[validObs.length - 1];
@@ -759,17 +801,17 @@ interface RainfallChartPoint {
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-sm font-bold text-text-main">
-                Multi-Horizon Seasonal Depth Projections
+                Primary 90-Day & 180-Day Groundwater Projections
               </h2>
               <span className="text-xs font-semibold text-amber-800">[Research-Only Model]</span>
             </div>
             <p className="text-xs text-text-muted mt-1">
               Model: {forecastData?.modelIdentifier || 'QuantileGB-v2.0'} {forecastData?.modelVersion ? `v${forecastData.modelVersion}` : ''}
-              {forecastData?.stationName ? ` • Station: ${forecastData.stationName}` : ''} • Non-operational quantile baseline projection. Intervals represent uncalibrated empirical quantiles (P10/P90).*
+              {forecastData?.stationName ? ` • Station: ${forecastData.stationName}` : ''} • Primary prediction targets: 90 Days (Quarter 1) & 180 Days (Quarter 2). Intervals represent uncalibrated empirical quantiles (P10/P90).*
             </p>
           </div>
           <div className="text-right text-xs text-text-muted">
-            <span className="font-medium">Horizon: 1 to 4 Quarters Ahead</span>
+            <span className="font-medium">Primary: 90d & 180d Horizons</span>
             {forecastData?.latestObservationDate && (
               <span className="block text-[11px] text-text-muted/80">Origin: {forecastData.latestObservationDate}</span>
             )}
@@ -784,13 +826,16 @@ interface RainfallChartPoint {
           </div>
         ) : forecastData && forecastData.forecasts && forecastData.forecasts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {forecastData.forecasts.map((fc: any, idx: number) => (
-              <div key={idx} className="p-4 bg-subtle border border-border space-y-2.5">
+            {forecastData.forecasts.map((fc: any, idx: number) => {
+              const horizonDays = fc.forecastHorizonDays ?? (fc.forecastHorizonMonths ? fc.forecastHorizonMonths * 30 : (fc.horizonQuarter * 90));
+              const isPrimaryHorizon = horizonDays === 90 || horizonDays === 180;
+              return (
+              <div key={idx} className={`p-4 bg-subtle border ${isPrimaryHorizon ? 'border-primary/40 ring-1 ring-primary/20' : 'border-border'} space-y-2.5`}>
                 <div className="flex justify-between items-center text-xs">
                   <div>
                     <span className="font-bold text-text-main block">{fc.targetSeason}</span>
                     <span className="text-[10px] text-text-muted">
-                      {fc.targetDate ? `Date: ${fc.targetDate}` : ''} • Horizon: {fc.horizonQuarter}Q ({fc.forecastHorizonMonths ?? fc.horizonQuarter * 3}M)
+                      {fc.targetDate ? `Target: ${fc.targetDate}` : ''} • {horizonDays} Days ({fc.forecastHorizonMonths ?? fc.horizonQuarter * 3}M){isPrimaryHorizon ? ' [Primary Target]' : ''}
                     </span>
                   </div>
                   <span className={`text-xs font-semibold ${
@@ -837,7 +882,8 @@ interface RainfallChartPoint {
                   </div>
                 )}
               </div>
-            ))}
+            );
+            })}
           </div>
         ) : (
           <div className="p-4 bg-subtle/50 border border-border text-xs text-text-muted">
@@ -851,6 +897,8 @@ interface RainfallChartPoint {
           </p>
         )}
       </div>
+
+      <NwdpStationForecastPanel />
 
       {/* Detailed Indicator Matrix for Selected Block (Open Layout) */}
       {isLoading ? (
@@ -892,6 +940,61 @@ interface RainfallChartPoint {
               <p className="text-[11px] text-text-muted leading-relaxed">Trend: {selectedBlock.indicators.wellDepthTrendMperYr !== null ? `${selectedBlock.indicators.wellDepthTrendMperYr} m/yr drawdown rate.` : 'No trend data'}</p>
             </div>
           </div>
+
+          {/* Actionable Groundwater Intelligence & Drought Risk Module */}
+          {(() => {
+            const intel = evaluateGroundwaterIntelligence(selectedBlock.indicators);
+            return (
+              <div className="bg-subtle/80 border border-border p-4 rounded space-y-3 mt-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/80 pb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-text-main text-xs uppercase tracking-wider">Groundwater Intelligence &amp; Drought Risk</span>
+                    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded border ${
+                      intel.droughtRisk.category === 'Severe Drought Watch'
+                        ? 'bg-red-50 text-red-800 border-red-300'
+                        : intel.droughtRisk.category === 'Watch / Moderate Deficit'
+                        ? 'bg-amber-50 text-amber-800 border-amber-300'
+                        : 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                    }`}>
+                      {intel.droughtRisk.category}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-text-muted font-mono">
+                    Rule-Based Diagnostic • Not Statutory Relief Order
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-semibold text-text-muted">Meteorological Drought Risk</span>
+                    <p className="text-text-main font-medium">{intel.droughtRisk.basis}</p>
+                    <p className="text-[10px] text-text-muted">{intel.droughtRisk.ruleExplanation}</p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-semibold text-text-muted">Water Availability Status</span>
+                    <p className="text-text-main font-medium capitalize">Trend: {intel.waterAvailability.direction}</p>
+                    <p className="text-[10px] text-text-muted">{intel.waterAvailability.storageLimitationNotice}</p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-semibold text-text-muted">Aquifer Recharge Intelligence</span>
+                    <p className="text-text-main font-medium capitalize">Potential: {intel.rechargeIntelligence.rechargePotential}</p>
+                    <p className="text-[10px] text-text-muted">{intel.rechargeIntelligence.naturalReplenishmentSummary}</p>
+                  </div>
+                </div>
+
+                <div className="bg-surface p-2.5 border border-border/80 rounded text-xs space-y-1">
+                  <span className="font-semibold text-text-main flex items-center gap-1.5 text-[11px]">
+                    <InfoIcon className="w-3.5 h-3.5 text-primary" /> Actionable Decision Support &amp; Interventions:
+                  </span>
+                  <p className="text-text-muted leading-relaxed text-[11px]">
+                    {intel.actionableSummary}
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       ) : (
         <div className="p-8 text-center bg-surface border border-border text-xs text-text-muted">

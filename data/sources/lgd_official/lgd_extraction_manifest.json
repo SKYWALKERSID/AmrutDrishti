@@ -1,0 +1,434 @@
+{
+  "extracted_at": "2026-10-24T22:17:47.221655+00:00",
+  "source_directory": "f:\\Projects\\JalDrishti\\LGD DATA",
+  "destination_directory": "f:\\Projects\\JalDrishti\\data\\sources\\lgd_official",
+  "active_states": [
+    "Madhya Pradesh",
+    "Rajasthan",
+    "Punjab",
+    "Haryana",
+    "Karnataka",
+    "Telangana",
+    "Tamil Nadu",
+    "Meghalaya",
+    "Tripura"
+  ],
+  "excluded_archives": [
+    {
+      "zip_filename": "downloadDir2026_10_25_03_35_52_855.zip",
+      "state_name": "Manipur",
+      "state_code": 14,
+      "state_slug": "MN",
+      "sha256": "0dff26ec4157790e25625e52e94e2a4ac749449b9c61a15cb449dec64fea4186",
+      "size_bytes": 223548,
+      "exclusion_reason": "Downloaded LGD reference retained for provenance but excluded from the approved nine-state active scope."
+    }
+  ],
+  "archives": [
+    {
+      "zip_filename": "downloadDir2026_10_25_03_34_33_942.zip",
+      "state_name": "Haryana",
+      "state_code": 6,
+      "state_slug": "HR",
+      "sha256": "b4e19953e1f333bea6517659e44ba647e0cd6d5d5c4c659e100bc498f6875cfd",
+      "size_bytes": 524688,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:34:33:972.xls",
+          "saved_filename": "districts_HR.xls",
+          "size_bytes": 27294,
+          "sha256": "44665054048a6db5eda3aa771dc472d3587a9ed4ea5e5dea8ac48325c878db6a",
+          "parsed_rows": 28
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:34:34:008.xls",
+          "saved_filename": "subdistricts_HR.xls",
+          "size_bytes": 128225,
+          "sha256": "d182c0a9dbfcc1428e1366c0f6444f710af2f2451465fe13e7595bb77ab865a8",
+          "parsed_rows": 148
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:34:34:831.xls",
+          "saved_filename": "villages_HR.xls",
+          "size_bytes": 8024816,
+          "sha256": "0b1c2374196544dadf6be701c785a7d3df3b69a734fea07ca94ff99a3a46f3b8",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:34:35:988.xls",
+          "saved_filename": "village_gp_mapping_HR.xls",
+          "size_bytes": 10420348,
+          "sha256": "44369e1b16d4202e6e9e8ee03e7bf1a12316ee333b20aabab4a34e7a9eb79231",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:34:36:085.xls",
+          "saved_filename": "blocks_HR.xls",
+          "size_bytes": 102223,
+          "sha256": "67c880cc2fe5b6704e197bba0a864000b85b42e9a9b894ee75c87d19a73c0e15",
+          "parsed_rows": 148
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_35_01_928.zip",
+      "state_name": "Karnataka",
+      "state_code": 29,
+      "state_slug": "KA",
+      "sha256": "9d52936fcc46547e19a722b725dec76ffae277ff5696f2ecde547983709baf90",
+      "size_bytes": 1911873,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:35:01:965.xls",
+          "saved_filename": "districts_KA.xls",
+          "size_bytes": 33470,
+          "sha256": "54ba5240a447b28d683f9fa7622793b98c49233ae7d8e7d7fe45830e5f8258ac",
+          "parsed_rows": 36
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:35:02:003.xls",
+          "saved_filename": "subdistricts_KA.xls",
+          "size_bytes": 216167,
+          "sha256": "e0bd5405717f7067b8755f78988a18c6359442308b5b5ac740131952ac5ae749",
+          "parsed_rows": 245
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:35:05:408.xls",
+          "saved_filename": "villages_KA.xls",
+          "size_bytes": 34713548,
+          "sha256": "fc1d70327cc7ebd8f20ee64356c7f20568625383460b3f8e64bb9bca4140c000",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:35:10:191.xls",
+          "saved_filename": "village_gp_mapping_KA.xls",
+          "size_bytes": 42866096,
+          "sha256": "89f34e799c104573c62bd84e8a41f31647a8c1209752ed613cc9756acd40ca31",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:35:10:518.xls",
+          "saved_filename": "blocks_KA.xls",
+          "size_bytes": 166840,
+          "sha256": "806f3b030aa5a6ba258b827cbf3a4acd3f4ef96e365051319c1d366fb0920d14",
+          "parsed_rows": 242
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_35_26_734.zip",
+      "state_name": "Madhya Pradesh",
+      "state_code": 23,
+      "state_slug": "MP",
+      "sha256": "bdb4c42acee5ce95e08b028ffa14508033ae41dfa5c5642daa91c4973d680ede",
+      "size_bytes": 3724492,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:35:26:774.xls",
+          "saved_filename": "districts_MP.xls",
+          "size_bytes": 49470,
+          "sha256": "2643c1714d77ea94bfeb65b2a7bc34bddfb9d3b431b79ea058323f2c52a98ee5",
+          "parsed_rows": 60
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:35:26:833.xls",
+          "saved_filename": "subdistricts_MP.xls",
+          "size_bytes": 395340,
+          "sha256": "074644535a88b706b696cf17e18db846b0f29ef68ff2c8fccb4a07b952bd6844",
+          "parsed_rows": 450
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:35:33:158.xls",
+          "saved_filename": "villages_MP.xls",
+          "size_bytes": 65217938,
+          "sha256": "c5f80d468bda89872e72b8df2d894dce2c054cd458cb02ced3f72863a2cd190d",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:35:42:028.xls",
+          "saved_filename": "village_gp_mapping_MP.xls",
+          "size_bytes": 79557994,
+          "sha256": "c0302a036b1745ebfe7a8fc26b1775a8a9bb06d4bc1243d623657cf6ecaf1a1a",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:35:42:607.xls",
+          "saved_filename": "blocks_MP.xls",
+          "size_bytes": 214891,
+          "sha256": "2b89de94e1d1cd7374fb25d3fca00742348301a3fec4d2753d89d68ab75c1f7e",
+          "parsed_rows": 318
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_36_06_724.zip",
+      "state_name": "Meghalaya",
+      "state_code": 17,
+      "state_slug": "ML",
+      "sha256": "df774f3d419cfccf34fb062f0e364172c4ea25317cc36b88a1968f5ca920b4b9",
+      "size_bytes": 405918,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:36:06:747.xls",
+          "saved_filename": "districts_ML.xls",
+          "size_bytes": 20018,
+          "sha256": "01ffe56bdb13408c66be30ef96e91754ebabd177a9958f8fc093471524768c14",
+          "parsed_rows": 17
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:36:06:773.xls",
+          "saved_filename": "subdistricts_ML.xls",
+          "size_bytes": 57004,
+          "sha256": "0e465e1602727d3a45073e986874af3af79781cfba9177c31690d851d07185c0",
+          "parsed_rows": 61
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:36:07:588.xls",
+          "saved_filename": "villages_ML.xls",
+          "size_bytes": 8205803,
+          "sha256": "1d6e54fc88c06f00c6c737f0df711c361dfd48b8d0c7f43e6e4d4c951b6bf329",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:36:08:755.xls",
+          "saved_filename": "village_gp_mapping_ML.xls",
+          "size_bytes": 9233386,
+          "sha256": "7dd1bbe4850328a36eef2ee91f6f97c6ded77518c8125cb905a8e69d683e2dd4",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:36:08:837.xls",
+          "saved_filename": "blocks_ML.xls",
+          "size_bytes": 46640,
+          "sha256": "1299f5c19951cff31344706555bccc859a399facf29c4ada2ea433da2daf2fd1",
+          "parsed_rows": 61
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_36_31_724.zip",
+      "state_name": "Punjab",
+      "state_code": 3,
+      "state_slug": "PB",
+      "sha256": "57e182cb04120d0ca1ef97119a8adb8bfb9b7acc842eaeff4102e5e1a75ad74a",
+      "size_bytes": 995780,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:36:31:760.xls",
+          "saved_filename": "districts_PB.xls",
+          "size_bytes": 27393,
+          "sha256": "3ef4a33ccdbf21d65ad5b21afc224275285ad2e08bc8f7a7b5cca1ff805e7573",
+          "parsed_rows": 28
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:36:31:787.xls",
+          "saved_filename": "subdistricts_PB.xls",
+          "size_bytes": 90472,
+          "sha256": "3cccf8c9ed9f1da142e8606ef64fea1103998701e23c82d9fc5990dca32d0a34",
+          "parsed_rows": 102
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:36:33:218.xls",
+          "saved_filename": "villages_PB.xls",
+          "size_bytes": 14761963,
+          "sha256": "a4fb832bc2f3c4b2de59f9fa1f93759080ab1c0218864e1da8d714140069a405",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:36:35:585.xls",
+          "saved_filename": "village_gp_mapping_PB.xls",
+          "size_bytes": 20975645,
+          "sha256": "e75640f28c5ae57e48d0dc99d1b2fec82aa35602e49abed21d39a78b861bea4e",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:36:35:753.xls",
+          "saved_filename": "blocks_PB.xls",
+          "size_bytes": 115965,
+          "sha256": "ae00b48d01df2a8c2cbe9a15bf1837c70ae7bdd0fef5ecc6568f963362aa6652",
+          "parsed_rows": 166
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_36_59_100.zip",
+      "state_name": "Rajasthan",
+      "state_code": 8,
+      "state_slug": "RJ",
+      "sha256": "fcc71c2240af7f1b1e8fb6c590d7e69ce2a3c4e7729f9c97c585aa2357907956",
+      "size_bytes": 3263439,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:36:59:126.xls",
+          "saved_filename": "districts_RJ.xls",
+          "size_bytes": 39082,
+          "sha256": "4552d57f87f60ee2d984f410fe381d2a64354b08523e452146adddc60a239376",
+          "parsed_rows": 46
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:36:59:182.xls",
+          "saved_filename": "subdistricts_RJ.xls",
+          "size_bytes": 358667,
+          "sha256": "9f44134c0f303b7c72fa0443c185e7bab8530733e0e9511d7e3734d11d4db0bf",
+          "parsed_rows": 430
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:37:05:213.xls",
+          "saved_filename": "villages_RJ.xls",
+          "size_bytes": 59401733,
+          "sha256": "354194f0390bf5076745a50cadcb4819c0e10b6340b549072e3fd605f90f5c14",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:37:13:298.xls",
+          "saved_filename": "village_gp_mapping_RJ.xls",
+          "size_bytes": 71008853,
+          "sha256": "8cbaf78c6e2fa84e603d0f158ca52747e6d4f737b2a471366da5aab025e2198c",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:37:13:782.xls",
+          "saved_filename": "blocks_RJ.xls",
+          "size_bytes": 249445,
+          "sha256": "9ec8ba25818b19ed873b1200daa2616699b6884dfab472f0e338f659e6ed3b87",
+          "parsed_rows": 374
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_38_05_112.zip",
+      "state_name": "Tamil Nadu",
+      "state_code": 33,
+      "state_slug": "TN",
+      "sha256": "17fb9e8a797d2021f94e136b3c8489ca80fec8391f0b7976c09f207148677d66",
+      "size_bytes": 1276165,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:38:05:137.xls",
+          "saved_filename": "districts_TN.xls",
+          "size_bytes": 37657,
+          "sha256": "eefcd1c14a3f131316fef43a1680745e033f795095be64e7514ad3bd0e0d630e",
+          "parsed_rows": 43
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:38:05:184.xls",
+          "saved_filename": "subdistricts_TN.xls",
+          "size_bytes": 271344,
+          "sha256": "681855a75ee4bc07ebe63e7f03aa06d930b4b931aec6f02159c079ba4bcc2af7",
+          "parsed_rows": 322
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:38:07:333.xls",
+          "saved_filename": "villages_TN.xls",
+          "size_bytes": 21164420,
+          "sha256": "789fa7b1039eed8ae2dabb04c954d226869df380dab3dfd0d09fd3443dc6c409",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:38:10:403.xls",
+          "saved_filename": "village_gp_mapping_TN.xls",
+          "size_bytes": 27940883,
+          "sha256": "4642d3c3d9a0fdf3d6b88d08416ee0dff7b4fcb629de051459de52772cb9affe",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:38:10:641.xls",
+          "saved_filename": "blocks_TN.xls",
+          "size_bytes": 268237,
+          "sha256": "6705e8b4734e0df9e79f66071f5724c6ae910251602204150dde19fe052574cc",
+          "parsed_rows": 397
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_38_26_855.zip",
+      "state_name": "Telangana",
+      "state_code": 36,
+      "state_slug": "TS",
+      "sha256": "920543376453fe0e56104f29ef2bd875a5bf68cc8ff43a8b8587982be8c516c6",
+      "size_bytes": 1032444,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:38:26:892.xls",
+          "saved_filename": "districts_TS.xls",
+          "size_bytes": 34156,
+          "sha256": "b0122164d925a67fca1fcd934e115ebd0f1d39661a7585734cfaf5b8cfd0aa92",
+          "parsed_rows": 38
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:38:26:966.xls",
+          "saved_filename": "subdistricts_TS.xls",
+          "size_bytes": 553001,
+          "sha256": "0f06541fe6b2006271bb92d64778607cb34ff780e33610bf60383df4ecc630b3",
+          "parsed_rows": 626
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:38:28:319.xls",
+          "saved_filename": "villages_TS.xls",
+          "size_bytes": 13741002,
+          "sha256": "c31a387a4f184d9181395ebff5ca8bf0303682ddbb9b0567c7f689ed60c8187c",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:38:30:917.xls",
+          "saved_filename": "village_gp_mapping_TS.xls",
+          "size_bytes": 22885135,
+          "sha256": "c729cf3ec969d27da4f265fac22cf9051acfc44733e0db719a6d2904a91ef75c",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:38:31:119.xls",
+          "saved_filename": "blocks_TS.xls",
+          "size_bytes": 439520,
+          "sha256": "064e8d5aff5aa5b556b0fc42a724aa73359a56f05da032d778cb6f0d242793a7",
+          "parsed_rows": 626
+        }
+      }
+    },
+    {
+      "zip_filename": "downloadDir2026_10_25_03_38_40_868.zip",
+      "state_name": "Tripura",
+      "state_code": 16,
+      "state_slug": "TR",
+      "sha256": "0cd988d1ad6f54035d632ec4e00f169eecad9402b0602cfe8870269e1fa22cf3",
+      "size_bytes": 83968,
+      "files": {
+        "districts": {
+          "original_filename": "districtofSpecificState2026:10:25:03:38:40:902.xls",
+          "saved_filename": "districts_TR.xls",
+          "size_bytes": 17359,
+          "sha256": "a7729f094f140ded780aa995573e79ff8645b266652367ed0d4e69c8e579ee6a",
+          "parsed_rows": 13
+        },
+        "subdistricts": {
+          "original_filename": "subDistrictofSpecificState2026:10:25:03:38:40:923.xls",
+          "saved_filename": "subdistricts_TR.xls",
+          "size_bytes": 31569,
+          "sha256": "a07c5cd39d84e329fd337c278a7ecf63e08ad7a8d59fb90fe99ff79b11ae9b0e",
+          "parsed_rows": 28
+        },
+        "villages": {
+          "original_filename": "villageofSpecificState2026:10:25:03:38:41:045.xls",
+          "saved_filename": "villages_TR.xls",
+          "size_bytes": 1090832,
+          "sha256": "cdbdb9513f24b1eb2f6d549af85b50d1ade01b258b48da66e991153f8183aaac",
+          "parsed_rows": null
+        },
+        "village_gp_mapping": {
+          "original_filename": "villageGramPanchayatMapping2026:10:25:03:38:41:258.xls",
+          "saved_filename": "village_gp_mapping_TR.xls",
+          "size_bytes": 1667054,
+          "sha256": "6357bd6da0535baa7706bf7113e8935903b6b21134e088fba6811d020a21576a",
+          "parsed_rows": null
+        },
+        "blocks": {
+          "original_filename": "blockofspecificState2026:10:25:03:38:41:293.xls",
+          "saved_filename": "blocks_TR.xls",
+          "size_bytes": 49430,
+          "sha256": "51ae7d782225ff6c11b90ec1555291b7e267114d50ddd7196ea56c56cfc6778c",
+          "parsed_rows": 63
+        }
+      }
+    }
+  ]
+}

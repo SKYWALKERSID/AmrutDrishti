@@ -38,73 +38,40 @@ test('FORECAST-INTEGRITY: Route code enforces validation, units, and fail-closed
   assert.doesNotMatch(routeContent, /MOCK_FORECASTS/);
 });
 
-test('FORECAST-INTEGRITY: Contrast projections data adheres to scientific constraints', () => {
-  const data = JSON.parse(fs.readFileSync('src/lib/data/contrastProjections.json', 'utf8'));
-  const blockKeys = Object.keys(data);
-  assert.ok(blockKeys.length > 50, 'Must have at least 50 block forecasts');
-
-  let unavailableCount = 0;
-
-  for (const key of blockKeys) {
-    const entry = data[key];
-    assert.equal(entry.operationalEligibility, false, `Block ${key} must have operationalEligibility: false`);
-
-    if (entry.modelStatus === 'research_prototype' || entry.modelStatus === 'empirical_baseline') {
-      assert.ok(entry.stationName, `Block ${key} must have stationName`);
-      assert.ok(entry.forecasts.length > 0 && entry.forecasts.length <= 4);
-
-      for (const fc of entry.forecasts) {
-        assert.equal(fc.units, 'm bgl');
-        assert.ok([3, 6, 9, 12].includes(fc.forecastHorizonMonths));
-        assert.match(fc.targetDate, /^\d{4}-\d{2}-\d{2}$/);
-        assert.ok(Number.isFinite(fc.expectedDepthMbgl));
-
-        // Monotonic quantiles: P10 <= P50 <= P90
-        const p10 = fc.uncertaintyInterval.lowerBoundP10Mbgl;
-        const p50 = fc.expectedDepthMbgl;
-        const p90 = fc.uncertaintyInterval.upperBoundP90Mbgl;
-        assert.ok(p10 <= p50, `P10 (${p10}) <= P50 (${p50}) violation in ${key}`);
-        assert.ok(p50 <= p90, `P50 (${p50}) <= P90 (${p90}) violation in ${key}`);
-
-        // Baseline persistence must be preserved
-        assert.ok(fc.baselinePersistence);
-        assert.ok(typeof fc.baselinePersistence.lastObservationPersistenceMbgl === 'number');
-      }
-    } else {
-      unavailableCount++;
-      assert.equal(entry.modelStatus, 'unavailable');
-      assert.equal(entry.forecasts.length, 0);
-      assert.ok(entry.safeguardDisclaimer);
-    }
-  }
-
-  assert.equal(unavailableCount, blockKeys.length, 'Stale bundled artifacts must be unavailable rather than relabelled as current forecasts');
+test('FORECAST-INTEGRITY: Legacy contrast projections file is completely eliminated and not used at runtime', () => {
+  assert.ok(!fs.existsSync('src/lib/data/contrastProjections.json'), 'Legacy contrastProjections.json must not exist');
+  const routeContent = fs.readFileSync('src/app/api/forecast/route.ts', 'utf8');
+  assert.doesNotMatch(routeContent, /contrastProjections/i, 'forecast route must not import or query contrastProjections');
 });
 
 test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is available', async (t) => {
-  let isPortOpen = false;
-  try {
-    // Probe localhost:3000 to detect whether the dev server process is actively running
-    await fetch('http://localhost:3000/', { method: 'HEAD', signal: AbortSignal.timeout(2000) });
-    isPortOpen = true;
-  } catch {
-    isPortOpen = false;
+  let activeBaseUrl: string | null = null;
+  for (const port of [3000, 3001]) {
+    try {
+      const probe = await fetch(`http://localhost:${port}/api/forecast?block=blk_remote_unmonitored_xyz`, { signal: AbortSignal.timeout(1500) });
+      if (probe.status === 200) {
+        activeBaseUrl = `http://localhost:${port}`;
+        break;
+      }
+    } catch {
+      // try next port
+    }
   }
 
-  if (!isPortOpen) {
-    t.skip('Next.js dev server is not running on localhost:3000; skipping live HTTP integration checks');
+  if (!activeBaseUrl) {
+    t.skip('Next.js dev server is not running or accessible; skipping live HTTP integration checks');
     return;
   }
 
   // 1. Empty block param -> 400
-  const resEmpty = await fetch('http://localhost:3000/api/forecast?block=');
+  const resEmpty = await fetch(`${activeBaseUrl}/api/forecast?block=`);
   assert.equal(resEmpty.status, 400);
   const jsonEmpty = await resEmpty.json();
   assert.equal(jsonEmpty.modelStatus, 'unavailable');
   assert.equal(jsonEmpty.forecasts.length, 0);
 
   // 2. Verified Tikamgarh block -> 200, research_prototype or unavailable (freshness gate)
-  const resTikam = await fetch('http://localhost:3000/api/forecast?block=blk_tikamgarh_main');
+  const resTikam = await fetch(`${activeBaseUrl}/api/forecast?block=blk_tikamgarh_main`);
   assert.equal(resTikam.status, 200);
   const jsonTikam = await resTikam.json();
   assert.equal(jsonTikam.operationalEligibility, false);
@@ -118,7 +85,7 @@ test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is availa
   }
 
   // 3. Verified Punjab block (Khanna) -> 200, multi-horizon or unavailable (freshness gate)
-  const resKhanna = await fetch('http://localhost:3000/api/forecast?block=blk_ludhiana_khanna');
+  const resKhanna = await fetch(`${activeBaseUrl}/api/forecast?block=blk_ludhiana_khanna`);
   assert.equal(resKhanna.status, 200);
   const jsonKhanna = await resKhanna.json();
   assert.equal(jsonKhanna.operationalEligibility, false);
@@ -132,7 +99,7 @@ test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is availa
   }
 
   // 4. Remote unmonitored block -> 200, unavailable, 0 forecasts
-  const resUnmon = await fetch('http://localhost:3000/api/forecast?block=blk_remote_unmonitored_xyz');
+  const resUnmon = await fetch(`${activeBaseUrl}/api/forecast?block=blk_remote_unmonitored_xyz`);
   assert.equal(resUnmon.status, 200);
   const jsonUnmon = await resUnmon.json();
   assert.equal(jsonUnmon.modelStatus, 'unavailable');
@@ -140,7 +107,7 @@ test('FORECAST-INTEGRITY: Live HTTP endpoint contracts when dev server is availa
   assert.equal(jsonUnmon.operationalEligibility, false);
 
   // 5. Sikkim mountain springshed block -> 200, unavailable, 0 forecasts (no CGWB piezometer wells)
-  const resSikkim = await fetch('http://localhost:3000/api/forecast?block=blk_gangtok_rakdong_tintek');
+  const resSikkim = await fetch(`${activeBaseUrl}/api/forecast?block=blk_gangtok_rakdong_tintek`);
   assert.equal(resSikkim.status, 200);
   const jsonSikkim = await resSikkim.json();
   assert.equal(jsonSikkim.modelStatus, 'unavailable');

@@ -188,6 +188,142 @@ export function calculateDescriptiveGss(indicators: {
 }
 
 // ---------------------------------------------------------------------------
+// 1.1 Groundwater Intelligence & Drought Risk Assessment
+// ---------------------------------------------------------------------------
+
+export interface GroundwaterIntelligenceResult {
+  droughtRisk: {
+    category: 'Normal / Low Risk' | 'Watch / Moderate Deficit' | 'Severe Drought Watch' | 'Data Gap / Unverified';
+    basis: string;
+    spi3Month: number | null;
+    rainfallDeficitMm: number | null;
+    ruleExplanation: string;
+  };
+  waterAvailability: {
+    status: 'qualitative_trend_only';
+    direction: 'depleting' | 'recharging' | 'stable' | 'unverified';
+    drawdownRateMperYr: number | null;
+    storageLimitationNotice: string;
+  };
+  rechargeIntelligence: {
+    rechargePotential: 'favorable' | 'moderate' | 'depleted' | 'unverified';
+    naturalReplenishmentSummary: string;
+    satelliteTwsaStatus: string;
+  };
+  actionableSummary: string;
+}
+
+/**
+ * Derives rule-based groundwater intelligence and drought risk from observed environmental indicators.
+ * Strict scientific constraints:
+ * - Does not invent drought probability or training labels.
+ * - Does not claim absolute underground storage volume without aquifer geometry and specific yield.
+ * - Explicitly reports qualitative water availability trends.
+ */
+export function evaluateGroundwaterIntelligence(indicators: {
+  cgwbWellDepthMbgl: number | null;
+  rainfallAnomalyMm: number | null;
+  graceTwsaCm: number | null;
+  sentinelNdvi: number | null;
+  smapSoilMoisture?: number | null;
+  wellDepthTrendMperYr?: number | null;
+  spi3Month?: number | null;
+}): GroundwaterIntelligenceResult {
+  // 1. Drought Risk Category (Rule-based Meteorological + Hydrological Indicators)
+  let droughtCategory: GroundwaterIntelligenceResult['droughtRisk']['category'] = 'Normal / Low Risk';
+  let basis = 'Observed rainfall and groundwater levels within seasonal baseline bounds.';
+  let ruleExplanation = 'Evaluated using 3-month SPI and monsoon rainfall anomaly against state 30-year Long Period Average (LPA).';
+
+  const spi = indicators.spi3Month ?? null;
+  const rainDeficit = indicators.rainfallAnomalyMm ?? null;
+  const wellDepth = indicators.cgwbWellDepthMbgl ?? null;
+  const trend = indicators.wellDepthTrendMperYr ?? null;
+
+  if (rainDeficit === null && spi === null && wellDepth === null) {
+    droughtCategory = 'Data Gap / Unverified';
+    basis = 'Missing rainfall precipitation and piezometric depth observations.';
+    ruleExplanation = 'Drought risk assessment cannot be computed without observed meteorological or hydrological indicators.';
+  } else if ((spi !== null && spi < -1.5) || (rainDeficit !== null && rainDeficit <= -250)) {
+    droughtCategory = 'Severe Drought Watch';
+    basis = `Significant monsoon deficit (${rainDeficit !== null ? `${rainDeficit} mm` : 'N/A'}${spi !== null ? `, SPI: ${spi}` : ''}) threatening aquifer replenishment.`;
+    ruleExplanation = 'Meteorological drought criteria met (SPI < -1.5 or rainfall deficit >= 250 mm). High risk of uncompensated seasonal drawdown.';
+  } else if ((spi !== null && spi < -0.5) || (rainDeficit !== null && rainDeficit < -100) || (trend !== null && trend < -0.3)) {
+    droughtCategory = 'Watch / Moderate Deficit';
+    basis = `Moderate precipitation deficit (${rainDeficit !== null ? `${rainDeficit} mm` : 'N/A'}) or active piezometric drawdown (${trend !== null ? `${trend} m/yr` : 'unverified'}).`;
+    ruleExplanation = 'Indicators signal moisture deficit or downward water-table gradient requiring water-use monitoring.';
+  }
+
+  // 2. Water Availability & Storage Limitations
+  let direction: GroundwaterIntelligenceResult['waterAvailability']['direction'] = 'unverified';
+  if (trend !== null) {
+    // trend in m/yr: negative value indicates water table falling / piezometric head declining (depleting),
+    // positive value indicates water table rising closer to surface (recovering / potential recharge).
+    if (trend < -0.2) direction = 'depleting';
+    else if (trend > 0.2) direction = 'recharging';
+    else direction = 'stable';
+  } else if (wellDepth !== null) {
+    direction = wellDepth > 15 ? 'depleting' : 'stable';
+  }
+
+  const storageLimitationNotice = 'Absolute groundwater volume (m³ or BCM) cannot be determined without physical aquifer boundary surveys, verified specific yield (Sy), and saturated thickness. JalDrishti strictly reports piezometric trends (m bgl) and relative stress indices to prevent false precision.';
+
+  // 3. Recharge & Anomaly Intelligence
+  let rechargePotential: GroundwaterIntelligenceResult['rechargeIntelligence']['rechargePotential'] = 'unverified';
+  let naturalReplenishmentSummary = 'Recharge potential unverified due to missing rainfall or soil moisture observations.';
+  if (rainDeficit !== null) {
+    if (rainDeficit >= 0) {
+      rechargePotential = 'favorable';
+      naturalReplenishmentSummary = `Normal to surplus rainfall (+${rainDeficit} mm) provides potential hydrological conditions favorable for natural infiltration, subject to local lithology and runoff.`;
+    } else if (rainDeficit > -150) {
+      rechargePotential = 'moderate';
+      naturalReplenishmentSummary = `Moderate rainfall shortfall (${rainDeficit} mm); potential recharge expected to be subdued.`;
+    } else {
+      rechargePotential = 'depleted';
+      naturalReplenishmentSummary = `Acute monsoon deficit (${rainDeficit} mm) severely limits natural recharge conditions, accelerating uncompensated seasonal pumping stress.`;
+    }
+  }
+
+  const twsa = indicators.graceTwsaCm;
+  const satelliteTwsaStatus = twsa !== null && twsa !== undefined
+    ? `Regional terrestrial mass anomaly: ${twsa > 0 ? `+${twsa}` : twsa} cm. ${twsa < -5 ? 'Regional storage indicates basin-scale depletion.' : 'Regional mass within normal limits.'}`
+    : 'Regional satellite mass anomaly unavailable.';
+
+  // 4. Actionable Summary
+  let actionableSummary = '';
+  if (droughtCategory === 'Severe Drought Watch') {
+    actionableSummary = 'Prioritize artificial recharge structures (check dams, percolation tanks), activate participatory water budgeting under Atal Bhujal Yojana, and restrict non-essential agricultural dewatering.';
+  } else if (droughtCategory === 'Watch / Moderate Deficit') {
+    actionableSummary = 'Encourage micro-irrigation, desilt existing village water bodies (Amrit Sarovar), and closely monitor multi-quarter ML forecast trajectories.';
+  } else if (droughtCategory === 'Data Gap / Unverified') {
+    actionableSummary = 'Deploy or calibrate local piezometer telemetry before initiating statutory emergency actions or financial sanctions.';
+  } else {
+    actionableSummary = 'Maintain sustainable extraction practices and continue regular seasonal piezometric monitoring.';
+  }
+
+  return {
+    droughtRisk: {
+      category: droughtCategory,
+      basis,
+      spi3Month: spi,
+      rainfallDeficitMm: rainDeficit,
+      ruleExplanation,
+    },
+    waterAvailability: {
+      status: 'qualitative_trend_only',
+      direction,
+      drawdownRateMperYr: trend,
+      storageLimitationNotice,
+    },
+    rechargeIntelligence: {
+      rechargePotential,
+      naturalReplenishmentSummary,
+      satelliteTwsaStatus,
+    },
+    actionableSummary,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // 2. Intervention Recommendation Engine Contract
 // ---------------------------------------------------------------------------
 

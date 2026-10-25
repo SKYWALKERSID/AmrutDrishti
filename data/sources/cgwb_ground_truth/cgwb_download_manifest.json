@@ -1,0 +1,159 @@
+{
+  "download_date": "2026-10-24T23:05:50Z",
+  "source_package": "gwl-manual-quarterly-central-ground-water-board-department",
+  "source_api": "https://nwdp.nwic.gov.in/api/3/action/package_show",
+  "files": [
+    {
+      "key": "MP_2021_2025",
+      "name": "Ground Water Level CGWB Madhya Pradesh (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_mp_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/6a47df3a-8c42-419c-b577-b9c6ded71112/download/gwl_manual_quarterly_cgwb_mp_2021_2025.csv",
+      "sha256": "02c34c3178ca9468465deeac5f646c6f8e3d5197068367e6ad050d7e326be84d",
+      "size_bytes": 1763240
+    },
+    {
+      "key": "RJ_2021_2025",
+      "name": "Ground Water Level CGWB Rajasthan (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_rj_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/8111c3ef-5dc3-4aa9-9f37-f4f13d6099d5/download/gwl_manual_quarterly_cgwb_rj_2021_2025.csv",
+      "sha256": "adbc9a481bca2d1f93bf6539a8ee72994a3ee9e5533b8d0cefcdbbd9f0c7293e",
+      "size_bytes": 1159746
+    },
+    {
+      "key": "PB_2021_2025",
+      "name": "Ground Water Level CGWB Punjab (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_pb_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/862305d4-0384-4af2-9dca-122e6db0a1c2/download/gwl_manual_quarterly_cgwb_pb_2021_2025.csv",
+      "sha256": "2707e2c319912d6169548b029268c1b2329c5572097cdfb4817543b0de585d6c",
+      "size_bytes": 582219
+    },
+    {
+      "key": "HR_2021_2025",
+      "name": "Ground Water Level CGWB Haryana (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_hr_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/62fe9597-ddd1-4372-a7f5-bd62481beab3/download/gwl_manual_quarterly_cgwb_hr_2021_2025.csv",
+      "sha256": "7fbb59270f681f0b434d81ab0b14c19a667ebd6fabf22d3d2738fc243012f844",
+      "size_bytes": 499493
+    },
+    {
+      "key": "KA_2021_2025",
+      "name": "Ground Water Level CGWB Karnataka (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_ka_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/7b76b032-99a5-4725-8a5b-125346e7aebf/download/gwl_manual_quarterly_cgwb_ka_2021_2025.csv",
+      "sha256": "940a8d117b24dcdb35260d3f89c6249172062186111395ca03c31955654b7e4e",
+      "size_bytes": 2543880
+    },
+    {
+      "key": "TS_2021_2025",
+      "name": "Ground Water Level CGWB Telangana (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_ts_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/3751ad91-8203-493a-9716-ad0186f4f5ff/download/gwl_manual_quarterly_cgwb_ts_2021_2025.csv",
+      "sha256": "45b1c5dc68312fb48ef2f9d52722d0237fd8db63674476edc0f084d41bd5bb25",
+      "size_bytes": 1095897
+    },
+    {
+      "key": "TN_2021_2025",
+      "name": "Ground Water Level CGWB Tamil Nadu (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_tn_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/21cfbb8e-ac1b-4837-a463-317c05fb6f1b/download/gwl_manual_quarterly_cgwb_tn_2021_2025.csv",
+      "sha256": "c0f0a0d8c2c03433d8b33493a48f9177dfc2201579ff4548ad51378e7327b93e",
+      "size_bytes": 1702164
+    },
+    {
+      "key": "ML_2021_2025",
+      "name": "Ground Water Level CGWB Meghalaya (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_ml_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/05cb78d1-e9da-46b3-89f6-b98079e601df/download/gwl_manual_quarterly_cgwb_ml_2021_2025.csv",
+      "sha256": "e65368b06e9bb458042000968fa42c83505172e78bcab4911e022c38f3a55658",
+      "size_bytes": 45856
+    },
+    {
+      "key": "TR_2021_2025",
+      "name": "Ground Water Level CGWB Tripura (2021-2025) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_tr_2021_2025.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/47123b4c-09b2-4dd8-8c2d-693e4322c00b/download/gwl_manual_quarterly_cgwb_tr_2021_2025.csv",
+      "sha256": "f99534eeb13ffc69a88a610b1ff4f836f48c0e2bd48c19c478317e4473a5e484",
+      "size_bytes": 59642
+    },
+    {
+      "key": "MP_2026_2030",
+      "name": "Ground Water Level CGWB Madhya Pradesh (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_mp_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/bb0861b8-54c6-4951-b49f-1b9ae0a047d3/download/gwl_manual_quarterly_cgwb_mp_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "RJ_2026_2030",
+      "name": "Ground Water Level CGWB Rajasthan (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_rj_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/12537471-6467-4415-81e2-a605b08b98f6/download/gwl_manual_quarterly_cgwb_rj_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "PB_2026_2030",
+      "name": "Ground Water Level CGWB Punjab (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_pb_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/cfe24362-d4bf-4316-8ef1-3131dacc4216/download/gwl_manual_quarterly_cgwb_pb_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "HR_2026_2030",
+      "name": "Ground Water Level CGWB Haryana (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_hr_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/00a546a5-db9d-4586-887b-4170b01a6dfc/download/gwl_manual_quarterly_cgwb_hr_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "KA_2026_2030",
+      "name": "Ground Water Level CGWB Karnataka (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_ka_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/84bb8743-79e9-4856-95ee-b79c96126fcf/download/gwl_manual_quarterly_cgwb_ka_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "TS_2026_2030",
+      "name": "Ground Water Level CGWB Telangana (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_ts_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/7e951b93-7025-45c4-be72-378a8db544cd/download/gwl_manual_quarterly_cgwb_ts_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "TN_2026_2030",
+      "name": "Ground Water Level CGWB Tamil Nadu (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_tn_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/94d55b3e-ff8d-4dcc-9aef-735fb828eade/download/gwl_manual_quarterly_cgwb_tn_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "ML_2026_2030",
+      "name": "Ground Water Level CGWB Meghalaya (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_ml_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/042ad1ca-e437-476d-89db-ae4cc8d93bdf/download/gwl_manual_quarterly_cgwb_ml_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "TR_2026_2030",
+      "name": "Ground Water Level CGWB Tripura (2026-2030) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_tr_2026_2030.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/413d270d-973c-4a7f-9c5b-103cb2892aba/download/gwl_manual_quarterly_cgwb_tr_2026_2030.csv",
+      "sha256": "cc7824b6b3b72f9e9818f1ca4edab27eeb37b82d6af4092c9d7801d5389d03b6",
+      "size_bytes": 243
+    },
+    {
+      "key": "RJ_1991_2020",
+      "name": "Ground Water Level CGWB Rajasthan (1991-2020) Manual Quarterly",
+      "filename": "gwl_manual_quarterly_cgwb_rj_1991_2020.csv",
+      "url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/f1ef9d48-1ac1-4f8c-9ed1-e0682fabc81b/download/gwl_manual_quarterly_cgwb_rj_1991_2020.csv",
+      "sha256": "81dea9ef02816b8bc531ce9514471a37808070c9be270f6883d40c18ffdb6837",
+      "size_bytes": 10330533
+    }
+  ]
+}

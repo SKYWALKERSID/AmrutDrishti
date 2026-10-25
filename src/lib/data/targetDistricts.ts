@@ -1,9 +1,9 @@
 /**
  * JAL DRISHTI — Official Target Scope Districts & Blocks for Expanded Target States
- * Covers the authoritative ten-state target scope:
+ * Covers the authoritative nine-state target scope:
  * - South India: Karnataka, Telangana, Tamil Nadu
  * - Northeast India: Meghalaya, Tripura
- * (Central & North India + Assam covered in existing Bundelkhand and National Contrast modules)
+ * (Central & North India covered in existing Bundelkhand and National Contrast modules)
  *
  * All coordinates, observation values, and station names derived from genuine NWIC and State GWD datasets.
  */
@@ -547,18 +547,18 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           sentinelNdvi: 0.79,
           sentinelNdwi: 0.26,
           smapSoilMoisture: 0.38,
-          cgwbWellDepthMbgl: 1.8,
-          wellDepthTrendMperYr: 0.08,
+          cgwbWellDepthMbgl: null,
+          wellDepthTrendMperYr: null,
           lastUpdatedDate: '2023-04-10',
-          dataQualityFlag: 'good'
+          dataQualityFlag: 'missing'
         },
         assessment: {
           descriptiveStressScore: 24,
           confidenceInterval: null,
-          dataStatus: 'observed',
-          validationStatus: 'validated',
+          dataStatus: 'unavailable',
+          validationStatus: 'unverified',
           primaryStressDriver: 'Inter-Montane Valley Alluvium & Abundant Sub-Himalayan Monsoon Infiltration',
-          safeguardNotice: 'Empirical observation from NWIC Meghalaya GWD Station Byrnihat (verified 1.8m bgl). Research quantile model calibrated.',
+          safeguardNotice: 'NWDP station telemetry is experimental only. Station-to-block containment and measurement datum are unresolved; no verified block groundwater observation or calibrated forecast is published.',
           baselineComparison: 'High water table supported by year-round baseflow and perennial hill streams.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'
@@ -652,18 +652,18 @@ export const TARGET_STATE_DISTRICTS: DistrictData[] = [
           sentinelNdvi: 0.76,
           sentinelNdwi: 0.24,
           smapSoilMoisture: 0.37,
-          cgwbWellDepthMbgl: 1.33,
-          wellDepthTrendMperYr: 0.06,
+          cgwbWellDepthMbgl: null,
+          wellDepthTrendMperYr: null,
           lastUpdatedDate: '2024-05-15',
-          dataQualityFlag: 'good'
+          dataQualityFlag: 'missing'
         },
         assessment: {
           descriptiveStressScore: 18,
           confidenceInterval: null,
-          dataStatus: 'observed',
-          validationStatus: 'validated',
+          dataStatus: 'unavailable',
+          validationStatus: 'unverified',
           primaryStressDriver: 'Gomati River Basin Synclinal Alluvium — Shallow Water Table with Abundant Infiltration',
-          safeguardNotice: 'Empirical telemetry observation from NWIC Tripura DWLR Station Amarpur (verified 1.33m bgl). Research quantile model calibrated.',
+          safeguardNotice: 'NWDP station telemetry is experimental only. Station-to-block containment and measurement datum are unresolved; no verified block groundwater observation or calibrated forecast is published.',
           baselineComparison: 'Abundant groundwater storage characteristic of Tripura synclinal river valleys.',
           modelMethodologyVersion: 'JalDrishti-Baseline-v1.0 (Weighted Descriptive Index)',
           lastAssessedDate: '2026-10-20'

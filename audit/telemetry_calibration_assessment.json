@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-10-25T08:01:16.330065+00:00",
+  "protocol_version": "1.0.0-scientific-integrity",
+  "governing_rules": [
+    "Rule 5: Data and Scientific Integrity",
+    "Zero fabricated measurements, datum shifts, or sign flips",
+    "Mandatory temporal holdout and colocated well verification"
+  ],
+  "telemetry_sources": {
+    "telangana_6hourly_2026": {
+      "source_id": "NWDP_TELANGANA_TELEMETRY_2026",
+      "status": "not_assessed",
+      "exclusion_reason": "File not found: F:\\Projects\\JalDrishti\\data\\derived\\telangana_telemetry_2026_validated.json",
+      "eligible_for_inference": false
+    },
+    "karnataka_6hourly_2026": {
+      "source_id": "NWDP_KARNATAKA_TELEMETRY_2026",
+      "status": "not_assessed",
+      "exclusion_reason": "File not found: F:\\Projects\\JalDrishti\\data\\derived\\karnataka_telemetry_2026_validated.json",
+      "eligible_for_inference": false
+    }
+  },
+  "anomalous_series_investigation": {
+    "meghalaya_umling_byrnihat": {
+      "reported_issue": "Sensor fault codes (999.0m, 99.0m) and abrupt depth jumps.",
+      "investigation_result": "CGWB manual records in ML_2021_2025.csv for Byrnihat show physical depths between 1.27m and 3.15m bgl. 999.0m is standard IMD/hydrological missing-value flag / fillValue. Bundled contrast series in contrastHistoricalSeries.json for blk_umling jumps from 2.6m to 23.37m and is already flagged 'untraceable_generated' in historicalSeriesProvenance.ts. Failing closed: excluded from inference.",
+      "status": "rejected"
+    },
+    "tamil_nadu_coimbatore_mixed_wells": {
+      "reported_issue": "Mixed shallow/deep aquifer well series in P.N.Palayam.",
+      "investigation_result": "CGWB regional data reveals two distinct well sites in P.N.PALAYAM block: 1) 'Tamil Nadu::Kalviramapalayam' with water levels between 44.37m and 62.20m bgl. 2) 'Tamil Nadu::P.N.palayam' with water levels between 0.35m and 16.55m bgl. These represent distinct aquifers/depth zones (deep fracture vs. shallow unconfined). Averaging or concatenating them into a single continuous time series produces false discontinuities (>40m artificial jumps). Distinct well series must remain unmerged.",
+      "status": "aquifer_disaggregation_required"
+    }
+  },
+  "global_model_compatibility_assessment": {
+    "model_artifact": "GlobalBlockAwareQuantileGB-v1",
+    "training_target": "Quarterly manual CGWB observations (m bgl)",
+    "telemetry_source_frequency": "6-hourly automated pressure/depth readings",
+    "compatibility_verdict": "incompatible_without_aggregation_and_calibration",
+    "reasons": [
+      "Temporal aggregation mismatch: point 6-hourly vs. seasonal quarterly manual datum.",
+      "Unquantified sensor drift and casing datum offsets.",
+      "High diurnal and pumping noise in high-frequency telemetry vs. stabilized recovery readings in manual CGWB surveys."
+    ]
+  },
+  "summary": {
+    "total_telemetry_sources_evaluated": 2,
+    "sources_validated_for_research_prediction": 0,
+    "sources_eligible_for_operational_use": 0,
+    "primary_blocking_factors": [
+      "Absence of concurrent manual ground-truth pairs within 48h window",
+      "Unverified sensor installation depths and transducer datums (Telangana negative values)",
+      "Aquifer zone disparity between shallow and deep boreholes"
+    ]
+  }
+}

@@ -37,8 +37,7 @@
                 ],
     "exclude":  [
                     "node_modules",
-                    "src_new",
-                    "app_src",
+                    "docs/archive",
                     "scripts",
                     "tests"
                 ]

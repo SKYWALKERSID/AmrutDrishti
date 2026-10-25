@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+	<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+		<Author/>
+		<Title/>
+		<Description/>
+		<Subject/>
+	</DocumentProperties>
+	<Styles>
+		<Style ss:ID="HyperlinkId" ss:Name="Hyperlink">
+			<Font ss:Color="#0000ff"/>
+		</Style>
+		<Style ss:ID="1">
+			<NumberFormat ss:Format="yyyy-M-d HH:mm:ss AM/PM"/>
+		</Style>
+		<Style ss:ID="32">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Arial" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="30">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="27">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="29">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="26">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="28">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="35">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="33">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Arial" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="22">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="20">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="20.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="31">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="23">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="25">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="21">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#808080"/>
+		</Style>
+		<Style ss:ID="34">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="24">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+	</Styles>
+	<Names>
+		<NamedRange ss:Name="__bookmark_2" ss:RefersTo="Report!R4C1:R37C7"/>
+	</Names>
+
+<Worksheet ss:Name="Report">
+	<ss:Table>
+		<ss:Column ss:Width="43.392" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="44.288" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="47.232" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="117.76" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="108.8" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="70.528" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="74.24" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="7.424" ss:AutoFitWidth="0"/>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="20" ss:MergeAcross="7">
+				<Data ss:Type="String">Local Government Directory</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String">All Districts of Karnataka(State Code:29) State</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="20.25">
+			<Cell ss:Index="1" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">S. No.</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">District Code</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">District Version</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="22">
+				<Data ss:Type="String">District Name</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="22">
+				<Data ss:Type="String">District Name</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">  Census 2001 Code</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">Census 2011 Code</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="20.25">
+			<Cell ss:Index="4" ss:StyleID="25">
+				<Data ss:Type="String">(In English)</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="25">
+				<Data ss:Type="String">(In Local)</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">1.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">524</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Bagalkote</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬಾಗಲಕೋಟೆ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">02</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">556</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">2.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">528</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Ballari</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬಳ್ಳಾರಿ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">12</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">565</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">3.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">527</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Belagavi</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬೆಳಗಾವಿ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">01</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">555</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">4.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">526</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Bengaluru Rural</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">21</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">583</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">5.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">631</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Bengaluru South</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬೆಂಗಳೂರು ದಕ್ಷಿಣ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">21</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">584</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">6.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">525</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Bengaluru Urban</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬೆಂಗಳೂರು</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">20</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">572</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">7.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">529</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Bidar</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಬೀದರ್‌</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">05</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">558</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">8.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">531</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Chamarajanagar</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಚಾಮರಾಜನಗರ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">27</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">578</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">9.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">630</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Chikkaballapura</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಚಿಕ್ಕಬಳ್ಳಾಪುರ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">19</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">582</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">10.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">532</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Chikkamagaluru</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಚಿಕ್ಕಮಗಳೂರು</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">17</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">570</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">11.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">533</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Chitradurga</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಚಿತ್ರದುರ್ಗ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">13</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">566</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">12.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">534</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Dakshina Kannada</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ದಕ್ಷಿಣ ಕನ್ನಡ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">24</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">575</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">13.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">535</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Davanagere</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ದಾವಣಗೆರೆ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">14</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">567</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">14.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">536</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Dharwad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಧಾರವಾಡ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">09</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">562</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">15.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">537</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Gadag</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಗದಗ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">08</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">561</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">16.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">539</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Hassan</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಹಾಸನ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">23</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">574</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">17.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">540</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Haveri</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಹಾವೇರಿ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">11</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">564</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">18.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">538</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Kalaburagi</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಕಲಬುರಗಿ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">04</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">579</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">19.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">541</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Kodagu</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಕೊಡಗು</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">25</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">576</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">20.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">542</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Kolar</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಕೋಲಾರ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">19</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">581</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">21.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">543</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Koppal</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಕೊಪ್ಪಳ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">07</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">560</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">22.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">544</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Mandya</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಮಂಡ್ಯ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">22</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">573</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">23.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">545</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Mysuru</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಮೈಸೂರು</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">26</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">577</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">24.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">546</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Raichur</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ರಾಯಚೂರು</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">06</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">559</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">25.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">547</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Shivamogga</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಶಿವಮೊಗ್ಗ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">15</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">568</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">26.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">548</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Tumakuru</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ತುಮಕೂರು</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">18</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">571</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">27.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">549</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Udupi</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಉಡುಪಿ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">16</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">569</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">28.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">550</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Uttara Kannada</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಉತ್ತರ ಕನ್ನಡ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">10</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">563</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">29.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">738</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Vijayanagara</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">vijayangara</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">30.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">530</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Vijayapura</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ವಿಜಯಾಪುರ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">03</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">557</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">31.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">635</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Yadgir</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ಯಾದಗಿರಿ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">04</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">580</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="34"/>
+			<Cell ss:Index="2" ss:StyleID="34"/>
+			<Cell ss:Index="3" ss:StyleID="34"/>
+			<Cell ss:Index="4" ss:StyleID="34"/>
+			<Cell ss:Index="5" ss:StyleID="34"/>
+			<Cell ss:Index="6" ss:StyleID="34"/>
+			<Cell ss:Index="7" ss:StyleID="34"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="35" ss:MergeAcross="7">
+				<Data ss:Type="String">Oct 25, 2026, 3:35 AM</Data>
+			</Cell>
+		</Row>
+	</ss:Table>
+	<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+		<PageSetup>
+			<PageMargins x:Bottom="0.25" x:Left="0.6875" x:Right="0.6770833" x:Top="0.25"/>
+		</PageSetup>
+		<Print>
+			<PaperSizeIndex>9</PaperSizeIndex>
+		</Print>
+	</WorksheetOptions>
+</Worksheet>
+</Workbook>

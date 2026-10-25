@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+	<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+		<Author/>
+		<Title/>
+		<Description/>
+		<Subject/>
+	</DocumentProperties>
+	<Styles>
+		<Style ss:ID="HyperlinkId" ss:Name="Hyperlink">
+			<Font ss:Color="#0000ff"/>
+		</Style>
+		<Style ss:ID="1">
+			<NumberFormat ss:Format="yyyy-M-d HH:mm:ss AM/PM"/>
+		</Style>
+		<Style ss:ID="32">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Arial" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="30">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="27">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="29">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="26">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="28">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="35">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="33">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Arial" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="22">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="20">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="20.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="31">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="23">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="25">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="21">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#808080"/>
+		</Style>
+		<Style ss:ID="34">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="24">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+	</Styles>
+	<Names>
+		<NamedRange ss:Name="__bookmark_2" ss:RefersTo="Report!R4C1:R18C7"/>
+	</Names>
+
+<Worksheet ss:Name="Report">
+	<ss:Table>
+		<ss:Column ss:Width="43.392" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="44.288" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="47.232" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="117.76" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="108.8" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="70.528" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="74.24" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="7.424" ss:AutoFitWidth="0"/>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="20" ss:MergeAcross="7">
+				<Data ss:Type="String">Local Government Directory</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String">All Districts of Meghalaya(State Code:17) State</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="20.25">
+			<Cell ss:Index="1" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">S. No.</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">District Code</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">District Version</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="22">
+				<Data ss:Type="String">District Name</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="22">
+				<Data ss:Type="String">District Name</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">  Census 2001 Code</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">Census 2011 Code</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="20.25">
+			<Cell ss:Index="4" ss:StyleID="25">
+				<Data ss:Type="String">(In English)</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="25">
+				<Data ss:Type="String">(In Local)</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">1.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">740</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Eastern West Khasi Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33"/>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">2.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">273</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">East Garo Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">EAST GARO HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">02</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">294</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">3.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">657</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">East Jaintia Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">EAST JAINTIA HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">4.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">274</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">East Khasi Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">EAST KHASI HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">06</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">298</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">5.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">656</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">North Garo Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">NORTH GARO HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">6.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">276</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Ri Bhoi</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">RI BHOI</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">05</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">297</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">7.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">277</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">South Garo Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">SOUTH GARO HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">03</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">295</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">8.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">663</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">South West Garo Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">SOUTH WEST GARO HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">9.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">658</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">South West Khasi Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">SOUTH WEST KHASI HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">10.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">278</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">6</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">West Garo Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">WEST GARO HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">01</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">293</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">11.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">275</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">West Jaintia Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">WEST JAINTIA HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">07</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">299</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">12.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">279</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">West Khasi Hills</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">WEST KHASI HILLS</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">04</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">296</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="34"/>
+			<Cell ss:Index="2" ss:StyleID="34"/>
+			<Cell ss:Index="3" ss:StyleID="34"/>
+			<Cell ss:Index="4" ss:StyleID="34"/>
+			<Cell ss:Index="5" ss:StyleID="34"/>
+			<Cell ss:Index="6" ss:StyleID="34"/>
+			<Cell ss:Index="7" ss:StyleID="34"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="35" ss:MergeAcross="7">
+				<Data ss:Type="String">Oct 25, 2026, 3:36 AM</Data>
+			</Cell>
+		</Row>
+	</ss:Table>
+	<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+		<PageSetup>
+			<PageMargins x:Bottom="0.25" x:Left="0.6875" x:Right="0.6770833" x:Top="0.25"/>
+		</PageSetup>
+		<Print>
+			<PaperSizeIndex>9</PaperSizeIndex>
+		</Print>
+	</WorksheetOptions>
+</Worksheet>
+</Workbook>

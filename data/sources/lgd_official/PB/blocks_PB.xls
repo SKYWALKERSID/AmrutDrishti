@@ -1,0 +1,3929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+	<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+		<Author/>
+		<Title/>
+		<Description/>
+		<Subject/>
+	</DocumentProperties>
+	<Styles>
+		<Style ss:ID="HyperlinkId" ss:Name="Hyperlink">
+			<Font ss:Color="#0000ff"/>
+		</Style>
+		<Style ss:ID="1">
+			<NumberFormat ss:Format="yyyy-M-d HH:mm:ss AM/PM"/>
+		</Style>
+		<Style ss:ID="29">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="28">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="27">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="22">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="31">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="23">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="20">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="20.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="21">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#808080"/>
+		</Style>
+		<Style ss:ID="30">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="24">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="26">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="25">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+	</Styles>
+	<Names>
+		<NamedRange ss:Name="__bookmark_2" ss:RefersTo="Report!R4C1:R167C7"/>
+	</Names>
+
+<Worksheet ss:Name="Report">
+	<ss:Table>
+		<ss:Column ss:Width="53.248" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="54.656" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="96.0" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="48.0" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="60.8" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="122.24" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="137.216" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="3.84" ss:AutoFitWidth="0"/>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="20" ss:MergeAcross="7">
+				<Data ss:Type="String">Local Government Directory</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String">All Blocks of Punjab(State Code:3) State</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="22" ss:MergeAcross="7"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="24" ss:MergeDown="1">
+				<Data ss:Type="String">S.No.</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="24" ss:MergeDown="1">
+				<Data ss:Type="String">District Code</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="23">
+				<Data ss:Type="String">District Name </Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="24" ss:MergeDown="1">
+				<Data ss:Type="String">Block Code</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="24" ss:MergeDown="1">
+				<Data ss:Type="String"> Block Version</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="23">
+				<Data ss:Type="String">Block Name</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="23">
+				<Data ss:Type="String">Block Name</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="3" ss:StyleID="26">
+				<Data ss:Type="String">(In English)  </Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="26">
+				<Data ss:Type="String"> (In English)</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="26">
+				<Data ss:Type="String">  (In Local)</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">1.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">210</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ajnala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">2.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">6621</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Attari</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">3.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">212</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Chogawan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">4.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">215</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">9</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Harshe Chhina</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">5.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">216</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jandiala Guru</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">6.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">218</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Majitha-1</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਮਜੀਠਾ-1</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">7.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7607</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Majitha-2</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਮਜੀਠਾ-2</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">8.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7562</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ramdas</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਰਮਦਾਸ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">9.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">221</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Rayya</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">10.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">223</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Tarsikka</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">11.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">27</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Amritsar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">225</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Verka</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">12.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">605</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Barnala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">341</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Barnala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">13.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">605</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Barnala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">346</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mehal Kalan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">14.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">605</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Barnala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">348</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sehna</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">15.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">226</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">16.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">227</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhagta Bhaika</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">17.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7333</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Goniana</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਗੋਨਿਆਣਾ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">18.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">228</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Maur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">19.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">229</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nathana</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">20.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">230</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Phul</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">21.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">231</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Rampura</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">22.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">232</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sangat</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">23.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">28</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Bathinda</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">233</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Talwandi Sabo</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">24.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">29</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Faridkot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">234</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Faridkot</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">25.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">29</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Faridkot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7091</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jaitu</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਜੈਤੋ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">26.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">29</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Faridkot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">235</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">11</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Kot Kapura</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">27.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">30</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fatehgarh Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">236</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Amloh</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">28.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">30</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fatehgarh Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">237</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">17</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bassi Pathana</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">29.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">30</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fatehgarh Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">238</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Khamano</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">30.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">30</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fatehgarh Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">239</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">12</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Khera</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">31.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">30</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fatehgarh Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">240</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">16</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sirhind</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">32.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">651</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fazilka</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">241</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Abohar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਅਬੋਹਰ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">33.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">651</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fazilka</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">6735</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Arniwala Shiekh Subhan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਅਰਨੀਵਾਲਾ ਸ਼ੇਖ ਸੁਭਾਨ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">34.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">651</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fazilka</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">242</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Fazilka</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਫਾਜਿਲਕਾ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">35.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">651</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fazilka</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">246</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jalalabad</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਜਲਾਲਾਬਾਦ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">36.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">651</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Fazilka</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">247</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Khuian Sarwar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਖੂਹੀਆ ਸਰਵਰ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">37.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">31</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ferozepur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">243</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Firozpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">38.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">31</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ferozepur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">244</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ghall Khurd</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">39.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">31</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ferozepur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">245</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Guru Har Sahai</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">40.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">31</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ferozepur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">248</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Makhu</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">41.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">31</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ferozepur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">249</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mamdot</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">42.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">31</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ferozepur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">250</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Zira</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">43.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">252</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Batala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">44.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">253</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dera Baba Nanak</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">45.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">254</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">13</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dhariwal</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">46.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">256</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">23</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dinanagar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">47.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">257</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">16</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dorangla</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">48.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">258</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Fatehgarh Churian</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">49.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">259</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">21</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">50.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">260</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">19</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Kahnuwan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">51.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">261</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">20</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Kalanaur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">52.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">264</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Qadian</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">53.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">32</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Gurdaspur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">265</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sri Hargobindpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">54.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">267</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhunga</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">55.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">268</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dasuya</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">56.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">269</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Garhshankar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">57.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">270</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Hajipur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">58.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">271</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur-I</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">59.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">272</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur-Ii</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">60.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">273</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mahilpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">61.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">274</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mukerian</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">62.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">275</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Talwara</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">63.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">33</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Hoshiarpur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">276</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Tanda</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">64.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">277</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Adampur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">65.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">278</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhogpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">66.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">280</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar-East</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">67.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">279</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar - West</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">68.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">281</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Lohian</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">69.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">6906</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mehatpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">MEHATPUR</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">70.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">282</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nakodar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">71.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">283</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nurmahal</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">72.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">284</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Phillaur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">73.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">285</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Rurka Kalan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">74.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">34</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Jalandhar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">286</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Shahkot</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">75.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">35</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Kapurthala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">287</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">13</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Fattu Dhinga At Dhilwan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਫੱਤੂ ਢੀਂਗਾ ਐਟ ਢਿਲਵਾਂ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">76.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">35</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Kapurthala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">288</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Kapurthala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">77.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">35</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Kapurthala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">289</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nadala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">78.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">35</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Kapurthala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">290</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Phagwara</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">79.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">35</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Kapurthala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">291</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sultanpur Lodhi</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">80.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">292</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dehlon</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">81.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">293</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Doraha</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">82.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">294</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jagraon</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">83.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">295</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Khanna</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">84.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7625</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Koom Kalan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਕੂਮ ਕਲਾਂ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">85.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">296</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana-1</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">86.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">297</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">19</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana-2</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">87.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">298</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Machhiwara</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">88.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7085</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Maloud</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">89.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">302</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mullanpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਮੁੱਲਾਂਪੁਰ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">90.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">299</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Pakhowal</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">91.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">300</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Raikot</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">92.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">301</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Samrala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">93.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">36</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Ludhiana</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">303</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sudhar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">94.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">737</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Malerkotla</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7487</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">15</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ahmedgarh</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">95.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">737</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Malerkotla</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">345</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">22</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Amargarh</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">96.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">737</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Malerkotla</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">339</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">25</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Malerkotla (Head Quarter)</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਮਲੇਰਕੋਟਲਾ (ਹੈੱਡ ਕੁਆਟਰ)</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">97.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">37</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Mansa</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">304</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhikhi</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">98.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">37</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Mansa</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">305</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Budhlada</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">99.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">37</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Mansa</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">306</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Jhunir</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">100.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">37</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Mansa</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">307</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mansa</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">101.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">37</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Mansa</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">308</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sardulgarh</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">102.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">38</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">309</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Baghapurana</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">103.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">38</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7608</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dharmkot</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਧਰਮਕੋਟ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">104.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">38</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">310</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Kot-Ise-Khan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">105.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">38</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">312</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਮੋਗਾ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">106.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">38</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">311</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Moga-I</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">107.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">38</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Moga</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">313</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nihal Singh Wala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">108.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">662</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">251</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bamial</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">109.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">662</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">255</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dharkalan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">110.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">662</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">6779</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Gharota</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">111.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">662</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">262</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Narot Jaimal Singh</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">112.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">662</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">263</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">113.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">662</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Pathankot</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">266</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sujanpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">114.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">323</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">9</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhuner Heri</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">115.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">325</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Ghanaur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">116.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">326</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nabha</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">117.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">327</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">18</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">118.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7479</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">14</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Patiala Rural</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">119.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">328</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Patran</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">120.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">329</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">12</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Rajpura</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">121.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">330</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Samana</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">122.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">331</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sanour</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">123.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">41</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Patiala</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7337</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Shambu Kalan</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">124.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">42</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">332</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">9</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Anandpur Sahib</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਅਨੰਦਪੁਰ ਸਾਹਿਬ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">125.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">42</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">333</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Chamkaur Sahib</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਚਮਕੌਰ ਸਾਹਿਬ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">126.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">42</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">336</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Morinda</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਮੋਰਿੰਡਾ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">127.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">42</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7606</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nangal</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਨੰਗਲ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">128.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">42</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">337</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nurpur Bedi</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਨੂਰਪੁਰਬੇਦੀ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">129.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">42</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">338</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">10</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Rupnagar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਰੂਪਨਗਰ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">130.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">340</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Andana</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">131.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">342</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhawani Garh</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">132.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7624</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Chhajli</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਛਾਜਲੀ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">133.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">343</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">11</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dhuri</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">134.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">6736</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dirba</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਦਿੜ੍ਹਬਾ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">135.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">344</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">9</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Lehragaga</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">136.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">347</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">137.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">349</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">2</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sherpur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">138.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">350</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sunam</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">139.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">43</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7626</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sunam Udham Singh Wala-2 At Sangrur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਸੁਨਾਮ ਊਧਮ ਸਿੰਘ ਵਾਲਾ-2 ਐਟ ਸੰਗਰੂਰ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">140.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">608</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">S.A.S Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">324</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Dera Bassi</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">141.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">608</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">S.A.S Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">334</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">9</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Kharar</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">142.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">608</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">S.A.S Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">335</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Majri</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">143.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">608</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">S.A.S Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7486</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">15</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Mohali</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">144.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">40</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Shahid Bhagat Singh Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">318</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Aur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">145.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">40</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Shahid Bhagat Singh Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">319</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Balachaur</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">146.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">40</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Shahid Bhagat Singh Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">320</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">12</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Banga</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">147.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">40</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Shahid Bhagat Singh Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">321</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nawanshahr</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">148.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">40</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Shahid Bhagat Singh Nagar</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">322</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Saroya</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">149.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">39</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sri Muktsar Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">314</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Gidderbaha</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">150.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">39</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sri Muktsar Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">315</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">4</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Lambi</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">151.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">39</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sri Muktsar Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">316</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">8</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Malout</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">152.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">39</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Sri Muktsar Sahib</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">317</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Sri Muktsar Sahib</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਸ੍ਰੀ ਮੁਕਤਸਰ ਸਾਹਿਬ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">153.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">211</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Bhikhi Wind-13</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">154.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">213</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">6</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Chohla Sahib-8</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">155.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">214</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Gandiwind-9</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">156.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">217</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">7</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Khadur-Sahib-10</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">157.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">7609</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Nagoke</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String">ਨਾਗੋਕੇ</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">158.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">219</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">10</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Naushehra Pannuan-11</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">159.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">220</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">3</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Patti-14</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">160.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">222</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">5</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran-12</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="28">
+				<Data ss:Type="Number">161.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="28">
+				<Data ss:Type="Number">609</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="30">
+				<Data ss:Type="String">Tarn Taran</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="28">
+				<Data ss:Type="Number">224</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="28">
+				<Data ss:Type="Number">1</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="30">
+				<Data ss:Type="String">Valtoha-15</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="30">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="31"/>
+			<Cell ss:Index="2" ss:StyleID="31"/>
+			<Cell ss:Index="3" ss:StyleID="31"/>
+			<Cell ss:Index="4" ss:StyleID="31"/>
+			<Cell ss:Index="5" ss:StyleID="31"/>
+			<Cell ss:Index="6" ss:StyleID="31"/>
+			<Cell ss:Index="7" ss:StyleID="31"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="22" ss:MergeAcross="7">
+				<Data ss:Type="String">Oct 25, 2026, 3:36 AM</Data>
+			</Cell>
+		</Row>
+	</ss:Table>
+	<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+		<PageSetup>
+			<PageMargins x:Bottom="0.25" x:Left="0.25" x:Right="0.25" x:Top="0.25"/>
+		</PageSetup>
+		<Print>
+			<PaperSizeIndex>9</PaperSizeIndex>
+		</Print>
+	</WorksheetOptions>
+</Worksheet>
+</Workbook>

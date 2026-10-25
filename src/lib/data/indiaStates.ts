@@ -1,15 +1,13 @@
 /**
  * JAL DRISHTI — Authoritative State and Region Registry
  * 
- * Defines the authoritative initial ten-state geographic scope grouped into four project regions:
+ * Defines the authoritative nine-state geographic scope grouped into four project regions:
  * 1. South India (3 states): Karnataka, Telangana, Tamil Nadu
  * 2. Central India (1 state): Madhya Pradesh
  * 3. North India (3 states): Rajasthan, Haryana, Punjab
- * 4. Northeast India (3 states): Meghalaya, Assam, Tripura
+ * 4. Northeast India (2 states): Meghalaya, Tripura
  * 
- * Non-target / Historical Reference States (Uttar Pradesh, Sikkim, Arunachal Pradesh) are retained
- * for scientific provenance and regression fixtures, but strictly excluded from active target navigation,
- * target summaries, and active coverage metrics.
+ * Note: Assam, Uttar Pradesh, Sikkim, and Arunachal Pradesh are strictly outside active scope.
  */
 
 export type ProjectRegion = 'South India' | 'Central India' | 'North India' | 'Northeast India';
@@ -269,30 +267,6 @@ export const TARGET_STATES_METADATA: Record<string, TargetStateMetadata> = {
     sourceAttribution: 'Meghalaya Ground Water Department / NWIC',
     knownLimitations: 'Hilly karst and fractured sandstone plateau; heavy orographic precipitation is offset by steep topographic runoff.'
   },
-  AS: {
-    id: 'assam',
-    code: 'AS',
-    name: 'Assam',
-    displayName: 'Assam',
-    region: 'Northeast India',
-    isTargetScope: true,
-    readinessStatus: 'fully_implemented',
-    districtsCount: 35,
-    monitoredDistrictsCount: 4,
-    blocksCount: 11,
-    stationsCount: 473,
-    availableSources: ['src_cgwb_contrast_as', 'src_assam_dwlr_telemetry', 'src_imd_rainfall', 'src_grace_fo', 'src_sentinel2_sr'],
-    latestObservationDate: '2024-01-31',
-    lastIngestionTime: '2026-10-20T13:00:00Z',
-    temporalResolution: 'Quarterly Piezometers & Historical Telemetry',
-    freshnessStatus: 'CURRENT',
-    dataQualityStatus: 'good',
-    supportedIndicators: ['cgwbWellDepthMbgl', 'rainfallAnomalyMm', 'graceTwsaCm', 'sentinelNdvi', 'smapSoilMoisture'],
-    forecastAvailability: 'packaged_ml',
-    modelStatus: 'research_prototype',
-    sourceAttribution: 'CGWB / Assam Water Resources Department / NWIC',
-    knownLimitations: 'Brahmaputra alluvial floodplains; telemetric station reporting has lagged since May 2023 while quarterly manual piezometers remain verified.'
-  },
   TR: {
     id: 'tripura',
     code: 'TR',
@@ -419,17 +393,6 @@ export const ALL_TARGET_STATES: IndianStateMeta[] = [
     targetMetadata: TARGET_STATES_METADATA.ML
   },
   {
-    code: 'AS',
-    name: 'Assam',
-    id: 'assam',
-    hasData: true,
-    isTargetScope: true,
-    region: 'Northeast India',
-    statusLabel: 'Northeast India — Brahmaputra Valley Alluvial Recharge (CGWB & ML v2.0)',
-    districtsCount: 35,
-    targetMetadata: TARGET_STATES_METADATA.AS
-  },
-  {
     code: 'TR',
     name: 'Tripura',
     id: 'tripura',
@@ -447,13 +410,23 @@ export const ALL_TARGET_STATES: IndianStateMeta[] = [
  */
 export const HISTORICAL_REFERENCE_STATES: IndianStateMeta[] = [
   {
+    code: 'AS',
+    name: 'Assam',
+    id: 'assam',
+    hasData: false,
+    isTargetScope: false,
+    region: 'Northeast India',
+    statusLabel: 'Historical Baseline Reference — Brahmaputra Valley Alluvial Recharge (Outside Active 43-Block Scope)',
+    districtsCount: 35
+  },
+  {
     code: 'UP',
     name: 'Uttar Pradesh',
     id: 'uttar_pradesh',
     hasData: false,
     isTargetScope: false,
     region: 'Central India',
-    statusLabel: 'Historical Pilot Reference — Alluvial Basin (Outside 10-State Target Scope)',
+    statusLabel: 'Historical Pilot Reference — Alluvial Basin (Outside Active Scope)',
     districtsCount: 75
   },
   {
@@ -463,7 +436,7 @@ export const HISTORICAL_REFERENCE_STATES: IndianStateMeta[] = [
     hasData: false,
     isTargetScope: false,
     region: 'Northeast India',
-    statusLabel: 'Scientific Reference — Mountain Springshed Contrast (Outside 10-State Target Scope)',
+    statusLabel: 'Scientific Reference — Mountain Springshed Contrast (Outside Active Scope)',
     districtsCount: 6
   },
   {
@@ -473,7 +446,7 @@ export const HISTORICAL_REFERENCE_STATES: IndianStateMeta[] = [
     hasData: false,
     isTargetScope: false,
     region: 'Northeast India',
-    statusLabel: 'Scientific Reference — Surplus Basin Benchmark (Outside 10-State Target Scope)',
+    statusLabel: 'Scientific Reference — Surplus Basin Benchmark (Outside Active Scope)',
     districtsCount: 26
   }
 ];
@@ -518,7 +491,7 @@ export const ALL_INDIAN_STATES: IndianStateMeta[] = [
 ];
 
 /**
- * Returns all ten target states.
+ * Returns all nine target states.
  */
 export function getTargetStates(): IndianStateMeta[] {
   return ALL_TARGET_STATES;

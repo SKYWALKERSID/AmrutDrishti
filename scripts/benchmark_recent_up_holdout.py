@@ -47,6 +47,9 @@ def benchmark_recent_up_telemetry():
     if not os.path.exists(file_path):
         print(f"File not found: {file_path}")
         return None
+
+    print("BLOCKED: no authoritative station-specific measurement convention, calibration, or datum evidence is registered; refusing to interpret positive or negative telemetry as m bgl.")
+    return None
         
     df = pd.read_csv(file_path, low_memory=False)
     print(f"Raw records: {len(df)} across {df['Station'].nunique()} stations in {df['District'].nunique()} districts")
@@ -54,9 +57,9 @@ def benchmark_recent_up_telemetry():
     df['date'] = pd.to_datetime(df['Data Acquisition Time'], errors='coerce', dayfirst=True)
     raw_wl = pd.to_numeric(df['Groundwater Level Telemetry 6 Hourly (meter)'], errors='coerce')
     
-    # In telemetry, water levels are recorded with negative values representing depth below ground level
-    # or erroneous -9999 spikes. Filter physical depth range [0.0, 150.0] mbgl.
-    depth_mbgl = raw_wl.abs()
+    # Unreachable until authoritative station calibration/datum evidence is
+    # implemented above. Never take absolute values or reinterpret raw values.
+    depth_mbgl = raw_wl
     df['water_level_mbgl'] = np.where((depth_mbgl >= 0.0) & (depth_mbgl <= 150.0), depth_mbgl, np.nan)
     df = df.dropna(subset=['Station', 'date', 'water_level_mbgl'])
     df = df.rename(columns={'Station': 'station'})

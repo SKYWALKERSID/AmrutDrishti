@@ -1,0 +1,279 @@
+[
+  [
+    "Local Government Directory"
+  ],
+  [
+    "All Subdistricts of Tripura(State Code:16) State"
+  ],
+  [
+    "S.No.",
+    "District code",
+    "District Name",
+    "Subdistrict Code",
+    "Subdistrict Version",
+    "Subdistrict Name  ",
+    "Subdistrict Name ",
+    "Census 2001 Code",
+    "Census 2011 Code"
+  ],
+  [
+    "(In English)",
+    "(In Local)"
+  ],
+  [
+    "1",
+    "654",
+    "Gomati",
+    "6695",
+    "1",
+    "Amarpur",
+    "\u0985\u09ae\u09b0\u09aa\u09c1\u09b0",
+    "2",
+    "00000"
+  ],
+  [
+    "2",
+    "269",
+    "Dhalai",
+    "6697",
+    "1",
+    "Ambassa",
+    "\u0986\u09ae\u09ac\u09be\u09b8\u09be",
+    "3",
+    "00000"
+  ],
+  [
+    "3",
+    "271",
+    "South Tripura",
+    "6687",
+    "1",
+    "Belonia",
+    "\u09ac\u09bf\u09b2\u09cb\u09a8\u09bf\u09df\u09be",
+    "5",
+    "00000"
+  ],
+  [
+    "4",
+    "653",
+    "Sepahijala",
+    "6699",
+    "1",
+    "Bishalgarh",
+    "\u09ac\u09bf\u09b6\u09be\u09b2\u0997\u09a1\u09bc",
+    "12",
+    "00000"
+  ],
+  [
+    "5",
+    "270",
+    "North Tripura",
+    "6691",
+    "1",
+    "Dharmanagar",
+    "\u09a7\u09b0\u09cd\u09ae\u09cd\u09ae\u09a8\u0997\u09b0",
+    "",
+    "00000"
+  ],
+  [
+    "6",
+    "269",
+    "Dhalai",
+    "6686",
+    "2",
+    "Gonda Twisa",
+    "\u0997\u09a8\u09cd\u09a1\u09be \u099f\u09c1\u0987\u09b8\u09be",
+    "5",
+    "00000"
+  ],
+  [
+    "7",
+    "653",
+    "Sepahijala",
+    "6677",
+    "1",
+    "Jampuijala",
+    "\u099c\u09ae\u09cd\u09aa\u09c1\u0987\u099c\u09b2\u09be",
+    "11",
+    "00000"
+  ],
+  [
+    "8",
+    "272",
+    "West Tripura",
+    "6679",
+    "1",
+    "Jirania",
+    "\u099c\u09bf\u09b0\u09be\u09a8\u09bf\u09df\u09be",
+    "9",
+    "00000"
+  ],
+  [
+    "9",
+    "655",
+    "Unakoti",
+    "6682",
+    "1",
+    "Kailashahar",
+    "\u0995\u09c8\u09b2\u09be\u09b8\u09b9\u09b0",
+    "1",
+    "00000"
+  ],
+  [
+    "10",
+    "269",
+    "Dhalai",
+    "6681",
+    "1",
+    "Kamalpur",
+    "\u0995\u09ae\u09b2\u09aa\u09c1\u09b0",
+    "1",
+    "00000"
+  ],
+  [
+    "11",
+    "270",
+    "North Tripura",
+    "6685",
+    "1",
+    "Kanchanpur",
+    "\u0995\u09be\u099e\u09cd\u099a\u09a8\u09aa\u09c1\u09b0",
+    "",
+    "00000"
+  ],
+  [
+    "12",
+    "654",
+    "Gomati",
+    "6690",
+    "1",
+    "Karbook",
+    "\u0995\u09b0\u09ac\u09c1\u0995",
+    "8",
+    "00000"
+  ],
+  [
+    "13",
+    "652",
+    "Khowai",
+    "6684",
+    "1",
+    "Khowai",
+    "\u0996\u09cb\u09df\u09be\u0987",
+    "4",
+    "00000"
+  ],
+  [
+    "14",
+    "655",
+    "Unakoti",
+    "6694",
+    "1",
+    "Kumarghat",
+    "\u0995\u09c1\u09ae\u09be\u09b0\u0998\u09be\u099f",
+    "6",
+    "00000"
+  ],
+  [
+    "15",
+    "269",
+    "Dhalai",
+    "6692",
+    "2",
+    "Longtharai Valley",
+    "\u09b2\u0982\u09a4\u09b0\u09be\u0987 \u09ad\u09cd\u09af\u09b2\u09c0",
+    "2",
+    "00000"
+  ],
+  [
+    "16",
+    "272",
+    "West Tripura",
+    "6689",
+    "2",
+    "Mohanpur",
+    "\u09ae\u09cb\u09b9\u09a8\u09aa\u09c1\u09b0",
+    "1",
+    "00000"
+  ],
+  [
+    "17",
+    "270",
+    "North Tripura",
+    "6678",
+    "1",
+    "Panisagar",
+    "\u09aa\u09be\u09a8\u09bf\u09b8\u09be\u0997\u09b0",
+    "3",
+    "00000"
+  ],
+  [
+    "18",
+    "271",
+    "South Tripura",
+    "6688",
+    "1",
+    "Sabroom",
+    "\u09b8\u09be\u09f1\u09cd\u09b0\u09c1\u09ae",
+    "",
+    "00000"
+  ],
+  [
+    "19",
+    "272",
+    "West Tripura",
+    "6696",
+    "2",
+    "Sadar",
+    "\u09b8\u09a6\u09b0",
+    "10",
+    "00000"
+  ],
+  [
+    "20",
+    "271",
+    "South Tripura",
+    "6683",
+    "1",
+    "Santirbazar",
+    "\u09b6\u09be\u09a8\u09cd\u09a4\u09bf\u09b0\u09ac\u09be\u099c\u09be\u09b0",
+    "",
+    "00000"
+  ],
+  [
+    "21",
+    "653",
+    "Sepahijala",
+    "6680",
+    "1",
+    "Sonamura",
+    "\u09b8\u09cb\u09a8\u09be\u09ae\u09c1\u09a1\u09bc\u09be",
+    "",
+    "00000"
+  ],
+  [
+    "22",
+    "652",
+    "Khowai",
+    "6698",
+    "1",
+    "Teliamura",
+    "\u09a4\u09c7\u09b2\u09bf\u09df\u09be\u09ae\u09c1\u09a1\u09bc\u09be",
+    "7",
+    "00000"
+  ],
+  [
+    "23",
+    "654",
+    "Gomati",
+    "6693",
+    "1",
+    "Udaipur",
+    "\u0989\u09a6\u09df\u09aa\u09c1\u09b0",
+    "",
+    "00000"
+  ],
+  [
+    "Oct 25, 2026, 3:38 AM"
+  ]
+]

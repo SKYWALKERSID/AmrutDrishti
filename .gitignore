@@ -72,6 +72,19 @@ data/sources/haryana_gw_manual_2021_2025.csv
 data/sources/meghalaya_dwlr_historical.csv
 data/sources/meghalaya_gw_manual.csv
 data/sources/imd_rainfall/rain/
+data/sources/nwdp_telemetry_raw/*.csv
+data/derived/nwdp_station_training_lineage.json
+data/derived/nwdp_telemetry_record_lineage.csv.gz
+data/derived/nwdp_telemetry_record_lineage.ndjson.gz
+data/derived/*.out
+data/derived/*.err
+data/derived/*.lock
+*.pdf
+GEOJSON FILES/
+LGD DATA/
+docs/archive/
 
 # Large Binary Model Artifacts
 ml/artifacts/*.joblib
+ml/models/
+

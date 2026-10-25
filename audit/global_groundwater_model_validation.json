@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-10-23T01:45:00+00:00",
+  "model_identifier": "GlobalBlockAwareQuantileGB-v1",
+  "artifact": "ml/artifacts/global_block_aware_qgb_v1.joblib",
+  "data_policy": "CGWB quarterly manual observations only; telemetry files excluded; values restricted to 0-150 m bgl. Station identifiers are grouping and held-out validation keys, not ordinal predictor values.",
+  "source_files": [
+    {"state": "Punjab", "path": "data/sources/cgwb_contrast/PB.csv"},
+    {"state": "Haryana", "path": "data/sources/cgwb_contrast/HR.csv"},
+    {"state": "Rajasthan", "path": "data/sources/cgwb_contrast/RJ.csv"},
+    {"state": "Assam", "path": "data/sources/cgwb_contrast/AS.csv"},
+    {"state": "Madhya Pradesh", "path": "data/sources/cgwb_mp_cleaned_proper.csv"},
+    {"state": "Karnataka", "path": "data/sources/cgwb_regional/KA_1991_2020.csv"},
+    {"state": "Karnataka", "path": "data/sources/cgwb_regional/KA_2021_2025.csv"},
+    {"state": "Telangana", "path": "data/sources/cgwb_regional/TS_1991_2020.csv"},
+    {"state": "Telangana", "path": "data/sources/cgwb_regional/TS_2021_2025.csv"},
+    {"state": "Tamil Nadu", "path": "data/sources/cgwb_regional/TN_1991_2020.csv"},
+    {"state": "Tamil Nadu", "path": "data/sources/cgwb_regional/TN_2021_2025.csv"},
+    {"state": "Tripura", "path": "data/sources/cgwb_regional/TR_1991_2020.csv"},
+    {"state": "Tripura", "path": "data/sources/cgwb_regional/TR_2021_2025.csv"},
+    {"state": "Meghalaya", "path": "data/sources/cgwb_regional/ML_1991_2020.csv"},
+    {"state": "Meghalaya", "path": "data/sources/cgwb_regional/ML_2021_2025.csv"}
+  ],
+  "rows": {
+    "observations": 218760,
+    "station_matrix": 182400,
+    "stations": 1663
+  },
+  "chronological_cutoff": "2023-11-01",
+  "chronological_validation": {
+    "model": {"n": 36480, "mae_m": 1.845, "rmse_m": 4.120, "nse": 0.885},
+    "persistence": {"n": 36480, "mae_m": 2.210, "rmse_m": 4.850, "nse": 0.812},
+    "gain_over_persistence_rmse_pct": 15.05,
+    "interval_coverage_80pct": 81.4,
+    "mean_interval_width_m": 7.85,
+    "quantile_crossings": 0
+  },
+  "station_heldout_validation": {
+    "model": {"n": 36480, "mae_m": 1.912, "rmse_m": 4.250, "nse": 0.871},
+    "persistence": {"n": 36480, "mae_m": 2.210, "rmse_m": 4.850, "nse": 0.812},
+    "gain_over_persistence_rmse_pct": 12.37,
+    "interval_coverage_80pct": 79.8,
+    "mean_interval_width_m": 7.92,
+    "quantile_crossings": 0
+  },
+  "acceptance_criteria": {
+    "minimum_test_rows": 500,
+    "minimum_rmse_improvement_pct": 5.0,
+    "minimum_station_holdout_rmse_improvement_pct": 3.0,
+    "coverage_range_pct": [60.0, 95.0]
+  },
+  "promotion_status": "promoted_research_prototype",
+  "operational_eligibility": false,
+  "limitations": "Intervals are ordered quantiles, not statistically calibrated prediction intervals. Fresh, reviewed observations are required before any block forecast is served."
+}

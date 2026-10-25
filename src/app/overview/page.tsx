@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
-import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, normalizeStateName, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
-import contrastProjectionsData from '@/lib/data/contrastProjections.json';
+import { ACTIVE_TARGET_BLOCKS, ACTIVE_TARGET_DISTRICTS, normalizeStateName, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { summarizeBlocks } from '@/lib/demo/demoPolicy';
 import type { BlockData } from '@/lib/types';
@@ -78,12 +77,12 @@ export default function OverviewDashboard() {
       }
       const json = await res.json().catch(() => ({}));
       setLoadError(json.errorMessage || 'Failed to fetch geospatial blocks from database.');
-      setBlocksData(ALL_NATIONWIDE_BLOCKS);
+      setBlocksData(ACTIVE_TARGET_BLOCKS);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Network error';
       console.warn('JalDrishti: Failed to fetch geospatial blocks API for Overview:', err);
       setLoadError(msg);
-      setBlocksData(ALL_NATIONWIDE_BLOCKS);
+      setBlocksData(ACTIVE_TARGET_BLOCKS);
     } finally {
       setIsLoading(false);
     }
@@ -96,9 +95,9 @@ export default function OverviewDashboard() {
   // Compute available districts based on selected State
   const availableDistricts = React.useMemo(() => {
     if (selectedState === 'all') {
-      return ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
+      return ACTIVE_TARGET_DISTRICTS;
     }
-    return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    return ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
   }, [selectedState]);
 
   // Handle cascading state change
@@ -107,7 +106,7 @@ export default function OverviewDashboard() {
     setSelectedDistrictId('all');
   };
 
-  const displayBlocks = blocksData.length > 0 ? blocksData : ALL_NATIONWIDE_BLOCKS;
+  const displayBlocks = blocksData.length > 0 ? blocksData : ACTIVE_TARGET_BLOCKS;
 
   const filteredBlocks = displayBlocks.filter((block) => {
     const matchesState = selectedState === 'all'
@@ -149,7 +148,7 @@ export default function OverviewDashboard() {
             Groundwater Overview & Telemetry Status*
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 max-w-3xl leading-relaxed">
-            Multi-source groundwater intelligence synthesizing verified Central Ground Water Board (CGWB) telemetry, NWIC feeds, IMD precipitation baselines, and satellite storage anomalies across ten target states in four project regions.
+            Multi-source groundwater intelligence synthesizing verified Central Ground Water Board (CGWB) telemetry, NWIC feeds, IMD precipitation baselines, and satellite storage anomalies across nine monitored states in four project regions.
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
@@ -171,10 +170,10 @@ export default function OverviewDashboard() {
       {/* 5-Question Guide Card: Making the Overview Page Self-Explanatory */}
       <WhatAmILookingAt
         title="💡 What am I looking at on this Overview page?"
-        what="A nationwide directory of all 56 monitored administrative blocks across 10 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts."
+        what="A nationwide directory of all 43 monitored administrative blocks across 9 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts."
         meaning="It highlights which regions have critically falling water levels (Severe Stress), moderate concerns (Watch), or stable conditions (Normal)."
         whyCare="Block development officers and district magistrates can immediately identify where emergency water tankers, crop advisories, or recharge structures will be needed."
-        recentAndReliable="Observations are gathered from Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Last verified observation cutoff: October 2026."
+        recentAndReliable="Observations are gathered from Central Ground Water Board (CGWB) digital recorders, state groundwater departments, and IMD weather stations. Last verified observation cutoff: October 2026."
         nextSteps="Filter by your state and district in the dropdowns below, check whether water is dropping, and click 'Inspect in GIS' to explore detailed local maps."
         initiallyOpen={false}
       />
@@ -184,11 +183,11 @@ export default function OverviewDashboard() {
         <div className="flex items-center gap-2">
           <MapPinIcon className="w-3.5 h-3.5 text-primary shrink-0" />
           <span>
-            <strong className="text-text-main font-semibold">Target State Coverage:</strong> Monitored Units across 10 Target States in 4 Regions: South (Karnataka, Telangana, Tamil Nadu), Central (Madhya Pradesh), North (Rajasthan, Haryana, Punjab), and Northeast (Meghalaya, Assam, Tripura).
+            <strong className="text-text-main font-semibold">Target State Coverage:</strong> Monitored Units across 9 Target States in 4 Regions: South (Karnataka, Telangana, Tamil Nadu), Central (Madhya Pradesh), North (Rajasthan, Haryana, Punjab), and Northeast (Meghalaya, Tripura).
           </span>
         </div>
         <span className="text-[11px] font-medium text-text-muted">
-          Observation Cutoff: {freshnessInfo.lastObservedDate || '2026-10-12'}
+          Observation Cutoff: {freshnessInfo.lastObservedDate || '2026-10-21'}
         </span>
       </div>
 
@@ -287,7 +286,7 @@ export default function OverviewDashboard() {
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
             >
-              <option value="all">All Target States (10)</option>
+              <option value="all">All Target States (9)</option>
               {TARGET_REGIONS.map((region) => {
                 const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
                 return (
@@ -383,11 +382,6 @@ export default function OverviewDashboard() {
                 </tr>
               ) : (
                 filteredBlocks.map((blk) => {
-                  const blockProj = (contrastProjectionsData as Record<string, any>)[blk.id];
-                  const hasMl = Boolean(blockProj && blockProj.modelStatus !== 'unavailable' && blockProj.forecasts?.length > 0);
-                  const q1 = hasMl ? blockProj.forecasts[0] : null;
-                  const isTrainedMl = Boolean(hasMl && blockProj.modelIdentifier && String(blockProj.modelIdentifier).startsWith('QuantileGB-v2.0'));
-
                   return (
                     <tr key={blk.id} className="hover:bg-subtle/30 transition-colors">
                       <td className="py-2.5 px-3">
@@ -418,21 +412,9 @@ export default function OverviewDashboard() {
                         {fmt(blk.indicators.cgwbWellDepthMbgl, 'm')}
                       </td>
                       <td className="py-2.5 px-3 text-right tabular-nums">
-                        {hasMl && q1 ? (
-                          <div className="flex flex-col items-end">
-                            <span className="font-semibold text-text-main font-mono">
-                              {q1.expectedDepthMbgl} m
-                            </span>
-                            <span className="text-[10px] text-text-muted font-mono" title={isTrainedMl ? 'QuantileGB-v2.0 [P10–P90]' : 'Empirical Trend [P10–P90]'}>
-                              [{q1.uncertaintyInterval?.lowerBoundP10Mbgl ?? '—'}–{q1.uncertaintyInterval?.upperBoundP90Mbgl ?? '—'}]
-                              {!isTrainedMl && <span className="ml-0.5 text-[9px] text-text-muted">*</span>}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-text-muted italic" title="Model unavailable for this block geography">
-                            —
-                          </span>
-                        )}
+                        <span className="text-text-muted italic" title="Model unavailable for this block geography">
+                          —
+                        </span>
                       </td>
                       <td className="py-2.5 px-3 text-right tabular-nums">
                         {blk.indicators.rainfallAnomalyMm !== null ? `${blk.indicators.rainfallAnomalyMm > 0 ? '+' : ''}${blk.indicators.rainfallAnomalyMm} mm` : '—'}

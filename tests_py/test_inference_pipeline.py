@@ -51,7 +51,9 @@ class TestInferencePipeline(unittest.TestCase):
         self.assertIn("non-finite value", str(ctx.exception).lower())
 
     def test_predict_single_horizon_quantile_ordering(self):
-        res = predict_single_horizon(self.valid_features, state="Punjab")
+        res = predict_single_horizon(
+            self.valid_features, state="Punjab", district_name="HOSHIARPUR", block_name="MUKERIAN"
+        )
         self.assertIn("expected_depth_mbgl", res)
         self.assertIn("lower_bound_p10_mbgl", res)
         self.assertIn("upper_bound_p90_mbgl", res)
@@ -64,7 +66,7 @@ class TestInferencePipeline(unittest.TestCase):
         self.assertLessEqual(p10, p50)
         self.assertLessEqual(p50, p90)
         self.assertEqual(res["interval_width_m"], round(p90 - p10, 2))
-        self.assertEqual(res["interval_status"], "calibrated_ordered")
+        self.assertEqual(res["interval_status"], "ordered_uncalibrated")
 
     def test_insufficient_history_returns_unavailable(self):
         # < 2 records fails closed
@@ -75,8 +77,8 @@ class TestInferencePipeline(unittest.TestCase):
             observations=sparse_series,
             state="Punjab",
             block_id="blk_ludhiana_1",
-            block_name="Ludhiana-1",
-            district_name="Ludhiana"
+            block_name="MUKERIAN",
+            district_name="HOSHIARPUR"
         )
         self.assertEqual(result["modelStatus"], "unavailable")
         self.assertEqual(len(result["forecasts"]), 0)
@@ -96,8 +98,8 @@ class TestInferencePipeline(unittest.TestCase):
             observations=series,
             state="Punjab",
             block_id="blk_ludhiana_1",
-            block_name="Ludhiana-1",
-            district_name="Ludhiana"
+            block_name="MUKERIAN",
+            district_name="HOSHIARPUR"
         )
 
         self.assertEqual(result["modelStatus"], "research_prototype")
@@ -126,7 +128,10 @@ class TestInferencePipeline(unittest.TestCase):
 
         # Non-existent artifacts directory raises FileNotFoundError
         with self.assertRaises(FileNotFoundError):
-            predict_single_horizon(self.valid_features, state="Punjab", artifacts_dir="non_existent_dir_xyz")
+            predict_single_horizon(
+                self.valid_features, state="Punjab", district_name="HOSHIARPUR",
+                block_name="MUKERIAN", artifacts_dir="non_existent_dir_xyz"
+            )
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ export type UserRole =
 
 export type RiskSeverity = 'normal' | 'watch' | 'severe' | 'gap';
 
-export type DataStatusType = 'observed' | 'derived' | 'simulated' | 'predicted';
+export type DataStatusType = 'observed' | 'derived' | 'simulated' | 'predicted' | 'unavailable';
 
 export interface EnvironmentalIndicators {
   graceTwsaCm: number | null;             // GRACE Terrestrial Water Storage Anomaly (cm)
@@ -29,7 +29,7 @@ export interface RiskAssessmentDetails {
   descriptiveStressScore: number | null;  // 0 - 100 transparent aggregated score, or null if missing/uncomputed
   confidenceInterval: [number, number] | null; // [lower, upper] bounds or null if unavailable/uncalibrated
   dataStatus: DataStatusType;
-  validationStatus: 'validated' | 'demonstration_only' | 'pending_field_review';
+  validationStatus: 'validated' | 'demonstration_only' | 'pending_field_review' | 'unverified';
   primaryStressDriver: string;
   safeguardNotice: string;
   baselineComparison: string;

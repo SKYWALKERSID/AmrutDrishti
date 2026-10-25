@@ -1,11 +1,11 @@
 /**
  * JAL DRISHTI — Nationwide Monitored Administrative Geography Dataset
  * 
- * Aggregates all empirical monitoring units across the ten target states:
+ * Aggregates all empirical monitoring units across the nine active target states:
  * - South India: Karnataka, Telangana, Tamil Nadu
  * - Central India: Madhya Pradesh
  * - North India: Rajasthan, Haryana, Punjab
- * - Northeast India: Meghalaya, Assam, Tripura
+ * - Northeast India: Meghalaya, Tripura
  * 
  * Non-target / Historical Reference Basins (Uttar Pradesh, Sikkim, Arunachal Pradesh) are retained
  * under HISTORICAL_REFERENCE_BLOCKS for baseline comparisons and regression tests.
@@ -31,7 +31,6 @@ export function normalizeStateName(stateName: string): string {
   if (lower.includes('haryana')) return 'Haryana';
   if (lower.includes('punjab')) return 'Punjab';
   if (lower.includes('meghalaya')) return 'Meghalaya';
-  if (lower.includes('assam')) return 'Assam';
   if (lower.includes('tripura')) return 'Tripura';
   if (lower.includes('uttar pradesh')) return 'Uttar Pradesh';
   if (lower.includes('arunachal')) return 'Arunachal Pradesh';
@@ -55,15 +54,45 @@ export const ALL_NATIONWIDE_DISTRICTS: DistrictData[] = [
   }))
 }));
 
-/**
- * Active Ten Target States Districts only.
- */
-export const ACTIVE_TARGET_DISTRICTS: DistrictData[] = ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
+import canonical43Data from './canonical43Blocks.json' with { type: 'json' };
 
 /**
- * Active Ten Target States Blocks only.
+ * Authoritative Canonical 43 Active Monitored Blocks.
+ * Exactly 43 blocks across the approved nine active states; Assam and non-canonical blocks are excluded.
  */
-export const ACTIVE_TARGET_BLOCKS: BlockData[] = ACTIVE_TARGET_DISTRICTS.flatMap(d => d.blocks);
+export const CANONICAL_43_BLOCKS: BlockData[] = (canonical43Data as unknown) as BlockData[];
+
+/**
+ * Active Canonical 43 Blocks (Primary active scope for map, overview, risk assessment, interventions, and forecast).
+ */
+export const ACTIVE_TARGET_BLOCKS: BlockData[] = CANONICAL_43_BLOCKS;
+
+/**
+ * Active Canonical Districts derived dynamically from the 43 active blocks (28 districts across 9 states).
+ */
+const activeDistrictMap = new Map<string, DistrictData>();
+for (const b of CANONICAL_43_BLOCKS) {
+  const key = b.districtId;
+  if (!activeDistrictMap.has(key)) {
+    activeDistrictMap.set(key, {
+      id: key,
+      name: b.districtName,
+      state: b.state,
+      blocks: [],
+      centerCoordinates: b.coordinates ?? [23.0, 78.0],
+      blocksCount: 0,
+      overallSeverity: 'watch',
+      avgGraceTwsaCm: 0,
+      avgRainfallAnomalyMm: 0,
+    });
+  }
+  activeDistrictMap.get(key)!.blocks.push(b);
+}
+
+export const ACTIVE_TARGET_DISTRICTS: DistrictData[] = Array.from(activeDistrictMap.values()).map(d => ({
+  ...d,
+  blocksCount: d.blocks.length,
+}));
 
 /**
  * Historical Reference / Out-of-Scope Districts (UP, Sikkim, Arunachal Pradesh).
@@ -77,8 +106,18 @@ export const HISTORICAL_REFERENCE_BLOCKS: BlockData[] = HISTORICAL_REFERENCE_DIS
 
 /**
  * Canonical unified pool of all monitored blocks (Target + Historical References).
+ * Merges CANONICAL_43_BLOCKS with historical reference blocks so all canonical blocks are always present.
  */
-export const ALL_NATIONWIDE_BLOCKS: BlockData[] = ALL_NATIONWIDE_DISTRICTS.flatMap(d => d.blocks);
+const nationwideBlockMap = new Map<string, BlockData>();
+for (const b of ALL_NATIONWIDE_DISTRICTS.flatMap(d => d.blocks)) {
+  nationwideBlockMap.set(b.id, b);
+}
+for (const b of CANONICAL_43_BLOCKS) {
+  if (!nationwideBlockMap.has(b.id)) {
+    nationwideBlockMap.set(b.id, b);
+  }
+}
+export const ALL_NATIONWIDE_BLOCKS: BlockData[] = Array.from(nationwideBlockMap.values());
 
 import { calculateDescriptiveGss } from '../services/scientificEngine.ts';
 
@@ -90,7 +129,7 @@ import { calculateDescriptiveGss } from '../services/scientificEngine.ts';
  */
 export function mergeWithLiveBlocks(liveBlocks: BlockData[]): BlockData[] {
   if (!liveBlocks || liveBlocks.length === 0) {
-    return ALL_NATIONWIDE_BLOCKS;
+    return ACTIVE_TARGET_BLOCKS;
   }
 
   const liveMap = new Map<string, BlockData>();
@@ -98,7 +137,7 @@ export function mergeWithLiveBlocks(liveBlocks: BlockData[]): BlockData[] {
     liveMap.set(b.id, b);
   }
 
-  return ALL_NATIONWIDE_BLOCKS.map(block => {
+  return ACTIVE_TARGET_BLOCKS.map(block => {
     const live = liveMap.get(block.id);
     if (live) {
       // Use verified live measurements when they are valid and distinct, otherwise retain block baseline indicators

@@ -5,10 +5,10 @@ import { useSearchParams } from 'next/navigation';
 import { RiskSeverity, BlockData } from '@/lib/types';
 import { useRole } from '@/lib/context/RoleContext';
 import { canMutateDemoWorkflows, demoRestrictionNotice } from '@/lib/demo/demoPolicy';
-import { calculateDescriptiveGss } from '@/lib/services/scientificEngine';
+import { calculateDescriptiveGss, evaluateGroundwaterIntelligence } from '@/lib/services/scientificEngine';
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ACTIVE_TARGET_BLOCKS, ACTIVE_TARGET_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import type { BlockForecastResponse, ForecastPoint } from '@/app/api/forecast/route';
 import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
@@ -20,7 +20,7 @@ function RiskAssessmentContent() {
   const { activeRole } = useRole();
   const [selectedState, setSelectedState] = useState<string>('all');
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
-  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_NATIONWIDE_BLOCKS);
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ACTIVE_TARGET_BLOCKS);
   const [selectedBlockId, setSelectedBlockId] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [forecastData, setForecastData] = useState<BlockForecastResponse | null>(null);
@@ -29,6 +29,7 @@ function RiskAssessmentContent() {
   const [overrideSeverity, setOverrideSeverity] = useState<RiskSeverity>('severe');
   const [overrideApplied, setOverrideApplied] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
+  const [isDemoMode, setIsDemoMode] = useState<boolean>(true);
 
   useEffect(() => {
     let active = true;
@@ -70,7 +71,10 @@ function RiskAssessmentContent() {
     }
     let active = true;
     setIsForecastLoading(true);
-    fetch(`/api/forecast?block=${encodeURIComponent(selectedBlockId)}`)
+    const endpoint = isDemoMode
+      ? `/api/forecast?block=${encodeURIComponent(selectedBlockId)}&mode=demo`
+      : `/api/forecast?block=${encodeURIComponent(selectedBlockId)}`;
+    fetch(endpoint)
       .then(res => res.json())
       .then(data => {
         if (active) {
@@ -90,12 +94,12 @@ function RiskAssessmentContent() {
     return () => {
       active = false;
     };
-  }, [selectedBlockId]);
+  }, [selectedBlockId, isDemoMode]);
 
   // Derived filtered districts
   const availableDistricts = useMemo(() => {
-    if (selectedState === 'all') return ALL_NATIONWIDE_DISTRICTS.filter(d => isTargetState(d.state));
-    return ALL_NATIONWIDE_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    if (selectedState === 'all') return ACTIVE_TARGET_DISTRICTS;
+    return ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
   }, [selectedState]);
 
   // Derived filtered blocks
@@ -248,7 +252,7 @@ function RiskAssessmentContent() {
                       onChange={(e) => handleStateChange(e.target.value)}
                       className="bg-subtle border border-border px-2 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                     >
-                      <option value="all">All 10 Target States</option>
+                      <option value="all">All 9 Active Target States</option>
                       {TARGET_REGIONS.map((region) => {
                         const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
                         return (
@@ -526,7 +530,7 @@ function RiskAssessmentContent() {
               <div>
                 <h2 className="text-base font-bold text-text-main flex items-center gap-2">
                   <ActivityChartIcon className="w-4 h-4 text-primary" />
-                  Machine Learning Physical Depth Forecast (QuantileGB-v2.0)
+                  Machine Learning Physical Depth Forecast (GlobalBlockAwareQuantileGB-v1)
                 </h2>
                 <p className="text-xs text-text-muted mt-1 leading-relaxed">
                   Station-autonomous Quantile Gradient Boosting predicting physical water table depth below ground level (m bgl).
@@ -537,6 +541,60 @@ function RiskAssessmentContent() {
                 Target: Depth (m bgl)
               </span>
             </div>
+
+            {/* Prediction Mode Selector */}
+            <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 bg-subtle border border-border text-xs">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-text-main">Prediction Mode:</span>
+                <div className="inline-flex border border-border bg-surface">
+                  <button
+                    type="button"
+                    onClick={() => setIsDemoMode(true)}
+                    className={`px-3 py-1 font-medium transition-colors ${
+                      isDemoMode ? 'bg-primary text-white' : 'text-text-muted hover:text-text-main hover:bg-subtle'
+                    }`}
+                  >
+                    Historical Demo Mode
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsDemoMode(false)}
+                    className={`px-3 py-1 font-medium transition-colors border-l border-border ${
+                      !isDemoMode ? 'bg-primary text-white' : 'text-text-muted hover:text-text-main hover:bg-subtle'
+                    }`}
+                  >
+                    Operational Forecast Mode
+                  </button>
+                </div>
+              </div>
+              <span className="text-[11px] text-text-muted">
+                {isDemoMode
+                  ? 'Permits experimental inference from verified historical CGWB series'
+                  : 'Enforces strict 400-day observation freshness gate'}
+              </span>
+            </div>
+
+            {/* Prominent Demo & Telemetry Compliance Banner */}
+            {forecastData?.isDemonstrationData && (
+              <div className="border-l-4 border-amber-600 bg-amber-50/80 p-3 text-xs text-amber-950 space-y-1">
+                <div className="font-bold tracking-wide uppercase flex items-center gap-1.5">
+                  <InfoIcon className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                  <span>
+                    {forecastData.dataAvailabilityMode === 'verified_live_telemetry'
+                      ? 'EXPERIMENTAL PREDICTION — NOT VERIFIED OR OPERATIONAL'
+                      : forecastData.dataAvailabilityMode === 'adaptive_historical_and_recent'
+                      ? 'MIXED-INPUT EXPERIMENT — NOT VERIFIED OR OPERATIONAL'
+                      : 'HISTORICAL DEMO — EXPERIMENTAL PREDICTION, NOT A CURRENT OPERATIONAL FORECAST'}
+                  </span>
+                </div>
+                <p className="leading-relaxed text-[11px]">
+                  {forecastData.dataAvailabilityMode === 'verified_live_telemetry' || forecastData.dataAvailabilityMode === 'adaptive_historical_and_recent'
+                    ? `Generated from an experimental telemetry input series (${forecastData.observationDatesRange?.startDate || forecastData.observationDatesRange?.earliest || 'earliest'} to ${forecastData.observationDatesRange?.endDate || forecastData.observationDatesRange?.latest || 'latest'}); this is not verified groundwater depth. Model `
+                    : `Generated from authentic historical CGWB series (${forecastData.observationDatesRange?.startDate || forecastData.observationDatesRange?.earliest || 'earliest'} to ${forecastData.observationDatesRange?.endDate || forecastData.observationDatesRange?.latest || 'latest'}) using single global model `}
+                  <span className="font-mono">{forecastData.modelIdentifier}</span>. Operational eligibility is strictly false. P10–P90 intervals are ordered but uncalibrated against localized pumping stress.
+                </p>
+              </div>
+            )}
 
             {/* Model Governance Metadata Strip */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-subtle p-3 border border-border">
@@ -582,11 +640,14 @@ function RiskAssessmentContent() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {forecastData.forecasts.map((f: ForecastPoint) => (
-                        <tr key={f.horizonQuarter} className="hover:bg-subtle/40 transition-colors">
+                      {forecastData.forecasts.map((f: ForecastPoint) => {
+                        const horizonDays = f.forecastHorizonDays ?? (f.forecastHorizonMonths ? f.forecastHorizonMonths * 30 : f.horizonQuarter * 90);
+                        const isPrimary = horizonDays === 90 || horizonDays === 180;
+                        return (
+                        <tr key={f.horizonQuarter} className={`hover:bg-subtle/40 transition-colors ${isPrimary ? 'bg-primary/5 font-medium' : ''}`}>
                           <td className="py-3 px-3">
                             <span className="font-bold text-text-main block">
-                              Horizon Q{f.horizonQuarter} ({f.forecastHorizonMonths || f.horizonQuarter * 3} Months)
+                              {horizonDays} Days {isPrimary ? '[Primary Target]' : ''} (Q{f.horizonQuarter} • {f.forecastHorizonMonths || f.horizonQuarter * 3}M)
                             </span>
                             <span className="text-[11px] text-text-muted">
                               {f.uncertaintyInterval.intervalStatus === 'ordered_uncalibrated' ? 'Ordered, uncalibrated' : 'Uncalibrated'}
@@ -614,7 +675,8 @@ function RiskAssessmentContent() {
                               : 'N/A'}
                           </td>
                         </tr>
-                      ))}
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -632,12 +694,12 @@ function RiskAssessmentContent() {
                   <span>ML Depth Forecast Unavailable for this Geography</span>
                 </div>
                 <p className="leading-relaxed">
-                  No verified machine learning model artifact exists in the offline model registry for {selectedBlock?.name || 'this block'} ({selectedBlock?.state || 'selected region'}).
-                  JAL DRISHTI&apos;s machine learning forecasting models are packaged for priority target states with calibrated telemetry baselines (Punjab, Haryana, Rajasthan, Assam, and Madhya Pradesh).
-                  Per Section 5 scientific rules, predictions are not extrapolated to uncalibrated regions or fabricated with synthetic defaults.
+                  {isDemoMode
+                    ? `No verified station mapping or observation series is registered for ${selectedBlock?.name || 'this block'} (${selectedBlock?.state || 'selected region'}). Predictions are not extrapolated to uncalibrated regions, and historical demo predictions require verified CGWB borehole coordinates to prevent spurious spatial inference.`
+                    : `No current observation within the 400-day freshness gate is available for ${selectedBlock?.name || 'this block'}. Predictions are not extrapolated to uncalibrated regions, and under operational safety rules, stale data fails closed. You can switch to "Historical Demo Mode" above to evaluate experimental predictions on historical records.`}
                 </p>
                 <p className="text-[11px] text-text-muted/80 italic">
-                  The descriptive Groundwater Stress Score (GSS Baseline) in Section 1 continues to provide multi-signal decision support from available observed indicators.
+                  {forecastData?.safeguardDisclaimer || 'The descriptive Groundwater Stress Score (GSS Baseline) in Section 1 continues to provide multi-signal decision support from available observed indicators.'}
                 </p>
               </div>
             )}
@@ -649,6 +711,66 @@ function RiskAssessmentContent() {
                 The Groundwater Stress Score (0–100) measures composite hydrological pressure by normalizing 4 cross-domain indicators. In contrast, the ML model predicts physical water table depth (m bgl) from historical well telemetry. The two methodologies serve complementary decision-support roles; machine learning depth forecasts do not replace or validate the composite stress score.
               </p>
             </div>
+
+            {/* Section 2.1: Actionable Groundwater Intelligence & Drought Risk Assessment */}
+            {selectedBlock && (() => {
+              const intel = evaluateGroundwaterIntelligence(selectedBlock.indicators);
+              return (
+                <div className="p-4 bg-subtle/70 border border-border space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-text-main text-xs uppercase tracking-wider">Groundwater Intelligence &amp; Drought Risk Assessment</span>
+                      <span className={`text-[11px] font-semibold px-2 py-0.5 rounded border ${
+                        intel.droughtRisk.category === 'Severe Drought Watch'
+                          ? 'bg-red-50 text-red-800 border-red-300'
+                          : intel.droughtRisk.category === 'Watch / Moderate Deficit'
+                          ? 'bg-amber-50 text-amber-800 border-amber-300'
+                          : 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                      }`}>
+                        {intel.droughtRisk.category}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-text-muted font-mono">
+                      Rule-Based Synthesis • Scientific Transparency
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div className="space-y-1 p-2.5 bg-surface border border-border">
+                      <span className="text-[10px] uppercase font-bold text-text-muted block">Meteorological Drought Category</span>
+                      <div className="font-bold text-text-main">{intel.droughtRisk.category}</div>
+                      <p className="text-[11px] text-text-muted leading-relaxed">{intel.droughtRisk.basis}</p>
+                      <p className="text-[10px] text-text-muted/80">{intel.droughtRisk.ruleExplanation}</p>
+                    </div>
+
+                    <div className="space-y-1 p-2.5 bg-surface border border-border">
+                      <span className="text-[10px] uppercase font-bold text-text-muted block">Water Availability &amp; Aquifer Storage</span>
+                      <div className="font-bold text-text-main capitalize">Trend: {intel.waterAvailability.direction}</div>
+                      <p className="text-[11px] text-text-muted leading-relaxed">
+                        {intel.waterAvailability.drawdownRateMperYr !== null ? `Piezometric drawdown: ${intel.waterAvailability.drawdownRateMperYr} m/yr.` : 'Piezometric trend unverified.'}
+                      </p>
+                      <p className="text-[10px] text-text-muted/80">{intel.waterAvailability.storageLimitationNotice}</p>
+                    </div>
+
+                    <div className="space-y-1 p-2.5 bg-surface border border-border">
+                      <span className="text-[10px] uppercase font-bold text-text-muted block">Recharge &amp; Anomaly Intelligence</span>
+                      <div className="font-bold text-text-main capitalize">Recharge: {intel.rechargeIntelligence.rechargePotential}</div>
+                      <p className="text-[11px] text-text-muted leading-relaxed">{intel.rechargeIntelligence.naturalReplenishmentSummary}</p>
+                      <p className="text-[10px] text-text-muted/80">{intel.rechargeIntelligence.satelliteTwsaStatus}</p>
+                    </div>
+                  </div>
+
+                  <div className="p-3 bg-surface border border-border rounded text-xs space-y-1">
+                    <span className="font-semibold text-text-main flex items-center gap-1.5 text-[11px]">
+                      <InfoIcon className="w-3.5 h-3.5 text-primary shrink-0" /> Actionable Interpretation &amp; Next Steps:
+                    </span>
+                    <p className="text-text-muted leading-relaxed text-[11px]">
+                      {intel.actionableSummary} Connects with Atal Bhujal Yojana community water security planning and PMKSY watershed recharge works.
+                    </p>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
 
           {/* Validation & Operational Status */}

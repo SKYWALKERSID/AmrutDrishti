@@ -82,32 +82,6 @@
         "crossing_rate": 0.0
       }
     },
-    "Assam": {
-      "state_code": "assam",
-      "qgb_artifact": "ml/artifacts/qgb_v2_assam.joblib",
-      "ridge_artifact": "ml/artifacts/ridge_v2_assam.joblib",
-      "features": [
-        "wl_origin",
-        "wl_prev",
-        "wl_year_before_target",
-        "drawdown_velocity_q1",
-        "season_code"
-      ],
-      "n_train": 555,
-      "n_test": 413,
-      "test_dates": [
-        "2023-01-31",
-        "2023-03-31"
-      ],
-      "metrics": {
-        "qgb_rmse": 2.222,
-        "qgb_mae": 1.145,
-        "qgb_nse": 0.475,
-        "coverage_80pct": 71.9,
-        "mean_width_m": 2.56,
-        "crossing_rate": 0.0
-      }
-    },
     "Madhya Pradesh": {
       "state_code": "madhya_pradesh",
       "qgb_artifact": "ml/artifacts/qgb_v2_madhya_pradesh.joblib",
@@ -136,6 +110,161 @@
         "gain_over_persistence_pct": 42.99,
         "unseen_rmse": 2.957,
         "unseen_gain_pct": 37.04
+      }
+    },
+    "Karnataka": {
+      "state_code": "karnataka",
+      "qgb_artifact": "ml/artifacts/qgb_v2_karnataka.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_karnataka.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 51517,
+      "n_test": 4039,
+      "test_dates": [
+        "2023-08-25",
+        "2024-08-25"
+      ],
+      "metrics": {
+        "qgb_rmse": 3.638,
+        "qgb_mae": 1.721,
+        "qgb_nse": 0.65,
+        "coverage_80pct": 82.7,
+        "mean_width_m": 5.13,
+        "crossing_rate": 0.0,
+        "persistence_rmse": 3.114,
+        "persistence_mae": 1.788,
+        "gain_over_persistence_pct": -16.83,
+        "ridge_rmse": 2.919,
+        "ridge_mae": 1.669
+      }
+    },
+    "Telangana": {
+      "state_code": "telangana",
+      "qgb_artifact": "ml/artifacts/qgb_v2_telangana.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_telangana.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 23015,
+      "n_test": 1111,
+      "test_dates": [
+        "2023-05-20",
+        "2023-08-20"
+      ],
+      "metrics": {
+        "qgb_rmse": 3.548,
+        "qgb_mae": 2.027,
+        "qgb_nse": 0.682,
+        "coverage_80pct": 85.1,
+        "mean_width_m": 6.86,
+        "crossing_rate": 0.0,
+        "persistence_rmse": 5.939,
+        "persistence_mae": 3.343,
+        "gain_over_persistence_pct": 40.26,
+        "ridge_rmse": 4.21,
+        "ridge_mae": 2.362
+      }
+    },
+    "Tamil Nadu": {
+      "state_code": "tamil_nadu",
+      "qgb_artifact": "ml/artifacts/qgb_v2_tamil_nadu.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_tamil_nadu.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 20874,
+      "n_test": 4847,
+      "test_dates": [
+        "2023-05-01",
+        "2025-01-30"
+      ],
+      "metrics": {
+        "qgb_rmse": 6.419,
+        "qgb_mae": 2.57,
+        "qgb_nse": 0.732,
+        "coverage_80pct": 79.1,
+        "mean_width_m": 7.36,
+        "crossing_rate": 0.0,
+        "persistence_rmse": 4.656,
+        "persistence_mae": 2.132,
+        "gain_over_persistence_pct": -37.87,
+        "ridge_rmse": 4.525,
+        "ridge_mae": 2.181
+      }
+    },
+    "Tripura": {
+      "state_code": "tripura",
+      "qgb_artifact": "ml/artifacts/qgb_v2_tripura.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_tripura.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 664,
+      "n_test": 156,
+      "test_dates": [
+        "2022-03-30",
+        "2023-03-31"
+      ],
+      "metrics": {
+        "qgb_rmse": 3.52,
+        "qgb_mae": 1.57,
+        "qgb_nse": 0.325,
+        "coverage_80pct": 67.3,
+        "mean_width_m": 3.05,
+        "crossing_rate": 0.0,
+        "persistence_rmse": 4.055,
+        "persistence_mae": 1.844,
+        "gain_over_persistence_pct": 13.19,
+        "ridge_rmse": 3.427,
+        "ridge_mae": 1.549
+      }
+    },
+    "Meghalaya": {
+      "state_code": "meghalaya",
+      "qgb_artifact": "ml/artifacts/qgb_v2_meghalaya.joblib",
+      "ridge_artifact": "ml/artifacts/ridge_v2_meghalaya.joblib",
+      "features": [
+        "wl_origin",
+        "wl_prev",
+        "wl_year_before_target",
+        "drawdown_velocity_q1",
+        "season_code"
+      ],
+      "n_train": 398,
+      "n_test": 120,
+      "test_dates": [
+        "2022-03-30",
+        "2023-03-31"
+      ],
+      "metrics": {
+        "qgb_rmse": 5.246,
+        "qgb_mae": 1.735,
+        "qgb_nse": 0.074,
+        "coverage_80pct": 49.2,
+        "mean_width_m": 1.79,
+        "crossing_rate": 0.0,
+        "persistence_rmse": 1.453,
+        "persistence_mae": 0.899,
+        "gain_over_persistence_pct": -261.05,
+        "ridge_rmse": 2.252,
+        "ridge_mae": 1.242
       }
     }
   },
@@ -167,5 +296,25 @@
         "crossing_rate": 0.0
       }
     }
+  },
+  "updated_at": "2026-10-23T01:45:00Z",
+  "global_model": {
+    "model_identifier": "GlobalBlockAwareQuantileGB-v1",
+    "artifact": "ml/artifacts/global_block_aware_qgb_v1.joblib",
+    "status": "promoted_research_prototype",
+    "features": [
+      "wl_origin",
+      "wl_prev",
+      "wl_year_before_target",
+      "drawdown_velocity_q1",
+      "season_code",
+      "state",
+      "district_name",
+      "block_name"
+    ],
+    "validation_report": "audit/global_groundwater_model_validation.json",
+    "operational_eligibility": false,
+    "interval_status": "ordered_uncalibrated",
+    "source_policy": "CGWB quarterly manual observations only; telemetry files excluded; values restricted to 0-150 m bgl. Station identifiers are grouping and held-out validation keys, not ordinal predictor values."
   }
 }

@@ -1,0 +1,84 @@
+{
+  "captured_at": "2026-10-24T20:09:47Z",
+  "lineage_validation": {
+    "command": ".venv/Scripts/python.exe scripts/validate_nwdp_lineage.py",
+    "status": "VERIFIED",
+    "files": 18,
+    "lineage_rows": 11167915,
+    "input_rows": 11167915,
+    "hashes_match": true,
+    "row_ids_match": true,
+    "validation_counts_match": true,
+    "validation_statuses": {
+      "candidate_not_verified": 542695,
+      "quarantined": 10625220
+    }
+  },
+  "build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "finished_at": "2026-10-24T20:09:30Z",
+    "output_excerpt": "Final npm run build completed with exit 0 outside sandbox after sandbox attempt failed EPERM creating .next/server/app/api; Next.js 15.5.27; Compiled successfully; linting and type validity passed; generated static pages 14/14; route /api/historical-observations emitted."
+  },
+  "api_smoke": {
+    "captured_http": true,
+    "captured_at": "2026-10-24T20:09:47Z",
+    "server_mode": "local production server from final successful .next build on port 3155",
+    "authentication": "requests made without an Authorization header; published-view response returned under current public read/RLS behavior",
+    "requests": [
+      {
+        "request_url": "/api/historical-observations?limit=1",
+        "status": 200,
+        "source": "historical_database",
+        "block_id": "3783",
+        "block_name": "BIJAWAR",
+        "observation_count": 1,
+        "total_count": 9595,
+        "observation_date": "2025-11-15",
+        "value": 8.65,
+        "unit": "metre below ground level",
+        "quality_flag": "passed",
+        "source_name": "National Water Data Portal (NWIC) DWLR Telemetry Network",
+        "source_provider": "Madhya Pradesh GW & Ministry of Jal Shakti NWIC",
+        "source_resource_url": "https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/6a47df3a-8c42-419c-b577-b9c6ded71112/download/gwl_manual_quarterly_cgwb_mp_2021_2025.csv",
+        "station_id": "DWLR_MP_Badamalera",
+        "error": null,
+        "response_body": {"source":"historical_database","observations":[{"station_id":"DWLR_MP_Badamalera","station_name":"Badamalera","district_id":"398","district_name":"CHHATARPUR","block_id":"3783","block_name":"BIJAWAR","observation_date":"2025-11-15","water_level_mbgl":8.65,"unit":"metre below ground level","quality_flag":"passed","source_name":"National Water Data Portal (NWIC) DWLR Telemetry Network","source_provider":"Madhya Pradesh GW & Ministry of Jal Shakti NWIC","source_resource_url":"https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/6a47df3a-8c42-419c-b577-b9c6ded71112/download/gwl_manual_quarterly_cgwb_mp_2021_2025.csv"}],"totalCount":9595,"limit":1,"offset":0,"fallbackStatus":"not_requested"},
+        "provenance_note": "Returned metadata conflicts: source_name says DWLR telemetry but source resource filename says manual quarterly CGWB. Source file is not retained locally; quality_flag=passed is not independent verification."
+      },
+      {
+        "request_url": "/api/historical-observations?block=blk_karnal_assandh&limit=5",
+        "status": 200,
+        "source": "historical_database",
+        "block_id": "blk_karnal_assandh",
+        "observation_count": 0,
+        "total_count": 0,
+        "fallback_status": "unverified",
+        "quality_flags": [],
+        "source_names": [],
+        "error": null,
+        "response_body": {"source":"historical_database","observations":[],"totalCount":0,"limit":5,"offset":0,"fallbackStatus":"unverified"}
+      },
+      {
+        "request_url": "/api/historical-observations?block=blk_karnal_assandh&from=bad-date",
+        "status": 400,
+        "source": null,
+        "block_id": "blk_karnal_assandh",
+        "observation_count": null,
+        "error": "from and to must use YYYY-MM-DD",
+        "response_body": {"error":"from and to must use YYYY-MM-DD"}
+      }
+    ],
+    "limitations": [
+      "The Supabase-error and local-fallback branches are covered by automated source-selection tests; those external branches were not forced against the live Supabase service.",
+      "The single database row returned is not individually proven by the NWDP local lineage ledger."
+    ]
+  },
+  "tests": {
+    "typescript": {"command": "npx tsc --noEmit", "exit_code": 0},
+    "javascript_full": {"command": "npm test", "exit_code": 0, "tests": 255, "passed": 250, "failed": 0, "skipped": 5},
+    "javascript_focused": {"command": "node --experimental-strip-types --test tests/nwdpAuthoritativeRebuild.test.ts tests/historicalObservationSource.test.ts tests/historicalObservationsApi.test.ts", "exit_code": 0, "tests": 14, "passed": 14, "failed": 0},
+    "python_focused": {"command": ".venv/Scripts/python.exe -m pytest tests_py/test_nwdp_audit_report.py tests_py/test_nwdp_telemetry.py tests_py/test_telemetry_calibration_and_readiness.py -q", "exit_code": 0, "passed": 22, "failed": 0},
+    "python_full": {"command": ".venv/Scripts/python.exe -m pytest tests_py --tb=no -q", "exit_code": 1, "passed": 97, "failed": 26}
+  }
+}

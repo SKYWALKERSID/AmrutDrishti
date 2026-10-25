@@ -1,0 +1,27 @@
+# Dockerfile for Jal Drishti Private Python Model Serving
+# requirements.txt pins numpy==2.5.1, which requires Python 3.12 or newer.
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy ML code and trained artifacts
+COPY ml/ ./ml/
+COPY data/ ./data/
+
+ENV PYTHONUNBUFFERED=1
+ENV JALDRISHTI_MODEL_SERVICE_PORT=8081
+
+# Expose internal port only
+EXPOSE 8081
+
+# Run private HTTP service
+CMD ["python", "ml/serving.py"]

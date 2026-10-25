@@ -1,0 +1,349 @@
+SlNo,Station,Agency,State LGD Code,State,District LGD Code,District,Tehsil,Block,Village,River,Basin,Tributary,Subtributary,SubSubtributary,Local River,Latitude,Longitude,RL_MSL,Data Acquisition Time,Groundwater Level Quarterly Manual (meter)
+1,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,10-01-2021 00:00,1.37
+2,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,30-11-2021 06:00,0.4
+3,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,30-03-2022 06:00,3.25
+4,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,30-08-2022 06:00,0.12
+5,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,30-11-2022 06:00,1.26
+6,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,31-01-2023 09:00,3.01
+7,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,31-03-2023 09:00,2.6
+8,Ampati,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Ampati,-,-,-,-,-,-,25.50000000,89.95833333,,31-08-2023 09:00,5.56
+9,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,10-01-2021 00:00,3.86
+10,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,30-11-2021 06:00,3.7
+11,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,30-01-2022 07:00,5.02
+12,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,30-03-2022 06:00,5.71
+13,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,30-08-2022 06:00,3.41
+14,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,30-11-2022 06:00,3.89
+15,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,31-01-2023 09:00,4.68
+16,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,31-03-2023 09:00,4.5
+17,Asanang,CGWB,17,Meghalaya,278,west Garo Hills,RONGRAM,RONGRAM,Asanang,-,-,-,-,-,-,25.59944444,90.27555556,,31-08-2023 09:00,3.17
+18,Baiza Rongreng,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.54250000,90.58500000,,31-01-2023 09:00,5.1
+19,Baiza Rongreng,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.54250000,90.58500000,,31-03-2023 09:00,4.35
+20,Baiza Rongreng,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.54250000,90.58500000,,31-08-2023 09:00,0.5
+21,Baiza Rongreng,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.54250000,90.58500000,,31-01-2024 09:00,2.83
+22,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,10-01-2021 00:00,3
+23,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,30-11-2021 06:00,2.8
+24,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,30-03-2022 06:00,4.72
+25,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,30-08-2022 06:00,2.32
+26,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,30-11-2022 06:00,2.76
+27,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,31-01-2023 09:00,0
+28,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,31-03-2023 09:00,0
+29,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,31-08-2023 09:00,2.32
+30,Bajengdoba,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Bajengdoba,-,-,-,-,-,-,25.88611111,90.51250000,,31-01-2024 09:00,3.48
+31,Bajengdoba_1,CGWB,17,Meghalaya,656,North Garo Hills,Bajengdoba,-,-,-,-,-,-,-,-,25.88838889,90.49321944,69.00,31-01-2023 09:00,1.63
+32,Bajengdoba_1,CGWB,17,Meghalaya,656,North Garo Hills,Bajengdoba,-,-,-,-,-,-,-,-,25.88838889,90.49321944,69.00,31-03-2023 09:00,5.62
+33,Baljek,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.66389000,90.27556000,,31-01-2023 09:00,3.15
+34,Baljek,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.66389000,90.27556000,,31-03-2023 09:00,2.6
+35,Belguri,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.96389000,90.34278000,,31-01-2023 09:00,8.27
+36,Belguri,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.96389000,90.34278000,,31-03-2023 09:00,7.9
+37,Belguri,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.96389000,90.34278000,,31-08-2023 09:00,5.7
+38,Borkona,CGWB,17,Meghalaya,278,west Garo Hills,BETASING,BETASING,Borkona,-,-,-,-,-,-,25.50000000,89.95833333,,31-01-2023 09:00,0
+39,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,10-01-2021 00:00,2.52
+40,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,31-08-2021 06:00,1.27
+41,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,30-11-2021 06:00,2.17
+42,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,30-01-2022 07:00,2.37
+43,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,30-03-2022 06:00,2.87
+44,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,30-08-2022 06:00,1.52
+45,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,30-11-2022 06:00,1.98
+46,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,31-03-2023 09:00,3.15
+47,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,31-08-2023 09:00,1.32
+48,Byrnihat,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Byrnihat,-,-,-,-,-,-,26.04888889,91.86888889,,31-01-2024 09:00,2.45
+49,Byrnihat_2,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.71083000,92.02278000,,31-01-2023 09:00,2.55
+50,Chasingre (NEHU),CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.57530000,90.23620000,,31-08-2023 09:00,47.2
+51,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,30-11-2021 06:00,0.2
+52,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,30-01-2022 07:00,1.4
+53,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,30-03-2022 06:00,1.1
+54,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,30-08-2022 06:00,0.1
+55,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,30-11-2022 06:00,0.15
+56,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,31-01-2023 09:00,0.5
+57,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,31-03-2023 09:00,0.1
+58,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,31-08-2023 09:00,0.01
+59,Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.28333333,91.71666667,,31-01-2024 09:00,0.08
+60,Cherrapunji_1,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.45000000,91.81667000,,31-01-2023 09:00,0
+61,Cherrapunji_1,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.45000000,91.81667000,,31-03-2023 09:00,0
+62,Dainadubi,CGWB,17,Meghalaya,656,North Garo Hills,-,-,-,-,-,-,-,-,-,25.89889000,90.77750000,,31-01-2023 09:00,4.66
+63,Dainadubi,CGWB,17,Meghalaya,656,North Garo Hills,-,-,-,-,-,-,-,-,-,25.89889000,90.77750000,,31-03-2023 09:00,3.4
+64,Dainadubi,CGWB,17,Meghalaya,656,North Garo Hills,-,-,-,-,-,-,-,-,-,25.89889000,90.77750000,,31-08-2023 09:00,2.14
+65,Dalu_3,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.22778000,90.21250000,,31-01-2023 09:00,5.61
+66,Dalu_3,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.22778000,90.21250000,,31-03-2023 09:00,4.8
+67,Dalu_3,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.22778000,90.21250000,,31-08-2023 09:00,2.52
+68,Damjongre,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.44944000,90.03667000,,31-01-2023 09:00,4.63
+69,Damjongre,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.44944000,90.03667000,,31-03-2023 09:00,4
+70,Damjongre,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.44944000,90.03667000,,31-08-2023 09:00,2.33
+71,Dangar_2,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.18889000,91.38139000,,31-01-2023 09:00,1.85
+72,Dangar_2,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.18889000,91.38139000,,31-03-2023 09:00,2.2
+73,Dangar_2,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.18889000,91.38139000,,31-08-2023 09:00,1.1
+74,Dangar_2,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.18889000,91.38139000,,31-01-2024 09:00,1.95
+75,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,10-01-2021 00:00,2.9
+76,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,31-08-2021 06:00,2.45
+77,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,30-11-2021 06:00,3.83
+78,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,30-01-2022 07:00,4.06
+79,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,30-08-2022 06:00,2.56
+80,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,30-11-2022 06:00,2.42
+81,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,31-01-2023 09:00,2.5
+82,Darugiri,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Darugiri,-,-,-,-,-,-,25.61916667,90.76750000,,31-03-2023 09:00,4.43
+83,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,10-01-2021 00:00,1.12
+84,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,30-11-2021 06:00,0.96
+85,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,30-03-2022 06:00,1.1
+86,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,30-08-2022 06:00,0.7
+87,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,30-11-2022 06:00,0.79
+88,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,31-01-2023 09:00,0.7
+89,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,31-03-2023 09:00,1.12
+90,Dauki,CGWB,17,Meghalaya,657,East Jaintia Hills,AMLAREM,AMLAREM,Dauki,-,-,-,-,-,-,25.20000000,92.03333333,,31-08-2023 09:00,0.72
+91,Dobetkolgiri,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.50917000,90.61167000,,31-01-2023 09:00,3.76
+92,Dobetkolgiri,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.50917000,90.61167000,,31-03-2023 09:00,2.15
+93,Dobu_1,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.56611000,90.71306000,,31-01-2023 09:00,2.9
+94,Dobu_1,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.56611000,90.71306000,,31-03-2023 09:00,3.2
+95,Dobu_1,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.56611000,90.71306000,,31-08-2023 09:00,2.3
+96,Dobu_1,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.56611000,90.71306000,,31-01-2024 09:00,2.66
+97,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,10-01-2021 00:00,3.9
+98,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,30-11-2021 06:00,2.35
+99,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,30-03-2022 06:00,4.97
+100,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,30-08-2022 06:00,3.46
+101,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,30-11-2022 06:00,3.34
+102,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,31-01-2023 09:00,4.56
+103,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,31-03-2023 09:00,3.9
+104,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,31-08-2023 09:00,6.5
+105,Garobandha,CGWB,17,Meghalaya,278,west Garo Hills,SELSELLA,SELSELLA,Garobandha,-,-,-,-,-,-,25.58333333,90.03333333,,31-01-2024 09:00,3.47
+106,Ichamati,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.16500000,91.68666667,,31-08-2023 09:00,0.29
+107,Ichamati,CGWB,17,Meghalaya,274,East Khasi Hills,SHELLA BHOLAGANJ,SHELLA BHOLAGANJ,Cherrapunji,-,-,-,-,-,-,25.16500000,91.68666667,,31-01-2024 09:00,0.61
+108,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,30-11-2021 06:00,0.25
+109,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,30-03-2022 06:00,0.58
+110,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,30-08-2022 06:00,0.27
+111,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,30-11-2022 06:00,0.29
+112,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,31-01-2023 09:00,0.4
+113,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,31-03-2023 09:00,0.5
+114,Jowai,CGWB,17,Meghalaya,657,East Jaintia Hills,THADLASKEIN,THADLASKEIN,Jowai,-,-,-,-,-,-,25.44166667,92.17500000,,31-08-2023 09:00,0.57
+115,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,10-01-2021 00:00,3.43
+116,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,30-11-2021 06:00,1.8
+117,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,30-03-2022 06:00,3.63
+118,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,30-08-2022 06:00,0.97
+119,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,30-11-2022 06:00,2.56
+120,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,31-01-2023 09:00,3.29
+121,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,31-03-2023 09:00,2.5
+122,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,31-08-2023 09:00,1.74
+123,Kharkutta,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Kharkutta,-,-,-,-,-,-,25.90555556,90.89444444,,31-01-2024 09:00,2.41
+124,Lachuamiere,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57056000,91.89028000,,31-01-2023 09:00,1.1
+125,Lachuamiere,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57056000,91.89028000,,31-03-2023 09:00,0.36
+126,Lachuamiere,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57056000,91.89028000,,31-08-2023 09:00,0.34
+127,Lachuamiere,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57056000,91.89028000,,31-01-2024 09:00,0.64
+128,Lapalang OW,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.56917000,91.91889000,,31-01-2023 09:00,0
+129,Lapalang OW,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.56917000,91.91889000,,31-03-2023 09:00,0
+130,Lumkeni,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.77694000,91.85639000,,31-01-2023 09:00,0
+131,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,10-01-2021 00:00,2.37
+132,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,30-11-2021 06:00,1.7
+133,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,30-03-2022 06:00,3.12
+134,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,30-08-2022 06:00,1.82
+135,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,30-11-2022 06:00,1.96
+136,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,31-01-2023 09:00,0
+137,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,31-08-2023 09:00,5.8
+138,Mahendraganj,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30000000,89.85972222,,31-01-2024 09:00,2.43
+139,Mahendraganj1,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Mahendraganj,-,-,-,-,-,-,25.30555556,89.85416667,,31-03-2023 09:00,3.2
+140,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,10-01-2021 00:00,0.9
+141,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,30-11-2021 06:00,0.9
+142,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,30-03-2022 06:00,0.9
+143,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,30-08-2022 06:00,0.5
+144,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,30-11-2022 06:00,0.52
+145,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,31-01-2023 09:00,0.95
+146,Mairang,CGWB,17,Meghalaya,279,West Khasi Hills,MAIRANG,MAIRANG,Mairang,-,-,-,-,-,-,25.57777778,91.64166667,,31-03-2023 09:00,1.1
+147,Mawpat,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.59278000,91.91917000,,31-01-2023 09:00,0
+148,Mawpat,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.59278000,91.91917000,,31-03-2023 09:00,0
+149,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,10-01-2021 00:00,2.2
+150,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,30-11-2021 06:00,2.4
+151,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,30-01-2022 07:00,2.35
+152,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,30-03-2022 06:00,2.67
+153,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,30-08-2022 06:00,1.42
+154,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,30-11-2022 06:00,1.53
+155,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,31-01-2023 09:00,0
+156,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,31-03-2023 09:00,0
+157,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,31-08-2023 09:00,1.4
+158,Mendal,CGWB,17,Meghalaya,273,East Garo Hills,SONGSAK,SONGSAK,Mendal,-,-,-,-,-,-,25.82472222,90.46583333,,31-01-2024 09:00,1.82
+159,Mendal_1,CGWB,17,Meghalaya,656,North Garo Hills,Bajengdoba,-,-,-,-,-,-,-,-,25.82855278,90.45517500,96.00,31-01-2023 09:00,3.29
+160,Mendal_1,CGWB,17,Meghalaya,656,North Garo Hills,Bajengdoba,-,-,-,-,-,-,-,-,25.82855278,90.45517500,96.00,31-03-2023 09:00,10.74
+161,Mendal_1,CGWB,17,Meghalaya,656,North Garo Hills,Bajengdoba,-,-,-,-,-,-,-,-,25.82855278,90.45517500,96.00,31-08-2023 09:00,1.4
+162,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,10-01-2021 00:00,2.66
+163,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,30-11-2021 06:00,3.1
+164,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,30-01-2022 07:00,4.11
+165,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,30-03-2022 06:00,4.98
+166,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,30-08-2022 06:00,2.53
+167,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,30-11-2022 06:00,2.61
+168,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,31-01-2023 09:00,0
+169,Mendipathar,CGWB,17,Meghalaya,273,East Garo Hills,RESUBELPARA,RESUBELPARA,Mendipathar,-,-,-,-,-,-,25.92083333,90.50833333,,31-03-2023 09:00,6.48
+170,Mendipathar_1,CGWB,17,Meghalaya,656,North Garo Hills,-,-,-,-,-,-,-,-,-,25.90000000,90.64000000,,31-08-2023 09:00,7.65
+171,Narringirri,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.61028000,90.73972000,,31-01-2023 09:00,2.65
+172,Narringirri,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.61028000,90.73972000,,31-03-2023 09:00,1.95
+173,Narringirri,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.61028000,90.73972000,,31-08-2023 09:00,2.5
+174,Narringirri,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.61028000,90.73972000,,31-01-2024 09:00,3.71
+175,Nayabunglow,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74667000,91.88667000,,31-01-2023 09:00,5.66
+176,Nayabunglow,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74667000,91.88667000,,31-03-2023 09:00,5.84
+177,Nayabunglow,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74667000,91.88667000,,31-08-2023 09:00,2.76
+178,Nayabunglow,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74667000,91.88667000,,31-01-2024 09:00,4.26
+179,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,10-01-2021 00:00,0.8
+180,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,30-11-2021 06:00,1.5
+181,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,30-01-2022 07:00,2.93
+182,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,30-03-2022 06:00,3.51
+183,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,30-08-2022 06:00,1.44
+184,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,30-11-2022 06:00,1.42
+185,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,31-01-2023 09:00,3.12
+186,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,31-03-2023 09:00,2.2
+187,Nidanpur,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Nidanpur,-,-,-,-,-,-,25.91250000,90.12777778,,31-08-2023 09:00,0.88
+188,NIT Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.25030000,91.74420000,1486.00,31-01-2023 09:00,4.7
+189,NIT Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.25030000,91.74420000,1486.00,31-03-2023 09:00,4.8
+190,NIT Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.25030000,91.74420000,1486.00,31-08-2023 09:00,5.53
+191,NIT Cherrapunji,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.25030000,91.74420000,1486.00,31-01-2024 09:00,5.42
+192,Nongdaju,CGWB,17,Meghalaya,279,West Khasi Hills,-,-,-,-,-,-,-,-,-,25.55056000,90.91861000,,31-01-2023 09:00,0
+193,Nongdaju,CGWB,17,Meghalaya,279,West Khasi Hills,-,-,-,-,-,-,-,-,-,25.55056000,90.91861000,,31-03-2023 09:00,3.65
+194,Nongladew,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.90278000,91.70111000,,31-01-2023 09:00,0
+195,Nongladew,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.90278000,91.70111000,,31-03-2023 09:00,0
+196,Nongladew,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.90278000,91.70111000,,31-08-2023 09:00,1.9
+197,Nongladew_1,CGWB,17,Meghalaya,276,RI BHOI,Umling,-,-,-,-,-,-,-,-,25.90000000,91.70000000,368.00,31-01-2023 09:00,2.33
+198,Nongladew_1,CGWB,17,Meghalaya,276,RI BHOI,Umling,-,-,-,-,-,-,-,-,25.90000000,91.70000000,368.00,31-03-2023 09:00,2.25
+199,Nongladew_2,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.90288333,91.70148333,,31-01-2024 09:00,2.18
+200,Nongmynsong,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57972000,91.90694000,,31-01-2023 09:00,2.3
+201,Nongmynsong,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57972000,91.90694000,,31-03-2023 09:00,2.93
+202,Nongmynsong,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57972000,91.90694000,,31-08-2023 09:00,1.96
+203,Nongmynsong,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57972000,91.90694000,,31-01-2024 09:00,2.78
+204,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,10-01-2021 00:00,4.8
+205,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,30-11-2021 06:00,3.15
+206,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,30-01-2022 07:00,3.45
+207,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,30-03-2022 06:00,3.01
+208,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,30-08-2022 06:00,2.65
+209,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,30-11-2022 06:00,2.85
+210,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,31-01-2023 09:00,4.3
+211,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,31-03-2023 09:00,3.06
+212,Nongpoh,CGWB,17,Meghalaya,276,RI BHOI,NONGPOH,NONGPOH,Nongpoh,-,-,-,-,-,-,25.90000000,91.88333333,,31-08-2023 09:00,1.61
+213,Nongpyiur,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.54194000,91.82361000,,31-01-2023 09:00,0
+214,Nongpyiur,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.54194000,91.82361000,,31-03-2023 09:00,0
+215,Pahanmawlier,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.99472000,91.86167000,,31-01-2023 09:00,0.2
+216,Pahanmawlier,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.99472000,91.86167000,,31-03-2023 09:00,0.3
+217,Pahanmawlier,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.99472000,91.86167000,,31-08-2023 09:00,1
+218,Pahanmawlier,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.99472000,91.86167000,,31-01-2024 09:00,0.7
+219,Patharkhamma Barigaon,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.87139000,91.59472000,,31-01-2023 09:00,4.3
+220,Patharkhamma Barigaon,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.87139000,91.59472000,,31-03-2023 09:00,4.8
+221,Patharkhamma Barigaon,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.87139000,91.59472000,,31-08-2023 09:00,3.3
+222,Patharkhamma Barigaon,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.87139000,91.59472000,,31-01-2024 09:00,4.48
+223,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,10-01-2021 00:00,2.42
+224,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,30-11-2021 06:00,2.4
+225,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,30-01-2022 07:00,4.58
+226,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,30-03-2022 06:00,5.3
+227,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,30-08-2022 06:00,2.2
+228,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,30-11-2022 06:00,2.6
+229,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,31-01-2023 09:00,3.59
+230,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,31-03-2023 09:00,3.4
+231,Phulbari,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Phulbari,-,-,-,-,-,-,25.88333333,90.05000000,,31-08-2023 09:00,1.64
+232,Phutamamri,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.94333000,90.22000000,,31-01-2023 09:00,3.2
+233,Phutamamri,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.94333000,90.22000000,,31-03-2023 09:00,3.5
+234,Phutamamri,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.94333000,90.22000000,,31-08-2023 09:00,2.5
+235,Powergrid Khliehriat,CGWB,17,Meghalaya,657,East Jaintia Hills,-,-,-,-,-,-,-,-,-,25.34000000,92.37000000,864.00,31-01-2023 09:00,41.5
+236,Powergrid Khliehriat,CGWB,17,Meghalaya,657,East Jaintia Hills,-,-,-,-,-,-,-,-,-,25.34000000,92.37000000,864.00,31-03-2023 09:00,42.1
+237,Purduwa_1,CGWB,17,Meghalaya,276,RI BHOI,Umling,-,-,-,-,-,-,-,-,25.91000000,91.94000000,710.00,31-01-2023 09:00,0
+238,Purduwa OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.91417000,91.94139000,,31-01-2023 09:00,3.62
+239,Purduwa OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.91417000,91.94139000,,31-03-2023 09:00,3.78
+240,Purduwa OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.91417000,91.94139000,,31-08-2023 09:00,2.71
+241,Purduwa OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.91417000,91.94139000,,31-01-2024 09:00,3.84
+242,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,10-01-2021 00:00,3.45
+243,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,30-11-2021 06:00,2.3
+244,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,30-01-2022 07:00,4.02
+245,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,30-03-2022 06:00,4.32
+246,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,30-08-2022 06:00,3.18
+247,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,30-11-2022 06:00,1.98
+248,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,31-01-2023 09:00,4.1
+249,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,31-03-2023 09:00,4.3
+250,Purkhasia,CGWB,17,Meghalaya,278,west Garo Hills,DALU,DALU,Purkhasia,-,-,-,-,-,-,25.30000000,90.01666667,,31-08-2023 09:00,2.3
+251,Rajabala,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.75556000,89.98083000,,31-01-2023 09:00,6.76
+252,Rajabala,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.75556000,89.98083000,,31-03-2023 09:00,5.95
+253,Rajabala,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.75556000,89.98083000,,31-08-2023 09:00,2.96
+254,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,10-01-2021 00:00,4.2
+255,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,31-08-2021 06:00,4.82
+256,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,30-11-2021 06:00,4.8
+257,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,30-01-2022 07:00,5.88
+258,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,30-03-2022 06:00,5.7
+259,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,30-08-2022 06:00,3.89
+260,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,30-11-2022 06:00,4.93
+261,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,31-01-2023 09:00,6.07
+262,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,31-03-2023 09:00,5.2
+263,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,31-08-2023 09:00,4.1
+264,Rongjeng,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongjeng,-,-,-,-,-,-,25.66666667,90.80416667,,31-01-2024 09:00,4.8
+265,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,10-01-2021 00:00,3.78
+266,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,31-08-2021 06:00,2.79
+267,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,30-11-2021 06:00,2.9
+268,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,30-01-2022 07:00,4.17
+269,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,30-03-2022 06:00,3.53
+270,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,30-08-2022 06:00,2.72
+271,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,30-11-2022 06:00,2.93
+272,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,31-01-2023 09:00,4.27
+273,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,31-03-2023 09:00,3.54
+274,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,31-08-2023 09:00,2.89
+275,Rongmil,CGWB,17,Meghalaya,273,East Garo Hills,DAMBO RONGJENG,DAMBO RONGJENG,Rongmil,-,-,-,-,-,-,25.73611111,90.82444444,,31-01-2024 09:00,3.17
+276,Rongram,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.84417000,90.21556000,,31-01-2023 09:00,3.37
+277,Rongram,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.84417000,90.21556000,,31-03-2023 09:00,3
+278,Rongram,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.84417000,90.21556000,,31-08-2023 09:00,0.98
+279,Rongram_1,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.60410000,90.25270000,,31-08-2023 09:00,25.6
+280,RPBF Kyrdemkulai_1,CGWB,17,Meghalaya,276,RI BHOI,Umsning,-,-,-,-,-,-,-,-,25.75000000,91.84000000,725.00,31-01-2023 09:00,0
+281,Rpbf Kyrdemkulai OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74917000,91.83722000,,31-01-2023 09:00,29.87
+282,Rpbf Kyrdemkulai OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74917000,91.83722000,,31-03-2023 09:00,32.38
+283,Rpbf Kyrdemkulai OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74917000,91.83722000,,31-08-2023 09:00,34.01
+284,Rpbf Kyrdemkulai OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.74917000,91.83722000,,31-01-2024 09:00,21.02
+285,Salsella,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.69472000,90.01389000,,31-01-2023 09:00,3.09
+286,Salsella,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.69472000,90.01389000,,31-03-2023 09:00,2.55
+287,Salsella,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.69472000,90.01389000,,31-08-2023 09:00,0.28
+288,Samanda Megapagre,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.57722000,90.52694000,,31-01-2023 09:00,5.15
+289,Samanda Megapagre,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.57722000,90.52694000,,31-03-2023 09:00,4.4
+290,Samanda Megapagre,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.57722000,90.52694000,,31-08-2023 09:00,2.12
+291,Samanda Megapagre,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.57722000,90.52694000,,31-01-2024 09:00,0.42
+292,Shillong,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58333333,91.88333333,,10-01-2021 00:00,4.7
+293,Shillong,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58333333,91.88333333,,30-11-2021 06:00,2.1
+294,Shillong,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58333333,91.88333333,,30-08-2022 06:00,2.05
+295,Shillong,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58333333,91.88333333,,30-11-2022 06:00,2.84
+296,Shillong,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58333333,91.88333333,,31-01-2023 09:00,0
+297,Shillong,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58333333,91.88333333,,31-03-2023 09:00,0
+298,Shillong Golf Link,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58194444,91.89444444,,31-08-2023 09:00,2.1
+299,Shillong Golf Link,CGWB,17,Meghalaya,274,East Khasi Hills,MYLLIEM,MYLLIEM,Shillong,-,-,-,-,-,-,25.58194444,91.89444444,,31-01-2024 09:00,5.23
+300,Snalgre,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.74556000,90.40167000,,31-01-2023 09:00,2.88
+301,Snalgre,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.74556000,90.40167000,,31-03-2023 09:00,1.18
+302,Snalgre,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.74556000,90.40167000,,31-08-2023 09:00,1.18
+303,Sohpdok OW,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.75444000,91.96556000,,31-01-2023 09:00,0
+304,Songsak_1,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.66333000,90.61028000,,31-01-2023 09:00,2.2
+305,Songsak_1,CGWB,17,Meghalaya,273,East Garo Hills,-,-,-,-,-,-,-,-,-,25.66333000,90.61028000,,31-03-2023 09:00,1.55
+306,Tamanpahlong,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.92583000,91.94472000,,31-01-2023 09:00,1.95
+307,Tamanpahlong,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.92583000,91.94472000,,31-03-2023 09:00,2.15
+308,Tamanpahlong,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.92583000,91.94472000,,31-08-2023 09:00,1.75
+309,Tamanpahlong,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.92583000,91.94472000,,31-01-2024 09:00,1.83
+310,Tdohumshaiw,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.78250000,92.01833000,,31-01-2023 09:00,29.21
+311,Tdohumshaiw,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.78250000,92.01833000,,31-03-2023 09:00,30.45
+312,Tdohumshaiw,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.78250000,92.01833000,,31-08-2023 09:00,0
+313,Tdohumshiaw,CGWB,17,Meghalaya,276,RI BHOI,Ri-Bhoi,-,-,-,-,-,-,-,-,25.78260000,92.01680000,,31-08-2023 09:00,27.37
+314,Tdohumshiaw,CGWB,17,Meghalaya,276,RI BHOI,Ri-Bhoi,-,-,-,-,-,-,-,-,25.78260000,92.01680000,,31-01-2024 09:00,29.89
+315,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,10-01-2021 00:00,1.49
+316,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,30-11-2021 06:00,1.65
+317,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,30-03-2022 06:00,4.13
+318,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,30-08-2022 06:00,1.86
+319,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,30-11-2022 06:00,1.46
+320,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,31-03-2023 09:00,3.35
+321,Tikrikilla,CGWB,17,Meghalaya,278,west Garo Hills,DADENGGIRI,DADENGGIRI,Tikrikilla,-,-,-,-,-,-,25.88333333,90.05000000,,31-08-2023 09:00,1.21
+322,Tikrikilla_1,CGWB,17,Meghalaya,278,west Garo Hills,-,-,-,-,-,-,-,-,-,25.94583000,90.24444000,,31-01-2023 09:00,3.76
+323,Umroi Maidan,CGWB,17,Meghalaya,276,RI BHOI,-,-,-,-,-,-,-,-,-,25.71833000,91.97278000,,31-01-2023 09:00,0
+324,Water Resources Dept,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.56556000,91.89611000,,31-01-2023 09:00,1.86
+325,Water Resources Dept,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.56556000,91.89611000,,31-03-2023 09:00,0
+326,Water Resources Dept,CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.56556000,91.89611000,,31-01-2024 09:00,2.1
+327,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,10-01-2021 00:00,1.2
+328,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,31-08-2021 06:00,1.15
+329,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,30-11-2021 06:00,1.45
+330,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,30-01-2022 07:00,2.92
+331,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,30-03-2022 06:00,1.97
+332,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,30-08-2022 06:00,1.22
+333,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,30-11-2022 06:00,1.41
+334,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,31-01-2023 09:00,2.78
+335,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,31-03-2023 09:00,2
+336,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,31-08-2023 09:00,1.2
+337,Williamnagar,CGWB,17,Meghalaya,273,East Garo Hills,SAMANDA,SAMANDA,Williamnagar,-,-,-,-,-,-,25.51000000,90.51944444,,31-01-2024 09:00,1.74
+338,"W.R.D., Shillong",CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57000000,91.90000000,1430.00,31-01-2023 09:00,0
+339,"W.R.D., Shillong",CGWB,17,Meghalaya,274,East Khasi Hills,-,-,-,-,-,-,-,-,-,25.57000000,91.90000000,1430.00,31-03-2023 09:00,1.96
+340,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,10-01-2021 00:00,3.33
+341,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,30-11-2021 06:00,4.6
+342,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,30-03-2022 06:00,5
+343,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,30-08-2022 06:00,3.16
+344,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,30-11-2022 06:00,1.66
+345,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,31-01-2023 09:00,5.81
+346,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,31-03-2023 09:00,4.65
+347,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,31-08-2023 09:00,5.98
+348,Zikzak,CGWB,17,Meghalaya,278,west Garo Hills,ZIKZAK,ZIKZAK,Zikzak,-,-,-,-,-,-,25.39111111,89.89888889,,31-01-2024 09:00,3.67

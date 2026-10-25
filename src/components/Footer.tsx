@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               <span className="text-[11px] text-text-muted">v1.0</span>
             </div>
             <p className="text-xs text-text-muted leading-relaxed max-w-md">
-              India-focused groundwater intelligence and decision-support platform. Integrates Central Ground Water Board (CGWB) observation well telemetry, India Meteorological Department (IMD) gridded rainfall baselines, and satellite Earth observations to provide evidence-based water resource insights across 10 priority focus states.
+              India-focused groundwater intelligence and decision-support platform. It brings together groundwater data, India Meteorological Department (IMD) gridded rainfall baselines, and satellite Earth observations for research and evidence-based planning across 9 approved states. Experimental station telemetry is not verified block-level groundwater evidence.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
           </div>
           <div className="pt-3 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-text-muted">
             <p>© 2026 JalDrishti Platform Contributors. Built for open groundwater research and evidence-based planning.</p>
-            <p>Target Coverage: KA, TG, TN, MP, RJ, HR, PB, ML, AS, TR (10 Target States across 4 Regions)</p>
+            <p>Active Target Coverage: KA, TG, TN, MP, RJ, HR, PB, ML, TR (9 States across 4 Regions; Assam excluded)</p>
           </div>
         </div>
       </div>

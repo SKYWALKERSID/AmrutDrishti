@@ -1,0 +1,529 @@
+[
+  [
+    "Local Government Directory"
+  ],
+  [
+    "All Blocks of Meghalaya(State Code:17) State"
+  ],
+  [
+    "S.No.",
+    "District Code",
+    "District Name ",
+    "Block Code",
+    " Block Version",
+    "Block Name",
+    "Block Name"
+  ],
+  [
+    "(In English)  ",
+    " (In English)",
+    "  (In Local)"
+  ],
+  [
+    "1.0",
+    "740",
+    "Eastern West Khasi Hills",
+    "2483",
+    "3",
+    "Mairang",
+    ""
+  ],
+  [
+    "2.0",
+    "740",
+    "Eastern West Khasi Hills",
+    "2486",
+    "12",
+    "Mawthadraishan",
+    ""
+  ],
+  [
+    "3.0",
+    "273",
+    "East Garo Hills",
+    "2450",
+    "1",
+    "Dambo Rongjeng",
+    ""
+  ],
+  [
+    "4.0",
+    "273",
+    "East Garo Hills",
+    "2453",
+    "3",
+    "Samanda",
+    ""
+  ],
+  [
+    "5.0",
+    "273",
+    "East Garo Hills",
+    "2454",
+    "6",
+    "Songsak",
+    ""
+  ],
+  [
+    "6.0",
+    "657",
+    "East Jaintia Hills",
+    "7525",
+    "8",
+    "Lumshnong",
+    ""
+  ],
+  [
+    "7.0",
+    "657",
+    "East Jaintia Hills",
+    "2466",
+    "6",
+    "Saipung",
+    ""
+  ],
+  [
+    "8.0",
+    "657",
+    "East Jaintia Hills",
+    "2464",
+    "8",
+    "Wapung",
+    "WAPUNG"
+  ],
+  [
+    "9.0",
+    "274",
+    "East Khasi Hills",
+    "2455",
+    "2",
+    "Khadarshnong-Laitkroh",
+    ""
+  ],
+  [
+    "10.0",
+    "274",
+    "East Khasi Hills",
+    "2456",
+    "2",
+    "Mawkynrew",
+    ""
+  ],
+  [
+    "11.0",
+    "274",
+    "East Khasi Hills",
+    "7185",
+    "1",
+    "Mawlai",
+    "MAWLAI"
+  ],
+  [
+    "12.0",
+    "274",
+    "East Khasi Hills",
+    "7186",
+    "3",
+    "Mawpat",
+    "MAWPAT"
+  ],
+  [
+    "13.0",
+    "274",
+    "East Khasi Hills",
+    "2457",
+    "3",
+    "Mawphlang",
+    ""
+  ],
+  [
+    "14.0",
+    "274",
+    "East Khasi Hills",
+    "2458",
+    "3",
+    "Mawryngkneng",
+    ""
+  ],
+  [
+    "15.0",
+    "274",
+    "East Khasi Hills",
+    "2459",
+    "2",
+    "Mawsynram",
+    ""
+  ],
+  [
+    "16.0",
+    "274",
+    "East Khasi Hills",
+    "2460",
+    "5",
+    "Mylliem",
+    ""
+  ],
+  [
+    "17.0",
+    "274",
+    "East Khasi Hills",
+    "2461",
+    "1",
+    "Pynursla",
+    ""
+  ],
+  [
+    "18.0",
+    "274",
+    "East Khasi Hills",
+    "2462",
+    "3",
+    "Shella Bholaganj",
+    ""
+  ],
+  [
+    "19.0",
+    "274",
+    "East Khasi Hills",
+    "7183",
+    "3",
+    "Sohiong",
+    "SOHIONG"
+  ],
+  [
+    "20.0",
+    "656",
+    "North Garo Hills",
+    "7522",
+    "2",
+    "Adokgre",
+    ""
+  ],
+  [
+    "21.0",
+    "656",
+    "North Garo Hills",
+    "7184",
+    "6",
+    "Bajengdoba",
+    "BAJENGDOBA"
+  ],
+  [
+    "22.0",
+    "656",
+    "North Garo Hills",
+    "2451",
+    "3",
+    "Kharkutta",
+    ""
+  ],
+  [
+    "23.0",
+    "656",
+    "North Garo Hills",
+    "2452",
+    "6",
+    "Resubelpara",
+    ""
+  ],
+  [
+    "24.0",
+    "276",
+    "Ri Bhoi",
+    "7182",
+    "8",
+    "Bhoirymbong",
+    "BHOIRYMBONG"
+  ],
+  [
+    "25.0",
+    "276",
+    "Ri Bhoi",
+    "2468",
+    "1",
+    "Jirang",
+    ""
+  ],
+  [
+    "26.0",
+    "276",
+    "Ri Bhoi",
+    "7596",
+    "3",
+    "Mawhati",
+    "Mawhati"
+  ],
+  [
+    "27.0",
+    "276",
+    "Ri Bhoi",
+    "2469",
+    "3",
+    "Umling",
+    ""
+  ],
+  [
+    "28.0",
+    "276",
+    "Ri Bhoi",
+    "2470",
+    "8",
+    "Umsning",
+    ""
+  ],
+  [
+    "29.0",
+    "277",
+    "South Garo Hills",
+    "2471",
+    "3",
+    "Baghmara",
+    ""
+  ],
+  [
+    "30.0",
+    "277",
+    "South Garo Hills",
+    "2472",
+    "3",
+    "Chokpot",
+    ""
+  ],
+  [
+    "31.0",
+    "277",
+    "South Garo Hills",
+    "2473",
+    "1",
+    "Gasuapara",
+    ""
+  ],
+  [
+    "32.0",
+    "277",
+    "South Garo Hills",
+    "2474",
+    "3",
+    "Rongara",
+    ""
+  ],
+  [
+    "33.0",
+    "277",
+    "South Garo Hills",
+    "7520",
+    "3",
+    "Siju",
+    ""
+  ],
+  [
+    "34.0",
+    "663",
+    "South West Garo Hills",
+    "2475",
+    "5",
+    "Betasing",
+    ""
+  ],
+  [
+    "35.0",
+    "663",
+    "South West Garo Hills",
+    "7563",
+    "4",
+    "Purakhasia",
+    "Purakhasia"
+  ],
+  [
+    "36.0",
+    "663",
+    "South West Garo Hills",
+    "7180",
+    "10",
+    "Rerapara",
+    "RERAPARA"
+  ],
+  [
+    "37.0",
+    "663",
+    "South West Garo Hills",
+    "2482",
+    "3",
+    "Zikzak",
+    ""
+  ],
+  [
+    "38.0",
+    "658",
+    "South West Khasi Hills",
+    "2484",
+    "4",
+    "Mawkyrwat",
+    ""
+  ],
+  [
+    "39.0",
+    "658",
+    "South West Khasi Hills",
+    "2488",
+    "2",
+    "Ranikor",
+    ""
+  ],
+  [
+    "40.0",
+    "278",
+    "West Garo Hills",
+    "7527",
+    "3",
+    "Batabari",
+    ""
+  ],
+  [
+    "41.0",
+    "278",
+    "West Garo Hills",
+    "2476",
+    "2",
+    "Dadenggiri",
+    "DADENGGIRI"
+  ],
+  [
+    "42.0",
+    "278",
+    "West Garo Hills",
+    "2477",
+    "2",
+    "Dalu",
+    ""
+  ],
+  [
+    "43.0",
+    "278",
+    "West Garo Hills",
+    "7181",
+    "8",
+    "Demdema",
+    "DEMDEMA"
+  ],
+  [
+    "44.0",
+    "278",
+    "West Garo Hills",
+    "2478",
+    "2",
+    "Gambegre",
+    ""
+  ],
+  [
+    "45.0",
+    "278",
+    "West Garo Hills",
+    "2479",
+    "2",
+    "Rongram",
+    ""
+  ],
+  [
+    "46.0",
+    "278",
+    "West Garo Hills",
+    "2480",
+    "9",
+    "Salsella",
+    ""
+  ],
+  [
+    "47.0",
+    "278",
+    "West Garo Hills",
+    "2481",
+    "2",
+    "Tikrikilla",
+    ""
+  ],
+  [
+    "48.0",
+    "275",
+    "West Jaintia Hills",
+    "2463",
+    "2",
+    "Amlarem",
+    ""
+  ],
+  [
+    "49.0",
+    "275",
+    "West Jaintia Hills",
+    "2465",
+    "3",
+    "Laskein",
+    ""
+  ],
+  [
+    "50.0",
+    "275",
+    "West Jaintia Hills",
+    "7523",
+    "2",
+    "Namdong",
+    ""
+  ],
+  [
+    "51.0",
+    "275",
+    "West Jaintia Hills",
+    "2467",
+    "3",
+    "Thadlaskein",
+    ""
+  ],
+  [
+    "52.0",
+    "279",
+    "West Khasi Hills",
+    "2485",
+    "9",
+    "Mawshynrut",
+    ""
+  ],
+  [
+    "53.0",
+    "279",
+    "West Khasi Hills",
+    "2487",
+    "13",
+    "Nongstoin",
+    ""
+  ],
+  [
+    "54.0",
+    "279",
+    "West Khasi Hills",
+    "7521",
+    "4",
+    "Rambrai",
+    ""
+  ],
+  [
+    "55.0",
+    "279",
+    "West Khasi Hills",
+    "7524",
+    "4",
+    "Ri-Muliang",
+    ""
+  ],
+  [
+    "56.0",
+    "279",
+    "West Khasi Hills",
+    "7526",
+    "4",
+    "Shallang",
+    ""
+  ],
+  [
+    "Oct 25, 2026, 3:36 AM"
+  ]
+]

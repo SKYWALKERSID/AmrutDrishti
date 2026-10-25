@@ -16,7 +16,7 @@ import {
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
 import { useEffect } from 'react';
-import { ALL_NATIONWIDE_BLOCKS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { ACTIVE_TARGET_BLOCKS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
 import type { BlockData } from '@/lib/types';
 import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
@@ -27,7 +27,7 @@ export default function LandingPage() {
   const [selectedState, setSelectedState] = useState<string>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<string>('all');
   const [activeTab, setActiveTab] = useState<'research' | 'software' | 'platform'>('research');
-  const [blocksData, setBlocksData] = useState<BlockData[]>(ALL_NATIONWIDE_BLOCKS);
+  const [blocksData, setBlocksData] = useState<BlockData[]>(ACTIVE_TARGET_BLOCKS);
 
   useEffect(() => {
     async function loadLiveBlocks() {
@@ -46,7 +46,7 @@ export default function LandingPage() {
     loadLiveBlocks();
   }, []);
 
-  const activePool = blocksData.length > 0 ? blocksData : ALL_NATIONWIDE_BLOCKS;
+  const activePool = blocksData.length > 0 ? blocksData : ACTIVE_TARGET_BLOCKS;
 
   const filteredPreviewBlocks = activePool.filter((block) => {
     const matchesState = selectedState === 'all'
@@ -84,7 +84,7 @@ export default function LandingPage() {
             </p>
 
             <p className="dbim-paragraph text-text-muted leading-relaxed">
-              Our priority focus spans ten states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Assam, Tripura). We state the exact date, source, and accuracy of every reading without hiding data gaps or pretending unmeasured villages have verified sensors.
+              Our priority focus spans nine monitored states across four project regions: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Tripura). We state the exact date, source, and accuracy of every reading without hiding data gaps or pretending unmeasured villages have verified sensors.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -214,9 +214,9 @@ export default function LandingPage() {
 
           {/* Compact Unboxed Coverage & Supporting Facts Row */}
           <div className="pt-2 flex flex-wrap items-center justify-between gap-y-2 text-xs text-text-muted">
-            <span><strong>Authoritative Target Scope:</strong> 10 Active States across 4 Project Regions (KA, TG, TN, MP, RJ, HR, PB, ML, AS, TR)</span>
+            <span><strong>Authoritative Target Scope:</strong> 9 Active States across 4 Project Regions (KA, TG, TN, MP, RJ, HR, PB, ML, TR)</span>
             <span aria-hidden="true">•</span>
-            <span><strong>Monitored Administrative Units:</strong> 56 Verified Target Blocks (75 Total Nationwide)</span>
+            <span><strong>Monitored Administrative Units:</strong> 43 Verified Active Blocks (75 Total Monitored Baseline)</span>
             <span aria-hidden="true">•</span>
             <span><strong>Data currency:</strong> varies by source; see Data Sources</span>
             <span aria-hidden="true">•</span>
@@ -490,7 +490,7 @@ export default function LandingPage() {
                 onChange={(e) => setSelectedState(e.target.value)}
                 className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
-                <option value="all">All 10 Target States</option>
+                <option value="all">All 9 Active Target States</option>
                 {TARGET_REGIONS.map((region) => {
                   const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
                   return (
@@ -696,7 +696,7 @@ export default function LandingPage() {
                   Aquifers across India vary radically—from multi-tier alluvial plains in Punjab and Haryana to hard-rock basaltic Deccan traps in Madhya Pradesh and karst springsheds in Meghalaya. Direct comparison of raw water levels across diverse monitoring network densities misleads planners.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response employs area-weighted polygon clipping and relative deviation scores (rather than raw volumetric metrics), allowing contrast across 56 blocks while preserving native hydrogeological descriptors.
+                  JAL DRISHTI&apos;s verified response employs area-weighted polygon clipping and relative deviation scores (rather than raw volumetric metrics), allowing contrast across 43 blocks while preserving native hydrogeological descriptors.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/spatialAggregation.test.ts</code> (Spherical polygon area clipping). Remaining limitations: Fractured crystalline rock requires localized pump tests to determine true specific yield.
@@ -842,7 +842,7 @@ export default function LandingPage() {
               </div>
               <div className="space-y-2.5 text-text-muted">
                 <p className="dbim-paragraph leading-relaxed">
-                  Dashboards frequently show cached or years-old data with a "Live" label simply because the page was loaded today, misleading water authorities about data currency.
+                  Dashboards frequently show cached or years-old data with a &quot;Live&quot; label simply because the page was loaded today, misleading water authorities about data currency.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
                   JAL DRISHTI&apos;s verified response: Deployed the universal <code>FreshnessBadge</code> component across all routes, distinguishing observation date from ingestion timestamp, declaring source provider and limitations.
@@ -925,7 +925,7 @@ export default function LandingPage() {
                   JAL DRISHTI&apos;s verified response: Provides a Leaflet-based GIS Explorer integrating block boundaries, depth contours, severity color coding, and station inspectors in one place.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
-                  Evidence and status: Verified on <code>/explorer</code> route across all 10 active states. Remaining limitations: High-density vector layers require client-side tile optimization on low-bandwidth mobile devices.
+                  Evidence and status: Verified on <code>/explorer</code> route across all 9 approved active states. Remaining limitations: High-density vector layers require client-side tile optimization on low-bandwidth mobile devices.
                 </p>
               </div>
             </article>
@@ -970,7 +970,7 @@ export default function LandingPage() {
                   Many platforms imply uniform national coverage when in reality vast regions have zero automated telemetric wells, creating a false impression of comprehensive monitoring.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Distinguishes the 8 active focus states from telemetry-pending states; blocks without active sensors display explicit "Data Gap" flags instead of simulated numbers.
+                  JAL DRISHTI&apos;s verified response: Maintains the approved nine-state scope and displays explicit &quot;Data Gap&quot; states where trusted block observations are unavailable, rather than simulated numbers.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/nationalContrast.test.ts</code> (Honest data tags). Remaining limitations: Remote northeastern states (Meghalaya, Tripura) currently rely on baseline synchronizations pending DWLR rollouts.
@@ -1215,7 +1215,7 @@ export default function LandingPage() {
             National Ambition &amp; Ten Target Scope States
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            While JAL DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across ten target states grouped into four hydrologic regions.
+            While JAL DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across nine monitored states grouped into four hydrologic regions.
           </p>
         </div>
 
@@ -1291,15 +1291,6 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="space-y-1">
-            <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">
-              <span>Assam (Northeast India)</span>
-              <span className="text-xs font-normal text-text-muted">Baseline Synced</span>
-            </h3>
-            <p className="dbim-paragraph text-text-muted leading-relaxed">
-              Brahmaputra alluvial floodplains; shallow water tables with seasonal monsoonal recharge dynamics in Kamrup and Sonitpur.
-            </p>
-          </div>
 
           <div className="space-y-1">
             <h3 className="dbim-heading-3 text-text-main flex items-center justify-between">

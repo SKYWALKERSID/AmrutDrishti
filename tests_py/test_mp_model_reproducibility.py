@@ -67,7 +67,7 @@ class TestMpModelReproducibility(unittest.TestCase):
             station_name="Tikamgarh Central Well",
             num_horizons=4
         )
-        self.assertEqual(res["modelIdentifier"], "QuantileGB-v2.0-madhya_pradesh")
+        self.assertEqual(res["modelIdentifier"], "GlobalBlockAwareQuantileGB-v1")
         self.assertEqual(res["modelStatus"], "research_prototype")
         self.assertEqual(res["operationalEligibility"], False)
         self.assertEqual(len(res["forecasts"]), 4)

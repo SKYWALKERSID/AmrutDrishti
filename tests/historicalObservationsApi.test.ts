@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const route = fs.readFileSync('src/app/api/historical-observations/route.ts', 'utf8');
+const sourceSelector = fs.readFileSync('src/lib/services/historicalObservationSource.ts', 'utf8');
 const proposal = fs.readFileSync('docs/database/proposals/historical_observations_schema_and_api.md', 'utf8');
 
 test('historical API is separate, bounded, and publication-gated', () => {
@@ -13,8 +14,12 @@ test('historical API is separate, bounded, and publication-gated', () => {
   assert.match(route, /Historical observations unavailable/);
   assert.doesNotMatch(route, /ALL_BLOCKS|demonstration_fixture|service_role/i);
   assert.match(route, /status: 400/);
-  assert.match(route, /status: 503/);
+  assert.match(route, /status: decision\.status/);
+  assert.match(sourceSelector, /status: 503/);
   assert.match(route, /limit.*offset/);
+  assert.match(route, /local_processed_observation_archive/);
+  assert.match(route, /mappingEvidence/);
+  assert.doesNotMatch(route, /local_verified_cgwb_archive/);
 });
 
 test('historical API proposal requires private raw storage and nullable lineage', () => {

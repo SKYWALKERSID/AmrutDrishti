@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+	<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+		<Author/>
+		<Title/>
+		<Description/>
+		<Subject/>
+	</DocumentProperties>
+	<Styles>
+		<Style ss:ID="HyperlinkId" ss:Name="Hyperlink">
+			<Font ss:Color="#0000ff"/>
+		</Style>
+		<Style ss:ID="1">
+			<NumberFormat ss:Format="yyyy-M-d HH:mm:ss AM/PM"/>
+		</Style>
+		<Style ss:ID="32">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Arial" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="30">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="27">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="29">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="26">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="28">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="35">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="33">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Arial" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="22">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="20">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="20.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="31">
+			<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="23">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="25">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="21">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#808080"/>
+		</Style>
+		<Style ss:ID="34">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left"/>
+				<Border ss:Position="Right"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Color="#000000"/>
+		</Style>
+		<Style ss:ID="24">
+			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+			<Borders>
+				<Border ss:Position="Bottom"/>
+				<Border ss:Position="Top"/>
+				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#000000"/>
+				<Border ss:Position="DiagonalLeft"/>
+			</Borders>
+			<Font ss:FontName="Mangal" ss:Size="10.0" ss:Bold="1" ss:Color="#000000"/>
+		</Style>
+	</Styles>
+	<Names>
+		<NamedRange ss:Name="__bookmark_2" ss:RefersTo="Report!R4C1:R39C7"/>
+	</Names>
+
+<Worksheet ss:Name="Report">
+	<ss:Table>
+		<ss:Column ss:Width="43.392" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="44.288" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="47.232" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="117.76" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="108.8" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="70.528" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="74.24" ss:AutoFitWidth="0"/>
+		<ss:Column ss:Width="7.424" ss:AutoFitWidth="0"/>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="20" ss:MergeAcross="7">
+				<Data ss:Type="String">Local Government Directory</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String">All Districts of Telangana(State Code:36) State</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="21" ss:MergeAcross="7">
+				<Data ss:Type="String"/>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="20.25">
+			<Cell ss:Index="1" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">S. No.</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">District Code</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">District Version</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="22">
+				<Data ss:Type="String">District Name</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="22">
+				<Data ss:Type="String">District Name</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">  Census 2001 Code</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="23" ss:MergeDown="1">
+				<Data ss:Type="String">Census 2011 Code</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="20.25">
+			<Cell ss:Index="4" ss:StyleID="25">
+				<Data ss:Type="String">(In English)</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="25">
+				<Data ss:Type="String">(In Local)</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">1.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">501</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Adilabad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ఆదిలాబాద్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">01</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">532</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">2.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">690</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Bhadradri Kothagudem</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">భద్రాద్రి కొత్తగూడెం</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">3.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">686</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">11</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Hanumakonda</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">హనుమకొండ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">4.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">507</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Hyderabad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">హైదరాబాద్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">05</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">536</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">5.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">681</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Jagitial</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">జగిత్యాల</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">6.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">689</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Jangoan</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">జనగాం</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">7.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">687</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Jayashankar Bhupalapally</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">జయశంకర్ భూపాలపల్లి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">8.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">695</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Jogulamba Gadwal</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">జోగులాంబ గద్వాల</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">9.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">685</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Kamareddy</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">కామారెడ్డి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">10.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">508</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">10</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Karimnagar</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">కరీంనగర్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">03</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">534</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">11.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">509</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Khammam</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ఖమ్మం</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">10</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">541</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">12.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">699</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Kumuram Bheem Asifabad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">కుమురం భీమ్ ఆసిఫాబాద్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">13.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">688</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Mahabubabad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">మహబుబాబాద్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">14.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">512</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">12</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Mahabubnagar</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">మహబూబ్ నగర్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">07</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">538</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">15.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">684</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Mancherial</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">మంచిర్యాల్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">16.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">513</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Medak</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">మెదక్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">04</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">535</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">17.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">700</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Medchal Malkajgiri</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">మేడ్చల్ మల్కాజిగిరి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">18.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">720</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Mulugu</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">ములుగు</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">19.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">694</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Nagarkurnool</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">నాగర్ కర్నూల్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">20.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">514</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Nalgonda</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">నల్గొండ</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">08</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">539</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">21.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">721</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Narayanpet</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">నారాయణ్ పేట్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">22.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">680</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Nirmal</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">నిర్మల్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">23.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">516</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Nizamabad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">నిజామాబాదు</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">02</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">533</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">24.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">682</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Peddapalli</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">పెద్దపల్లి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">25.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">683</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">3</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Rajanna Sircilla</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">రాజన్న సిరిసిల్ల</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">26.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">518</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">6</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Ranga Reddy</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">రంగా రెడ్డి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">06</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">537</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">27.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">691</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Sangareddy</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">సంగారెడ్డి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">28.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">692</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Siddipet</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">సిద్దిపేట</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">29.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">696</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">1</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Suryapet</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">సూర్యాపేట</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">30.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">698</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">5</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Vikarabad</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">వికారాబాద్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">31.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">693</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">4</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Wanaparthy</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">వనపర్తి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">32.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">522</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">17</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Warangal</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">వరంగల్</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29">
+				<Data ss:Type="String">09</Data>
+			</Cell>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">540</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="0" ss:Height="27.0">
+			<Cell ss:Index="1" ss:StyleID="27">
+				<Data ss:Type="Number">33.0</Data>
+			</Cell>
+			<Cell ss:Index="2" ss:StyleID="29">
+				<Data ss:Type="String">697</Data>
+			</Cell>
+			<Cell ss:Index="3" ss:StyleID="29">
+				<Data ss:Type="String">2</Data>
+			</Cell>
+			<Cell ss:Index="4" ss:StyleID="31">
+				<Data ss:Type="String">Yadadri Bhuvanagiri</Data>
+			</Cell>
+			<Cell ss:Index="5" ss:StyleID="33">
+				<Data ss:Type="String">యదాద్రి భువనగిరి</Data>
+			</Cell>
+			<Cell ss:Index="6" ss:StyleID="29"/>
+			<Cell ss:Index="7" ss:StyleID="29">
+				<Data ss:Type="String">000</Data>
+			</Cell>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="34"/>
+			<Cell ss:Index="2" ss:StyleID="34"/>
+			<Cell ss:Index="3" ss:StyleID="34"/>
+			<Cell ss:Index="4" ss:StyleID="34"/>
+			<Cell ss:Index="5" ss:StyleID="34"/>
+			<Cell ss:Index="6" ss:StyleID="34"/>
+			<Cell ss:Index="7" ss:StyleID="34"/>
+		</Row>
+		<Row ss:AutoFitHeight="1">
+			<Cell ss:Index="1" ss:StyleID="35" ss:MergeAcross="7">
+				<Data ss:Type="String">Oct 25, 2026, 3:38 AM</Data>
+			</Cell>
+		</Row>
+	</ss:Table>
+	<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+		<PageSetup>
+			<PageMargins x:Bottom="0.25" x:Left="0.6875" x:Right="0.6770833" x:Top="0.25"/>
+		</PageSetup>
+		<Print>
+			<PaperSizeIndex>9</PaperSizeIndex>
+		</Print>
+	</WorksheetOptions>
+</Worksheet>
+</Workbook>

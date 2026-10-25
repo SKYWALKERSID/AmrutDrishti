@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-10-24T23:20:22.994590+00:00",
+  "lineage_file": "data/derived/nwdp_telemetry_record_lineage.csv.gz",
+  "quarantine_counts": {
+    "quarantined": 10625220,
+    "negative_unconverted_undocumented_datum": 10617901,
+    "outside_unreviewed_0_to_150_candidate_range": 7319
+  },
+  "note": "Use the record lineage file for individual quarantined records."
+}

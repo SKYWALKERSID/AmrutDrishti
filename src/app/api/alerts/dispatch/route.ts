@@ -11,6 +11,20 @@ import {
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * Read-only health contract used by the administration dashboard. It does not
+ * inspect credentials or make an outbound request, so opening the dashboard
+ * can never trigger an advisory delivery.
+ */
+export async function GET() {
+  return Response.json({
+    service: 'advisory_dispatch',
+    status: 'available',
+    simulationDefault: true,
+    operationalEligibility: false,
+  });
+}
+
 export async function POST(request: Request) {
   try {
     // 1. Content-Type validation

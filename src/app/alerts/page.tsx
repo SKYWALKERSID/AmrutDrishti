@@ -33,7 +33,7 @@ function AlertsContent() {
   const [selectedChannel, setSelectedChannel] = useState<'SMS' | 'WhatsApp'>('WhatsApp');
   const [recipientRole, setRecipientRole] = useState<UserRole>('bdo');
   const [recipientName, setRecipientName] = useState('BDO Tikamgarh');
-  const [recipientPhone, setRecipientPhone] = useState('+91 98263 *****');
+  const [recipientPhone, setRecipientPhone] = useState('');
   const [dispatchSuccess, setDispatchSuccess] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
 
@@ -126,6 +126,12 @@ function AlertsContent() {
     }
     setDispatchError(null);
 
+    const phoneDigits = recipientPhone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setDispatchError(t('alerts.invalidPhone', 'Enter a recipient phone number containing at least 10 digits.'));
+      return;
+    }
+
     let finalStatus: 'delivered' | 'simulated' | 'pending' | 'failed' = 'simulated';
 
     // Dispatch via DLT Gateway endpoint
@@ -147,10 +153,12 @@ function AlertsContent() {
           districtName: selectedBlock.districtName,
         }),
       });
-      if (res.ok) {
-        const d = await res.json();
-        if (d.deliveryStatus) finalStatus = d.deliveryStatus;
+      const d = await res.json().catch(() => null);
+      if (!res.ok || !d?.success || d.deliveryStatus === 'failed') {
+        setDispatchError(d?.error || d?.details || t('alerts.dispatchFailed', 'The advisory dispatch could not be recorded.'));
+        return;
       }
+      if (d.deliveryStatus) finalStatus = d.deliveryStatus;
     } catch {
       // Fallback to simulated
     }
@@ -348,6 +356,9 @@ function AlertsContent() {
                     type="text"
                     value={recipientPhone}
                     onChange={(e) => setRecipientPhone(e.target.value)}
+                    required
+                    inputMode="tel"
+                    placeholder="+91 9876543210"
                     className="w-full bg-subtle border border-border p-2 text-text-main focus:outline-none"
                   />
                 </div>

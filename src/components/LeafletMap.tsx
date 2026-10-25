@@ -80,6 +80,7 @@ export default function LeafletMap({
 
   useEffect(() => {
     let disposed = false;
+    let invalidateTimer: number | undefined;
 
     async function initializeMap() {
       if (!containerRef.current || mapRef.current) return;
@@ -105,7 +106,7 @@ export default function LeafletMap({
       layerRef.current = L.layerGroup().addTo(map);
       setIsMapReady(true);
 
-      window.setTimeout(() => {
+      invalidateTimer = window.setTimeout(() => {
         if (!disposed) map.invalidateSize();
       }, 100);
     }
@@ -114,6 +115,7 @@ export default function LeafletMap({
 
     return () => {
       disposed = true;
+      if (invalidateTimer !== undefined) window.clearTimeout(invalidateTimer);
       setIsMapReady(false);
       mapRef.current?.remove();
       mapRef.current = null;

@@ -1,0 +1,399 @@
+{
+  "generated_at": "2026-10-24T23:20:22.994590+00:00",
+  "input_resources": [
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "state": "Haryana",
+      "period": "2021-2025",
+      "sha256": "cb991290fd86fd643b0c0b0b4cbba5cd0a3c0f33f2344599ec224028e2fa8e2b",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/fc883e0c-c594-4ef7-9fef-c3e0d0cc25c2/download/gwl_tel_6_hourly_cgwb_hr_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv",
+      "state": "Haryana",
+      "period": "2026-2030",
+      "sha256": "59aa8f85c79dc5cfba464507ad414e489ffe5df9957ffedb6ca5ed5c4312c38f",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/bfc07a76-e85b-4e35-89d6-f707fb3a3128/download/gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "state": "Karnataka",
+      "period": "2021-2025",
+      "sha256": "d5d42d60f2a1214e4f97e5c9bd35aa36174c1067f27963ee449f0d66217396d0",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/cd3f04e8-966a-41d3-9c18-f0122a2f3a50/download/gwl_tel_6_hourly_cgwb_ka_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv",
+      "state": "Karnataka",
+      "period": "2026-2030",
+      "sha256": "0543013c3c8d00a8ea894ed89d2efe43522b83bf4f69cd95c27a9e43a292b4ee",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/b9a76d29-078e-4551-8092-e22f0e60bb45/download/gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_ml_2021_2025.csv",
+      "state": "Meghalaya",
+      "period": "2021-2025",
+      "sha256": "1c069ed73f79523f00c4a3680b0a5b709690ff777b680e2c85bf115d867f17cc",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/82d41fe2-ef41-4dbd-8ee2-4323bf22c554/download/gwl_tel_6_hourly_cgwb_ml_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_ml_2026_2030.csv",
+      "state": "Meghalaya",
+      "period": "2026-2030",
+      "sha256": "e9f333adea4b8cfe25336e74c2a43d782fd04002a232c0d50fc56da61d0e7b74",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/5839112c-afb1-472e-9326-6eaa23c9a12f/download/gwl_tel_6_hourly_cgwb_ml_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "state": "Madhya Pradesh",
+      "period": "2021-2025",
+      "sha256": "7726d3f62b37b478ad7ce8150e1c5ff8b345a7f4554fad0dfce465e0f8128fc8",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/acb2cc5c-4182-4aa9-8f47-7cd0bb63fc57/download/gwl_tel_6_hourly_cgwb_mp_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv",
+      "state": "Madhya Pradesh",
+      "period": "2026-2030",
+      "sha256": "101e89c6a9e23a08271fbb4a6178db60ef1407f7b19a8d0dbc43115804de05b5",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/ad5b97a5-9c42-443b-8069-e1c33875239c/download/gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "state": "Punjab",
+      "period": "2021-2025",
+      "sha256": "0f505970c743176dfd78c937e5e44a6b5b7237fa5ed84ad7e440381f065b4ae1",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/2b3bfc59-e5ca-419b-b3c8-6133da16f2f7/download/gwl_tel_6_hourly_cgwb_pb_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv",
+      "state": "Punjab",
+      "period": "2026-2030",
+      "sha256": "cb631719df4c59c92daf4f3ba39f9bc6c2ac555bc494ac1712410e8ffed5aba9",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/8d6526d8-e33d-4401-bea1-e34d259d7070/download/gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "state": "Rajasthan",
+      "period": "2021-2025",
+      "sha256": "755c7658aa70ab0b34db4cb555e46aea5b0c10e2df90989c5d648e816bb59b33",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/467fe983-e1f0-4428-91b7-0ade87b39f6d/download/gwl_tel_6_hourly_cgwb_rj_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv",
+      "state": "Rajasthan",
+      "period": "2026-2030",
+      "sha256": "117e3e35e70d154cb989fc01baa8a80f03343891bad73c250f8993f59cd8debe",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/931ff862-f13e-4754-83f9-55e0dc894f2d/download/gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "state": "Tamil Nadu",
+      "period": "2021-2025",
+      "sha256": "d3d8da379ef4f5f5ddf7b20781746f1252e4477479acedab7770a5a6ba386095",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/e68634e0-07e7-4f64-9c08-0808dba2c445/download/gwl_tel_6_hourly_cgwb_tn_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv",
+      "state": "Tamil Nadu",
+      "period": "2026-2030",
+      "sha256": "1a086fe534a1a25445b3c9635126639b0fc9a00f695d8ec9d33fa1a59ee76292",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/3bd0c6d5-dd9b-4c07-9c60-6410c1c6bd56/download/gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "state": "Tripura",
+      "period": "2021-2025",
+      "sha256": "c6e6dce4602186c448dbcb822e6d08f40f5326c0dcfbffc5394b3b10c73fe97e",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/440d0737-a937-446b-843d-89acb6f23379/download/gwl_tel_6_hourly_cgwb_tr_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv",
+      "state": "Tripura",
+      "period": "2026-2030",
+      "sha256": "1f8befb621d68750f1826f25321d33c51fed02b24e9e0af8d3ebd33df547dbf5",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/cd023229-a909-4b92-b5e0-5b2f5a34f850/download/gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "state": "Telangana",
+      "period": "2021-2025",
+      "sha256": "4f26014f469c61208b7c8ef08830980b5b561949f1b646bad1b2ccb7eaa023e2",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/bc5a9d1c-1f3b-4629-9cfb-0d1ccc9ac81f/download/gwl_tel_6_hourly_cgwb_ts_2021_2025.csv"
+    },
+    {
+      "filename": "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv",
+      "state": "Telangana",
+      "period": "2026-2030",
+      "sha256": "e9828e849ae7e2fe774065b713befe571a62529bd205aa663172da26fe69a456",
+      "url": "https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/137d0a1c-8fe0-4bb1-97a8-983c28ec96db/download/gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    }
+  ],
+  "counts": {
+    "source_rows": 11167915,
+    "candidate_not_verified": 542695,
+    "positive_candidate_undocumented_datum": 411922,
+    "valid_timestamps": 11167915,
+    "parsed_numeric_measurements": 11167915,
+    "positive_readings": 547527,
+    "quarantined": 10625220,
+    "negative_unconverted_undocumented_datum": 10617901,
+    "negative_readings": 10617901,
+    "zero_or_one_retained_pending_station_qc": 130755,
+    "zero_readings": 2487,
+    "sentinel_pattern_retained_pending_station_qc": 18,
+    "exact_one_readings": 128268,
+    "outside_unreviewed_0_to_150_candidate_range": 7319
+  },
+  "per_file": {
+    "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv": {
+      "source_rows": 716725,
+      "candidate_not_verified": 21187,
+      "positive_candidate_undocumented_datum": 21167,
+      "valid_timestamps": 716725,
+      "parsed_numeric_measurements": 716725,
+      "positive_readings": 21184,
+      "quarantined": 695538,
+      "negative_unconverted_undocumented_datum": 695538,
+      "negative_readings": 695538,
+      "zero_or_one_retained_pending_station_qc": 3,
+      "zero_readings": 3,
+      "sentinel_pattern_retained_pending_station_qc": 17
+    },
+    "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv": {
+      "source_rows": 5476,
+      "candidate_not_verified": 5476,
+      "positive_candidate_undocumented_datum": 5475,
+      "valid_timestamps": 5476,
+      "parsed_numeric_measurements": 5476,
+      "positive_readings": 5475,
+      "zero_or_one_retained_pending_station_qc": 1,
+      "zero_readings": 1
+    },
+    "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv": {
+      "source_rows": 983038,
+      "quarantined": 940701,
+      "negative_unconverted_undocumented_datum": 940700,
+      "valid_timestamps": 983038,
+      "parsed_numeric_measurements": 983038,
+      "negative_readings": 940700,
+      "candidate_not_verified": 42337,
+      "positive_candidate_undocumented_datum": 23997,
+      "positive_readings": 42239,
+      "zero_or_one_retained_pending_station_qc": 18340,
+      "exact_one_readings": 18241,
+      "zero_readings": 99,
+      "outside_unreviewed_0_to_150_candidate_range": 1
+    },
+    "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv": {
+      "source_rows": 239382,
+      "quarantined": 221744,
+      "negative_unconverted_undocumented_datum": 221744,
+      "valid_timestamps": 239382,
+      "parsed_numeric_measurements": 239382,
+      "negative_readings": 221744,
+      "candidate_not_verified": 17638,
+      "zero_or_one_retained_pending_station_qc": 4702,
+      "positive_readings": 17614,
+      "exact_one_readings": 4678,
+      "positive_candidate_undocumented_datum": 12936,
+      "zero_readings": 24
+    },
+    "gwl_tel_6_hourly_cgwb_ml_2021_2025.csv": {
+      "source_rows": 36117,
+      "quarantined": 34499,
+      "negative_unconverted_undocumented_datum": 34499,
+      "valid_timestamps": 36117,
+      "parsed_numeric_measurements": 36117,
+      "negative_readings": 34499,
+      "candidate_not_verified": 1618,
+      "zero_or_one_retained_pending_station_qc": 1618,
+      "positive_readings": 1557,
+      "exact_one_readings": 1557,
+      "zero_readings": 61
+    },
+    "gwl_tel_6_hourly_cgwb_ml_2026_2030.csv": {
+      "source_rows": 9718,
+      "quarantined": 9301,
+      "negative_unconverted_undocumented_datum": 9301,
+      "valid_timestamps": 9718,
+      "parsed_numeric_measurements": 9718,
+      "negative_readings": 9301,
+      "candidate_not_verified": 417,
+      "zero_or_one_retained_pending_station_qc": 417,
+      "positive_readings": 417,
+      "exact_one_readings": 417
+    },
+    "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv": {
+      "source_rows": 954408,
+      "quarantined": 915578,
+      "negative_unconverted_undocumented_datum": 915575,
+      "valid_timestamps": 954408,
+      "parsed_numeric_measurements": 954408,
+      "negative_readings": 915575,
+      "candidate_not_verified": 38830,
+      "positive_candidate_undocumented_datum": 16099,
+      "positive_readings": 38223,
+      "zero_or_one_retained_pending_station_qc": 22730,
+      "exact_one_readings": 22120,
+      "zero_readings": 610,
+      "sentinel_pattern_retained_pending_station_qc": 1,
+      "outside_unreviewed_0_to_150_candidate_range": 3
+    },
+    "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv": {
+      "source_rows": 309082,
+      "quarantined": 298596,
+      "negative_unconverted_undocumented_datum": 298594,
+      "valid_timestamps": 309082,
+      "parsed_numeric_measurements": 309082,
+      "negative_readings": 298594,
+      "candidate_not_verified": 10486,
+      "positive_candidate_undocumented_datum": 5606,
+      "positive_readings": 10470,
+      "zero_or_one_retained_pending_station_qc": 4880,
+      "exact_one_readings": 4862,
+      "zero_readings": 18,
+      "outside_unreviewed_0_to_150_candidate_range": 2
+    },
+    "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv": {
+      "source_rows": 940158,
+      "candidate_not_verified": 147933,
+      "positive_candidate_undocumented_datum": 147741,
+      "valid_timestamps": 940158,
+      "parsed_numeric_measurements": 940158,
+      "positive_readings": 147800,
+      "quarantined": 792225,
+      "negative_unconverted_undocumented_datum": 792166,
+      "negative_readings": 792166,
+      "zero_or_one_retained_pending_station_qc": 192,
+      "zero_readings": 192,
+      "outside_unreviewed_0_to_150_candidate_range": 59
+    },
+    "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv": {
+      "source_rows": 36645,
+      "candidate_not_verified": 36642,
+      "positive_candidate_undocumented_datum": 36640,
+      "valid_timestamps": 36645,
+      "parsed_numeric_measurements": 36645,
+      "positive_readings": 36641,
+      "quarantined": 3,
+      "negative_unconverted_undocumented_datum": 2,
+      "negative_readings": 2,
+      "outside_unreviewed_0_to_150_candidate_range": 1,
+      "zero_or_one_retained_pending_station_qc": 2,
+      "zero_readings": 2
+    },
+    "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv": {
+      "source_rows": 1100757,
+      "quarantined": 1071860,
+      "negative_unconverted_undocumented_datum": 1071860,
+      "valid_timestamps": 1100757,
+      "parsed_numeric_measurements": 1100757,
+      "negative_readings": 1071860,
+      "candidate_not_verified": 28897,
+      "zero_or_one_retained_pending_station_qc": 14153,
+      "positive_readings": 28465,
+      "exact_one_readings": 13721,
+      "positive_candidate_undocumented_datum": 14744,
+      "zero_readings": 432
+    },
+    "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv": {
+      "source_rows": 371633,
+      "quarantined": 350384,
+      "negative_unconverted_undocumented_datum": 350068,
+      "valid_timestamps": 371633,
+      "parsed_numeric_measurements": 371633,
+      "negative_readings": 350068,
+      "candidate_not_verified": 21249,
+      "zero_or_one_retained_pending_station_qc": 15549,
+      "positive_readings": 21553,
+      "exact_one_readings": 15537,
+      "positive_candidate_undocumented_datum": 5700,
+      "zero_readings": 12,
+      "outside_unreviewed_0_to_150_candidate_range": 316
+    },
+    "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv": {
+      "source_rows": 2450027,
+      "quarantined": 2363732,
+      "negative_unconverted_undocumented_datum": 2356800,
+      "valid_timestamps": 2450027,
+      "parsed_numeric_measurements": 2450027,
+      "negative_readings": 2356800,
+      "candidate_not_verified": 86295,
+      "zero_or_one_retained_pending_station_qc": 17874,
+      "positive_readings": 92978,
+      "exact_one_readings": 17625,
+      "outside_unreviewed_0_to_150_candidate_range": 6932,
+      "positive_candidate_undocumented_datum": 68421,
+      "zero_readings": 249
+    },
+    "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv": {
+      "source_rows": 674156,
+      "quarantined": 658257,
+      "negative_unconverted_undocumented_datum": 658256,
+      "valid_timestamps": 674156,
+      "parsed_numeric_measurements": 674156,
+      "negative_readings": 658256,
+      "candidate_not_verified": 15899,
+      "positive_candidate_undocumented_datum": 11492,
+      "positive_readings": 15788,
+      "zero_or_one_retained_pending_station_qc": 4407,
+      "zero_readings": 112,
+      "exact_one_readings": 4295,
+      "outside_unreviewed_0_to_150_candidate_range": 1
+    },
+    "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv": {
+      "source_rows": 19465,
+      "quarantined": 19462,
+      "negative_unconverted_undocumented_datum": 19462,
+      "valid_timestamps": 19465,
+      "parsed_numeric_measurements": 19465,
+      "negative_readings": 19462,
+      "candidate_not_verified": 3,
+      "zero_or_one_retained_pending_station_qc": 3,
+      "positive_readings": 3,
+      "exact_one_readings": 3
+    },
+    "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv": {
+      "source_rows": 4880,
+      "quarantined": 4879,
+      "negative_unconverted_undocumented_datum": 4879,
+      "valid_timestamps": 4880,
+      "parsed_numeric_measurements": 4880,
+      "negative_readings": 4879,
+      "candidate_not_verified": 1,
+      "zero_or_one_retained_pending_station_qc": 1,
+      "positive_readings": 1,
+      "exact_one_readings": 1
+    },
+    "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv": {
+      "source_rows": 1779618,
+      "quarantined": 1736140,
+      "negative_unconverted_undocumented_datum": 1736136,
+      "valid_timestamps": 1779618,
+      "parsed_numeric_measurements": 1779618,
+      "negative_readings": 1736136,
+      "candidate_not_verified": 43478,
+      "zero_or_one_retained_pending_station_qc": 18330,
+      "positive_readings": 42822,
+      "exact_one_readings": 17670,
+      "positive_candidate_undocumented_datum": 25148,
+      "zero_readings": 660,
+      "outside_unreviewed_0_to_150_candidate_range": 4
+    },
+    "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv": {
+      "source_rows": 536630,
+      "quarantined": 512321,
+      "negative_unconverted_undocumented_datum": 512321,
+      "valid_timestamps": 536630,
+      "parsed_numeric_measurements": 536630,
+      "negative_readings": 512321,
+      "candidate_not_verified": 24309,
+      "zero_or_one_retained_pending_station_qc": 7553,
+      "positive_readings": 24297,
+      "exact_one_readings": 7541,
+      "positive_candidate_undocumented_datum": 16756,
+      "zero_readings": 12
+    }
+  },
+  "lineage_file": "data/derived/nwdp_telemetry_record_lineage.csv.gz"
+}

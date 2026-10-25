@@ -8,7 +8,7 @@ import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'JalDrishti (जलदृष्टि) | Groundwater Intelligence & Governance Platform',
-  description: 'India-focused groundwater intelligence and decision-support platform for 10 active states: Karnataka, Telangana, Tamil Nadu, Madhya Pradesh, Rajasthan, Haryana, Punjab, Meghalaya, Assam, and Tripura.',
+  description: 'India-focused groundwater intelligence and decision-support platform for 9 active states: Karnataka, Telangana, Tamil Nadu, Madhya Pradesh, Rajasthan, Haryana, Punjab, Meghalaya, and Tripura.',
 };
 
 export default function RootLayout({

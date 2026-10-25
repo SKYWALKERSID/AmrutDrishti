@@ -168,36 +168,5 @@ export const INITIAL_INTERVENTIONS: InterventionProposal[] = [
         text: 'MGNREGA water conservation approval granted by District Council.'
       }
     ]
-  },
-
-  // Assam (Pristine Recharge / Brahmaputra Basin Benchmark)
-  {
-    id: 'prop_assam_hajo_01',
-    title: 'Community Wetland (Beel) Conservation & Shallow Aquifer Protection Sanctuary',
-    blockId: 'blk_kamrup_hajo',
-    blockName: 'Hajo',
-    districtName: 'Kamrup',
-    schemeId: 'sch_amrit_sarovar',
-    schemeName: 'Mission Amrit Sarovar',
-    proposedByRole: 'jal_samiti',
-    proposedByName: 'Kamrup District Jal Samiti',
-    targetVillage: 'Hajo & Ramdia Beel Basins',
-    estimatedCostInr: 1600000,
-    beneficiariesCount: 7800,
-    evidenceRationale: 'Shallow unconfined water table (1.34m bgl) with stage of extraction < 15%. Scheme focuses on source ecological protection and preventing surface wetland degradation.',
-    missingEvidenceNotes: 'Aquatic ecosystem biodiversity assessment and flood-recharge baseline.',
-    reviewOwnerRole: 'district_collector',
-    reviewOwnerName: 'Deputy Commissioner, Kamrup',
-    status: 'approved',
-    createdDate: '2026-09-25',
-    lastUpdatedDate: '2026-10-02',
-    comments: [
-      {
-        authorName: 'Kamrup Jal Samiti',
-        authorRole: 'jal_samiti',
-        date: '2026-09-25',
-        text: 'Wetland catchment desilting and indigenous tree plantation along Brahmaputra overflow channels.'
-      }
-    ]
   }
 ];

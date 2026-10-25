@@ -1,0 +1,321 @@
+[
+  [
+    "Local Government Directory"
+  ],
+  [
+    "All Districts of Telangana(State Code:36) State"
+  ],
+  [
+    "S. No.",
+    "District Code",
+    "District Version",
+    "District Name",
+    "District Name",
+    "  Census 2001 Code",
+    "Census 2011 Code"
+  ],
+  [
+    "(In English)",
+    "(In Local)"
+  ],
+  [
+    "1.0",
+    "501",
+    "5",
+    "Adilabad",
+    "\u0c06\u0c26\u0c3f\u0c32\u0c3e\u0c2c\u0c3e\u0c26\u0c4d",
+    "01",
+    "532"
+  ],
+  [
+    "2.0",
+    "690",
+    "2",
+    "Bhadradri Kothagudem",
+    "\u0c2d\u0c26\u0c4d\u0c30\u0c3e\u0c26\u0c4d\u0c30\u0c3f \u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c17\u0c42\u0c21\u0c46\u0c02",
+    "",
+    "000"
+  ],
+  [
+    "3.0",
+    "686",
+    "11",
+    "Hanumakonda",
+    "\u0c39\u0c28\u0c41\u0c2e\u0c15\u0c4a\u0c02\u0c21",
+    "",
+    "000"
+  ],
+  [
+    "4.0",
+    "507",
+    "3",
+    "Hyderabad",
+    "\u0c39\u0c46\u0c56\u0c26\u0c30\u0c3e\u0c2c\u0c3e\u0c26\u0c4d",
+    "05",
+    "536"
+  ],
+  [
+    "5.0",
+    "681",
+    "2",
+    "Jagitial",
+    "\u0c1c\u0c17\u0c3f\u0c24\u0c4d\u0c2f\u0c3e\u0c32",
+    "",
+    "000"
+  ],
+  [
+    "6.0",
+    "689",
+    "1",
+    "Jangoan",
+    "\u0c1c\u0c28\u0c17\u0c3e\u0c02",
+    "",
+    "000"
+  ],
+  [
+    "7.0",
+    "687",
+    "3",
+    "Jayashankar Bhupalapally",
+    "\u0c1c\u0c2f\u0c36\u0c02\u0c15\u0c30\u0c4d \u0c2d\u0c42\u0c2a\u0c3e\u0c32\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "8.0",
+    "695",
+    "2",
+    "Jogulamba Gadwal",
+    "\u0c1c\u0c4b\u0c17\u0c41\u0c32\u0c3e\u0c02\u0c2c \u0c17\u0c26\u0c4d\u0c35\u0c3e\u0c32",
+    "",
+    "000"
+  ],
+  [
+    "9.0",
+    "685",
+    "3",
+    "Kamareddy",
+    "\u0c15\u0c3e\u0c2e\u0c3e\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "10.0",
+    "508",
+    "10",
+    "Karimnagar",
+    "\u0c15\u0c30\u0c40\u0c02\u0c28\u0c17\u0c30\u0c4d",
+    "03",
+    "534"
+  ],
+  [
+    "11.0",
+    "509",
+    "5",
+    "Khammam",
+    "\u0c16\u0c2e\u0c4d\u0c2e\u0c02",
+    "10",
+    "541"
+  ],
+  [
+    "12.0",
+    "699",
+    "2",
+    "Kumuram Bheem Asifabad",
+    "\u0c15\u0c41\u0c2e\u0c41\u0c30\u0c02 \u0c2d\u0c40\u0c2e\u0c4d \u0c06\u0c38\u0c3f\u0c2b\u0c3e\u0c2c\u0c3e\u0c26\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "13.0",
+    "688",
+    "1",
+    "Mahabubabad",
+    "\u0c2e\u0c39\u0c2c\u0c41\u0c2c\u0c3e\u0c2c\u0c3e\u0c26\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "14.0",
+    "512",
+    "12",
+    "Mahabubnagar",
+    "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d \u0c28\u0c17\u0c30\u0c4d",
+    "07",
+    "538"
+  ],
+  [
+    "15.0",
+    "684",
+    "1",
+    "Mancherial",
+    "\u0c2e\u0c02\u0c1a\u0c3f\u0c30\u0c4d\u0c2f\u0c3e\u0c32\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "16.0",
+    "513",
+    "5",
+    "Medak",
+    "\u0c2e\u0c46\u0c26\u0c15\u0c4d",
+    "04",
+    "535"
+  ],
+  [
+    "17.0",
+    "700",
+    "2",
+    "Medchal Malkajgiri",
+    "\u0c2e\u0c47\u0c21\u0c4d\u0c1a\u0c32\u0c4d \u0c2e\u0c32\u0c4d\u0c15\u0c3e\u0c1c\u0c3f\u0c17\u0c3f\u0c30\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "18.0",
+    "720",
+    "1",
+    "Mulugu",
+    "\u0c2e\u0c41\u0c32\u0c41\u0c17\u0c41",
+    "",
+    "000"
+  ],
+  [
+    "19.0",
+    "694",
+    "5",
+    "Nagarkurnool",
+    "\u0c28\u0c3e\u0c17\u0c30\u0c4d \u0c15\u0c30\u0c4d\u0c28\u0c42\u0c32\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "20.0",
+    "514",
+    "5",
+    "Nalgonda",
+    "\u0c28\u0c32\u0c4d\u0c17\u0c4a\u0c02\u0c21",
+    "08",
+    "539"
+  ],
+  [
+    "21.0",
+    "721",
+    "2",
+    "Narayanpet",
+    "\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23\u0c4d \u0c2a\u0c47\u0c1f\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "22.0",
+    "680",
+    "1",
+    "Nirmal",
+    "\u0c28\u0c3f\u0c30\u0c4d\u0c2e\u0c32\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "23.0",
+    "516",
+    "3",
+    "Nizamabad",
+    "\u0c28\u0c3f\u0c1c\u0c3e\u0c2e\u0c3e\u0c2c\u0c3e\u0c26\u0c41",
+    "02",
+    "533"
+  ],
+  [
+    "24.0",
+    "682",
+    "2",
+    "Peddapalli",
+    "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "25.0",
+    "683",
+    "3",
+    "Rajanna Sircilla",
+    "\u0c30\u0c3e\u0c1c\u0c28\u0c4d\u0c28 \u0c38\u0c3f\u0c30\u0c3f\u0c38\u0c3f\u0c32\u0c4d\u0c32",
+    "",
+    "000"
+  ],
+  [
+    "26.0",
+    "518",
+    "6",
+    "Ranga Reddy",
+    "\u0c30\u0c02\u0c17\u0c3e \u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f",
+    "06",
+    "537"
+  ],
+  [
+    "27.0",
+    "691",
+    "4",
+    "Sangareddy",
+    "\u0c38\u0c02\u0c17\u0c3e\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "28.0",
+    "692",
+    "5",
+    "Siddipet",
+    "\u0c38\u0c3f\u0c26\u0c4d\u0c26\u0c3f\u0c2a\u0c47\u0c1f",
+    "",
+    "000"
+  ],
+  [
+    "29.0",
+    "696",
+    "1",
+    "Suryapet",
+    "\u0c38\u0c42\u0c30\u0c4d\u0c2f\u0c3e\u0c2a\u0c47\u0c1f",
+    "",
+    "000"
+  ],
+  [
+    "30.0",
+    "698",
+    "5",
+    "Vikarabad",
+    "\u0c35\u0c3f\u0c15\u0c3e\u0c30\u0c3e\u0c2c\u0c3e\u0c26\u0c4d",
+    "",
+    "000"
+  ],
+  [
+    "31.0",
+    "693",
+    "4",
+    "Wanaparthy",
+    "\u0c35\u0c28\u0c2a\u0c30\u0c4d\u0c24\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "32.0",
+    "522",
+    "17",
+    "Warangal",
+    "\u0c35\u0c30\u0c02\u0c17\u0c32\u0c4d",
+    "09",
+    "540"
+  ],
+  [
+    "33.0",
+    "697",
+    "2",
+    "Yadadri Bhuvanagiri",
+    "\u0c2f\u0c26\u0c3e\u0c26\u0c4d\u0c30\u0c3f \u0c2d\u0c41\u0c35\u0c28\u0c17\u0c3f\u0c30\u0c3f",
+    "",
+    "000"
+  ],
+  [
+    "Oct 25, 2026, 3:38 AM"
+  ]
+]

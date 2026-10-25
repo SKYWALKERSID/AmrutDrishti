@@ -1,0 +1,16 @@
+{
+  "status": "running",
+  "stage": "validate",
+  "input_fingerprint": "e4c320982691457d3b55ce2e32c7e27cc604d22f6b4261016ae2c0ffd98e2005",
+  "output_hashes": {
+    "data/sources/nwdp_telemetry_raw/nwdp_telemetry_source_registry.json": "5dc18b1a0beb91df3642d4dc33faa2937dc3fc64e81c3977d6ccb97cc21a34e2",
+    "data/derived/nwdp_telemetry_validation_report.json": "0d89c98cbd961c55e21b1aaeab34c8d4d4a120fba9ed0f2f8269dfbcc7fa6c9e",
+    "data/derived/nwdp_telemetry_ingestion_manifest.json": "10a3c7465fe3d10a04710399b18f8f970136377733aeb33cf9cb474e98d1d808",
+    "data/derived/nwdp_telemetry_normalized.json": "dd5af47d628ee11b44f63e3ff66d2a65c30b206754f6efbaac7935daeff64fb7",
+    "data/derived/nwdp_telemetry_quarantine.json": "ee26a804f16f42093e3caeb4227dd7f17b64994c8773c14320f7ccae02ba9fd6",
+    "data/derived/nwdp_telemetry_record_lineage.csv.gz": "173f50aac0061786a77072aa56594192573dcb4a6bb42c7a99deac02ad4ea68d",
+    "data/derived/nwdp_station_block_mapping_evidence.json": "658a3c93ef3c4bcbbca786fb2874f574ed8f48646cae4e0626e0289040e82894",
+    "data/derived/nwdp_block_telemetry_series.json": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+    "audit/canonical_43_blocks_active.json": "cf98d7162fe3cf3c5867ac1fad0c0d8bf160db5526ee4f0d2e62c2b5c8c9e82e"
+  }
+}
