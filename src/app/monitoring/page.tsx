@@ -53,9 +53,24 @@ function MonitoringContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
-  const [selectedState, setSelectedState] = useState<string>('all');
-  const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
-  const [selectedBlockId, setSelectedBlockId] = useState<string>('');
+  const targetStatesAtoZ = useMemo(() => getTargetStatesAlphabetically(), []);
+  const initialFirstState = targetStatesAtoZ[0]?.name || 'Haryana';
+  const initialDistricts = useMemo(() => {
+    return sortDistrictsAlphabetically(
+      ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === initialFirstState)
+    );
+  }, [initialFirstState]);
+  const initialFirstDistrict = initialDistricts[0];
+  const initialBlocks = useMemo(() => {
+    return sortBlocksByName(
+      ACTIVE_TARGET_BLOCKS.filter(b => normalizeStateName(b.state) === initialFirstState && b.districtId === initialFirstDistrict?.id)
+    );
+  }, [initialFirstState, initialFirstDistrict]);
+  const initialFirstBlock = initialBlocks[0];
+
+  const [selectedState, setSelectedState] = useState<string>(initialFirstState);
+  const [selectedDistrictId, setSelectedDistrictId] = useState<string>(initialFirstDistrict?.id || 'all');
+  const [selectedBlockId, setSelectedBlockId] = useState<string>(urlBlockParam || initialFirstBlock?.id || '');
   const [selectedStationId, setSelectedStationId] = useState<string>('all');
   const [selectedDataSource, setSelectedDataSource] = useState<'telemetry' | 'cgwb_manual'>('telemetry');
   const [telemetryStationsList, setTelemetryStationsList] = useState<Array<{
@@ -130,8 +145,16 @@ function MonitoringContent() {
                   setSelectedState(target.state);
                   setSelectedDistrictId(target.districtId);
                 }
+              } else if (!selectedBlockId) {
+                // Default to very first alphabetical state, district, and block
+                setSelectedState(initialFirstState);
+                if (initialFirstDistrict) {
+                  setSelectedDistrictId(initialFirstDistrict.id);
+                }
+                if (initialFirstBlock) {
+                  setSelectedBlockId(initialFirstBlock.id);
+                }
               }
-              // Notice: Do NOT default to merged[0] or Tikamgarh when no block URL parameter is given.
             }
           }
         }
@@ -167,17 +190,56 @@ function MonitoringContent() {
     return selectedDistrictId === 'all' ? sortBlocksHierarchy(list) : sortBlocksByName(list);
   }, [blocksData, selectedState, selectedDistrictId]);
 
-  // Handle State change: cascade reset child selectors
+  // Handle State change: cascade auto-select first alphabetical district and block
   const handleStateChange = (stateName: string) => {
     setSelectedState(stateName);
-    setSelectedDistrictId('all');
-    setSelectedBlockId('');
+    if (stateName === 'all') {
+      setSelectedDistrictId('all');
+      setSelectedBlockId('');
+      return;
+    }
+    const dists = sortDistrictsAlphabetically(
+      ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === stateName)
+    );
+    if (dists.length > 0) {
+      const firstDist = dists[0];
+      setSelectedDistrictId(firstDist.id);
+      const blks = sortBlocksByName(
+        blocksData.filter(b => normalizeStateName(b.state) === stateName && b.districtId === firstDist.id)
+      );
+      if (blks.length > 0) {
+        setSelectedBlockId(blks[0].id);
+      } else {
+        setSelectedBlockId('');
+      }
+    } else {
+      setSelectedDistrictId('all');
+      setSelectedBlockId('');
+    }
   };
 
-  // Handle District change: cascade reset block selector
+  // Handle District change: cascade auto-select first alphabetical block
   const handleDistrictChange = (distId: string) => {
     setSelectedDistrictId(distId);
-    setSelectedBlockId('');
+    if (distId === 'all') {
+      const blks = sortBlocksHierarchy(
+        blocksData.filter(b => selectedState === 'all' ? isTargetState(b.state) : normalizeStateName(b.state) === selectedState)
+      );
+      if (blks.length > 0) {
+        setSelectedBlockId(blks[0].id);
+      } else {
+        setSelectedBlockId('');
+      }
+      return;
+    }
+    const blks = sortBlocksByName(
+      blocksData.filter(b => b.districtId === distId)
+    );
+    if (blks.length > 0) {
+      setSelectedBlockId(blks[0].id);
+    } else {
+      setSelectedBlockId('');
+    }
   };
 
   // Derived telemetry stations matching selected state and district
