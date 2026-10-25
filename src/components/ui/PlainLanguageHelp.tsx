@@ -77,6 +77,7 @@ interface WhatAmILookingAtProps {
   recentAndReliable?: string;
   nextSteps?: string;
   initiallyOpen?: boolean;
+  className?: string;
 }
 
 /**

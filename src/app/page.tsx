@@ -109,6 +109,20 @@ export default function LandingPage() {
                 Open State &amp; District Overview →
               </Link>
             </div>
+
+            {/* Quick Plain-Language Guide: Fitted neatly inside hero alongside image */}
+            <div className="pt-2 border-t border-border/70">
+              <WhatAmILookingAt
+                title="💡 Quick Guide: How to Use JalDrishti (5 Plain-Language Answers)"
+                what="A national groundwater monitoring platform that combines measurements from government observation wells with satellite images and rainfall records."
+                meaning="It tells you how deep water is below the ground in your block, whether water reserves are dropping compared to past years, and where rainfall was deficient."
+                whyCare="If well levels are falling and monsoon rain was low, shallow drinking water wells and crop irrigation could run dry months before the next rains arrive."
+                recentAndReliable="Observations come directly from official Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Every page shows the exact date of observation."
+                nextSteps="1. Use the Map Explorer to check your district. 2. Look at the 3-month forecast. 3. Review suggested check dams, ponds, and recharge shafts in the Solutions workspace."
+                initiallyOpen={true}
+                className="my-2"
+              />
+            </div>
           </div>
 
           {/* Right Column: Authentic DWLR Telemetry Station Image */}
@@ -128,17 +142,6 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
-
-        {/* 5-Question Guide Card: Making the Platform Self-Explanatory */}
-        <WhatAmILookingAt
-          title="💡 Quick Guide: How to Use JalDrishti (5 Plain-Language Answers)"
-          what="A national groundwater monitoring platform that combines measurements from government observation wells with satellite images and rainfall records."
-          meaning="It tells you how deep water is below the ground in your block, whether water reserves are dropping compared to past years, and where rainfall was deficient."
-          whyCare="If well levels are falling and monsoon rain was low, shallow drinking water wells and crop irrigation could run dry months before the next rains arrive."
-          recentAndReliable="Observations come directly from official Central Ground Water Board (CGWB) digital recorders and IMD weather stations. Every page shows the exact date of observation."
-          nextSteps="1. Use the Map Explorer to check your district. 2. Look at the 3-month forecast. 3. Review suggested check dams, ponds, and recharge shafts in the Solutions workspace."
-          initiallyOpen={true}
-        />
 
         {/* Where Our Information Comes From: Sky to Underground (Clean DBIM Subheadings & Editorial 2-Column Schematic) */}
         <div className="pt-6 border-t border-border space-y-6">
