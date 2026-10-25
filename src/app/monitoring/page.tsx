@@ -32,6 +32,22 @@ interface HistoricalPoint {
   wellDepth: number;
 }
 
+interface RawObservation {
+  station_id: string;
+  station_name: string;
+  district_id: string;
+  district_name: string;
+  block_id: string;
+  block_name: string;
+  observation_date: string;
+  water_level_mbgl: number | null;
+  unit: string;
+  quality_flag?: string;
+  source_name?: string;
+  source_provider?: string;
+  source_resource_url?: string;
+}
+
 function MonitoringContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
@@ -39,12 +55,14 @@ function MonitoringContent() {
   const [selectedState, setSelectedState] = useState<string>('all');
   const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
   const [selectedBlockId, setSelectedBlockId] = useState<string>('');
+  const [selectedStationId, setSelectedStationId] = useState<string>('all');
   const [blocksData, setBlocksData] = useState<BlockData[]>(ACTIVE_TARGET_BLOCKS);
   const [dataSourceInfo, setDataSourceInfo] = useState<{ source: string; isDemonstration: boolean; errorMessage?: string }>({
     source: 'nationwide_empirical',
     isDemonstration: false
   });
   const [historicalData, setHistoricalData] = useState<HistoricalPoint[]>([]);
+  const [rawObservations, setRawObservations] = useState<RawObservation[]>([]);
   const [obsSource, setObsSource] = useState<'db' | 'local_archive' | 'none'>('none');
   const [isTimeSeriesLoading, setIsTimeSeriesLoading] = useState<boolean>(true);
   const [forecastData, setForecastData] = useState<any>(null);
@@ -139,6 +157,8 @@ function MonitoringContent() {
     let active = true;
     // Clear stale chart state immediately when selected block changes
     setHistoricalData([]);
+    setRawObservations([]);
+    setSelectedStationId('all');
     setForecastData(null);
     setIsTimeSeriesLoading(true);
     setIsForecastLoading(true);
@@ -146,10 +166,11 @@ function MonitoringContent() {
 
     async function loadTimeSeries() {
       try {
-        const res = await fetch(`/api/historical-observations?block=${encodeURIComponent(selectedBlockId)}&limit=50`);
+        const res = await fetch(`/api/historical-observations?block=${encodeURIComponent(selectedBlockId)}&limit=100`);
         if (res.ok) {
           const json = await res.json();
           if (active && json.observations && Array.isArray(json.observations) && json.observations.length > 0) {
+            setRawObservations(json.observations);
             // Group by observation date and average water levels across stations in this block
             const dateMap = new Map<string, { sum: number; count: number; date: string }>();
             for (const obs of json.observations) {
@@ -181,6 +202,7 @@ function MonitoringContent() {
 
       if (active) {
         setHistoricalData([]);
+        setRawObservations([]);
         setObsSource('none');
         setIsTimeSeriesLoading(false);
       }
@@ -299,6 +321,161 @@ interface RainfallChartPoint {
 
     return points;
   }, [historicalData, forecastData, selectedBlock]);
+
+  // Derived available monitoring stations within the current block
+  const availableStations = useMemo(() => {
+    const map = new Map<string, { id: string; name: string; count: number }>();
+    for (const obs of rawObservations) {
+      if (!obs.station_id) continue;
+      const existing = map.get(obs.station_id);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        map.set(obs.station_id, {
+          id: obs.station_id,
+          name: obs.station_name || obs.station_id,
+          count: 1,
+        });
+      }
+    }
+    return Array.from(map.values()).sort((a, b) => b.count - a.count);
+  }, [rawObservations]);
+
+  // Trend Chart Time Series (2021–2026), linear regression, summary metrics, and forecast targets
+  const trendAnalysisData = useMemo(() => {
+    // 1. Filter observations by selected station (or block-average if 'all')
+    const filtered = rawObservations.filter((obs) => {
+      if (obs.water_level_mbgl === null || isNaN(obs.water_level_mbgl)) return false;
+      if (!obs.observation_date || obs.observation_date < '2021-01-01' || obs.observation_date > '2026-12-31') return false;
+      if (selectedStationId !== 'all' && obs.station_id !== selectedStationId) return false;
+      return true;
+    });
+
+    // 2. Group by date
+    const dateMap = new Map<string, { sum: number; count: number; date: string }>();
+    for (const obs of filtered) {
+      const existing = dateMap.get(obs.observation_date) || { sum: 0, count: 0, date: obs.observation_date };
+      existing.sum += obs.water_level_mbgl!;
+      existing.count += 1;
+      dateMap.set(obs.observation_date, existing);
+    }
+
+    const sortedObs = Array.from(dateMap.values())
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .map((item) => ({
+        date: item.date,
+        depthMbgl: Number((item.sum / item.count).toFixed(2)),
+      }));
+
+    // 3. Compute Summary Metrics (net change, annualized rate)
+    const validCount = sortedObs.length;
+    const firstObs = validCount > 0 ? sortedObs[0] : null;
+    const lastObs = validCount > 0 ? sortedObs[validCount - 1] : null;
+    const netChangeM = firstObs && lastObs ? Number((lastObs.depthMbgl - firstObs.depthMbgl).toFixed(2)) : null;
+
+    let annualizedRateM: number | null = null;
+    let spanYears = 0;
+    if (firstObs && lastObs && firstObs.date !== lastObs.date) {
+      const msDiff = Date.parse(lastObs.date) - Date.parse(firstObs.date);
+      spanYears = msDiff / (365.25 * 24 * 3600 * 1000);
+      if (spanYears >= 0.5) {
+        annualizedRateM = Number((netChangeM! / spanYears).toFixed(2));
+      }
+    }
+
+    // 4. Ordinary Least Squares (OLS) Linear Trend Line (only when >= 3 points across >= 6 months)
+    let slope = 0;
+    let intercept = 0;
+    const canComputeTrend = validCount >= 3 && spanYears >= 0.5;
+    if (canComputeTrend) {
+      const t0 = Date.parse(firstObs!.date);
+      const points = sortedObs.map((o) => ({
+        t: (Date.parse(o.date) - t0) / (365.25 * 24 * 3600 * 1000), // years from t0
+        y: o.depthMbgl,
+      }));
+      const n = points.length;
+      let sumT = 0;
+      let sumY = 0;
+      let sumTY = 0;
+      let sumT2 = 0;
+      for (const p of points) {
+        sumT += p.t;
+        sumY += p.y;
+        sumTY += p.t * p.y;
+        sumT2 += p.t * p.t;
+      }
+      const denom = n * sumT2 - sumT * sumT;
+      if (Math.abs(denom) > 1e-9) {
+        slope = (n * sumTY - sumT * sumY) / denom;
+        intercept = (sumY - slope * sumT) / n;
+      }
+    }
+
+    // 5. Build Unified Time Series Chart Points
+    interface TrendChartPoint {
+      date: string;
+      observedDepth: number | null;
+      trendLine: number | null;
+      p10Depth: number | null;
+      forecastDepth: number | null;
+      p90Depth: number | null;
+      isForecastPoint?: boolean;
+      tooltipLabel?: string;
+    }
+
+    const t0 = firstObs ? Date.parse(firstObs.date) : 0;
+    const chartPoints: TrendChartPoint[] = sortedObs.map((o) => {
+      let trendVal: number | null = null;
+      if (canComputeTrend) {
+        const tYear = (Date.parse(o.date) - t0) / (365.25 * 24 * 3600 * 1000);
+        trendVal = Number((intercept + slope * tYear).toFixed(2));
+      }
+      return {
+        date: o.date,
+        observedDepth: o.depthMbgl,
+        trendLine: trendVal,
+        p10Depth: null,
+        forecastDepth: null,
+        p90Depth: null,
+        isForecastPoint: false,
+      };
+    });
+
+    // 6. Integrate Forecast 90-day and 180-day target points (isolated points, no fabricated interpolation)
+    if (forecastData?.forecasts && Array.isArray(forecastData.forecasts)) {
+      for (const fc of forecastData.forecasts) {
+        const horizonDays = fc.forecastHorizonDays ?? (fc.forecastHorizonMonths ? fc.forecastHorizonMonths * 30 : (fc.horizonQuarter * 90));
+        if (horizonDays === 90 || horizonDays === 180) {
+          const targetDate = fc.targetDate || fc.targetSeason;
+          chartPoints.push({
+            date: targetDate,
+            observedDepth: null,
+            trendLine: null,
+            p10Depth: fc.uncertaintyInterval?.lowerBoundP10Mbgl ?? null,
+            forecastDepth: fc.expectedDepthMbgl ?? null,
+            p90Depth: fc.uncertaintyInterval?.upperBoundP90Mbgl ?? null,
+            isForecastPoint: true,
+            tooltipLabel: `${horizonDays}-Day Target (${fc.targetSeason})`,
+          });
+        }
+      }
+    }
+
+    // Sort all points chronologically
+    chartPoints.sort((a, b) => a.date.localeCompare(b.date));
+
+    return {
+      chartPoints,
+      validCount,
+      firstObs,
+      lastObs,
+      netChangeM,
+      annualizedRateM,
+      spanYears,
+      canComputeTrend,
+      slope,
+    };
+  }, [rawObservations, selectedStationId, forecastData]);
 
   // Seasonal Monsoon Rainfall & Deviation aligned by date and LPA baseline
   const rainfallChartData = useMemo<RainfallChartPoint[]>(() => {
@@ -790,6 +967,275 @@ interface RainfallChartPoint {
               </p>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Groundwater Historical Trend & Forecast Context (2021–2026) Module */}
+      <div id="historical-trend-analysis" className="pt-8 border-t border-border space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 border-b border-border">
+          <div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
+                <ActivityChartIcon className="w-4 h-4 text-primary" />
+                Groundwater Historical Trend &amp; Forecast Context (2021–2026)
+              </h2>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-subtle border border-border text-text-muted">
+                Observed Depth &amp; Empirical Projection
+              </span>
+            </div>
+            <p className="text-xs text-text-muted mt-1">
+              Evaluates groundwater depth records across the 2021–2026 monitoring window. Distinguishes verified in-situ observation history from statistical trend estimation and genuine 90-day / 180-day ML projections.
+            </p>
+            <p className="text-[11px] text-text-muted mt-0.5">
+              <strong>Groundwater Depth Interpretation:</strong> Measured in metres below ground level (<span className="font-mono">m bgl</span>). A higher value indicates the water table has deepened further underground; a lower value indicates the water table has risen closer to the ground surface.
+            </p>
+          </div>
+
+          {/* Station Filter Dropdown */}
+          <div className="flex items-center gap-2 shrink-0 self-start sm:self-auto">
+            <span className="text-xs text-text-muted font-medium">Monitoring Station:</span>
+            <select
+              value={selectedStationId}
+              onChange={(e) => setSelectedStationId(e.target.value)}
+              className="text-xs bg-subtle border border-border rounded px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer max-w-[200px]"
+            >
+              <option value="all">
+                Block Aggregation ({availableStations.length} {availableStations.length === 1 ? 'Station' : 'Stations'})
+              </option>
+              {availableStations.map((stn) => (
+                <option key={stn.id} value={stn.id}>
+                  {stn.name} ({stn.count} {stn.count === 1 ? 'obs' : 'obs'})
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Summary Metrics Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border border border-border bg-surface text-center text-xs">
+          <div className="p-3">
+            <span className="text-[10px] text-text-muted font-semibold block uppercase">Earliest Record</span>
+            <span className="text-sm font-bold text-text-main">
+              {trendAnalysisData.firstObs ? `${trendAnalysisData.firstObs.depthMbgl} m bgl` : '—'}
+            </span>
+            <span className="block text-[10px] text-text-muted mt-0.5">
+              {trendAnalysisData.firstObs?.date || 'No observations'}
+            </span>
+          </div>
+
+          <div className="p-3">
+            <span className="text-[10px] text-text-muted font-semibold block uppercase">Latest Record</span>
+            <span className="text-sm font-bold text-text-main">
+              {trendAnalysisData.lastObs ? `${trendAnalysisData.lastObs.depthMbgl} m bgl` : '—'}
+            </span>
+            <span className="block text-[10px] text-text-muted mt-0.5">
+              {trendAnalysisData.lastObs?.date || 'No observations'}
+            </span>
+          </div>
+
+          <div className="p-3">
+            <span className="text-[10px] text-text-muted font-semibold block uppercase">Observed Net Change</span>
+            <span className={`text-sm font-bold ${
+              trendAnalysisData.netChangeM === null ? 'text-text-main' : trendAnalysisData.netChangeM > 0 ? 'text-red-700' : trendAnalysisData.netChangeM < 0 ? 'text-emerald-700' : 'text-text-main'
+            }`}>
+              {trendAnalysisData.netChangeM !== null
+                ? `${trendAnalysisData.netChangeM > 0 ? '+' : ''}${trendAnalysisData.netChangeM} m`
+                : '—'}
+            </span>
+            <span className="block text-[10px] text-text-muted mt-0.5">
+              {trendAnalysisData.netChangeM !== null
+                ? (trendAnalysisData.netChangeM > 0 ? 'Water table deepened' : trendAnalysisData.netChangeM < 0 ? 'Water table rose' : 'No net change')
+                : 'Insufficient span'}
+            </span>
+          </div>
+
+          <div className="p-3">
+            <span className="text-[10px] text-text-muted font-semibold block uppercase">Annualized Rate &amp; Data Span</span>
+            <span className={`text-sm font-bold ${
+              trendAnalysisData.annualizedRateM === null ? 'text-text-main' : trendAnalysisData.annualizedRateM > 0 ? 'text-red-700' : trendAnalysisData.annualizedRateM < 0 ? 'text-emerald-700' : 'text-text-main'
+            }`}>
+              {trendAnalysisData.annualizedRateM !== null
+                ? `${trendAnalysisData.annualizedRateM > 0 ? '+' : ''}${trendAnalysisData.annualizedRateM} m/yr`
+                : '—'}
+            </span>
+            <span className="block text-[10px] text-text-muted mt-0.5">
+              {trendAnalysisData.validCount} valid {trendAnalysisData.validCount === 1 ? 'obs' : 'obs'} ({trendAnalysisData.spanYears.toFixed(1)} yrs)
+            </span>
+          </div>
+        </div>
+
+        {/* Trend Warning / Notice banner */}
+        {!trendAnalysisData.canComputeTrend && (
+          <div className="p-3 bg-subtle border-l-2 border-primary/60 text-xs text-text-muted flex items-start gap-2">
+            <InfoIcon className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+            <span>
+              <strong>Trend Estimation Limitation:</strong> Statistical regression trend lines require at least 3 valid observations spanning 6 months or more. Available points are displayed without an artificial trend curve.
+            </span>
+          </div>
+        )}
+
+        {/* Interactive Time Series Chart */}
+        <div className="h-80 w-full">
+          {isTimeSeriesLoading ? (
+            <div className="h-full w-full bg-subtle/40 flex items-center justify-center animate-pulse">
+              <span className="text-xs text-text-muted">Loading 2021–2026 historical records...</span>
+            </div>
+          ) : trendAnalysisData.chartPoints.length > 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={trendAnalysisData.chartPoints} margin={{ top: 15, right: 25, left: -5, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={CHART_COLORS.grid} />
+                <XAxis dataKey="date" tick={{ fontSize: 11, fill: CHART_COLORS.axisText }} />
+                <YAxis
+                  tick={{ fontSize: 11, fill: CHART_COLORS.axisText }}
+                  label={{ value: 'Well Depth (m bgl)', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fontSize: 10, fill: CHART_COLORS.axisText }, offset: 15 }}
+                />
+                <Tooltip
+                  content={({ active, payload, label }) => {
+                    if (!active || !payload || !payload.length) return null;
+                    const pt = payload[0]?.payload;
+                    return (
+                      <div className="bg-surface border border-border p-2.5 rounded shadow-sm text-xs space-y-1">
+                        <div className="font-bold text-text-main border-b border-border/60 pb-1">
+                          Date: {label}
+                        </div>
+                        {pt.observedDepth !== null && (
+                          <div className="text-text-main flex items-center justify-between gap-3">
+                            <span className="flex items-center gap-1.5">
+                              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: CHART_COLORS.wellDepth }} />
+                              Observed Depth:
+                            </span>
+                            <span className="font-mono font-bold">{pt.observedDepth} m bgl</span>
+                          </div>
+                        )}
+                        {pt.trendLine !== null && (
+                          <div className="text-text-muted flex items-center justify-between gap-3">
+                            <span className="flex items-center gap-1.5">
+                              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: CHART_COLORS.statisticalTrend }} />
+                              Statistical Trend:
+                            </span>
+                            <span className="font-mono">{pt.trendLine} m bgl</span>
+                          </div>
+                        )}
+                        {pt.forecastDepth !== null && (
+                          <div className="text-red-700 flex items-center justify-between gap-3 border-t border-border/40 pt-1">
+                            <span className="flex items-center gap-1.5 font-semibold">
+                              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: CHART_COLORS.forecastProjection }} />
+                              {pt.tooltipLabel || 'ML Projection'}:
+                            </span>
+                            <span className="font-mono font-bold">{pt.forecastDepth} m bgl</span>
+                          </div>
+                        )}
+                        {pt.p10Depth !== null && pt.p90Depth !== null && (
+                          <div className="text-[10px] text-text-muted flex justify-between gap-2">
+                            <span>P10–P90 Range:</span>
+                            <span className="font-mono">[{pt.p10Depth} – {pt.p90Depth}] m bgl</span>
+                          </div>
+                        )}
+                        {pt.isForecastPoint && (
+                          <div className="text-[10px] text-amber-800 pt-0.5 border-t border-border/40">
+                            Model: {forecastData?.modelIdentifier || 'GlobalBlockAwareQuantileGB-v1'} (Retrospective)
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }}
+                />
+                <Legend wrapperStyle={{ fontSize: '11px' }} />
+
+                {/* 1. Historical Observed Well Depths */}
+                <Line
+                  type="monotone"
+                  dataKey="observedDepth"
+                  name="Verified Observed Depth (m bgl)"
+                  stroke={CHART_COLORS.wellDepth}
+                  strokeWidth={2}
+                  dot={{ r: 4, fill: CHART_COLORS.wellDepth }}
+                  connectNulls={false}
+                />
+
+                {/* 2. Statistical Trend Line (Linear Regression) */}
+                {trendAnalysisData.canComputeTrend && (
+                  <Line
+                    type="linear"
+                    dataKey="trendLine"
+                    name="Statistical Historical Trend (m bgl)"
+                    stroke={CHART_COLORS.statisticalTrend}
+                    strokeWidth={1.5}
+                    strokeDasharray="4 4"
+                    dot={false}
+                    connectNulls={true}
+                  />
+                )}
+
+                {/* 3. Real 90d/180d Forecast Target Points (isolated, visually distinct from history) */}
+                <Line
+                  type="monotone"
+                  dataKey="forecastDepth"
+                  name="ML Forecast Target [90d & 180d] (m bgl)"
+                  stroke={CHART_COLORS.forecastProjection}
+                  strokeWidth={0}
+                  dot={{ r: 6, fill: CHART_COLORS.forecastProjection, stroke: CHART_COLORS.tooltipBg, strokeWidth: 1.5 }}
+                  connectNulls={false}
+                />
+
+                {/* 4. P10 & P90 Uncertainty Interval bounds */}
+                <Line
+                  type="monotone"
+                  dataKey="p10Depth"
+                  name="P10 Lower Bound (m bgl)"
+                  stroke={CHART_COLORS.forecastProjection}
+                  strokeWidth={1}
+                  strokeDasharray="2 2"
+                  dot={{ r: 3, fill: CHART_COLORS.forecastProjection }}
+                  connectNulls={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="p90Depth"
+                  name="P90 Upper Bound (m bgl)"
+                  stroke={CHART_COLORS.forecastProjection}
+                  strokeWidth={1}
+                  strokeDasharray="2 2"
+                  dot={{ r: 3, fill: CHART_COLORS.forecastProjection }}
+                  connectNulls={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="h-full w-full bg-subtle/30 border border-dashed border-border flex flex-col items-center justify-center p-6 text-center space-y-2">
+              <ActivityChartIcon className="w-8 h-8 text-text-muted/60" />
+              <p className="text-xs font-semibold text-text-main">No Observations Available for Selected Filter</p>
+              <p className="text-[11px] text-text-muted max-w-xs">
+                No verified records were found for the selected geographic unit within the 2021–2026 monitoring window.
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Plain-Language Observed Trend Interpretation */}
+        <div className="bg-subtle/70 border border-border/80 rounded p-3 text-xs space-y-1">
+          <span className="font-semibold text-text-main flex items-center gap-1.5">
+            <InfoIcon className="w-3.5 h-3.5 text-primary" /> Plain-Language Interpretation:
+          </span>
+          <p className="text-text-muted leading-relaxed">
+            {(() => {
+              if (trendAnalysisData.validCount === 0) {
+                return 'No historical observations are currently recorded for this filter in the 2021–2026 monitoring window.';
+              }
+              if (trendAnalysisData.validCount === 1) {
+                return `A single observation of ${trendAnalysisData.firstObs?.depthMbgl} m bgl is recorded on ${trendAnalysisData.firstObs?.date}. Single-point observations describe a point-in-time water level and cannot be interpreted as a multi-year trajectory.`;
+              }
+              const net = trendAnalysisData.netChangeM!;
+              const dir = net > 0.5 ? 'deepened significantly (aquifer depletion)' : net < -0.5 ? 'risen closer to the surface (recharge)' : 'remained relatively steady';
+              const annualizedText = trendAnalysisData.annualizedRateM !== null
+                ? ` with an average annualized change rate of ${trendAnalysisData.annualizedRateM > 0 ? '+' : ''}${trendAnalysisData.annualizedRateM} m/year`
+                : '';
+              const forecastNote = forecastData?.forecasts && forecastData.forecasts.length > 0
+                ? ` The ML model projects the next 90-day target at ${forecastData.forecasts[0]?.expectedDepthMbgl ?? '—'} m bgl and 180-day target at ${forecastData.forecasts[1]?.expectedDepthMbgl ?? '—'} m bgl relative to the origin date (${forecastData.latestObservationDate || 'verified record'}).`
+                : ' Forward forecast targets are currently unavailable for this unit.';
+              return `Between ${trendAnalysisData.firstObs?.date} and ${trendAnalysisData.lastObs?.date}, the monitored groundwater depth shifted from ${trendAnalysisData.firstObs?.depthMbgl} m bgl to ${trendAnalysisData.lastObs?.depthMbgl} m bgl (net change: ${net > 0 ? '+' : ''}${net} m). Across this time span, the water table has ${dir}${annualizedText}.${forecastNote}`;
+            })()}
+          </p>
         </div>
       </div>
 

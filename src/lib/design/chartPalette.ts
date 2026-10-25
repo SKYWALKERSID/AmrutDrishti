@@ -22,6 +22,7 @@ export const CHART_COLORS = {
   wellDepth: 'var(--data-observed-well)',
   satelliteTwsa: 'var(--data-satellite-twsa)',
   forecastProjection: 'var(--data-forecast-projection)',
+  statisticalTrend: 'var(--data-statistical-trend)',
   rainfallObserved: 'var(--data-rainfall-precip)',
   rainfallBaseline: 'var(--data-rainfall-baseline)',
   deviationDeficit: 'var(--status-error)',

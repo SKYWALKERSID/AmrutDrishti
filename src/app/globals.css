@@ -68,6 +68,7 @@
   --data-rainfall-baseline: #64748b; /* Neutral LPA Slate */
   --data-sentinel-ndvi: #16a34a; /* Vegetation Green */
   --data-forecast-projection: #dc3545; /* ML projection and its P10/P90 bounds. Same value as --status-error but a separate token so a forecast series is not semantically tied to an error state. */
+  --data-statistical-trend: #916100; /* Accessible warm amber/bronze for statistical historical regression line, kept distinct from physical forecast */
 }
 
 body {
