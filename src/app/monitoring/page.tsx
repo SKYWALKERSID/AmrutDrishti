@@ -170,7 +170,7 @@ function MonitoringContent() {
 
             if (active) {
               setHistoricalData(chartPoints);
-              setObsSource(json.source === 'local_verified_cgwb_archive' ? 'local_archive' : 'db');
+              setObsSource((json.source === 'local_verified_cgwb_archive' || json.source === 'local_processed_observation_archive') ? 'local_archive' : 'db');
             }
             return;
           }
@@ -753,7 +753,7 @@ interface RainfallChartPoint {
           {rainfallChartData.length > 0 && (
             <div className="grid grid-cols-3 divide-x divide-border border-y border-border py-3 text-center text-xs">
               <div className="px-2">
-                <span className="text-[10px] text-text-muted font-semibold block uppercase">Observed Total</span>
+                <span className="text-[10px] text-text-muted font-semibold block uppercase">Estimated Total</span>
                 <span className="text-base font-bold text-text-main">{rainfallChartData[0].observedMm} mm</span>
               </div>
               <div className="px-2">
@@ -761,7 +761,7 @@ interface RainfallChartPoint {
                 <span className="text-base font-bold text-text-main">{rainfallChartData[0].normalLpaMm} mm</span>
               </div>
               <div className="px-2">
-                <span className="text-[10px] text-text-muted font-semibold block uppercase">Deviation &amp; SPI</span>
+                <span className="text-[10px] text-text-muted font-semibold block uppercase">Stored Anomaly &amp; SPI</span>
                 <span className={`text-base font-bold ${rainfallChartData[0].deviationMm < 0 ? 'text-red-700' : 'text-emerald-700'}`}>
                   {rainfallChartData[0].deviationMm > 0 ? '+' : ''}{rainfallChartData[0].deviationMm} mm
                   {selectedBlock?.indicators.spi3Month !== null && ` (SPI: ${selectedBlock?.indicators.spi3Month})`}
@@ -771,7 +771,7 @@ interface RainfallChartPoint {
           )}
 
           <p className="text-xs text-text-muted">
-            Seasonal monsoon rainfall (Jun–Sep) compared with the state 30-year Long Period Average (LPA, 1991–2020). The observed total shown here is calculated in the app as the state LPA reference value plus the stored rainfall difference for this block; it is not a separately measured block total. Only one season is shown.
+            Monsoon rainfall indicators: The primary evidence is the stored block rainfall anomaly ({rainfallChartData[0]?.deviationMm !== undefined ? `${rainfallChartData[0].deviationMm > 0 ? '+' : ''}${rainfallChartData[0].deviationMm} mm` : 'N/A'}) compared against the state 30-year Long Period Average (LPA, 1991–2020) baseline of {rainfallChartData[0]?.normalLpaMm ?? 800} mm. Note: The &quot;Estimated Total&quot; ({rainfallChartData[0]?.observedMm ?? 'N/A'} mm) is derived by combining the state normal with the block anomaly; direct raingauge daily accumulation is aggregated separately.
           </p>
 
           {/* Plain-Language Citizen Takeaway for Chart 2 */}

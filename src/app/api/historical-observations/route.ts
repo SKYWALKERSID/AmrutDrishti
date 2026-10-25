@@ -100,7 +100,8 @@ export async function GET(request: NextRequest) {
       if (from) query = query.gte('observation_date', from);
       if (to) query = query.lte('observation_date', to);
       const { data, error, count } = await query;
-      return { data, error, count };
+      const validData = Array.isArray(data) ? data.filter(isSourceResourceConsistent) : data;
+      return { data: validData, error, count: count ?? (validData ? validData.length : 0) };
     },
     loadLocal: block ? async () => {
       const { getTrustedBlockObservations } = await import('@/lib/services/trustedObservationProvider');
