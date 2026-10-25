@@ -13,10 +13,31 @@ const ACTIVE_STATES = new Set([
 ]);
 
 function serviceConfig() {
-  const baseUrl = process.env.JALDRISHTI_MODEL_SERVICE_URL;
-  const token = process.env.JALDRISHTI_MODEL_SERVICE_TOKEN;
-  if (!baseUrl || !token || !/^https?:\/\//.test(baseUrl)) return null;
-  return { baseUrl: baseUrl.replace(/\/$/, ''), token };
+  const customUrl = process.env.JALDRISHTI_MODEL_SERVICE_URL?.trim();
+  const token = process.env.JALDRISHTI_MODEL_SERVICE_TOKEN?.trim();
+  if (!token) return null;
+
+  if (customUrl && /^https?:\/\//.test(customUrl)) {
+    return {
+      baseUrl: customUrl.replace(/\/$/, ''),
+      token,
+      isVercelDirect: false,
+    };
+  }
+
+  // On Vercel, route internally to the station_forecast serverless function
+  const host = (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim())
+    || process.env.VERCEL_URL?.trim();
+
+  if (host) {
+    return {
+      baseUrl: `https://${host}/api/station_forecast`,
+      token,
+      isVercelDirect: true,
+    };
+  }
+
+  return null;
 }
 
 function unavailable(reason: string, status = 503) {
@@ -34,7 +55,11 @@ export async function GET(request: NextRequest) {
   const isListRequest = request.nextUrl.searchParams.get('stations') === 'true';
   if (isListRequest) {
     try {
-      const response = await fetch(`${config.baseUrl}/v1/station-forecast/stations`, {
+      const listUrl = config.isVercelDirect
+        ? `${config.baseUrl}?stations=true`
+        : `${config.baseUrl}/v1/station-forecast/stations`;
+
+      const response = await fetch(listUrl, {
         headers: { Authorization: `Bearer ${config.token}` },
         cache: 'no-store', signal: AbortSignal.timeout(TIMEOUT_MS),
       });
@@ -54,9 +79,13 @@ export async function GET(request: NextRequest) {
   const state = stationId.split('::', 1)[0];
   if (!ACTIVE_STATES.has(state)) return NextResponse.json({ status: 'unavailable', reason: 'station_outside_active_scope', operationalEligibility: false }, { status: 404 });
   const horizonParam = request.nextUrl.searchParams.get('horizonDays');
-  const horizonDays = horizonParam === '7' ? 7 : (horizonParam === '180' ? 180 : 90);
+  const horizonDays = horizonParam === '180' ? 180 : 90;
   try {
-    const response = await fetch(`${config.baseUrl}/v1/station-forecast`, {
+    const postUrl = config.isVercelDirect
+      ? config.baseUrl
+      : `${config.baseUrl}/v1/station-forecast`;
+
+    const response = await fetch(postUrl, {
       method: 'POST', cache: 'no-store',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${config.token}` },
       body: JSON.stringify({ stationId, horizonDays }),

@@ -3,7 +3,7 @@ const VARIABLE = "Groundwater Level Telemetry 6 Hourly (meter)";
 export function isValidExperimentalStationList(value: unknown): value is {
   status: "available";
   operationalEligibility: false;
-  stations: Array<{ stationId: string; state: string; district: string; stationName: string; latestDate: string; horizonDays: 7 }>;
+  stations: Array<{ stationId: string; state: string; district: string; stationName: string; latestDate: string; horizonDays: number[] | number }>;
 } {
   if (!value || typeof value !== "object") return false;
   const response = value as Record<string, unknown>;
@@ -11,9 +11,11 @@ export function isValidExperimentalStationList(value: unknown): value is {
   return response.stations.every((item) => {
     if (!item || typeof item !== "object") return false;
     const station = item as Record<string, unknown>;
+    const h = station.horizonDays;
+    const validH = Array.isArray(h) ? h.every((x) => typeof x === 'number') : typeof h === 'number';
     return typeof station.stationId === "string" && station.stationId.split("::").length === 3
       && typeof station.state === "string" && typeof station.district === "string"
-      && typeof station.stationName === "string" && isDate(station.latestDate) && station.horizonDays === 7;
+      && typeof station.stationName === "string" && isDate(station.latestDate) && validH;
   });
 }
 

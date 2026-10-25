@@ -88,5 +88,7 @@ docs/archive/
 ml/artifacts/*.joblib
 # Required by the Vercel Python inference function (629 KB, listed in ml/artifacts/manifest.json)
 !ml/artifacts/global_block_aware_qgb_v1.joblib
+# Required for live 90d/180d NWDP station forecasts on Vercel (6.93 MB)
+!ml/artifacts/nwdp_station_horizon_model.joblib
 ml/models/
 
