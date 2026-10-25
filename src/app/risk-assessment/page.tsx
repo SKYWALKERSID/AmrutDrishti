@@ -41,6 +41,23 @@ function RiskAssessmentContent() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [forecastData, setForecastData] = useState<BlockForecastResponse | null>(null);
   const [isForecastLoading, setIsForecastLoading] = useState<boolean>(true);
+
+  // Forward-Looking Station Forecast Pipeline State (/api/station-forecast)
+  const [telemetryStationsList, setTelemetryStationsList] = useState<Array<{
+    stationId: string;
+    state: string;
+    district: string;
+    stationName: string;
+    latestDate: string;
+    horizonDays: number[] | number;
+  }>>([]);
+  const [selectedStationId, setSelectedStationId] = useState<string>('');
+  const [stationForecast90, setStationForecast90] = useState<any | null>(null);
+  const [stationForecast180, setStationForecast180] = useState<any | null>(null);
+  const [isStationForecastLoading, setIsStationForecastLoading] = useState<boolean>(false);
+  const [stationForecastError, setStationForecastError] = useState<string | null>(null);
+  const [showHistoricalBenchmark, setShowHistoricalBenchmark] = useState<boolean>(false);
+
   const [overrideReason, setOverrideReason] = useState<string>('');
   const [overrideSeverity, setOverrideSeverity] = useState<RiskSeverity>('severe');
   const [overrideApplied, setOverrideApplied] = useState<boolean>(false);
@@ -79,7 +96,110 @@ function RiskAssessmentContent() {
     };
   }, [urlBlockParam]);
 
-  // Load Machine Learning Forecast for selected block from verified forecast API
+  // Load Telemetry Stations List once
+  useEffect(() => {
+    let active = true;
+    fetch('/api/station-forecast?stations=true')
+      .then(res => res.json())
+      .then(data => {
+        if (!active) return;
+        if (data.status === 'available' && Array.isArray(data.stations)) {
+          setTelemetryStationsList(data.stations);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Filter stations compatible with currently selected geography
+  const compatibleStations = useMemo(() => {
+    if (!telemetryStationsList.length) return [];
+    const block = blocksData.find(b => b.id === selectedBlockId);
+    const targetState = block ? normalizeStateName(block.state) : (selectedState !== 'all' ? selectedState : null);
+    const targetDistrict = block?.districtName || null;
+
+    if (!targetState) {
+      return telemetryStationsList;
+    }
+
+    // 1. Try exact district match within state
+    if (targetDistrict) {
+      const distMatch = telemetryStationsList.filter(s =>
+        normalizeStateName(s.state).toLowerCase() === targetState.toLowerCase() &&
+        s.district.trim().toLowerCase() === targetDistrict.trim().toLowerCase()
+      );
+      if (distMatch.length > 0) return distMatch;
+    }
+
+    // 2. Fall back to state-level stations
+    return telemetryStationsList.filter(s =>
+      normalizeStateName(s.state).toLowerCase() === targetState.toLowerCase()
+    );
+  }, [telemetryStationsList, selectedBlockId, selectedState, blocksData]);
+
+  // Sync selectedStationId when compatible stations change
+  useEffect(() => {
+    if (compatibleStations.length > 0) {
+      if (!selectedStationId || !compatibleStations.some(s => s.stationId === selectedStationId)) {
+        setSelectedStationId(compatibleStations[0].stationId);
+      }
+    } else {
+      setSelectedStationId('');
+    }
+  }, [compatibleStations, selectedStationId]);
+
+  // Load Forward-Looking Station Forecasts (90-day & 180-day) from /api/station-forecast
+  useEffect(() => {
+    if (!selectedStationId) {
+      setStationForecast90(null);
+      setStationForecast180(null);
+      setIsStationForecastLoading(false);
+      setStationForecastError(null);
+      return;
+    }
+    let active = true;
+    setIsStationForecastLoading(true);
+    setStationForecastError(null);
+
+    Promise.allSettled([
+      fetch(`/api/station-forecast?stationId=${encodeURIComponent(selectedStationId)}&horizonDays=90`).then(r => r.json()),
+      fetch(`/api/station-forecast?stationId=${encodeURIComponent(selectedStationId)}&horizonDays=180`).then(r => r.json())
+    ]).then(([res90, res180]) => {
+      if (!active) return;
+      if (res90.status === 'fulfilled' && res90.value.status === 'experimental') {
+        setStationForecast90(res90.value);
+      } else {
+        setStationForecast90(null);
+      }
+      if (res180.status === 'fulfilled' && res180.value.status === 'experimental') {
+        setStationForecast180(res180.value);
+      } else {
+        setStationForecast180(null);
+      }
+      if (
+        (res90.status === 'rejected' || (res90.status === 'fulfilled' && res90.value.status !== 'experimental')) &&
+        (res180.status === 'rejected' || (res180.status === 'fulfilled' && res180.value.status !== 'experimental'))
+      ) {
+        setStationForecastError('Station model output temporarily unavailable or uncalibrated for this station.');
+      }
+    }).catch(() => {
+      if (active) {
+        setStationForecastError('Failed to retrieve station forecast.');
+      }
+    }).finally(() => {
+      if (active) {
+        setIsStationForecastLoading(false);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [selectedStationId]);
+
+  // Load Historical Research Benchmark Forecast for selected block from legacy /api/forecast endpoint
   useEffect(() => {
     if (!selectedBlockId) {
       setForecastData(null);
@@ -564,15 +684,15 @@ function RiskAssessmentContent() {
           </div>
 
           {/* Section 2: Machine Learning Physical Forecast & Model Registry */}
-          <div className="space-y-3 pt-3.5 border-t border-border">
+          <div className="space-y-4 pt-3.5 border-t border-border">
             <div className="border-b border-border pb-2.5 flex flex-col sm:flex-row sm:items-start justify-between gap-2">
               <div>
                 <h2 className="text-base font-bold text-text-main flex items-center gap-2">
                   <ActivityChartIcon className="w-4 h-4 text-primary" />
-                  Machine Learning Physical Depth Forecast (GlobalBlockAwareQuantileGB-v1)
+                  Station Telemetry Physical Depth Forecast (Forward-Looking)
                 </h2>
                 <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
-                  Station-autonomous Quantile Gradient Boosting predicting physical water table depth below ground level (m bgl).
+                  Station-autonomous Quantile Gradient Boosting predicting physical water table depth below ground level (m bgl) directly from verified high-frequency telemetry.
                   The ML model predicts physical water level depth; it does NOT predict a composite stress index.*
                 </p>
               </div>
@@ -581,133 +701,317 @@ function RiskAssessmentContent() {
               </span>
             </div>
 
-            {/* Prominent Demo & Telemetry Compliance Banner */}
-            {forecastData?.isDemonstrationData && (
-              <div className="border-l-4 border-amber-600 bg-amber-50/80 p-2.5 text-xs text-amber-950 space-y-1">
-                <div className="font-bold tracking-wide uppercase flex items-center gap-1.5">
-                  <InfoIcon className="w-3.5 h-3.5 text-amber-700 shrink-0" />
-                  <span>
-                    {forecastData.dataAvailabilityMode === 'verified_live_telemetry'
-                      ? 'EXPERIMENTAL PREDICTION — NOT VERIFIED OR OPERATIONAL'
-                      : forecastData.dataAvailabilityMode === 'adaptive_historical_and_recent'
-                      ? 'MIXED-INPUT EXPERIMENT — NOT VERIFIED OR OPERATIONAL'
-                      : 'HISTORICAL DEMO — EXPERIMENTAL PREDICTION, NOT A CURRENT OPERATIONAL FORECAST'}
-                  </span>
-                </div>
-                <p className="leading-relaxed text-[11px]">
-                  {forecastData.dataAvailabilityMode === 'verified_live_telemetry' || forecastData.dataAvailabilityMode === 'adaptive_historical_and_recent'
-                    ? `Generated from an experimental telemetry input series (${forecastData.observationDatesRange?.startDate || forecastData.observationDatesRange?.earliest || 'earliest'} to ${forecastData.observationDatesRange?.endDate || forecastData.observationDatesRange?.latest || 'latest'}); this is not verified groundwater depth. Model `
-                    : `Generated from authentic historical CGWB series (${forecastData.observationDatesRange?.startDate || forecastData.observationDatesRange?.earliest || 'earliest'} to ${forecastData.observationDatesRange?.endDate || forecastData.observationDatesRange?.latest || 'latest'}) using single global model `}
-                  <span className="font-mono">{forecastData.modelIdentifier}</span>. Operational eligibility is strictly false. P10–P90 intervals are ordered but uncalibrated against localized pumping stress.
-                </p>
+            {/* Geographic Station Selector & Disambiguation Notice */}
+            <div className="p-3 bg-subtle border border-border space-y-2 text-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <label className="font-semibold text-text-main flex items-center gap-1.5">
+                  <FilterIcon className="w-3.5 h-3.5 text-primary" />
+                  <span>Telemetry Monitoring Station ({compatibleStations.length} available in {selectedBlock?.districtName || selectedState}):</span>
+                </label>
+                {compatibleStations.length > 0 && (
+                  <select
+                    value={selectedStationId}
+                    onChange={(e) => setSelectedStationId(e.target.value)}
+                    className="bg-surface border border-border px-2 py-1 text-xs text-text-main font-mono focus:outline-none max-w-full sm:max-w-md"
+                  >
+                    {compatibleStations.map((st) => (
+                      <option key={st.stationId} value={st.stationId}>
+                        {st.district} — {st.stationName} ({st.stationId.split('::')[2]})
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
-            )}
-
-            {/* Model Governance Metadata Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-subtle p-2.5 border border-border">
-              <div>
-                <span className="text-[10px] uppercase font-semibold text-text-muted block">Model Identifier</span>
-                <span className="font-bold text-text-main">{forecastData?.modelIdentifier || (isForecastLoading ? 'Loading...' : 'None')}</span>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-semibold text-text-muted block">Version</span>
-                <span className="font-medium text-text-main">{forecastData?.modelVersion || 'N/A'}</span>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-semibold text-text-muted block">Operational Status</span>
-                <span className="font-medium text-text-main">
-                  {forecastData?.modelStatus === 'research_prototype' ? 'Research Prototype' : forecastData?.modelStatus === 'calibrated_operational' ? 'Operational' : 'Unavailable'}
-                </span>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-semibold text-text-muted block">Statutory Eligibility</span>
-                <span className="font-medium text-text-muted">
-                  {forecastData?.operationalEligibility ? 'Eligible' : 'Non-operational (Research only)'}
-                </span>
+              <div className="text-[11px] text-text-muted leading-relaxed border-t border-border/60 pt-1.5">
+                <span className="font-semibold text-text-main">Station-Level Geographic Coverage Notice: </span>
+                This machine learning forecast is computed specifically for the selected monitoring piezometer/borehole. It represents point-level groundwater depth at this telemetry site. It is <strong className="text-text-main">not an aggregated block-wide spatial average</strong>. Blocks lacking verified telemetry stations do not fabricate synthetic predictions.
               </div>
             </div>
 
-            {/* Forecast Content: Active Multi-Horizon Predictions OR Honest Unavailable State */}
-            {isForecastLoading ? (
+            {/* Station Forecast Content: Live 90-Day & 180-Day Horizons OR Explicit Unavailable State */}
+            {isStationForecastLoading ? (
               <div className="space-y-2.5 animate-pulse p-3.5 bg-subtle/40 border border-border">
                 <div className="h-4 bg-subtle w-1/3"></div>
-                <div className="h-14 bg-subtle w-full"></div>
+                <div className="h-16 bg-subtle w-full"></div>
               </div>
-            ) : forecastData && forecastData.forecasts && forecastData.forecasts.length > 0 ? (
-              <div className="space-y-2.5">
+            ) : compatibleStations.length === 0 ? (
+              <div className="p-3.5 bg-subtle border border-border text-xs text-text-muted space-y-1.5">
+                <div className="font-bold text-text-main flex items-center gap-1.5">
+                  <InfoIcon className="w-4 h-4 text-text-muted" />
+                  <span>ML Depth Forecast Unavailable for this Geography</span>
+                </div>
+                <p className="leading-relaxed">
+                  No verified high-frequency groundwater telemetry station is registered in {selectedBlock?.districtName || selectedBlock?.name || 'this district'} ({selectedBlock?.state || selectedState}).
+                  Predictions are not extrapolated to uncalibrated regions to prevent spurious spatial inference, and JalDrishti does not fall back to stale or unvalidated data when local telemetry is absent.
+                </p>
+                <p className="text-[11px] text-text-muted/80 italic">
+                  The descriptive Groundwater Stress Score (GSS Baseline) in Section 1 continues to provide multi-signal decision support from available observed indicators.
+                </p>
+              </div>
+            ) : (stationForecast90 || stationForecast180) ? (
+              <div className="space-y-3">
+                {/* Station Model Governance Strip */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-subtle p-2.5 border border-border">
+                  <div>
+                    <span className="text-[10px] uppercase font-semibold text-text-muted block">Active Station ID</span>
+                    <span className="font-bold text-text-main font-mono truncate block" title={selectedStationId}>
+                      {selectedStationId.split('::')[2] || selectedStationId}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-semibold text-text-muted block">Observation Origin</span>
+                    <span className="font-bold text-text-main tabular-nums">
+                      {stationForecast90?.originDate || stationForecast180?.originDate || 'N/A'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-semibold text-text-muted block">Model Pipeline</span>
+                    <span className="font-medium text-text-main font-mono text-[11px]">
+                      {stationForecast90?.modelIdentifier || stationForecast180?.modelIdentifier || 'NWDP-Station-Experimental'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-semibold text-text-muted block">Operational Status</span>
+                    <span className="font-medium text-text-muted">
+                      Experimental (P10–P90 Ordered)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Forward Forecast Quantile Horizon Table */}
                 <div className="overflow-x-auto border-t border-b border-border">
                   <table className="w-full text-left text-xs border-collapse dbim-table">
                     <thead>
                       <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
                         <th className="py-2 px-2.5 text-left">Forecast Horizon</th>
-                        <th className="py-2 px-2.5 text-right">Target Period</th>
-                        <th className="py-2 px-2.5 text-right">Expected Depth (m bgl)</th>
+                        <th className="py-2 px-2.5 text-right">Observation Origin</th>
+                        <th className="py-2 px-2.5 text-right">Future Target Date</th>
+                        <th className="py-2 px-2.5 text-right">Predicted Depth (P50)</th>
                         <th className="py-2 px-2.5 text-right">P10–P90 Uncertainty Interval</th>
-                        <th className="py-2 px-2.5 text-right">Baseline Depth</th>
+                        <th className="py-2 px-2.5 text-right">Interval Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {forecastData.forecasts.map((f: ForecastPoint) => {
-                        const horizonDays = f.forecastHorizonDays ?? (f.forecastHorizonMonths ? f.forecastHorizonMonths * 30 : f.horizonQuarter * 90);
-                        const isPrimary = horizonDays === 90 || horizonDays === 180;
-                        return (
-                        <tr key={f.horizonQuarter} className={`hover:bg-subtle/40 transition-colors ${isPrimary ? 'bg-primary/5 font-medium' : ''}`}>
+                      {/* 90-Day Horizon */}
+                      {stationForecast90 && stationForecast90.status === 'experimental' && (
+                        <tr className="hover:bg-subtle/40 transition-colors bg-primary/5 font-medium">
                           <td className="py-2.5 px-2.5">
                             <span className="font-bold text-text-main block">
-                              {horizonDays} Days {isPrimary ? '[Primary Target]' : ''} (Q{f.horizonQuarter} • {f.forecastHorizonMonths || f.horizonQuarter * 3}M)
+                              90 Days [Quarterly Horizon]
                             </span>
-                            <span className="text-[11px] text-text-muted">
-                              {f.uncertaintyInterval.intervalStatus === 'ordered_uncalibrated' ? 'Ordered, uncalibrated' : 'Uncalibrated'}
+                            <span className="text-[11px] font-mono text-text-muted">
+                              {stationForecast90.modelIdentifier}
                             </span>
                           </td>
                           <td className="py-2.5 px-2.5 text-right tabular-nums text-text-main">
-                            {f.targetSeason}
+                            {stationForecast90.originDate}
+                          </td>
+                          <td className="py-2.5 px-2.5 text-right font-bold text-text-main tabular-nums">
+                            {stationForecast90.targetDate}
                           </td>
                           <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
-                            {f.expectedDepthMbgl.toFixed(2)} m bgl
+                            {typeof stationForecast90.prediction?.p50 === 'number'
+                              ? `${stationForecast90.prediction.p50.toFixed(2)} m bgl`
+                              : 'N/A'}
                           </td>
                           <td className="py-2.5 px-2.5 text-right tabular-nums text-text-main">
-                            {f.uncertaintyInterval.lowerBoundP10Mbgl !== null && f.uncertaintyInterval.upperBoundP90Mbgl !== null
-                              ? `[${f.uncertaintyInterval.lowerBoundP10Mbgl.toFixed(2)} – ${f.uncertaintyInterval.upperBoundP90Mbgl.toFixed(2)}] m bgl`
-                              : 'Uncertainty unavailable'}
-                            {f.uncertaintyInterval.intervalWidthM !== null && (
+                            {typeof stationForecast90.prediction?.p10 === 'number' && typeof stationForecast90.prediction?.p90 === 'number'
+                              ? `[${stationForecast90.prediction.p10.toFixed(2)} – ${stationForecast90.prediction.p90.toFixed(2)}] m bgl`
+                              : 'Unavailable'}
+                            {typeof stationForecast90.prediction?.p10 === 'number' && typeof stationForecast90.prediction?.p90 === 'number' && (
                               <span className="block text-[11px] text-text-muted">
-                                Spread: {f.uncertaintyInterval.intervalWidthM} m
+                                Spread: {(stationForecast90.prediction.p90 - stationForecast90.prediction.p10).toFixed(2)} m
                               </span>
                             )}
                           </td>
-                          <td className="py-2.5 px-2.5 text-right tabular-nums text-text-muted">
-                            {f.baselinePersistence?.lastObservationPersistenceMbgl !== null && f.baselinePersistence?.lastObservationPersistenceMbgl !== undefined
-                              ? `${f.baselinePersistence.lastObservationPersistenceMbgl} m bgl`
-                              : 'N/A'}
+                          <td className="py-2.5 px-2.5 text-right text-text-muted text-[11px]">
+                            {stationForecast90.intervalStatus || 'ordered_uncalibrated'}
                           </td>
                         </tr>
-                        );
-                      })}
+                      )}
+
+                      {/* 180-Day Horizon */}
+                      {stationForecast180 && stationForecast180.status === 'experimental' && (
+                        <tr className="hover:bg-subtle/40 transition-colors">
+                          <td className="py-2.5 px-2.5">
+                            <span className="font-bold text-text-main block">
+                              180 Days [Bi-Annual Horizon]
+                            </span>
+                            <span className="text-[11px] font-mono text-text-muted">
+                              {stationForecast180.modelIdentifier}
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-2.5 text-right tabular-nums text-text-main">
+                            {stationForecast180.originDate}
+                          </td>
+                          <td className="py-2.5 px-2.5 text-right font-bold text-text-main tabular-nums">
+                            {stationForecast180.targetDate}
+                          </td>
+                          <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
+                            {typeof stationForecast180.prediction?.p50 === 'number'
+                              ? `${stationForecast180.prediction.p50.toFixed(2)} m bgl`
+                              : 'N/A'}
+                          </td>
+                          <td className="py-2.5 px-2.5 text-right tabular-nums text-text-main">
+                            {typeof stationForecast180.prediction?.p10 === 'number' && typeof stationForecast180.prediction?.p90 === 'number'
+                              ? `[${stationForecast180.prediction.p10.toFixed(2)} – ${stationForecast180.prediction.p90.toFixed(2)}] m bgl`
+                              : 'Unavailable'}
+                            {typeof stationForecast180.prediction?.p10 === 'number' && typeof stationForecast180.prediction?.p90 === 'number' && (
+                              <span className="block text-[11px] text-text-muted">
+                                Spread: {(stationForecast180.prediction.p90 - stationForecast180.prediction.p10).toFixed(2)} m
+                              </span>
+                            )}
+                          </td>
+                          <td className="py-2.5 px-2.5 text-right text-text-muted text-[11px]">
+                            {stationForecast180.intervalStatus || 'ordered_uncalibrated'}
+                          </td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
 
-                {/* Model Disclaimer */}
+                {/* Station Model Scientific Notice */}
                 <div className="p-2.5 bg-subtle border border-border text-[11px] text-text-muted space-y-1">
-                  <div className="font-semibold text-text-main">Scientific Disclaimer &amp; Pipeline Notice:</div>
-                  <p className="leading-relaxed">{forecastData.safeguardDisclaimer}</p>
+                  <div className="font-semibold text-text-main">Station Prediction Provenance &amp; Scientific Limitations:</div>
+                  <p className="leading-relaxed">
+                    Forecast generated from 6-hourly automated telemetry recorded at borehole station <span className="font-mono text-text-main">{selectedStationId}</span>.
+                    Target predictions project future water table depth across verified forward dates.
+                    Model interval status is <em>ordered_uncalibrated</em>; predictions reflect point measurements at this specific telemetry well and must not be used as an automated substitute for local physical well soundings or statutory emergency declarations.
+                  </p>
                 </div>
               </div>
             ) : (
               <div className="p-3 bg-subtle border border-border text-xs text-text-muted space-y-1.5">
                 <div className="font-bold text-text-main flex items-center gap-1.5">
                   <InfoIcon className="w-4 h-4 text-text-muted" />
-                  <span>ML Depth Forecast Unavailable for this Geography</span>
+                  <span>Station Forecast Temporarily Unavailable</span>
                 </div>
                 <p className="leading-relaxed">
-                  No verified station mapping or observation series is registered for {selectedBlock?.name || 'this block'} ({selectedBlock?.state || 'selected region'}). Predictions are not extrapolated to uncalibrated regions, and predictions require verified CGWB/NWIC borehole records to prevent spurious spatial inference.
-                </p>
-                <p className="text-[11px] text-text-muted/80 italic">
-                  {forecastData?.safeguardDisclaimer || 'The descriptive Groundwater Stress Score (GSS Baseline) in Section 1 continues to provide multi-signal decision support from available observed indicators.'}
+                  {stationForecastError || 'The selected telemetry station did not return valid calibrated quantile predictions. JalDrishti enforces fail-closed safety and does not synthesize unverified estimates.'}
                 </p>
               </div>
             )}
+
+            {/* Separated Section: Historical Research Benchmark (Legacy CGWB Archive) */}
+            <div className="mt-4 pt-3.5 border-t border-border space-y-2.5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-text-muted flex items-center gap-1.5">
+                    <span>Historical Research Benchmark</span>
+                    <span className="bg-subtle text-text-muted border border-border px-1.5 py-0.5 text-[10px] font-normal">
+                      Retrospective Archive
+                    </span>
+                  </h3>
+                  <p className="text-[11px] text-text-muted mt-0.5">
+                    Retrospective baseline model (GlobalBlockAwareQuantileGB-v1) evaluated on historical 2023 CGWB manual records.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowHistoricalBenchmark(!showHistoricalBenchmark)}
+                  className="text-xs text-primary hover:underline font-semibold cursor-pointer shrink-0"
+                >
+                  {showHistoricalBenchmark ? 'Hide Historical Benchmark' : 'View Historical Benchmark'}
+                </button>
+              </div>
+
+              {showHistoricalBenchmark && (
+                <div className="p-3 bg-subtle/50 border border-border space-y-3">
+                  <div className="border-l-4 border-amber-600 bg-amber-50/80 p-2.5 text-xs text-amber-950 space-y-1">
+                    <div className="font-bold tracking-wide uppercase flex items-center gap-1.5">
+                      <InfoIcon className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                      <span>HISTORICAL RESEARCH BENCHMARK — NOT A CURRENT OPERATIONAL PREDICTION</span>
+                    </div>
+                    <p className="leading-relaxed text-[11px]">
+                      This section displays the retrospective research baseline generated from historical CGWB quarterly measurements up to late 2023.
+                      Model identifier: <span className="font-mono">GlobalBlockAwareQuantileGB-v1</span>.
+                      Observation origin: <strong className="font-mono">{forecastData?.observationDatesRange?.latest || '2023-11-01'}</strong>.
+                      This historical benchmark does NOT reflect current groundwater conditions or forward-looking telemetry.
+                    </p>
+                  </div>
+
+                  {isForecastLoading ? (
+                    <div className="space-y-2 animate-pulse p-2">
+                      <div className="h-4 bg-subtle w-1/4"></div>
+                      <div className="h-10 bg-subtle w-full"></div>
+                    </div>
+                  ) : forecastData && forecastData.forecasts && forecastData.forecasts.length > 0 ? (
+                    <div className="space-y-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-subtle p-2 border border-border">
+                        <div>
+                          <span className="text-[10px] uppercase font-semibold text-text-muted block">Benchmark Model</span>
+                          <span className="font-bold text-text-main font-mono text-[11px]">{forecastData.modelIdentifier}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] uppercase font-semibold text-text-muted block">Archive Origin</span>
+                          <span className="font-medium text-text-main">{forecastData.observationDatesRange?.latest || '2023-11-01'}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] uppercase font-semibold text-text-muted block">Model Status</span>
+                          <span className="font-medium text-text-main">Historical Research Prototype</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] uppercase font-semibold text-text-muted block">Operational Use</span>
+                          <span className="font-medium text-text-muted">Prohibited (Historical Only)</span>
+                        </div>
+                      </div>
+
+                      <div className="overflow-x-auto border-t border-b border-border">
+                        <table className="w-full text-left text-xs border-collapse dbim-table">
+                          <thead>
+                            <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
+                              <th className="py-1.5 px-2 text-left">Archive Horizon</th>
+                              <th className="py-1.5 px-2 text-right">Target Period</th>
+                              <th className="py-1.5 px-2 text-right">Predicted Depth</th>
+                              <th className="py-1.5 px-2 text-right">P10–P90 Uncertainty</th>
+                              <th className="py-1.5 px-2 text-right">Baseline Depth</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border">
+                            {forecastData.forecasts.map((f: ForecastPoint) => {
+                              const horizonDays = f.forecastHorizonDays ?? (f.forecastHorizonMonths ? f.forecastHorizonMonths * 30 : f.horizonQuarter * 90);
+                              return (
+                                <tr key={f.horizonQuarter} className="hover:bg-subtle/40 transition-colors">
+                                  <td className="py-2 px-2">
+                                    <span className="font-semibold text-text-main block">
+                                      {horizonDays} Days (Q{f.horizonQuarter})
+                                    </span>
+                                  </td>
+                                  <td className="py-2 px-2 text-right tabular-nums text-text-main">
+                                    {f.targetSeason}
+                                  </td>
+                                  <td className="py-2 px-2 text-right font-semibold text-primary tabular-nums">
+                                    {f.expectedDepthMbgl.toFixed(2)} m bgl
+                                  </td>
+                                  <td className="py-2 px-2 text-right tabular-nums text-text-main">
+                                    {f.uncertaintyInterval.lowerBoundP10Mbgl !== null && f.uncertaintyInterval.upperBoundP90Mbgl !== null
+                                      ? `[${f.uncertaintyInterval.lowerBoundP10Mbgl.toFixed(2)} – ${f.uncertaintyInterval.upperBoundP90Mbgl.toFixed(2)}] m bgl`
+                                      : 'N/A'}
+                                  </td>
+                                  <td className="py-2 px-2 text-right tabular-nums text-text-muted">
+                                    {f.baselinePersistence?.lastObservationPersistenceMbgl !== null && f.baselinePersistence?.lastObservationPersistenceMbgl !== undefined
+                                      ? `${f.baselinePersistence.lastObservationPersistenceMbgl} m bgl`
+                                      : 'N/A'}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="text-[10px] text-text-muted italic">
+                        {forecastData.safeguardDisclaimer}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="py-3 text-center text-xs text-text-muted">
+                      No historical benchmark series available for this block.
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             {/* Scientific Methodological Comparison Notice */}
             <div className="border-l-2 border-primary bg-subtle p-2.5 text-[11px] text-text-muted space-y-0.5">
