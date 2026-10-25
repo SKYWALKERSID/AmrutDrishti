@@ -19,10 +19,25 @@ function RiskAssessmentContent() {
   const searchParams = useSearchParams();
   const urlBlockParam = searchParams.get('block');
   const { activeRole } = useRole();
-  const [selectedState, setSelectedState] = useState<string>('all');
-  const [selectedDistrictId, setSelectedDistrictId] = useState<string>('all');
+  const targetStatesAtoZ = useMemo(() => getTargetStatesAlphabetically(), []);
+  const initialFirstState = targetStatesAtoZ[0]?.name || 'Haryana';
+  const initialDistricts = useMemo(() => {
+    return sortDistrictsAlphabetically(
+      ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === initialFirstState)
+    );
+  }, [initialFirstState]);
+  const initialFirstDistrict = initialDistricts[0];
+  const initialBlocks = useMemo(() => {
+    return sortBlocksByName(
+      ACTIVE_TARGET_BLOCKS.filter(b => normalizeStateName(b.state) === initialFirstState && b.districtId === initialFirstDistrict?.id)
+    );
+  }, [initialFirstState, initialFirstDistrict]);
+  const initialFirstBlock = initialBlocks[0];
+
+  const [selectedState, setSelectedState] = useState<string>(initialFirstState);
+  const [selectedDistrictId, setSelectedDistrictId] = useState<string>(initialFirstDistrict?.id || 'all');
   const [blocksData, setBlocksData] = useState<BlockData[]>(ACTIVE_TARGET_BLOCKS);
-  const [selectedBlockId, setSelectedBlockId] = useState<string>('');
+  const [selectedBlockId, setSelectedBlockId] = useState<string>(urlBlockParam || initialFirstBlock?.id || '');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [forecastData, setForecastData] = useState<BlockForecastResponse | null>(null);
   const [isForecastLoading, setIsForecastLoading] = useState<boolean>(true);
@@ -48,8 +63,10 @@ function RiskAssessmentContent() {
               setSelectedState(target.state);
               setSelectedDistrictId(target.districtId);
             }
-          } else {
-            setSelectedBlockId(merged[0].id);
+          } else if (!selectedBlockId) {
+            setSelectedState(initialFirstState);
+            if (initialFirstDistrict) setSelectedDistrictId(initialFirstDistrict.id);
+            if (initialFirstBlock) setSelectedBlockId(initialFirstBlock.id);
           }
         }
       })
@@ -116,27 +133,50 @@ function RiskAssessmentContent() {
 
   const handleStateChange = (stateName: string) => {
     setSelectedState(stateName);
-    setSelectedDistrictId('all');
-    const matched = sortBlocksHierarchy(
-      blocksData.filter(b => stateName === 'all' || normalizeStateName(b.state) === stateName)
+    if (stateName === 'all') {
+      setSelectedDistrictId('all');
+      const matched = sortBlocksHierarchy(blocksData);
+      if (matched.length > 0) {
+        setSelectedBlockId(matched[0].id);
+        setOverrideApplied(false);
+      }
+      return;
+    }
+    const dists = sortDistrictsAlphabetically(
+      ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === stateName)
     );
-    if (matched.length > 0) {
-      setSelectedBlockId(matched[0].id);
-      setOverrideApplied(false);
+    if (dists.length > 0) {
+      const firstDist = dists[0];
+      setSelectedDistrictId(firstDist.id);
+      const blks = sortBlocksByName(
+        blocksData.filter(b => normalizeStateName(b.state) === stateName && b.districtId === firstDist.id)
+      );
+      if (blks.length > 0) {
+        setSelectedBlockId(blks[0].id);
+        setOverrideApplied(false);
+      }
+    } else {
+      setSelectedDistrictId('all');
     }
   };
 
   const handleDistrictChange = (distId: string) => {
     setSelectedDistrictId(distId);
-    const matched = sortBlocksHierarchy(
-      blocksData.filter(b => {
-        const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
-        const matchDistrict = distId === 'all' || b.districtId === distId;
-        return matchState && matchDistrict;
-      })
+    if (distId === 'all') {
+      const blks = sortBlocksHierarchy(
+        blocksData.filter(b => selectedState === 'all' || normalizeStateName(b.state) === selectedState)
+      );
+      if (blks.length > 0) {
+        setSelectedBlockId(blks[0].id);
+        setOverrideApplied(false);
+      }
+      return;
+    }
+    const blks = sortBlocksByName(
+      blocksData.filter(b => b.districtId === distId)
     );
-    if (matched.length > 0) {
-      setSelectedBlockId(matched[0].id);
+    if (blks.length > 0) {
+      setSelectedBlockId(blks[0].id);
       setOverrideApplied(false);
     }
   };
