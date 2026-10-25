@@ -244,7 +244,8 @@ function MonitoringContent() {
 
   // Derived telemetry stations matching selected state and district
   const availableTelemetryStations = useMemo(() => {
-    return telemetryStationsList.filter((stn) => {
+    // 1. Exact match by state and district
+    const exactDistrictMatches = telemetryStationsList.filter((stn) => {
       const matchState = selectedState === 'all' || stn.state.toLowerCase() === selectedState.toLowerCase();
       const matchDistrict = selectedDistrictId === 'all' || (() => {
         const dObj = availableDistricts.find(d => d.id === selectedDistrictId);
@@ -252,6 +253,23 @@ function MonitoringContent() {
       })();
       return matchState && matchDistrict;
     }).sort((a, b) => a.stationName.localeCompare(b.stationName));
+
+    if (exactDistrictMatches.length > 0) {
+      return exactDistrictMatches;
+    }
+
+    // 2. If no telemetry station in this specific district, fall back to all stations in this state
+    if (selectedState !== 'all') {
+      const stateMatches = telemetryStationsList.filter(
+        stn => stn.state.toLowerCase() === selectedState.toLowerCase()
+      ).sort((a, b) => a.stationName.localeCompare(b.stationName));
+      if (stateMatches.length > 0) {
+        return stateMatches;
+      }
+    }
+
+    // 3. Fallback: all available stations
+    return [...telemetryStationsList].sort((a, b) => a.stationName.localeCompare(b.stationName));
   }, [telemetryStationsList, selectedState, selectedDistrictId, availableDistricts]);
 
   // Synchronize selected telemetry station when available stations change
