@@ -29,7 +29,6 @@ function RiskAssessmentContent() {
   const [overrideSeverity, setOverrideSeverity] = useState<RiskSeverity>('severe');
   const [overrideApplied, setOverrideApplied] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
-  const [isDemoMode, setIsDemoMode] = useState<boolean>(true);
 
   useEffect(() => {
     let active = true;
@@ -71,9 +70,7 @@ function RiskAssessmentContent() {
     }
     let active = true;
     setIsForecastLoading(true);
-    const endpoint = isDemoMode
-      ? `/api/forecast?block=${encodeURIComponent(selectedBlockId)}&mode=demo`
-      : `/api/forecast?block=${encodeURIComponent(selectedBlockId)}`;
+    const endpoint = `/api/forecast?block=${encodeURIComponent(selectedBlockId)}`;
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
@@ -94,7 +91,7 @@ function RiskAssessmentContent() {
     return () => {
       active = false;
     };
-  }, [selectedBlockId, isDemoMode]);
+  }, [selectedBlockId]);
 
   // Derived filtered districts
   const availableDistricts = useMemo(() => {
@@ -664,9 +661,7 @@ function RiskAssessmentContent() {
                   <span>ML Depth Forecast Unavailable for this Geography</span>
                 </div>
                 <p className="leading-relaxed">
-                  {isDemoMode
-                    ? `No verified station mapping or observation series is registered for ${selectedBlock?.name || 'this block'} (${selectedBlock?.state || 'selected region'}). Predictions are not extrapolated to uncalibrated regions, and historical demo predictions require verified CGWB borehole coordinates to prevent spurious spatial inference.`
-                    : `No current observation within the 400-day freshness gate is available for ${selectedBlock?.name || 'this block'}. Predictions are not extrapolated to uncalibrated regions, and under operational safety rules, stale data fails closed. You can switch to "Historical Demo Mode" above to evaluate experimental predictions on historical records.`}
+                  No verified station mapping or observation series is registered for {selectedBlock?.name || 'this block'} ({selectedBlock?.state || 'selected region'}). Predictions are not extrapolated to uncalibrated regions, and predictions require verified CGWB/NWIC borehole records to prevent spurious spatial inference.
                 </p>
                 <p className="text-[11px] text-text-muted/80 italic">
                   {forecastData?.safeguardDisclaimer || 'The descriptive Groundwater Stress Score (GSS Baseline) in Section 1 continues to provide multi-signal decision support from available observed indicators.'}

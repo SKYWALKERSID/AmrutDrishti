@@ -49,7 +49,6 @@ function MonitoringContent() {
   const [isTimeSeriesLoading, setIsTimeSeriesLoading] = useState<boolean>(true);
   const [forecastData, setForecastData] = useState<any>(null);
   const [isForecastLoading, setIsForecastLoading] = useState<boolean>(true);
-  const [isDemoMode, setIsDemoMode] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Load available administrative units and merge with nationwide catalog
@@ -189,9 +188,7 @@ function MonitoringContent() {
 
     async function loadForecast() {
       try {
-        const endpoint = isDemoMode
-          ? `/api/forecast?block=${encodeURIComponent(selectedBlockId)}&mode=demo`
-          : `/api/forecast?block=${encodeURIComponent(selectedBlockId)}`;
+        const endpoint = `/api/forecast?block=${encodeURIComponent(selectedBlockId)}`;
         const res = await fetch(endpoint);
         if (res.ok && active) {
           const json = await res.json();
@@ -214,7 +211,7 @@ function MonitoringContent() {
     return () => {
       active = false;
     };
-  }, [selectedBlockId, isDemoMode]);
+  }, [selectedBlockId]);
 
   useEffect(() => {
     if (urlBlockParam && blocksData.length > 0) {

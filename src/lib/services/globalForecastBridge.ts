@@ -77,9 +77,6 @@ function isFiniteNumber(value: unknown): value is number {
 export function isValidGlobalForecastResponse(
   response: Record<string, unknown>,
   expectedGeography: GlobalModelRequest['geography'],
-  options?: {
-    allowHistoricalDemo?: boolean;
-  },
 ): boolean {
   const geography = response.geography as Record<string, unknown> | undefined;
   const forecast = response.forecast as Record<string, unknown> | undefined;
@@ -107,11 +104,8 @@ export function isValidGlobalForecastResponse(
       && interval?.intervalStatus === 'ordered_uncalibrated';
   });
 
-  const withinFreshnessGate = options?.allowHistoricalDemo || hasFreshTrustedObservationOrigin([
-    { stationId: 'origin-check', observationDate: origin, depthMbgl: 0, units: 'm bgl' },
-    { stationId: 'origin-check', observationDate: origin, depthMbgl: 0, units: 'm bgl' },
-  ]);
-  const structurallyValid = withinFreshnessGate && hasCurrentForecastWindow({
+  // Structural forecast-window validity: verifies target dates are chronologically after origin
+  const structurallyValid = hasCurrentForecastWindow({
     latestObservationDate: origin,
     forecasts: forecastPoints.map((point) => ({ targetDate: (point as Record<string, unknown>).targetDate as string })),
   });

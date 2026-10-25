@@ -46,7 +46,7 @@ test('trusted origin gate preserves the 400-day limit before inference', () => {
   assert.equal(hasFreshTrustedObservationOrigin([]), false);
 });
 
-test('global model bridge validates historical research origins when allowHistoricalDemo is true', () => {
+test('global model bridge validates historical research origins without 400-day blockage', () => {
   const historicalValid = {
     ...valid,
     originObservationDate: '2023-08-20',
@@ -57,8 +57,18 @@ test('global model bridge validates historical research origins when allowHistor
       }],
     },
   };
-  // Without allowHistoricalDemo, historical origin older than 400 days is rejected by standard freshness check
-  assert.equal(isValidGlobalForecastResponse(historicalValid, geography), false);
-  // With allowHistoricalDemo: true, structurally valid historical forecast is accepted
-  assert.equal(isValidGlobalForecastResponse(historicalValid, geography, { allowHistoricalDemo: true }), true);
+  // Historical origin older than 400 days is accepted as long as it is structurally valid
+  assert.equal(isValidGlobalForecastResponse(historicalValid, geography), true);
+
+  // But structurally invalid forecast (target date before origin) is rejected
+  const structurallyInvalid = {
+    ...historicalValid,
+    forecast: {
+      forecasts: [{
+        ...historicalValid.forecast.forecasts[0],
+        targetDate: '2023-01-01', // before origin 2023-08-20
+      }],
+    },
+  };
+  assert.equal(isValidGlobalForecastResponse(structurallyInvalid, geography), false);
 });

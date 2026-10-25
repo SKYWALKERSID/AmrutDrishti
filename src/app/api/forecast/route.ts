@@ -135,11 +135,8 @@ export async function GET(request: NextRequest) {
   const districtName = block ? block.districtName : 'Monitored District';
   const stationName = block ? `${block.name} Central Observation Well` : 'Observation Station';
 
-  // Check if experimental demo mode is explicitly requested
-  const allowDemo = searchParams.get('mode') === 'demo' || searchParams.get('experimental') === 'true';
-
   // Age-aware forecast eligibility: the readiness ledger determines whether
-  // verified observations exist. Observation age is metadata, not a hard blocker.
+  // verified observations exist. Observation age is honest metadata, not a hard blocker.
   const readiness = (readinessLedger.blocks as unknown as ReadinessRow[]).find((row) => row.block_id === blockId);
   if (readiness) {
     // Resolve trusted observations adaptively (historical CGWB series + verified telemetry)
@@ -166,16 +163,14 @@ export async function GET(request: NextRequest) {
     const ageInfo = getObservationAgeInfo(observations.observations);
     const limitations: string[] = [];
 
-    // Freshness evaluation: for operational eligibility, observations must be fresh (<= 180 days).
-    // For historical research prediction, observation age is honest metadata and not an unconditional hard blocker.
-    const isOperationallyFresh = hasFreshTrustedObservationOrigin(observations.observations);
-    if (!isOperationallyFresh && !allowDemo && dataAvailabilityMode !== 'historical_only_demo' && ageInfo.freshnessStatus === 'unknown') {
+    // Observation validity check: fail closed only if observation dates are invalid/missing
+    if (ageInfo.freshnessStatus === 'unknown') {
       return NextResponse.json({
         blockId, blockName, districtName, stationName,
         modelIdentifier: 'none', modelVersion: 'none', modelStatus: 'unavailable',
         provenanceStatus: 'unverified', horizonStatus: 'unverified', operationalEligibility: false,
         baselineHistoricalDepthMbgl: currentDepth, forecasts: [],
-        safeguardDisclaimer: `No trusted observation exists within the 400-day freshness gate${ageInfo.observationAgeDays === null ? '.' : ` (${ageInfo.observationAgeDays} days old).`}`,
+        safeguardDisclaimer: 'No valid observation dates found in trusted observation records.',
         generatedAt: new Date().toISOString(), isDemonstrationData: false,
         inputObservationDate: ageInfo.latestObservationDate,
         inputObservationAgeDays: ageInfo.observationAgeDays,
@@ -198,7 +193,7 @@ export async function GET(request: NextRequest) {
 
     // Call private model service — no longer blocked by age
     let served = await requestGlobalForecast(observations);
-    if (!served || !isValidGlobalForecastResponse(served, observations.geography, { allowHistoricalDemo: true })) {
+    if (!served || !isValidGlobalForecastResponse(served, observations.geography)) {
       // Check precomputed verified model forecast artifact (built directly by ml/inference.py from approved historical observations)
       try {
         const precomputedMap = (await import('../../../../data/derived/precomputed_verified_block_forecasts.json')).default as Record<string, any>;
@@ -221,7 +216,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    if (!served || !isValidGlobalForecastResponse(served, observations.geography, { allowHistoricalDemo: true })) {
+    if (!served || !isValidGlobalForecastResponse(served, observations.geography)) {
       return NextResponse.json({
         blockId, blockName, districtName, stationName,
         modelIdentifier: 'none', modelVersion: 'none', modelStatus: 'unavailable',

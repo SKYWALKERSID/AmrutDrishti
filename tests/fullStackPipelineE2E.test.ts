@@ -198,3 +198,89 @@ test('PIPELINE-E2E: 5. ML Model Bridge & Target Forecast Integrity (90d / 180d)'
   const opRequest = await buildTrustedGlobalModelRequest('blk_tikamgarh_main');
   assert.equal(opRequest, null);
 });
+
+test('PIPELINE-E2E: 6. Regression — Valid Historical Observations >400 Days Old Successfully Reach Inference', async () => {
+  const { isValidGlobalForecastResponse } = await import('../src/lib/services/globalForecastBridge.ts');
+  const { computeObservationAge } = await import('../src/lib/data/forecastIntegrity.ts');
+
+  // 1. Build authentic historical request for Tikamgarh (last observation dated 2023-08-20, >400 days old)
+  const demoPayload = await buildExperimentalDemoGlobalModelRequest('blk_tikamgarh_main');
+  assert.ok(demoPayload !== null, 'Eligible historical series must be resolved');
+  assert.equal(demoPayload.dataAvailabilityMode, 'historical_only_demo');
+
+  const age = computeObservationAge(demoPayload.observationDatesRange.endDate, new Date('2026-10-25T00:00:00Z'));
+  assert.ok(age.observationAgeDays !== null && age.observationAgeDays > 400, 'Observation must be older than 400 days');
+  assert.equal(age.freshnessStatus, 'historical');
+  assert.equal(age.isResearchEligible, true, 'Historical observations must remain research-eligible');
+
+  // 2. Validate that forecast points generated from this origin pass structural validation without 400-day blockage
+  const validHistoricalResponse = {
+    status: 'research_prototype',
+    modelIdentifier: 'GlobalBlockAwareQuantileGB-v1',
+    modelVersion: '1.0.0',
+    units: 'm bgl',
+    intervalStatus: 'ordered_uncalibrated',
+    operationalEligibility: false,
+    geography: demoPayload.request.geography,
+    originObservationDate: '2023-08-20',
+    forecast: {
+      forecasts: [
+        {
+          horizonQuarter: 1,
+          forecastHorizonMonths: 3,
+          targetDate: '2023-11-20',
+          expectedDepthMbgl: 6.2,
+          units: 'm bgl',
+          uncertaintyInterval: {
+            lowerBoundP10Mbgl: 4.5,
+            upperBoundP90Mbgl: 7.8,
+            isIntervalCalibrated: false,
+            intervalStatus: 'ordered_uncalibrated',
+          },
+        },
+        {
+          horizonQuarter: 2,
+          forecastHorizonMonths: 6,
+          targetDate: '2024-02-20',
+          expectedDepthMbgl: 6.9,
+          units: 'm bgl',
+          uncertaintyInterval: {
+            lowerBoundP10Mbgl: 5.1,
+            upperBoundP90Mbgl: 8.4,
+            isIntervalCalibrated: false,
+            intervalStatus: 'ordered_uncalibrated',
+          },
+        },
+      ],
+    },
+  };
+
+  assert.equal(
+    isValidGlobalForecastResponse(validHistoricalResponse, demoPayload.request.geography),
+    true,
+    'Valid historical forecast with origin >400 days old must pass validation'
+  );
+
+  // 3. Confirm that malformed/crossing quantiles still fail closed
+  const invalidCrossingResponse = {
+    ...validHistoricalResponse,
+    forecast: {
+      forecasts: [
+        {
+          ...validHistoricalResponse.forecast.forecasts[0],
+          uncertaintyInterval: {
+            lowerBoundP10Mbgl: 8.5, // P10 > expected (6.2) -> invalid crossing
+            upperBoundP90Mbgl: 7.0,
+            isIntervalCalibrated: false,
+            intervalStatus: 'ordered_uncalibrated',
+          },
+        },
+      ],
+    },
+  };
+  assert.equal(
+    isValidGlobalForecastResponse(invalidCrossingResponse, demoPayload.request.geography),
+    false,
+    'Invalid quantile crossing must fail closed'
+  );
+});
