@@ -69,7 +69,7 @@ export function resolveModelServiceUrl(env: Record<string, string | undefined> =
       return null;
     }
   }
-  const host = env.VERCEL_URL?.trim();
+  const host = (env.VERCEL_ENV === 'production' && env.VERCEL_PROJECT_PRODUCTION_URL?.trim()) || env.VERCEL_URL?.trim();
   return env.VERCEL && host ? `https://${host}/api/py_forecast` : null;
 }
 
