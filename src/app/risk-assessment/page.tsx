@@ -58,6 +58,10 @@ function RiskAssessmentContent() {
   const [stationForecastError, setStationForecastError] = useState<string | null>(null);
   const [showHistoricalBenchmark, setShowHistoricalBenchmark] = useState<boolean>(false);
 
+  // Rainfall Intelligence & Forecasting Pipeline State (/api/rainfall)
+  const [rainfallData, setRainfallData] = useState<any | null>(null);
+  const [isRainfallLoading, setIsRainfallLoading] = useState<boolean>(false);
+
   const [overrideReason, setOverrideReason] = useState<string>('');
   const [overrideSeverity, setOverrideSeverity] = useState<RiskSeverity>('severe');
   const [overrideApplied, setOverrideApplied] = useState<boolean>(false);
@@ -198,6 +202,39 @@ function RiskAssessmentContent() {
       active = false;
     };
   }, [selectedStationId]);
+
+  // Load Unified Rainfall Intelligence & Forecasting for selected block's district
+  useEffect(() => {
+    const block = blocksData.find(b => b.id === selectedBlockId);
+    if (!block || !block.districtName) {
+      setRainfallData(null);
+      setIsRainfallLoading(false);
+      return;
+    }
+    let active = true;
+    setIsRainfallLoading(true);
+    fetch(`/api/rainfall?district=${encodeURIComponent(block.districtName)}&state=${encodeURIComponent(block.state)}`)
+      .then(r => r.json())
+      .then(d => {
+        if (active) {
+          if (d.status === 'available') {
+            setRainfallData(d);
+          } else {
+            setRainfallData(null);
+          }
+        }
+      })
+      .catch(() => {
+        if (active) setRainfallData(null);
+      })
+      .finally(() => {
+        if (active) setIsRainfallLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [selectedBlockId, blocksData]);
 
   // Load Historical Research Benchmark Forecast for selected block from legacy /api/forecast endpoint
   useEffect(() => {
@@ -679,6 +716,182 @@ function RiskAssessmentContent() {
             ) : (
               <div className="py-6 text-center text-xs text-text-muted">
                 Indicator details unavailable.
+              </div>
+            )}
+          </div>
+
+          {/* Section 1.5: Unified Rainfall Intelligence & Multi-Horizon Forward Forecast */}
+          <div className="space-y-3 pt-3.5 border-t border-border">
+            <div className="border-b border-border pb-2.5 flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+              <div>
+                <h2 className="text-base font-bold text-text-main flex items-center gap-2">
+                  <ShieldCheckIcon className="w-4 h-4 text-primary" />
+                  Unified Rainfall Intelligence &amp; Multi-Horizon Forward Forecast
+                </h2>
+                <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
+                  Harmonized IMD daily observations and state department telemetry (2021–2026) informing seasonal groundwater recharge windows and meteorological drought risk.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-text-muted bg-subtle px-2 py-1 shrink-0">
+                Resolution: District Daily
+              </span>
+            </div>
+
+            {isRainfallLoading ? (
+              <div className="space-y-2.5 animate-pulse p-3.5 bg-subtle/40 border border-border">
+                <div className="h-4 bg-subtle w-1/3"></div>
+                <div className="h-12 bg-subtle w-full"></div>
+              </div>
+            ) : rainfallData && rainfallData.status === 'available' ? (
+              <div className="space-y-3">
+                {/* Historical Rainfall Intelligence Metrics Strip */}
+                <div className="p-3 bg-subtle border border-border space-y-2.5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-1.5">
+                    <span className="font-bold text-xs text-text-main uppercase tracking-wider">
+                      Meteorological Intelligence for {rainfallData.districtName} ({rainfallData.stateName})
+                    </span>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 border ${
+                      rainfallData.historicalIntelligence.meteorological_condition.includes('Dry')
+                        ? 'bg-amber-500/10 text-amber-800 border-amber-500/30'
+                        : 'bg-emerald-500/10 text-emerald-800 border-emerald-500/30'
+                    }`}>
+                      {rainfallData.historicalIntelligence.meteorological_condition.toUpperCase()}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                    <div>
+                      <span className="text-[10px] uppercase font-semibold text-text-muted block">Observed Rain (30d)</span>
+                      <span className="font-bold text-text-main font-mono">
+                        {rainfallData.historicalIntelligence.recent_30d_actual_mm} mm
+                      </span>
+                      <span className="text-[10px] text-text-muted block">
+                        Normal: {rainfallData.historicalIntelligence.recent_30d_normal_mm} mm
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] uppercase font-semibold text-text-muted block">Rainfall Anomaly (30d)</span>
+                      <span className={`font-bold font-mono ${rainfallData.historicalIntelligence.recent_30d_anomaly_mm < 0 ? 'text-amber-800' : 'text-emerald-800'}`}>
+                        {rainfallData.historicalIntelligence.recent_30d_anomaly_mm > 0 ? '+' : ''}{rainfallData.historicalIntelligence.recent_30d_anomaly_mm} mm
+                      </span>
+                      <span className="text-[10px] text-text-muted block">
+                        Departure: {rainfallData.historicalIntelligence.recent_30d_departure_pct}%
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] uppercase font-semibold text-text-muted block">Dry Spell Duration</span>
+                      <span className="font-bold text-text-main font-mono">
+                        {rainfallData.historicalIntelligence.current_dry_spell_days} Days
+                      </span>
+                      <span className="text-[10px] text-text-muted block">
+                        Longest: {rainfallData.historicalIntelligence.longest_dry_spell_days}d
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] uppercase font-semibold text-text-muted block">SPI-3 Equiv. Index</span>
+                      <span className="font-bold font-mono text-primary">
+                        {rainfallData.historicalIntelligence.spi_3month_equivalent}
+                      </span>
+                      <span className="text-[10px] text-text-muted block">
+                        Ref: {rainfallData.historicalIntelligence.historical_climatology_ref.slice(0, 9)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Machine-Learning Forward Rainfall Forecast Table */}
+                {rainfallData.forecast && rainfallData.forecast.horizons && (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between pb-1">
+                      <span className="text-xs font-bold text-text-muted uppercase tracking-wider">
+                        Machine Learning Forward Precipitation Forecast (NWDP-Rainfall-QuantileGB-v1)
+                      </span>
+                      <span className="text-[10px] text-text-muted font-mono">
+                        Origin: {rainfallData.forecast.forecast_origin_date}
+                      </span>
+                    </div>
+
+                    <div className="overflow-x-auto border-t border-b border-border">
+                      <table className="w-full text-left text-xs border-collapse dbim-table">
+                        <thead>
+                          <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
+                            <th className="py-2 px-2.5 text-left">Forecast Horizon</th>
+                            <th className="py-2 px-2.5 text-right">Target Window</th>
+                            <th className="py-2 px-2.5 text-right">Expected (P50)</th>
+                            <th className="py-2 px-2.5 text-right">P10–P90 Range</th>
+                            <th className="py-2 px-2.5 text-right">Climatological Normal</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-border">
+                          {['30d', '60d', '90d'].map((hz) => {
+                            const item = rainfallData.forecast.horizons[hz];
+                            if (!item) return null;
+                            return (
+                              <tr key={hz} className="hover:bg-subtle/40 transition-colors">
+                                <td className="py-2 px-2.5">
+                                  <span className="font-bold text-text-main block">
+                                    {hz.toUpperCase()} Horizon
+                                  </span>
+                                  <span className="text-[10px] text-text-muted">
+                                    {item.uncertainty_interval.interval_status}
+                                  </span>
+                                </td>
+                                <td className="py-2 px-2.5 text-right tabular-nums text-text-main text-[11px]">
+                                  {item.target_period_start} to {item.target_period_end}
+                                </td>
+                                <td className="py-2 px-2.5 text-right font-bold text-primary tabular-nums">
+                                  {item.expected_cumulative_rainfall_mm} mm
+                                </td>
+                                <td className="py-2 px-2.5 text-right tabular-nums text-text-main">
+                                  [{item.uncertainty_interval.p10_mm} – {item.uncertainty_interval.p90_mm}] mm
+                                  <span className="block text-[10px] text-text-muted">
+                                    Spread: {item.uncertainty_interval.spread_mm} mm
+                                  </span>
+                                </td>
+                                <td className="py-2 px-2.5 text-right tabular-nums text-text-muted">
+                                  {item.climatological_normal_mm} mm
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Calibrated Event Probabilities Strip */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2.5 bg-subtle/60 border border-border text-xs">
+                      <div className="p-2 bg-surface border border-border">
+                        <span className="text-[10px] uppercase font-semibold text-text-muted block">Severe Deficit Probability (&gt;50%)</span>
+                        <span className="font-bold text-amber-800 text-sm font-mono">
+                          {Math.round(rainfallData.forecast.event_probabilities.probability_severe_deficit_gt_50pct * 100)}%
+                        </span>
+                      </div>
+                      <div className="p-2 bg-surface border border-border">
+                        <span className="text-[10px] uppercase font-semibold text-text-muted block">Normal / Surplus Probability</span>
+                        <span className="font-bold text-emerald-800 text-sm font-mono">
+                          {Math.round(rainfallData.forecast.event_probabilities.probability_normal_or_excess * 100)}%
+                        </span>
+                      </div>
+                      <div className="p-2 bg-surface border border-border">
+                        <span className="text-[10px] uppercase font-semibold text-text-muted block">Extended Dry Spell Probability (&gt;14d)</span>
+                        <span className="font-bold text-text-main text-sm font-mono">
+                          {Math.round(rainfallData.forecast.event_probabilities.probability_extended_dry_spell_gt_14d * 100)}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="p-3 bg-subtle border border-border text-xs text-text-muted space-y-1">
+                <span className="font-bold text-text-main block">Rainfall Intelligence Unavailable for this District</span>
+                <p>
+                  No verified IMD-NWDP rainfall time series is registered for {selectedBlock?.districtName || 'this district'}.
+                  JalDrishti does not synthesize unverified rainfall observations.
+                </p>
               </div>
             )}
           </div>

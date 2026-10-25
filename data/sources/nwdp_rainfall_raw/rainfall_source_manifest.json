@@ -1,0 +1,41 @@
+{
+  "retrieved_at": "2026-10-25T21:56:00Z",
+  "resources": [
+    {
+      "path": "data/sources/nwdp_rainfall_raw\\rainfall_districtwise_daily_imd.csv",
+      "filename": "rainfall_districtwise_daily_imd.csv",
+      "size_bytes": 8143590,
+      "sha256": "5bdb1fcca7d224c3787e53a0afc2ccb2f9944a8400b5d6d5266996b3741e9533"
+    },
+    {
+      "path": "data/sources/nwdp_rainfall_raw\\rainfall_manual_daily_madhya_pradesh_sw_mp_2021_2025.csv",
+      "filename": "rainfall_manual_daily_madhya_pradesh_sw_mp_2021_2025.csv",
+      "size_bytes": 2722184,
+      "sha256": "beea2e12c517fdbfaaf0004a61a3254e3bab6b6b62e88210a5ab6b2b5a958242"
+    },
+    {
+      "path": "data/sources/nwdp_rainfall_raw\\rainfall_manual_daily_madhya_pradesh_sw_mp_2026_2030.csv",
+      "filename": "rainfall_manual_daily_madhya_pradesh_sw_mp_2026_2030.csv",
+      "size_bytes": 220,
+      "sha256": "85cad6d261aaeadf8eaf9362b3d7744cad633f6cbcdaf51e56e774a3712a46b6"
+    },
+    {
+      "path": "data/sources/nwdp_rainfall_raw\\rainfall_tel_hr_cwprs_mh_2026_2030.csv",
+      "filename": "rainfall_tel_hr_cwprs_mh_2026_2030.csv",
+      "size_bytes": 93912,
+      "sha256": "0dca22614fd3ec223c2c8022390940e9e89c571073684bbe032c77b3f29c6208"
+    },
+    {
+      "path": "data/sources/nwdp_rainfall_raw\\rainfall_tel_hr_tripura_tr_2026_2030.csv",
+      "filename": "rainfall_tel_hr_tripura_tr_2026_2030.csv",
+      "size_bytes": 638278,
+      "sha256": "05cf108d6a562655ae67323bf622ebf1d9f95f4117943fe0300b70266dd6bb54"
+    },
+    {
+      "path": "data/sources/nwdp_rainfall_raw\\rainfall_tel_hr_upgw_up_2026_2030.csv",
+      "filename": "rainfall_tel_hr_upgw_up_2026_2030.csv",
+      "size_bytes": 835326,
+      "sha256": "caf4df9700bcafd6bd3d13e0c5383319191368c241d58818e4eb400eb6ff05f0"
+    }
+  ]
+}

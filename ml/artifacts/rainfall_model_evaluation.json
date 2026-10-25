@@ -1,0 +1,15 @@
+{
+  "model_name": "NWDP-Rainfall-QuantileGB-v1",
+  "evaluation_scheme": "Chronological holdout on 2026 observed monsoon window",
+  "metrics": {
+    "mae_30d_mm": 14.8,
+    "rmse_30d_mm": 21.3,
+    "mean_bias_mm": -1.2,
+    "coverage_p10_p90_pct": 82.5,
+    "brier_score_deficit": 0.18
+  },
+  "comparison_with_seasonal_naive": {
+    "seasonal_naive_mae_mm": 22.4,
+    "improvement_pct": 33.9
+  }
+}

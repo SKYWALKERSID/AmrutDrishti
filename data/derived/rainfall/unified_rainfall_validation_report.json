@@ -1,0 +1,18 @@
+{
+  "total_records": 1903,
+  "date_range": {
+    "min": "2021-01-05",
+    "max": "2026-10-25"
+  },
+  "districts_covered": 23,
+  "states_covered": 8,
+  "mean_daily_rainfall_mm": 5.211035207566999,
+  "max_daily_rainfall_mm": 110.0,
+  "missing_normal_ratio": 0.0,
+  "source_breakdown": {
+    "nwdp_imd_districtwise_daily": 1564,
+    "nwdp_mp_sw_manual_daily": 316,
+    "nwdp_tripura_telemetry_hourly": 23
+  },
+  "completeness_status": "verified_post_2024_coverage"
+}

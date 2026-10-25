@@ -1,0 +1,1681 @@
+{
+  "Haryana::Kaithal": {
+    "state": "Haryana",
+    "district": "Kaithal",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 9.0,
+        "uncertainty_interval": {
+          "p10_mm": 2.6,
+          "p50_mm": 9.0,
+          "p90_mm": 15.4,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 5,
+        "scenarios": {
+          "lower_deficit_mm": 2.6,
+          "central_expected_mm": 9.0,
+          "higher_surplus_mm": 15.4
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 29.0,
+        "uncertainty_interval": {
+          "p10_mm": 20.0,
+          "p50_mm": 29.0,
+          "p90_mm": 38.0,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 13,
+        "scenarios": {
+          "lower_deficit_mm": 20.0,
+          "central_expected_mm": 29.0,
+          "higher_surplus_mm": 38.0
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 28.0,
+        "uncertainty_interval": {
+          "p10_mm": 16.9,
+          "p50_mm": 28.0,
+          "p90_mm": 39.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 28,
+        "scenarios": {
+          "lower_deficit_mm": 16.9,
+          "central_expected_mm": 28.0,
+          "higher_surplus_mm": 39.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.1,
+      "probability_normal_or_excess": 0.79,
+      "probability_extended_dry_spell_gt_14d": 0.18
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Haryana::Karnal": {
+    "state": "Haryana",
+    "district": "Karnal",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 9.0,
+        "uncertainty_interval": {
+          "p10_mm": 2.6,
+          "p50_mm": 9.0,
+          "p90_mm": 15.4,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 5,
+        "scenarios": {
+          "lower_deficit_mm": 2.6,
+          "central_expected_mm": 9.0,
+          "higher_surplus_mm": 15.4
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 40.0,
+        "uncertainty_interval": {
+          "p10_mm": 31.0,
+          "p50_mm": 40.0,
+          "p90_mm": 49.0,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 13,
+        "scenarios": {
+          "lower_deficit_mm": 31.0,
+          "central_expected_mm": 40.0,
+          "higher_surplus_mm": 49.0
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 28.0,
+        "uncertainty_interval": {
+          "p10_mm": 16.9,
+          "p50_mm": 28.0,
+          "p90_mm": 39.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 28,
+        "scenarios": {
+          "lower_deficit_mm": 16.9,
+          "central_expected_mm": 28.0,
+          "higher_surplus_mm": 39.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.1,
+      "probability_normal_or_excess": 0.79,
+      "probability_extended_dry_spell_gt_14d": 0.18
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Haryana::Kurukshetra": {
+    "state": "Haryana",
+    "district": "Kurukshetra",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 9.0,
+        "uncertainty_interval": {
+          "p10_mm": 2.6,
+          "p50_mm": 9.0,
+          "p90_mm": 15.4,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 5,
+        "scenarios": {
+          "lower_deficit_mm": 2.6,
+          "central_expected_mm": 9.0,
+          "higher_surplus_mm": 15.4
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 29.3,
+        "uncertainty_interval": {
+          "p10_mm": 20.3,
+          "p50_mm": 29.3,
+          "p90_mm": 38.3,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 13,
+        "scenarios": {
+          "lower_deficit_mm": 20.3,
+          "central_expected_mm": 29.3,
+          "higher_surplus_mm": 38.3
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 28.0,
+        "uncertainty_interval": {
+          "p10_mm": 16.9,
+          "p50_mm": 28.0,
+          "p90_mm": 39.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 28,
+        "scenarios": {
+          "lower_deficit_mm": 16.9,
+          "central_expected_mm": 28.0,
+          "higher_surplus_mm": 39.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.1,
+      "probability_normal_or_excess": 0.79,
+      "probability_extended_dry_spell_gt_14d": 0.18
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Madhya Pradesh::Chhatarpur": {
+    "state": "Madhya Pradesh",
+    "district": "Chhatarpur",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 18.0,
+        "uncertainty_interval": {
+          "p10_mm": 11.6,
+          "p50_mm": 18.0,
+          "p90_mm": 24.4,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 10,
+        "scenarios": {
+          "lower_deficit_mm": 11.6,
+          "central_expected_mm": 18.0,
+          "higher_surplus_mm": 24.4
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 52.5,
+        "uncertainty_interval": {
+          "p10_mm": 43.5,
+          "p50_mm": 52.5,
+          "p90_mm": 61.5,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 18,
+        "scenarios": {
+          "lower_deficit_mm": 43.5,
+          "central_expected_mm": 52.5,
+          "higher_surplus_mm": 61.5
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 30.0,
+        "uncertainty_interval": {
+          "p10_mm": 18.9,
+          "p50_mm": 30.0,
+          "p90_mm": 41.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 30,
+        "scenarios": {
+          "lower_deficit_mm": 18.9,
+          "central_expected_mm": 30.0,
+          "higher_surplus_mm": 41.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.05,
+      "probability_normal_or_excess": 0.95,
+      "probability_extended_dry_spell_gt_14d": 0.14
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Madhya Pradesh::Sagar": {
+    "state": "Madhya Pradesh",
+    "district": "Sagar",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 10.7,
+        "uncertainty_interval": {
+          "p10_mm": 4.3,
+          "p50_mm": 10.7,
+          "p90_mm": 17.1,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 10,
+        "scenarios": {
+          "lower_deficit_mm": 4.3,
+          "central_expected_mm": 10.7,
+          "higher_surplus_mm": 17.1
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 18.8,
+        "uncertainty_interval": {
+          "p10_mm": 9.8,
+          "p50_mm": 18.8,
+          "p90_mm": 27.8,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 18,
+        "scenarios": {
+          "lower_deficit_mm": 9.8,
+          "central_expected_mm": 18.8,
+          "higher_surplus_mm": 27.8
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 30.0,
+        "uncertainty_interval": {
+          "p10_mm": 18.9,
+          "p50_mm": 30.0,
+          "p90_mm": 41.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 30,
+        "scenarios": {
+          "lower_deficit_mm": 18.9,
+          "central_expected_mm": 30.0,
+          "higher_surplus_mm": 41.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.13,
+      "probability_normal_or_excess": 0.56,
+      "probability_extended_dry_spell_gt_14d": 0.21
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Madhya Pradesh::Tikamgarh": {
+    "state": "Madhya Pradesh",
+    "district": "Tikamgarh",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 18.0,
+        "uncertainty_interval": {
+          "p10_mm": 11.6,
+          "p50_mm": 18.0,
+          "p90_mm": 24.4,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 10,
+        "scenarios": {
+          "lower_deficit_mm": 11.6,
+          "central_expected_mm": 18.0,
+          "higher_surplus_mm": 24.4
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 29.4,
+        "uncertainty_interval": {
+          "p10_mm": 20.4,
+          "p50_mm": 29.4,
+          "p90_mm": 38.4,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 18,
+        "scenarios": {
+          "lower_deficit_mm": 20.4,
+          "central_expected_mm": 29.4,
+          "higher_surplus_mm": 38.4
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 30.0,
+        "uncertainty_interval": {
+          "p10_mm": 18.9,
+          "p50_mm": 30.0,
+          "p90_mm": 41.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 30,
+        "scenarios": {
+          "lower_deficit_mm": 18.9,
+          "central_expected_mm": 30.0,
+          "higher_surplus_mm": 41.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.05,
+      "probability_normal_or_excess": 0.95,
+      "probability_extended_dry_spell_gt_14d": 0.14
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Meghalaya::East Jaintia Hills": {
+    "state": "Meghalaya",
+    "district": "East Jaintia Hills",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 32.5,
+        "uncertainty_interval": {
+          "p10_mm": 16.8,
+          "p50_mm": 32.5,
+          "p90_mm": 48.2,
+          "spread_mm": 31.4,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 35,
+        "scenarios": {
+          "lower_deficit_mm": 16.8,
+          "central_expected_mm": 32.5,
+          "higher_surplus_mm": 48.2
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 44.7,
+        "uncertainty_interval": {
+          "p10_mm": 22.6,
+          "p50_mm": 44.7,
+          "p90_mm": 66.8,
+          "spread_mm": 44.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 47,
+        "scenarios": {
+          "lower_deficit_mm": 22.6,
+          "central_expected_mm": 44.7,
+          "higher_surplus_mm": 66.8
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 62.0,
+        "uncertainty_interval": {
+          "p10_mm": 34.9,
+          "p50_mm": 62.0,
+          "p90_mm": 89.1,
+          "spread_mm": 54.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 62,
+        "scenarios": {
+          "lower_deficit_mm": 34.9,
+          "central_expected_mm": 62.0,
+          "higher_surplus_mm": 89.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.11,
+      "probability_normal_or_excess": 0.42,
+      "probability_extended_dry_spell_gt_14d": 0.19
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Meghalaya::East Khasi Hills": {
+    "state": "Meghalaya",
+    "district": "East Khasi Hills",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 33.9,
+        "uncertainty_interval": {
+          "p10_mm": 18.2,
+          "p50_mm": 33.9,
+          "p90_mm": 49.6,
+          "spread_mm": 31.4,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 35,
+        "scenarios": {
+          "lower_deficit_mm": 18.2,
+          "central_expected_mm": 33.9,
+          "higher_surplus_mm": 49.6
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 46.0,
+        "uncertainty_interval": {
+          "p10_mm": 23.9,
+          "p50_mm": 46.0,
+          "p90_mm": 68.1,
+          "spread_mm": 44.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 47,
+        "scenarios": {
+          "lower_deficit_mm": 23.9,
+          "central_expected_mm": 46.0,
+          "higher_surplus_mm": 68.1
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 62.0,
+        "uncertainty_interval": {
+          "p10_mm": 34.9,
+          "p50_mm": 62.0,
+          "p90_mm": 89.1,
+          "spread_mm": 54.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 62,
+        "scenarios": {
+          "lower_deficit_mm": 34.9,
+          "central_expected_mm": 62.0,
+          "higher_surplus_mm": 89.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.09,
+      "probability_normal_or_excess": 0.46,
+      "probability_extended_dry_spell_gt_14d": 0.18
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Meghalaya::Ri Bhoi": {
+    "state": "Meghalaya",
+    "district": "Ri Bhoi",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 46.0,
+        "uncertainty_interval": {
+          "p10_mm": 30.3,
+          "p50_mm": 46.0,
+          "p90_mm": 61.7,
+          "spread_mm": 31.4,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 35,
+        "scenarios": {
+          "lower_deficit_mm": 30.3,
+          "central_expected_mm": 46.0,
+          "higher_surplus_mm": 61.7
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 56.9,
+        "uncertainty_interval": {
+          "p10_mm": 34.8,
+          "p50_mm": 56.9,
+          "p90_mm": 79.0,
+          "spread_mm": 44.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 47,
+        "scenarios": {
+          "lower_deficit_mm": 34.8,
+          "central_expected_mm": 56.9,
+          "higher_surplus_mm": 79.0
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 62.0,
+        "uncertainty_interval": {
+          "p10_mm": 34.9,
+          "p50_mm": 62.0,
+          "p90_mm": 89.1,
+          "spread_mm": 54.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 62,
+        "scenarios": {
+          "lower_deficit_mm": 34.9,
+          "central_expected_mm": 62.0,
+          "higher_surplus_mm": 89.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.05,
+      "probability_normal_or_excess": 0.82,
+      "probability_extended_dry_spell_gt_14d": 0.14
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Punjab::Amritsar": {
+    "state": "Punjab",
+    "district": "Amritsar",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 4.4,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 4.4,
+          "p90_mm": 10.8,
+          "spread_mm": 10.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 4,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 4.4,
+          "higher_surplus_mm": 10.8
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 15.0,
+        "uncertainty_interval": {
+          "p10_mm": 6.0,
+          "p50_mm": 15.0,
+          "p90_mm": 24.0,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 14,
+        "scenarios": {
+          "lower_deficit_mm": 6.0,
+          "central_expected_mm": 15.0,
+          "higher_surplus_mm": 24.0
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 34.0,
+        "uncertainty_interval": {
+          "p10_mm": 22.9,
+          "p50_mm": 34.0,
+          "p90_mm": 45.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 34,
+        "scenarios": {
+          "lower_deficit_mm": 22.9,
+          "central_expected_mm": 34.0,
+          "higher_surplus_mm": 45.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.32,
+      "probability_normal_or_excess": 0.53,
+      "probability_extended_dry_spell_gt_14d": 0.37
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Punjab::Jalandhar": {
+    "state": "Punjab",
+    "district": "Jalandhar",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 7.2,
+        "uncertainty_interval": {
+          "p10_mm": 0.8,
+          "p50_mm": 7.2,
+          "p90_mm": 13.6,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 4,
+        "scenarios": {
+          "lower_deficit_mm": 0.8,
+          "central_expected_mm": 7.2,
+          "higher_surplus_mm": 13.6
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 24.2,
+        "uncertainty_interval": {
+          "p10_mm": 15.2,
+          "p50_mm": 24.2,
+          "p90_mm": 33.2,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 14,
+        "scenarios": {
+          "lower_deficit_mm": 15.2,
+          "central_expected_mm": 24.2,
+          "higher_surplus_mm": 33.2
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 34.0,
+        "uncertainty_interval": {
+          "p10_mm": 22.9,
+          "p50_mm": 34.0,
+          "p90_mm": 45.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 34,
+        "scenarios": {
+          "lower_deficit_mm": 22.9,
+          "central_expected_mm": 34.0,
+          "higher_surplus_mm": 45.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.15,
+      "probability_normal_or_excess": 0.74,
+      "probability_extended_dry_spell_gt_14d": 0.23
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Punjab::Ludhiana": {
+    "state": "Punjab",
+    "district": "Ludhiana",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 5.2,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 5.2,
+          "p90_mm": 11.6,
+          "spread_mm": 11.6,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 4,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 5.2,
+          "higher_surplus_mm": 11.6
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 16.9,
+        "uncertainty_interval": {
+          "p10_mm": 7.9,
+          "p50_mm": 16.9,
+          "p90_mm": 25.9,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 14,
+        "scenarios": {
+          "lower_deficit_mm": 7.9,
+          "central_expected_mm": 16.9,
+          "higher_surplus_mm": 25.9
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 34.0,
+        "uncertainty_interval": {
+          "p10_mm": 22.9,
+          "p50_mm": 34.0,
+          "p90_mm": 45.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 34,
+        "scenarios": {
+          "lower_deficit_mm": 22.9,
+          "central_expected_mm": 34.0,
+          "higher_surplus_mm": 45.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.26,
+      "probability_normal_or_excess": 0.59,
+      "probability_extended_dry_spell_gt_14d": 0.32
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Punjab::Patiala": {
+    "state": "Punjab",
+    "district": "Patiala",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 7.2,
+        "uncertainty_interval": {
+          "p10_mm": 0.8,
+          "p50_mm": 7.2,
+          "p90_mm": 13.6,
+          "spread_mm": 12.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 4,
+        "scenarios": {
+          "lower_deficit_mm": 0.8,
+          "central_expected_mm": 7.2,
+          "higher_surplus_mm": 13.6
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 26.3,
+        "uncertainty_interval": {
+          "p10_mm": 17.3,
+          "p50_mm": 26.3,
+          "p90_mm": 35.3,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 14,
+        "scenarios": {
+          "lower_deficit_mm": 17.3,
+          "central_expected_mm": 26.3,
+          "higher_surplus_mm": 35.3
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 34.0,
+        "uncertainty_interval": {
+          "p10_mm": 22.9,
+          "p50_mm": 34.0,
+          "p90_mm": 45.1,
+          "spread_mm": 22.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 34,
+        "scenarios": {
+          "lower_deficit_mm": 22.9,
+          "central_expected_mm": 34.0,
+          "higher_surplus_mm": 45.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.15,
+      "probability_normal_or_excess": 0.74,
+      "probability_extended_dry_spell_gt_14d": 0.23
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Rajasthan::Dausa": {
+    "state": "Rajasthan",
+    "district": "Dausa",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 2.3,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 2.3,
+          "p90_mm": 8.7,
+          "spread_mm": 8.7,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 2,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 2.3,
+          "higher_surplus_mm": 8.7
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 5.6,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 5.6,
+          "p90_mm": 14.6,
+          "spread_mm": 14.6,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 5,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 5.6,
+          "higher_surplus_mm": 14.6
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 9.0,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 9.0,
+          "p90_mm": 20.1,
+          "spread_mm": 20.1,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 9,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 9.0,
+          "higher_surplus_mm": 20.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.4,
+      "probability_normal_or_excess": 0.52,
+      "probability_extended_dry_spell_gt_14d": 0.44
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Rajasthan::Jaipur": {
+    "state": "Rajasthan",
+    "district": "Jaipur",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 3.0,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 3.0,
+          "p90_mm": 9.4,
+          "spread_mm": 9.4,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 2,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 3.0,
+          "higher_surplus_mm": 9.4
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 6.7,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 6.7,
+          "p90_mm": 15.7,
+          "spread_mm": 15.7,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 5,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 6.7,
+          "higher_surplus_mm": 15.7
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 9.0,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 9.0,
+          "p90_mm": 20.1,
+          "spread_mm": 20.1,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 9,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 9.0,
+          "higher_surplus_mm": 20.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.34,
+      "probability_normal_or_excess": 0.58,
+      "probability_extended_dry_spell_gt_14d": 0.39
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Rajasthan::Jodhpur": {
+    "state": "Rajasthan",
+    "district": "Jodhpur",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 1.4,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 1.4,
+          "p90_mm": 7.8,
+          "spread_mm": 7.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 2,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 1.4,
+          "higher_surplus_mm": 7.8
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 4.0,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 4.0,
+          "p90_mm": 13.0,
+          "spread_mm": 13.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 5,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 4.0,
+          "higher_surplus_mm": 13.0
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 9.0,
+        "uncertainty_interval": {
+          "p10_mm": 0.0,
+          "p50_mm": 9.0,
+          "p90_mm": 20.1,
+          "spread_mm": 20.1,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 9,
+        "scenarios": {
+          "lower_deficit_mm": 0.0,
+          "central_expected_mm": 9.0,
+          "higher_surplus_mm": 20.1
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.47,
+      "probability_normal_or_excess": 0.45,
+      "probability_extended_dry_spell_gt_14d": 0.5
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Tamil Nadu::Coimbatore": {
+    "state": "Tamil Nadu",
+    "district": "Coimbatore",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 197.8,
+        "uncertainty_interval": {
+          "p10_mm": 121.6,
+          "p50_mm": 197.8,
+          "p90_mm": 274.0,
+          "spread_mm": 152.4,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 170,
+        "scenarios": {
+          "lower_deficit_mm": 121.6,
+          "central_expected_mm": 197.8,
+          "higher_surplus_mm": 274.0
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 271.7,
+        "uncertainty_interval": {
+          "p10_mm": 164.3,
+          "p50_mm": 271.7,
+          "p90_mm": 379.1,
+          "spread_mm": 214.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 245,
+        "scenarios": {
+          "lower_deficit_mm": 164.3,
+          "central_expected_mm": 271.7,
+          "higher_surplus_mm": 379.1
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 263.0,
+        "uncertainty_interval": {
+          "p10_mm": 131.2,
+          "p50_mm": 263.0,
+          "p90_mm": 394.8,
+          "spread_mm": 263.6,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 263,
+        "scenarios": {
+          "lower_deficit_mm": 131.2,
+          "central_expected_mm": 263.0,
+          "higher_surplus_mm": 394.8
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.05,
+      "probability_normal_or_excess": 0.68,
+      "probability_extended_dry_spell_gt_14d": 0.14
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Tamil Nadu::Tuticorin": {
+    "state": "Tamil Nadu",
+    "district": "Tuticorin",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 158.0,
+        "uncertainty_interval": {
+          "p10_mm": 81.8,
+          "p50_mm": 158.0,
+          "p90_mm": 234.2,
+          "spread_mm": 152.4,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 170,
+        "scenarios": {
+          "lower_deficit_mm": 81.8,
+          "central_expected_mm": 158.0,
+          "higher_surplus_mm": 234.2
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 233.4,
+        "uncertainty_interval": {
+          "p10_mm": 126.0,
+          "p50_mm": 233.4,
+          "p90_mm": 340.8,
+          "spread_mm": 214.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 245,
+        "scenarios": {
+          "lower_deficit_mm": 126.0,
+          "central_expected_mm": 233.4,
+          "higher_surplus_mm": 340.8
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 263.0,
+        "uncertainty_interval": {
+          "p10_mm": 131.2,
+          "p50_mm": 263.0,
+          "p90_mm": 394.8,
+          "spread_mm": 263.6,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 263,
+        "scenarios": {
+          "lower_deficit_mm": 131.2,
+          "central_expected_mm": 263.0,
+          "higher_surplus_mm": 394.8
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.11,
+      "probability_normal_or_excess": 0.42,
+      "probability_extended_dry_spell_gt_14d": 0.19
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Telangana::Adilabad": {
+    "state": "Telangana",
+    "district": "Adilabad",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 14.3,
+        "uncertainty_interval": {
+          "p10_mm": 5.3,
+          "p50_mm": 14.3,
+          "p90_mm": 23.3,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 20,
+        "scenarios": {
+          "lower_deficit_mm": 5.3,
+          "central_expected_mm": 14.3,
+          "higher_surplus_mm": 23.3
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 20.3,
+        "uncertainty_interval": {
+          "p10_mm": 7.7,
+          "p50_mm": 20.3,
+          "p90_mm": 32.9,
+          "spread_mm": 25.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 25,
+        "scenarios": {
+          "lower_deficit_mm": 7.7,
+          "central_expected_mm": 20.3,
+          "higher_surplus_mm": 32.9
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 33.0,
+        "uncertainty_interval": {
+          "p10_mm": 17.5,
+          "p50_mm": 33.0,
+          "p90_mm": 48.5,
+          "spread_mm": 31.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 33,
+        "scenarios": {
+          "lower_deficit_mm": 17.5,
+          "central_expected_mm": 33.0,
+          "higher_surplus_mm": 48.5
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.27,
+      "probability_normal_or_excess": 0.21,
+      "probability_extended_dry_spell_gt_14d": 0.33
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Telangana::Nizamabad": {
+    "state": "Telangana",
+    "district": "Nizamabad",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 14.2,
+        "uncertainty_interval": {
+          "p10_mm": 5.2,
+          "p50_mm": 14.2,
+          "p90_mm": 23.2,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 20,
+        "scenarios": {
+          "lower_deficit_mm": 5.2,
+          "central_expected_mm": 14.2,
+          "higher_surplus_mm": 23.2
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 20.2,
+        "uncertainty_interval": {
+          "p10_mm": 7.6,
+          "p50_mm": 20.2,
+          "p90_mm": 32.8,
+          "spread_mm": 25.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 25,
+        "scenarios": {
+          "lower_deficit_mm": 7.6,
+          "central_expected_mm": 20.2,
+          "higher_surplus_mm": 32.8
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 33.0,
+        "uncertainty_interval": {
+          "p10_mm": 17.5,
+          "p50_mm": 33.0,
+          "p90_mm": 48.5,
+          "spread_mm": 31.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 33,
+        "scenarios": {
+          "lower_deficit_mm": 17.5,
+          "central_expected_mm": 33.0,
+          "higher_surplus_mm": 48.5
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.27,
+      "probability_normal_or_excess": 0.2,
+      "probability_extended_dry_spell_gt_14d": 0.33
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Telangana::Ranga Reddy": {
+    "state": "Telangana",
+    "district": "Ranga Reddy",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 15.5,
+        "uncertainty_interval": {
+          "p10_mm": 6.5,
+          "p50_mm": 15.5,
+          "p90_mm": 24.5,
+          "spread_mm": 18.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 20,
+        "scenarios": {
+          "lower_deficit_mm": 6.5,
+          "central_expected_mm": 15.5,
+          "higher_surplus_mm": 24.5
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 21.3,
+        "uncertainty_interval": {
+          "p10_mm": 8.7,
+          "p50_mm": 21.3,
+          "p90_mm": 33.9,
+          "spread_mm": 25.2,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 25,
+        "scenarios": {
+          "lower_deficit_mm": 8.7,
+          "central_expected_mm": 21.3,
+          "higher_surplus_mm": 33.9
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 33.0,
+        "uncertainty_interval": {
+          "p10_mm": 17.5,
+          "p50_mm": 33.0,
+          "p90_mm": 48.5,
+          "spread_mm": 31.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 33,
+        "scenarios": {
+          "lower_deficit_mm": 17.5,
+          "central_expected_mm": 33.0,
+          "higher_surplus_mm": 48.5
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.22,
+      "probability_normal_or_excess": 0.26,
+      "probability_extended_dry_spell_gt_14d": 0.29
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Tripura::South Tripura": {
+    "state": "Tripura",
+    "district": "South Tripura",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 34.5,
+        "uncertainty_interval": {
+          "p10_mm": 21.1,
+          "p50_mm": 34.5,
+          "p90_mm": 47.9,
+          "spread_mm": 26.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 30,
+        "scenarios": {
+          "lower_deficit_mm": 21.1,
+          "central_expected_mm": 34.5,
+          "higher_surplus_mm": 47.9
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 41.8,
+        "uncertainty_interval": {
+          "p10_mm": 22.8,
+          "p50_mm": 41.8,
+          "p90_mm": 60.8,
+          "spread_mm": 38.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 38,
+        "scenarios": {
+          "lower_deficit_mm": 22.8,
+          "central_expected_mm": 41.8,
+          "higher_surplus_mm": 60.8
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 48.0,
+        "uncertainty_interval": {
+          "p10_mm": 24.7,
+          "p50_mm": 48.0,
+          "p90_mm": 71.3,
+          "spread_mm": 46.6,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 48,
+        "scenarios": {
+          "lower_deficit_mm": 24.7,
+          "central_expected_mm": 48.0,
+          "higher_surplus_mm": 71.3
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.05,
+      "probability_normal_or_excess": 0.67,
+      "probability_extended_dry_spell_gt_14d": 0.14
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  },
+  "Tripura::West Tripura": {
+    "state": "Tripura",
+    "district": "West Tripura",
+    "forecast_origin_date": "2026-10-25",
+    "model_identifier": "NWDP-Rainfall-QuantileGB-v1",
+    "model_version": "1.0.0-operational",
+    "horizons": {
+      "30d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-11-24",
+        "expected_cumulative_rainfall_mm": 36.3,
+        "uncertainty_interval": {
+          "p10_mm": 22.9,
+          "p50_mm": 36.3,
+          "p90_mm": 49.7,
+          "spread_mm": 26.8,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 30,
+        "scenarios": {
+          "lower_deficit_mm": 22.9,
+          "central_expected_mm": 36.3,
+          "higher_surplus_mm": 49.7
+        }
+      },
+      "60d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2026-12-24",
+        "expected_cumulative_rainfall_mm": 43.3,
+        "uncertainty_interval": {
+          "p10_mm": 24.3,
+          "p50_mm": 43.3,
+          "p90_mm": 62.3,
+          "spread_mm": 38.0,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 38,
+        "scenarios": {
+          "lower_deficit_mm": 24.3,
+          "central_expected_mm": 43.3,
+          "higher_surplus_mm": 62.3
+        }
+      },
+      "90d": {
+        "target_period_start": "2026-10-26",
+        "target_period_end": "2027-01-23",
+        "expected_cumulative_rainfall_mm": 48.0,
+        "uncertainty_interval": {
+          "p10_mm": 24.7,
+          "p50_mm": 48.0,
+          "p90_mm": 71.3,
+          "spread_mm": 46.6,
+          "interval_status": "calibrated_empirical_quantile"
+        },
+        "climatological_normal_mm": 48,
+        "scenarios": {
+          "lower_deficit_mm": 24.7,
+          "central_expected_mm": 48.0,
+          "higher_surplus_mm": 71.3
+        }
+      }
+    },
+    "event_probabilities": {
+      "probability_severe_deficit_gt_50pct": 0.05,
+      "probability_normal_or_excess": 0.73,
+      "probability_extended_dry_spell_gt_14d": 0.14
+    },
+    "provenance": {
+      "training_data": "IMD 30-year climatological normals (1991-2020) + NWDP daily series (2021-2026)",
+      "last_observation_origin": "2026-10-25",
+      "methodology": "Time-aware Adaptive Quantile Forecasting with Seasonal Decomposition"
+    }
+  }
+}

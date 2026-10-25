@@ -12,6 +12,7 @@ import { ALL_INDIAN_STATES, ALL_TARGET_STATES, isTargetState } from '@/lib/data/
 import { sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { matchInterventionRecommendations, SchemeRecommendationMatch } from '@/lib/services/scientificEngine';
+import { detectIntegratedSituation, generateSituationAwareInterventions, IntegratedSituationAssessment, SituationAwareInterventionRecommendation } from '@/lib/services/situationAwareInterventionEngine';
 import { BlockData } from '@/lib/types';
 
 const STORAGE_KEY_PROPOSALS = 'jaldrishti_interventions_v1';
@@ -30,8 +31,14 @@ function InterventionsContent() {
   const [selectedBlockId, setSelectedBlockId] = useState<string>(urlBlockParam || ACTIVE_TARGET_BLOCKS[0]?.id || '');
   const [selectedStateFilter, setSelectedStateFilter] = useState<string>('all');
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [showNewModal, setShowNewModal] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
+  const [showNewModal, setShowNewModal] = useState<boolean>(false);
+
+  // Situation-Aware Intelligence States
+  const [rainfallIntel, setRainfallIntel] = useState<any | null>(null);
+  const [rainfallForecast, setRainfallForecast] = useState<any | null>(null);
+  const [groundwaterForecast90, setGroundwaterForecast90] = useState<any | null>(null);
+  const [isSituationLoading, setIsSituationLoading] = useState<boolean>(false);
 
   const isReadOnly = !canMutateDemoWorkflows(activeRole);
   const restrictionNotice = demoRestrictionNotice(activeRole, t);
@@ -131,6 +138,58 @@ function InterventionsContent() {
       }
     }
   }, [urlBlockParam, proposals, blocksData]);
+
+  // 3. Load Rainfall Intelligence & Station Groundwater Forecast for Selected Block
+  useEffect(() => {
+    const activeBlock = blocksData.find(b => b.id === selectedBlockId);
+    if (!activeBlock) return;
+    let active = true;
+    setIsSituationLoading(true);
+
+    Promise.allSettled([
+      fetch(`/api/rainfall?district=${encodeURIComponent(activeBlock.districtName)}&state=${encodeURIComponent(activeBlock.state)}`).then(r => r.json()),
+      fetch('/api/station-forecast?stations=true').then(r => r.json()).then(async (dir) => {
+        if (dir.status === 'available' && Array.isArray(dir.stations)) {
+          const match = dir.stations.find((s: any) =>
+            s.district.toLowerCase() === activeBlock.districtName.toLowerCase() ||
+            s.state.toLowerCase() === activeBlock.state.toLowerCase()
+          );
+          if (match) {
+            const fcRes = await fetch(`/api/station-forecast?stationId=${encodeURIComponent(match.stationId)}&horizonDays=90`);
+            return fcRes.json();
+          }
+        }
+        return null;
+      })
+    ]).then(([rainRes, gwRes]) => {
+      if (!active) return;
+      if (rainRes.status === 'fulfilled' && rainRes.value.status === 'available') {
+        setRainfallIntel(rainRes.value.historicalIntelligence || null);
+        setRainfallForecast(rainRes.value.forecast || null);
+      } else {
+        setRainfallIntel(null);
+        setRainfallForecast(null);
+      }
+
+      if (gwRes.status === 'fulfilled' && gwRes.value && gwRes.value.status === 'experimental') {
+        setGroundwaterForecast90(gwRes.value);
+      } else {
+        setGroundwaterForecast90(null);
+      }
+    }).catch(() => {
+      if (active) {
+        setRainfallIntel(null);
+        setRainfallForecast(null);
+        setGroundwaterForecast90(null);
+      }
+    }).finally(() => {
+      if (active) setIsSituationLoading(false);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [selectedBlockId, blocksData]);
 
   // Server API & localStorage synchronized persistence helper
   const persistProposal = async (proposal: InterventionProposal, updatedList: InterventionProposal[]) => {
@@ -281,7 +340,15 @@ function InterventionsContent() {
   };
 
   const currentBlock: BlockData | null = blocksData.find(b => b.id === selectedBlockId) || blocksData[0] || null;
-  const recommendations: SchemeRecommendationMatch[] = currentBlock ? matchInterventionRecommendations(currentBlock) : [];
+  const legacyRecommendations: SchemeRecommendationMatch[] = currentBlock ? matchInterventionRecommendations(currentBlock) : [];
+  
+  // Situation Assessment integrating groundwater observations, telemetry forecast, and unified rainfall
+  const situationAssessment: IntegratedSituationAssessment | null = currentBlock
+    ? detectIntegratedSituation(currentBlock, rainfallIntel, rainfallForecast, groundwaterForecast90)
+    : null;
+  const situationInterventions: SituationAwareInterventionRecommendation[] = situationAssessment
+    ? generateSituationAwareInterventions(situationAssessment)
+    : [];
 
   return (
     <div className="space-y-6">
@@ -427,44 +494,144 @@ function InterventionsContent() {
               </p>
             </div>
 
-            {/* Scheme Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {recommendations.map((rec) => (
-                <div key={rec.scheme.id} className="p-3.5 border border-border bg-subtle/20 space-y-2 flex flex-col justify-between">
-                  <div className="space-y-1.5">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <span className="text-[10px] text-text-muted uppercase tracking-wider font-semibold block line-clamp-1">
-                          {rec.scheme.implementingAgency}
-                        </span>
-                        <h3 className="text-xs font-bold text-text-main">{rec.scheme.name}</h3>
-                      </div>
-                      <span className={`text-[10px] font-bold px-1.5 py-0.5 border shrink-0 ${
-                        rec.eligible
-                          ? 'bg-emerald-500/10 text-emerald-800 border-emerald-500/30'
-                          : 'bg-subtle text-text-muted border-border'
-                      }`}>
-                        {rec.eligible ? 'ELIGIBLE' : 'CRITERIA NOT MET'}
-                      </span>
-                    </div>
-
-                    <div className="text-xs">
-                      <span className="font-semibold text-primary">{rec.recommendedInterventionType}</span>
-                    </div>
-
-                    <p className="text-xs text-text-muted leading-relaxed">
-                      {rec.matchReason}
-                    </p>
+            {/* Integrated Situation Assessment Card */}
+            {situationAssessment && (
+              <div className="p-3.5 border border-primary/30 bg-primary/5 space-y-2.5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/80 pb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider bg-primary text-text-inverted px-2 py-0.5 rounded-xs">
+                      Situation Detected
+                    </span>
+                    <h3 className="text-sm font-bold text-text-main">{situationAssessment.title}</h3>
                   </div>
+                  <span className={`text-[11px] font-bold px-2 py-0.5 border ${
+                    situationAssessment.urgency === 'immediate'
+                      ? 'bg-red-500/10 text-red-800 border-red-500/30'
+                      : situationAssessment.urgency === 'high'
+                      ? 'bg-amber-500/10 text-amber-800 border-amber-500/30'
+                      : 'bg-emerald-500/10 text-emerald-800 border-emerald-500/30'
+                  }`}>
+                    URGENCY: {situationAssessment.urgency.toUpperCase()}
+                  </span>
+                </div>
 
-                  <div className="pt-2 border-t border-border flex items-center justify-between text-[11px] text-text-muted">
-                    <span>Indicative Range:</span>
-                    <span className="font-mono font-semibold text-text-main">
-                      ₹{(rec.estimatedSanctionRangeInr[0] / 100000).toFixed(1)}L – ₹{(rec.estimatedSanctionRangeInr[1] / 100000).toFixed(1)}L
+                <p className="text-xs text-text-main leading-relaxed">
+                  {situationAssessment.situationSummary}
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-[11px] bg-subtle p-2 border border-border">
+                  <div>
+                    <span className="text-text-muted block text-[10px] uppercase">Rainfall Anomaly (30d)</span>
+                    <span className="font-mono font-bold text-text-main">
+                      {situationAssessment.triggeringEvidence.rainfallAnomalyMm !== null && situationAssessment.triggeringEvidence.rainfallAnomalyMm !== undefined
+                        ? `${situationAssessment.triggeringEvidence.rainfallAnomalyMm} mm`
+                        : 'Missing'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-text-muted block text-[10px] uppercase">Monitored Well Depth</span>
+                    <span className="font-mono font-bold text-text-main">
+                      {situationAssessment.triggeringEvidence.groundwaterDepthMbgl !== null && situationAssessment.triggeringEvidence.groundwaterDepthMbgl !== undefined
+                        ? `${situationAssessment.triggeringEvidence.groundwaterDepthMbgl} m bgl`
+                        : 'Missing'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-text-muted block text-[10px] uppercase">Drawdown Trend (Rate)</span>
+                    <span className="font-mono font-bold text-text-main">
+                      {situationAssessment.triggeringEvidence.drawdownRateMperYr !== null && situationAssessment.triggeringEvidence.drawdownRateMperYr !== undefined
+                        ? `${situationAssessment.triggeringEvidence.drawdownRateMperYr} m/yr`
+                        : 'Unavailable'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-text-muted block text-[10px] uppercase">Telemetry Forecast (+90d)</span>
+                    <span className="font-mono font-bold text-primary">
+                      {situationAssessment.triggeringEvidence.predictedDepthHorizon90d !== null && situationAssessment.triggeringEvidence.predictedDepthHorizon90d !== undefined
+                        ? `${situationAssessment.triggeringEvidence.predictedDepthHorizon90d.toFixed(2)} m bgl`
+                        : 'N/A (Station)'}
                     </span>
                   </div>
                 </div>
-              ))}
+
+                <div className="text-[10px] text-text-muted italic pt-1 border-t border-border/50">
+                  <span className="font-semibold text-text-main">Detection Logic: </span>
+                  {situationAssessment.ruleExplanation}
+                </div>
+              </div>
+            )}
+
+            {/* Prioritized Situation-Aware Interventions Grid */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between pb-1">
+                <span className="text-xs font-bold text-text-muted uppercase tracking-wider">
+                  Situation-Aware Prioritized Interventions ({situationInterventions.length} Schemes Analyzed)
+                </span>
+                <span className="text-[10px] text-text-muted">
+                  Ranked by Multi-Criteria Urgency &amp; Aquifer Vulnerability
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {situationInterventions.map((rec) => (
+                  <div key={rec.id} className="p-3.5 border border-border bg-subtle/20 space-y-2.5 flex flex-col justify-between">
+                    <div className="space-y-1.5">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] bg-subtle text-text-muted border border-border px-1.5 py-0.2 font-mono">
+                              Priority {rec.priorityScore}/100
+                            </span>
+                            <span className="text-[10px] text-text-muted font-semibold">
+                              {rec.schemeName}
+                            </span>
+                          </div>
+                          <h4 className="text-xs font-bold text-text-main mt-0.5">{rec.interventionType}</h4>
+                        </div>
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 border shrink-0 ${
+                          rec.eligible
+                            ? 'bg-emerald-500/10 text-emerald-800 border-emerald-500/30'
+                            : 'bg-subtle text-text-muted border-border'
+                        }`}>
+                          {rec.eligible ? 'ELIGIBLE' : 'CRITERIA NOT MET'}
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-text-muted leading-relaxed">
+                        {rec.rationale}
+                      </p>
+
+                      {rec.feasibilityConstraints.length > 0 && (
+                        <div className="text-[11px] text-text-muted bg-surface p-2 border border-border space-y-0.5">
+                          <span className="font-semibold text-text-main block text-[10px] uppercase">Feasibility Constraints:</span>
+                          <ul className="list-disc list-inside space-y-0.5">
+                            {rec.feasibilityConstraints.map((c, idx) => (
+                              <li key={idx}>{c}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="pt-2 border-t border-border space-y-1 text-[11px]">
+                      <div className="flex items-center justify-between text-text-muted">
+                        <span>Approval Authority:</span>
+                        <span className="font-medium text-text-main">{rec.requiredApprovalAuthority}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-text-muted">
+                        <span>Indicative Sanction Range:</span>
+                        <span className="font-mono font-semibold text-text-main">
+                          ₹{(rec.estimatedCostRangeInr[0] / 100000).toFixed(1)}L – ₹{(rec.estimatedCostRangeInr[1] / 100000).toFixed(1)}L
+                        </span>
+                      </div>
+                      <div className="text-[10px] text-text-muted/80 pt-1 border-t border-border/40">
+                        <span className="font-semibold text-text-main">Monitoring Key: </span>
+                        {rec.measurableMonitoringIndicator}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
