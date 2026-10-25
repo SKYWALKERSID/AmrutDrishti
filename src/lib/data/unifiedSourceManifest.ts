@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Authoritative Official Groundwater Source Registry
+ * AMRUT DRISHTI — Authoritative Official Groundwater Source Registry
  * ===============================================================
  * The 27 approved official dataset URLs for the 9 retained states.
  * Exactly three official URLs per state:

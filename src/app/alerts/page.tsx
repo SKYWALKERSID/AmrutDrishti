@@ -65,7 +65,7 @@ function AlertsContent() {
           }
         }
       } catch (err) {
-        console.warn('JalDrishti: Failed to load blocks for alerts:', err);
+        console.warn('AMRUT DRISHTI: Failed to load blocks for alerts:', err);
       } finally {
         if (active) setIsLoading(false);
       }
@@ -80,7 +80,7 @@ function AlertsContent() {
           }
         }
       } catch (err) {
-        console.warn('JalDrishti: Failed to load stored alert logs:', err);
+        console.warn('AMRUT DRISHTI: Failed to load stored alert logs:', err);
       }
     }
 
@@ -107,7 +107,7 @@ function AlertsContent() {
       localStorage.setItem(STORAGE_KEY_ALERTS, JSON.stringify(updatedList));
       setStorageError(null);
     } catch (err) {
-      console.error('JalDrishti: Browser storage error:', err);
+      console.error('AMRUT DRISHTI: Browser storage error:', err);
       setStorageError('Warning: Browser storage quota exceeded or unavailable. Dispatch logged in UI but may not persist across reload.');
     }
   };

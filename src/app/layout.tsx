@@ -7,7 +7,7 @@ import { LanguageProvider } from '@/lib/context/LanguageContext';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'JalDrishti (जलदृष्टि) | Groundwater Intelligence & Governance Platform',
+  title: 'AMRUT DRISHTI (अमृत दृष्टि) | Groundwater Intelligence & Governance Platform',
   description: 'India-focused groundwater intelligence and decision-support platform for 9 active states: Karnataka, Telangana, Tamil Nadu, Madhya Pradesh, Rajasthan, Haryana, Punjab, Meghalaya, and Tripura.',
 };
 

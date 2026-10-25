@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Operational Governance & RBAC Enforcement Service
+ * AMRUT DRISHTI — Operational Governance & RBAC Enforcement Service
  * 
  * Provides pure, testable server-side validation for:
  * 1. Role-Based Access Control (RBAC) across the 7 application roles:

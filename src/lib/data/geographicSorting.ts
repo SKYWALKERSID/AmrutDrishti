@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Authoritative Geographic Sorting & Hierarchy Utilities
+ * AMRUT DRISHTI — Authoritative Geographic Sorting & Hierarchy Utilities
  * 
  * Enforces the global alphabetical hierarchy across all dropdowns, tables, maps, and selector panels:
  * State (A–Z) -> District (A–Z within State) -> Block (A–Z within District)

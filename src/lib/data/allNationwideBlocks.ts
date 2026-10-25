@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Nationwide Monitored Administrative Geography Dataset
+ * AMRUT DRISHTI — Nationwide Monitored Administrative Geography Dataset
  * 
  * Aggregates all empirical monitoring units across the nine active target states:
  * - South India: Karnataka, Telangana, Tamil Nadu

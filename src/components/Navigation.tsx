@@ -104,10 +104,10 @@ export const Navigation: React.FC = () => {
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5 flex-wrap">
                 <Link href="/" className="text-base sm:text-lg font-bold text-text-main tracking-tight hover:text-primary transition-colors">
-                  JalDrishti
+                  AMRUT DRISHTI
                 </Link>
                 <span className="text-[10px] sm:text-xs font-normal text-text-muted whitespace-nowrap">
-                  जलदृष्टि v1.0
+                  अमृत दृष्टि v1.0
                 </span>
               </div>
               <p className="text-[10px] sm:text-[11px] text-text-muted leading-tight truncate">

@@ -45,15 +45,15 @@ export default function DataSourcesPage() {
           </div>
         </div>
         <p className="mt-2 max-w-3xl text-xs sm:text-sm leading-relaxed text-text-muted">
-          {t('datasources.subtitle', "Review the declared providers, spatial resolution, observation cadence, provenance notes and limitations for JalDrishti's configured evidence sources.")}
+          {t('datasources.subtitle', "Review the declared providers, spatial resolution, observation cadence, provenance notes and limitations for AMRUT DRISHTI's configured evidence sources.")}
         </p>
 
         {/* 5-Question Plain-Language Guide Card */}
         <div className="mt-4">
           <WhatAmILookingAt
-            title="💡 How do I understand JalDrishti's Data Sources & Limitations?"
-            what="This page catalogs all official government and scientific data providers that feed into JalDrishti, detailing who supplies each measurement, how fine-grained the data is, and what scientific limits apply."
-            meaning="No single sensor covers all groundwater aspects. JalDrishti synthesizes physical well measurements (CGWB), satellite gravity observations (NASA/DLR GRACE-FO), radar surface soil moisture (NASA SMAP), optical vegetation indices (ESA Sentinel-2), and precipitation grids (IMD)."
+            title="💡 How do I understand AMRUT DRISHTI's Data Sources & Limitations?"
+            what="This page catalogs all official government and scientific data providers that feed into AMRUT DRISHTI, detailing who supplies each measurement, how fine-grained the data is, and what scientific limits apply."
+            meaning="No single sensor covers all groundwater aspects. AMRUT DRISHTI synthesizes physical well measurements (CGWB), satellite gravity observations (NASA/DLR GRACE-FO), radar surface soil moisture (NASA SMAP), optical vegetation indices (ESA Sentinel-2), and precipitation grids (IMD)."
             whyCare="Transparency is essential in public hydrologic policy. Understanding observation cadence (quarterly vs daily) and spatial resolution (from 500m up to 300km) ensures decisions aren't made on coarse data mistaken for ultra-local telemetry."
             recentAndReliable="Each card indicates the exact latest observation date, ingestion timestamp, and missing data rate. All sources adhere to open-access government and space agency protocols."
             nextSteps="Cross-reference a block's indicators in the Explorer or Risk Assessment tabs with the resolutions and cadences documented here to understand the physical basis of alerts."

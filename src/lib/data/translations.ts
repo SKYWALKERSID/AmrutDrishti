@@ -11,7 +11,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.alerts': 'चेतावनी व सूचना (Alerts & SMS)',
     'nav.datasources': 'जानकारी के स्रोत (Data Sources)',
     'nav.admin': 'प्रशासन (Administration)',
-    'header.pilot': 'जलदृष्टि (JalDrishti) — राष्ट्रीय भूजल निगरानी एवं निर्णय सहायता प्रणाली',
+    'header.pilot': 'अमृत दृष्टि (AMRUT DRISHTI) — राष्ट्रीय भूजल निगरानी एवं निर्णय सहायता प्रणाली',
     'header.demoMode': 'Prototype Demonstration Mode — Simulated Data',
     'header.demoRole': 'भूमिका:',
 
@@ -25,7 +25,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'term.noRealMessage': 'कोई असली SMS या व्हाट्सएप संदेश नहीं भेजा जाता।',
     'term.gssExplanation': 'भूजल तनाव अंक (GSS: 0-100 का सूचकांक)',
 
-    'overview.title': 'जलदृष्टि — जल सुरक्षा के लिए भूजल बुद्धिमत्ता',
+    'overview.title': 'अमृत दृष्टि — जल सुरक्षा के लिए भूजल बुद्धिमत्ता',
     'overview.subtitle': 'जिला कलेक्टर, बीडीओ और विश्लेषकों के लिए भूजल संकट के संकेतों को पहचानने और समय पर कदम उठाने का मंच।',
     'overview.severeTitle': 'DISTRICT BLOCKS WITH SEVERE WARNING',
     'overview.severeDisclaimer': 'DISCLAIMER: (The blocks listed below are manually classified demonstration records. These are not verified groundwater warnings; validated risk thresholds and scientific assessment have not yet been implemented.)',
@@ -320,7 +320,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'datasources.provenanceTitle': 'स्रोत और सीमाएँ',
 
     'admin.noticeTitle': 'प्रदर्शन पहुँच सूचना — प्रणाली व्यवस्थापक (Admin) भूमिका आवश्यक',
-    'admin.noticeText': 'प्रशासन कार्यक्षेत्र जलदृष्टि प्लेटफॉर्म में केवल प्रणाली व्यवस्थापकों के लिए आरक्षित है।',
+    'admin.noticeText': 'प्रशासन कार्यक्षेत्र अमृत दृष्टि प्लेटफॉर्म में केवल प्रणाली व्यवस्थापकों के लिए आरक्षित है।',
     'admin.returnOverview': '← मुख्य पृष्ठ पर वापस जाएँ',
     'admin.title': 'प्रणाली प्रशासन (Superuser) कार्यक्षेत्र',
     'admin.subtitle': 'प्रणाली व्यवस्थापकों के लिए संपूर्ण पहुँच वाला प्रशासनिक इंटरफ़ेस।',
@@ -336,7 +336,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.alerts': 'Alerts & SMS',
     'nav.datasources': 'Data Sources',
     'nav.admin': 'Administration',
-    'header.pilot': 'JalDrishti — Satellite-Assisted Groundwater Intelligence & Early-Warning Platform',
+    'header.pilot': 'AMRUT DRISHTI — Satellite-Assisted Groundwater Intelligence & Early-Warning Platform',
     'header.demoMode': 'Prototype Demonstration Mode — Simulated Data',
     'header.demoRole': 'Demo Role:',
 
@@ -350,7 +350,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'term.noRealMessage': 'No real SMS or WhatsApp message is sent.',
     'term.gssExplanation': 'Groundwater Stress Score (GSS: 0-100 Index)',
 
-    'overview.title': 'JalDrishti — Geospatial Intelligence for Water Security',
+    'overview.title': 'AMRUT DRISHTI — Geospatial Intelligence for Water Security',
     'overview.subtitle': 'Geospatial decision-support platform enabling district collectors, BDOs, and analysts to identify groundwater water-stress signals and prioritize interventions.',
     'overview.severeTitle': 'DISTRICT BLOCKS WITH SEVERE WARNING',
     'overview.severeDisclaimer': 'DISCLAIMER: (The blocks listed below are manually classified demonstration records. These are not verified groundwater warnings; validated risk thresholds and scientific assessment have not yet been implemented.)',
@@ -645,7 +645,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'datasources.provenanceTitle': 'Provenance and limitations',
 
     'admin.noticeTitle': 'Demonstration Access Notice — System Administrator Role Required',
-    'admin.noticeText': 'The Administration workspace is reserved for System Administrators in the JalDrishti platform prototype.',
+    'admin.noticeText': 'The Administration workspace is reserved for System Administrators in the AMRUT DRISHTI platform prototype.',
     'admin.returnOverview': '← Return to Overview Dashboard',
     'admin.title': 'System Administration Superuser Workspace',
     'admin.subtitle': 'Platform-wide administration interface for System Administrators with full access.',

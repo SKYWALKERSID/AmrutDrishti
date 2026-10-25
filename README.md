@@ -1,7 +1,7 @@
-# JalDrishti
+# AMRUT DRISHTI
 ### Satellite-Assisted Groundwater Intelligence for Climate Resilience
 
-**JAL DRISHTI** is an India-focused groundwater intelligence and decision-support platform. Its active approved scope is nine states and 43 canonical blocks: Karnataka, Telangana, Tamil Nadu, Madhya Pradesh, Rajasthan, Haryana, Punjab, Meghalaya, and Tripura. Assam and other out-of-scope records must not enter active telemetry or block forecasts. Any expansion requires explicit data and scientific validation.
+**AMRUT DRISHTI** is an India-focused groundwater intelligence and decision-support platform. Its active approved scope is nine states and 43 canonical blocks: Karnataka, Telangana, Tamil Nadu, Madhya Pradesh, Rajasthan, Haryana, Punjab, Meghalaya, and Tripura. Assam and other out-of-scope records must not enter active telemetry or block forecasts. Any expansion requires explicit data and scientific validation.
 
 > **Project Status:** Hackathon Prototype. Data integrations, predictive models (including 90-day and 180-day forecast targets), and decision-support capabilities are demonstrated as a functional, scientifically defensible platform.
 >
@@ -36,7 +36,7 @@
 
 Groundwater management requires reliable information about water availability, environmental conditions, local observations, and changing demand. However, relevant information is distributed across satellite products, monitoring networks, government portals, research datasets, and local planning systems.
 
-JalDrishti proposes to bring these sources into a unified platform where users can examine environmental indicators, explore geographic patterns, assess potential groundwater stress, and review possible interventions.
+AMRUT DRISHTI proposes to bring these sources into a unified platform where users can examine environmental indicators, explore geographic patterns, assess potential groundwater stress, and review possible interventions.
 
 The platform is designed around five principles:
 
@@ -57,11 +57,11 @@ Groundwater-related decisions are challenging for several reasons:
 - Technical analysis does not always translate into transparent intervention planning.
 - Decision-makers need to understand not only the estimated risk, but also the evidence and uncertainty behind it.
 
-JalDrishti aims to improve the integration, interpretation, and practical use of this information.
+AMRUT DRISHTI aims to improve the integration, interpretation, and practical use of this information.
 
 ## Proposed Solution
 
-JalDrishti will investigate whether combining satellite-derived environmental indicators, rainfall information, groundwater observations, geospatial analytics, and validated predictive methods can improve local groundwater-risk monitoring.
+AMRUT DRISHTI will investigate whether combining satellite-derived environmental indicators, rainfall information, groundwater observations, geospatial analytics, and validated predictive methods can improve local groundwater-risk monitoring.
 
 The proposed workflow is:
 
@@ -175,7 +175,7 @@ A configured data source must not automatically be described as connected, curre
 
 ## Research Background and Existing Systems
 
-JalDrishti builds on established areas of research and public infrastructure. Its potential contribution must be evaluated against existing work rather than assuming that satellite-based groundwater monitoring is new.
+AMRUT DRISHTI builds on established areas of research and public infrastructure. Its potential contribution must be evaluated against existing work rather than assuming that satellite-based groundwater monitoring is new.
 
 Relevant areas include:
 
@@ -234,7 +234,7 @@ Does the proposed workflow improve decision usefulness when evaluated on unseen 
 
 ### Potential contribution
 
-JalDrishti will investigate the integration of validated environmental evidence, uncertainty reporting, and human-reviewed planning workflows into a practical geospatial decision-support system.
+AMRUT DRISHTI will investigate the integration of validated environmental evidence, uncertainty reporting, and human-reviewed planning workflows into a practical geospatial decision-support system.
 
 Novelty and effectiveness must be demonstrated through literature review, comparison with existing systems, independent validation, and pilot evaluation.
 
@@ -266,7 +266,7 @@ Environmental and Groundwater Data
          Backend APIs
                 |
                 v
-       JalDrishti Web Application
+       AMRUT DRISHTI Web Application
                 |
                 v
     Evidence Review and Planning
@@ -312,7 +312,7 @@ The existing repository takes precedence over this proposed stack. Do not introd
 
 ## Data Sources
 
-JalDrishti will investigate the following sources.
+AMRUT DRISHTI will investigate the following sources.
 
 | Source | Potential use | Important limitation |
 |---|---|---|
@@ -373,7 +373,7 @@ No model-generated result should independently authorize expenditure, approve go
 Adapt this structure to the existing project rather than forcing a rewrite.
 
 ```text
-JalDrishti/
+AMRUT DRISHTI/
 ├── AGENTS.md
 ├── README.md
 ├── docs/
@@ -415,8 +415,8 @@ Install the tools required by the actual project:
 Replace the placeholder with the actual GitHub repository URL.
 
 ```bash
-git clone https://github.com/SKYWALKERSID/JalDrishti.git
-cd JalDrishti
+git clone https://github.com/SKYWALKERSID/AMRUT DRISHTI.git
+cd AMRUT DRISHTI
 ```
 
 ### 2. Inspect the project
@@ -488,7 +488,7 @@ Do not place real credentials in the README.
 
 ## Security and Privacy
 
-JalDrishti must:
+AMRUT DRISHTI must:
 - Keep credentials out of source control.
 - Validate sensitive operations on the server.
 - Enforce appropriate access controls.
@@ -505,7 +505,7 @@ Terms of Service and Privacy Policy content must reflect actual product practice
 
 ## Limitations
 
-JalDrishti's effectiveness depends on the availability, suitability, quality, and coverage of its underlying datasets.
+AMRUT DRISHTI's effectiveness depends on the availability, suitability, quality, and coverage of its underlying datasets.
 
 Important limitations include:
 
@@ -523,7 +523,7 @@ These limitations must be reflected in the application and its documentation.
 ---
 ## License
 
-JalDrishti is licensed under the [MIT License](LICENSE).
+AMRUT DRISHTI is licensed under the [MIT License](LICENSE).
 
 You are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software, subject to the conditions of the MIT License.
 

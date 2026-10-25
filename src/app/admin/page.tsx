@@ -188,7 +188,7 @@ export default function AdminPage() {
             <span>{t('admin.noticeTitle', 'Demonstration Access Notice — System Administrator Role Required')}</span>
           </div>
           <p className="mt-2 text-xs leading-relaxed text-amber-800">
-            {t('admin.noticeText', 'The Administration workspace is reserved for System Administrators in the JalDrishti platform prototype.')}
+            {t('admin.noticeText', 'The Administration workspace is reserved for System Administrators in the AMRUT DRISHTI platform prototype.')}
             {' '}Your current active demo role is <strong className="uppercase">{activeRole.replace('_', ' ')}</strong>.
           </p>
           <div className="mt-4">

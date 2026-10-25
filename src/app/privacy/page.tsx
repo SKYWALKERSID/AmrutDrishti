@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { InfoIcon, ShieldCheckIcon } from '@/components/ui/Icons';
 
 export const metadata = {
-  title: 'Privacy Policy (Draft) | JalDrishti (जलदृष्टि)',
-  description: 'Privacy Policy and data stewardship disclosure for the JalDrishti groundwater intelligence platform.',
+  title: 'Privacy Policy (Draft) | AMRUT DRISHTI (अमृत दृष्टि)',
+  description: 'Privacy Policy and data stewardship disclosure for the AMRUT DRISHTI groundwater intelligence platform.',
 };
 
 export default function PrivacyPage() {
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             Draft Policy Notice — Academic & Research Prototype
           </p>
           <p className="mt-1">
-            This document outlines the data governance and privacy practices implemented in the JalDrishti platform prototype. It is subject to legal review prior to institutional operationalization.
+            This document outlines the data governance and privacy practices implemented in the AMRUT DRISHTI platform prototype. It is subject to legal review prior to institutional operationalization.
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
         <article className="space-y-2">
           <h2 className="text-sm font-bold text-text-main">1. Scope of Data Collection</h2>
           <p className="text-text-muted">
-            JalDrishti is designed as an open-access public hydrogeological intelligence platform. We prioritize privacy by design:
+            AMRUT DRISHTI is designed as an open-access public hydrogeological intelligence platform. We prioritize privacy by design:
           </p>
           <ul className="list-disc pl-5 space-y-1 text-text-muted">
             <li><strong>No Personal Identification Harvesting:</strong> General public visitors are not required to provide personal identity records, phone numbers, or residential addresses to explore the platform.</li>

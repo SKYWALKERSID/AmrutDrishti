@@ -73,7 +73,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="dbim-paragraph-lead text-text-muted leading-relaxed">
-              JAL DRISHTI is a satellite-assisted groundwater intelligence and early-warning platform for India that integrates verified groundwater well observations, 30-year gridded rainfall baselines, multi-sensor satellite indices, quantile machine learning forecasting, objective risk assessment, and situation-aware intervention planning.
+              AMRUT DRISHTI is a satellite-assisted groundwater intelligence and early-warning platform for India that integrates verified groundwater well observations, 30-year gridded rainfall baselines, multi-sensor satellite indices, quantile machine learning forecasting, objective risk assessment, and situation-aware intervention planning.
             </p>
 
             <p className="dbim-paragraph text-text-muted leading-relaxed">
@@ -105,7 +105,7 @@ export default function LandingPage() {
             {/* Quick Plain-Language Guide: Fitted neatly inside hero alongside image */}
             <div className="pt-2 border-t border-border/70">
               <WhatAmILookingAt
-                title="Quick Guide: How to Use JalDrishti (5 Plain-Language Answers)"
+                title="Quick Guide: How to Use AMRUT DRISHTI (5 Plain-Language Answers)"
                 what="A national groundwater monitoring and early-warning platform that pairs verified in-situ measurements from government observation wells with IMD gridded rainfall and satellite observations."
                 meaning="It tracks how deep water is below the ground in your block, whether aquifer storage is recovering or depleting compared to historical baselines, and where seasonal rainfall deficits threaten local supplies."
                 whyCare="When water tables decline alongside monsoon deficits, shallow community drinking wells and rabi crop irrigation risk exhaustion months before the arrival of the subsequent monsoon."
@@ -290,7 +290,7 @@ export default function LandingPage() {
       </section>
 
       {/* --------------------------------------------------------------------------- */}
-      {/* SECTION 3: THE JAL DRISHTI SOLUTION */}
+      {/* SECTION 3: THE AMRUT DRISHTI SOLUTION */}
       {/* --------------------------------------------------------------------------- */}
       <section className="space-y-8">
         <div className="max-w-3xl space-y-3">
@@ -301,7 +301,7 @@ export default function LandingPage() {
             Six Integrated Modules Built for Evidence-Led Governance
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            Every module in JAL DRISHTI corresponds to active, functional code in the repository. We do not present future aspirations as completed features.
+            Every module in AMRUT DRISHTI corresponds to active, functional code in the repository. We do not present future aspirations as completed features.
           </p>
         </div>
 
@@ -656,7 +656,7 @@ export default function LandingPage() {
             Groundwater data becomes actionable only when physical observations, geospatial context, engineering workflows, and governance interfaces align seamlessly.
           </p>
           <p className="text-xs text-text-muted leading-relaxed">
-            Every section below details the concrete problem, why it matters to Indian hydrogeology, JAL DRISHTI&apos;s verified response, available empirical evidence, current verification status, and remaining scientific limitations.
+            Every section below details the concrete problem, why it matters to Indian hydrogeology, AMRUT DRISHTI&apos;s verified response, available empirical evidence, current verification status, and remaining scientific limitations.
           </p>
         </div>
 
@@ -717,7 +717,7 @@ export default function LandingPage() {
                   Point borehole water levels reflect localized drawdown and recovery, but lack hydrogeological meaning without simultaneous rainfall deficit, vegetative evapotranspiration, and regional water storage trends. Treating piezometers in isolation leads to false alarms during localized pumping or delayed detection of basin-wide aquifer depletion.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response integrates dual-axis time series combining in-situ CGWB DWLR well depth (mbgl) with NASA GRACE-FO gravimetric anomalies (cm w.e.) and IMD 30-year Long Period Average (1991–2020) monsoon precipitation baselines.
+                  AMRUT DRISHTI&apos;s verified response integrates dual-axis time series combining in-situ CGWB DWLR well depth (mbgl) with NASA GRACE-FO gravimetric anomalies (cm w.e.) and IMD 30-year Long Period Average (1991–2020) monsoon precipitation baselines.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Chart configuration is covered by an automated test (<code>tests/monitoringVisualizations.test.ts</code>). Remaining limitations: GRACE-FO footprint (~100km) cannot resolve individual village piezometer drawdowns.
@@ -741,7 +741,7 @@ export default function LandingPage() {
                   Aquifers across India vary radically—from multi-tier alluvial plains in Punjab and Haryana to hard-rock basaltic Deccan traps in Madhya Pradesh and karst springsheds in Meghalaya. Direct comparison of raw water levels across diverse monitoring network densities misleads planners.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response employs area-weighted polygon clipping and relative deviation scores (rather than raw volumetric metrics), allowing contrast across 43 blocks while preserving native hydrogeological descriptors.
+                  AMRUT DRISHTI&apos;s verified response employs area-weighted polygon clipping and relative deviation scores (rather than raw volumetric metrics), allowing contrast across 43 blocks while preserving native hydrogeological descriptors.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/spatialAggregation.test.ts</code> (Spherical polygon area clipping). Remaining limitations: Fractured crystalline rock requires localized pump tests to determine true specific yield.
@@ -765,7 +765,7 @@ export default function LandingPage() {
                   Many predictive ML models published in literature report high R² scores without comparing against simple persistence baselines (predicting last year&apos;s same-season depth) or holding out recent years, creating temporal data leakage.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: QuantileGB-v2.0 produces P10, P50 and P90 depth values. Each projection is shown beside persistence baselines. Benchmark results are provisional and do not show that the model outperforms the baselines.
+                  AMRUT DRISHTI&apos;s verified response: QuantileGB-v2.0 produces P10, P50 and P90 depth values. Each projection is shown beside persistence baselines. Benchmark results are provisional and do not show that the model outperforms the baselines.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Baseline and temporal-leakage checks exist in <code>tests_py/</code>; they test code behaviour, not forecast accuracy. Remaining limitations: Model intervals are uncalibrated for statutory drought relief decrees; strictly flagged RESEARCH_ONLY.
@@ -789,7 +789,7 @@ export default function LandingPage() {
                   Real-world DWLR loggers suffer power loss, sensor fouling, and cellular dead zones. Standard data tools either drop missing periods or impute zeros, distorting groundwater depletion trends.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Database mappers preserve null values explicitly. Charts display broken lines across missing dates with honest data-gap flags instead of interpolated values.
+                  AMRUT DRISHTI&apos;s verified response: Database mappers preserve null values explicitly. Charts display broken lines across missing dates with honest data-gap flags instead of interpolated values.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/noHardcodedFallback.test.ts</code> (Zero false data points). Remaining limitations: Extended dropouts (&gt;6 months) limit the statistical power of short-term trend slope calculations.
@@ -813,7 +813,7 @@ export default function LandingPage() {
                   Complex hydrogeological metrics (specific capacity, transmissivity, drawdown curves) are incomprehensible to non-technical panchayat heads and local administrators.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Formulates the Groundwater Stress Score (GSS, 0–100) into intuitive tiers (Severe, Watch, Normal) with transparent factor breakdowns and bilingual advisories.
+                  AMRUT DRISHTI&apos;s verified response: Formulates the Groundwater Stress Score (GSS, 0–100) into intuitive tiers (Severe, Watch, Normal) with transparent factor breakdowns and bilingual advisories.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/scientificEngine.test.ts</code> (Multi-criteria formula verification). Remaining limitations: GSS is a descriptive diagnostic indicator; human review is required before statutory enforcement.
@@ -842,7 +842,7 @@ export default function LandingPage() {
                   Public water datasets use incompatible schemas, CRS projections (EPSG:4326 vs UTM), date formats, and naming conventions (e.g. spelling variations of district and block names).
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Built a canonical TypeScript data model (<code>BlockData</code>) with automated LGD code matching, coordinate validation, and unified JSON serialization.
+                  AMRUT DRISHTI&apos;s verified response: Built a canonical TypeScript data model (<code>BlockData</code>) with automated LGD code matching, coordinate validation, and unified JSON serialization.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/stage6TrustworthyMonitoring.test.ts</code> (Schema mappings). Remaining limitations: Manual verification is required when local administrative re-districting changes block boundaries.
@@ -866,7 +866,7 @@ export default function LandingPage() {
                   Most research prototypes exist as disconnected Jupyter notebooks that never connect to a live database or user interface, preventing ongoing operational utility.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: End-to-end integration: Python data ingestion pipelines load verified tables in PostgreSQL/PostGIS, which Next.js API routes serve directly to Leaflet maps and Recharts visuals.
+                  AMRUT DRISHTI&apos;s verified response: End-to-end integration: Python data ingestion pipelines load verified tables in PostgreSQL/PostGIS, which Next.js API routes serve directly to Leaflet maps and Recharts visuals.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests_py/test_inference_pipeline.py</code> (End-to-end data flow). Remaining limitations: Offline or air-gapped deployments require local Dockerized database containers.
@@ -890,7 +890,7 @@ export default function LandingPage() {
                   Dashboards frequently show cached or years-old data with a &quot;Live&quot; label simply because the page was loaded today, misleading water authorities about data currency.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Deployed the universal <code>FreshnessBadge</code> component across all routes, distinguishing observation date from ingestion timestamp, declaring source provider and limitations.
+                  AMRUT DRISHTI&apos;s verified response: Deployed the universal <code>FreshnessBadge</code> component across all routes, distinguishing observation date from ingestion timestamp, declaring source provider and limitations.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>src/lib/data/freshness.ts</code> (Strict freshness taxonomy). Remaining limitations: Upstream government telemetry feeds occasionally withhold update logs during portal maintenance.
@@ -914,7 +914,7 @@ export default function LandingPage() {
                   Machine learning endpoints often crash or output bogus predictions (e.g. negative water table depths) when presented with out-of-range sensor inputs or missing parameters.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Inference route enforces hydrogeological bounds, caps predictions to 4 quarters, and fails closed with clear error messages rather than returning unvalidated numbers.
+                  AMRUT DRISHTI&apos;s verified response: Inference route enforces hydrogeological bounds, caps predictions to 4 quarters, and fails closed with clear error messages rather than returning unvalidated numbers.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests_py/test_quantile_model.py</code> (Bound validation). Remaining limitations: Unprecedented climate anomalies outside the training distribution widen forecast uncertainty.
@@ -938,7 +938,7 @@ export default function LandingPage() {
                   Complex web apps often decouple page state: selecting a block on a map fails to filter corresponding tables or charts, forcing users to repeatedly re-enter selections.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Synchronized URL parameter binding (<code>?block=id</code>) and cascading State → District → Block selection across Overview, GIS Explorer, Monitoring, and Risk Assessment.
+                  AMRUT DRISHTI&apos;s verified response: Synchronized URL parameter binding (<code>?block=id</code>) and cascading State → District → Block selection across Overview, GIS Explorer, Monitoring, and Risk Assessment.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/routeRegression.test.ts</code> (183 node tests pass). Remaining limitations: Browser back/forward navigation in deep filter chains requires standard URL preservation.
@@ -967,7 +967,7 @@ export default function LandingPage() {
                   Users currently have to consult ISRO Bhuvan for satellite imagery, India-WRIS for surface water bodies, and CGWB reports for piezometer tables, with no unified geographic visualization.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Provides a Leaflet-based GIS Explorer integrating block boundaries, depth contours, severity color coding, and station inspectors in one place.
+                  AMRUT DRISHTI&apos;s verified response: Provides a Leaflet-based GIS Explorer integrating block boundaries, depth contours, severity color coding, and station inspectors in one place.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified on <code>/explorer</code> route across all 9 approved active states. Remaining limitations: High-density vector layers require client-side tile optimization on low-bandwidth mobile devices.
@@ -991,7 +991,7 @@ export default function LandingPage() {
                   Blurring the line between what was physically measured and what an algorithm projected can cause erroneous legal sanctions, improper crop advisories, or panic.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Strict labeling across all pages: Physical well observations carry exact observation dates and DWLR tags; machine learning inferences are explicitly stamped RESEARCH_ONLY.
+                  AMRUT DRISHTI&apos;s verified response: Strict labeling across all pages: Physical well observations carry exact observation dates and DWLR tags; machine learning inferences are explicitly stamped RESEARCH_ONLY.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/stage5ClaimsAndSafety.test.ts</code> (Zero false claims). Remaining limitations: Requires continuous user education so village committees understand probabilistic bounds.
@@ -1015,7 +1015,7 @@ export default function LandingPage() {
                   Many platforms imply uniform national coverage when in reality vast regions have zero automated telemetric wells, creating a false impression of comprehensive monitoring.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Maintains the approved nine-state scope and displays explicit &quot;Data Gap&quot; states where trusted block observations are unavailable, rather than simulated numbers.
+                  AMRUT DRISHTI&apos;s verified response: Maintains the approved nine-state scope and displays explicit &quot;Data Gap&quot; states where trusted block observations are unavailable, rather than simulated numbers.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests/nationalContrast.test.ts</code> (Honest data tags). Remaining limitations: Remote northeastern states (Meghalaya, Tripura) currently rely on baseline synchronizations pending DWLR rollouts.
@@ -1039,7 +1039,7 @@ export default function LandingPage() {
                   Monitoring data is useless if it does not inform action. Planners need specific hydrogeological recommendations matched to local soil and rainfall conditions.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Integrates an intervention catalog linking identified stress in a block to suitable interventions (percolation tanks, check dams, injection shafts) with Atal Bhujal Yojana guidelines.
+                  AMRUT DRISHTI&apos;s verified response: Integrates an intervention catalog linking identified stress in a block to suitable interventions (percolation tanks, check dams, injection shafts) with Atal Bhujal Yojana guidelines.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified on <code>/interventions</code> route. Remaining limitations: Detailed engineering designs and cost estimates require site-specific soil infiltration tests.
@@ -1063,7 +1063,7 @@ export default function LandingPage() {
                   State water boards are rolling out new telemetric sensors, community rain gauges, and springshed loggers that existing legacy platforms cannot ingest without full rewrites.
                 </p>
                 <p className="dbim-paragraph leading-relaxed">
-                  JAL DRISHTI&apos;s verified response: Modular API schema and extensible database mappers accommodate additional sensors (including northeastern springshed data) without breaking API contracts.
+                  AMRUT DRISHTI&apos;s verified response: Modular API schema and extensible database mappers accommodate additional sensors (including northeastern springshed data) without breaking API contracts.
                 </p>
                 <p className="dbim-paragraph leading-relaxed text-xs">
                   Evidence and status: Verified via <code>tests_py/test_springshed_engine.py</code>. Remaining limitations: Standardized transmission protocols (MQTT/CoAP) vary across state vendor contracts.
@@ -1234,7 +1234,7 @@ export default function LandingPage() {
               <tr>
                 <td className="py-3 px-4">
                   <div className="font-bold text-text-main">QuantileGB-v2.0 Forecast Model</div>
-                  <div className="text-[11px] text-text-muted">JalDrishti Research Engine</div>
+                  <div className="text-[11px] text-text-muted">AMRUT DRISHTI Research Engine</div>
                 </td>
                 <td className="py-3 px-4 font-mono">P10, P50, P90 Depth Bounds (m bgl)</td>
                 <td className="py-3 px-4">1 to 4 quarters ahead</td>
@@ -1260,7 +1260,7 @@ export default function LandingPage() {
             National Ambition &amp; Nine Target Scope States
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            While JAL DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across nine active target states (43 verified blocks across 28 districts) grouped into four hydrologic regions.
+            While AMRUT DRISHTI is architected for pan-India scalability, verified empirical monitoring, DWLR telemetry integration, and model artifacts currently operate across nine active target states (43 verified blocks across 28 districts) grouped into four hydrologic regions.
           </p>
         </div>
 
@@ -1467,7 +1467,7 @@ export default function LandingPage() {
             </div>
             <ul className="text-xs text-text-muted space-y-2 list-disc pl-4 leading-relaxed">
               <li>
-                <strong>Statutory Multi-Department Interoperability:</strong> API connectors directly bridging JalDrishti advisory outputs into State Disaster Management Authority (SDMA) drought platforms.
+                <strong>Statutory Multi-Department Interoperability:</strong> API connectors directly bridging AMRUT DRISHTI advisory outputs into State Disaster Management Authority (SDMA) drought platforms.
               </li>
               <li>
                 <strong>Field-Calibrated Event Probabilities:</strong> Independent empirical validation trials converting heuristic quantiles into statistically calibrated extreme drawdown probabilities.
@@ -1492,7 +1492,7 @@ export default function LandingPage() {
             Serving the Water-Governance Ecosystem
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            By adapting analytical depth to user roles, JAL DRISHTI bridges technical hydrogeology and field execution.
+            By adapting analytical depth to user roles, AMRUT DRISHTI bridges technical hydrogeology and field execution.
           </p>
         </div>
 

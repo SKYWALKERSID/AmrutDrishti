@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Scientific Evaluation & Intervention Matching Service
+ * AMRUT DRISHTI — Scientific Evaluation & Intervention Matching Service
  * 
  * Implements:
  * 1. Descriptive Groundwater Stress Score (GSS) rule-based calculation with documented weights
@@ -265,7 +265,7 @@ export function evaluateGroundwaterIntelligence(indicators: {
     direction = wellDepth > 15 ? 'depleting' : 'stable';
   }
 
-  const storageLimitationNotice = 'Absolute groundwater volume (m³ or BCM) cannot be determined without physical aquifer boundary surveys, verified specific yield (Sy), and saturated thickness. JalDrishti strictly reports piezometric trends (m bgl) and relative stress indices to prevent false precision.';
+  const storageLimitationNotice = 'Absolute groundwater volume (m³ or BCM) cannot be determined without physical aquifer boundary surveys, verified specific yield (Sy), and saturated thickness. AMRUT DRISHTI strictly reports piezometric trends (m bgl) and relative stress indices to prevent false precision.';
 
   // 3. Recharge & Anomaly Intelligence
   let rechargePotential: GroundwaterIntelligenceResult['rechargeIntelligence']['rechargePotential'] = 'unverified';

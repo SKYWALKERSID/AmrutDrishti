@@ -1,5 +1,5 @@
 /**
- * JalDrishti — Trusted Server-Side Observation Provider
+ * AMRUT DRISHTI — Trusted Server-Side Observation Provider
  * =======================================================
  * Server-only module that reads approved, reviewed groundwater observations
  * for model inference and forecasting integrity.

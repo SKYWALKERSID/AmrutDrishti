@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                 <WaterDropletIcon className="w-4 h-4 text-primary-accent" />
               </div>
               <span className="font-bold text-base text-text-main">
-                JalDrishti (जलदृष्टि)
+                AMRUT DRISHTI (अमृत दृष्टि)
               </span>
               <span className="text-[11px] text-text-muted">v1.0</span>
             </div>
@@ -80,8 +80,11 @@ export const Footer: React.FC = () => {
               <strong className="text-text-main">**** Regulatory Status:</strong> All documents, terms, and intervention guidelines remain academic evaluation drafts subject to formal adoption by state groundwater authorities and the Ministry of Jal Shakti.
             </p>
           </div>
+          <div className="pt-2.5 pb-1 text-[11px] text-text-muted italic border-t border-border/40">
+            Note: Previously started as Jal Drishti; further changed the name to AMRUT DRISHTI. Hence, across internal modules and codebase history, the project name may occasionally appear in either form.
+          </div>
           <div className="pt-3 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-text-muted">
-            <p>© 2026 JalDrishti Platform Contributors. Built for open groundwater research and evidence-based planning.</p>
+            <p>© 2026 AMRUT DRISHTI Contributors. Built for open groundwater research and evidence-based planning.</p>
             <p>Active Target Coverage: KA, TG, TN, MP, RJ, HR, PB, ML, TR (9 States across 4 Regions; Assam excluded)</p>
           </div>
         </div>

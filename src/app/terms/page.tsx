@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { ShieldCheckIcon, InfoIcon } from '@/components/ui/Icons';
 
 export const metadata = {
-  title: 'Terms of Service (Draft) | JalDrishti (जलदृष्टि)',
-  description: 'Terms of Service and research usage notice for the JalDrishti groundwater intelligence prototype platform.',
+  title: 'Terms of Service (Draft) | AMRUT DRISHTI (अमृत दृष्टि)',
+  description: 'Terms of Service and research usage notice for the AMRUT DRISHTI groundwater intelligence prototype platform.',
 };
 
 export default function TermsPage() {
@@ -18,7 +18,7 @@ export default function TermsPage() {
             Draft Policy Notice — Academic & Research Prototype
           </p>
           <p className="mt-1">
-            This document represents a conservative draft Terms of Service statement for the JalDrishti software demonstration. It is subject to legal review by relevant governing authorities before operational deployment.
+            This document represents a conservative draft Terms of Service statement for the AMRUT DRISHTI software demonstration. It is subject to legal review by relevant governing authorities before operational deployment.
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function TermsPage() {
         <article className="space-y-2">
           <h2 className="text-sm font-bold text-text-main">1. Nature of the Platform</h2>
           <p className="text-text-muted">
-            JalDrishti is an India-focused groundwater intelligence and decision-support prototype. The platform synthesizes observational telemetry, satellite-derived indicators, geospatial aggregations, and research-stage machine learning predictions across designated priority states.
+            AMRUT DRISHTI is an India-focused groundwater intelligence and decision-support prototype. The platform synthesizes observational telemetry, satellite-derived indicators, geospatial aggregations, and research-stage machine learning predictions across designated priority states.
           </p>
         </article>
 
@@ -56,7 +56,7 @@ export default function TermsPage() {
         <article className="space-y-2">
           <h2 className="text-sm font-bold text-text-main">3. Data Provenance and Open Government Sources</h2>
           <p className="text-text-muted">
-            JalDrishti ingests data published by public government agencies and open Earth observation archives:
+            AMRUT DRISHTI ingests data published by public government agencies and open Earth observation archives:
           </p>
           <ul className="list-disc pl-5 space-y-1 text-text-muted">
             <li>Central Ground Water Board (CGWB) & National Water Informatics Centre (NWIC) telemetry.</li>

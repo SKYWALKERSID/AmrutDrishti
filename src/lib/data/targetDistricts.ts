@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Official Target Scope Districts & Blocks for Expanded Target States
+ * AMRUT DRISHTI — Official Target Scope Districts & Blocks for Expanded Target States
  * Covers the authoritative nine-state target scope:
  * - South India: Karnataka, Telangana, Tamil Nadu
  * - Northeast India: Meghalaya, Tripura

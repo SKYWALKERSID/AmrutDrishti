@@ -73,7 +73,7 @@ export async function GET(request: NextRequest) {
   if (!matchedKey) {
     return NextResponse.json({
       status: 'unavailable',
-      reason: `No verified rainfall observation series or forecast calibrated for district '${districtParam}'. JalDrishti enforces fail-closed transparency and does not extrapolate uncalibrated rainfall predictions.`,
+      reason: `No verified rainfall observation series or forecast calibrated for district '${districtParam}'. AMRUT DRISHTI enforces fail-closed transparency and does not extrapolate uncalibrated rainfall predictions.`,
       operationalEligibility: false
     }, { status: 404 });
   }

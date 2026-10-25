@@ -5,7 +5,7 @@ import quarantine from '../../../../../data/derived/nwdp_telemetry_quarantine.js
 export const dynamic = 'force-dynamic';
 
 /**
- * JAL DRISHTI — Administrative Telemetry Ingestion & Health Endpoint
+ * AMRUT DRISHTI — Administrative Telemetry Ingestion & Health Endpoint
  * ===================================================================
  * Provides authorized administrative access to telemetry ingestion status,
  * source registry health, and quarantined anomaly breakdown across the 9 approved active states.

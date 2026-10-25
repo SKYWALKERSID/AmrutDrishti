@@ -81,7 +81,7 @@ export default function OverviewDashboard() {
       setBlocksData(ACTIVE_TARGET_BLOCKS);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Network error';
-      console.warn('JalDrishti: Failed to fetch geospatial blocks API for Overview:', err);
+      console.warn('AMRUT DRISHTI: Failed to fetch geospatial blocks API for Overview:', err);
       setLoadError(msg);
       setBlocksData(ACTIVE_TARGET_BLOCKS);
     } finally {

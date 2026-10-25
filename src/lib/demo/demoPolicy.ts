@@ -140,7 +140,7 @@ export function buildAdvisoryMessages(
   const sevHi = SEVERITY_HI[block.riskSeverity] ?? block.riskSeverity;
 
   const english =
-    `[SIMULATED - NOT SENT] JalDrishti demonstration advisory: "${sevEn}" signal category for ${block.name} block (${block.districtName}). ` +
+    `[SIMULATED - NOT SENT] AMRUT DRISHTI demonstration advisory: "${sevEn}" signal category for ${block.name} block (${block.districtName}). ` +
     `Demonstration fixture values, not verified measurements: well depth ${well} m bgl, rainfall anomaly ${rain} mm. ` +
     ADVISORY_DISCLAIMER_EN;
 

@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.model
-    container_name: jaldrishti-model-service
+    container_name: amrut-drishti-model-service
     restart: unless-stopped
     environment:
       - JALDRISHTI_MODEL_SERVICE_PORT=8081
@@ -36,7 +36,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    container_name: jaldrishti-web
+    container_name: amrut-drishti-web
     restart: unless-stopped
     ports:
       - "3000:3000"

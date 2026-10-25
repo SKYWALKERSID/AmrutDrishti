@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Official DLT SMS Gateway Integration Service
+ * AMRUT DRISHTI — Official DLT SMS Gateway Integration Service
  * 
  * Complies with Telecom Regulatory Authority of India (TRAI) Distributed Ledger
  * Technology (DLT) regulations for government advisory broadcasts:
@@ -106,7 +106,7 @@ export async function dispatchDltSms(payload: DltSmsPayload): Promise<DltSmsResp
     success: true,
     deliveryStatus: 'simulated',
     messageId: `sim_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-    gatewayProvider: 'JalDrishti Demonstration Gateway Sandbox',
+    gatewayProvider: 'AMRUT DRISHTI Demonstration Gateway Sandbox',
     dltRegistered: false,
     details: 'Simulation mode active (DLT credentials not provisioned in environment). Safe dry run recorded.',
   };

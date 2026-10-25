@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Plain Language Terminology & Public Information Glossary
+ * AMRUT DRISHTI — Plain Language Terminology & Public Information Glossary
  *
  * Designed to make groundwater observations, satellite estimates, and risk signals
  * immediately understandable to farmers, students, citizens, and village/district officers

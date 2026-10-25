@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Server-Side Supabase Service-Role Client & Diagnostic Engine
+ * AMRUT DRISHTI — Server-Side Supabase Service-Role Client & Diagnostic Engine
  * 
  * Safety & Security Rules:
  * 1. NEVER print, return, or log SUPABASE_SERVICE_ROLE_KEY values.

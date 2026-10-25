@@ -93,7 +93,7 @@ function InterventionsContent() {
           }
         }
       } catch (err) {
-        console.warn('JalDrishti: Remote proposals fetch fallback to local store:', err);
+        console.warn('AMRUT DRISHTI: Remote proposals fetch fallback to local store:', err);
       }
 
       // Local storage fallback for user-authored proposals
@@ -197,7 +197,7 @@ function InterventionsContent() {
       localStorage.setItem(STORAGE_KEY_PROPOSALS, JSON.stringify(updatedList));
       setStorageError(null);
     } catch (err) {
-      console.warn('JalDrishti: localStorage quota issue:', err);
+      console.warn('AMRUT DRISHTI: localStorage quota issue:', err);
     }
 
     try {
@@ -212,10 +212,10 @@ function InterventionsContent() {
       });
       if (!res.ok) {
         const errJson = await res.json().catch(() => ({}));
-        console.warn('JalDrishti: Proposal persistence warning:', errJson.error || res.statusText);
+        console.warn('AMRUT DRISHTI: Proposal persistence warning:', errJson.error || res.statusText);
       }
     } catch (err) {
-      console.warn('JalDrishti: Failed to post proposal to /api/interventions:', err);
+      console.warn('AMRUT DRISHTI: Failed to post proposal to /api/interventions:', err);
     }
   };
 

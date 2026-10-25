@@ -1,5 +1,5 @@
 /**
- * JalDrishti Database Row Types
+ * AMRUT DRISHTI Database Row Types
  * Source of Truth: supabase/migrations/20261010000000_init_schema.sql
  * 
  * Strict 1-to-1 TypeScript representations of PostgreSQL tables and enums.

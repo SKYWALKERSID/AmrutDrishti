@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Reusable Data Freshness & Provenance Model
+ * AMRUT DRISHTI — Reusable Data Freshness & Provenance Model
  * 
  * Defines standard freshness statuses, source metadata structures,
  * and calculation helpers based on verified observation dates and reporting intervals.

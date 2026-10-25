@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Authoritative State and Region Registry
+ * AMRUT DRISHTI — Authoritative State and Region Registry
  * 
  * Defines the authoritative nine-state geographic scope grouped into four project regions:
  * 1. South India (3 states): Karnataka, Telangana, Tamil Nadu

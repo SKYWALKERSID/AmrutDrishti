@@ -1,5 +1,5 @@
 /**
- * JalDrishti — CGWB High-Frequency QA/QC Validation & Taxonomy Definitions
+ * AMRUT DRISHTI — CGWB High-Frequency QA/QC Validation & Taxonomy Definitions
  * =========================================================================
  * TypeScript implementation matching the Python engine in ml/qa_qc/validator.py
  * and complying with Central Ground Water Board (CGWB) Guidelines (February 2026).

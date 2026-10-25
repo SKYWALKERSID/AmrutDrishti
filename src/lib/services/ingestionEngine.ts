@@ -1,5 +1,5 @@
 /**
- * JAL DRISHTI — Authoritative Source Ingestion Engine
+ * AMRUT DRISHTI — Authoritative Source Ingestion Engine
  * 
  * Implements strict, reproducible data ingestion contracts, schema validation,
  * unit normalization, scientific null preservation, and ingestion telemetry logging.

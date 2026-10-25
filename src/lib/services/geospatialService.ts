@@ -27,7 +27,7 @@ export interface GeospatialQueryResult {
 }
 
 /**
- * Server-side read-only data access service for JalDrishti Geospatial layers.
+ * Server-side read-only data access service for AMRUT DRISHTI Geospatial layers.
  * Querying administrative_units and derived_indicators with explicit fallback semantics.
  * Uses supported @supabase/ssr server client preserving RLS rules.
  */

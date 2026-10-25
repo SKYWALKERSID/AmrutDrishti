@@ -890,7 +890,7 @@ function RiskAssessmentContent() {
                 <span className="font-bold text-text-main block">Rainfall Intelligence Unavailable for this District</span>
                 <p>
                   No verified IMD-NWDP rainfall time series is registered for {selectedBlock?.districtName || 'this district'}.
-                  JalDrishti does not synthesize unverified rainfall observations.
+                  AMRUT DRISHTI does not synthesize unverified rainfall observations.
                 </p>
               </div>
             )}
@@ -955,7 +955,7 @@ function RiskAssessmentContent() {
                 </div>
                 <p className="leading-relaxed">
                   No verified high-frequency groundwater telemetry station is registered in {selectedBlock?.districtName || selectedBlock?.name || 'this district'} ({selectedBlock?.state || selectedState}).
-                  Predictions are not extrapolated to uncalibrated regions to prevent spurious spatial inference, and JalDrishti does not fall back to stale or unvalidated data when local telemetry is absent.
+                  Predictions are not extrapolated to uncalibrated regions to prevent spurious spatial inference, and AMRUT DRISHTI does not fall back to stale or unvalidated data when local telemetry is absent.
                 </p>
                 <p className="text-[11px] text-text-muted/80 italic">
                   The descriptive Groundwater Stress Score (GSS Baseline) in Section 1 continues to provide multi-signal decision support from available observed indicators.
@@ -1101,7 +1101,7 @@ function RiskAssessmentContent() {
                   <span>Station Forecast Temporarily Unavailable</span>
                 </div>
                 <p className="leading-relaxed">
-                  {stationForecastError || 'The selected telemetry station did not return valid calibrated quantile predictions. JalDrishti enforces fail-closed safety and does not synthesize unverified estimates.'}
+                  {stationForecastError || 'The selected telemetry station did not return valid calibrated quantile predictions. AMRUT DRISHTI enforces fail-closed safety and does not synthesize unverified estimates.'}
                 </p>
               </div>
             )}
