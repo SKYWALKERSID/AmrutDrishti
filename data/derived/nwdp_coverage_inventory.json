@@ -1,0 +1,1640 @@
+[
+  {
+    "station_id": "Haryana::KARNAL::ChocftraPz",
+    "station_name": "ChocftraPz",
+    "state": "Haryana",
+    "district": "KARNAL",
+    "observation_count": 872,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Haryana::KURUKSHETRA::Buhawa_1",
+    "station_name": "Buhawa_1",
+    "state": "Haryana",
+    "district": "KURUKSHETRA",
+    "observation_count": 804,
+    "earliest_date": "2023-10-13",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Haryana::KURUKSHETRA::KaulapurPz",
+    "station_name": "KaulapurPz",
+    "state": "Haryana",
+    "district": "KURUKSHETRA",
+    "observation_count": 976,
+    "earliest_date": "2023-06-21",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Haryana::KURUKSHETRA::Khanpur Jattan Pz",
+    "station_name": "Khanpur Jattan Pz",
+    "state": "Haryana",
+    "district": "KURUKSHETRA",
+    "observation_count": 898,
+    "earliest_date": "2023-06-21",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Haryana::KURUKSHETRA::Nalvi Kalan_1",
+    "station_name": "Nalvi Kalan_1",
+    "state": "Haryana",
+    "district": "KURUKSHETRA",
+    "observation_count": 807,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Haryana::SONIPAT::Bhakharpur_1",
+    "station_name": "Bhakharpur_1",
+    "state": "Haryana",
+    "district": "SONIPAT",
+    "observation_count": 927,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Haryana::YAMUNANAGAR::Sandhaia",
+    "station_name": "Sandhaia",
+    "state": "Haryana",
+    "district": "YAMUNANAGAR",
+    "observation_count": 803,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_hr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_hr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Bangalore Rural::Kanasvadi_1",
+    "station_name": "Kanasvadi_1",
+    "state": "Karnataka",
+    "district": "Bangalore Rural",
+    "observation_count": 979,
+    "earliest_date": "2023-06-20",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Bangalore Urban::Kannamangala_2",
+    "station_name": "Kannamangala_2",
+    "state": "Karnataka",
+    "district": "Bangalore Urban",
+    "observation_count": 979,
+    "earliest_date": "2023-07-22",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Bellary::Chendrasekharpur",
+    "station_name": "Chendrasekharpur",
+    "state": "Karnataka",
+    "district": "Bellary",
+    "observation_count": 963,
+    "earliest_date": "2023-12-12",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Bellary::Ramasagarahatti_1",
+    "station_name": "Ramasagarahatti_1",
+    "state": "Karnataka",
+    "district": "Bellary",
+    "observation_count": 967,
+    "earliest_date": "2023-12-12",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Bijapur::Arakeri",
+    "station_name": "Arakeri",
+    "state": "Karnataka",
+    "district": "Bijapur",
+    "observation_count": 891,
+    "earliest_date": "2023-12-21",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Chamarajanagara::P G Palya",
+    "station_name": "P G Palya",
+    "state": "Karnataka",
+    "district": "Chamarajanagara",
+    "observation_count": 854,
+    "earliest_date": "2023-09-25",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Chitradurga::Dodderi_EW",
+    "station_name": "Dodderi_EW",
+    "state": "Karnataka",
+    "district": "Chitradurga",
+    "observation_count": 965,
+    "earliest_date": "2023-12-05",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Hassan::Channarayapatna_1",
+    "station_name": "Channarayapatna_1",
+    "state": "Karnataka",
+    "district": "Hassan",
+    "observation_count": 875,
+    "earliest_date": "2023-04-26",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Kolar::Madivala_2",
+    "station_name": "Madivala_2",
+    "state": "Karnataka",
+    "district": "Kolar",
+    "observation_count": 897,
+    "earliest_date": "2023-09-17",
+    "latest_date": "2026-05-02",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Koppal::Gangavathi_2",
+    "station_name": "Gangavathi_2",
+    "state": "Karnataka",
+    "district": "Koppal",
+    "observation_count": 974,
+    "earliest_date": "2023-06-20",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Tumkur::Ankasandrapz",
+    "station_name": "Ankasandrapz",
+    "state": "Karnataka",
+    "district": "Tumkur",
+    "observation_count": 962,
+    "earliest_date": "2023-07-09",
+    "latest_date": "2026-05-06",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Tumkur::Doddapalanahalli Ow Naquim_1",
+    "station_name": "Doddapalanahalli Ow Naquim_1",
+    "state": "Karnataka",
+    "district": "Tumkur",
+    "observation_count": 927,
+    "earliest_date": "2023-09-13",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Karnataka::Tumkur::Kibbanahalli1_1",
+    "station_name": "Kibbanahalli1_1",
+    "state": "Karnataka",
+    "district": "Tumkur",
+    "observation_count": 990,
+    "earliest_date": "2023-07-07",
+    "latest_date": "2026-06-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ka_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ka_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::BETUL::Sawalmedha",
+    "station_name": "Sawalmedha",
+    "state": "Madhya Pradesh",
+    "district": "BETUL",
+    "observation_count": 958,
+    "earliest_date": "2023-10-27",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::JABALPUR::Bargi Pz_1",
+    "station_name": "Bargi Pz_1",
+    "state": "Madhya Pradesh",
+    "district": "JABALPUR",
+    "observation_count": 1013,
+    "earliest_date": "2023-10-18",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::Khargone::Kasrawad(S)_1",
+    "station_name": "Kasrawad(S)_1",
+    "state": "Madhya Pradesh",
+    "district": "Khargone",
+    "observation_count": 989,
+    "earliest_date": "2023-10-25",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::MANDSAUR::Bhanpura(D)_1",
+    "station_name": "Bhanpura(D)_1",
+    "state": "Madhya Pradesh",
+    "district": "MANDSAUR",
+    "observation_count": 948,
+    "earliest_date": "2023-09-16",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::MANDSAUR::Jagagakhedi",
+    "station_name": "Jagagakhedi",
+    "state": "Madhya Pradesh",
+    "district": "MANDSAUR",
+    "observation_count": 993,
+    "earliest_date": "2023-10-27",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::RATLAM::Nipanialeela",
+    "station_name": "Nipanialeela",
+    "state": "Madhya Pradesh",
+    "district": "RATLAM",
+    "observation_count": 1056,
+    "earliest_date": "2023-07-07",
+    "latest_date": "2026-10-20",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::REWA::Naigarhi(S)_1",
+    "station_name": "Naigarhi(S)_1",
+    "state": "Madhya Pradesh",
+    "district": "REWA",
+    "observation_count": 996,
+    "earliest_date": "2023-10-23",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::SHEOPUR::Suswara Tongra",
+    "station_name": "Suswara Tongra",
+    "state": "Madhya Pradesh",
+    "district": "SHEOPUR",
+    "observation_count": 794,
+    "earliest_date": "2024-01-12",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::SHIVPURI::Khundawali",
+    "station_name": "Khundawali",
+    "state": "Madhya Pradesh",
+    "district": "SHIVPURI",
+    "observation_count": 1055,
+    "earliest_date": "2023-04-21",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Madhya Pradesh::SINGRAULI::Waidhan(D)",
+    "station_name": "Waidhan(D)",
+    "state": "Madhya Pradesh",
+    "district": "SINGRAULI",
+    "observation_count": 485,
+    "earliest_date": "2023-12-09",
+    "latest_date": "2025-09-02",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_mp_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_mp_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Meghalaya::RI BHOI::RPBF Kyrdemkulai_1",
+    "station_name": "RPBF Kyrdemkulai_1",
+    "state": "Meghalaya",
+    "district": "RI BHOI",
+    "observation_count": 972,
+    "earliest_date": "2023-06-06",
+    "latest_date": "2026-06-03",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ml_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ml_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::JALANDHAR::Billi Chahanni  M",
+    "station_name": "Billi Chahanni  M",
+    "state": "Punjab",
+    "district": "JALANDHAR",
+    "observation_count": 873,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::JALANDHAR::Billi Chaharmi D_1",
+    "station_name": "Billi Chaharmi D_1",
+    "state": "Punjab",
+    "district": "JALANDHAR",
+    "observation_count": 908,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::JALANDHAR::Billi Chaharmi S_1",
+    "station_name": "Billi Chaharmi S_1",
+    "state": "Punjab",
+    "district": "JALANDHAR",
+    "observation_count": 935,
+    "earliest_date": "2023-09-05",
+    "latest_date": "2026-08-26",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::JALANDHAR::Turan D_1",
+    "station_name": "Turan D_1",
+    "state": "Punjab",
+    "district": "JALANDHAR",
+    "observation_count": 913,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::JALANDHAR::Turan M_1",
+    "station_name": "Turan M_1",
+    "state": "Punjab",
+    "district": "JALANDHAR",
+    "observation_count": 963,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-15",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::JALANDHAR::Turan S_1",
+    "station_name": "Turan S_1",
+    "state": "Punjab",
+    "district": "JALANDHAR",
+    "observation_count": 915,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::LUDHIANA::Manewal  M",
+    "station_name": "Manewal  M",
+    "state": "Punjab",
+    "district": "LUDHIANA",
+    "observation_count": 996,
+    "earliest_date": "2023-08-20",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::LUDHIANA::ManewalS",
+    "station_name": "ManewalS",
+    "state": "Punjab",
+    "district": "LUDHIANA",
+    "observation_count": 979,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::LUDHIANA::Mangat-Pz-M_1",
+    "station_name": "Mangat-Pz-M_1",
+    "state": "Punjab",
+    "district": "LUDHIANA",
+    "observation_count": 937,
+    "earliest_date": "2023-09-02",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::LUDHIANA::Rasulpur D_1",
+    "station_name": "Rasulpur D_1",
+    "state": "Punjab",
+    "district": "LUDHIANA",
+    "observation_count": 993,
+    "earliest_date": "2023-09-06",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::LUDHIANA::Rasulpur M_1",
+    "station_name": "Rasulpur M_1",
+    "state": "Punjab",
+    "district": "LUDHIANA",
+    "observation_count": 961,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-14",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::LUDHIANA::RasulpurS",
+    "station_name": "RasulpurS",
+    "state": "Punjab",
+    "district": "LUDHIANA",
+    "observation_count": 845,
+    "earliest_date": "2023-09-02",
+    "latest_date": "2026-07-15",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MANSA::Dialpura M_1",
+    "station_name": "Dialpura M_1",
+    "state": "Punjab",
+    "district": "MANSA",
+    "observation_count": 830,
+    "earliest_date": "2023-08-25",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MANSA::Dialpura S_1",
+    "station_name": "Dialpura S_1",
+    "state": "Punjab",
+    "district": "MANSA",
+    "observation_count": 783,
+    "earliest_date": "2023-08-31",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MANSA::DialpuraD",
+    "station_name": "DialpuraD",
+    "state": "Punjab",
+    "district": "MANSA",
+    "observation_count": 912,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MANSA::RaJIa O",
+    "station_name": "RaJIa O",
+    "state": "Punjab",
+    "district": "MANSA",
+    "observation_count": 969,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-20",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MANSA::Ralla M_1",
+    "station_name": "Ralla M_1",
+    "state": "Punjab",
+    "district": "MANSA",
+    "observation_count": 974,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MANSA::Ralla S_1",
+    "station_name": "Ralla S_1",
+    "state": "Punjab",
+    "district": "MANSA",
+    "observation_count": 956,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MOGA::Jaisinghwala D_1",
+    "station_name": "Jaisinghwala D_1",
+    "state": "Punjab",
+    "district": "MOGA",
+    "observation_count": 948,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-03",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MOGA::Jaisinghwala M_1",
+    "station_name": "Jaisinghwala M_1",
+    "state": "Punjab",
+    "district": "MOGA",
+    "observation_count": 853,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MOGA::Jaisinghwala S_1",
+    "station_name": "Jaisinghwala S_1",
+    "state": "Punjab",
+    "district": "MOGA",
+    "observation_count": 994,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MUKATSAR::Doda-D_1",
+    "station_name": "Doda-D_1",
+    "state": "Punjab",
+    "district": "MUKATSAR",
+    "observation_count": 913,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MUKATSAR::Doda-M_1",
+    "station_name": "Doda-M_1",
+    "state": "Punjab",
+    "district": "MUKATSAR",
+    "observation_count": 1000,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::MUKATSAR::Doda-S_1",
+    "station_name": "Doda-S_1",
+    "state": "Punjab",
+    "district": "MUKATSAR",
+    "observation_count": 885,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Akout OW",
+    "station_name": "Akout OW",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 872,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-05",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::BalbchraD",
+    "station_name": "BalbchraD",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 940,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Balbehra S_1",
+    "station_name": "Balbehra S_1",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 868,
+    "earliest_date": "2023-08-28",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Batbehra M",
+    "station_name": "Batbehra M",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 987,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Devigarh  M",
+    "station_name": "Devigarh  M",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 969,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Devigarh D",
+    "station_name": "Devigarh D",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 825,
+    "earliest_date": "2023-09-02",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Devigarh S",
+    "station_name": "Devigarh S",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 850,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Dulladi S_1",
+    "station_name": "Dulladi S_1",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 977,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Kangthala D_1",
+    "station_name": "Kangthala D_1",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 992,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Kangthala S_1",
+    "station_name": "Kangthala S_1",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 999,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::Kangthals M",
+    "station_name": "Kangthals M",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 877,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::LohaKhefi  D",
+    "station_name": "LohaKhefi  D",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 921,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::LohaKhe\u00f1 S",
+    "station_name": "LohaKhe\u00f1 S",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 950,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::PATIALA::LohaKhtri  M",
+    "station_name": "LohaKhtri  M",
+    "state": "Punjab",
+    "district": "PATIALA",
+    "observation_count": 996,
+    "earliest_date": "2023-09-04",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SANGRUR::Badruktiao  (m)",
+    "station_name": "Badruktiao  (m)",
+    "state": "Punjab",
+    "district": "SANGRUR",
+    "observation_count": 742,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2025-12-10",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SANGRUR::Baurha Khurd M",
+    "station_name": "Baurha Khurd M",
+    "state": "Punjab",
+    "district": "SANGRUR",
+    "observation_count": 960,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SANGRUR::Baurhai Khurd S_1",
+    "station_name": "Baurhai Khurd S_1",
+    "state": "Punjab",
+    "district": "SANGRUR",
+    "observation_count": 999,
+    "earliest_date": "2023-09-03",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SANGRUR::Baurhai Khurd_1",
+    "station_name": "Baurhai Khurd_1",
+    "state": "Punjab",
+    "district": "SANGRUR",
+    "observation_count": 823,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-03-03",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SAS NAGAR::Akalgarh M_1",
+    "station_name": "Akalgarh M_1",
+    "state": "Punjab",
+    "district": "SAS NAGAR",
+    "observation_count": 623,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-09",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SAS NAGAR::Sundran D_1",
+    "station_name": "Sundran D_1",
+    "state": "Punjab",
+    "district": "SAS NAGAR",
+    "observation_count": 508,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-09",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SAS NAGAR::Sundran M_1",
+    "station_name": "Sundran M_1",
+    "state": "Punjab",
+    "district": "SAS NAGAR",
+    "observation_count": 611,
+    "earliest_date": "2023-09-09",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SAS NAGAR::Sundran S_1",
+    "station_name": "Sundran S_1",
+    "state": "Punjab",
+    "district": "SAS NAGAR",
+    "observation_count": 686,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::SBS NAGAR::Mehandpur_1",
+    "station_name": "Mehandpur_1",
+    "state": "Punjab",
+    "district": "SBS NAGAR",
+    "observation_count": 659,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2025-08-05",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::TARN TARAN::Khwaspur D_1",
+    "station_name": "Khwaspur D_1",
+    "state": "Punjab",
+    "district": "TARN TARAN",
+    "observation_count": 917,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::TARN TARAN::Khwaspur M_1",
+    "station_name": "Khwaspur M_1",
+    "state": "Punjab",
+    "district": "TARN TARAN",
+    "observation_count": 977,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::TARN TARAN::Khwaspur S_1",
+    "station_name": "Khwaspur S_1",
+    "state": "Punjab",
+    "district": "TARN TARAN",
+    "observation_count": 1000,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::TARN TARAN::Maarhi nav  Abaad D",
+    "station_name": "Maarhi nav  Abaad D",
+    "state": "Punjab",
+    "district": "TARN TARAN",
+    "observation_count": 875,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-10-15",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::TARN TARAN::Maarhi nav  Abaad M",
+    "station_name": "Maarhi nav  Abaad M",
+    "state": "Punjab",
+    "district": "TARN TARAN",
+    "observation_count": 865,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-16",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Punjab::TARN TARAN::Maarhi nav  Abaad S",
+    "station_name": "Maarhi nav  Abaad S",
+    "state": "Punjab",
+    "district": "TARN TARAN",
+    "observation_count": 831,
+    "earliest_date": "2023-09-01",
+    "latest_date": "2026-09-16",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_pb_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_pb_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::BHILWARA::Koshithal_1",
+    "station_name": "Koshithal_1",
+    "state": "Rajasthan",
+    "district": "BHILWARA",
+    "observation_count": 903,
+    "earliest_date": "2023-03-18",
+    "latest_date": "2026-07-09",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::DAUSA::Baswa1_1",
+    "station_name": "Baswa1_1",
+    "state": "Rajasthan",
+    "district": "DAUSA",
+    "observation_count": 1123,
+    "earliest_date": "2023-04-12",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::DAUSA::Dausa_1",
+    "station_name": "Dausa_1",
+    "state": "Rajasthan",
+    "district": "DAUSA",
+    "observation_count": 955,
+    "earliest_date": "2023-04-11",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::DUNGARPUR::Kabja_1",
+    "station_name": "Kabja_1",
+    "state": "Rajasthan",
+    "district": "DUNGARPUR",
+    "observation_count": 939,
+    "earliest_date": "2023-10-20",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::JAIPUR::TIGARIA_1",
+    "station_name": "TIGARIA_1",
+    "state": "Rajasthan",
+    "district": "JAIPUR",
+    "observation_count": 708,
+    "earliest_date": "2023-10-31",
+    "latest_date": "2026-07-09",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::JODHPUR::Bada Mandla_1",
+    "station_name": "Bada Mandla_1",
+    "state": "Rajasthan",
+    "district": "JODHPUR",
+    "observation_count": 507,
+    "earliest_date": "2023-10-02",
+    "latest_date": "2025-05-28",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Rajasthan::TONK::Chhato Moja",
+    "station_name": "Chhato Moja",
+    "state": "Rajasthan",
+    "district": "TONK",
+    "observation_count": 805,
+    "earliest_date": "2024-01-14",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_rj_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_rj_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Ariyalur::Mahimapuram Ow-2_1",
+    "station_name": "Mahimapuram Ow-2_1",
+    "state": "Tamil Nadu",
+    "district": "Ariyalur",
+    "observation_count": 1240,
+    "earliest_date": "2023-04-27",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Coimbatore::Kattampatty Pz",
+    "station_name": "Kattampatty Pz",
+    "state": "Tamil Nadu",
+    "district": "Coimbatore",
+    "observation_count": 1240,
+    "earliest_date": "2023-04-27",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Coimbatore::Varadharajapuram Murungapatti pz",
+    "station_name": "Varadharajapuram Murungapatti pz",
+    "state": "Tamil Nadu",
+    "district": "Coimbatore",
+    "observation_count": 1274,
+    "earliest_date": "2023-02-18",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Cuddalore::Kattiyankuppam Pz-2_1",
+    "station_name": "Kattiyankuppam Pz-2_1",
+    "state": "Tamil Nadu",
+    "district": "Cuddalore",
+    "observation_count": 1258,
+    "earliest_date": "2023-04-10",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Dharmapuri::Thoppur_2",
+    "station_name": "Thoppur_2",
+    "state": "Tamil Nadu",
+    "district": "Dharmapuri",
+    "observation_count": 1347,
+    "earliest_date": "2023-01-10",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Erode::Chengapalli_2",
+    "station_name": "Chengapalli_2",
+    "state": "Tamil Nadu",
+    "district": "Erode",
+    "observation_count": 1275,
+    "earliest_date": "2023-03-23",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Erode::Dharapuram1_1",
+    "station_name": "Dharapuram1_1",
+    "state": "Tamil Nadu",
+    "district": "Erode",
+    "observation_count": 1248,
+    "earliest_date": "2023-04-17",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Erode::Kurichi Pz_1",
+    "station_name": "Kurichi Pz_1",
+    "state": "Tamil Nadu",
+    "district": "Erode",
+    "observation_count": 1228,
+    "earliest_date": "2023-03-19",
+    "latest_date": "2026-10-01",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Erode::Priyakolanalli Pz",
+    "station_name": "Priyakolanalli Pz",
+    "state": "Tamil Nadu",
+    "district": "Erode",
+    "observation_count": 1274,
+    "earliest_date": "2023-03-25",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Erode::Sangarandampalayam Pz_1",
+    "station_name": "Sangarandampalayam Pz_1",
+    "state": "Tamil Nadu",
+    "district": "Erode",
+    "observation_count": 1249,
+    "earliest_date": "2023-04-17",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Madurai::Peraiyur pz_1",
+    "station_name": "Peraiyur pz_1",
+    "state": "Tamil Nadu",
+    "district": "Madurai",
+    "observation_count": 999,
+    "earliest_date": "2023-01-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Pudukkottai::Sundarapatti",
+    "station_name": "Sundarapatti",
+    "state": "Tamil Nadu",
+    "district": "Pudukkottai",
+    "observation_count": 1214,
+    "earliest_date": "2022-11-17",
+    "latest_date": "2026-10-18",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Pudukkottai::Vegupatti_1",
+    "station_name": "Vegupatti_1",
+    "state": "Tamil Nadu",
+    "district": "Pudukkottai",
+    "observation_count": 1398,
+    "earliest_date": "2022-11-18",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Salem::Utamacholapuram deep pz",
+    "station_name": "Utamacholapuram deep pz",
+    "state": "Tamil Nadu",
+    "district": "Salem",
+    "observation_count": 1347,
+    "earliest_date": "2023-01-11",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Tiruchirappalli::Manaparai Pz",
+    "station_name": "Manaparai Pz",
+    "state": "Tamil Nadu",
+    "district": "Tiruchirappalli",
+    "observation_count": 1240,
+    "earliest_date": "2023-04-07",
+    "latest_date": "2026-10-01",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Tiruchirappalli::Thiruchirapalli_1",
+    "station_name": "Thiruchirapalli_1",
+    "state": "Tamil Nadu",
+    "district": "Tiruchirappalli",
+    "observation_count": 1252,
+    "earliest_date": "2023-04-05",
+    "latest_date": "2026-10-11",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Tirunelveli::Vasudevanallur1_1",
+    "station_name": "Vasudevanallur1_1",
+    "state": "Tamil Nadu",
+    "district": "Tirunelveli",
+    "observation_count": 1256,
+    "earliest_date": "2022-12-05",
+    "latest_date": "2026-09-30",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Vellore::Kv Kuppam_1",
+    "station_name": "Kv Kuppam_1",
+    "state": "Tamil Nadu",
+    "district": "Vellore",
+    "observation_count": 1300,
+    "earliest_date": "2023-01-06",
+    "latest_date": "2026-09-30",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tamil Nadu::Viluppuram::Chinnasalem_1",
+    "station_name": "Chinnasalem_1",
+    "state": "Tamil Nadu",
+    "district": "Viluppuram",
+    "observation_count": 1400,
+    "earliest_date": "2022-11-10",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tn_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tn_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::ADILABAD::Boath-PZ_1",
+    "station_name": "Boath-PZ_1",
+    "state": "Telangana",
+    "district": "ADILABAD",
+    "observation_count": 1271,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::JOGULAMBA(GADWAL)::Medikonda_3",
+    "station_name": "Medikonda_3",
+    "state": "Telangana",
+    "district": "JOGULAMBA(GADWAL)",
+    "observation_count": 1027,
+    "earliest_date": "2023-11-26",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::MAHBUBNAGAR::Urukonda middle",
+    "station_name": "Urukonda middle",
+    "state": "Telangana",
+    "district": "MAHBUBNAGAR",
+    "observation_count": 1270,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::MANCHERIAL::Luxetipeth",
+    "station_name": "Luxetipeth",
+    "state": "Telangana",
+    "district": "MANCHERIAL",
+    "observation_count": 1254,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-21",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::NAGARKURNOOL::Pedda Kothapally-Pz_1",
+    "station_name": "Pedda Kothapally-Pz_1",
+    "state": "Telangana",
+    "district": "NAGARKURNOOL",
+    "observation_count": 1303,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::NALGONDA::Madugula Palli-Pz",
+    "station_name": "Madugula Palli-Pz",
+    "state": "Telangana",
+    "district": "NALGONDA",
+    "observation_count": 1214,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::NIZAMABAD::Dubbaka",
+    "station_name": "Dubbaka",
+    "state": "Telangana",
+    "district": "NIZAMABAD",
+    "observation_count": 1298,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::RAJANNA SIRCILLA::Nerall  Pz",
+    "station_name": "Nerall  Pz",
+    "state": "Telangana",
+    "district": "RAJANNA SIRCILLA",
+    "observation_count": 1237,
+    "earliest_date": "2023-02-28",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::RANGA REDDY::Rajendranagar_1",
+    "station_name": "Rajendranagar_1",
+    "state": "Telangana",
+    "district": "RANGA REDDY",
+    "observation_count": 1201,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Telangana::RANGA REDDY::Sahabad_1",
+    "station_name": "Sahabad_1",
+    "state": "Telangana",
+    "district": "RANGA REDDY",
+    "observation_count": 1301,
+    "earliest_date": "2023-03-01",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_ts_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_ts_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tripura::Khowai::Chakmaghat_1",
+    "station_name": "Chakmaghat_1",
+    "state": "Tripura",
+    "district": "Khowai",
+    "observation_count": 1169,
+    "earliest_date": "2023-04-02",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tripura::NORTH TRIPURA::Kanchanpur Court_1",
+    "station_name": "Kanchanpur Court_1",
+    "state": "Tripura",
+    "district": "NORTH TRIPURA",
+    "observation_count": 1193,
+    "earliest_date": "2023-04-02",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tripura::SOUTH TRIPURA::Rajib Nagar_1",
+    "station_name": "Rajib Nagar_1",
+    "state": "Tripura",
+    "district": "SOUTH TRIPURA",
+    "observation_count": 1141,
+    "earliest_date": "2023-04-02",
+    "latest_date": "2026-10-19",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tripura::SOUTH TRIPURA::Tuichama_1",
+    "station_name": "Tuichama_1",
+    "state": "Tripura",
+    "district": "SOUTH TRIPURA",
+    "observation_count": 815,
+    "earliest_date": "2023-02-27",
+    "latest_date": "2026-04-30",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tripura::WEST TRIPURA::Bodhjanagar",
+    "station_name": "Bodhjanagar",
+    "state": "Tripura",
+    "district": "WEST TRIPURA",
+    "observation_count": 1126,
+    "earliest_date": "2023-04-02",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    ]
+  },
+  {
+    "station_id": "Tripura::WEST TRIPURA::Nagicherra_1",
+    "station_name": "Nagicherra_1",
+    "state": "Tripura",
+    "district": "WEST TRIPURA",
+    "observation_count": 1096,
+    "earliest_date": "2023-04-02",
+    "latest_date": "2026-10-22",
+    "source_files": [
+      "gwl_tel_6_hourly_cgwb_tr_2021_2025.csv",
+      "gwl_tel_6_hourly_cgwb_tr_2026_2030.csv"
+    ]
+  }
+]
