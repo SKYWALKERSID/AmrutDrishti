@@ -499,8 +499,8 @@ interface RainfallChartPoint {
     const lpa = lpaByState[selectedBlock.state] || 800;
     const anomaly = selectedBlock.indicators.rainfallAnomalyMm;
     const observedTotal = Math.max(0, Number((lpa + anomaly).toFixed(1)));
-    const date = selectedBlock.indicators.lastUpdatedDate || '2026-09-30';
-    const year = date.split('-')[0] || '2026';
+    const date = selectedBlock.indicators.lastUpdatedDate || '2024-09-30';
+    const year = date.split('-')[0] || '2024';
 
     return [
       {
@@ -946,6 +946,24 @@ interface RainfallChartPoint {
               </div>
             </div>
           )}
+
+          {rainfallChartData.length > 0 && (() => {
+            const obsYear = Number(rainfallChartData[0].date.split('-')[0]);
+            const isHistorical = obsYear < 2026;
+            return isHistorical ? (
+              <div className="p-2.5 bg-subtle border-l-2 border-primary/60 text-xs text-text-muted flex items-start justify-between gap-2">
+                <div className="flex items-start gap-1.5">
+                  <InfoIcon className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                  <span>
+                    <strong>Latest available data: {obsYear} ({rainfallChartData[0].period}):</strong> Official IMD gridded daily precipitation bundles for this block are archived through {rainfallChartData[0].date}. Direct daily raingauge records for post-{obsYear} are not published in the local archive; subsequent seasons are preserved as unmeasured data gaps.
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-subtle border border-border text-text-muted shrink-0">
+                  LATEST: {obsYear}
+                </span>
+              </div>
+            ) : null;
+          })()}
 
           <p className="text-xs text-text-muted">
             Monsoon rainfall indicators: The primary evidence is the stored block rainfall anomaly ({rainfallChartData[0]?.deviationMm !== undefined ? `${rainfallChartData[0].deviationMm > 0 ? '+' : ''}${rainfallChartData[0].deviationMm} mm` : 'N/A'}) compared against the state 30-year Long Period Average (LPA, 1991–2020) baseline of {rainfallChartData[0]?.normalLpaMm ?? 800} mm. Note: The &quot;Estimated Total&quot; ({rainfallChartData[0]?.observedMm ?? 'N/A'} mm) is derived by combining the state normal with the block anomaly; direct raingauge daily accumulation is aggregated separately.
