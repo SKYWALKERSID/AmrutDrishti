@@ -1,4 +1,4 @@
-# JalDrishti — Local Supabase Setup & Developer Guide
+# Amrut Drishti — Local Supabase Setup & Developer Guide
 
 ## Prerequisites
 - Node.js 18+ & npm
@@ -9,7 +9,7 @@
 
 ## 1. Supabase Project Setup
 1. Log in to [https://supabase.com/dashboard](https://supabase.com/dashboard) and click **New Project**.
-2. Set Project Name to `JalDrishti-Pilot`, assign a secure database password, and select region `South Asia (Mumbai) - ap-south-1`.
+2. Set Project Name to `Amrut Drishti-Pilot`, assign a secure database password, and select region `South Asia (Mumbai) - ap-south-1`.
 3. Under **Project Settings -> API**:
    - Copy **Project URL** -> paste as `NEXT_PUBLIC_SUPABASE_URL` in `.env.local`.
    - Copy **anon / public** key -> paste as `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
@@ -18,7 +18,7 @@
 ---
 
 ## 2. Environment Variables (.env.local)
-Create a `.env.local` file in `D:\Projects\JalDrishti` copying from `.env.example`:
+Create a `.env.local` file in `D:\Projects\Amrut Drishti` copying from `.env.example`:
 
 ```env
 NODE_ENV=development
@@ -33,7 +33,7 @@ SUPABASE_SERVICE_ROLE_KEY=<your-service-role-key>
 
 ## 3. Database Migration Execution
 In the Supabase Dashboard, navigate to **SQL Editor**:
-1. Open [`supabase/migrations/20261010000000_init_schema.sql`](file:///D:/Projects/JalDrishti/supabase/migrations/20261010000000_init_schema.sql).
+1. Open [`supabase/migrations/20261010000000_init_schema.sql`](file:///D:/Projects/Amrut Drishti/supabase/migrations/20261010000000_init_schema.sql).
 2. Paste and run the DDL script to create `postgis` extensions, administrative unit tables, derived indicators, proposals, notification logs, and RLS policies.
 
 ---

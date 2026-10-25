@@ -1,4 +1,4 @@
-# JAL DRISHTI — Privilege Matrix & Access Control Model
+# AMRUT DRISHTI — Privilege Matrix & Access Control Model
 
 **Date:** 2026-10-11  
 **Baseline Schema:** `20261010000000_init_schema.sql`  

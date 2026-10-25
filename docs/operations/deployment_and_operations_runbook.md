@@ -1,4 +1,4 @@
-# JalDrishti Platform — Deployment and Operations Runbook
+# Amrut Drishti Platform — Deployment and Operations Runbook
 
 **Document ID**: `JD-OPS-048`  
 **Version**: `v1.0`  
@@ -7,7 +7,7 @@
 ---
 
 ## 1. System Overview & Architecture
-JalDrishti is an India-focused groundwater intelligence and decision-support platform (Next.js App Router + PostgreSQL/Supabase with PostGIS) designed to address groundwater scarcity across India, with initial geographic priorities in Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh.
+Amrut Drishti is an India-focused groundwater intelligence and decision-support platform (Next.js App Router + PostgreSQL/Supabase with PostGIS) designed to address groundwater scarcity across India, with initial geographic priorities in Madhya Pradesh, Punjab, Rajasthan, Haryana, Uttar Pradesh, Assam, Meghalaya, and Arunachal Pradesh.
 
 - **Frontend & Server Components**: Next.js 15 (Node.js runtime)
 - **Spatial Database**: PostgreSQL 15 + PostGIS (`public.administrative_units` with SOI 2025 boundary polygons)

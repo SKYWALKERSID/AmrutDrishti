@@ -1,8 +1,8 @@
-# JAL DRISHTI — SYSTEM & DATA FLOW ARCHITECTURE
+# AMRUT DRISHTI — SYSTEM & DATA FLOW ARCHITECTURE
 
 ## 1. High-Level System Architecture
 
-JalDrishti is an AI-powered groundwater intelligence and monitoring decision-support platform designed for India's administrative blocks.
+Amrut Drishti is an AI-powered groundwater intelligence and monitoring decision-support platform designed for India's administrative blocks.
 
 ```text
 [ National Water Portals ]          [ Satellite Earth Observation ]
@@ -57,7 +57,7 @@ The active application scope is strictly bounded to:
 
 1. **Inference Service Architecture:**
    - Python FastAPI service running in `ml/serving.py` on `http://127.0.0.1:8081`.
-   - Mutual-authentication via bearer token (`JALDRISHTI_MODEL_SERVICE_TOKEN`).
+   - Mutual-authentication via bearer token (`AMRUTDRISHTI_MODEL_SERVICE_TOKEN`).
 2. **Feature Engineering:**
    - Ingests verified observation sequence + IMD rainfall anomalies + GRACE TWSA + SMAP soil moisture.
    - Categorical block encoding with out-of-fold generalization.

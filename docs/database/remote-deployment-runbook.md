@@ -1,4 +1,4 @@
-# JAL DRISHTI — Remote Deployment Runbook: Database Permissions Remediation
+# AMRUT DRISHTI — Remote Deployment Runbook: Database Permissions Remediation
 
 **Target Migration:** `supabase/migrations/20261011000002_permissions_remediation.sql`  
 **Purpose:** Resolve PostgreSQL `42501 insufficient_privilege` on public geospatial API queries while hardening operational tables against unauthorized cross-district access.  

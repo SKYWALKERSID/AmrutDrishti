@@ -1,4 +1,4 @@
-# JAL DRISHTI — OPERATIONAL RUNBOOK
+# AMRUT DRISHTI — OPERATIONAL RUNBOOK
 
 ## 1. Prerequisites & Environment Setup
 
@@ -13,8 +13,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
 SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
 
 # ML Model Bridge
-JALDRISHTI_MODEL_SERVICE_URL=http://127.0.0.1:8081
-JALDRISHTI_MODEL_SERVICE_TOKEN=local-dev-model-bridge-token-2026-secure
+AMRUTDRISHTI_MODEL_SERVICE_URL=http://127.0.0.1:8081
+AMRUTDRISHTI_MODEL_SERVICE_TOKEN=local-dev-model-bridge-token-2026-secure
 ```
 
 ---
@@ -72,7 +72,7 @@ python -m pytest tests_py
 
 | Symptom | Diagnostic Step | Resolution |
 |:---|:---|:---|
-| **Forecast returns 503 / Unavailable** | Check if port 8081 is listening: `Get-NetTCPConnection -LocalPort 8081` | Start `python scripts/run_serving.py`. Verify `JALDRISHTI_MODEL_SERVICE_URL` in `.env.local`. |
+| **Forecast returns 503 / Unavailable** | Check if port 8081 is listening: `Get-NetTCPConnection -LocalPort 8081` | Start `python scripts/run_serving.py`. Verify `AMRUTDRISHTI_MODEL_SERVICE_URL` in `.env.local`. |
 | **Historical observations show 0 records** | Query `/api/historical-observations?block=<id>` | Expected for blocks without Supabase table records; frontend cleanly falls back to local verified series. |
 | **`operationalEligibility: false` warning** | Check model forecast JSON response | Expected by design. Operational eligibility requires field piezometer network calibration; do not force to true. |
 | **Observation freshness banner appears** | Observation age exceeds 400 days from current date | Genuine historical archive behavior. Distinguishes legacy records from real-time DWLR telemetry. |

@@ -1,4 +1,4 @@
-# JAL DRISHTI — PROJECT STATUS & IMPLEMENTATION AUDIT
+# AMRUT DRISHTI — PROJECT STATUS & IMPLEMENTATION AUDIT
 
 **Status:** Historical implementation snapshot; not evidence of current production verification  
 **Date:** Historical implementation snapshot dated October 24, 2026; product-scope review updated October 25, 2026  
@@ -14,7 +14,7 @@
 
 ## 1. Executive Implementation Summary
 
-The JalDrishti platform architecture has been fully consolidated:
+The Amrut Drishti platform architecture has been fully consolidated:
 1. **Unified Physical Data Layer:** Connected to Supabase `v_published_historical_observations` and reviewed CGWB manual archives (`verified_cgwb_block_series.json`). Zero fabricated records, synthetic dates, or silent mock fallbacks.
 2. **Active ML Serving Bridge:** The `GlobalBlockAwareQuantileGB-v1` model is served via FastAPI (`http://127.0.0.1:8081`) and integrated into Next.js routes (`/api/forecast`). Predictions supply 4-horizon quantile estimates with strict uncertainty labels (`ordered_uncalibrated`) and `operationalEligibility: false`.
 3. **Frontend Component Parity:** Monitoring (`/monitoring`) and Map Explorer (`/explorer`) both consume canonical block identities and observation APIs with race-condition prevention and clean state transitions.

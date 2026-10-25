@@ -1,4 +1,4 @@
-# Jal Drishti — Official Groundwater Data Acquisition, Telemetry Calibration & Scientific Integrity Runbook
+# Amrut Drishti — Official Groundwater Data Acquisition, Telemetry Calibration & Scientific Integrity Runbook
 
 **Document Version:** 1.0.0-scientific-integrity  
 **Date:** October 25, 2026  
@@ -24,9 +24,9 @@
 
 ## 1. Executive Summary & Purpose
 
-This operational runbook documents the data discovery, station mapping, telemetry calibration protocol, and block readiness criteria for Jal Drishti. It establishes a rigorous, scientifically defensible boundary between raw observation datasets, experimental telemetry streams, research-grade predictions, and operational decision-making.
+This operational runbook documents the data discovery, station mapping, telemetry calibration protocol, and block readiness criteria for Amrut Drishti. It establishes a rigorous, scientifically defensible boundary between raw observation datasets, experimental telemetry streams, research-grade predictions, and operational decision-making.
 
-In accordance with Jal Drishti Scientific Invariants (Rule 5):
+In accordance with Amrut Drishti Scientific Invariants (Rule 5):
 - No prediction is emitted without verified fresh observations ($\le 400$ days old).
 - No uncalibrated telemetry is introduced into global model inference.
 - No station mapping is asserted without official CGWB/State administrative cross-references.
@@ -97,7 +97,7 @@ Automated telemetry sensors (DWLR) cannot be assumed to measure water table dept
 
 ### Invariant 1: Physical Sign Convention
 The retained NWDP CSVs do not establish a groundwater-depth sign convention. Negative readings remain unconverted and quarantined; no physical interpretation is assigned without station-specific authoritative documentation.
-- **Rule:** Antigravity and Jal Drishti code will **NEVER** invert signs (`abs(val)` or `-1 * val`) or add arbitrary scalar offsets without official manufacturer/sensor installation records.
+- **Rule:** Antigravity and Amrut Drishti code will **NEVER** invert signs (`abs(val)` or `-1 * val`) or add arbitrary scalar offsets without official manufacturer/sensor installation records.
 
 ### Invariant 2: Colocated Concurrent Pairing Requirement
 Telemetry can only be considered calibrated if paired against manual chalk-and-tape or electric sounder measurements that satisfy:

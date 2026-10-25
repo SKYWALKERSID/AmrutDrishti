@@ -1,9 +1,9 @@
 # MASTER VIBE-CODING PROMPT
-## JalDrishti: Satellite-Assisted Groundwater Intelligence and Governance Platform
+## Amrut Drishti: Satellite-Assisted Groundwater Intelligence and Governance Platform
 
 Act as a senior full-stack engineer, geospatial data engineer, applied machine-learning engineer, product designer, and technical architect.
 
-Your task is to build **JalDrishti**, a polished, technically credible, satellite-assisted groundwater intelligence and decision-support platform for water-stressed regions of India.
+Your task is to build **Amrut Drishti**, a polished, technically credible, satellite-assisted groundwater intelligence and decision-support platform for water-stressed regions of India.
 
 Do not merely create a landing page or a dashboard filled with decorative charts. Build a functional, extensible product that integrates environmental evidence, communicates uncertainty, supports groundwater-risk monitoring, and helps authorized users evaluate potential interventions.
 
@@ -13,29 +13,29 @@ Treat the existing Product Requirements Document (PRD), Technical Requirements D
 
 ## 1. Authoritative Project Documents
 
-The following three documents are the official sources of truth for JalDrishti. Locate and read their complete contents before making implementation decisions.
+The following three documents are the official sources of truth for Amrut Drishti. Locate and read their complete contents before making implementation decisions.
 
 **Priority 1: Product Requirements Document (PRD)**
 
-File: `JalDrishti_Exhaustive_PRD_v1.0.docx`
+File: `Amrut Drishti_Exhaustive_PRD_v1.0.docx`
 
 Purpose:
 - Defines the product vision, objectives, scope, users, user journeys, and functional requirements.
 - Establishes product boundaries, acceptance criteria, priorities, non-functional requirements, and expected outcomes.
-- Defines what JalDrishti must accomplish and what is outside its intended scope.
+- Defines what Amrut Drishti must accomplish and what is outside its intended scope.
 
 **Priority 2: Technical Requirements Document (TRD)**
 
-File: `JalDrishti_Exhaustive_TRD_v1.0.docx`
+File: `Amrut Drishti_Exhaustive_TRD_v1.0.docx`
 
 Purpose:
 - Defines the proposed technical architecture, technology choices, data models, processing pipelines, APIs, security requirements, testing strategy, deployment approach, and operational safeguards.
 - Establishes technical constraints, integration requirements, model-validation requirements, and implementation guidance.
-- Defines how JalDrishti should be engineered and operated.
+- Defines how Amrut Drishti should be engineered and operated.
 
 **Priority 3: Project Summary**
 
-File: `JalDrishti_Project_Summary.md` or the latest approved JalDrishti project-summary document.
+File: `Amrut Drishti_Project_Summary.md` or the latest approved Amrut Drishti project-summary document.
 
 Purpose:
 - Provides the consolidated project vision, problem statement, proposed solution, earlier research and existing systems, candidate research gaps, intended differentiation, expected impact, and implementation priorities.
@@ -98,7 +98,7 @@ Do not replace missing project-specific requirements with generic product assump
 
 ## 5. Change-Control Rules
 
-The PRD and TRD may evolve as JalDrishti develops, but changes must remain explicit and traceable.
+The PRD and TRD may evolve as Amrut Drishti develops, but changes must remain explicit and traceable.
 
 When a new feature, technical limitation, research finding, or stakeholder requirement suggests changing an approved decision:
 
@@ -150,7 +150,7 @@ Read the sources first, preserve their intent, and make all material deviations 
 
 # 1. PRODUCT DEFINITION
 
-**Product name:** JalDrishti
+**Product name:** Amrut Drishti
 
 **Category:** Geospatial intelligence, groundwater monitoring, environmental risk analytics, and governance decision support.
 
@@ -181,7 +181,7 @@ Identify an area of concern, inspect the supporting evidence, understand the lim
 
 Every important assessment must explain what data supports it, when that data was updated, how the result was produced, and what uncertainty remains.
 
-Do not claim that JalDrishti has already prevented drought, saved water, improved agricultural yields, or outperformed existing systems. Such claims require measured evidence.
+Do not claim that Amrut Drishti has already prevented drought, saved water, improved agricultural yields, or outperformed existing systems. Such claims require measured evidence.
 
 ---
 
@@ -191,7 +191,7 @@ Before writing or modifying code:
 
 1. Inspect the repository structure, package manifests, lockfiles, environment configuration, source code, database migrations, API routes, existing components, tests, documentation, and available assets.
 2. Identify the existing framework, language, routing system, design system, authentication mechanism, data model, and deployment configuration.
-3. Read the available JalDrishti PRD and TRD if present in the repository or supplied workspace.
+3. Read the available Amrut Drishti PRD and TRD if present in the repository or supplied workspace.
 4. Identify implemented features, incomplete features, broken features, duplicated code, security risks, mock data, and architectural inconsistencies.
 5. Run the existing application using the documented commands when the environment permits.
 6. Record a concise baseline assessment before making changes.
@@ -214,7 +214,7 @@ Then begin implementation. Do not stop after writing a plan.
 
 # 3. DESIGN DIRECTION: REFINED, RESTRAINED, DISTINCTIVE
 
-Act as a senior web designer and frontend engineer. Create a clean, polished interface with the restraint, typography, hierarchy, and product focus associated with Apple's marketing pages, while establishing a distinct visual identity for JalDrishti.
+Act as a senior web designer and frontend engineer. Create a clean, polished interface with the restraint, typography, hierarchy, and product focus associated with Apple's marketing pages, while establishing a distinct visual identity for Amrut Drishti.
 
 The product should feel like a serious geospatial intelligence platform designed for professional use in India.
 
@@ -641,7 +641,7 @@ Adapt the structure if the existing repository already has a stronger organizati
 ## Public landing page
 
 If a public-facing page is required, it should communicate:
-- What JalDrishti does.
+- What Amrut Drishti does.
 - Who it serves.
 - How its evidence-based workflow operates.
 - What the platform currently supports.
@@ -724,7 +724,7 @@ Treat water-risk classifications as decision-support information. Keep uncertain
 
 # 12. RESEARCH AND VALIDATION REQUIREMENTS
 
-JalDrishti must explicitly account for prior work in:
+Amrut Drishti must explicitly account for prior work in:
 - GRACE-based terrestrial water-storage and groundwater research.
 - Groundwater modelling in Bundelkhand.
 - ISRO Bhuvan-Bhujal and groundwater-prospect mapping.
@@ -918,7 +918,7 @@ Be specific and honest. Do not claim deployment, source connectivity, scientific
 
 # FINAL DIRECTIVE
 
-Build JalDrishti as a credible, restrained, evidence-driven geospatial product.
+Build Amrut Drishti as a credible, restrained, evidence-driven geospatial product.
 
 Prioritize scientific integrity, usable workflows, transparent data provenance, maintainable engineering, and a distinctive visual identity.
 
