@@ -9,7 +9,8 @@ import { calculateDescriptiveGss, evaluateGroundwaterIntelligence } from '@/lib/
 import { ShieldCheckIcon, ActivityChartIcon, FilterIcon, InfoIcon, CheckCircleIcon } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { ACTIVE_TARGET_BLOCKS, ACTIVE_TARGET_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState, getTargetStatesAlphabetically } from '@/lib/data/indiaStates';
+import { sortDistrictsAlphabetically, sortBlocksByName, sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import type { BlockForecastResponse, ForecastPoint } from '@/app/api/forecast/route';
 import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
@@ -93,27 +94,32 @@ function RiskAssessmentContent() {
     };
   }, [selectedBlockId]);
 
-  // Derived filtered districts
+  // Derived filtered districts (Sorted alphabetically A-Z)
   const availableDistricts = useMemo(() => {
-    if (selectedState === 'all') return ACTIVE_TARGET_DISTRICTS;
-    return ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    const list = selectedState === 'all'
+      ? ACTIVE_TARGET_DISTRICTS
+      : ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    return sortDistrictsAlphabetically(list);
   }, [selectedState]);
 
-  // Derived filtered blocks
+  // Derived filtered blocks (Sorted alphabetically A-Z within hierarchy)
   const filteredBlocks = useMemo(() => {
-    return blocksData.filter(b => {
+    const list = blocksData.filter(b => {
       const matchState = selectedState === 'all'
         ? isTargetState(b.state)
         : normalizeStateName(b.state) === selectedState;
       const matchDistrict = selectedDistrictId === 'all' || b.districtId === selectedDistrictId;
       return matchState && matchDistrict;
     });
+    return selectedDistrictId === 'all' ? sortBlocksHierarchy(list) : sortBlocksByName(list);
   }, [blocksData, selectedState, selectedDistrictId]);
 
   const handleStateChange = (stateName: string) => {
     setSelectedState(stateName);
     setSelectedDistrictId('all');
-    const matched = blocksData.filter(b => stateName === 'all' || normalizeStateName(b.state) === stateName);
+    const matched = sortBlocksHierarchy(
+      blocksData.filter(b => stateName === 'all' || normalizeStateName(b.state) === stateName)
+    );
     if (matched.length > 0) {
       setSelectedBlockId(matched[0].id);
       setOverrideApplied(false);
@@ -122,11 +128,13 @@ function RiskAssessmentContent() {
 
   const handleDistrictChange = (distId: string) => {
     setSelectedDistrictId(distId);
-    const matched = blocksData.filter(b => {
-      const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
-      const matchDistrict = distId === 'all' || b.districtId === distId;
-      return matchState && matchDistrict;
-    });
+    const matched = sortBlocksHierarchy(
+      blocksData.filter(b => {
+        const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
+        const matchDistrict = distId === 'all' || b.districtId === distId;
+        return matchState && matchDistrict;
+      })
+    );
     if (matched.length > 0) {
       setSelectedBlockId(matched[0].id);
       setOverrideApplied(false);
@@ -250,18 +258,11 @@ function RiskAssessmentContent() {
                       className="bg-subtle border border-border px-2 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                     >
                       <option value="all">All 9 Active Target States</option>
-                      {TARGET_REGIONS.map((region) => {
-                        const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
-                        return (
-                          <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
-                            {statesInRegion.map((st) => (
-                              <option key={st.code} value={st.name}>
-                                {st.name}
-                              </option>
-                            ))}
-                          </optgroup>
-                        );
-                      })}
+                      {getTargetStatesAlphabetically().map((st) => (
+                        <option key={st.code} value={st.name}>
+                          {st.name}
+                        </option>
+                      ))}
                     </select>
 
                     {/* District */}

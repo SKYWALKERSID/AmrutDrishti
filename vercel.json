@@ -4,5 +4,11 @@
       "path": "/api/admin/ingest",
       "schedule": "0 6 * * *"
     }
-  ]
+  ],
+  "functions": {
+    "api/py_forecast.py": {
+      "maxDuration": 15,
+      "excludeFiles": "{node_modules/**,.next/**,src/**,public/**,tests/**,__tests__/**,tests_py/**,docs/**,audit/**,scripts/**,data/**,LGD DATA/**,GEOJSON FILES/**,ml/models/**,ml/artifacts/*.csv}"
+    }
+  }
 }

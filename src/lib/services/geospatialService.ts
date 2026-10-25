@@ -4,6 +4,8 @@ import type { AdministrativeUnitRow, DerivedIndicatorRow } from '../types/databa
 import { mapDbRowToBlockData } from '../mappers/blockMapper.ts';
 import { ALL_BLOCKS } from '../data/bundelkhand.ts';
 
+import { sortBlocksHierarchy } from '../data/geographicSorting.ts';
+
 export interface GeospatialQueryResult {
   blocks: BlockData[];
   /**
@@ -35,14 +37,17 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
   const fetchedAt = new Date().toISOString();
   const isExplicitDemo = process.env.JALDRISHTI_DEMO_MODE === 'true';
 
-  const demo = (message: string): GeospatialQueryResult => ({
-    blocks: ALL_BLOCKS,
-    source: 'demonstration_fixture',
-    isDemonstrationData: true,
-    totalCount: ALL_BLOCKS.length,
-    fetchedAt,
-    errorMessage: message
-  });
+  const demo = (message: string): GeospatialQueryResult => {
+    const sortedDemoBlocks = sortBlocksHierarchy(ALL_BLOCKS);
+    return {
+      blocks: sortedDemoBlocks,
+      source: 'demonstration_fixture',
+      isDemonstrationData: true,
+      totalCount: sortedDemoBlocks.length,
+      fetchedAt,
+      errorMessage: message
+    };
+  };
 
   const emptyResult = (message: string): GeospatialQueryResult => ({
     blocks: [],
@@ -120,14 +125,15 @@ export async function fetchBlocksGeospatialData(): Promise<GeospatialQueryResult
       return mapDbRowToBlockData(unit, indicator);
     });
 
-    const hasSimulatedRows = mappedBlocks.some(b => b.assessment.dataStatus === 'simulated');
+    const sortedMappedBlocks = sortBlocksHierarchy(mappedBlocks);
+    const hasSimulatedRows = sortedMappedBlocks.some(b => b.assessment.dataStatus === 'simulated');
     const operationallyValidated = false;
 
     return {
-      blocks: mappedBlocks,
+      blocks: sortedMappedBlocks,
       source: 'live_database',
       isDemonstrationData: hasSimulatedRows || !operationallyValidated,
-      totalCount: mappedBlocks.length,
+      totalCount: sortedMappedBlocks.length,
       fetchedAt
     };
   } catch (err: unknown) {

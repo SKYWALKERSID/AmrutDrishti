@@ -21,7 +21,8 @@ import HistoricalObservationsPanel from '@/components/HistoricalObservationsPane
 import NwdpStationForecastPanel from '@/components/NwdpStationForecastPanel';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { ACTIVE_TARGET_BLOCKS, ACTIVE_TARGET_DISTRICTS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, EXPANSION_INDIAN_STATES, TARGET_REGIONS, isTargetState, getTargetStatesAlphabetically } from '@/lib/data/indiaStates';
+import { sortDistrictsAlphabetically, sortBlocksByName, sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import { historicalSeriesProvenanceFor } from '@/lib/data/historicalSeriesProvenance';
 import { CHART_COLORS, deviationColor } from '@/lib/design/chartPalette';
 import { TermHelp } from '@/components/ui/PlainLanguageHelp';
@@ -93,9 +94,8 @@ function MonitoringContent() {
                   setSelectedState(target.state);
                   setSelectedDistrictId(target.districtId);
                 }
-              } else {
-                setSelectedBlockId(merged[0].id);
               }
+              // Notice: Do NOT default to merged[0] or Tikamgarh when no block URL parameter is given.
             }
           }
         }
@@ -111,44 +111,37 @@ function MonitoringContent() {
     };
   }, [urlBlockParam]);
 
-  // Derived filtered districts
+  // Derived filtered districts (Sorted alphabetically A-Z)
   const availableDistricts = useMemo(() => {
-    if (selectedState === 'all') return ACTIVE_TARGET_DISTRICTS;
-    return ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    const list = selectedState === 'all'
+      ? ACTIVE_TARGET_DISTRICTS
+      : ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    return sortDistrictsAlphabetically(list);
   }, [selectedState]);
 
-  // Derived filtered blocks
+  // Derived filtered blocks (Sorted alphabetically A-Z within hierarchy)
   const filteredBlocks = useMemo(() => {
-    return blocksData.filter(b => {
+    const list = blocksData.filter(b => {
       const matchState = selectedState === 'all'
         ? isTargetState(b.state)
         : normalizeStateName(b.state) === selectedState;
       const matchDistrict = selectedDistrictId === 'all' || b.districtId === selectedDistrictId;
       return matchState && matchDistrict;
     });
+    return selectedDistrictId === 'all' ? sortBlocksHierarchy(list) : sortBlocksByName(list);
   }, [blocksData, selectedState, selectedDistrictId]);
 
-  // Handle State change
+  // Handle State change: cascade reset child selectors
   const handleStateChange = (stateName: string) => {
     setSelectedState(stateName);
     setSelectedDistrictId('all');
-    const matchedBlocks = blocksData.filter(b => stateName === 'all' || normalizeStateName(b.state) === stateName);
-    if (matchedBlocks.length > 0) {
-      setSelectedBlockId(matchedBlocks[0].id);
-    }
+    setSelectedBlockId('');
   };
 
-  // Handle District change
+  // Handle District change: cascade reset block selector
   const handleDistrictChange = (distId: string) => {
     setSelectedDistrictId(distId);
-    const matchedBlocks = blocksData.filter(b => {
-      const matchState = selectedState === 'all' || normalizeStateName(b.state) === selectedState;
-      const matchDistrict = distId === 'all' || b.districtId === distId;
-      return matchState && matchDistrict;
-    });
-    if (matchedBlocks.length > 0) {
-      setSelectedBlockId(matchedBlocks[0].id);
-    }
+    setSelectedBlockId('');
   };
 
   // Load genuine CGWB historical observations for this block
@@ -540,18 +533,11 @@ interface RainfallChartPoint {
               className="bg-subtle border border-border rounded px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer"
             >
               <option value="all">All 9 Active States</option>
-              {TARGET_REGIONS.map((region) => {
-                const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
-                return (
-                  <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
-                    {statesInRegion.map((st) => (
-                      <option key={st.code} value={st.name}>
-                        {st.name}
-                      </option>
-                    ))}
-                  </optgroup>
-                );
-              })}
+              {getTargetStatesAlphabetically().map((st) => (
+                <option key={st.code} value={st.name}>
+                  {st.name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -588,6 +574,7 @@ interface RainfallChartPoint {
                 onChange={(e) => setSelectedBlockId(e.target.value)}
                 className="bg-subtle border border-border rounded px-3 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer max-w-[200px]"
               >
+                <option value="">Select a block...</option>
                 {filteredBlocks.map((b) => (
                   <option key={b.id} value={b.id}>
                     {b.name} ({b.districtName}) — {b.riskSeverity.toUpperCase()}
@@ -618,8 +605,22 @@ interface RainfallChartPoint {
         )}
       </div>
 
-      {/* Open Content Layout for Dual Monitoring Charts */}
-      <div className="space-y-12">
+      {!selectedBlock ? (
+        <div className="p-12 text-center bg-subtle border border-border rounded space-y-3">
+          <div className="w-10 h-10 mx-auto text-primary flex items-center justify-center bg-surface border border-border rounded-full">
+            <FilterIcon className="w-5 h-5" />
+          </div>
+          <h2 className="text-sm font-semibold text-text-main">
+            Select a district and block to view location-specific data
+          </h2>
+          <p className="text-xs text-text-muted max-w-md mx-auto">
+            Choose a state, district, and block from the selectors above to inspect verified Central Ground Water Board observation wells, satellite water mass anomalies, and rainfall forecasts.
+          </p>
+        </div>
+      ) : (
+        <>
+          {/* Open Content Layout for Dual Monitoring Charts */}
+          <div className="space-y-12">
         {/* Chart 1: Published Groundwater Well Depths & Satellite Water Storage */}
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 pb-3 border-b border-border">
@@ -1472,6 +1473,8 @@ interface RainfallChartPoint {
           </h2>
           <HistoricalObservationsPanel enabled={true} block={selectedBlock.id} />
         </div>
+      )}
+        </>
       )}
     </div>
   );

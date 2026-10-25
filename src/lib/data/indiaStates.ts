@@ -491,6 +491,14 @@ export const ALL_INDIAN_STATES: IndianStateMeta[] = [
 ];
 
 /**
+ * Returns all nine target states sorted alphabetically A-Z.
+ */
+export function getTargetStatesAlphabetically(): IndianStateMeta[] {
+  const collator = new Intl.Collator('en', { sensitivity: 'base', numeric: true });
+  return [...ALL_TARGET_STATES].sort((a, b) => collator.compare(a.name.trim(), b.name.trim()));
+}
+
+/**
  * Returns all nine target states.
  */
 export function getTargetStates(): IndianStateMeta[] {

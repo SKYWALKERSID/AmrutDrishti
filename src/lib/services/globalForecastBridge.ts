@@ -15,7 +15,7 @@ export interface GlobalModelRequest {
   observations: TrustedModelObservation[];
 }
 
-const TIMEOUT_MS = 4_000;
+const TIMEOUT_MS = 12_000;
 export const MAX_TRUSTED_OBSERVATION_AGE_DAYS = 400;
 
 /**
@@ -39,22 +39,73 @@ export function hasFreshTrustedObservationOrigin(observations: TrustedModelObser
     && info.observationAgeDays <= MAX_TRUSTED_OBSERVATION_AGE_DAYS;
 }
 
-export async function requestGlobalForecast(input: GlobalModelRequest): Promise<Record<string, unknown> | null> {
-  const baseUrl = process.env.JALDRISHTI_MODEL_SERVICE_URL;
-  const token = process.env.JALDRISHTI_MODEL_SERVICE_TOKEN;
-  if (!baseUrl || !token || !baseUrl.startsWith('http')) return null;
+export type ModelInvocationFailure =
+  | 'service_not_configured' | 'token_missing' | 'timeout' | 'network_error'
+  | 'unauthorized' | 'invalid_request' | 'service_error' | 'invalid_body';
+
+export interface ModelInvocationResult {
+  body: Record<string, unknown> | null;
+  failure: ModelInvocationFailure | null;
+  latencyMs: number;
+}
+
+/**
+ * Resolves the private model endpoint.
+ * 1. JALDRISHTI_MODEL_SERVICE_URL with an explicit path is used verbatim
+ *    (e.g. https://host/api/py_forecast); a bare origin keeps the legacy
+ *    container route `/v1/forecast`.
+ * 2. Otherwise, on Vercel, the same deployment's Python Function is addressed
+ *    over HTTPS at `https://$VERCEL_URL/api/py_forecast` (Functions are separately
+ *    invoked; there is no localhost/shared process).
+ */
+export function resolveModelServiceUrl(env: Record<string, string | undefined> = process.env): string | null {
+  const configured = env.JALDRISHTI_MODEL_SERVICE_URL?.trim();
+  if (configured) {
+    if (!/^https?:\/\//.test(configured)) return null;
+    try {
+      const parsed = new URL(configured);
+      return parsed.pathname === '/' ? `${parsed.origin}/v1/forecast` : configured;
+    } catch {
+      return null;
+    }
+  }
+  const host = env.VERCEL_URL?.trim();
+  return env.VERCEL && host ? `https://${host}/api/py_forecast` : null;
+}
+
+export async function invokeGlobalForecast(
+  input: GlobalModelRequest,
+  env: Record<string, string | undefined> = process.env,
+  fetchImpl: typeof fetch = fetch,
+): Promise<ModelInvocationResult> {
+  const started = Date.now();
+  const done = (body: Record<string, unknown> | null, failure: ModelInvocationFailure | null): ModelInvocationResult =>
+    ({ body, failure, latencyMs: Date.now() - started });
+  const url = resolveModelServiceUrl(env);
+  if (!url) return done(null, 'service_not_configured');
+  const token = env.JALDRISHTI_MODEL_SERVICE_TOKEN;
+  if (!token) return done(null, 'token_missing');
+  const headers: Record<string, string> = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` };
+  // Optional: lets the server-side call pass Vercel Deployment Protection.
+  if (env.VERCEL_AUTOMATION_BYPASS_SECRET) headers['x-vercel-protection-bypass'] = env.VERCEL_AUTOMATION_BYPASS_SECRET;
   try {
-    const response = await fetch(`${baseUrl.replace(/\/$/, '')}/v1/forecast`, {
-      method: 'POST', cache: 'no-store',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    const response = await fetchImpl(url, {
+      method: 'POST', cache: 'no-store', headers,
       body: JSON.stringify(input), signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!response.ok) return null;
+    if (response.status === 401 || response.status === 403) return done(null, 'unauthorized');
+    if (response.status >= 400 && response.status < 500) return done(null, 'invalid_request');
+    if (!response.ok) return done(null, 'service_error');
     const body: unknown = await response.json();
-    return body && typeof body === 'object' ? body as Record<string, unknown> : null;
-  } catch {
-    return null;
+    return body && typeof body === 'object' ? done(body as Record<string, unknown>, null) : done(null, 'invalid_body');
+  } catch (error) {
+    const name = (error as { name?: string })?.name;
+    return done(null, name === 'TimeoutError' || name === 'AbortError' ? 'timeout' : 'network_error');
   }
+}
+
+export async function requestGlobalForecast(input: GlobalModelRequest): Promise<Record<string, unknown> | null> {
+  return (await invokeGlobalForecast(input)).body;
 }
 
 function isDateOnly(value: unknown): value is string {

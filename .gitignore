@@ -86,5 +86,7 @@ docs/archive/
 
 # Large Binary Model Artifacts
 ml/artifacts/*.joblib
+# Required by the Vercel Python inference function (629 KB, listed in ml/artifacts/manifest.json)
+!ml/artifacts/global_block_aware_qgb_v1.joblib
 ml/models/
 

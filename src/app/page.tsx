@@ -14,9 +14,10 @@ import {
   CheckCircleIcon,
 } from '@/components/ui/Icons';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState, getTargetStatesAlphabetically } from '@/lib/data/indiaStates';
 import { useEffect } from 'react';
 import { ACTIVE_TARGET_BLOCKS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
+import { sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import type { BlockData } from '@/lib/types';
 import { TermHelp, WhatAmILookingAt } from '@/components/ui/PlainLanguageHelp';
 
@@ -48,13 +49,15 @@ export default function LandingPage() {
 
   const activePool = blocksData.length > 0 ? blocksData : ACTIVE_TARGET_BLOCKS;
 
-  const filteredPreviewBlocks = activePool.filter((block) => {
-    const matchesState = selectedState === 'all'
-      ? isTargetState(block.state)
-      : normalizeStateName(block.state) === selectedState;
-    const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
-    return matchesState && matchesSeverity;
-  }).slice(0, 8);
+  const filteredPreviewBlocks = sortBlocksHierarchy(
+    activePool.filter((block) => {
+      const matchesState = selectedState === 'all'
+        ? isTargetState(block.state)
+        : normalizeStateName(block.state) === selectedState;
+      const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
+      return matchesState && matchesSeverity;
+    })
+  ).slice(0, 8);
 
   return (
     <div className="space-y-16 sm:space-y-24 py-4 sm:py-8 text-text-main">
@@ -491,18 +494,11 @@ export default function LandingPage() {
                 className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
                 <option value="all">All 9 Active Target States</option>
-                {TARGET_REGIONS.map((region) => {
-                  const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
-                  return (
-                    <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
-                      {statesInRegion.map((st) => (
-                        <option key={st.code} value={normalizeStateName(st.name)}>
-                          {st.name}
-                        </option>
-                      ))}
-                    </optgroup>
-                  );
-                })}
+                {getTargetStatesAlphabetically().map((st) => (
+                  <option key={st.code} value={normalizeStateName(st.name)}>
+                    {st.name}
+                  </option>
+                ))}
               </select>
 
               <select

@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, HISTORICAL_REFERENCE_STATES, TARGET_REGIONS, isTargetState, getTargetStatesAlphabetically } from '@/lib/data/indiaStates';
 import { ACTIVE_TARGET_BLOCKS, ACTIVE_TARGET_DISTRICTS, normalizeStateName, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
+import { sortDistrictsAlphabetically, sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { summarizeBlocks } from '@/lib/demo/demoPolicy';
 import type { BlockData } from '@/lib/types';
@@ -92,12 +93,12 @@ export default function OverviewDashboard() {
     loadGeospatialData();
   }, []);
 
-  // Compute available districts based on selected State
+  // Compute available districts based on selected State (A-Z)
   const availableDistricts = React.useMemo(() => {
-    if (selectedState === 'all') {
-      return ACTIVE_TARGET_DISTRICTS;
-    }
-    return ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    const list = selectedState === 'all'
+      ? ACTIVE_TARGET_DISTRICTS
+      : ACTIVE_TARGET_DISTRICTS.filter(d => normalizeStateName(d.state) === selectedState);
+    return sortDistrictsAlphabetically(list);
   }, [selectedState]);
 
   // Handle cascading state change
@@ -108,14 +109,17 @@ export default function OverviewDashboard() {
 
   const displayBlocks = blocksData.length > 0 ? blocksData : ACTIVE_TARGET_BLOCKS;
 
-  const filteredBlocks = displayBlocks.filter((block) => {
-    const matchesState = selectedState === 'all'
-      ? isTargetState(block.state)
-      : normalizeStateName(block.state) === selectedState;
-    const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
-    const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
-    return matchesState && matchesDistrict && matchesSeverity;
-  });
+  const filteredBlocks = React.useMemo(() => {
+    const list = displayBlocks.filter((block) => {
+      const matchesState = selectedState === 'all'
+        ? isTargetState(block.state)
+        : normalizeStateName(block.state) === selectedState;
+      const matchesDistrict = selectedDistrictId === 'all' || block.districtId === selectedDistrictId;
+      const matchesSeverity = selectedSeverity === 'all' || block.riskSeverity === selectedSeverity;
+      return matchesState && matchesDistrict && matchesSeverity;
+    });
+    return sortBlocksHierarchy(list);
+  }, [displayBlocks, selectedState, selectedDistrictId, selectedSeverity]);
 
   const summary = summarizeBlocks(filteredBlocks);
   const severeCount = summary.severe;
@@ -287,18 +291,11 @@ export default function OverviewDashboard() {
               className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
             >
               <option value="all">All Target States (9)</option>
-              {TARGET_REGIONS.map((region) => {
-                const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
-                return (
-                  <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
-                    {statesInRegion.map((st) => (
-                      <option key={st.code} value={normalizeStateName(st.name)}>
-                        {st.name} ({st.code})
-                      </option>
-                    ))}
-                  </optgroup>
-                );
-              })}
+              {getTargetStatesAlphabetically().map((st) => (
+                <option key={st.code} value={normalizeStateName(st.name)}>
+                  {st.name} ({st.code})
+                </option>
+              ))}
             </select>
           </div>
 

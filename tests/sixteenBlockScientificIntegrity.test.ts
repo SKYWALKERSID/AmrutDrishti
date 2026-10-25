@@ -42,7 +42,8 @@ test('16-block integration: monitoring and API enforce provenance and freshness 
   const route = fs.readFileSync('src/app/api/forecast/route.ts', 'utf8');
   assert.doesNotMatch(monitoring, /contrastHistoricalSeries/i);
   assert.doesNotMatch(route, /contrastProjections/i);
-  assert.match(route, /hasFreshTrustedObservationOrigin/);
+  assert.doesNotMatch(route, /hasFreshTrustedObservationOrigin/);
+  assert.match(route, /forecastServingMode/);
   assert.match(route, /ordered_uncalibrated/);
   assert.doesNotMatch(route, /calibrated_ordered/);
 });

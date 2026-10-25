@@ -60,7 +60,13 @@ import canonical43Data from './canonical43Blocks.json' with { type: 'json' };
  * Authoritative Canonical 43 Active Monitored Blocks.
  * Exactly 43 blocks across the approved nine active states; Assam and non-canonical blocks are excluded.
  */
-export const CANONICAL_43_BLOCKS: BlockData[] = (canonical43Data as unknown) as BlockData[];
+export const CANONICAL_43_BLOCKS: BlockData[] = [...((canonical43Data as unknown) as BlockData[])].sort((a, b) => {
+  const sc = a.state.localeCompare(b.state, 'en', { sensitivity: 'base', numeric: true });
+  if (sc !== 0) return sc;
+  const dc = a.districtName.localeCompare(b.districtName, 'en', { sensitivity: 'base', numeric: true });
+  if (dc !== 0) return dc;
+  return a.name.localeCompare(b.name, 'en', { sensitivity: 'base', numeric: true });
+});
 
 /**
  * Active Canonical 43 Blocks (Primary active scope for map, overview, risk assessment, interventions, and forecast).
@@ -89,10 +95,17 @@ for (const b of CANONICAL_43_BLOCKS) {
   activeDistrictMap.get(key)!.blocks.push(b);
 }
 
-export const ACTIVE_TARGET_DISTRICTS: DistrictData[] = Array.from(activeDistrictMap.values()).map(d => ({
-  ...d,
-  blocksCount: d.blocks.length,
-}));
+export const ACTIVE_TARGET_DISTRICTS: DistrictData[] = Array.from(activeDistrictMap.values())
+  .map(d => ({
+    ...d,
+    blocksCount: d.blocks.length,
+    blocks: [...d.blocks].sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base', numeric: true })),
+  }))
+  .sort((a, b) => {
+    const sc = a.state.localeCompare(b.state, 'en', { sensitivity: 'base', numeric: true });
+    if (sc !== 0) return sc;
+    return a.name.localeCompare(b.name, 'en', { sensitivity: 'base', numeric: true });
+  });
 
 /**
  * Historical Reference / Out-of-Scope Districts (UP, Sikkim, Arunachal Pradesh).
@@ -121,6 +134,8 @@ export const ALL_NATIONWIDE_BLOCKS: BlockData[] = Array.from(nationwideBlockMap.
 
 import { calculateDescriptiveGss } from '../services/scientificEngine.ts';
 
+import { sortBlocksHierarchy } from './geographicSorting.ts';
+
 /**
  * Merges live database blocks with nationwide baseline blocks.
  * If live PostGIS/Supabase rows exist, they update verified indicators (e.g. latest verified well depths)
@@ -137,7 +152,7 @@ export function mergeWithLiveBlocks(liveBlocks: BlockData[]): BlockData[] {
     liveMap.set(b.id, b);
   }
 
-  return ACTIVE_TARGET_BLOCKS.map(block => {
+  const merged = ACTIVE_TARGET_BLOCKS.map(block => {
     const live = liveMap.get(block.id);
     if (live) {
       // Use verified live measurements when they are valid and distinct, otherwise retain block baseline indicators
@@ -186,12 +201,15 @@ export function mergeWithLiveBlocks(liveBlocks: BlockData[]): BlockData[] {
           ...live.assessment,
           descriptiveStressScore: effectiveScore,
           primaryStressDriver: dynamicAssessment.primaryStressDriver || block.assessment.primaryStressDriver,
-          dataStatus: 'observed',
-          validationStatus: 'validated',
+          dataStatus: 'observed' as const,
+          validationStatus: 'validated' as const,
           safeguardNotice: dynamicAssessment.safeguardNotice || 'Official CGWB observation telemetry with multi-signal GSS index.'
         }
       };
     }
     return block;
   });
+
+  return sortBlocksHierarchy(merged);
 }
+

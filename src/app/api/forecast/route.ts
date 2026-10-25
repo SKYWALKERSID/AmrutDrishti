@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ALL_NATIONWIDE_BLOCKS } from '@/lib/data/allNationwideBlocks';
+import { ALL_NATIONWIDE_BLOCKS, CANONICAL_43_BLOCKS } from '@/lib/data/allNationwideBlocks';
 import readinessLedger from '../../../../audit/global_model_block_readiness.json';
-import { getObservationAgeInfo, hasFreshTrustedObservationOrigin, isValidGlobalForecastResponse, requestGlobalForecast, type GlobalModelRequest } from '@/lib/services/globalForecastBridge';
+import { getObservationAgeInfo, isValidGlobalForecastResponse, invokeGlobalForecast, type GlobalModelRequest, type ModelInvocationFailure } from '@/lib/services/globalForecastBridge';
 import { computeObservationAge, type DataFreshnessStatus } from '@/lib/data/forecastIntegrity';
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 30;
 
 export interface ForecastPoint {
   horizonQuarter: number;
@@ -59,6 +60,10 @@ export interface BlockForecastResponse {
   forecastEligibilityStatus?: 'operational' | 'research' | 'historical_research' | 'unavailable';
   dataFreshnessStatus?: DataFreshnessStatus;
   limitations?: string[];
+  /** How this forecast was produced. Precomputed output is never live inference. */
+  forecastServingMode?: 'live_inference' | 'precomputed_fallback' | 'unavailable';
+  liveInferenceFailure?: ModelInvocationFailure | 'invalid_response' | null;
+  inferenceLatencyMs?: number | null;
 }
 
 const BLOCK_SLUG_TO_UNIT_ID: Record<string, string> = {
@@ -121,7 +126,8 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  const requestedParam = searchParams.get('block') || 'blk_tikamgarh_main';
+  const defaultFallbackBlockId = CANONICAL_43_BLOCKS[0]?.id || 'blk_kaithal_rajound';
+  const requestedParam = searchParams.get('block') || defaultFallbackBlockId;
 
   // 1. Resolve Block Metadata across all nationwide monitored blocks
   const block = ALL_NATIONWIDE_BLOCKS.find(
@@ -192,19 +198,33 @@ export async function GET(request: NextRequest) {
     }
 
     // Call private model service — no longer blocked by age
-    let served = await requestGlobalForecast(observations);
-    if (!served || !isValidGlobalForecastResponse(served, observations.geography)) {
-      // Check precomputed verified model forecast artifact (built directly by ml/inference.py from approved historical observations)
+    const invocation = await invokeGlobalForecast(observations);
+    let served = invocation.body;
+    let servingMode: 'live_inference' | 'precomputed_fallback' = 'live_inference';
+    let liveFailure: ModelInvocationFailure | 'invalid_response' | null = invocation.failure;
+    if (served && !isValidGlobalForecastResponse(served, observations.geography)) {
+      served = null;
+      liveFailure = 'invalid_response';
+    }
+    if (!served) {
+      // Explicitly-labelled fallback: exact blockId + model match only, never another block.
+      servingMode = 'precomputed_fallback';
       try {
         const precomputedMap = (await import('../../../../data/derived/precomputed_verified_block_forecasts.json')).default as Record<string, any>;
-        const precomputed = precomputedMap[blockId];
-        if (precomputed && precomputed.forecasts && precomputed.forecasts.length > 0) {
+        const precomputed = Object.prototype.hasOwnProperty.call(precomputedMap, blockId) ? precomputedMap[blockId] : null;
+        if (
+          precomputed && precomputed.blockId === blockId &&
+          precomputed.modelIdentifier === 'GlobalBlockAwareQuantileGB-v1' &&
+          precomputed.modelVersion === '1.0.0' &&
+          typeof precomputed.latestObservationDate === 'string' &&
+          Array.isArray(precomputed.forecasts) && precomputed.forecasts.length > 0
+        ) {
           served = {
             status: 'research_prototype',
-            modelIdentifier: 'GlobalBlockAwareQuantileGB-v1',
-            modelVersion: '1.0.0',
+            modelIdentifier: precomputed.modelIdentifier,
+            modelVersion: precomputed.modelVersion,
             geography: observations.geography,
-            originObservationDate: precomputed.latestObservationDate || ageInfo.latestObservationDate || '2023-08-20',
+            originObservationDate: precomputed.latestObservationDate,
             units: 'm bgl',
             intervalStatus: 'ordered_uncalibrated',
             operationalEligibility: false,
@@ -222,7 +242,10 @@ export async function GET(request: NextRequest) {
         modelIdentifier: 'none', modelVersion: 'none', modelStatus: 'unavailable',
         provenanceStatus: 'unverified', horizonStatus: 'unverified', operationalEligibility: false,
         baselineHistoricalDepthMbgl: currentDepth, forecasts: [],
-        safeguardDisclaimer: 'The private research model service is unavailable or returned an invalid response.',
+        safeguardDisclaimer: 'Live model inference failed and no valid matching precomputed forecast exists for this block.',
+        forecastServingMode: 'unavailable' as const,
+        liveInferenceFailure: liveFailure,
+        inferenceLatencyMs: invocation.latencyMs,
         generatedAt: new Date().toISOString(), isDemonstrationData: !ageInfo.isOperationallyFresh,
         inputObservationDate: ageInfo.latestObservationDate,
         inputObservationAgeDays: ageInfo.observationAgeDays,
@@ -244,8 +267,17 @@ export async function GET(request: NextRequest) {
       safeguardDisclaimer = `Historical Research Forecast: Generated from verified CGWB observations last dated ${ageInfo.latestObservationDate} (${ageInfo.observationAgeDays} days ago). This is a retrospective research prediction — target dates are relative to the historical observation origin. Does not represent current or future groundwater conditions.`;
     }
 
+    if (servingMode === 'precomputed_fallback') {
+      limitations.push('Served from an offline precomputed model output, not live inference.');
+      if (liveFailure) limitations.push(`Live inference unavailable (${liveFailure}).`);
+    }
+
     return NextResponse.json({
       ...forecast,
+      forecastServingMode: servingMode,
+      liveInferenceFailure: servingMode === 'live_inference' ? null : liveFailure,
+      inferenceLatencyMs: servingMode === 'live_inference' ? invocation.latencyMs : null,
+      generatedAt: servingMode === 'live_inference' && typeof served.generatedAt === 'string' ? served.generatedAt : forecast.generatedAt,
       operationalEligibility: false,
       isDemonstrationData: isHistoricalOrigin,
       dataAvailabilityMode,

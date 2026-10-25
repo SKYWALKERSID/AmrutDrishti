@@ -18,6 +18,7 @@ import { AlertTriangleIcon, SendIcon, ShieldCheckIcon, CheckCircleIcon, UserRole
 
 const STORAGE_KEY_ALERTS = 'jaldrishti_alerts_v1';
 
+import { sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import { useLanguage } from '@/lib/context/LanguageContext';
 
 function AlertsContent() {
@@ -32,7 +33,7 @@ function AlertsContent() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedChannel, setSelectedChannel] = useState<'SMS' | 'WhatsApp'>('WhatsApp');
   const [recipientRole, setRecipientRole] = useState<UserRole>('bdo');
-  const [recipientName, setRecipientName] = useState('BDO Tikamgarh');
+  const [recipientName, setRecipientName] = useState('Block Development Officer');
   const [recipientPhone, setRecipientPhone] = useState('');
   const [dispatchSuccess, setDispatchSuccess] = useState<boolean>(false);
   const [storageError, setStorageError] = useState<string | null>(null);
@@ -51,11 +52,15 @@ function AlertsContent() {
         if (res.ok && active) {
           const json = await res.json();
           if (Array.isArray(json.blocks) && json.blocks.length > 0) {
-            setBlocksData(json.blocks);
-            if (urlBlockParam && json.blocks.some((b: any) => b.id === urlBlockParam)) {
+            const sortedBlocks = sortBlocksHierarchy(json.blocks);
+            setBlocksData(sortedBlocks);
+            if (urlBlockParam && sortedBlocks.some((b: any) => b.id === urlBlockParam)) {
               setSelectedBlockId(urlBlockParam);
+              const found = sortedBlocks.find((b: any) => b.id === urlBlockParam);
+              if (found) setRecipientName(`BDO ${found.name}`);
             } else {
-              setSelectedBlockId(json.blocks[0].id);
+              setSelectedBlockId(sortedBlocks[0].id);
+              setRecipientName(`BDO ${sortedBlocks[0].name}`);
             }
           }
         }

@@ -9,6 +9,7 @@ import { canMutateDemoWorkflows, demoRestrictionNotice, SCHEME_UNVERIFIED_NOTICE
 import { DocumentTextIcon, ShieldCheckIcon, UserRoleIcon, InfoIcon, FilterIcon } from '@/components/ui/Icons';
 import { ALL_NATIONWIDE_BLOCKS, ALL_NATIONWIDE_DISTRICTS, ACTIVE_TARGET_BLOCKS, mergeWithLiveBlocks, normalizeStateName } from '@/lib/data/allNationwideBlocks';
 import { ALL_INDIAN_STATES, ALL_TARGET_STATES, isTargetState } from '@/lib/data/indiaStates';
+import { sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import { INITIAL_INTERVENTIONS } from '@/lib/data/interventions';
 import { matchInterventionRecommendations, SchemeRecommendationMatch } from '@/lib/services/scientificEngine';
 import { BlockData } from '@/lib/types';
@@ -58,7 +59,6 @@ function InterventionsContent() {
           fetch('/api/interventions', {
             headers: {
               'x-jaldrishti-role': activeRole,
-              'x-jaldrishti-district': 'Tikamgarh',
             },
           }),
           fetch('/api/geospatial/blocks')
@@ -67,7 +67,9 @@ function InterventionsContent() {
         if (geoRes.status === 'fulfilled' && geoRes.value.ok && active) {
           const geoJson = await geoRes.value.json();
           if (Array.isArray(geoJson.blocks)) {
-            const merged = mergeWithLiveBlocks(geoJson.blocks).filter(b => isTargetState(b.state));
+            const merged = sortBlocksHierarchy(
+              mergeWithLiveBlocks(geoJson.blocks).filter(b => isTargetState(b.state))
+            );
             setBlocksData(merged);
             if (merged.length > 0 && !blockId) {
               setBlockId(merged[0].id);

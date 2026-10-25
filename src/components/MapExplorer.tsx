@@ -5,8 +5,9 @@ import {
   NATIONAL_CONTRAST_DISTRICTS,
   STATE_CONTRAST_GROUPS
 } from '@/lib/data/nationalContrast';
-import { ALL_INDIAN_STATES, ALL_TARGET_STATES, TARGET_REGIONS, isTargetState } from '@/lib/data/indiaStates';
+import { ALL_INDIAN_STATES, ALL_TARGET_STATES, TARGET_REGIONS, isTargetState, getTargetStatesAlphabetically } from '@/lib/data/indiaStates';
 import { ACTIVE_TARGET_DISTRICTS, mergeWithLiveBlocks } from '@/lib/data/allNationwideBlocks';
+import { sortDistrictsAlphabetically, sortBlocksByName, sortBlocksHierarchy } from '@/lib/data/geographicSorting';
 import { BlockData, DistrictData, RiskSeverity } from '@/lib/types';
 import { WaterDropletIcon, MapPinIcon, ActivityChartIcon, FilterIcon, InfoIcon, CloudRainIcon } from '@/components/ui/Icons';
 import Link from 'next/link';
@@ -172,7 +173,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     if (selectedState !== 'all') {
       list = allDistricts.filter(d => normalizeStateName(d.state) === selectedState);
     }
-    return [...list].sort((a, b) => a.name.localeCompare(b.name));
+    return sortDistrictsAlphabetically(list);
   }, [allDistricts, selectedState]);
 
   // Blocks available under the current district / state selection (Alphabetical Order)
@@ -181,12 +182,14 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     if (selectedDistrictId !== 'all') {
       const dist = availableDistricts.find(d => d.id === selectedDistrictId);
       list = dist ? dist.blocks : [];
+      return sortBlocksByName(list);
     } else if (selectedState !== 'all') {
       list = availableDistricts.flatMap(d => d.blocks);
+      return sortBlocksHierarchy(list);
     } else {
       list = allBlocks;
+      return sortBlocksHierarchy(list);
     }
-    return [...list].sort((a, b) => a.name.localeCompare(b.name));
   }, [availableDistricts, selectedDistrictId, selectedState, allBlocks]);
 
   // Currently filtered blocks passed directly to the Leaflet GIS canvas
@@ -330,18 +333,11 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               className="bg-subtle border border-border px-2.5 py-1.5 font-medium text-xs text-text-main focus:outline-none cursor-pointer max-w-[220px]"
             >
               <option value="all">All 9 Target States</option>
-              {TARGET_REGIONS.map((region) => {
-                const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
-                return (
-                  <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
-                    {statesInRegion.map((st) => (
-                      <option key={st.code} value={st.name}>
-                        {st.name}
-                      </option>
-                    ))}
-                  </optgroup>
-                );
-              })}
+              {getTargetStatesAlphabetically().map((st) => (
+                <option key={st.code} value={st.name}>
+                  {st.name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -593,18 +589,11 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                         className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
                       >
                         <option value="all">All 9 Target States</option>
-                        {TARGET_REGIONS.map((region) => {
-                          const statesInRegion = ALL_TARGET_STATES.filter(s => s.region === region);
-                          return (
-                            <optgroup key={region} label={`${region} (${statesInRegion.length})`}>
-                              {statesInRegion.map((st) => (
-                                <option key={st.code} value={st.name}>
-                                  {st.name}
-                                </option>
-                              ))}
-                            </optgroup>
-                          );
-                        })}
+                        {getTargetStatesAlphabetically().map((st) => (
+                          <option key={st.code} value={st.name}>
+                            {st.name}
+                          </option>
+                        ))}
                       </select>
                     </div>
 
