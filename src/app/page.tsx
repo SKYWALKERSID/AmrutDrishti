@@ -67,14 +67,6 @@ export default function LandingPage() {
       <section className="relative pt-4 pb-12 border-b border-border space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 space-y-5">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted">
-              <span className="font-semibold text-text-main flex items-center gap-1.5 text-primary">
-                <ShieldCheckIcon className="w-4 h-4 text-primary" />
-                India-Focused Groundwater Intelligence Platform*
-              </span>
-              <span aria-hidden="true">•</span>
-              <span>Government Well Telemetry (CGWB) &amp; NASA Satellites</span>
-            </div>
 
             <h1 className="dbim-heading-1 text-text-main">
               Clear, honest groundwater information for India.

@@ -60,7 +60,23 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
   const [blockForecast, setBlockForecast] = useState<any | null>(null);
   const [isForecastLoading, setIsForecastLoading] = useState<boolean>(false);
 
-  // Fetch live model forecast whenever selectedBlock changes
+  const [telemetryStations, setTelemetryStations] = useState<any[]>([]);
+
+  // Load telemetry station catalog on mount for forward forecast integration
+  useEffect(() => {
+    let active = true;
+    fetch('/api/telemetry-observations?stations=true')
+      .then(res => res.ok ? res.json() : null)
+      .then(json => {
+        if (active && json?.stations && Array.isArray(json.stations)) {
+          setTelemetryStations(json.stations);
+        }
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+  // Fetch live forward model forecast whenever selectedBlock changes
   useEffect(() => {
     if (!selectedBlock) {
       setBlockForecast(null);
@@ -71,25 +87,74 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
     setBlockForecast(null);
     setIsForecastLoading(true);
 
-    fetch(`/api/forecast?block=${encodeURIComponent(selectedBlock.id)}&mode=demo`)
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
+    const currentSelectedBlock = selectedBlock;
+    async function loadForecastPipeline() {
+      try {
+        if (!currentSelectedBlock) return;
+        // 1. Identify compatible telemetry station for this block
+        const targetState = normalizeStateName(currentSelectedBlock.state);
+        const targetDistrict = currentSelectedBlock.districtName;
+        
+        let matchedStation = telemetryStations.find(s =>
+          normalizeStateName(s.state).toLowerCase() === targetState.toLowerCase() &&
+          s.district?.trim().toLowerCase() === targetDistrict?.trim().toLowerCase()
+        );
+
+        if (!matchedStation && targetState) {
+          matchedStation = telemetryStations.find(s =>
+            normalizeStateName(s.state).toLowerCase() === targetState.toLowerCase()
+          );
+        }
+
+        if (matchedStation) {
+          const res = await fetch(`/api/station-forecast?stationId=${encodeURIComponent(matchedStation.stationId)}&horizonDays=90`);
+          if (res.ok) {
+            const data = await res.json();
+            if (active && data.status === 'experimental' && data.prediction) {
+              setBlockForecast({
+                modelStatus: 'experimental',
+                modelIdentifier: data.modelIdentifier || 'NWDP-Station-Experimental',
+                stationName: matchedStation.stationName || matchedStation.stationId,
+                forecasts: [{
+                  targetSeason: `90-Day Forward Target (+90d from ${data.originDate})`,
+                  expectedDepthMbgl: Number(data.prediction.p50.toFixed(2)),
+                  uncertaintyInterval: {
+                    lowerBoundP10Mbgl: Number(data.prediction.p10.toFixed(2)),
+                    upperBoundP90Mbgl: Number(data.prediction.p90.toFixed(2)),
+                    intervalStatus: data.intervalStatus || 'ordered_uncalibrated'
+                  }
+                }],
+                safeguardDisclaimer: `Forward-looking projection from verified telemetry station (${matchedStation.stationName}). Target Date: ${data.targetDate}.`
+              });
+              setIsForecastLoading(false);
+              return;
+            }
+          }
+        }
+
+        // If no compatible station forecast is active, fail closed with honest unavailable state
         if (active) {
-          setBlockForecast(data);
+          setBlockForecast({
+            modelStatus: 'unavailable',
+            modelIdentifier: 'none',
+            safeguardDisclaimer: 'Operational forward forecast model currently uncalibrated for this block. Requires verified local continuous DWLR telemetry.'
+          });
           setIsForecastLoading(false);
         }
-      })
-      .catch(() => {
+      } catch {
         if (active) {
           setBlockForecast(null);
           setIsForecastLoading(false);
         }
-      });
+      }
+    }
+
+    loadForecastPipeline();
 
     return () => {
       active = false;
     };
-  }, [selectedBlock?.id]);
+  }, [selectedBlock?.id, telemetryStations]);
 
   // 1. Fetch live database geospatial blocks on mount
   useEffect(() => {
@@ -731,9 +796,13 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
                   const liveForecasts = blockForecast?.forecasts;
                   const hasLiveForecast = Boolean(blockForecast && blockForecast.modelStatus !== 'unavailable' && Array.isArray(liveForecasts) && liveForecasts.length > 0);
                   const q1 = hasLiveForecast ? liveForecasts[0] : null;
-                  const isTrainedMl = Boolean(hasLiveForecast && (blockForecast?.modelIdentifier?.includes('QuantileGB') || blockForecast?.modelIdentifier === 'GlobalBlockAwareQuantileGB-v1'));
-                  const badgeLabel = isTrainedMl ? (blockForecast?.modelIdentifier || 'QuantileGB-v2.0') : (hasLiveForecast ? 'Empirical Trend' : null);
-                  const titleLabel = isTrainedMl ? 'ML Depth Forecast (Q1): 90-Day Horizon Target' : 'Projected 90-Day Depth (Q1):';
+                  const isStationMl = Boolean(hasLiveForecast && (blockForecast?.modelIdentifier?.includes('Experimental') || blockForecast?.modelIdentifier?.includes('Station') || blockForecast?.modelIdentifier?.includes('QuantileGB')));
+                  const badgeLabel = hasLiveForecast ? (blockForecast?.modelIdentifier?.includes('GlobalBlockAware') ? 'QuantileGB-v2.0' : (blockForecast?.modelIdentifier || 'QuantileGB-v2.0')) : null;
+                  const titleLabel = isStationMl
+                    ? 'ML Depth Forecast (Q1): 90-Day Horizon Target'
+                    : hasLiveForecast
+                    ? 'Projected 90-Day Depth (Q1):'
+                    : 'Groundwater Forward Forecast:';
 
                   return (
                     <div className="space-y-1.5 pt-2 border-t border-border/80" data-testid="map-inspector-ml-forecast">

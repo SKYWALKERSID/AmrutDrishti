@@ -213,9 +213,9 @@ export default function OverviewDashboard() {
                     {filteredBlocks.length} <span className="text-xs font-normal text-text-muted">{t('overview.blocksUnit', 'Blocks')}</span>
                   </div>
                   <div className="flex items-center gap-2 text-[11px] mt-0.5 text-text-muted">
-                    <span className="text-red-700 font-semibold">{severeCount} {t('severity.severe', 'Severe')}</span> •
-                    <span className="text-amber-700 font-semibold">{watchCount} {t('severity.watch', 'Watch')}</span> •
-                    <span className="text-emerald-700 font-semibold">{normalCount} {t('severity.normal', 'Normal')}</span>
+                    <span className="text-red-700 font-semibold">{severeCount} {t('severity.severe', 'High Concern')}</span> •
+                    <span className="text-amber-700 font-semibold">{watchCount} {t('severity.watch', 'Needs Checking')}</span> •
+                    <span className="text-emerald-700 font-semibold">{normalCount} {t('overview.lowConcern', 'Low Concern')}</span>
                   </div>
                 </>
               )}
