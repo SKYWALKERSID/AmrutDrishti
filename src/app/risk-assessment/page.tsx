@@ -230,11 +230,11 @@ function RiskAssessmentContent() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Header - Editorial Layout */}
-      <div className="border-b border-border pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="border-b border-border pb-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
         <div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted">
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-text-muted">
             <span className="font-semibold text-text-main">
               Groundwater Assessment &amp; Model Governance*
             </span>
@@ -243,17 +243,17 @@ function RiskAssessmentContent() {
             <span aria-hidden="true">•</span>
             <span>Latest Observation: {selectedBlock?.indicators.lastUpdatedDate || '2026-10-12'}</span>
           </div>
-          <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
+          <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap mt-1">
             {t('risk.title')}*
           </h1>
-          <p className="text-xs sm:text-sm text-text-muted mt-1.5 max-w-3xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-text-muted mt-1 max-w-3xl leading-relaxed">
             {t('risk.subtitle')}
           </p>
         </div>
       </div>
 
       {/* Operational Safety Safeguard Section */}
-      <div className="space-y-1.5 max-w-4xl">
+      <div className="space-y-1 max-w-4xl">
         <h3 className="dbim-heading-3 text-text-main">
           Operational Safety Safeguard Gate (FR-033 &amp; TRD Section 7.2)
         </h3>
@@ -274,9 +274,9 @@ function RiskAssessmentContent() {
       />
 
       {/* Main Content Layout: Block Selector & Analysis */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Target Selector & Descriptive Stress Score Baseline (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-5">
           <div className="space-y-5">
             {isLoading ? (
               <div className="space-y-4 animate-pulse">
@@ -342,31 +342,31 @@ function RiskAssessmentContent() {
                 </div>
 
                 {/* Descriptive Stress Score Display */}
-                <div className="py-4 border-y border-border text-center space-y-2">
+                <div className="py-3 border-y border-border text-center space-y-1.5">
                   <div className="text-xs text-text-muted uppercase font-semibold">
                     <span>Descriptive Stress Score (GSS Baseline: 0 to 100)*</span>
                   </div>
                   <p className="text-[11px] text-text-muted max-w-sm mx-auto">
                     An overall 0-100 guide showing where water stress needs investigation (0–39 Normal, 40–69 Watch, 70–100 Severe).
                   </p>
-                  <div className="text-4xl font-extrabold text-primary">
+                  <div className="text-3xl font-extrabold text-primary my-1">
                     {calculatedResult.score !== null ? calculatedResult.score : 'Data Gap'}{' '}
-                    {calculatedResult.score !== null && <span className="text-sm font-normal text-text-muted">/ 100</span>}
+                    {calculatedResult.score !== null && <span className="text-xs font-normal text-text-muted">/ 100</span>}
                   </div>
-                  <div className="text-xs text-text-muted">
+                  <div className="text-[11px] text-text-muted">
                     Confidence Interval: Uncalibrated descriptive index (Statistical confidence intervals require physical observation well calibration)
                   </div>
-                  <div className="pt-1">
-                    <span className={`text-sm font-bold ${
+                  <div className="pt-0.5">
+                    <span className={`text-xs font-bold ${
                       effectiveSeverity === 'severe' ? 'text-status-errorText' : effectiveSeverity === 'normal' ? 'text-status-successText' : effectiveSeverity === 'gap' ? 'text-text-muted' : 'text-status-warningText'
                     }`}>
                       {effectiveSeverity.toUpperCase()} PRIORITY
                     </span>
                   </div>
-                  <p className="text-xs text-text-muted pt-1">
+                  <p className="text-xs text-text-muted pt-0.5">
                     Main Contributing Factor: <span className="font-semibold text-text-main">{calculatedResult.primaryStressDriver}</span>
                   </p>
-                  <p className="text-[11px] text-text-muted/80 italic pt-1">
+                  <p className="text-[11px] text-text-muted/80 italic pt-0.5">
                     Note: GSS is an empirical multi-signal heuristic baseline. It is not an ML model output.
                   </p>
                 </div>
@@ -380,7 +380,7 @@ function RiskAssessmentContent() {
                 </div>
               </>
             ) : (
-              <div className="py-8 text-center text-xs text-text-muted space-y-1">
+              <div className="py-6 text-center text-xs text-text-muted space-y-1">
                 <p className="font-semibold text-text-main">No Block Available</p>
                 <p>No verified administrative units returned for risk assessment.</p>
               </div>
@@ -389,10 +389,10 @@ function RiskAssessmentContent() {
 
           {/* Human Override Controls */}
           {restrictionNotice && (
-            <div role="note" className="bg-status-warningBg border border-status-warning p-3 text-xs text-status-warningText">{restrictionNotice}</div>
+            <div role="note" className="bg-status-warningBg border border-status-warning p-2.5 text-xs text-status-warningText">{restrictionNotice}</div>
           )}
           {!isReadOnly && (
-            <div className="pt-4 border-t border-border space-y-3">
+            <div className="pt-3.5 border-t border-border space-y-2.5">
               <h2 className="text-sm font-bold text-text-main flex items-center gap-2">
                 <ShieldCheckIcon className="w-4 h-4 text-primary" /> {t('risk.humanOverrideTitle', 'Human Review & Risk Override')}
               </h2>
@@ -401,20 +401,20 @@ function RiskAssessmentContent() {
               </p>
 
               {overrideApplied ? (
-                <div className="p-3 bg-status-successBg border border-status-success text-status-successText text-xs space-y-1">
+                <div className="p-2.5 bg-status-successBg border border-status-success text-status-successText text-xs space-y-1">
                   <div className="font-bold flex items-center gap-1.5">
                     <CheckCircleIcon className="w-4 h-4 text-status-successText" /> {t('risk.overrideSuccessTitle', 'Review Note Held In Memory')}
                   </div>
                   <p>{t('risk.overrideSuccessMsg', 'Status shown for this page session only. Held in browser memory; not saved and not an audit trail.')}</p>
                 </div>
               ) : (
-                <form onSubmit={handleApplyOverride} className="space-y-3">
+                <form onSubmit={handleApplyOverride} className="space-y-2.5">
                   <div className="space-y-1">
                     <label className="text-xs font-semibold text-text-main">{t('risk.overrideSeverityLabel', 'Override Severity Level')}:</label>
                     <select
                       value={overrideSeverity}
                       onChange={(e) => setOverrideSeverity(e.target.value as RiskSeverity)}
-                      className="w-full bg-subtle border border-border px-3 py-1.5 text-xs text-text-main focus:outline-none"
+                      className="w-full bg-subtle border border-border px-2.5 py-1.5 text-xs text-text-main focus:outline-none"
                     >
                       <option value="severe">{t('overview.severeCount', 'Severe Stress')}</option>
                       <option value="watch">{t('overview.watchCount', 'Watch Advisory')}</option>
@@ -428,7 +428,7 @@ function RiskAssessmentContent() {
                       value={overrideReason}
                       onChange={(e) => setOverrideReason(e.target.value)}
                       placeholder={t('risk.reviewPlaceholder', 'Enter ground inspection evidence or hydrogeologist report reference...')}
-                      rows={3}
+                      rows={2}
                       className="w-full bg-subtle border border-border p-2 text-xs text-text-main focus:outline-none"
                       required
                     />
@@ -447,108 +447,108 @@ function RiskAssessmentContent() {
         </div>
 
         {/* Right Column: Multi-Criteria Breakdown & Machine Learning Physical Depth Forecast (7 cols) */}
-        <div className="lg:col-span-7 space-y-8">
+        <div className="lg:col-span-7 space-y-6">
           {/* Section 1: Descriptive Multi-Criteria Breakdown */}
-          <div className="space-y-4">
-            <div className="border-b border-border pb-3">
+          <div className="space-y-3">
+            <div className="border-b border-border pb-2.5">
               <h2 className="text-base font-bold text-text-main">
                 Descriptive Multi-Criteria Breakdown (Heuristic Baseline)
               </h2>
-              <p className="text-xs text-text-muted mt-1 leading-relaxed">
+              <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
                 This score combines 4 empirical environmental signals into a weighted 0–100 index. It provides a descriptive estimate of hydrological stress based on current observations. It is a mathematical heuristic index, not a machine learning prediction.*
               </p>
             </div>
 
             {isLoading ? (
-              <div className="space-y-3 animate-pulse">
+              <div className="space-y-2 animate-pulse">
+                <div className="h-10 bg-subtle"></div>
                 <div className="h-12 bg-subtle"></div>
-                <div className="h-14 bg-subtle"></div>
-                <div className="h-14 bg-subtle"></div>
+                <div className="h-12 bg-subtle"></div>
               </div>
             ) : selectedBlock ? (
               <div className="overflow-x-auto border-t border-b border-border">
                 <table className="w-full text-left text-xs border-collapse dbim-table">
                   <thead>
                     <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                      <th className="py-2.5 px-3 text-left">Environmental Indicator</th>
-                      <th className="py-2.5 px-3 text-right">Current Observation</th>
-                      <th className="py-2.5 px-3 text-right">Stress Level</th>
-                      <th className="py-2.5 px-3 text-right">Base Weight</th>
+                      <th className="py-2 px-2.5 text-left">Environmental Indicator</th>
+                      <th className="py-2 px-2.5 text-right">Current Observation</th>
+                      <th className="py-2 px-2.5 text-right">Stress Level</th>
+                      <th className="py-2 px-2.5 text-right">Base Weight</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
                     {/* 1. CGWB Well Depth */}
                     <tr className="hover:bg-subtle/40 transition-colors">
-                      <td className="py-3 px-3">
+                      <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
                           CGWB Well Water Depth
                         </span>
                         <span className="text-[11px] text-text-muted block">How deep you must dig or drill to reach water (meters below ground level).</span>
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : 'Missing data'}
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.wellDepthNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.wellDepthNorm * 100)}%` : 'N/A'}
                       </td>
-                      <td className="py-3 px-3 text-right font-bold text-primary tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
                         35%
                       </td>
                     </tr>
 
                     {/* 2. Rainfall Deficit */}
                     <tr className="hover:bg-subtle/40 transition-colors">
-                      <td className="py-3 px-3">
+                      <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
                           Monsoon Rainfall Deficit
                         </span>
                         <span className="text-[11px] text-text-muted block">How much more or less rain fell compared to the 30-year average.</span>
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : 'Missing data'}
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.rainDeficitNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.rainDeficitNorm * 100)}%` : 'N/A'}
                       </td>
-                      <td className="py-3 px-3 text-right font-bold text-primary tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
                         30%
                       </td>
                     </tr>
 
                     {/* 3. GRACE TWSA */}
                     <tr className="hover:bg-subtle/40 transition-colors">
-                      <td className="py-3 px-3">
+                      <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
                           Satellite Water Storage (GRACE-FO)
                         </span>
                         <span className="text-[11px] text-text-muted block">Regional water gain or loss measured from space (NASA GRACE satellite gravity).</span>
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : 'Missing data'}
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.graceTwsaNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.graceTwsaNorm * 100)}%` : 'N/A'}
                       </td>
-                      <td className="py-3 px-3 text-right font-bold text-primary tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
                         20%
                       </td>
                     </tr>
 
                     {/* 4. Sentinel NDVI */}
                     <tr className="hover:bg-subtle/40 transition-colors">
-                      <td className="py-3 px-3">
+                      <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
                           Vegetation Health (NDVI)
                         </span>
                         <span className="text-[11px] text-text-muted block">How green and healthy crops appear from satellite images (0.0 to 1.0 index).</span>
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'}
                       </td>
-                      <td className="py-3 px-3 text-right tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.ndviNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.ndviNorm * 100)}%` : 'N/A'}
                       </td>
-                      <td className="py-3 px-3 text-right font-bold text-primary tabular-nums">
+                      <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
                         15%
                       </td>
                     </tr>
@@ -556,21 +556,21 @@ function RiskAssessmentContent() {
                 </table>
               </div>
             ) : (
-              <div className="py-8 text-center text-xs text-text-muted">
+              <div className="py-6 text-center text-xs text-text-muted">
                 Indicator details unavailable.
               </div>
             )}
           </div>
 
           {/* Section 2: Machine Learning Physical Forecast & Model Registry */}
-          <div className="space-y-4 pt-4 border-t border-border">
-            <div className="border-b border-border pb-3 flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+          <div className="space-y-3 pt-3.5 border-t border-border">
+            <div className="border-b border-border pb-2.5 flex flex-col sm:flex-row sm:items-start justify-between gap-2">
               <div>
                 <h2 className="text-base font-bold text-text-main flex items-center gap-2">
                   <ActivityChartIcon className="w-4 h-4 text-primary" />
                   Machine Learning Physical Depth Forecast (GlobalBlockAwareQuantileGB-v1)
                 </h2>
-                <p className="text-xs text-text-muted mt-1 leading-relaxed">
+                <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
                   Station-autonomous Quantile Gradient Boosting predicting physical water table depth below ground level (m bgl).
                   The ML model predicts physical water level depth; it does NOT predict a composite stress index.*
                 </p>
@@ -580,11 +580,9 @@ function RiskAssessmentContent() {
               </span>
             </div>
 
-
-
             {/* Prominent Demo & Telemetry Compliance Banner */}
             {forecastData?.isDemonstrationData && (
-              <div className="border-l-4 border-amber-600 bg-amber-50/80 p-3 text-xs text-amber-950 space-y-1">
+              <div className="border-l-4 border-amber-600 bg-amber-50/80 p-2.5 text-xs text-amber-950 space-y-1">
                 <div className="font-bold tracking-wide uppercase flex items-center gap-1.5">
                   <InfoIcon className="w-3.5 h-3.5 text-amber-700 shrink-0" />
                   <span>
@@ -605,7 +603,7 @@ function RiskAssessmentContent() {
             )}
 
             {/* Model Governance Metadata Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-subtle p-3 border border-border">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-subtle p-2.5 border border-border">
               <div>
                 <span className="text-[10px] uppercase font-semibold text-text-muted block">Model Identifier</span>
                 <span className="font-bold text-text-main">{forecastData?.modelIdentifier || (isForecastLoading ? 'Loading...' : 'None')}</span>
@@ -630,21 +628,21 @@ function RiskAssessmentContent() {
 
             {/* Forecast Content: Active Multi-Horizon Predictions OR Honest Unavailable State */}
             {isForecastLoading ? (
-              <div className="space-y-3 animate-pulse p-4 bg-subtle/40 border border-border">
+              <div className="space-y-2.5 animate-pulse p-3.5 bg-subtle/40 border border-border">
                 <div className="h-4 bg-subtle w-1/3"></div>
-                <div className="h-16 bg-subtle w-full"></div>
+                <div className="h-14 bg-subtle w-full"></div>
               </div>
             ) : forecastData && forecastData.forecasts && forecastData.forecasts.length > 0 ? (
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="overflow-x-auto border-t border-b border-border">
                   <table className="w-full text-left text-xs border-collapse dbim-table">
                     <thead>
                       <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                        <th className="py-2.5 px-3 text-left">Forecast Horizon</th>
-                        <th className="py-2.5 px-3 text-right">Target Period</th>
-                        <th className="py-2.5 px-3 text-right">Expected Depth (m bgl)</th>
-                        <th className="py-2.5 px-3 text-right">P10–P90 Uncertainty Interval</th>
-                        <th className="py-2.5 px-3 text-right">Baseline Depth</th>
+                        <th className="py-2 px-2.5 text-left">Forecast Horizon</th>
+                        <th className="py-2 px-2.5 text-right">Target Period</th>
+                        <th className="py-2 px-2.5 text-right">Expected Depth (m bgl)</th>
+                        <th className="py-2 px-2.5 text-right">P10–P90 Uncertainty Interval</th>
+                        <th className="py-2 px-2.5 text-right">Baseline Depth</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
@@ -653,7 +651,7 @@ function RiskAssessmentContent() {
                         const isPrimary = horizonDays === 90 || horizonDays === 180;
                         return (
                         <tr key={f.horizonQuarter} className={`hover:bg-subtle/40 transition-colors ${isPrimary ? 'bg-primary/5 font-medium' : ''}`}>
-                          <td className="py-3 px-3">
+                          <td className="py-2.5 px-2.5">
                             <span className="font-bold text-text-main block">
                               {horizonDays} Days {isPrimary ? '[Primary Target]' : ''} (Q{f.horizonQuarter} • {f.forecastHorizonMonths || f.horizonQuarter * 3}M)
                             </span>
@@ -661,13 +659,13 @@ function RiskAssessmentContent() {
                               {f.uncertaintyInterval.intervalStatus === 'ordered_uncalibrated' ? 'Ordered, uncalibrated' : 'Uncalibrated'}
                             </span>
                           </td>
-                          <td className="py-3 px-3 text-right tabular-nums text-text-main">
+                          <td className="py-2.5 px-2.5 text-right tabular-nums text-text-main">
                             {f.targetSeason}
                           </td>
-                          <td className="py-3 px-3 text-right font-bold text-primary tabular-nums">
+                          <td className="py-2.5 px-2.5 text-right font-bold text-primary tabular-nums">
                             {f.expectedDepthMbgl.toFixed(2)} m bgl
                           </td>
-                          <td className="py-3 px-3 text-right tabular-nums text-text-main">
+                          <td className="py-2.5 px-2.5 text-right tabular-nums text-text-main">
                             {f.uncertaintyInterval.lowerBoundP10Mbgl !== null && f.uncertaintyInterval.upperBoundP90Mbgl !== null
                               ? `[${f.uncertaintyInterval.lowerBoundP10Mbgl.toFixed(2)} – ${f.uncertaintyInterval.upperBoundP90Mbgl.toFixed(2)}] m bgl`
                               : 'Uncertainty unavailable'}
@@ -677,7 +675,7 @@ function RiskAssessmentContent() {
                               </span>
                             )}
                           </td>
-                          <td className="py-3 px-3 text-right tabular-nums text-text-muted">
+                          <td className="py-2.5 px-2.5 text-right tabular-nums text-text-muted">
                             {f.baselinePersistence?.lastObservationPersistenceMbgl !== null && f.baselinePersistence?.lastObservationPersistenceMbgl !== undefined
                               ? `${f.baselinePersistence.lastObservationPersistenceMbgl} m bgl`
                               : 'N/A'}
@@ -690,13 +688,13 @@ function RiskAssessmentContent() {
                 </div>
 
                 {/* Model Disclaimer */}
-                <div className="p-3 bg-subtle border border-border text-[11px] text-text-muted space-y-1">
+                <div className="p-2.5 bg-subtle border border-border text-[11px] text-text-muted space-y-1">
                   <div className="font-semibold text-text-main">Scientific Disclaimer &amp; Pipeline Notice:</div>
                   <p className="leading-relaxed">{forecastData.safeguardDisclaimer}</p>
                 </div>
               </div>
             ) : (
-              <div className="p-4 bg-subtle border border-border text-xs text-text-muted space-y-2">
+              <div className="p-3 bg-subtle border border-border text-xs text-text-muted space-y-1.5">
                 <div className="font-bold text-text-main flex items-center gap-1.5">
                   <InfoIcon className="w-4 h-4 text-text-muted" />
                   <span>ML Depth Forecast Unavailable for this Geography</span>
@@ -711,7 +709,7 @@ function RiskAssessmentContent() {
             )}
 
             {/* Scientific Methodological Comparison Notice */}
-            <div className="border-l-2 border-primary bg-subtle p-3 text-[11px] text-text-muted space-y-1">
+            <div className="border-l-2 border-primary bg-subtle p-2.5 text-[11px] text-text-muted space-y-0.5">
               <span className="font-semibold text-text-main block">Distinct Targets — GSS vs. Machine Learning:</span>
               <p className="leading-relaxed">
                 The Groundwater Stress Score (0–100) measures composite hydrological pressure by normalizing 4 cross-domain indicators. In contrast, the ML model predicts physical water table depth (m bgl) from historical well telemetry. The two methodologies serve complementary decision-support roles; machine learning depth forecasts do not replace or validate the composite stress score.
@@ -722,8 +720,8 @@ function RiskAssessmentContent() {
             {selectedBlock && (() => {
               const intel = evaluateGroundwaterIntelligence(selectedBlock.indicators);
               return (
-                <div className="p-4 bg-subtle/70 border border-border space-y-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border pb-2">
+                <div className="p-3 bg-subtle/70 border border-border space-y-2.5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-border pb-1.5">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-text-main text-xs uppercase tracking-wider">Groundwater Intelligence &amp; Drought Risk Assessment</span>
                       <span className={`text-[11px] font-semibold px-2 py-0.5 rounded border ${
@@ -741,15 +739,15 @@ function RiskAssessmentContent() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="space-y-1 p-2.5 bg-surface border border-border">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+                    <div className="space-y-1 p-2 bg-surface border border-border">
                       <span className="text-[10px] uppercase font-bold text-text-muted block">Meteorological Drought Category</span>
                       <div className="font-bold text-text-main">{intel.droughtRisk.category}</div>
                       <p className="text-[11px] text-text-muted leading-relaxed">{intel.droughtRisk.basis}</p>
                       <p className="text-[10px] text-text-muted/80">{intel.droughtRisk.ruleExplanation}</p>
                     </div>
 
-                    <div className="space-y-1 p-2.5 bg-surface border border-border">
+                    <div className="space-y-1 p-2 bg-surface border border-border">
                       <span className="text-[10px] uppercase font-bold text-text-muted block">Water Availability &amp; Aquifer Storage</span>
                       <div className="font-bold text-text-main capitalize">Trend: {intel.waterAvailability.direction}</div>
                       <p className="text-[11px] text-text-muted leading-relaxed">
@@ -758,7 +756,7 @@ function RiskAssessmentContent() {
                       <p className="text-[10px] text-text-muted/80">{intel.waterAvailability.storageLimitationNotice}</p>
                     </div>
 
-                    <div className="space-y-1 p-2.5 bg-surface border border-border">
+                    <div className="space-y-1 p-2 bg-surface border border-border">
                       <span className="text-[10px] uppercase font-bold text-text-muted block">Recharge &amp; Anomaly Intelligence</span>
                       <div className="font-bold text-text-main capitalize">Recharge: {intel.rechargeIntelligence.rechargePotential}</div>
                       <p className="text-[11px] text-text-muted leading-relaxed">{intel.rechargeIntelligence.naturalReplenishmentSummary}</p>
@@ -766,7 +764,7 @@ function RiskAssessmentContent() {
                     </div>
                   </div>
 
-                  <div className="p-3 bg-surface border border-border rounded text-xs space-y-1">
+                  <div className="p-2.5 bg-surface border border-border rounded text-xs space-y-0.5">
                     <span className="font-semibold text-text-main flex items-center gap-1.5 text-[11px]">
                       <InfoIcon className="w-3.5 h-3.5 text-primary shrink-0" /> Actionable Interpretation &amp; Next Steps:
                     </span>
@@ -780,7 +778,7 @@ function RiskAssessmentContent() {
           </div>
 
           {/* Validation & Operational Status */}
-          <div className="pt-6 border-t border-border space-y-3">
+          <div className="pt-4 border-t border-border space-y-2">
             <h2 className="text-base font-bold text-text-main">System Status &amp; Safety Rules</h2>
             <p className="text-xs text-text-muted">
               How these scores are calculated and how they must be used in day-to-day operations:
@@ -793,7 +791,7 @@ function RiskAssessmentContent() {
                 ['Decision Safety Rule', 'This score helps prioritize areas for review. It does not automatically approve funds or launch emergency orders.'],
                 ['Missing Data Protection', 'If key sensors are offline, the system marks an explicit data gap instead of assuming water is safe.'],
               ].map(([title, note]) => (
-                <div key={title} className="py-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                <div key={title} className="py-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
                   <span className="font-semibold text-text-main sm:w-48 shrink-0">{title}</span>
                   <span className="text-text-muted leading-relaxed">{note}</span>
                 </div>
