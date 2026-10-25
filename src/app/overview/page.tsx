@@ -173,12 +173,12 @@ export default function OverviewDashboard() {
 
       {/* 5-Question Guide Card: Making the Overview Page Self-Explanatory */}
       <WhatAmILookingAt
-        title="💡 What am I looking at on this Overview page?"
-        what="A nationwide directory of all 43 monitored administrative blocks across 9 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts."
-        meaning="It highlights which regions have critically falling water levels (Severe Stress), moderate concerns (Watch), or stable conditions (Normal)."
-        whyCare="Block development officers and district magistrates can immediately identify where emergency water tankers, crop advisories, or recharge structures will be needed."
-        recentAndReliable="Observations are gathered from Central Ground Water Board (CGWB) digital recorders, state groundwater departments, and IMD weather stations. Last verified observation cutoff: October 2026."
-        nextSteps="Filter by your state and district in the dropdowns below, check whether water is dropping, and click 'Inspect in GIS' to explore detailed local maps."
+        title={t('overview.guide.title', '💡 What am I looking at on this Overview page?')}
+        what={t('overview.guide.what', 'A nationwide directory of all 43 monitored administrative blocks across 9 focus states, showing recent water level measurements, rainfall trends, and upcoming forecasts.')}
+        meaning={t('overview.guide.meaning', 'It highlights which regions have critically falling water levels (Severe Stress), moderate concerns (Watch), or stable conditions (Normal).')}
+        whyCare={t('overview.guide.whyCare', 'Block development officers and district magistrates can immediately identify where emergency water tankers, crop advisories, or recharge structures will be needed.')}
+        recentAndReliable={t('overview.guide.recent', 'Observations are gathered from Central Ground Water Board (CGWB) digital recorders, state groundwater departments, and IMD weather stations. Last verified observation cutoff: October 2026.')}
+        nextSteps={t('overview.guide.next', "Filter by your state and district in the dropdowns below, check whether water is dropping, and click 'Inspect in GIS' to explore detailed local maps.")}
         initiallyOpen={false}
       />
 
@@ -187,11 +187,11 @@ export default function OverviewDashboard() {
         <div className="flex items-center gap-2">
           <MapPinIcon className="w-3.5 h-3.5 text-primary shrink-0" />
           <span>
-            <strong className="text-text-main font-semibold">Target State Coverage:</strong> Monitored Units across 9 Target States in 4 Regions: South (Karnataka, Telangana, Tamil Nadu), Central (Madhya Pradesh), North (Rajasthan, Haryana, Punjab), and Northeast (Meghalaya, Tripura).
+            <strong className="text-text-main font-semibold">{t('overview.targetCoverage', 'Target State Coverage:')}</strong> {t('overview.targetCoverageText', 'Monitored Units across 9 Target States in 4 Regions: South (Karnataka, Telangana, Tamil Nadu), Central (Madhya Pradesh), North (Rajasthan, Haryana, Punjab), and Northeast (Meghalaya, Tripura).')}
           </span>
         </div>
         <span className="text-[11px] font-medium text-text-muted">
-          Observation Cutoff: {freshnessInfo.lastObservedDate || '2026-10-21'}
+          {t('overview.cutoffLabel', 'Observation Cutoff:')} {freshnessInfo.lastObservedDate || '2026-10-21'}
         </span>
       </div>
 
@@ -233,7 +233,7 @@ export default function OverviewDashboard() {
                 {meanGrace !== null ? (meanGrace > 0 ? `+${meanGrace}` : `${meanGrace}`) : '—'} <span className="text-xs font-normal text-text-muted">cm (TWSA)</span>
               </div>
               <div className="text-[11px] mt-0.5 text-text-muted flex items-center gap-1">
-                <span>Regional satellite water mass change (~100 km grid). Negative means regional storage loss.</span>
+                <span>{t('overview.graceDesc', 'Regional satellite water mass change (~100 km grid). Negative means regional storage loss.')}</span>
               </div>
             </div>
           </div>
@@ -249,7 +249,7 @@ export default function OverviewDashboard() {
                 {meanRain !== null ? (meanRain > 0 ? `+${meanRain}` : `${meanRain}`) : '—'} <span className="text-xs font-normal text-text-muted">mm vs 30-yr average</span>
               </div>
               <div className="text-[11px] mt-0.5 text-text-muted">
-                <span>Mean monsoon rainfall deviation vs 1991–2020 normal. Negative means seasonal rain deficit.</span>
+                <span>{t('overview.rainfallDesc', 'Mean monsoon rainfall deviation vs 1991–2020 normal. Negative means seasonal rain deficit.')}</span>
               </div>
             </div>
           </div>
@@ -265,7 +265,7 @@ export default function OverviewDashboard() {
                 {meanDepth ?? '—'} <span className="text-xs font-normal text-text-muted">m bgl</span>
               </div>
               <div className="text-[11px] mt-0.5 text-text-muted">
-                <span>Meters below ground level. Higher depth means water is further underground.</span>
+                <span>{t('overview.wellDepthDesc', 'Meters below ground level. Higher depth means water is further underground.')}</span>
               </div>
             </div>
           </div>
@@ -278,19 +278,19 @@ export default function OverviewDashboard() {
           <div className="flex items-center gap-1.5 text-xs text-text-muted font-medium">
             <FilterIcon className="w-3.5 h-3.5 text-primary" />
 
-            <span>Filters:</span>
+            <span>{t('overview.filterLabel', 'Filters:')}</span>
           </div>
 
           {/* State Selector */}
           <div className="flex items-center gap-1.5">
-            <label htmlFor="state-filter" className="text-xs text-text-muted font-medium">State:</label>
+            <label htmlFor="state-filter" className="text-xs text-text-muted font-medium">{t('overview.stateLabel', 'State:')}</label>
             <select
               id="state-filter"
               value={selectedState}
               onChange={(e) => handleStateChange(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
             >
-              <option value="all">All Target States (9)</option>
+              <option value="all">{t('overview.allStates', 'All Target States (9)')}</option>
               {getTargetStatesAlphabetically().map((st) => (
                 <option key={st.code} value={normalizeStateName(st.name)}>
                   {st.name} ({st.code})
@@ -301,14 +301,14 @@ export default function OverviewDashboard() {
 
           {/* District Selector (Cascading) */}
           <div className="flex items-center gap-1.5">
-            <label htmlFor="district-filter" className="text-xs text-text-muted font-medium">District:</label>
+            <label htmlFor="district-filter" className="text-xs text-text-muted font-medium">{t('overview.districtLabel', 'District:')}</label>
             <select
               id="district-filter"
               value={selectedDistrictId}
               onChange={(e) => setSelectedDistrictId(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
             >
-              <option value="all">All Districts ({availableDistricts.length})</option>
+              <option value="all">{t('overview.allDistricts', 'All Districts')} ({availableDistricts.length})</option>
               {availableDistricts.map((d) => (
                 <option key={d.id} value={d.id}>
                   {d.name} ({d.state})
@@ -319,23 +319,23 @@ export default function OverviewDashboard() {
 
           {/* Severity Filter */}
           <div className="flex items-center gap-1.5">
-            <label htmlFor="severity-filter" className="text-xs text-text-muted font-medium">Severity:</label>
+            <label htmlFor="severity-filter" className="text-xs text-text-muted font-medium">{t('overview.severityLabel', 'Severity:')}</label>
             <select
               id="severity-filter"
               value={selectedSeverity}
               onChange={(e) => setSelectedSeverity(e.target.value)}
               className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
             >
-              <option value="all">All Levels</option>
-              <option value="severe">Severe Stress</option>
-              <option value="watch">Watch / Moderate</option>
-              <option value="normal">Normal / Favorable</option>
+              <option value="all">{t('overview.allLevels', 'All Levels')}</option>
+              <option value="severe">{t('overview.severeLevel', 'Severe Stress')}</option>
+              <option value="watch">{t('overview.watchLevel', 'Watch / Moderate')}</option>
+              <option value="normal">{t('overview.normalLevel', 'Normal / Favorable')}</option>
             </select>
           </div>
         </div>
 
         <div className="text-xs text-text-muted">
-          Showing <span className="font-semibold text-text-main">{filteredBlocks.length}</span> blocks
+          {t('overview.showing', 'Showing')} <span className="font-semibold text-text-main">{filteredBlocks.length}</span> {t('overview.blocks', 'blocks')}
         </div>
       </div>
 
@@ -344,14 +344,14 @@ export default function OverviewDashboard() {
         <div className="p-4 border-b border-border bg-subtle/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h2 className="text-sm font-bold text-text-main">
-              Administrative Block Groundwater &amp; Hydrogeological Directory
+              {t('overview.tableTitle', 'Administrative Block Groundwater & Hydrogeological Directory')}
             </h2>
             <p className="text-[11px] text-text-muted mt-0.5">
-              Displays verified CGWB/NWIC observed telemetry, descriptive GSS heuristic baseline, and QuantileGB-v2.0 statistical forecasts or empirical projections where available.
+              {t('overview.tableSubtitle', 'Displays verified CGWB/NWIC observed telemetry, descriptive GSS heuristic baseline, and QuantileGB-v2.0 statistical forecasts or empirical projections where available.')}
             </p>
           </div>
           <span className="text-[11px] text-text-muted shrink-0">
-            Click block to inspect in GIS Explorer
+            {t('overview.clickToInspect', 'Click block to inspect in GIS Explorer')}
           </span>
         </div>
 
@@ -359,22 +359,22 @@ export default function OverviewDashboard() {
           <table className="w-full text-left text-xs border-collapse dbim-table">
             <thead>
               <tr className="border-b border-border bg-subtle/60 text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                <th className="py-2.5 px-3 text-left">State &amp; District</th>
-                <th className="py-2.5 px-3 text-left">Block Name</th>
-                <th className="py-2.5 px-3 text-left">Stress Severity</th>
-                <th className="py-2.5 px-3 text-right">Descriptive GSS</th>
-                <th className="py-2.5 px-3 text-right">Well Depth (m bgl)</th>
-                <th className="py-2.5 px-3 text-right">Projected Depth Q1 (m bgl)</th>
-                <th className="py-2.5 px-3 text-right">Rainfall Anomaly</th>
-                <th className="py-2.5 px-3 text-right">GRACE TWSA</th>
-                <th className="py-2.5 px-3 text-right">Action</th>
+                <th className="py-2.5 px-3 text-left">{t('overview.thStateDistrict', 'State & District')}</th>
+                <th className="py-2.5 px-3 text-left">{t('overview.thBlock', 'Block Name')}</th>
+                <th className="py-2.5 px-3 text-left">{t('overview.thSeverity', 'Stress Severity')}</th>
+                <th className="py-2.5 px-3 text-right">{t('overview.thGss', 'Descriptive GSS')}</th>
+                <th className="py-2.5 px-3 text-right">{t('overview.thWellDepth', 'Well Depth (m bgl)')}</th>
+                <th className="py-2.5 px-3 text-right">{t('overview.thProjected', 'Projected Depth Q1 (m bgl)')}</th>
+                <th className="py-2.5 px-3 text-right">{t('overview.thRainfall', 'Rainfall Anomaly')}</th>
+                <th className="py-2.5 px-3 text-right">{t('overview.thGrace', 'GRACE TWSA')}</th>
+                <th className="py-2.5 px-3 text-right">{t('overview.thAction', 'Action')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {filteredBlocks.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="py-8 text-center text-text-muted">
-                    No blocks matched the selected filters. Reset filters to view all monitored areas.
+                    {t('overview.noBlocksMatch', 'No blocks matched the selected filters. Reset filters to view all monitored areas.')}
                   </td>
                 </tr>
               ) : (
@@ -399,7 +399,7 @@ export default function OverviewDashboard() {
                             ? 'text-amber-700'
                             : 'text-emerald-700'
                         }`}>
-                          <span className="text-[9px]">●</span> {blk.riskSeverity.toUpperCase()}
+                          <span className="text-[9px]">●</span> {blk.riskSeverity === 'severe' ? t('severity.severe', 'SEVERE') : blk.riskSeverity === 'watch' ? t('severity.watch', 'WATCH') : t('severity.normal', 'NORMAL')}
                         </span>
                       </td>
                       <td className="py-2.5 px-3 text-right tabular-nums font-medium">
@@ -424,7 +424,7 @@ export default function OverviewDashboard() {
                           href={`/explorer?block=${blk.id}`}
                           className="text-primary hover:underline font-semibold text-[11px]"
                         >
-                          View in GIS →
+                          {t('overview.viewInGis', 'View in GIS →')}
                         </Link>
                       </td>
                     </tr>

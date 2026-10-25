@@ -15,6 +15,15 @@ const STORAGE_KEY_LANG = 'jaldrishti_language_v1';
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const warnedMissingKeys = new Set<string>();
+function warnMissingKey(key: string, language: Language): void {
+  if (process.env.NODE_ENV === 'production') return;
+  const id = `${language}:${key}`;
+  if (warnedMissingKeys.has(id)) return;
+  warnedMissingKeys.add(id);
+  console.warn(`[i18n] Missing "${language}" translation for key "${key}"; using fallback.`);
+}
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Default to Hindi ('hi') for Hindi-first UX
   const [language, setLanguageState] = useState<Language>('hi');
@@ -44,6 +53,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (dict && dict[key]) {
       return dict[key];
     }
+    warnMissingKey(key, language);
     const enDict = translations['en'];
     if (enDict && enDict[key]) {
       return enDict[key];

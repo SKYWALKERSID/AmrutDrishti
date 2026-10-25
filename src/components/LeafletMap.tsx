@@ -232,13 +232,13 @@ export default function LeafletMap({
         {activeLayer === 'risk' && (
           <div className="flex flex-col gap-1 text-[11px]">
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> High Concern (Score &gt; 70)
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> {t('map.guide.risk.high', 'High Concern (Score > 70)')}
             </span>
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-status-warning shrink-0 inline-block"></span> Needs Checking (Score 40–70)
+              <span className="w-2.5 h-2.5 rounded-full bg-status-warning shrink-0 inline-block"></span> {t('map.guide.risk.watch', 'Needs Checking (Score 40–70)')}
             </span>
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-risk-normal shrink-0 inline-block"></span> Normal Water Level (Score &lt; 40)
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-normal shrink-0 inline-block"></span> {t('map.guide.risk.normal', 'Normal Water Level (Score < 40)')}
             </span>
           </div>
         )}
@@ -246,10 +246,10 @@ export default function LeafletMap({
         {activeLayer === 'grace' && (
           <div className="flex flex-col gap-1 text-[11px]">
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> Large Loss (&lt; -6 cm anomaly)
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> {t('map.guide.grace.loss', 'Large Loss (< -6 cm anomaly)')}
             </span>
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-status-warning shrink-0 inline-block"></span> Moderate Deficit (&gt; -6 cm anomaly)
+              <span className="w-2.5 h-2.5 rounded-full bg-status-warning shrink-0 inline-block"></span> {t('map.guide.grace.deficit', 'Moderate Deficit (> -6 cm anomaly)')}
             </span>
           </div>
         )}
@@ -257,10 +257,10 @@ export default function LeafletMap({
         {activeLayer === 'rainfall' && (
           <div className="flex flex-col gap-1 text-[11px]">
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-data-rainfall shrink-0 inline-block"></span> Normal or Low Rain Deficit
+              <span className="w-2.5 h-2.5 rounded-full bg-data-rainfall shrink-0 inline-block"></span> {t('map.guide.rain.normal', 'Normal or Low Rain Deficit')}
             </span>
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> High Rain Deficit (&gt; 200 mm shortfall)
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> {t('map.guide.rain.high', 'High Rain Deficit (> 200 mm shortfall)')}
             </span>
           </div>
         )}
@@ -268,10 +268,10 @@ export default function LeafletMap({
         {activeLayer === 'wells' && (
           <div className="flex flex-col gap-1 text-[11px]">
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-risk-normal shrink-0 inline-block"></span> Shallow Well Level (&lt; 14 m bgl)
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-normal shrink-0 inline-block"></span> {t('map.guide.wells.shallow', 'Shallow Well Level (< 14 m bgl)')}
             </span>
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> Deep Well Depletion (&gt; 14 m bgl)
+              <span className="w-2.5 h-2.5 rounded-full bg-risk-severe shrink-0 inline-block"></span> {t('map.guide.wells.deep', 'Deep Well Depletion (> 14 m bgl)')}
             </span>
           </div>
         )}
@@ -279,14 +279,14 @@ export default function LeafletMap({
         {activeLayer === 'sentinel' && (
           <div className="flex flex-col gap-1 text-[11px]">
             <span className="flex items-center gap-1.5 text-text-main">
-              <span className="w-2.5 h-2.5 rounded-full bg-primary shrink-0 inline-block"></span> Vegetation Greenness Index (NDVI)
+              <span className="w-2.5 h-2.5 rounded-full bg-primary shrink-0 inline-block"></span> {t('map.guide.sentinel.ndvi', 'Vegetation Greenness Index (NDVI)')}
             </span>
           </div>
         )}
 
         {/* Universal Honest Gap Representation in Legend */}
         <div className="pt-1.5 mt-1.5 border-t border-border/60 flex items-center gap-1.5 text-[10px] text-text-muted">
-          <span className="w-2.5 h-2.5 rounded-full bg-status-neutral shrink-0 inline-block"></span> Gray: Data Not Available / Pending
+          <span className="w-2.5 h-2.5 rounded-full bg-status-neutral shrink-0 inline-block"></span> {t('map.guide.gap', 'Gray: Data Not Available / Pending')}
         </div>
       </div>
     </div>

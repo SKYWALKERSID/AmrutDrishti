@@ -369,12 +369,12 @@ function InterventionsContent() {
         <div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted mb-2">
             <span className="font-semibold text-text-main">
-              Intervention Planning Workspace
+              {t('interventions.workspace', 'Intervention Planning Workspace')}
             </span>
             <span aria-hidden="true">•</span>
-            <span>MoJS / PMKSY / Atal Bhujal Yojana Guidelines</span>
+            <span>{t('interventions.guidelines', 'MoJS / PMKSY / Atal Bhujal Yojana Guidelines')}</span>
             <span aria-hidden="true">•</span>
-            <span>Observation Cutoff: October 2026</span>
+            <span>{t('interventions.cutoff', 'Observation Cutoff: October 2026')}</span>
           </div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
             <DocumentTextIcon className="w-6 h-6 text-primary" /> {t('interventions.title')}
@@ -400,19 +400,19 @@ function InterventionsContent() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
-                Scientific Engine
+                {t('interventions.engine', 'Scientific Engine')}
               </span>
               <span className="text-text-muted">•</span>
-              <span className="text-xs text-text-muted">Multi-Criteria Policy Rule Matching</span>
+              <span className="text-xs text-text-muted">{t('interventions.ruleMatching', 'Multi-Criteria Policy Rule Matching')}</span>
             </div>
             <h2 id="scientific-recommendations-title" className="text-base font-bold text-text-main mt-0.5">
-              Target Block Pre-Feasibility Scheme Recommendations
+              {t('interventions.recomTitle', 'Target Block Pre-Feasibility Scheme Recommendations')}
             </h2>
           </div>
 
           <div className="flex items-center gap-2">
             <label htmlFor="block-recom-select" className="text-xs text-text-muted shrink-0">
-              Selected Block:
+              {t('interventions.selectedBlock', 'Selected Block:')}
             </label>
             <select
               id="block-recom-select"

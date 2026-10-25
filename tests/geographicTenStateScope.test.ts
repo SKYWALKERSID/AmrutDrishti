@@ -156,8 +156,11 @@ test('Active scope copy consistently describes nine approved states and excludes
   const interventions = read('src/app/interventions/page.tsx');
   const risk = read('src/app/risk-assessment/page.tsx');
 
-  assert.match(footer, /KA, TG, TN, MP, RJ, HR, PB, ML, TR \(9 States/);
-  assert.match(footer, /9 approved states/);
+  const translations = read('src/lib/data/translations.ts');
+  const footerAndTranslations = footer + translations;
+
+  assert.match(footerAndTranslations, /KA, TG, TN, MP, RJ, HR, PB, ML, TR \(9 States/);
+  assert.match(footerAndTranslations, /9 approved states/);
   assert.doesNotMatch(footer, /across 10 priority focus states|KA, TG, TN, MP, RJ, HR, PB, ML, AS, TR/);
   for (const page of [overview, interventions, risk]) {
     assert.match(page, /All 9 Active Target States/);

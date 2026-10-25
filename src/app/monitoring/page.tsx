@@ -844,7 +844,7 @@ interface RainfallChartPoint {
       <div className="border-l-2 border-primary bg-subtle px-4 py-2.5 text-xs text-text-muted flex items-center justify-between">
         <div className="flex items-center gap-2">
           <InfoIcon className="w-4 h-4 text-primary shrink-0" />
-          <span>Multi-Scale Indicators: Evaluating observed CGWB well depths alongside satellite mass anomalies (GRACE-FO).</span>
+          <span>{t('monitoring.multiScaleIndicators', 'Multi-Scale Indicators: Evaluating observed CGWB well depths alongside satellite mass anomalies (GRACE-FO).')}</span>
         </div>
         {selectedBlock && (
           <span className="font-semibold text-text-main hidden sm:inline">{selectedBlock.name} ({selectedBlock.districtName})</span>
@@ -881,10 +881,10 @@ interface RainfallChartPoint {
               </span>
             </div>
             <p className="text-xs text-text-muted mt-1">
-              Evaluates groundwater depth records across the 2021–2026 monitoring window. Distinguishes verified in-situ observation history from statistical trend estimation and genuine 90-day / 180-day ML projections.
+              {t('monitoring.evaluatingWindow', 'Evaluates groundwater depth records across the 2021–2026 monitoring window. Distinguishes verified in-situ observation history from statistical trend estimation and genuine 90-day / 180-day ML projections.')}
             </p>
             <p className="text-[11px] text-text-muted mt-0.5">
-              <strong>Groundwater Depth Interpretation:</strong> Measured in metres below ground level (<span className="font-mono">m bgl</span>). A higher value indicates the water table has deepened further underground; a lower value indicates the water table has risen closer to the ground surface.
+              <strong>{t('monitoring.depthInterpretation', 'Groundwater Depth Interpretation:')}</strong> {t('monitoring.depthInterpretationText', 'Measured in metres below ground level (m bgl). A higher value indicates the water table has deepened further underground; a lower value indicates the water table has risen closer to the ground surface.')}
             </p>
           </div>
 
@@ -901,7 +901,7 @@ interface RainfallChartPoint {
                     : 'text-text-muted hover:text-text-main'
                 }`}
               >
-                Automated Telemetry (18 Datasets)
+                {t('monitoring.autoTelemetry', 'Automated Telemetry (18 Datasets)')}
               </button>
               <button
                 type="button"
@@ -912,14 +912,14 @@ interface RainfallChartPoint {
                     : 'text-text-muted hover:text-text-main'
                 }`}
               >
-                CGWB Manual Archive
+                {t('monitoring.cgwbManualArchive', 'CGWB Manual Archive')}
               </button>
             </div>
 
             {/* Station Dropdown based on Active Source */}
             {selectedDataSource === 'telemetry' ? (
               <div className="flex items-center gap-1.5 text-xs">
-                <span className="text-text-muted font-medium">DWLR Station:</span>
+                <span className="text-text-muted font-medium">{t('monitoring.dwlrStation', 'DWLR Station:')}</span>
                 <select
                   value={selectedTelemetryStationId}
                   onChange={(e) => setSelectedTelemetryStationId(e.target.value)}
@@ -932,20 +932,20 @@ interface RainfallChartPoint {
                       </option>
                     ))
                   ) : (
-                    <option value="">No telemetry stations in this geography</option>
+                    <option value="">{t('monitoring.noTelemetryInGeo', 'No telemetry stations in this geography')}</option>
                   )}
                 </select>
               </div>
             ) : (
               <div className="flex items-center gap-1.5 text-xs">
-                <span className="text-text-muted font-medium">CGWB Well:</span>
+                <span className="text-text-muted font-medium">{t('monitoring.cgwbWell', 'CGWB Well:')}</span>
                 <select
                   value={selectedStationId}
                   onChange={(e) => setSelectedStationId(e.target.value)}
                   className="bg-subtle border border-border rounded px-2.5 py-1.5 font-medium text-text-main focus:outline-none cursor-pointer max-w-[200px]"
                 >
                   <option value="all">
-                    Block Aggregation ({availableStations.length} {availableStations.length === 1 ? 'Station' : 'Stations'})
+                    {t('monitoring.blockAggregation', 'Block Aggregation')} ({availableStations.length} {availableStations.length === 1 ? t('monitoring.station', 'Station') : t('monitoring.stations', 'Stations')})
                   </option>
                   {availableStations.map((stn) => (
                     <option key={stn.id} value={stn.id}>

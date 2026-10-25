@@ -111,7 +111,7 @@ export const Navigation: React.FC = () => {
                 </span>
               </div>
               <p className="text-[10px] sm:text-[11px] text-text-muted leading-tight truncate">
-                Groundwater observations and research forecasts for India
+                {t('header.tagline', 'Groundwater observations and research forecasts for India')}
               </p>
             </div>
           </div>

@@ -233,24 +233,24 @@ function AlertsContent() {
         <div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted mb-2">
             <span className="font-semibold text-text-main">
-              Advisory Dispatch Gateway
+              {t('alerts.gatewayTitle', 'Advisory Dispatch Gateway')}
             </span>
             <span aria-hidden="true">•</span>
-            <span>Simulated Advisory Delivery Protocol</span>
+            <span>{t('alerts.deliveryProtocol', 'Simulated Advisory Delivery Protocol')}</span>
             <span aria-hidden="true">•</span>
-            <span>DLT Template Compliance (Demonstration)</span>
+            <span>{t('alerts.dltCompliance', 'DLT Template Compliance (Demonstration)')}</span>
           </div>
           <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
             <AlertTriangleIcon className="w-6 h-6 text-primary" /> {t('alerts.title')}
           </h1>
           <p className="text-xs sm:text-sm text-text-muted mt-1.5 leading-relaxed">
-            {t('alerts.subtitle')} No real SMS or WhatsApp message is sent.
+            {t('alerts.subtitle')} {t('alerts.noRealSentNote', 'No real SMS or WhatsApp message is sent.')}
           </p>
         </div>
 
         <div className="flex items-center gap-2 text-xs text-text-muted">
           <ShieldCheckIcon className="w-4 h-4 text-primary" />
-          <span>Dispatch Protocols Configured</span>
+          <span>{t('alerts.protocolsConfigured', 'Dispatch Protocols Configured')}</span>
         </div>
       </div>
 

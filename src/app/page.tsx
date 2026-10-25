@@ -69,11 +69,11 @@ export default function LandingPage() {
           <div className="lg:col-span-7 space-y-5">
 
             <h1 className="dbim-heading-1 text-text-main">
-              Clear, honest groundwater information for India.
+              {t('landing.heroTitle')}
             </h1>
 
             <p className="dbim-paragraph-lead text-text-muted leading-relaxed">
-              AMRUT DRISHTI is a satellite-assisted groundwater intelligence and early-warning platform for India that integrates verified groundwater well observations, 30-year gridded rainfall baselines, multi-sensor satellite indices, quantile machine learning forecasting, objective risk assessment, and situation-aware intervention planning.
+              {t('landing.heroLead')}
             </p>
 
             <p className="dbim-paragraph text-text-muted leading-relaxed">
@@ -85,32 +85,32 @@ export default function LandingPage() {
                 href="/explorer"
                 className="bg-primary hover:bg-primary-hover text-text-inverted text-sm font-semibold px-6 py-3 rounded transition-colors inline-flex items-center gap-2"
               >
-                <span>Open the Map Explorer</span>
+                <span>{t('landing.openExplorer')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
               <a
                 href="#how-it-works"
                 className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
               >
-                End-to-End Intelligence Workflow
+                {t('landing.workflowLink')}
               </a>
               <Link
                 href="/overview"
                 className="text-xs font-semibold text-primary hover:underline px-2 py-3"
               >
-                Open State &amp; District Overview →
+                {t('landing.openOverview')}
               </Link>
             </div>
 
             {/* Quick Plain-Language Guide: Fitted neatly inside hero alongside image */}
             <div className="pt-2 border-t border-border/70">
               <WhatAmILookingAt
-                title="Quick Guide: How to Use AMRUT DRISHTI (5 Plain-Language Answers)"
-                what="A national groundwater monitoring and early-warning platform that pairs verified in-situ measurements from government observation wells with IMD gridded rainfall and satellite observations."
-                meaning="It tracks how deep water is below the ground in your block, whether aquifer storage is recovering or depleting compared to historical baselines, and where seasonal rainfall deficits threaten local supplies."
-                whyCare="When water tables decline alongside monsoon deficits, shallow community drinking wells and rabi crop irrigation risk exhaustion months before the arrival of the subsequent monsoon."
-                recentAndReliable="Observations are ingested directly from official Central Ground Water Board (CGWB) digital water level recorders, State Groundwater Departments, and IMD meteorological grids. Every page records observation timestamps, latency periods, and data quality states."
-                nextSteps="1. Use the Map Explorer to inspect your administrative block. 2. Examine 1-to-4 quarter ML depth forecasts and persistence baselines. 3. Review site-appropriate check dams, percolation ponds, and recharge shafts in the Interventions catalog."
+                title={t('landing.howToReadTitle')}
+                what={t('landing.howToReadWhat')}
+                meaning={t('landing.howToReadMeaning')}
+                whyCare={t('landing.howToReadWhyCare')}
+                recentAndReliable={t('landing.howToReadRecent')}
+                nextSteps={t('landing.howToReadNext')}
                 initiallyOpen={true}
                 className="my-2"
               />
@@ -130,7 +130,7 @@ export default function LandingPage() {
               />
             </div>
             <p className="text-[11px] text-text-muted leading-normal px-1">
-              <strong>Government Telemetry in the Field:</strong> Automated Digital Water Level Recorder (DWLR) piezometer station transmitting real-time water table readings in an agricultural aquifer zone.
+              {t('landing.fieldTelemetryCaption')}
             </p>
           </div>
         </div>
@@ -139,10 +139,10 @@ export default function LandingPage() {
         <div className="pt-6 border-t border-border space-y-6">
           <div className="space-y-1">
             <h2 className="dbim-heading-2 text-text-main">
-              Where Our Water Information Comes From: From Sky to Deep Underground
+              {t('landing.fromSkyToDeep')}
             </h2>
             <p className="dbim-caption text-text-muted">
-              Integrated Environmental Layers &amp; Observation Depths
+              {t('landing.integratedLayers')}
             </p>
           </div>
 
@@ -152,40 +152,40 @@ export default function LandingPage() {
               {/* Stratum 1: Spaceborne & Atmospheric Signals */}
               <div className="space-y-1">
                 <h3 className="dbim-heading-3 text-text-main">
-                  Sky &amp; Weather: Rainfall &amp; Regional Water Changes
+                  {t('landing.stratumSky')}
                 </h3>
                 <p className="dbim-paragraph text-text-muted leading-relaxed">
-                  NASA GRACE-FO Satellites (~100 km regional view) • IMD 0.25° Weather Grids • Sentinel-2 Earth Imagery
+                  {t('landing.stratumSkyDesc')}
                 </p>
               </div>
 
               {/* Stratum 2: Topsoil & Root Zone */}
               <div className="space-y-1">
                 <h3 className="dbim-heading-3 text-text-main">
-                  Ground Surface &amp; Crops: Topsoil Moisture &amp; Crop Greenness (0 – 2 m depth)
+                  {t('landing.stratumSurface')}
                 </h3>
                 <p className="dbim-paragraph text-text-muted leading-relaxed">
-                  SMAP Satellite Soil Moisture • Sentinel-2 Crop Greenness &amp; Surface Water Vigor
+                  {t('landing.stratumSurfaceDesc')}
                 </p>
               </div>
 
               {/* Stratum 3: Unconfined Weathered Aquifer */}
               <div className="space-y-1">
                 <h3 className="dbim-heading-3 text-text-main">
-                  Main Underground Water Table: Village &amp; Farming Wells (2 – 25 m depth)
+                  {t('landing.stratumAquifer')}
                 </h3>
                 <p className="dbim-paragraph text-text-muted leading-relaxed">
-                  Direct physical water table depth from Central Ground Water Board (CGWB) &amp; NWIC Digital Telemetry Wells. Depth to water in m bgl (meters below ground level).
+                  {t('landing.stratumAquiferDesc')}
                 </p>
               </div>
 
               {/* Stratum 4: Semi-Confined Fractured Crystalline Bedrock */}
               <div className="space-y-1">
                 <h3 className="dbim-heading-3 text-text-main">
-                  Deep Bedrock Aquifers: Deep Rock Water Reserves (&gt; 25 m depth)
+                  {t('landing.stratumBedrock')}
                 </h3>
                 <p className="dbim-paragraph text-text-muted leading-relaxed">
-                  Deep water locked in rock fractures that takes years to refill • Deep Piezometer Network
+                  {t('landing.stratumBedrockDesc')}
                 </p>
               </div>
             </div>

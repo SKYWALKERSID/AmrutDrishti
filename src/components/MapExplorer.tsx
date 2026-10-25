@@ -441,12 +441,12 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
             >
               <option value="all">
                 {selectedDistrictId === 'all'
-                  ? `All Blocks (${availableBlocks.length})`
-                  : `All Blocks in District (${availableBlocks.length})`}
+                  ? `${t('explorer.allBlocks', 'All Blocks')} (${availableBlocks.length})`
+                  : `${t('map.allBlocksInDistrict', 'All Blocks in District')} (${availableBlocks.length})`}
               </option>
               {availableBlocks.map((b) => (
                 <option key={b.id} value={b.id}>
-                  {b.name} Block
+                  {b.name} {t('map.blockSuffix', 'Block')}
                 </option>
               ))}
             </select>
@@ -463,7 +463,7 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
               }}
               className="text-primary hover:underline font-semibold text-xs ml-auto"
             >
-              Reset to All India
+              {t('map.resetAllIndia', 'Reset to All India')}
             </button>
           )}
         </div>
@@ -471,12 +471,12 @@ export default function MapExplorer({ initialBlockId }: MapExplorerProps) {
 
       {/* 5-Question Guide Card: Explaining the Map */}
       <WhatAmILookingAt
-        title="💡 How do I read this Groundwater Map?"
-        what="An interactive GIS map displaying all 43 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators."
-        meaning="Blocks colored red have severe groundwater decline; amber blocks require close monitoring; green blocks have normal water conditions."
-        whyCare="Visualizing regional patterns reveals clusters of rapid water drop across adjacent districts, helping authorities coordinate basin-level water management."
-        recentAndReliable="Water levels come from Central Ground Water Board (CGWB) observation wells; rainfall from India Meteorological Department (IMD); and regional storage from NASA GRACE satellites."
-        nextSteps="Select a state or click any point on the map to inspect its well depth, monsoon rainfall, and machine learning forecast in the right-hand panel."
+        title={t('map.howToReadTitle', '💡 How do I read this Groundwater Map?')}
+        what={t('map.howToReadWhat', 'An interactive GIS map displaying all 43 monitored administrative blocks across India, color-coded by water stress severity and satellite indicators.')}
+        meaning={t('map.howToReadMeaning', 'Blocks colored red have severe groundwater decline; amber blocks require close monitoring; green blocks have normal water conditions.')}
+        whyCare={t('map.howToReadWhyCare', 'Visualizing regional patterns reveals clusters of rapid water drop across adjacent districts, helping authorities coordinate basin-level water management.')}
+        recentAndReliable={t('map.howToReadRecent', 'Water levels come from Central Ground Water Board (CGWB) observation wells; rainfall from India Meteorological Department (IMD); and regional storage from NASA GRACE satellites.')}
+        nextSteps={t('map.howToReadNext', 'Select a state or click any point on the map to inspect its well depth, monsoon rainfall, and machine learning forecast in the right-hand panel.')}
         initiallyOpen={false}
       />
 

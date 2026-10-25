@@ -215,9 +215,9 @@ export default function AdminPage() {
                 <UserRoleIcon className="w-4 h-4 text-primary" /> {t('nav.admin', 'Administration')}
               </p>
               <span aria-hidden="true">•</span>
-              <span>Governance Scope (9 Approved States)</span>
+              <span>{t('admin.governanceScope', 'Governance Scope (9 Approved States)')}</span>
               <span aria-hidden="true">•</span>
-              <span>Telemetry: <strong className="text-text-main font-semibold">{lastCheckTime ? `Checked ${lastCheckTime}` : 'Active'}</strong></span>
+              <span>{t('admin.telemetry', 'Telemetry:')} <strong className="text-text-main font-semibold">{lastCheckTime ? `${t('admin.checked', 'Checked')} ${lastCheckTime}` : 'Active'}</strong></span>
             </div>
             <h1 className="dbim-heading-1 text-text-main flex items-center gap-2 flex-wrap">
               {t('admin.title', 'System Administration Superuser Workspace')}
@@ -235,38 +235,38 @@ export default function AdminPage() {
       {/* Governance & Architecture Specifications - Clean Open List */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8 border-b border-border pb-8">
         <article className="space-y-1.5">
-          <h2 className="font-bold text-text-main text-sm">Simulated Role Context Switcher</h2>
+          <h2 className="font-bold text-text-main text-sm">{t('admin.roleSwitcherTitle', 'Simulated Role Context Switcher')}</h2>
           <p className="text-xs leading-5 text-text-muted">
-            The top navigation role selector provides instant client-side evaluation context for all prototype personas.
+            {t('admin.roleSwitcherDesc', 'The top navigation role selector provides instant client-side evaluation context for all prototype personas.')}
           </p>
-          <p className="text-xs font-semibold text-emerald-700">Status: Client-Side Demonstration Active</p>
+          <p className="text-xs font-semibold text-emerald-700">{t('admin.roleSwitcherStatus', 'Status: Client-Side Demonstration Active')}</p>
         </article>
 
         <article className="space-y-1.5">
-          <h2 className="font-bold text-text-main text-sm">Audit Trail & Access Logging</h2>
+          <h2 className="font-bold text-text-main text-sm">{t('admin.auditLoggingTitle', 'Audit Trail & Access Logging')}</h2>
           <p className="text-xs leading-5 text-text-muted">
-            Inspect or log administrative changes, human risk overrides, and notification dispatches across all administrative jurisdictions.
+            {t('admin.auditLoggingDesc', 'Inspect or log administrative changes, human risk overrides, and notification dispatches across all administrative jurisdictions.')}
           </p>
-          <p className="text-xs font-semibold text-text-main">Status: PostgreSQL audit_events Table Active</p>
+          <p className="text-xs font-semibold text-text-main">{t('admin.auditLoggingStatus', 'Status: PostgreSQL audit_events Table Active')}</p>
         </article>
 
         <article className="space-y-1.5">
-          <h2 className="font-bold text-text-main text-sm">Geospatial & Ingestion Pipelines</h2>
+          <h2 className="font-bold text-text-main text-sm">{t('admin.pipelineTitle', 'Geospatial & Ingestion Pipelines')}</h2>
           <p className="text-xs leading-5 text-text-muted">
-            Review data source cadence, provider licenses, and spatial resolution metadata across configured GEE, IMD, and CGWB pipelines.
+            {t('admin.pipelineDesc', 'Review data source cadence, provider licenses, and spatial resolution metadata across configured GEE, IMD, and CGWB pipelines.')}
           </p>
           <Link href="/data-sources" className="inline-block text-xs font-semibold text-primary hover:underline">
-            Inspect Data Sources Registry →
+            {t('admin.inspectSources', 'Inspect Data Sources Registry →')}
           </Link>
         </article>
 
         <article className="space-y-1.5">
-          <h2 className="font-bold text-text-main text-sm">Operational Scientific Safeguards</h2>
+          <h2 className="font-bold text-text-main text-sm">{t('admin.safeguardsTitle', 'Operational Scientific Safeguards')}</h2>
           <p className="text-xs leading-5 text-text-muted">
-            All predictive scores and advisories require authorized human review and ground piezometer validation before emergency financial sanctions.
+            {t('admin.safeguardsDesc', 'All predictive scores and advisories require authorized human review and ground piezometer validation before emergency financial sanctions.')}
           </p>
           <div className="flex items-center gap-1 text-xs text-text-muted">
-            <ShieldCheckIcon className="w-4 h-4 text-primary" /> Safeguard Gates Enforced
+            <ShieldCheckIcon className="w-4 h-4 text-primary" /> {t('admin.safeguardsStatus', 'Safeguard Gates Enforced')}
           </div>
         </article>
       </section>
@@ -276,11 +276,11 @@ export default function AdminPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold text-text-main">Connected Integration Health & API Diagnostics</h2>
-              <span className="text-xs text-text-muted">• Status: <strong className="text-emerald-700 font-semibold">Live Probe</strong></span>
+              <h2 className="text-base font-bold text-text-main">{t('admin.diagnosticsTitle', 'Connected Integration Health & API Diagnostics')}</h2>
+              <span className="text-xs text-text-muted">• Status: <strong className="text-emerald-700 font-semibold">{t('admin.liveProbe', 'Live Probe')}</strong></span>
             </div>
             <p className="text-xs text-text-muted mt-0.5">
-              Real-time verification of connected backend endpoints, data feeds, and role-enforced access controls.
+              {t('admin.diagnosticsSubtitle', 'Real-time verification of connected backend endpoints, data feeds, and role-enforced access controls.')}
             </p>
           </div>
           <button
@@ -289,7 +289,7 @@ export default function AdminPage() {
             disabled={isCheckingHealth}
             className="text-xs font-semibold text-primary hover:underline px-3 py-1.5 bg-subtle border border-border transition-colors disabled:opacity-50"
           >
-            {isCheckingHealth ? 'Pinging Endpoints...' : 'Run Diagnostics'}
+            {isCheckingHealth ? t('admin.pinging', 'Pinging Endpoints...') : t('admin.runDiagnostics', 'Run Diagnostics')}
           </button>
         </div>
 
@@ -297,12 +297,12 @@ export default function AdminPage() {
           <table className="w-full text-left text-xs border-collapse dbim-table">
             <thead>
               <tr className="border-b border-border bg-subtle/50 text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                <th className="py-2.5 px-3 text-left">Service / Endpoint</th>
-                <th className="py-2.5 px-3 text-left">Underlying Source</th>
-                <th className="py-2.5 px-3 text-left">Health Status</th>
-                <th className="py-2.5 px-3 text-right">HTTP Code</th>
-                <th className="py-2.5 px-3 text-right">Latency</th>
-                <th className="py-2.5 px-3 text-left">Diagnostic Notes</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thService', 'Service / Endpoint')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thSource', 'Underlying Source')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thHealth', 'Health Status')}</th>
+                <th className="py-2.5 px-3 text-right">{t('admin.thHttp', 'HTTP Code')}</th>
+                <th className="py-2.5 px-3 text-right">{t('admin.thLatency', 'Latency')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thNotes', 'Diagnostic Notes')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -346,9 +346,9 @@ export default function AdminPage() {
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-base font-bold text-text-main">Recent System & Role Audit Events</h2>
+            <h2 className="text-base font-bold text-text-main">{t('admin.recentAuditEvents', 'Recent System & Role Audit Events')}</h2>
             <p className="text-xs text-text-muted mt-0.5">
-              Live audit events from PostgreSQL table <code className="bg-subtle px-1.5 py-0.5 text-[11px]">public.audit_events</code>
+              {t('admin.liveAuditFrom', 'Live audit events from PostgreSQL table')} <code className="bg-subtle px-1.5 py-0.5 text-[11px]">public.audit_events</code>
             </p>
           </div>
           <button
@@ -362,7 +362,7 @@ export default function AdminPage() {
             }}
             className="text-xs font-semibold text-primary hover:underline px-2.5 py-1 bg-subtle border border-border"
           >
-            Refresh Logs
+            {t('admin.refreshLogs', 'Refresh Logs')}
           </button>
         </div>
 
@@ -370,25 +370,25 @@ export default function AdminPage() {
           <table className="w-full text-left text-xs border-collapse dbim-table">
             <thead>
               <tr className="border-b border-border bg-subtle/50 text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                <th className="py-2.5 px-3 text-left">Timestamp</th>
-                <th className="py-2.5 px-3 text-left">Actor Role</th>
-                <th className="py-2.5 px-3 text-left">Action</th>
-                <th className="py-2.5 px-3 text-left">Target</th>
-                <th className="py-2.5 px-3 text-left">Details</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thTimestamp', 'Timestamp')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thActorRole', 'Actor Role')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thAction', 'Action')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thTarget', 'Target')}</th>
+                <th className="py-2.5 px-3 text-left">{t('admin.thDetails', 'Details')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
               {auditEvents.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="py-6 text-center text-text-muted">
-                    No recent audit events found. Switch roles or record a review note to generate events.
+                    {t('admin.noAuditEvents', 'No recent audit events found. Switch roles or record a review note to generate events.')}
                   </td>
                 </tr>
               ) : (
                 auditEvents.map((evt, idx) => (
                   <tr key={evt.event_id || idx} className="hover:bg-subtle/30 transition-colors">
                     <td className="py-2 px-3 text-[11px] text-text-muted whitespace-nowrap">
-                      {evt.created_at ? new Date(evt.created_at).toLocaleTimeString() : 'Just now'}
+                      {evt.created_at ? new Date(evt.created_at).toLocaleTimeString() : t('admin.justNow', 'Just now')}
                     </td>
                     <td className="py-2 px-3">
                       <span className="font-semibold text-text-main uppercase text-[11px]">

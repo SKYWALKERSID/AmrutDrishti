@@ -628,10 +628,10 @@ function RiskAssessmentContent() {
                 <table className="w-full text-left text-xs border-collapse dbim-table">
                   <thead>
                     <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                      <th className="py-2 px-2.5 text-left">Environmental Indicator</th>
-                      <th className="py-2 px-2.5 text-right">Current Observation</th>
-                      <th className="py-2 px-2.5 text-right">Stress Level</th>
-                      <th className="py-2 px-2.5 text-right">Base Weight</th>
+                      <th className="py-2 px-2.5 text-left">{t('risk.thIndicator', 'Environmental Indicator')}</th>
+                      <th className="py-2 px-2.5 text-right">{t('risk.thCurrentObs', 'Current Observation')}</th>
+                      <th className="py-2 px-2.5 text-right">{t('risk.thStressLevel', 'Stress Level')}</th>
+                      <th className="py-2 px-2.5 text-right">{t('risk.thBaseWeight', 'Base Weight')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
@@ -639,12 +639,12 @@ function RiskAssessmentContent() {
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
-                          CGWB Well Water Depth
+                          {t('risk.cgwbWellWaterDepth', 'CGWB Well Water Depth')}
                         </span>
-                        <span className="text-[11px] text-text-muted block">How deep you must dig or drill to reach water (meters below ground level).</span>
+                        <span className="text-[11px] text-text-muted block">{t('risk.cgwbWellDesc', 'How deep you must dig or drill to reach water (meters below ground level).')}</span>
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
-                        {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : 'Missing data'}
+                        {selectedBlock.indicators.cgwbWellDepthMbgl !== null ? `${selectedBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('risk.missingData', 'Missing data')}
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.wellDepthNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.wellDepthNorm * 100)}%` : 'N/A'}
@@ -658,12 +658,12 @@ function RiskAssessmentContent() {
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
-                          Monsoon Rainfall Deficit
+                          {t('risk.monsoonRainDeficit', 'Monsoon Rainfall Deficit')}
                         </span>
-                        <span className="text-[11px] text-text-muted block">How much more or less rain fell compared to the 30-year average.</span>
+                        <span className="text-[11px] text-text-muted block">{t('risk.monsoonRainDesc', 'How much more or less rain fell compared to the 30-year average.')}</span>
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
-                        {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : 'Missing data'}
+                        {selectedBlock.indicators.rainfallAnomalyMm !== null ? `${selectedBlock.indicators.rainfallAnomalyMm} mm` : t('risk.missingData', 'Missing data')}
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.rainDeficitNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.rainDeficitNorm * 100)}%` : 'N/A'}
@@ -677,12 +677,12 @@ function RiskAssessmentContent() {
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
-                          Satellite Water Storage (GRACE-FO)
+                          {t('risk.satelliteWaterStorage', 'Satellite Water Storage (GRACE-FO)')}
                         </span>
-                        <span className="text-[11px] text-text-muted block">Regional water gain or loss measured from space (NASA GRACE satellite gravity).</span>
+                        <span className="text-[11px] text-text-muted block">{t('risk.satelliteWaterDesc', 'Regional water gain or loss measured from space (NASA GRACE satellite gravity).')}</span>
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
-                        {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : 'Missing data'}
+                        {selectedBlock.indicators.graceTwsaCm !== null ? `${selectedBlock.indicators.graceTwsaCm} cm` : t('risk.missingData', 'Missing data')}
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.graceTwsaNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.graceTwsaNorm * 100)}%` : 'N/A'}
@@ -696,12 +696,12 @@ function RiskAssessmentContent() {
                     <tr className="hover:bg-subtle/40 transition-colors">
                       <td className="py-2.5 px-2.5">
                         <span className="font-bold text-text-main block">
-                          Vegetation Health (NDVI)
+                          {t('risk.vegetationHealth', 'Vegetation Health (NDVI)')}
                         </span>
-                        <span className="text-[11px] text-text-muted block">How green and healthy crops appear from satellite images (0.0 to 1.0 index).</span>
+                        <span className="text-[11px] text-text-muted block">{t('risk.vegetationDesc', 'How green and healthy crops appear from satellite images (0.0 to 1.0 index).')}</span>
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
-                        {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : 'Missing data'}
+                        {selectedBlock.indicators.sentinelNdvi !== null ? selectedBlock.indicators.sentinelNdvi : t('risk.missingData', 'Missing data')}
                       </td>
                       <td className="py-2.5 px-2.5 text-right tabular-nums">
                         {calculatedResult.normalizationBreakdown.ndviNorm !== null ? `${Math.round(calculatedResult.normalizationBreakdown.ndviNorm * 100)}%` : 'N/A'}
@@ -726,14 +726,14 @@ function RiskAssessmentContent() {
               <div>
                 <h2 className="text-base font-bold text-text-main flex items-center gap-2">
                   <ShieldCheckIcon className="w-4 h-4 text-primary" />
-                  Unified Rainfall Intelligence &amp; Multi-Horizon Forward Forecast
+                  {t('risk.rainfallForecastTitle', 'Unified Rainfall Intelligence & Multi-Horizon Forward Forecast')}
                 </h2>
                 <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
-                  Harmonized IMD daily observations and state department telemetry (2021–2026) informing seasonal groundwater recharge windows and meteorological drought risk.
+                  {t('risk.rainfallForecastSubtitle', 'Harmonized IMD daily observations and state department telemetry (2021–2026) informing seasonal groundwater recharge windows and meteorological drought risk.')}
                 </p>
               </div>
               <span className="text-[11px] font-mono text-text-muted bg-subtle px-2 py-1 shrink-0">
-                Resolution: District Daily
+                {t('risk.districtDailyRes', 'Resolution: District Daily')}
               </span>
             </div>
 
