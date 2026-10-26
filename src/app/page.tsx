@@ -77,7 +77,7 @@ export default function LandingPage() {
             </p>
 
             <p className="dbim-paragraph text-text-muted leading-relaxed">
-              The platform transforms fragmented environmental observations into transparent groundwater trends, forward-looking forecasts with explicit uncertainty bounds, and evidence-based decisions for citizens, farmers, and administrative authorities. Our priority focus spans 43 verified active blocks across 28 districts in nine target states: South India (Karnataka, Telangana, Tamil Nadu), Central India (Madhya Pradesh), North India (Rajasthan, Haryana, Punjab), and Northeast India (Meghalaya, Tripura). Every reading discloses its exact observation date, official source attribution, and known hydrogeological limitations without concealing missing data or simulating unmeasured wells.
+              {t('landing.heroBody')}
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -203,20 +203,20 @@ export default function LandingPage() {
                 />
               </div>
               <p className="text-[11px] text-text-muted leading-normal px-1">
-                <strong>Figure 1.1:</strong> Conceptual physical cross-section illustrating observation layers—from surface soil moisture (0–2m) down to unconfined alluvium and fractured crystalline bedrock piezometers.
+                <strong>Figure 1.1:</strong> {t('landing.figure1Caption')}
               </p>
             </div>
           </div>
 
           {/* Compact Unboxed Coverage & Supporting Facts Row */}
           <div className="pt-2 flex flex-wrap items-center justify-between gap-y-2 text-xs text-text-muted">
-            <span><strong>Authoritative Target Scope:</strong> 9 Active States across 4 Project Regions (KA, TG, TN, MP, RJ, HR, PB, ML, TR)</span>
+            <span><strong>{t('landing.authoritativeScope')}</strong> {t('landing.authoritativeScopeText')}</span>
             <span aria-hidden="true">•</span>
-            <span><strong>Monitored Administrative Units:</strong> 43 Verified Active Blocks (75 Total Monitored Baseline)</span>
+            <span><strong>{t('landing.monitoredUnits')}</strong> {t('landing.monitoredUnitsText')}</span>
             <span aria-hidden="true">•</span>
-            <span><strong>Data currency:</strong> varies by source; see Data Sources</span>
+            <span>{t('landing.dataCurrency')}</span>
             <span aria-hidden="true">•</span>
-            <span><strong>Inference Status:</strong> Research-stage bounds (P10–P90)</span>
+            <span>{t('landing.inferenceStatus')}</span>
           </div>
         </div>
       </section>
@@ -227,13 +227,13 @@ export default function LandingPage() {
       <section className="space-y-8">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            The Problem
+            {t('landing.theProblemTag')}
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            Challenges in Understanding India&apos;s Groundwater
+            {t('landing.theProblemTitle')}
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            Groundwater is a major source of irrigation and drinking water in India. The information needed to track it is spread across agencies, collected at different intervals and at different spatial scales, so it is hard to compare and easy to misread.
+            {t('landing.theProblemDesc')}
           </p>
         </div>
 
@@ -241,33 +241,33 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-border border-y border-border py-4">
           <div className="py-4 lg:py-0 lg:px-6 first:lg:pl-0 space-y-2">
             <span className="text-xs font-bold text-primary">01</span>
-            <h3 className="font-bold text-text-main text-sm">Fragmented Data Silos</h3>
+            <h3 className="font-bold text-text-main text-sm">{t('landing.prob1Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Monitoring datasets are distributed across CGWB boreholes, state groundwater departments, IMD weather stations, and spaceborne missions without unified normalization.
+              {t('landing.prob1Desc')}
             </p>
           </div>
 
           <div className="py-4 lg:py-0 lg:px-6 space-y-2">
             <span className="text-xs font-bold text-primary">02</span>
-            <h3 className="font-bold text-text-main text-sm">Mismatched Cadences</h3>
+            <h3 className="font-bold text-text-main text-sm">{t('landing.prob2Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Daily automated piezometers, manual quarterly tape dips, and monthly satellite gravimetric passes arrive at different frequencies, obscuring the true pace of aquifer stress.
+              {t('landing.prob2Desc')}
             </p>
           </div>
 
           <div className="py-4 lg:py-0 lg:px-6 space-y-2">
             <span className="text-xs font-bold text-primary">03</span>
-            <h3 className="font-bold text-text-main text-sm">Multi-Scale Interpretation</h3>
+            <h3 className="font-bold text-text-main text-sm">{t('landing.prob3Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Point borehole measurements cannot easily be paired with 100-km GRACE satellite footprints or 0.25° gridded rainfall without geodesic clipping and uncertainty estimation.
+              {t('landing.prob3Desc')}
             </p>
           </div>
 
           <div className="py-4 lg:py-0 lg:px-6 last:lg:pr-0 space-y-2">
             <span className="text-xs font-bold text-primary">04</span>
-            <h3 className="font-bold text-text-main text-sm">Delayed Interventions</h3>
+            <h3 className="font-bold text-text-main text-sm">{t('landing.prob4Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Without forward-looking projections and baseline comparisons, water-stress alerts are often triggered only after summer shallow wells have already dried up.
+              {t('landing.prob4Desc')}
             </p>
           </div>
         </div>
@@ -284,7 +284,7 @@ export default function LandingPage() {
             />
           </div>
           <p className="text-[11px] text-text-muted leading-normal px-1">
-            <strong>Figure 1.2:</strong> Spatial scale contrast in groundwater intelligence—comparing point piezometer boreholes (field level), 25 km IMD precipitation grids (regional level), and ~100 km NASA GRACE-FO gravimetric anomalies (catchment level).
+            <strong>Figure 1.2:</strong> {t('landing.figure2Caption')}
           </p>
         </div>
       </section>
@@ -295,13 +295,13 @@ export default function LandingPage() {
       <section className="space-y-8">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            The Solution
+            {t('landing.theSolutionTag')}
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            Six Integrated Modules Built for Evidence-Led Governance
+            {t('landing.theSolutionTitle')}
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            Every module in AMRUT DRISHTI corresponds to active, functional code in the repository. We do not present future aspirations as completed features.
+            {t('landing.theSolutionDesc')}
           </p>
         </div>
 
@@ -311,14 +311,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">01</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Groundwater Monitoring &amp; Dual-Axis Telemetry</h3>
+              <h3 className="text-sm font-bold text-text-main">{t('landing.mod1Title')}</h3>
               <Link href="/monitoring" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>View Monitoring Charts</span>
+                <span>{t('landing.mod1Link')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Integrates official Central Ground Water Board (CGWB) Digital Water Level Recorder (DWLR) automated piezometer records alongside state-level ground telemetry (e.g. MP GWD). Dual-axis charts decouple point well depth (m bgl) from regional NASA GRACE-FO gravimetric anomalies (cm). Historical dropouts and transmission interruptions are honestly preserved as gaps without zero-filling or false smoothing.
+              {t('landing.mod1Desc')}
             </div>
           </div>
 
@@ -326,14 +326,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">02</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Interactive Geospatial GIS Explorer</h3>
+              <h3 className="text-sm font-bold text-text-main">{t('landing.mod2Title')}</h3>
               <Link href="/explorer" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Open GIS Explorer</span>
+                <span>{t('landing.mod2Link')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Full Leaflet-based geospatial explorer rendering 43 canonical active administrative blocks across 28 districts in nine active target states. Interactive layers allow toggling Groundwater Stress Score (GSS) tiers, well water depths, 30-year IMD rainfall anomalies, and downscaled GRACE-FO mass anomalies with geodesic polygon containment.
+              {t('landing.mod2Desc')}
             </div>
           </div>
 
@@ -341,14 +341,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">03</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Unified Rainfall Intelligence &amp; Drought Tracking</h3>
+              <h3 className="text-sm font-bold text-text-main">{t('landing.mod3Title')}</h3>
               <Link href="/monitoring" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Inspect Rainfall Trends</span>
+                <span>{t('landing.mod3Link')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Harmonizes IMD high-resolution 0.25° gridded daily rainfall series (1901–present) with verified State Water Data Portal resources. Tracks 30-year Long Period Average (LPA) deviations, meteorological dry spell durations, and Standardized Precipitation Index (SPI) across monsoon seasons, distinguishing meteorological drought from hydrological storage response.
+              {t('landing.mod3Desc')}
             </div>
           </div>
 
@@ -356,14 +356,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">04</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Multi-Criteria Stress Scoring (GSS)</h3>
+              <h3 className="text-sm font-bold text-text-main">{t('landing.mod4Title')}</h3>
               <Link href="/risk-assessment" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Inspect GSS Scoring</span>
+                <span>{t('landing.mod4Link')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Computes an objective, descriptive composite index (0–100) combining well depth depletion trends, 30-year rainfall deficits, Sentinel-2 NDVI vegetative vigor, and SMAP root-zone soil moisture. GSS acts strictly as a relative prioritization tool and is clearly differentiated from calibrated event probabilities or statutory drought declarations, with mandatory human-review override capabilities.
+              {t('landing.mod4Desc')}
             </div>
           </div>
 
@@ -371,14 +371,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">05</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Quantile ML Forecasting &amp; Uncertainty Bounds</h3>
+              <h3 className="text-sm font-bold text-text-main">{t('landing.mod5Title')}</h3>
               <Link href="/monitoring#forecast" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Examine Forecast Projections</span>
+                <span>{t('landing.mod5Link')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Research-stage Quantile Gradient Boosted regressor (QuantileGB-v2.0) producing forward-looking 1-to-4 quarter water depth projections (m bgl) with explicit P10, P50, and P90 uncertainty intervals. Projections are strictly evaluated beside simple seasonal persistence baselines, with uncalibrated intervals explicitly marked ineligible for automatic statutory declarations.
+              {t('landing.mod5Desc')}
             </div>
           </div>
 
@@ -386,14 +386,14 @@ export default function LandingPage() {
           <div className="py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline">
             <div className="md:col-span-1 text-xs font-mono font-bold text-primary">06</div>
             <div className="md:col-span-4 space-y-1">
-              <h3 className="text-sm font-bold text-text-main">Situation-Aware Interventions &amp; Governance</h3>
+              <h3 className="text-sm font-bold text-text-main">{t('landing.mod6Title')}</h3>
               <Link href="/interventions" className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                <span>Review Interventions Catalog</span>
+                <span>{t('landing.mod6Link')}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="md:col-span-7 text-xs text-text-muted leading-relaxed">
-              Generates targeted, hydrogeologically appropriate conservation proposals (check dams, percolation tanks, injection recharge shafts, and crop rotation) linked to Ministry of Jal Shakti, PMKSY, and Atal Bhujal Yojana guidelines. All recommendations require on-site field hydrogeological validation and human officer approval before statutory execution.
+              {t('landing.mod6Desc')}
             </div>
           </div>
         </div>
@@ -405,13 +405,13 @@ export default function LandingPage() {
       <section id="how-it-works" className="space-y-8 scroll-mt-20">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Intelligence Architecture
+            {t('landing.workflowTag')}
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            End-to-End Groundwater Intelligence Workflow
+            {t('landing.workflowTitle')}
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            The platform follows a verified eight-stage workflow connecting raw in-situ sensor telemetry and atmospheric grids to responsible, human-governed conservation decisions.
+            {t('landing.workflowSubtitle')}
           </p>
         </div>
 
@@ -421,11 +421,11 @@ export default function LandingPage() {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 1</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Data Collection &amp; Ingestion</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage1Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Automated ingestion from CGWB DWLR telemetry wells, State GWD records, IMD 0.25° precipitation grids, and NASA GRACE-FO gravimetry.
+              {t('landing.stage1Desc')}
             </p>
           </div>
 
@@ -433,11 +433,11 @@ export default function LandingPage() {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 2</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Validation &amp; Geographic Alignment</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage2Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Geodesic polygon clipping to LGD block boundaries; strict preservation of missing records and sensor dropouts without synthetic imputation.
+              {t('landing.stage2Desc')}
             </p>
           </div>
 
@@ -445,11 +445,11 @@ export default function LandingPage() {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 3</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Historical Trend Analysis</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage3Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Multi-year decadal drawdown rates, 30-year IMD monsoon baseline comparisons (1991–2020 LPA), and Standardized Precipitation Index (SPI) tracking.
+              {t('landing.stage3Desc')}
             </p>
           </div>
 
@@ -457,11 +457,11 @@ export default function LandingPage() {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 4</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Current Condition Assessment</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage4Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Real-time well depth evaluation (m bgl) contrasted against surface soil moisture (SMAP) and vegetative vigor (Sentinel-2 NDVI) canopy health.
+              {t('landing.stage4Desc')}
             </p>
           </div>
 
@@ -469,11 +469,11 @@ export default function LandingPage() {
           <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 5</span>
-              <span className="text-[10px] uppercase font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">Research Prototype</span>
+              <span className="text-[10px] uppercase font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">{t('landing.stageResearch')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Forecasting &amp; Uncertainty</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage5Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              QuantileGB-v2.0 generates 1-to-4 quarter water depth ranges (P10–P90) benchmarked against seasonal persistence baselines; strictly uncalibrated for statutory orders.
+              {t('landing.stage5Desc')}
             </p>
           </div>
 
@@ -481,11 +481,11 @@ export default function LandingPage() {
           <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 6</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Risk Assessment &amp; GSS Scoring</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage6Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Computes descriptive Groundwater Stress Score (0–100) combining physical signals to prioritize administrative units needing urgent conservation attention.
+              {t('landing.stage6Desc')}
             </p>
           </div>
 
@@ -493,11 +493,11 @@ export default function LandingPage() {
           <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 7</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Intervention Recommendations</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage7Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Situation-aware matching of hydrogeological constraints to MoJS/PMKSY recharge interventions (check dams, injection shafts, farm ponds, crop diversification).
+              {t('landing.stage7Desc')}
             </p>
           </div>
 
@@ -505,11 +505,11 @@ export default function LandingPage() {
           <div className="space-y-2 border-t sm:border-t-0 pt-4 sm:pt-0 border-border">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold uppercase tracking-wider text-primary">Stage 8</span>
-              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Operational</span>
+              <span className="text-[10px] uppercase font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">{t('landing.stageOperational')}</span>
             </div>
-            <h3 className="font-bold text-xs text-text-main">Monitoring &amp; Human Governance</h3>
+            <h3 className="font-bold text-xs text-text-main">{t('landing.stage8Title')}</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Role-based review workflows with mandatory human-in-the-loop validation, risk overrides, and simulated DLT advisory alerts with audit logging.
+              {t('landing.stage8Desc')}
             </p>
           </div>
         </div>
@@ -521,13 +521,13 @@ export default function LandingPage() {
       <section className="space-y-8">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Interactive Demonstration
+            {t('landing.interactiveDemoTag')}
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            Explore the Real Product
+            {t('landing.exploreTitle')}
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            Test the live data filters below to preview actual administrative blocks, depth readings, and stress classifications currently integrated into the application.
+            {t('landing.exploreDesc')}
           </p>
         </div>
 
@@ -535,14 +535,14 @@ export default function LandingPage() {
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-border text-xs">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-text-muted font-medium">Filter Monitored Areas:</span>
+              <span className="text-text-muted font-medium">{t('landing.filterAreas')}</span>
 
               <select
                 value={selectedState}
                 onChange={(e) => setSelectedState(e.target.value)}
                 className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
-                <option value="all">All 9 Active Target States</option>
+                <option value="all">{t('overview.allStates', 'All 9 Active Target States')}</option>
                 {getTargetStatesAlphabetically().map((st) => (
                   <option key={st.code} value={normalizeStateName(st.name)}>
                     {st.name}
@@ -555,15 +555,15 @@ export default function LandingPage() {
                 onChange={(e) => setSelectedSeverity(e.target.value)}
                 className="bg-subtle border border-border px-2.5 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
               >
-                <option value="all">All Severity Tiers</option>
-                <option value="severe">Severe Stress Only</option>
-                <option value="watch">Watch Tier Only</option>
-                <option value="normal">Normal / Favorable</option>
+                <option value="all">{t('landing.allTiers')}</option>
+                <option value="severe">{t('landing.severeOnly')}</option>
+                <option value="watch">{t('landing.watchOnly')}</option>
+                <option value="normal">{t('landing.normalOnly')}</option>
               </select>
             </div>
 
             <span className="text-xs text-text-muted">
-              Showing <strong className="text-text-main font-semibold">{filteredPreviewBlocks.length}</strong> preview units
+              {t('overview.showing', 'Showing')} <strong className="text-text-main font-semibold">{filteredPreviewBlocks.length}</strong> {t('landing.showingPreview')}
             </span>
           </div>
 
@@ -572,13 +572,13 @@ export default function LandingPage() {
             <table className="w-full text-left text-xs border-collapse dbim-table">
               <thead>
                 <tr className="border-b border-border bg-subtle text-text-muted font-bold text-[11px] uppercase tracking-wider">
-                  <th className="py-2.5 px-3 text-left">Block (Sub-District)</th>
-                  <th className="py-2.5 px-3 text-left">District &amp; State</th>
-                  <th className="py-2.5 px-3 text-left">Water Stress</th>
-                  <th className="py-2.5 px-3 text-right">Well Depth</th>
-                  <th className="py-2.5 px-3 text-right">Rainfall Difference</th>
-                  <th className="py-2.5 px-3 text-right">Satellite Storage</th>
-                  <th className="py-2.5 px-3 text-right">Explore</th>
+                  <th className="py-2.5 px-3 text-left">{t('landing.thBlock')}</th>
+                  <th className="py-2.5 px-3 text-left">{t('landing.thDistrictState')}</th>
+                  <th className="py-2.5 px-3 text-left">{t('landing.thWaterStress')}</th>
+                  <th className="py-2.5 px-3 text-right">{t('landing.thWellDepth')}</th>
+                  <th className="py-2.5 px-3 text-right">{t('landing.thRainfallDiff')}</th>
+                  <th className="py-2.5 px-3 text-right">{t('landing.thSatelliteStorage')}</th>
+                  <th className="py-2.5 px-3 text-right">{t('landing.thExplore')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -594,7 +594,7 @@ export default function LandingPage() {
                           ? 'text-amber-700'
                           : 'text-emerald-700'
                       }`}>
-                        {blk.riskSeverity.toUpperCase()}
+                        {blk.riskSeverity === 'severe' ? t('severity.severe', 'SEVERE') : blk.riskSeverity === 'watch' ? t('severity.watch', 'WATCH') : t('severity.normal', 'NORMAL')}
                       </span>
                     </td>
                     <td className="py-2.5 px-3 text-right tabular-nums">
@@ -611,7 +611,7 @@ export default function LandingPage() {
                         href={`/explorer?block=${blk.id}`}
                         className="text-primary hover:underline font-semibold"
                       >
-                        Inspect in GIS →
+                        {t('landing.inspectInGis')}
                       </Link>
                     </td>
                   </tr>
@@ -623,18 +623,18 @@ export default function LandingPage() {
 
         {/* System Navigation Links (Horizontal Row, No Cards) */}
         <div className="pt-4 border-t border-border flex flex-wrap items-center justify-between gap-y-2 text-xs">
-          <span className="font-semibold text-text-muted">Direct System Navigation:</span>
+          <span className="font-semibold text-text-muted">{t('landing.directNav')}</span>
           <div className="flex flex-wrap items-center gap-6">
             <Link href="/explorer" className="text-primary hover:underline font-semibold flex items-center gap-1">
-              <span>GIS Map Explorer</span>
+              <span>{t('nav.explorer', 'GIS Map Explorer')}</span>
               <span aria-hidden="true">→</span>
             </Link>
             <Link href="/monitoring" className="text-primary hover:underline font-semibold flex items-center gap-1">
-              <span>Groundwater Monitoring</span>
+              <span>{t('nav.monitoring', 'Groundwater Monitoring')}</span>
               <span aria-hidden="true">→</span>
             </Link>
             <Link href="/risk-assessment" className="text-primary hover:underline font-semibold flex items-center gap-1">
-              <span>Risk Assessment &amp; GSS</span>
+              <span>{t('nav.risk', 'Risk Assessment & GSS')}</span>
               <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -647,16 +647,16 @@ export default function LandingPage() {
       <section id="gaps" className="space-y-8 scroll-mt-20">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Evidence-Led Gap Analysis
+            {t('landing.gapTag')}
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            Bridging the Gaps in Groundwater Intelligence
+            {t('landing.gapTitle')}
           </h2>
           <p className="text-base text-text-main font-medium">
-            Groundwater data becomes actionable only when physical observations, geospatial context, engineering workflows, and governance interfaces align seamlessly.
+            {t('landing.gapLead')}
           </p>
           <p className="text-xs text-text-muted leading-relaxed">
-            Every section below details the concrete problem, why it matters to Indian hydrogeology, AMRUT DRISHTI&apos;s verified response, available empirical evidence, current verification status, and remaining scientific limitations.
+            {t('landing.gapSublead')}
           </p>
         </div>
 
@@ -670,7 +670,7 @@ export default function LandingPage() {
                 : 'border-transparent text-text-muted hover:text-text-main'
             }`}
           >
-            Category A: Research Gaps
+            {t('landing.tabResearch')}
           </button>
           <button
             onClick={() => setActiveTab('software')}
@@ -680,7 +680,7 @@ export default function LandingPage() {
                 : 'border-transparent text-text-muted hover:text-text-main'
             }`}
           >
-            Category B: Software &amp; Engineering Gaps
+            {t('landing.tabSoftware')}
           </button>
           <button
             onClick={() => setActiveTab('platform')}
@@ -690,7 +690,7 @@ export default function LandingPage() {
                 : 'border-transparent text-text-muted hover:text-text-main'
             }`}
           >
-            Category C: Platform Gaps
+            {t('landing.tabPlatform')}
           </button>
         </div>
 
@@ -1613,13 +1613,13 @@ export default function LandingPage() {
       <section className="pt-8 pb-12 border-t border-border text-center space-y-6">
         <div className="max-w-2xl mx-auto space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Take the Next Step
+            {t('landing.takeNextStep', 'Take the Next Step')}
           </p>
           <h2 className="dbim-heading-2 text-text-main">
-            Explore the Groundwater Intelligence Platform
+            {t('landing.finalTitle')}
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            Examine in-situ piezometric observations, inspect block-level risk scores, review empirical models, and evaluate decision-support workflows across nine target states.
+            {t('landing.finalSubtitle')}
           </p>
         </div>
 
@@ -1628,25 +1628,25 @@ export default function LandingPage() {
             href="/explorer"
             className="bg-primary hover:bg-primary-hover text-text-inverted text-sm font-semibold px-6 py-3 rounded transition-colors inline-flex items-center gap-2"
           >
-            Launch GIS Map Explorer
+            {t('landing.finalExplorerBtn')}
           </Link>
           <Link
             href="/monitoring"
             className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
           >
-            View Groundwater Monitoring
+            {t('nav.monitoring', 'View Groundwater Monitoring')}
           </Link>
           <Link
             href="/data-sources"
             className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
           >
-            Inspect Data Sources &amp; Methodology
+            {t('datasources.title', 'Inspect Data Sources & Methodology')}
           </Link>
           <Link
             href="/overview"
             className="bg-surface hover:bg-subtle text-text-main border border-border text-sm font-semibold px-5 py-3 rounded transition-colors"
           >
-            Open Overview Dashboard
+            {t('landing.finalOverviewBtn')}
           </Link>
         </div>
 

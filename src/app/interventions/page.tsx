@@ -434,7 +434,7 @@ function InterventionsContent() {
 
         {/* Mandatory Pre-Feasibility Disclaimer */}
         <div className="p-3 bg-subtle/80 border border-border text-xs text-text-muted leading-relaxed">
-          <span className="font-semibold text-text-main">Rule-Based Pre-feasibility Suggestion</span> — Detailed Project Report (DPR) and field hydrogeological survey required before financial sanction.
+          {t('interventions.prefeasibilityDisclaimer', 'Rule-Based Pre-feasibility Suggestion — Detailed Project Report (DPR) and field hydrogeological survey required before financial sanction.')}
         </div>
 
         {currentBlock ? (
@@ -443,7 +443,7 @@ function InterventionsContent() {
             <div className="p-3 bg-subtle/40 border border-border text-xs space-y-2">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="font-bold text-text-main">
-                  Evaluated Hydrogeological Criteria for {currentBlock.name} ({currentBlock.districtName}):
+                  {t('interventions.evaluatedCriteria', 'Evaluated Hydrogeological Criteria for')} {currentBlock.name} ({currentBlock.districtName}):
                 </span>
                 <span className={`text-[10px] font-bold px-2 py-0.5 border ${
                   currentBlock.riskSeverity === 'severe'
@@ -452,39 +452,39 @@ function InterventionsContent() {
                     ? 'bg-amber-500/10 text-amber-800 border-amber-500/30'
                     : 'bg-emerald-500/10 text-emerald-800 border-emerald-500/30'
                 }`}>
-                  STRESS: {currentBlock.riskSeverity.toUpperCase()}
+                  {t('interventions.stressLabel', 'STRESS:')} {currentBlock.riskSeverity === 'severe' ? t('severity.severe', 'SEVERE') : currentBlock.riskSeverity === 'watch' ? t('severity.watch', 'WATCH') : t('severity.normal', 'NORMAL')}
                 </span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 pt-2 text-[11px]">
                 <div>
-                  <span className="text-text-muted block">Well Depth:</span>
+                  <span className="text-text-muted block">{t('interventions.wellDepth', 'Well Depth:')}</span>
                   <span className="font-mono font-medium text-text-main">
-                    {currentBlock.indicators.cgwbWellDepthMbgl !== null ? `${currentBlock.indicators.cgwbWellDepthMbgl} m bgl` : 'Missing'}
+                    {currentBlock.indicators.cgwbWellDepthMbgl !== null ? `${currentBlock.indicators.cgwbWellDepthMbgl} m bgl` : t('interventions.missing', 'Missing')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-text-muted block">Drawdown Trend:</span>
+                  <span className="text-text-muted block">{t('interventions.drawdownTrend', 'Drawdown Trend:')}</span>
                   <span className="font-mono font-medium text-text-main">
-                    {currentBlock.indicators.wellDepthTrendMperYr !== null ? `${currentBlock.indicators.wellDepthTrendMperYr} m/yr` : 'Unavailable'}
+                    {currentBlock.indicators.wellDepthTrendMperYr !== null ? `${currentBlock.indicators.wellDepthTrendMperYr} m/yr` : t('interventions.unavailable', 'Unavailable')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-text-muted block">Rainfall Anomaly:</span>
+                  <span className="text-text-muted block">{t('interventions.rainfallAnomaly', 'Rainfall Anomaly:')}</span>
                   <span className="font-mono font-medium text-text-main">
-                    {currentBlock.indicators.rainfallAnomalyMm !== null ? `${currentBlock.indicators.rainfallAnomalyMm} mm` : 'Missing'}
+                    {currentBlock.indicators.rainfallAnomalyMm !== null ? `${currentBlock.indicators.rainfallAnomalyMm} mm` : t('interventions.missing', 'Missing')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-text-muted block">Surface Water (NDWI):</span>
+                  <span className="text-text-muted block">{t('interventions.surfaceWater', 'Surface Water (NDWI):')}</span>
                   <span className="font-mono font-medium text-text-main">
-                    {currentBlock.indicators.sentinelNdwi !== null ? currentBlock.indicators.sentinelNdwi : 'Unavailable'}
+                    {currentBlock.indicators.sentinelNdwi !== null ? currentBlock.indicators.sentinelNdwi : t('interventions.unavailable', 'Unavailable')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-text-muted block">Soil Moisture:</span>
+                  <span className="text-text-muted block">{t('interventions.soilMoisture', 'Soil Moisture:')}</span>
                   <span className="font-mono font-medium text-text-main">
-                    {currentBlock.indicators.smapSoilMoisture !== null ? `${currentBlock.indicators.smapSoilMoisture} m³/m³` : 'Unavailable'}
+                    {currentBlock.indicators.smapSoilMoisture !== null ? `${currentBlock.indicators.smapSoilMoisture} m³/m³` : t('interventions.unavailable', 'Unavailable')}
                   </span>
                 </div>
               </div>
@@ -659,7 +659,7 @@ function InterventionsContent() {
                 onChange={(e) => setSelectedStateFilter(e.target.value)}
                 className="bg-subtle border border-border px-2 py-1 text-xs font-medium text-text-main focus:outline-none cursor-pointer"
               >
-                <option value="all">All 9 Active Target States</option>
+                <option value="all">{t('overview.allStates', 'All 9 Active Target States')}</option>
                 {ALL_TARGET_STATES.map(st => (
                   <option key={st.code} value={st.name}>{st.name}</option>
                 ))}
