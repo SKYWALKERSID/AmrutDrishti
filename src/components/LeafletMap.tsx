@@ -80,7 +80,8 @@ export default function LeafletMap({
 
   useEffect(() => {
     let disposed = false;
-    let invalidateTimer: number | undefined;
+    let resizeObserver: ResizeObserver | null = null;
+    const invalidateTimers: number[] = [];
 
     async function initializeMap() {
       if (!containerRef.current || mapRef.current) return;
@@ -96,26 +97,67 @@ export default function LeafletMap({
         scrollWheelZoom: true,
       });
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
+      // CartoDB Voyager raster tiles with global Fastly CDN edge caching
+      const primaryTileLayer = L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        {
+          maxZoom: 19,
+          subdomains: 'abcd',
+          crossOrigin: true,
+          keepBuffer: 6,
+          updateWhenIdle: false,
+          updateWhenZooming: true,
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        }
+      );
+      primaryTileLayer.addTo(map);
+
+      // Automatic fallback if any single tile request hits an intermittent network glitch
+      primaryTileLayer.on('tileerror', (errorEvent) => {
+        const img = errorEvent.tile as HTMLImageElement;
+        if (img && !img.dataset.retried) {
+          img.dataset.retried = 'true';
+          const originalSrc = img.src;
+          if (originalSrc.includes('basemaps.cartocdn.com')) {
+            img.src = originalSrc.replace(/[a-d]\.basemaps/, 'a.basemaps');
+          }
+        }
+      });
 
       mapRef.current = map;
       layerRef.current = L.layerGroup().addTo(map);
       setIsMapReady(true);
 
-      invalidateTimer = window.setTimeout(() => {
-        if (!disposed) map.invalidateSize();
-      }, 100);
+      // Responsive observer so whenever container dimensions change, Leaflet recalculates bounds
+      if (containerRef.current && typeof ResizeObserver !== 'undefined') {
+        resizeObserver = new ResizeObserver(() => {
+          if (!disposed && mapRef.current) {
+            mapRef.current.invalidateSize({ debounceMoveend: true });
+          }
+        });
+        resizeObserver.observe(containerRef.current);
+      }
+
+      // Staged invalidation to handle hydration, font loads, and tab layout transitions
+      [50, 150, 300, 600, 1200].forEach((delay) => {
+        const timer = window.setTimeout(() => {
+          if (!disposed && mapRef.current) {
+            mapRef.current.invalidateSize();
+          }
+        }, delay);
+        invalidateTimers.push(timer);
+      });
     }
 
     void initializeMap();
 
     return () => {
       disposed = true;
-      if (invalidateTimer !== undefined) window.clearTimeout(invalidateTimer);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+      invalidateTimers.forEach((timer) => window.clearTimeout(timer));
       setIsMapReady(false);
       mapRef.current?.remove();
       mapRef.current = null;
@@ -194,6 +236,8 @@ export default function LeafletMap({
       centerMarker.addTo(markerLayer);
     }
 
+    map.invalidateSize({ debounceMoveend: true });
+
     if (validBlocks.length > 0) {
       const bounds = L.latLngBounds(
         validBlocks.map((block) => [
@@ -203,6 +247,9 @@ export default function LeafletMap({
       );
 
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: 9 });
+      window.setTimeout(() => {
+        map.invalidateSize();
+      }, 100);
     }
   }, [blocks, selectedBlockId, activeLayer, isMapReady, t]);
 
